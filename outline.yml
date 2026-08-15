@@ -123,31 +123,31 @@ volumes:
             title: "语言建模前史：从 Shannon 到 n-gram"
             era: "1948–2000s"
             summary: "信息论与 cross-entropy 的血缘；bigram LM，测量熵。"
-            status: stub
+            status: draft
             milestone: M4
           - file: chapters/vol2/part4-rnn.qmd
             title: "RNN：展开即深网的继承病"
             era: "1990–2014"
             summary: "BPTT 把 Part 2 的疾病全部继承；numpy 实现 char-RNN。"
-            status: stub
+            status: draft
             milestone: M4
           - file: chapters/vol2/part4-lstm.qmd
             title: "LSTM：让梯度存活的门控设计"
             era: "1997–2017"
             summary: "门控设计的美学；从零实现 cell 并分析梯度流。"
-            status: stub
+            status: draft
             milestone: M4
           - file: chapters/vol2/part4-word2vec.qmd
             title: "word2vec：语义被压进向量"
             era: "2013"
             summary: "『语义能被 loss 压进向量』；训练并可视化词向量。"
-            status: stub
+            status: draft
             milestone: M4
           - file: chapters/vol2/part4-seq2seq.qmd
             title: "seq2seq：翻译即条件语言建模"
             era: "2014"
             summary: "encoder-decoder 与固定维度瓶颈；玩具翻译机的长句崩溃。"
-            status: stub
+            status: draft
             milestone: M4
 
       - id: part5

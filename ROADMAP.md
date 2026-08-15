@@ -6,6 +6,7 @@
 
 - **M0–M2 已完成**（骨架、样章、Part 0+1 六章）。
 - **M3 已完成（9/9），卷一全部 15 章成稿（status: draft）**——Part 2「深度学习的黎明」五章 + Part 3「卷积时代」四章；`dlbook` 生长至 Conv2D/Conv1D/SimpleConvNet/Trainer；测试 26 项全绿；全书渲染验证通过（各章实验数值与校准运行一致）。**卷一 v1.0 内容齐备，待试读与润色后可发布。**
+- **M4 已完成（5/5），卷二 Part 4「序列建模」五章成稿**——n-gram/RNN/LSTM/word2vec/seq2seq；`dlbook.rnn`（SimpleRNN/LSTM/seq2seq/梯度流诊断）与 `dlbook.word2vec` 落地；测试 30 项全绿。全书 20/38 章。
 - 部署方案已定（DEPLOY.md）：GitHub Actions + Pages，零服务器零成本；gh 已登录，等作者确认后建仓推送。
 
 ## 里程碑
@@ -55,4 +56,4 @@
 
 1. 推到 GitHub 激活 CI（一条命令：`gh repo create loss-descent --public --source=. --push`，CI/托管零服务器零成本，方案见 DEPLOY.md；gh 已登录 yujidong，等作者确认后执行）；
 2. **卷一 v1.0 发布准备**：外部读者试读全卷并回收反馈；各章 status 从 draft → done 的润色 pass（重点：跨章交叉引用核对、练习覆盖度、回声栏目与卷二伏笔的一致性）；
-3. 启动 **M4**（卷二上半：Part 4 序列建模五章——n-gram/RNN/LSTM/word2vec/seq2seq；需要新增 dlbook.rnn 模块与字符级语言建模数据管道）。
+3. 启动 **M5**（卷二下半：Part 5 注意力革命四章 + Part 6 规模时代四章，卷二收官）——需要 `dlbook.transformer`（注意力/多头/位置编码/mini-GPT）与 mini scaling-law 实验管道。
