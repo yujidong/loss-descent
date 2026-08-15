@@ -7,7 +7,7 @@
 - **M0–M2 已完成**（骨架、样章、Part 0+1 六章）。
 - **M3 已完成（9/9），卷一全部 15 章成稿（status: draft）**——Part 2「深度学习的黎明」五章 + Part 3「卷积时代」四章；`dlbook` 生长至 Conv2D/Conv1D/SimpleConvNet/Trainer；测试 26 项全绿；全书渲染验证通过（各章实验数值与校准运行一致）。**卷一 v1.0 内容齐备，待试读与润色后可发布。**
 - **M4 已完成（5/5）**——卷二 Part 4「序列建模」五章（n-gram/RNN/LSTM/word2vec/seq2seq）。
-- **M5 上半已完成（4/4）**——卷二 Part 5「注意力革命」四章：Bahdanau（全长度 1.00 vs 普通版断崖 0.64 + 反对角对齐热图）、Transformer 从零实现（同语料 1.79 总冠军 + 位置消融 4.49）、训练经济学（吞吐/长度实测）、GPT vs BERT（同体双目标对照）。`dlbook.transformer` 落地（多头注意力/LayerNorm/块/MiniGPT 完整反向，有限差分对拍把关）。测试 33 项全绿。全书 24/38 章。
+- **M5 全部完成（8/8），卷二《序列、注意力与规模》收官（28/38 章）**——Part 5「注意力革命」四章 + Part 6「规模时代」四章：迷你 scaling law（四尺寸幂律 + 纯幂律外推高估 15% 的数据墙演示）、等算力 U 型曲线（谷底 d=16 的 Chinchilla 玩具版）、涌现度量之争（平滑 loss vs exact4 跳 25 倍的度量放大器）、MoE 最小实验（玩具尺度诚实零结果 + 使用率失衡）。测试 35 项全绿。
 - 部署方案已定（DEPLOY.md）：GitHub Actions + Pages，零服务器零成本；gh 已登录，等作者确认后建仓推送。
 
 ## 里程碑
@@ -57,4 +57,4 @@
 
 1. 推到 GitHub 激活 CI（一条命令：`gh repo create loss-descent --public --source=. --push`，CI/托管零服务器零成本，方案见 DEPLOY.md；gh 已登录 yujidong，等作者确认后执行）；
 2. **卷一 v1.0 发布准备**：外部读者试读全卷并回收反馈；各章 status 从 draft → done 的润色 pass（重点：跨章交叉引用核对、练习覆盖度、回声栏目与卷二伏笔的一致性）；
-3. 启动 **M5**（卷二下半：Part 5 注意力革命四章 + Part 6 规模时代四章，卷二收官）——需要 `dlbook.transformer`（注意力/多头/位置编码/mini-GPT）与 mini scaling-law 实验管道。
+3. 启动 **M6**（卷三：Part 7 对齐时代四章——base model/SFT/RLHF/推理模型；需要新增 LoRA 微调、DPO 玩具、RLVR 玩具实验管道）。

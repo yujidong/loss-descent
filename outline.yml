@@ -185,25 +185,25 @@ volumes:
             title: "GPT-3 与 Scaling Laws：loss 的可预测性"
             era: "2019–2020"
             summary: "在 mini 模型上拟合自己的幂律；行业行为从此改变。"
-            status: stub
+            status: draft
             milestone: M5
           - file: chapters/vol2/part6-chinchilla.qmd
             title: "Chinchilla：等算力下的再平衡"
             era: "2022"
             summary: "推翻 Kaplan；数据与参数配比扫描实验。"
-            status: stub
+            status: draft
             milestone: M5
           - file: chapters/vol2/part6-emergence.qmd
             title: "涌现之争：相变还是度量假象"
             era: "2022–2024"
             summary: "能力是平滑还是突变；用公开 checkpoint 画能力曲线。"
-            status: stub
+            status: draft
             milestone: M5
           - file: chapters/vol2/part6-convergence.qmd
             title: "收敛：decoder-only、MoE 与开源运动"
             era: "2022–2024"
             summary: "范式与工程为何收敛；卷二收官。"
-            status: stub
+            status: draft
             milestone: M5
 
   - id: vol3

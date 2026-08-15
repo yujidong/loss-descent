@@ -109,16 +109,24 @@ class MiniGPT:
             for name, ln in (("ln1", blk.ln1), ("ln2", blk.ln2)):
                 entries.append((ln.g, ln.grad_g, f"b{bi}.{name}.g"))
                 entries.append((ln.b, ln.grad_b, f"b{bi}.{name}.b"))
-            for name, lin in (("fc1", blk.mlp.fc1), ("fc2", blk.mlp.fc2)):
-                entries.append((lin.W, lin.grad_W, f"b{bi}.{name}.W"))
-                entries.append((lin.b, lin.grad_b, f"b{bi}.{name}.b"))
+            mlp = blk.mlp
+            if hasattr(mlp, "experts"):  # MoEMLP：各专家 + 门
+                for ei, expert in enumerate(mlp.experts):
+                    for name, lin in (("fc1", expert.fc1), ("fc2", expert.fc2)):
+                        entries.append((lin.W, lin.grad_W, f"b{bi}.e{ei}.{name}.W"))
+                        entries.append((lin.b, lin.grad_b, f"b{bi}.e{ei}.{name}.b"))
+                entries.append((mlp.gate_w, mlp.grad_gate_w, f"b{bi}.gate"))
+            else:
+                for name, lin in (("fc1", mlp.fc1), ("fc2", mlp.fc2)):
+                    entries.append((lin.W, lin.grad_W, f"b{bi}.{name}.W"))
+                    entries.append((lin.b, lin.grad_b, f"b{bi}.{name}.b"))
         entries.append((self.head.W, self.head.grad_W, "head.W"))
         entries.append((self.head.b, self.head.grad_b, "head.b"))
         return entries
 
     def step(self, lr: float, momentum: float = 0.9, clip: float = 1.0) -> None:
         """带全局梯度范数裁剪的动量更新——Transformer 训练的标准配菜。"""
-        entries = self._param_grad_entries()
+        entries = [(p, g, k) for p, g, k in self._param_grad_entries() if g is not None]
         if clip:
             gnorm = float(np.sqrt(sum(float(np.sum(g**2)) for _, g, _ in entries)))
             scale = min(1.0, clip / max(gnorm, 1e-12))

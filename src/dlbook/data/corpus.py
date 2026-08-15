@@ -2,7 +2,13 @@
 
 TINY_STORY：自撰英文小故事（约 2.5K 字符），刻意使用重复句式与
 小词汇表，让 n-gram / RNN / LSTM 三代语言模型在同一语料上可比。
+
+make_grammar_corpus：语法模板 + Zipf 词频的大型合成语料（6.1 章的
+scaling 实验燃料）——不同尺寸的模型在它身上量出可拟合的幂律。
 """
+from __future__ import annotations
+
+import numpy as np
 
 TINY_STORY = """once upon a time there was a little robot named pip. pip lived in a
 small house at the edge of a quiet town. every morning pip opened the door and
@@ -68,14 +74,64 @@ def char_corpus(text: str = TINY_STORY):
     return ids, vocab, inv
 
 
+def make_grammar_corpus(n_chars: int = 60000, seed: int = 0) -> str:
+    """语法模板 + Zipf 词频的合成语料（scaling 实验燃料）。
+
+    结构分层：高频虚词（the/and/a）+ 中频名词动词 + 低频修饰词，
+    句式取自十几个模板——不同容量的模型在不同层次上"啃得动"，
+    正是幂律 loss 曲线需要的多尺度结构。
+    """
+    rng = np.random.default_rng(seed)
+
+    def zipf(words, s=1.1):
+        ranks = np.arange(1, len(words) + 1)
+        p = 1.0 / ranks**s
+        p /= p.sum()
+        return list(words), p
+
+    subjects, p_sub = zipf(["the cat", "the dog", "the bird", "pip", "the baker",
+                            "the children", "the old man", "a little fish"])
+    verbs, p_verb = zipf(["sat", "ran", "slept", "walked", "looked", "sang",
+                          "played", "read", "smiled", "climbed", "danced", "listened"])
+    objects, p_obj = zipf(["the garden", "the market", "the hill", "the sea",
+                           "the house", "the road", "the field", "the tree",
+                           "the bridge", "the shore"])
+    adjs, p_adj = zipf(["quiet", "warm", "small", "bright", "gray", "soft",
+                        "cold", "sweet", "loud", "calm", "golden", "ancient"])
+    temps, p_temp = zipf(["in the morning", "at noon", "in the evening", "at night",
+                          "after the rain", "before the storm", "in summer", "in winter"])
+
+    parts = []
+    total = 0
+    while total < n_chars:
+        t = rng.random()
+        if t < 0.30:
+            s = f"{rng.choice(subjects, p=p_sub)} {rng.choice(verbs, p=p_verb)} {rng.choice(objects, p=p_obj)} ."
+        elif t < 0.50:
+            s = (f"{rng.choice(subjects, p=p_sub)} was {rng.choice(adjs, p=p_adj)} "
+                 f"{rng.choice(temps, p=p_temp)} .")
+        elif t < 0.65:
+            s = (f"{rng.choice(temps, p=p_temp).capitalize()}, {rng.choice(subjects, p=p_sub)} "
+                 f"and {rng.choice(subjects, p=p_sub)} {rng.choice(verbs, p=p_verb)} "
+                 f"to {rng.choice(objects, p=p_obj)} .")
+        elif t < 0.80:
+            s = (f"the {rng.choice(adjs, p=p_adj)} {rng.choice(objects, p=p_obj).split()[-1]} "
+                 f"was {rng.choice(adjs, p=p_adj)} and {rng.choice(adjs, p=p_adj)} .")
+        else:
+            s = (f"every {rng.choice(['morning', 'evening', 'friday', 'night'])}, "
+                 f"{rng.choice(subjects, p=p_sub)} {rng.choice(verbs, p=p_verb)} "
+                 f"near {rng.choice(objects, p=p_obj)} .")
+        parts.append(s)
+        total += len(s) + 1
+    return " ".join(parts)
+
+
 def make_analogy_corpus(n_sentences: int = 1200, seed: int = 0):
     """带清晰语义结构的词级语料（word2vec 专用）。
 
     词对（成体-幼崽）共享上下文模板 → 嵌入空间中"成体→幼崽"方向
     一致，king-man+woman 式类比可复现。
     """
-    import numpy as np
-
     rng = np.random.default_rng(seed)
     pairs = [("cat", "kitten"), ("dog", "puppy"), ("bird", "chick"), ("cow", "calf")]
     verbs = ["runs", "sits", "sleeps", "plays"]
@@ -105,8 +161,6 @@ def make_reversal_task(n: int = 600, max_len: int = 5, seed: int = 0):
     特殊记号：0=BOS, 1=EOS；数字词表 2..11。返回 (inputs, targets)，
     每条是词 id 列表。
     """
-    import numpy as np
-
     rng = np.random.default_rng(seed)
     BOS, EOS = 0, 1
     inputs, targets = [], []

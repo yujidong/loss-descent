@@ -62,3 +62,19 @@ def test_minigpt_learns_char_lm():
             first = l
         model.step(0.15, clip=1.0)
     assert first > l and l < 2.05  # 明显学习且优于 RNN 同预算（2.23）
+
+
+def test_minigpt_with_moe_block_steps():
+    ids, vocab, _ = char_corpus()
+    V = len(vocab)
+    from dlbook.transformer.layers import MoEMLP
+
+    model = MiniGPT(V, d_model=16, n_heads=2, n_blocks=2, block_size=16, seed=0)
+    model.blocks[1].mlp = MoEMLP(16, n_experts=2, seed=1)
+    rng = np.random.default_rng(0)
+    idx = rng.integers(0, V, size=(2, 17))
+    first = model.loss_and_backward(idx)
+    for _ in range(30):
+        l = model.loss_and_backward(idx)
+        model.step(0.05, clip=1.0)
+    assert first > l  # 含 MoE 块的整网可训

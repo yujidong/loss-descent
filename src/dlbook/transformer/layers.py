@@ -186,3 +186,55 @@ class Block:
         self.mlp.step(lr, momentum)
         self.ln1.step(lr, momentum)
         self.ln2.step(lr, momentum)
+class MoEMLP:
+    """混合专家前馈块（6.4 章）：top-1 稀疏路由 + 直通门梯度。
+
+    与 MLP 同接口。n_experts 位专家各是 2*d 隐层的小 MLP，每个位置
+    只经得分最高的那位——活跃 FLOPs 与 dense(4d) 相当，参数加倍。
+    门梯度用"软混合的直通近似"：dL/ds 经由 softmax 雅可比回传
+    <dY, 专家输出> 的对齐度。
+    """
+
+    def __init__(self, d_model, n_experts=2, seed=0):
+        self.n_experts = n_experts
+        self.experts = [MLP(d_model, 2 * d_model, seed + 100 * i) for i in range(n_experts)]
+        rng = np.random.default_rng(seed + 7)
+        self.gate_w = rng.normal(0, 0.02, (d_model, n_experts))
+        self.grad_gate_w = None
+        self._vel = {}
+        self.usage = np.full(n_experts, 1.0 / n_experts)
+
+    def forward(self, X):
+        p = softmax_lastdim(X @ self.gate_w)  # (B, T, E)
+        top = np.argmax(p, axis=-1)           # (B, T)
+        Y = np.zeros_like(X)
+        for e, expert in enumerate(self.experts):
+            sel = top == e
+            if sel.any():
+                Y[sel] = expert.forward(X[sel])
+        self._X, self._p, self._top, self._Y = X, p, top, Y
+        self.usage = np.array([(top == e).mean() for e in range(self.n_experts)])
+        return Y
+
+    def backward(self, dY):
+        X, p, top, Y = self._X, self._p, self._top, self._Y
+        dX = np.zeros_like(X)
+        for e, expert in enumerate(self.experts):
+            sel = top == e
+            if sel.any():
+                dX[sel] = expert.backward(dY[sel])
+        # 直通门梯度：视作软混合 Σ p_e Y_e 的导数（未选专家输出记 0 的近似）
+        indicator = (top[..., None, None] == np.arange(self.n_experts))  # (B,T,1,E)
+        Y_e = Y[..., None] * indicator
+        align = np.einsum("btd,btde->bte", dY, Y_e)
+        ds = p * (align - (p * align).sum(axis=-1, keepdims=True))
+        self.grad_gate_w = np.einsum("btd,bte->de", X, ds)
+        return dX
+
+    def step(self, lr, momentum=0.9):
+        for e in self.experts:
+            e.step(lr, momentum)
+        if "g" not in self._vel:
+            self._vel["g"] = np.zeros_like(self.gate_w)
+        self._vel["g"] = momentum * self._vel["g"] - lr * self.grad_gate_w
+        self.gate_w += self._vel["g"]
