@@ -41,3 +41,29 @@ def make_slab(n_per_class: int = 20, margin: float = 0.5, extent: float = 5.0, n
     X = np.column_stack([x1, x2])
     y = np.array([1.0] * n_per_class + [-1.0] * n_per_class)
     return X, y
+
+
+def make_moons(n_per_class: int = 100, noise: float = 0.1, seed: int = 0):
+    """双月数据集：非线性但温和的二分类，1990s 风格的"真实任务"难度。"""
+    rng = np.random.default_rng(seed)
+    t1, t2 = rng.uniform(0, np.pi, n_per_class), rng.uniform(0, np.pi, n_per_class)
+    upper = np.column_stack([np.cos(t1), np.sin(t1)])
+    lower = np.column_stack([1.0 - np.cos(t2), 0.5 - np.sin(t2)])
+    X = np.vstack([upper, lower]) + rng.normal(0, noise, (2 * n_per_class, 2))
+    y = np.array([1.0] * n_per_class + [-1.0] * n_per_class)
+    return X, y
+
+
+def make_spiral(n_per_class: int = 100, turns: float = 1.75, noise: float = 0.1, seed: int = 0):
+    """双螺旋：需要多层网络才能分开的经典难题（2.3/2.5 章的主力数据）。"""
+    rng = np.random.default_rng(seed)
+    Xs, ys = [], []
+    for label, sign in ((1.0, 0.0), (-1.0, np.pi)):
+        t = np.linspace(0.05, 1.0, n_per_class)
+        r = t * np.sqrt(2.0)
+        theta = sign + t * 2 * np.pi * turns
+        X = np.column_stack([r * np.cos(theta), r * np.sin(theta)])
+        X += rng.normal(0, noise, X.shape)
+        Xs.append(X)
+        ys.append(np.full(n_per_class, label))
+    return np.vstack(Xs), np.concatenate(ys)
