@@ -1,0 +1,99 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "降 Loss 之路"
+  subtitle: "深度学习思想史：从感知机到智能体"
+  author: "yujid"
+  # TODO: 建仓后取消注释并替换为真实地址
+  # repo-url: https://github.com/yujid/loss-descent
+  # repo-actions: [edit, source, issue]
+  page-footer: |
+    《降 Loss 之路》 · 用实验重走深度学习研究史
+  chapters:
+    - index.qmd
+
+    - part: "卷一 · Part 0 · 导论"
+      chapters:
+        - chapters/vol1/part0-two-threads.qmd
+        - chapters/vol1/part0-reading-history.qmd
+
+    - part: "卷一 · Part 1 · 神经网络的史前史（1943–1986）"
+      chapters:
+        - chapters/vol1/part1-perceptron.qmd
+        - chapters/vol1/part1-symbolic-vs-connectionist.qmd
+        - chapters/vol1/part1-backprop.qmd
+        - chapters/vol1/part1-mlp-winter.qmd
+
+    - part: "卷一 · Part 2 · 深度学习的黎明（1986–2015）"
+      chapters:
+        - chapters/vol1/part2-mlp-difficulty.qmd
+        - chapters/vol1/part2-vanishing-gradient.qmd
+        - chapters/vol1/part2-toolbox.qmd
+        - chapters/vol1/part2-alexnet.qmd
+        - chapters/vol1/part2-capstone-deep-mlp.qmd
+
+    - part: "卷一 · Part 3 · 卷积时代（1989–2016）"
+      chapters:
+        - chapters/vol1/part3-lenet.qmd
+        - chapters/vol1/part3-resnet.qmd
+        - chapters/vol1/part3-cnn-legacy.qmd
+        - chapters/vol1/part3-cnn-limits.qmd
+
+    - part: "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）"
+      chapters:
+        - chapters/vol2/part4-ngram.qmd
+        - chapters/vol2/part4-rnn.qmd
+        - chapters/vol2/part4-lstm.qmd
+        - chapters/vol2/part4-word2vec.qmd
+        - chapters/vol2/part4-seq2seq.qmd
+
+    - part: "卷二 · Part 5 · 注意力革命（2014–2019）"
+      chapters:
+        - chapters/vol2/part5-bahdanau.qmd
+        - chapters/vol2/part5-transformer.qmd
+        - chapters/vol2/part5-why-transformer-won.qmd
+        - chapters/vol2/part5-gpt-vs-bert.qmd
+
+    - part: "卷二 · Part 6 · 规模时代（2019–2024）"
+      chapters:
+        - chapters/vol2/part6-scaling-laws.qmd
+        - chapters/vol2/part6-chinchilla.qmd
+        - chapters/vol2/part6-emergence.qmd
+        - chapters/vol2/part6-convergence.qmd
+
+    - part: "卷三 · Part 7 · 对齐时代（2020–2025）"
+      chapters:
+        - chapters/vol3/part7-base-model.qmd
+        - chapters/vol3/part7-sft.qmd
+        - chapters/vol3/part7-rlhf.qmd
+        - chapters/vol3/part7-reasoning.qmd
+
+    - part: "卷三 · Part 8 · 智能体时代（2023–2026）"
+      chapters:
+        - chapters/vol3/part8-agent-origins.qmd
+        - chapters/vol3/part8-agent-training.qmd
+        - chapters/vol3/part8-model-vs-system.qmd
+
+    - part: "卷三 · Part 9 · 研究的规律与未来"
+      chapters:
+        - chapters/vol3/part9-patterns.qmd
+        - chapters/vol3/part9-open-problems.qmd
+        - chapters/vol3/part9-prediction.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme/book.scss]
+      dark: [darkly, theme/book.scss]
+    code-copy: true
+    toc-depth: 3
+
+execute:
+  freeze: auto
+
+jupyter: python3
+
+language:
+  toc-title: "目录"

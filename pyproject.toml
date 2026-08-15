@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dlbook"
+version = "0.1.0"
+description = "随《降 Loss 之路》逐章生长的深度学习迷你库"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+    "PyYAML>=6",
+    "jupyter",
+]
+torch = ["torch>=2.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

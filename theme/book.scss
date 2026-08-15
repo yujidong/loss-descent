@@ -1,0 +1,16 @@
+/*-- scss:defaults --*/
+/* 自定义栏目（callout）配色。用法见 templates/chapter-template.qmd：
+   era=时代快照  research=停一停，你来当研究者  echo=回声  paper=论文时光机 */
+$callout-colors: (
+  era: #7C3AED,
+  research: #D97706,
+  echo: #0891B2,
+  paper: #65A30D
+);
+
+/*-- scss:rules --*/
+/* 中文字体兜底：Windows/macOS/Linux 各给一个可用的黑体 */
+body {
+  font-family: -apple-system, "Segoe UI", "Noto Sans SC", "Source Han Sans SC",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+}

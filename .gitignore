@@ -1,0 +1,15 @@
+# Quarto 构建产物（_freeze/ 故意保留入库，保证渲染可复现）
+_book/
+.quarto/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+
+# notebook
+.ipynb_checkpoints/
