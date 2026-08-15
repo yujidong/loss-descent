@@ -5,7 +5,9 @@
 ## 当前状态
 
 - **M0 已完成**——项目骨架：38 章目录、章节模板、`dlbook` 包、CI、测试就位（commit `11f5f18`）。
-- **M1 样章已成稿**——`part1-backprop`（commit `8b41eec`）：五个固定栏目齐备，实验数值全部经校准运行验证，`pytest` 5 项全绿。剩余：本地 `quarto render` 视觉检查 + 2–3 位读者试读。
+- **M1 样章已成稿**——`part1-backprop`：五个固定栏目齐备，实验数值全部经校准运行验证。剩余：2–3 位读者试读。
+- **M2 进行中（2/6）**——`part0-two-threads`（导论·纯阅读章）、`part1-perceptron`（完整实验章，`dlbook.nn`+`dlbook.data` 落地）已成稿；测试 11 项全绿，含防围栏语法的 CI 体检。剩：`part0-reading-history`、`part1-symbolic-vs-connectionist`、`part1-mlp-winter`。
+- 部署方案已定（DEPLOY.md）：GitHub Actions + Pages，零服务器零成本；gh 已登录，等作者确认后建仓推送。
 
 ## 里程碑
 
@@ -53,5 +55,5 @@
 ## 待办（下一步）
 
 1. ~~本机安装 Quarto 并完成首次 `quarto render` 验证~~ → Quarto 便携版装在 `%LOCALAPPDATA%\Programs\QuartoPortable`（winget 在此网络下会卡死，改用 GitHub 官方 zip）；render 验证进行中；
-2. 推到 GitHub 激活 CI（发布 gh-pages 后把地址填回 `_quarto.yml` 与 `index.qmd` 两处 TODO）；
+2. 推到 GitHub 激活 CI（一条命令：`gh repo create loss-descent --public --source=. --push`，CI/托管零服务器零成本，方案见 DEPLOY.md；gh 已登录 yujidong，等作者确认后执行）；
 3. M1 收尾：试读反馈回改样章；确认模板可复制后开始 **M2**（Part 0 其余章节 + Part 1 剩余 3 章）。

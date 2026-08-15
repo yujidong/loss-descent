@@ -14,7 +14,7 @@ volumes:
             title: "双主线：降 Loss 的视角与研究史的视角"
             era: "全书视角"
             summary: "为什么这两条线索拧在一起才能讲清深度学习；loss≈压缩≈预测的世界观。"
-            status: stub
+            status: draft
             milestone: M2
           - file: chapters/vol1/part0-reading-history.qmd
             title: "如何读研究史：读问题，不读年表"
@@ -30,7 +30,7 @@ volumes:
             title: "感知机的辉煌与失败"
             era: "1943–1969"
             summary: "MP 神经元 → Rosenblatt 感知机 → XOR 打击与第一次 AI 寒冬。"
-            status: stub
+            status: draft
             milestone: M2
           - file: chapters/vol1/part1-symbolic-vs-connectionist.qmd
             title: "符号主义与连接主义：第一次范式之争"

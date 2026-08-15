@@ -2,7 +2,7 @@
 
 一本用实验重走深度学习研究史的交互书：**从感知机到智能体，以历史为骨架、以降 loss 为解剖刀**。历史主线负责「为什么会这样」，loss 主线负责「这到底买到了什么」，两者拧成一股贯穿 38 章。
 
-进度与计划见 [ROADMAP.md](ROADMAP.md)，全书章节清单见 [outline.yml](outline.yml)。
+进度与计划见 [ROADMAP.md](ROADMAP.md)，全书章节清单见 [outline.yml](outline.yml)，部署与 CI 方案（零服务器）见 [DEPLOY.md](DEPLOY.md)。
 
 ## 目录结构
 

@@ -39,3 +39,28 @@ def plot_loss_curves(
     if save_to is not None:
         fig.savefig(save_to, dpi=150)
     return fig, ax
+
+
+def plot_linear_boundary(w, b, X, y, *, title="Linear boundary"):
+    """绘制二维线性分类器 sign(w·x + b) 的决策边界与数据点。
+
+    w: 长度 2 的法向量；X: (n, 2)；y: ±1 标签。兼容 w[1]=0 的竖直边界。
+    """
+    import numpy as np
+
+    w = np.asarray(w, dtype=float)
+    X, y = np.asarray(X, dtype=float), np.asarray(y)
+    fig, ax = plt.subplots(figsize=(5, 4))
+    ax.scatter(X[y > 0, 0], X[y > 0, 1], c="tab:red", marker="o", label="+1")
+    ax.scatter(X[y < 0, 0], X[y < 0, 1], c="tab:blue", marker="s", label="-1")
+    x1 = np.linspace(X[:, 0].min() - 0.5, X[:, 0].max() + 0.5, 50)
+    if abs(w[1]) > 1e-12:
+        ax.plot(x1, -(w[0] * x1 + b) / w[1], "k--", label="boundary")
+    else:
+        ax.axvline(-b / w[0], color="k", ls="--", label="boundary")
+    ax.set_xlabel("x1")
+    ax.set_ylabel("x2")
+    ax.set_title(title)
+    ax.legend()
+    fig.tight_layout()
+    return fig, ax
