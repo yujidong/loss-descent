@@ -157,25 +157,25 @@ volumes:
             title: "注意力的诞生：让解码器回头看"
             era: "2014–2015"
             summary: "对齐即注意力；给翻译机加 attention，看对齐热图与 loss 跃升。"
-            status: stub
+            status: draft
             milestone: M4
           - file: chapters/vol2/part5-transformer.qmd
             title: "Transformer：从补丁到架构"
             era: "2015–2017"
             summary: "自注意力 → 抛弃循环 → 逐模块从零实现。全书代码量的高点。"
-            status: stub
+            status: draft
             milestone: M4
           - file: chapters/vol2/part5-why-transformer-won.qmd
             title: "为什么 Transformer 赢了"
             era: "2017–2020"
             summary: "并行性 = 墙钟时间内更多降 loss；RNN 阵营最后的反击。"
-            status: stub
+            status: draft
             milestone: M4
           - file: chapters/vol2/part5-gpt-vs-bert.qmd
             title: "分岔路口：GPT 与 BERT"
             era: "2018–2019"
             summary: "生成式与判别式两条路线的真实之争；小规模各训一个。"
-            status: stub
+            status: draft
             milestone: M4
 
       - id: part6

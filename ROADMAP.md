@@ -6,7 +6,8 @@
 
 - **M0–M2 已完成**（骨架、样章、Part 0+1 六章）。
 - **M3 已完成（9/9），卷一全部 15 章成稿（status: draft）**——Part 2「深度学习的黎明」五章 + Part 3「卷积时代」四章；`dlbook` 生长至 Conv2D/Conv1D/SimpleConvNet/Trainer；测试 26 项全绿；全书渲染验证通过（各章实验数值与校准运行一致）。**卷一 v1.0 内容齐备，待试读与润色后可发布。**
-- **M4 已完成（5/5），卷二 Part 4「序列建模」五章成稿**——n-gram/RNN/LSTM/word2vec/seq2seq；`dlbook.rnn`（SimpleRNN/LSTM/seq2seq/梯度流诊断）与 `dlbook.word2vec` 落地；测试 30 项全绿。全书 20/38 章。
+- **M4 已完成（5/5）**——卷二 Part 4「序列建模」五章（n-gram/RNN/LSTM/word2vec/seq2seq）。
+- **M5 上半已完成（4/4）**——卷二 Part 5「注意力革命」四章：Bahdanau（全长度 1.00 vs 普通版断崖 0.64 + 反对角对齐热图）、Transformer 从零实现（同语料 1.79 总冠军 + 位置消融 4.49）、训练经济学（吞吐/长度实测）、GPT vs BERT（同体双目标对照）。`dlbook.transformer` 落地（多头注意力/LayerNorm/块/MiniGPT 完整反向，有限差分对拍把关）。测试 33 项全绿。全书 24/38 章。
 - 部署方案已定（DEPLOY.md）：GitHub Actions + Pages，零服务器零成本；gh 已登录，等作者确认后建仓推送。
 
 ## 里程碑
