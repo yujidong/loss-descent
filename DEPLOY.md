@@ -1,42 +1,65 @@
-# 部署与 CI：为什么不需要自己的服务器
+# 部署与 CI：通道、现实与方案
 
-**结论先行**：本书的全部 CI 与托管都可以零服务器、零成本运行——GitHub Actions 的构建跑在 GitHub 免费提供的虚拟机上（每次渲染约 2–3 分钟），产物是纯静态 HTML，由静态托管免费分发。你的笔记本只用来写作。
+**结论先行**：不需要自己的服务器；CI 永远跑在托管方的免费机器上。但在大陆环境下，必须把**两条通道**分开讨论，因为它们面对的墙不一样：
 
-## 方案 A（推荐）：GitHub 一条龙
+1. **写作通道**（你 → 代码仓库）：只有你 push 新内容时才用到。github.com 在大陆不翻墙时通断不定，但这是低频操作——有代理时推一下即可，还可以给 git 单独配代理（见下）。**每周的 CI 自动重渲染跑在 GitHub 的服务器上，不需要你翻墙。**
+2. **阅读通道**（读者 → 托管站点）：这才是选托管方的决定因素，与你的推送方式无关。
 
-仓库里现成的 `.github/workflows/render-site.yml` 已经写好，推上去即可：
+## 大陆阅读通道的现实（2025–2026 实测社区共识）
+
+| 托管 | 大陆直连情况 |
+|---|---|
+| GitHub Pages（`*.github.io`） | 时好时坏，不稳定；自定义域名也不保证 |
+| Cloudflare Pages 默认域名（`*.pages.dev`） | **基本不可用**（DNS 污染/屏蔽）——常见误区："换 Cloudflare 就稳了"只对了一半 |
+| Cloudflare Pages + **自定义域名** | 通常可直连，速度中等；配合优选 IP（CloudflareSpeedTest）可明显加速 |
+| 国内云对象存储/CDN（腾讯 COS、阿里 OSS） | 最快，但自定义域名需 ICP 备案；默认域名外链可直接用，无需备案 |
+
+## 推荐路线（按书的成长阶段）
+
+**现在（试读期）**：方案 A（GitHub 一条龙）。读者主要是你和试读的朋友，可访问性问题影响面小；CI 与防腐蚀机制先跑起来，发布管线尽早经过实战。
+
+**卷一发布（面向公众）**：升级为方案 B——Cloudflare Pages **绑定自定义域名**（域名几十元/年）。构建仍由 Cloudflare 从 GitHub 拉取（它的构建机在墙外，不受影响；你只需偶尔用代理 push 源码）。
+
+## 方案 A：GitHub 一条龙
 
 ```bash
-gh repo create loss-descent --public --source=. --push   # 或先建私有仓再公开
+gh repo create loss-descent --public --source=. --push
 ```
 
-1. push 到 `main` 后，Actions 自动渲染整本书并推到 `gh-pages` 分支；
-2. 仓库 Settings → Pages → Source 选 `gh-pages` 分支，网站即上线 `https://yujidong.github.io/loss-descent/`；
-3. 每周二 UTC 20:00 自动重渲染（防止依赖升级导致 notebook 腐化）。
-
-**费用**：public 仓库 Actions 完全免费且不限时长；GitHub Pages 免费托管。若想先用 private 仓打磨，每月有 2000 分钟免费额度，本书一次全量渲染约 3 分钟，绰绰有余。
-
-**注意**：CI 里跑的只是"渲染 + 跑测试"，不涉及任何私密信息；`_freeze/` 已入库，渲染结果可复现。
-
-## 方案 B：Cloudflare Pages（国内读者访问更稳）
-
-GitHub Pages 在国内访问时快时慢。若主要读者在国内，Cloudflare Pages 免费额度（不限带宽）通常更稳：
-
-1. 把仓库接入 Cloudflare Pages（连 GitHub 一键授权）；
-2. 构建命令：安装 Quarto 后 `quarto render`，输出目录 `_book`：
+push 到 `main` 后 Actions 自动渲染并推到 `gh-pages` 分支；仓库 Settings → Pages → Source 选 `gh-pages` 即上线。public 仓库免费不限时长。给 git 单独配代理（不影响其他流量）：
 
 ```bash
-curl -L -o quarto.tar.gz https://github.com/quarto-dev/quarto-cli/releases/download/v1.10.18/quarto-1.10.18-linux-amd64.tar.gz
+git config --global http.https://github.com.proxy http://127.0.0.1:7890   # 端口换成你代理的
+```
+
+## 方案 B：Cloudflare Pages + 自定义域名
+
+1. 买一个域名，接入 Cloudflare（免费套餐即可）；
+2. Cloudflare Dashboard → Workers & Pages → 创建 Pages 项目 → 连接 GitHub 仓库；
+3. 构建命令安装 Quarto 后渲染（构建机在墙外，直连 GitHub 无碍）：
+
+```bash
+curl -sL -o quarto.tar.gz https://github.com/quarto-dev/quarto-cli/releases/download/v1.10.18/quarto-1.10.18-linux-amd64.tar.gz
 tar -xzf quarto.tar.gz && export PATH="$PWD/quarto-1.10.18/bin:$PATH"
 quarto render
 ```
 
-（Netlify 同理，也有社区维护的 Quarto 构建插件。）
+4. 输出目录 `_book`；在 Custom domains 绑定你的域名（**关键一步，否则大陆读者打不开**）；
+5. 可选：用 CloudflareSpeedTest 优选 IP 提速。
+
+**变体 B'（完全不碰 GitHub）**：本地渲染 + 直传，适合暂时不想开仓的情况：
+
+```bash
+npm install -g wrangler
+wrangler pages deploy _book --project-name=loss-descent
+```
+
+代价：失去"push 即部署"与基于 Actions 的每周自动重渲染（防腐化改由本地/CI 脚本承担），自定义域名同样必须绑。
 
 ## 方案 C：零部署
 
-`_freeze/` 已提交，`quarto render` 在任何装了 Quarto 的机器上都能**不重新执行代码**直接复现出 `_book/` 静态站——把 `_book` 目录拖到任意静态托管、对象存储甚至局域网共享即可阅读。本地阅读就是直接打开 `_book/index.html`。
+`_freeze/` 已入库，任何装了 Quarto 的机器都能不重新执行代码、直接复现出 `_book/` 静态站——拖到任意静态托管或对象存储默认域名外链即可阅读。本地阅读就是打开 `_book/index.html`。
 
 ## 与写作的关系
 
-三条路线互不干扰写作流：你永远只在本地 `quarto preview` 写作，部署是 CI 的事。若暂时不想上云，方案 C 说明本书今天就是可读、可分发、可复现的。
+三条路线互不干扰写作流：你永远只在本地 `quarto preview` 写作。托管方随时可换、可叠加（A + B 可同时挂着），换的只是阅读通道的入口。
