@@ -13,3 +13,6 @@ dist/
 
 # notebook
 .ipynb_checkpoints/
+
+/.quarto/
+**/*.quarto_ipynb

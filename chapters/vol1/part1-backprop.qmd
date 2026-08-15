@@ -120,7 +120,7 @@ print(f"loss: {history['train'][0]:.4f} → {history['train'][-1]:.6f}")
 ```
 
 ```{python}
-plot_loss_curves(history, title="XOR: MLP + backprop (lr=0.1)")
+plot_loss_curves(history, title="XOR: MLP + backprop (lr=0.1)");
 ```
 
 ```{python}
@@ -194,11 +194,11 @@ for seed in (0, 1, 2, 3, 42):
 
 **实验二：学习率。**
 
-```{python
+```{python}
 plot_loss_curves(
     {f"lr={lr}": train_xor(4, steps=200, lr=lr)[1] for lr in (0.001, 0.01, 0.1, 1.0)},
     title="Learning-rate sweep (2-4-1 on XOR)",
-)
+);
 ```
 
 $10^{-3}$ 在 200 步里几乎纹丝不动（loss $\approx 1.0$）：梯度方向对、步长太小；$1.0$ 收敛最快（$\approx 0.002$）。那再大会怎样？把 `lr=2.0` 跑一下：loss 冲到 $\approx 2$ 后**卡死**。注意它不是数值爆炸——大步长把 tanh 直接踹进饱和区，$\sigma'$ 趋于零，梯度跟着消失，模型躺平在一个全错的解上。**"步子太大"在深度学习里的死法常常不是炸，而是哑。**

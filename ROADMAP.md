@@ -4,13 +4,14 @@
 
 ## 当前状态
 
-**M0 已完成**——项目骨架：38 章目录、章节模板、`dlbook` 包、CI、测试就位。
+- **M0 已完成**——项目骨架：38 章目录、章节模板、`dlbook` 包、CI、测试就位（commit `11f5f18`）。
+- **M1 样章已成稿**——`part1-backprop`（commit `8b41eec`）：五个固定栏目齐备，实验数值全部经校准运行验证，`pytest` 5 项全绿。剩余：本地 `quarto render` 视觉检查 + 2–3 位读者试读。
 
 ## 里程碑
 
 | 里程碑 | 内容 | 完成标准 |
 |---|---|---|
-| **M0 骨架** | 项目结构、目录、模板、CI | `pytest` 绿；`quarto render` 成功出书（待本机装 Quarto 验证） |
+| **M0 骨架** | 项目结构、目录、模板、CI | `pytest` 绿；`quarto render` 成功出书 |
 | **M1 样章** | `part1-backprop`（反向传播，含 micrograd 实验） | 五个固定栏目全部成立；实验 A 级 < 10 分钟；找 2–3 位目标读者试读并收集反馈 |
 | **M2 Part 0+1** | 导论 2 章 + 史前史 4 章 | 每章实验 + 练习 + 折叠答案齐备；CI 绿 |
 | **M3 卷一收官** | Part 2（5 章）+ Part 3（4 章） | **卷一 v1.0 发布**：接 Colab 徽章机制，部署网站 |
@@ -51,6 +52,6 @@
 
 ## 待办（下一步）
 
-1. 本机安装 Quarto 并完成首次 `quarto render` 验证；
-2. `git init` + 推到 GitHub，激活 CI（发布 gh-pages 后把地址填回 `_quarto.yml` 与 `index.qmd`）；
-3. 开始 **M1 样章**：`chapters/vol1/part1-backprop.qmd`。
+1. ~~本机安装 Quarto 并完成首次 `quarto render` 验证~~ → Quarto 便携版装在 `%LOCALAPPDATA%\Programs\QuartoPortable`（winget 在此网络下会卡死，改用 GitHub 官方 zip）；render 验证进行中；
+2. 推到 GitHub 激活 CI（发布 gh-pages 后把地址填回 `_quarto.yml` 与 `index.qmd` 两处 TODO）；
+3. M1 收尾：试读反馈回改样章；确认模板可复制后开始 **M2**（Part 0 其余章节 + Part 1 剩余 3 章）。
