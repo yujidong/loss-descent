@@ -67,3 +67,33 @@ def make_spiral(n_per_class: int = 100, turns: float = 1.75, noise: float = 0.1,
         Xs.append(X)
         ys.append(np.full(n_per_class, label))
     return np.vstack(Xs), np.concatenate(ys)
+
+
+def make_shifted_pattern(n: int = 400, size: int = 12, noise: float = 0.3, seed: int = 0):
+    """平移图案分类：图像里有一个 3x3 图案（十字或方块）出现在随机位置。
+
+    二分类 ±1（图案类型）。教学点：平移不变性——卷积的归纳偏置主场。
+    """
+    rng = np.random.default_rng(seed)
+    cross = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]], dtype=float)
+    square = np.ones((3, 3), dtype=float)
+    X = np.zeros((n, 1, size, size))
+    y = np.empty(n)
+    for i in range(n):
+        pat = cross if i % 2 == 0 else square
+        top, left = rng.integers(0, size - 2, size=2)
+        X[i, 0, top : top + 3, left : left + 3] = pat
+        y[i] = 1.0 if i % 2 == 0 else -1.0
+    X += rng.normal(0, noise, X.shape)
+    return X, y
+
+
+def make_seq_task(n: int = 400, length: int = 16, dist: int = 8, seed: int = 0):
+    """序列回声任务：y = x[length - dist]（回看 dist 步之前的比特）。
+
+    用于演示固定感受野（1D 卷积窗口）的长程依赖之痛：窗口 < dist 则不可解。
+    """
+    rng = np.random.default_rng(seed)
+    X = rng.integers(0, 2, size=(n, length)).astype(float)
+    y = X[:, length - dist].copy() * 2 - 1  # 映射为 ±1
+    return X, y

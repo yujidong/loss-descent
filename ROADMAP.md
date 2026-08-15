@@ -4,9 +4,8 @@
 
 ## 当前状态
 
-- **M0 已完成**——项目骨架：38 章目录、章节模板、`dlbook` 包、CI、测试就位（commit `11f5f18`）。
-- **M1 样章已成稿**——`part1-backprop`：五个固定栏目齐备，实验数值全部经校准运行验证。剩余：2–3 位读者试读。
-- **M2 已完成（6/6）**——Part 0 两章（双主线、如何读研究史）+ Part 1 四章（感知机、范式之争、反向传播、MLP 与第二次寒冬）全部成稿；卷一前四分之一可公开试读。测试 16 项全绿，含防围栏语法的 CI 体检。
+- **M0–M2 已完成**（骨架、样章、Part 0+1 六章）。
+- **M3 已完成（9/9），卷一全部 15 章成稿（status: draft）**——Part 2「深度学习的黎明」五章 + Part 3「卷积时代」四章；`dlbook` 生长至 Conv2D/Conv1D/SimpleConvNet/Trainer；测试 26 项全绿；全书渲染验证通过（各章实验数值与校准运行一致）。**卷一 v1.0 内容齐备，待试读与润色后可发布。**
 - 部署方案已定（DEPLOY.md）：GitHub Actions + Pages，零服务器零成本；gh 已登录，等作者确认后建仓推送。
 
 ## 里程碑
@@ -54,6 +53,6 @@
 
 ## 待办（下一步）
 
-1. ~~本机安装 Quarto 并完成首次 `quarto render` 验证~~ → Quarto 便携版装在 `%LOCALAPPDATA%\Programs\QuartoPortable`（winget 在此网络下会卡死，改用 GitHub 官方 zip）；render 验证进行中；
-2. 推到 GitHub 激活 CI（一条命令：`gh repo create loss-descent --public --source=. --push`，CI/托管零服务器零成本，方案见 DEPLOY.md；gh 已登录 yujidong，等作者确认后执行）；
-3. M1/M2 收尾：外部读者试读前六章并回收反馈；随后启动 **M3**（Part 2 深度学习的黎明 5 章 + Part 3 卷积时代 4 章，卷一收官发布）。
+1. 推到 GitHub 激活 CI（一条命令：`gh repo create loss-descent --public --source=. --push`，CI/托管零服务器零成本，方案见 DEPLOY.md；gh 已登录 yujidong，等作者确认后执行）；
+2. **卷一 v1.0 发布准备**：外部读者试读全卷并回收反馈；各章 status 从 draft → done 的润色 pass（重点：跨章交叉引用核对、练习覆盖度、回声栏目与卷二伏笔的一致性）；
+3. 启动 **M4**（卷二上半：Part 4 序列建模五章——n-gram/RNN/LSTM/word2vec/seq2seq；需要新增 dlbook.rnn 模块与字符级语言建模数据管道）。

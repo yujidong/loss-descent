@@ -4,6 +4,8 @@ from dlbook.data.toys import (
     XOR_LABELS,
     make_blobs,
     make_moons,
+    make_seq_task,
+    make_shifted_pattern,
     make_slab,
     make_spiral,
 )
@@ -15,4 +17,6 @@ __all__ = [
     "make_slab",
     "make_moons",
     "make_spiral",
+    "make_seq_task",
+    "make_shifted_pattern",
 ]

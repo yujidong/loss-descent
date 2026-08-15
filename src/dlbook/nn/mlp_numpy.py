@@ -127,8 +127,8 @@ class MLPNumpy:
         self.backward_from(X, 2.0 * (pred - Y) / len(X))
         return loss
 
-    def backward_from(self, X, dA) -> None:
-        """从 dL/d(输出) 续接反向传播（外部梯度链入口，供卷积头使用）。"""
+    def backward_from(self, X, dA) -> np.ndarray:
+        """从 dL/d(输出) 续接反向传播，返回 dL/d(输入)（外部梯度链的缝合口）。"""
         if self._cache is None or len(self._cache) != self.n_layers:
             self.forward(X, training=True)
         L = self.n_layers
@@ -161,6 +161,7 @@ class MLPNumpy:
             dA = dZ @ self.Ws[i]
             if d_ident is not None:
                 dA = dA + d_ident
+        return dA
 
     # ---- 更新 ----
 
