@@ -44,6 +44,30 @@ def test_relu_and_exp_gradients():
     assert abs(x.grad - _numeric_grad(f, [0.3])[0]) < 1e-5
 
 
+def test_sigmoid_gradient():
+    x = Value(-0.6)
+    y = x.sigmoid() ** 2
+    y.backward()
+
+    def f(a):
+        s = 1.0 / (1.0 + math.exp(-a))
+        return s * s
+
+    assert abs(x.grad - _numeric_grad(f, [-0.6])[0]) < 1e-5
+
+
+def test_mlp_output_activation_and_grad_norms():
+    set_seed(0)
+    # linear 输出层可给出负值（回归所需）
+    m = MLP(1, [4, 1], activation="sigmoid", output_activation="linear")
+    assert m([0.5]).data is not None
+    loss = (m([0.5]) - Value(-1.0)) ** 2
+    zero_grad(m.parameters())
+    loss.backward()
+    norms = m.grad_norms()
+    assert len(norms) == 2 and all(n >= 0 for n in norms)
+
+
 def test_mlp_learns_xor():
     set_seed(42)
     model = MLP(2, [4, 1])

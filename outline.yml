@@ -20,7 +20,7 @@ volumes:
             title: "如何读研究史：读问题，不读年表"
             era: "全书视角"
             summary: "研究循环（瓶颈→假设→验证→新问题）；本书固定栏目的用法与阅读模式。"
-            status: stub
+            status: draft
             milestone: M2
 
       - id: part1
@@ -36,7 +36,7 @@ volumes:
             title: "符号主义与连接主义：第一次范式之争"
             era: "1970–1986"
             summary: "专家系统时代；神经网络为什么死了、谁还在坚持。"
-            status: stub
+            status: draft
             milestone: M2
           - file: chapters/vol1/part1-backprop.qmd
             title: "反向传播：从思想到发动机"
@@ -48,7 +48,7 @@ volumes:
             title: "MLP、万能逼近与第二次寒冬"
             era: "1986–1995"
             summary: "万能逼近定理的意义与误导；过度承诺与梯度消失的伏笔。"
-            status: stub
+            status: draft
             milestone: M2
 
       - id: part2
