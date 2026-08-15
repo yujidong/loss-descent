@@ -1,0 +1,282 @@
+# 全书章节清单（唯一事实来源）
+# - _quarto.yml 的目录、scripts/gen_chapters.py 的骨架生成都以此为准，修改请三处同步
+# - status: stub（占位）/ drafting（写作中）/ draft（成稿待润色）/ done（定稿）
+# - milestone 对应 ROADMAP.md 里的里程碑
+
+volumes:
+  - id: vol1
+    title: "卷一 · 根基与黎明"
+    parts:
+      - id: part0
+        title: "卷一 · Part 0 · 导论"
+        chapters:
+          - file: chapters/vol1/part0-two-threads.qmd
+            title: "双主线：降 Loss 的视角与研究史的视角"
+            era: "全书视角"
+            summary: "为什么这两条线索拧在一起才能讲清深度学习；loss≈压缩≈预测的世界观。"
+            status: stub
+            milestone: M2
+          - file: chapters/vol1/part0-reading-history.qmd
+            title: "如何读研究史：读问题，不读年表"
+            era: "全书视角"
+            summary: "研究循环（瓶颈→假设→验证→新问题）；本书固定栏目的用法与阅读模式。"
+            status: stub
+            milestone: M2
+
+      - id: part1
+        title: "卷一 · Part 1 · 神经网络的史前史（1943–1986）"
+        chapters:
+          - file: chapters/vol1/part1-perceptron.qmd
+            title: "感知机的辉煌与失败"
+            era: "1943–1969"
+            summary: "MP 神经元 → Rosenblatt 感知机 → XOR 打击与第一次 AI 寒冬。"
+            status: stub
+            milestone: M2
+          - file: chapters/vol1/part1-symbolic-vs-connectionist.qmd
+            title: "符号主义与连接主义：第一次范式之争"
+            era: "1970–1986"
+            summary: "专家系统时代；神经网络为什么死了、谁还在坚持。"
+            status: stub
+            milestone: M2
+          - file: chapters/vol1/part1-backprop.qmd
+            title: "反向传播：从思想到发动机"
+            era: "1960s–1986"
+            summary: "从 Werbos 到 1986 年 Nature 论文；手写 micrograd 式 autograd。"
+            status: draft
+            milestone: M1
+          - file: chapters/vol1/part1-mlp-winter.qmd
+            title: "MLP、万能逼近与第二次寒冬"
+            era: "1986–1995"
+            summary: "万能逼近定理的意义与误导；过度承诺与梯度消失的伏笔。"
+            status: stub
+            milestone: M2
+
+      - id: part2
+        title: "卷一 · Part 2 · 深度学习的黎明（1986–2015）"
+        chapters:
+          - file: chapters/vol1/part2-mlp-difficulty.qmd
+            title: "训练一个 MLP 到底难在哪"
+            era: "1986–2006"
+            summary: "loss landscape、初始化、学习率——1990s 的真实困境。"
+            status: stub
+            milestone: M3
+          - file: chapters/vol1/part2-vanishing-gradient.qmd
+            title: "梯度消失：被忽视十五年的诊断书"
+            era: "1991–2001"
+            summary: "Hochreiter 1991 的诊断为什么无人问津；数值演示梯度逐层衰减。"
+            status: stub
+            milestone: M3
+          - file: chapters/vol1/part2-toolbox.qmd
+            title: "破局工具箱：ReLU、Dropout、BatchNorm、残差"
+            era: "2010–2016"
+            summary: "每个工具都是一段独立的『让 loss 降得更深』的发明史。"
+            status: stub
+            milestone: M3
+          - file: chapters/vol1/part2-alexnet.qmd
+            title: "AlexNet 时刻：历史为什么发生在 2012"
+            era: "2009–2012"
+            summary: "ImageNet + GPU + 三件套；The Bitter Lesson 首次登场。"
+            status: stub
+            milestone: M3
+          - file: chapters/vol1/part2-capstone-deep-mlp.qmd
+            title: "整合：让深度可训练的完整配方"
+            era: "承上启下"
+            summary: "卷一前半部的 capstone：从零训练较深的 MLP，总结完整配方。"
+            status: stub
+            milestone: M3
+
+      - id: part3
+        title: "卷一 · Part 3 · 卷积时代（1989–2016）"
+        chapters:
+          - file: chapters/vol1/part3-lenet.qmd
+            title: "LeNet：1989 年就有的答案"
+            era: "1989–1998"
+            summary: "权共享与归纳偏置；numpy 手写卷积，LeNet on MNIST。"
+            status: stub
+            milestone: M3
+          - file: chapters/vol1/part3-resnet.qmd
+            title: "军备竞赛：从 AlexNet 到 ResNet"
+            era: "2012–2015"
+            summary: "『学残差比学函数容易』——决定性思想与有/无残差的 loss 对比。"
+            status: stub
+            milestone: M3
+          - file: chapters/vol1/part3-cnn-legacy.qmd
+            title: "CNN 的遗产：特征层级与预训练-微调"
+            era: "2013–2016"
+            summary: "特征可视化、迁移学习；统治 LLM 时代的范式在此诞生。"
+            status: stub
+            milestone: M3
+          - file: chapters/vol1/part3-cnn-limits.qmd
+            title: "CNN 的边界：序列问题为何难"
+            era: "承上启下"
+            summary: "变长、顺序、长程依赖；用 1D 卷积做字符 LM 体会固定窗口之痛。"
+            status: stub
+            milestone: M3
+
+  - id: vol2
+    title: "卷二 · 序列、注意力与规模"
+    parts:
+      - id: part4
+        title: "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）"
+        chapters:
+          - file: chapters/vol2/part4-ngram.qmd
+            title: "语言建模前史：从 Shannon 到 n-gram"
+            era: "1948–2000s"
+            summary: "信息论与 cross-entropy 的血缘；bigram LM，测量熵。"
+            status: stub
+            milestone: M4
+          - file: chapters/vol2/part4-rnn.qmd
+            title: "RNN：展开即深网的继承病"
+            era: "1990–2014"
+            summary: "BPTT 把 Part 2 的疾病全部继承；numpy 实现 char-RNN。"
+            status: stub
+            milestone: M4
+          - file: chapters/vol2/part4-lstm.qmd
+            title: "LSTM：让梯度存活的门控设计"
+            era: "1997–2017"
+            summary: "门控设计的美学；从零实现 cell 并分析梯度流。"
+            status: stub
+            milestone: M4
+          - file: chapters/vol2/part4-word2vec.qmd
+            title: "word2vec：语义被压进向量"
+            era: "2013"
+            summary: "『语义能被 loss 压进向量』；训练并可视化词向量。"
+            status: stub
+            milestone: M4
+          - file: chapters/vol2/part4-seq2seq.qmd
+            title: "seq2seq：翻译即条件语言建模"
+            era: "2014"
+            summary: "encoder-decoder 与固定维度瓶颈；玩具翻译机的长句崩溃。"
+            status: stub
+            milestone: M4
+
+      - id: part5
+        title: "卷二 · Part 5 · 注意力革命（2014–2019）"
+        chapters:
+          - file: chapters/vol2/part5-bahdanau.qmd
+            title: "注意力的诞生：让解码器回头看"
+            era: "2014–2015"
+            summary: "对齐即注意力；给翻译机加 attention，看对齐热图与 loss 跃升。"
+            status: stub
+            milestone: M4
+          - file: chapters/vol2/part5-transformer.qmd
+            title: "Transformer：从补丁到架构"
+            era: "2015–2017"
+            summary: "自注意力 → 抛弃循环 → 逐模块从零实现。全书代码量的高点。"
+            status: stub
+            milestone: M4
+          - file: chapters/vol2/part5-why-transformer-won.qmd
+            title: "为什么 Transformer 赢了"
+            era: "2017–2020"
+            summary: "并行性 = 墙钟时间内更多降 loss；RNN 阵营最后的反击。"
+            status: stub
+            milestone: M4
+          - file: chapters/vol2/part5-gpt-vs-bert.qmd
+            title: "分岔路口：GPT 与 BERT"
+            era: "2018–2019"
+            summary: "生成式与判别式两条路线的真实之争；小规模各训一个。"
+            status: stub
+            milestone: M4
+
+      - id: part6
+        title: "卷二 · Part 6 · 规模时代（2019–2024）"
+        chapters:
+          - file: chapters/vol2/part6-scaling-laws.qmd
+            title: "GPT-3 与 Scaling Laws：loss 的可预测性"
+            era: "2019–2020"
+            summary: "在 mini 模型上拟合自己的幂律；行业行为从此改变。"
+            status: stub
+            milestone: M5
+          - file: chapters/vol2/part6-chinchilla.qmd
+            title: "Chinchilla：等算力下的再平衡"
+            era: "2022"
+            summary: "推翻 Kaplan；数据与参数配比扫描实验。"
+            status: stub
+            milestone: M5
+          - file: chapters/vol2/part6-emergence.qmd
+            title: "涌现之争：相变还是度量假象"
+            era: "2022–2024"
+            summary: "能力是平滑还是突变；用公开 checkpoint 画能力曲线。"
+            status: stub
+            milestone: M5
+          - file: chapters/vol2/part6-convergence.qmd
+            title: "收敛：decoder-only、MoE 与开源运动"
+            era: "2022–2024"
+            summary: "范式与工程为何收敛；卷二收官。"
+            status: stub
+            milestone: M5
+
+  - id: vol3
+    title: "卷三 · LLM、对齐与智能体"
+    parts:
+      - id: part7
+        title: "卷三 · Part 7 · 对齐时代（2020–2025）"
+        chapters:
+          - file: chapters/vol3/part7-base-model.qmd
+            title: "Base Model：互联网的压缩机"
+            era: "2020–2022"
+            summary: "续写怪癖与 few-shot 的发现；ICL 即条件预测。"
+            status: stub
+            milestone: M6
+          - file: chapters/vol3/part7-sft.qmd
+            title: "SFT：指令数据的监督 loss"
+            era: "2021–2023"
+            summary: "从 FLAN 到 LoRA；把自己的模型 SFT 成 chat 模型。"
+            status: stub
+            milestone: M6
+          - file: chapters/vol3/part7-rlhf.qmd
+            title: "RLHF 与 DPO：奖励作为变形的 loss"
+            era: "2022"
+            summary: "奖励模型、PPO、DPO 的简化；小实验 + 玩具 reward hacking。"
+            status: stub
+            milestone: M6
+          - file: chapters/vol3/part7-reasoning.qmd
+            title: "推理模型：RLVR 与测试时计算"
+            era: "2024–2025"
+            summary: "o1/R1、GRPO 思路、CoT 作为推理时扩展计算。"
+            status: stub
+            milestone: M6
+
+      - id: part8
+        title: "卷三 · Part 8 · 智能体时代（2023–2026）"
+        chapters:
+          - file: chapters/vol3/part8-agent-origins.qmd
+            title: "Agent 能力从哪来：数据里的轨迹"
+            era: "2023–2025"
+            summary: "代码与工具调用数据；给小模型接计算器，看准确率跃升。"
+            status: stub
+            milestone: M6
+          - file: chapters/vol3/part8-agent-training.qmd
+            title: "训练 Agent：环境、轨迹与过程奖励"
+            era: "2024–2026"
+            summary: "闭环 RL vs 纯模仿；轨迹级 loss 与过程奖励。"
+            status: stub
+            milestone: M6
+          - file: chapters/vol3/part8-model-vs-system.qmd
+            title: "模型层与系统层：判断框架"
+            era: "2025–2026"
+            summary: "一个能力该改 prompt 还是改 loss；上下文工程的边界。"
+            status: stub
+            milestone: M6
+
+      - id: part9
+        title: "卷三 · Part 9 · 研究的规律与未来"
+        chapters:
+          - file: chapters/vol3/part9-patterns.qmd
+            title: "复盘：反复出现的研究模式"
+            era: "全书复盘"
+            summary: "Bitter Lesson 三次登场；瓶颈迁移规律；范式回收利用。"
+            status: stub
+            milestone: M7
+          - file: chapters/vol3/part9-open-problems.qmd
+            title: "Loss 视角下的开放问题"
+            era: "2026"
+            summary: "数据墙、持续学习、自我改进边界、样本效率。"
+            status: stub
+            milestone: M7
+          - file: chapters/vol3/part9-prediction.qmd
+            title: "终章：你的判断框架与预测"
+            era: "面向未来"
+            summary: "用全书工具分析三个当红方向并写下预测——毕业考试是预测未来。"
+            status: stub
+            milestone: M7
