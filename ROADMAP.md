@@ -62,3 +62,4 @@
 1. 推到 GitHub 激活 CI（一条命令：`gh repo create loss-descent --public --source=. --push`，CI/托管零服务器零成本，方案见 DEPLOY.md；gh 已登录 yujidong，等作者确认后执行）；
 2. **卷一 v1.0 发布准备**：外部读者试读全卷并回收反馈；各章 status 从 draft → done 的润色 pass（重点：跨章交叉引用核对、练习覆盖度、回声栏目与卷二伏笔的一致性）；
 3. 启动 **M6 下半 + M7**（Part 8 智能体三章 + Part 9 规律与未来三章——全书收官）。工具调用、CoT 分解、模型层 vs 系统层对照、复盘与终章。
+4. **审阅工作流已上线**：书页内置批注工具（划选/整段批注 → 导出 JSON → `reviews/`），`python scripts/collect_review.py` 汇总为 `REVIEW-COMMENTS.md` 供修订。作者通读批注与 v1.1 文风 pass 合并执行。

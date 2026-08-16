@@ -89,6 +89,7 @@ format:
       dark: [darkly, theme/book.scss]
     code-copy: true
     toc-depth: 3
+    include-in-header: theme/review-header.html
 
 execute:
   freeze: auto
