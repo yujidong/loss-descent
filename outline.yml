@@ -1,6 +1,6 @@
 # 全书章节清单（唯一事实来源）
 # - _quarto.yml 的目录、scripts/gen_chapters.py 的骨架生成都以此为准，修改请三处同步
-# - status: draft（占位）/ drafting（写作中）/ draft（成稿待润色）/ done（定稿）
+# - status: stub（占位）/ drafting（写作中）/ draft（成稿待润色）/ done（定稿）
 # - milestone 对应 ROADMAP.md 里的里程碑
 
 volumes:
