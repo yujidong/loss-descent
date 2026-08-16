@@ -237,3 +237,24 @@ def make_qa_corpus(seed: int = 0):
         q, a = qas[int(rng.integers(len(qas)))]
         lines.append(f"question: {q} answer: {a}. ")
     return "".join(lines), qas
+
+
+def make_two_stage_reversal(n: int = 800, half: int = 4, seed: int = 0):
+    """两段反转任务（8.2 章 CoT 分解用）：输入 2*half 个数字，
+    目标 = reverse(前半) ++ reverse(后半)。
+
+    direct 版直接给最终目标；cot 版先输出前半的反转、分隔符(2)、
+    后半的反转、分隔符、再给最终答案——把一次长程绑定拆成三段
+    短绑定。"中间步骤"就是轨迹数据的最小形态。
+    """
+    rng = np.random.default_rng(seed)
+    BOS, EOS, SEP = 0, 1, 2
+    direct_in, direct_out, cot_in, cot_out = [], [], [], []
+    for _ in range(n):
+        seq = [int(rng.integers(3, 13)) for _ in range(2 * half)]
+        final = seq[:half][::-1] + seq[half:][::-1]
+        direct_in.append([BOS] + seq + [EOS])
+        direct_out.append([BOS] + final + [EOS])
+        cot_in.append([BOS] + seq + [EOS])
+        cot_out.append([BOS] + seq[:half][::-1] + [SEP] + seq[half:][::-1] + [SEP] + final + [EOS])
+    return (direct_in, direct_out), (cot_in, cot_out)

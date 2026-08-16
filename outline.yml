@@ -1,6 +1,6 @@
 # 全书章节清单（唯一事实来源）
 # - _quarto.yml 的目录、scripts/gen_chapters.py 的骨架生成都以此为准，修改请三处同步
-# - status: stub（占位）/ drafting（写作中）/ draft（成稿待润色）/ done（定稿）
+# - status: draft（占位）/ drafting（写作中）/ draft（成稿待润色）/ done（定稿）
 # - milestone 对应 ROADMAP.md 里的里程碑
 
 volumes:
@@ -244,19 +244,19 @@ volumes:
             title: "Agent 能力从哪来：数据里的轨迹"
             era: "2023–2025"
             summary: "代码与工具调用数据；给小模型接计算器，看准确率跃升。"
-            status: stub
+            status: draft
             milestone: M6
           - file: chapters/vol3/part8-agent-training.qmd
             title: "训练 Agent：环境、轨迹与过程奖励"
             era: "2024–2026"
             summary: "闭环 RL vs 纯模仿；轨迹级 loss 与过程奖励。"
-            status: stub
+            status: draft
             milestone: M6
           - file: chapters/vol3/part8-model-vs-system.qmd
             title: "模型层与系统层：判断框架"
             era: "2025–2026"
             summary: "一个能力该改 prompt 还是改 loss；上下文工程的边界。"
-            status: stub
+            status: draft
             milestone: M6
 
       - id: part9
@@ -266,17 +266,17 @@ volumes:
             title: "复盘：反复出现的研究模式"
             era: "全书复盘"
             summary: "Bitter Lesson 三次登场；瓶颈迁移规律；范式回收利用。"
-            status: stub
+            status: draft
             milestone: M7
           - file: chapters/vol3/part9-open-problems.qmd
             title: "Loss 视角下的开放问题"
             era: "2026"
             summary: "数据墙、持续学习、自我改进边界、样本效率。"
-            status: stub
+            status: draft
             milestone: M7
           - file: chapters/vol3/part9-prediction.qmd
             title: "终章：你的判断框架与预测"
             era: "面向未来"
             summary: "用全书工具分析三个当红方向并写下预测——毕业考试是预测未来。"
-            status: stub
+            status: draft
             milestone: M7
