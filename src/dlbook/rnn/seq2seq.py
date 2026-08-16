@@ -96,6 +96,25 @@ class Seq2Seq:
                 break
         return out
 
+    def sample_decode(self, inp, bos: int = 0, eos: int = 1, max_len: int = 12,
+                      temperature: float = 0.8, seed: int = 0):
+        """带温度的自回归采样（7.4 章测试时计算的原料）。"""
+        rng = np.random.default_rng(seed)
+        hs_e, cs_e = self.enc.forward(inp)
+        h, c = hs_e[-1], cs_e[-1]
+        out = [bos]
+        for _ in range(max_len):
+            hs, cs = self.dec.forward([out[-1]], (h, c))
+            h, c = hs[-1], cs[-1]
+            logits = (h @ self.Why + self.by) / max(temperature, 1e-6)
+            p = np.exp(logits - logits.max())
+            p /= p.sum()
+            nxt = int(rng.choice(len(p), p=p))
+            out.append(nxt)
+            if nxt == eos:
+                break
+        return out
+
     def step(self, lr: float, momentum: float = 0.9) -> None:
         for k, p in (("Why", self.Why), ("by", self.by)):
             if k not in self._vel:
@@ -172,6 +191,27 @@ class AttentionSeq2Seq:
             _, ctx = self._attend(hs_d, hs_e)
             concat = np.concatenate([hs_d[-1], ctx[-1]])
             nxt = int(np.argmax(concat @ self.Why + self.by))
+            out.append(nxt)
+            if nxt == eos:
+                break
+        return out
+
+    def sample_decode(self, inp, bos: int = 0, eos: int = 1, max_len: int = 14,
+                      temperature: float = 0.8, seed: int = 0):
+        """带温度的自回归采样（7.4 章测试时计算的原料）。"""
+        rng = np.random.default_rng(seed)
+        hs_e, cs_e = self.enc.forward(inp)
+        h, c = hs_e[-1], cs_e[-1]
+        out = [bos]
+        for _ in range(max_len):
+            hs_d, cs_d = self.dec.forward([out[-1]], (h, c))
+            h, c = hs_d[-1], cs_d[-1]
+            _, ctx = self._attend(hs_d, hs_e)
+            concat = np.concatenate([hs_d[-1], ctx[-1]])
+            logits = (concat @ self.Why + self.by) / max(temperature, 1e-6)
+            p = np.exp(logits - logits.max())
+            p /= p.sum()
+            nxt = int(rng.choice(len(p), p=p))
             out.append(nxt)
             if nxt == eos:
                 break

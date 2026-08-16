@@ -216,25 +216,25 @@ volumes:
             title: "Base Model：互联网的压缩机"
             era: "2020–2022"
             summary: "续写怪癖与 few-shot 的发现；ICL 即条件预测。"
-            status: stub
+            status: draft
             milestone: M6
           - file: chapters/vol3/part7-sft.qmd
             title: "SFT：指令数据的监督 loss"
             era: "2021–2023"
             summary: "从 FLAN 到 LoRA；把自己的模型 SFT 成 chat 模型。"
-            status: stub
+            status: draft
             milestone: M6
           - file: chapters/vol3/part7-rlhf.qmd
             title: "RLHF 与 DPO：奖励作为变形的 loss"
             era: "2022"
             summary: "奖励模型、PPO、DPO 的简化；小实验 + 玩具 reward hacking。"
-            status: stub
+            status: draft
             milestone: M6
           - file: chapters/vol3/part7-reasoning.qmd
             title: "推理模型：RLVR 与测试时计算"
             era: "2024–2025"
             summary: "o1/R1、GRPO 思路、CoT 作为推理时扩展计算。"
-            status: stub
+            status: draft
             milestone: M6
 
       - id: part8

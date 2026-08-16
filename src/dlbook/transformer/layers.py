@@ -25,23 +25,48 @@ def gelu_tanh(x):
 
 
 class Linear:
-    def __init__(self, d_in, d_out, seed=0):
+    """线性层，可选 LoRA 适配器（7.2 章）：冻结 W，只训低秩增量 A@B。"""
+
+    def __init__(self, d_in, d_out, seed=0, lora_r: int = 0):
         rng = np.random.default_rng(seed)
         self.W = rng.normal(0, 0.02, (d_in, d_out)) * np.sqrt(2.0 / (d_in + d_out))
         self.b = np.zeros(d_out)
         self.grad_W = self.grad_b = None
         self._vel = {}
+        self.lora_r = lora_r
+        if lora_r > 0:
+            self.lora_A = rng.normal(0, 0.01, (d_in, lora_r))
+            self.lora_B = np.zeros((lora_r, d_out))  # B 零初始化：增量从恒等起步
+            self.grad_lora_A = self.grad_lora_B = None
 
     def forward(self, X):
         self._X = X
-        return X @ self.W + self.b
+        out = X @ self.W + self.b
+        if self.lora_r > 0:
+            out = out + (X @ self.lora_A) @ self.lora_B
+        return out
 
     def backward(self, dY):
-        self.grad_W = self._X.reshape(-1, self._X.shape[-1]).T @ dY.reshape(-1, dY.shape[-1])
-        self.grad_b = dY.reshape(-1, dY.shape[-1]).sum(axis=0)
-        return dY @ self.W.T
+        dYf = dY.reshape(-1, dY.shape[-1])
+        Xf = self._X.reshape(-1, self._X.shape[-1])
+        if self.lora_r > 0:
+            AX = Xf @ self.lora_A                      # (N, r)
+            self.grad_lora_B = AX.T @ dYf              # (r, d_out)
+            self.grad_lora_A = Xf.T @ (dYf @ self.lora_B.T)  # (d_in, r)
+            self.grad_W = self.grad_b = None           # 基座冻结
+        else:
+            self.grad_W = Xf.T @ dYf
+            self.grad_b = dYf.sum(axis=0)
+        return dY @ (self.W + (self.lora_A @ self.lora_B if self.lora_r > 0 else 0)).T
 
     def step(self, lr, momentum=0.9):
+        if self.lora_r > 0:
+            for k, p in (("A", self.lora_A), ("B", self.lora_B)):
+                if k not in self._vel:
+                    self._vel[k] = np.zeros_like(p)
+                self._vel[k] = momentum * self._vel[k] - lr * getattr(self, f"grad_lora_{k}")
+                p += self._vel[k]
+            return
         for k, p in (("W", self.W), ("b", self.b)):
             if k not in self._vel:
                 self._vel[k] = np.zeros_like(p)
@@ -84,13 +109,13 @@ class LayerNorm:
 class MultiHeadAttention:
     """缩放点积注意力 + 输出投影。causal=True 时屏蔽未来位置。"""
 
-    def __init__(self, d_model, n_heads, seed=0):
+    def __init__(self, d_model, n_heads, seed=0, lora_r: int = 0):
         assert d_model % n_heads == 0
         self.d_model, self.n_heads, self.dh = d_model, n_heads, d_model // n_heads
-        self.Wq = Linear(d_model, d_model, seed)
-        self.Wk = Linear(d_model, d_model, seed + 1)
-        self.Wv = Linear(d_model, d_model, seed + 2)
-        self.Wo = Linear(d_model, d_model, seed + 3)
+        self.Wq = Linear(d_model, d_model, seed, lora_r=lora_r)
+        self.Wk = Linear(d_model, d_model, seed + 1, lora_r=lora_r)
+        self.Wv = Linear(d_model, d_model, seed + 2, lora_r=lora_r)
+        self.Wo = Linear(d_model, d_model, seed + 3, lora_r=lora_r)
 
     def _split(self, X):
         B, T, _ = X.shape
@@ -141,9 +166,9 @@ class MultiHeadAttention:
 
 
 class MLP:
-    def __init__(self, d_model, d_hidden, seed=0):
-        self.fc1 = Linear(d_model, d_hidden, seed)
-        self.fc2 = Linear(d_hidden, d_model, seed + 1)
+    def __init__(self, d_model, d_hidden, seed=0, lora_r=0):
+        self.fc1 = Linear(d_model, d_hidden, seed, lora_r=lora_r)
+        self.fc2 = Linear(d_hidden, d_model, seed + 1, lora_r=lora_r)
 
     def forward(self, X):
         self._z1 = self.fc1.forward(X)
@@ -162,9 +187,11 @@ class MLP:
 class Block:
     """pre-LN Transformer 块（GPT-2 风格）：x += attn(LN(x)); x += mlp(LN(x))。"""
 
-    def __init__(self, d_model, n_heads, seed=0):
-        self.ln1, self.attn = LayerNorm(d_model), MultiHeadAttention(d_model, n_heads, seed)
-        self.ln2, self.mlp = LayerNorm(d_model), MLP(d_model, 4 * d_model, seed + 10)
+    def __init__(self, d_model, n_heads, seed=0, lora_r=0):
+        self.ln1 = LayerNorm(d_model)
+        self.attn = MultiHeadAttention(d_model, n_heads, seed, lora_r=lora_r)
+        self.ln2 = LayerNorm(d_model)
+        self.mlp = MLP(d_model, 4 * d_model, seed + 10, lora_r=lora_r)
         self.attn_map = None
 
     def forward(self, X, causal=True):

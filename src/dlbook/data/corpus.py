@@ -170,3 +170,70 @@ def make_reversal_task(n: int = 600, max_len: int = 5, seed: int = 0):
         inputs.append([BOS] + seq + [EOS])
         targets.append([BOS] + seq[::-1] + [EOS])
     return inputs, targets
+
+
+def make_arith_corpus(n: int = 4000, mod: int = 10, seed: int = 0, train_frac: float = 1.0):
+    """模加法语料："a+b=c " （c=(a+b) mod mod）——RLVR 与测试时计算的舞台。
+
+    返回字符串；词表为数字与 '+'、'='、' '。答案可验证：这是
+    "reward = 对错" 的天然试验场。
+    """
+    rng = np.random.default_rng(seed)
+    lines = []
+    for _ in range(n):
+        a, b = int(rng.integers(0, mod)), int(rng.integers(0, mod))
+        lines.append(f"{a}+{b}={(a + b) % mod} ")
+    text = "".join(lines)
+    k = int(len(text) * train_frac)
+    return text[:k]
+
+
+def make_copy_corpus(n_docs: int = 2000, vocab_size: int = 16, length: int = 48,
+                     repeat_len: int = 8, seed: int = 0):
+    """复制诱导语料：随机 token 流，其中每篇埋一段重复的子序列。
+
+    训练后模型对"第二次出现的前缀"预测远好于第一次——
+    诱导头（induction）的最小演示：in-context learning 的机制雏形。
+    用 16 个单字符 token（0-9a-f）。
+    """
+    rng = np.random.default_rng(seed)
+    chars = "0123456789abcdef"
+    docs = []
+    for _ in range(n_docs):
+        seq = [chars[int(rng.integers(vocab_size))] for _ in range(length)]
+        start = int(rng.integers(0, length - 2 * repeat_len + 1))
+        block = seq[start : start + repeat_len]
+        insert_at = start + repeat_len + int(rng.integers(0, length - start - repeat_len - repeat_len + 1))
+        for j in range(repeat_len):
+            seq[insert_at + j] = block[j]
+        docs.append("".join(seq))
+    return " ".join(docs)
+
+
+def make_qa_corpus(seed: int = 0):
+    """从 TINY_STORY 的事实生成的问答指令语料（SFT 用）。
+
+    三类模板（谁/在哪/什么颜色等），答案均为故事中的实体——
+    "指令格式"本身就是新的分布：base model 会续写，SFT 后才回答。
+    """
+    rng = np.random.default_rng(seed)
+    # 答案首字母互不相同：让"答案开头"不能靠众数猜中
+    qas = [
+        ("who lived in a small house at the edge of a quiet town ?", "pip"),
+        ("what did pip buy at the market ?", "apples"),
+        ("who gave pip warm bread every friday ?", "baker"),
+        ("what did the children give the cat ?", "fish"),
+        ("what could the cat see in the dark ?", "road"),
+        ("where did pip and the cat sit in summer ?", "seaside"),
+        ("what did pip read about on a rainy day ?", "book"),
+        ("what fell on the town in winter ?", "snow"),
+        ("what was the color of the cat ?", "gray"),
+        ("what did the cat dream of ?", "honey"),
+        ("what was soft and sweet from the baker ?", "bread"),
+        ("where did the birds fly in autumn ?", "south"),
+    ]
+    lines = []
+    for _ in range(600):
+        q, a = qas[int(rng.integers(len(qas)))]
+        lines.append(f"question: {q} answer: {a}. ")
+    return "".join(lines), qas

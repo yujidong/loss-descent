@@ -78,3 +78,34 @@ def test_minigpt_with_moe_block_steps():
         l = model.loss_and_backward(idx)
         model.step(0.05, clip=1.0)
     assert first > l  # 含 MoE 块的整网可训
+
+
+def test_lora_adapts_frozen_base():
+    """LoRA：基座冻结、只训适配器也能微调；参数量远小于全参。"""
+    ids, vocab, _ = char_corpus()
+    V = len(vocab)
+    rng = np.random.default_rng(0)
+    base = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)
+    # 先训一个基座
+    arr = np.array(ids)
+    for _ in range(300):
+        starts = rng.integers(0, len(arr) - 65, size=8)
+        base.loss_and_backward(np.stack([arr[s : s + 65] for s in starts]))
+        base.step(0.15, clip=1.0)
+
+    lora = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0, lora_r=4)
+    lora.tok_emb = base.tok_emb.copy()
+    for lb, bb in zip(lora.blocks, base.blocks):
+        for la, ba in ((lb.attn.Wq, bb.attn.Wq), (lb.attn.Wk, bb.attn.Wk),
+                       (lb.attn.Wv, bb.attn.Wv), (lb.attn.Wo, bb.attn.Wo)):
+            la.W = ba.W.copy()
+        lb.mlp.fc1.W = bb.mlp.fc1.W.copy()
+        lb.mlp.fc2.W = bb.mlp.fc2.W.copy()
+
+    idx = np.random.default_rng(1).integers(0, V, size=(16, 33))
+    first = lora.loss_and_backward(idx)
+    for _ in range(200):
+        l = lora.loss_and_backward(idx)
+        lora.step(0.02, clip=1.0)
+    assert first > l  # 适配器可训
+    assert 0 < lora.n_trainable_params() < base.n_params() * 0.2

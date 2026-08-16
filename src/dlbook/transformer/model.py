@@ -23,16 +23,35 @@ def sinusoidal_pos(T: int, D: int) -> np.ndarray:
 class MiniGPT:
     def __init__(self, vocab: int, d_model: int = 64, n_heads: int = 4,
                  n_blocks: int = 2, block_size: int = 64, seed: int = 0,
-                 mode: str = "causal"):
+                 mode: str = "causal", lora_r: int = 0):
         rng = np.random.default_rng(seed)
         self.vocab, self.d_model = vocab, d_model
         self.mode, self.block_size = mode, block_size
+        self.lora_r = lora_r
         self.tok_emb = rng.normal(0, 0.02, (vocab, d_model))
-        self.blocks = [Block(d_model, n_heads, seed + 10 * i) for i in range(n_blocks)]
+        self.blocks = [Block(d_model, n_heads, seed + 10 * i, lora_r=lora_r) for i in range(n_blocks)]
         self.head = Linear(d_model, vocab, seed + 999)
         self.pos = sinusoidal_pos(block_size, d_model)
         self.grad_tok = None
         self._vel = {}
+
+    def n_trainable_params(self) -> int:
+        """LoRA 模式下只计适配器；否则计全部。"""
+        if self.lora_r == 0:
+            return self.n_params()
+        total = 0
+        for blk in self.blocks:
+            for lin in (blk.attn.Wq, blk.attn.Wk, blk.attn.Wv, blk.attn.Wo,
+                        blk.mlp.fc1, blk.mlp.fc2):
+                if hasattr(lin, "lora_A"):
+                    total += lin.lora_A.size + lin.lora_B.size
+            mlp = blk.mlp
+            if hasattr(mlp, "experts"):
+                for e in mlp.experts:
+                    for lin in (e.fc1, e.fc2):
+                        if hasattr(lin, "lora_A"):
+                            total += lin.lora_A.size + lin.lora_B.size
+        return total
 
     def n_params(self) -> int:
         n = self.tok_emb.size + sum(
@@ -99,13 +118,17 @@ class MiniGPT:
     def _param_grad_entries(self):
         """(参数, 梯度, 键) 三元组列表——全局范数裁剪与集中更新的基础。"""
         entries = []
-        if self.grad_tok is not None:
+        if self.grad_tok is not None and self.lora_r == 0:
             entries.append((self.tok_emb, self.grad_tok, "tok"))
         for bi, blk in enumerate(self.blocks):
             a = blk.attn
             for name, lin in (("Wq", a.Wq), ("Wk", a.Wk), ("Wv", a.Wv), ("Wo", a.Wo)):
-                entries.append((lin.W, lin.grad_W, f"b{bi}.{name}.W"))
-                entries.append((lin.b, lin.grad_b, f"b{bi}.{name}.b"))
+                if getattr(lin, "lora_r", 0) > 0:
+                    entries.append((lin.lora_A, lin.grad_lora_A, f"b{bi}.{name}.A"))
+                    entries.append((lin.lora_B, lin.grad_lora_B, f"b{bi}.{name}.B"))
+                else:
+                    entries.append((lin.W, lin.grad_W, f"b{bi}.{name}.W"))
+                    entries.append((lin.b, lin.grad_b, f"b{bi}.{name}.b"))
             for name, ln in (("ln1", blk.ln1), ("ln2", blk.ln2)):
                 entries.append((ln.g, ln.grad_g, f"b{bi}.{name}.g"))
                 entries.append((ln.b, ln.grad_b, f"b{bi}.{name}.b"))
@@ -118,8 +141,12 @@ class MiniGPT:
                 entries.append((mlp.gate_w, mlp.grad_gate_w, f"b{bi}.gate"))
             else:
                 for name, lin in (("fc1", mlp.fc1), ("fc2", mlp.fc2)):
-                    entries.append((lin.W, lin.grad_W, f"b{bi}.{name}.W"))
-                    entries.append((lin.b, lin.grad_b, f"b{bi}.{name}.b"))
+                    if getattr(lin, "lora_r", 0) > 0:
+                        entries.append((lin.lora_A, lin.grad_lora_A, f"b{bi}.{name}.A"))
+                        entries.append((lin.lora_B, lin.grad_lora_B, f"b{bi}.{name}.B"))
+                    else:
+                        entries.append((lin.W, lin.grad_W, f"b{bi}.{name}.W"))
+                        entries.append((lin.b, lin.grad_b, f"b{bi}.{name}.b"))
         entries.append((self.head.W, self.head.grad_W, "head.W"))
         entries.append((self.head.b, self.head.grad_b, "head.b"))
         return entries
