@@ -2,7 +2,7 @@
 
 一本用实验重走深度学习研究史的交互书：**从感知机到智能体，以历史为骨架、以降 loss 为解剖刀**。历史主线负责「为什么会这样」，loss 主线负责「这到底买到了什么」，两者拧成一股贯穿 38 章。
 
-进度与计划见 [ROADMAP.md](ROADMAP.md)，全书章节清单见 [outline.yml](outline.yml)，部署与 CI 方案（零服务器）见 [DEPLOY.md](DEPLOY.md)。
+进度与计划见 [ROADMAP.md](ROADMAP.md)，全书章节清单见 [outline.yml](outline.yml)，部署与 CI 方案（零服务器）见 [DEPLOY.md](DEPLOY.md)，文风规范（v1.1 修订的依据）见 [WRITING-STYLE.md](WRITING-STYLE.md)。
 
 ## 目录结构
 
@@ -34,7 +34,7 @@ quarto render                  # 渲染到 _book/
 ## 写作一章的流程
 
 1. `python scripts/gen_chapters.py` 生成骨架（已有文件不会被覆盖）；
-2. 对照 `templates/chapter-template.qmd` 的排版约定填充内容；
+2. 对照 `templates/chapter-template.qmd` 的排版与文风六规范填充内容（修订旧章时：动 prose 不动 code，`WRITING-STYLE.md` 有带改例的完整规范）；
 3. 章内代码实现进 `src/dlbook/` 对应模块，notebook 只负责调用与展示；
 4. 实验跑通后在 `tests/` 补对应测试，`pytest` 与 CI 全绿；
 5. `outline.yml` 里把该章 `status` 从 `stub` 改为 `drafting` → `done`。
