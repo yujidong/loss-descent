@@ -1,0 +1,596 @@
+% ======================================================================
+% 《降 Loss 之路》全书参考文献库
+% 按时代排序；每章引用时用 @key 语法
+% ======================================================================
+
+% ---- 史前史 ----
+
+@article{mcculloch1943,
+  author  = {McCulloch, Warren S. and Pitts, Walter},
+  title   = {A Logical Calculus of the Ideas Immanent in Nervous Activity},
+  journal = {Bulletin of Mathematical Biophysics},
+  volume  = {5},
+  pages   = {115--133},
+  year    = {1943},
+  doi     = {10.1007/BF02478259}
+}
+
+@article{hebb1949,
+  author  = {Hebb, Donald O.},
+  title   = {The Organization of Behavior: A Neuropsychological Theory},
+  publisher = {Wiley},
+  address = {New York},
+  year    = {1949}
+}
+
+@article{shannon1948,
+  author  = {Shannon, Claude E.},
+  title   = {A Mathematical Theory of Communication},
+  journal = {Bell System Technical Journal},
+  volume  = {27},
+  number  = {3},
+  pages   = {379--423},
+  year    = {1948},
+  doi     = {10.1002/j.1538-7305.1948.tb01338.x}
+}
+
+@article{rosenblatt1958,
+  author  = {Rosenblatt, Frank},
+  title   = {The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain},
+  journal = {Psychological Review},
+  volume  = {65},
+  number  = {6},
+  pages   = {386--408},
+  year    = {1958},
+  doi     = {10.1037/h0042519}
+}
+
+@book{minsky1969,
+  author    = {Minsky, Marvin and Papert, Seymour},
+  title     = {Perceptrons: An Introduction to Computational Geometry},
+  publisher = {MIT Press},
+  address   = {Cambridge, MA},
+  year      = {1969}
+}
+
+@article{linnainmaa1970,
+  author  = {Linnainmaa, Seppo},
+  title   = {The Representation of the Cumulative Rounding Error of an Algorithm as a {Taylor} Expansion of the Local Rounding Errors},
+  journal = {Master's Thesis (in Finnish), University of Helsinki},
+  year    = {1970}
+}
+
+@phdthesis{werbos1974,
+  author = {Werbos, Paul J.},
+  title  = {Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences},
+  school = {Harvard University},
+  year   = {1974}
+}
+
+@article{widrow1960,
+  author  = {Widrow, Bernard and Hoff, Marcian E.},
+  title   = {Adaptive Switching Circuits},
+  journal = {IRE WESCON Convention Record},
+  volume  = {4},
+  pages   = {96--104},
+  year    = {1960}
+}
+
+@article{rumelhart1986,
+  author  = {Rumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J.},
+  title   = {Learning Representations by Back-Propagating Errors},
+  journal = {Nature},
+  volume  = {323},
+  pages   = {533--536},
+  year    = {1986},
+  doi     = {10.1038/323533a0}
+}
+
+@article{parker1985,
+  author  = {Parker, David B.},
+  title   = {Learning Logic},
+  publisher = {MIT Center for Computational Research in Economics and Management Science},
+  number  = {TR-47},
+  year    = {1985}
+}
+
+@book{rumelhart1986pdp,
+  author    = {Rumelhart, David E. and McClelland, James L. and the PDP Research Group},
+  title     = {Parallel Distributed Processing: Explorations in the Microstructure of Cognition},
+  publisher = {MIT Press},
+  address   = {Cambridge, MA},
+  volume    = {1 and 2},
+  year      = {1986}
+}
+
+@article{cybenko1989,
+  author  = {Cybenko, George},
+  title   = {Approximation by Superpositions of a Sigmoidal Function},
+  journal = {Mathematics of Control, Signals and Systems},
+  volume  = {2},
+  pages   = {303--314},
+  year    = {1989},
+  doi     = {10.1007/BF02551274}
+}
+
+@article{hornik1991,
+  author  = {Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert},
+  title   = {Multilayer Feedforward Networks Are Universal Approximators},
+  journal = {Neural Networks},
+  volume  = {2},
+  number  = {5},
+  pages   = {359--366},
+  year    = {1989},
+  doi     = {10.1016/0893-6080(89)90020-8}
+}
+
+% ---- 梯度消失与工具箱 ----
+
+@article{hochreiter1991,
+  author  = {Hochreiter, Sepp},
+  title   = {Untersuchungen zu dynamischen neuronalen Netzen},
+  journal = {Diploma Thesis (in German), Technische Universit{\"a}t M{\"u}nchen},
+  year    = {1991}
+}
+
+@article{bengio1994,
+  author  = {Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo},
+  title   = {Learning Long-Term Dependencies with Gradient Descent is Difficult},
+  journal = {IEEE Transactions on Neural Networks},
+  volume  = {5},
+  number  = {2},
+  pages   = {157--166},
+  year    = {1994},
+  doi     = {10.1109/72.279181}
+}
+
+@article{glorot2010,
+  author  = {Glorot, Xavier and Bengio, Yoshua},
+  title   = {Understanding the Difficulty of Training Deep Feedforward Neural Networks},
+  journal = {Proceedings of AISTATS},
+  volume  = {9},
+  pages   = {249--256},
+  year    = {2010}
+}
+
+@article{nair2010,
+  author  = {Nair, Vinod and Hinton, Geoffrey E.},
+  title   = {Rectified Linear Units Improve Restricted Boltzmann Machines},
+  journal = {Proceedings of ICML},
+  pages   = {807--814},
+  year    = {2010}
+}
+
+@article{srivastava2014,
+  author  = {Srivastava, Nitish and Hinton, Geoffrey and Krizhevsky, Alex and Sutskever, Ilya and Salakhutdinov, Ruslan},
+  title   = {Dropout: A Simple Way to Prevent Neural Networks from Overfitting},
+  journal = {Journal of Machine Learning Research},
+  volume  = {15},
+  pages   = {1929--1958},
+  year    = {2014}
+}
+
+@article{ioffe2015,
+  author  = {Ioffe, Sergey and Szegedy, Christian},
+  title   = {Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift},
+  journal = {Proceedings of ICML},
+  pages   = {448--456},
+  year    = {2015}
+}
+
+@article{he2015resnet,
+  author  = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  title   = {Deep Residual Learning for Image Recognition},
+  journal = {arXiv preprint arXiv:1512.03385},
+  year    = {2015}
+}
+
+@article{santurkar2018,
+  author  = {Santurkar, Shibani and Tsipras, Dimitris and Ilyas, Andrew and Madry, Aleksander},
+  title   = {How Does Batch Normalization Help Optimization?},
+  journal = {NeurIPS},
+  year    = {2018}
+}
+
+@article{sutton2019,
+  author  = {Sutton, Richard},
+  title   = {The Bitter Lesson},
+  journal = {Incomplete Ideas (blog)},
+  url     = {http://www.incompleteideas.net/IncIdeas/BitterLesson.html},
+  year    = {2019}
+}
+
+@article{kingma2014,
+  author  = {Kingma, Diederik P. and Ba, Jimmy},
+  title   = {Adam: A Method for Stochastic Optimization},
+  journal = {arXiv preprint arXiv:1412.6980},
+  year    = {2014}
+}
+
+@article{dauphin2014,
+  author  = {Dauphin, Yann N. and Pascanu, Razvan and Gulcehre, Caglar and Cho, Kyunghyun and Ganguli, Surya and Bengio, Yoshua},
+  title   = {Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization},
+  journal = {NeurIPS},
+  year    = {2014}
+}
+
+% ---- 卷积时代 ----
+
+@article{lecun1989,
+  author  = {LeCun, Yann and Boser, Bernhard and Denker, John S. and Henderson, D. and Howard, Richard E. and Hubbard, William and Jackel, Lawrence D.},
+  title   = {Backpropagation Applied to Handwritten Zip Code Recognition},
+  journal = {Neural Computation},
+  volume  = {1},
+  number  = {4},
+  pages   = {541--551},
+  year    = {1989}
+}
+
+@article{lecun1998,
+  author  = {LeCun, Yann and Bottou, L{\'e}on and Bengio, Yoshua and Haffner, Patrick},
+  title   = {Gradient-Based Learning Applied to Document Recognition},
+  journal = {Proceedings of the IEEE},
+  volume  = {86},
+  number  = {11},
+  pages   = {2278--2324},
+  year    = {1998}
+}
+
+@article{fukushima1980,
+  author  = {Fukushima, Kunihiko},
+  title   = {Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position},
+  journal = {Biological Cybernetics},
+  volume  = {36},
+  pages   = {193--202},
+  year    = {1980}
+}
+
+@article{krizhevsky2012,
+  author  = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E.},
+  title   = {ImageNet Classification with Deep Convolutional Neural Networks},
+  journal = {NeurIPS},
+  year    = {2012}
+}
+
+@article{zeiler2013,
+  author  = {Zeiler, Matthew D. and Fergus, Rob},
+  title   = {Visualizing and Understanding Convolutional Networks},
+  journal = {ECCV},
+  year    = {2014}
+}
+
+@article{razavian2014,
+  author  = {Razavian, Ali Sharifi and Azizpour, Hossein and Sullivan, Josephine and Carlsson, Stefan},
+  title   = {{CNN} Features Off-the-Shelf: An Astounding Baseline for Recognition},
+  journal = {CVPR Workshops},
+  year    = {2014}
+}
+
+@article{he2015,
+  author  = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  title   = {Delving Deep into Rectifiers: Surpassing Human-Level Performance on {ImageNet} Classification},
+  journal = {ICCV},
+  year    = {2015}
+}
+
+@article{goodfellow2014,
+  author  = {Goodfellow, Ian and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
+  title   = {Generative Adversarial Nets},
+  journal = {NeurIPS},
+  year    = {2014}
+}
+
+% ---- 序列时代 ----
+
+@article{elman1990,
+  author  = {Elman, Jeffrey L.},
+  title   = {Finding Structure in Time},
+  journal = {Cognitive Science},
+  volume  = {14},
+  number  = {2},
+  pages   = {179--211},
+  year    = {1990}
+}
+
+@article{hochreiter1997,
+  author  = {Hochreiter, Sepp and Schmidhuber, J{\"u}rgen},
+  title   = {Long Short-Term Memory},
+  journal = {Neural Computation},
+  volume  = {9},
+  number  = {8},
+  pages   = {1735--1780},
+  year    = {1997}
+}
+
+@article{gers2000,
+  author  = {Gers, Felix A. and Schmidhuber, J{\"u}rgen and Cummins, Fred},
+  title   = {Learning to Forget: Continual Prediction with {LSTM}},
+  journal = {Neural Computation},
+  volume  = {12},
+  number  = {10},
+  pages   = {2451--2471},
+  year    = {2000}
+}
+
+@article{cho2014,
+  author  = {Cho, Kyunghyun and van Merri{\"e}nboer, Bart and Gulcehre, Caglar and Bahdanau, Dzmitry and Bougares, Fethi and Schwenk, Holger and Bengio, Yoshua},
+  title   = {Learning Phrase Representations Using {RNN} Encoder-Decoder for Statistical Machine Translation},
+  journal = {EMNLP},
+  year    = {2014}
+}
+
+@article{mikolov2013,
+  author  = {Mikolov, Tomas and Sutskever, Ilya and Chen, Kai and Corrado, Gregory S. and Dean, Jeff},
+  title   = {Distributed Representations of Words and Phrases and Their Compositionality},
+  journal = {NeurIPS},
+  year    = {2013}
+}
+
+@article{levy2014,
+  author  = {Levy, Omer and Goldberg, Yoav},
+  title   = {Neural Word Embedding as Implicit Matrix Factorization},
+  journal = {NeurIPS},
+  year    = {2014}
+}
+
+@article{pennington2014,
+  author  = {Pennington, Jeffrey and Socher, Richard and Manning, Christopher D.},
+  title   = {{GloVe}: Global Vectors for Word Representation},
+  journal = {EMNLP},
+  year    = {2014}
+}
+
+@article{bengio2003,
+  author  = {Bengio, Yoshua and Ducharme, R{\'e}jean and Vincent, Pascal and Jauvin, Christian},
+  title   = {A Neural Probabilistic Language Model},
+  journal = {Journal of Machine Learning Research},
+  volume  = {3},
+  pages   = {1137--1155},
+  year    = {2003}
+}
+
+@article{sutskever2014,
+  author  = {Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V.},
+  title   = {Sequence to Sequence Learning with Neural Networks},
+  journal = {NeurIPS},
+  year    = {2014}
+}
+
+% ---- 注意力革命 ----
+
+@article{bahdanau2015,
+  author  = {Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua},
+  title   = {Neural Machine Translation by Jointly Learning to Align and Translate},
+  journal = {ICLR},
+  year    = {2015}
+}
+
+@article{vaswani2017,
+  author  = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  title   = {Attention Is All You Need},
+  journal = {NeurIPS},
+  year    = {2017}
+}
+
+@article{devlin2019,
+  author  = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  title   = {{BERT}: Pre-Training of Deep Bidirectional Transformers for Language Understanding},
+  journal = {NAACL},
+  year    = {2019}
+}
+
+@article{radford2018,
+  author  = {Radford, Alec and Narasimhan, Karthik and Salimans, Tim and Sutskever, Ilya},
+  title   = {Improving Language Understanding by Generative Pre-Training},
+  journal = {OpenAI Technical Report},
+  year    = {2018}
+}
+
+@article{radford2019,
+  author  = {Radford, Alec and Wu, Jeffrey and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya},
+  title   = {Language Models Are Unsupervised Multitask Learners},
+  journal = {OpenAI Technical Report},
+  year    = {2019}
+}
+
+@article{bradbury2017,
+  author  = {Bradbury, James and Merity, Stephen and Xiong, Caiming and Socher, Richard},
+  title   = {Quasi-Recurrent Neural Networks},
+  journal = {NeurIPS},
+  year    = {2017}
+}
+
+@article{oord2016,
+  author  = {van den Oord, A{\"a}ron and Dieleman, Sander and Zen, Heiga and Simonyan, Karen and Vinyals, Oriol and Graves, Alex and Kalchbrenner, Nal and Senior, Andrew and Kavukcuoglu, Koray},
+  title   = {{WaveNet}: A Generative Model for Raw Audio},
+  journal = {arXiv preprint arXiv:1609.03499},
+  year    = {2016}
+}
+
+% ---- 规模时代 ----
+
+@article{kaplan2020,
+  author  = {Kaplan, Jared and McCandlish, Sam and Henighan, Tom and Brown, Tom B. and Chess, Benjamin and Child, Rewon and Gray, Scott and Radford, Alec and Wu, Jeffrey and Amodei, Dario},
+  title   = {Scaling Laws for Neural Language Models},
+  journal = {arXiv preprint arXiv:2001.08361},
+  year    = {2020}
+}
+
+@article{brown2020,
+  author  = {Brown, Tom B. and Mann, Benjamin and Ryder, Nick and Subbiah, Melanie and Kaplan, Jared and Dhariwal, Prafulla and Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish and Askell, Amanda and others},
+  title   = {Language Models Are Few-Shot Learners},
+  journal = {NeurIPS},
+  year    = {2020}
+}
+
+@article{hoffmann2022,
+  author  = {Hoffmann, Jordan and Borgeaud, Sebastian and Mensch, Arthur and Buchatskaya, Elena and Cai, Trevor and Rutherford, Eliza and de Las Casas, Diego and Hendricks, Lisa A. and Welbl, Johannes and Clark, Aidan and others},
+  title   = {Training Compute-Optimal Large Language Models},
+  journal = {arXiv preprint arXiv:2203.15556},
+  year    = {2022}
+}
+
+@article{wei2022emergent,
+  author  = {Wei, Jason and Tay, Yi and Bommasani, Rishi and Raffel, Colin and Zoph, Barret and Borgeaud, Sebastian and Yogatama, Dani and Bosma, Maarten and Zhou, Denny and Metzler, Donald and others},
+  title   = {Emergent Abilities of Large Language Models},
+  journal = {Transactions on Machine Learning Research},
+  year    = {2022}
+}
+
+@article{schaeffer2023,
+  author  = {Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi},
+  title   = {Are Emergent Abilities of Large Language Models a Mirage?},
+  journal = {NeurIPS},
+  year    = {2023}
+}
+
+@article{fedus2022,
+  author  = {Fedus, William and Zoph, Barret and Shazeer, Noam},
+  title   = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},
+  journal = {Journal of Machine Learning Research},
+  volume  = {23},
+  pages   = {1--39},
+  year    = {2022}
+}
+
+@article{touvron2023,
+  author  = {Touvron, Hugo and Lavril, Thibaut and Izacard, Gautier and Martinet, Xavier and Lachaux, Marie-Anne and Lacroix, Timoth{\'e}e and Rozi{\`e}re, Baptiste and Goyal, Naman and Hambro, Eric and Azhar, Faisal and others},
+  title   = {{LLaMA}: Open and Efficient Foundation Language Models},
+  journal = {arXiv preprint arXiv:2302.13971},
+  year    = {2023}
+}
+
+% ---- 对齐时代 ----
+
+@article{ouyang2022,
+  author  = {Ouyang, Long and Wu, Jeffrey and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and others},
+  title   = {Training Language Models to Follow Instructions with Human Feedback},
+  journal = {NeurIPS},
+  year    = {2022}
+}
+
+@article{rafailov2023,
+  author  = {Rafailov, Rafael and Sharma, Archit and Mitchell, Eric and Manning, Christopher D. and Ermon, Stefano and Finn, Chelsea},
+  title   = {Direct Preference Optimization: Your Language Model is Secretly a Reward Model},
+  journal = {NeurIPS},
+  year    = {2023}
+}
+
+@article{zelikman2022,
+  author  = {Zelikman, Eric and Wu, Yuhuai and Mu, Jesse and Goodman, Noah},
+  title   = {{STaR}: Bootstrapping Reasoning With Reasoning},
+  journal = {NeurIPS},
+  year    = {2022}
+}
+
+@article{christiano2017,
+  author  = {Christiano, Paul F. and Leike, Jan and Brown, Tom and Martic, Miljan and Legg, Shane and Amodei, Dario},
+  title   = {Deep Reinforcement Learning from Human Preferences},
+  journal = {NeurIPS},
+  year    = {2017}
+}
+
+% ---- 智能体时代 ----
+
+@article{schick2023,
+  author  = {Schick, Timo and Dwivedi-Yu, Jane and Dess{\`i}, Roberto and Raileanu, Roberta and Lomeli, Maria and Zettlemoyer, Luke and Cancedda, Nicola and Scialom, Thomas},
+  title   = {Toolformer: Language Models Can Teach Themselves to Use Tools},
+  journal = {NeurIPS},
+  year    = {2023}
+}
+
+@article{yao2023,
+  author  = {Yao, Shunyu and Yu, Dian and Zhao, Jeffrey and Shafran, Izhak and Griffiths, Tom and Cao, Yuan and Narasimhan, Karthik},
+  title   = {Tree of Thoughts: Deliberate Problem Solving with Large Language Models},
+  journal = {NeurIPS},
+  year    = {2023}
+}
+
+@article{wei2022flan,
+  author  = {Wei, Jason and Bosma, Maarten and Zhao, Vincent Y. and Guu, Kelvin and Yu, Adams Wei and Lester, Brian and Du, Nan and Dai, Andrew M. and Le, Quoc V.},
+  title   = {Finetuned Language Models Are Zero-Shot Learners},
+  journal = {ICLR},
+  year    = {2022}
+}
+
+@article{sanh2022,
+  author  = {Sanh, Victor and Webson, Albert and Raffel, Colin and Bach, Stephen H. and Sutawika, Lysandre and Alyafeai, Zaid and Chaffin, Antoine and Stiegler, Arnaud and Raja, Arun and Dey, Manan and others},
+  title   = {Multitask Prompted Training Enables Zero-Shot Task Generalization},
+  journal = {ICLR},
+  year    = {2022}
+}
+
+@article{hu2021lora,
+  author  = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Chen, Weizhu},
+  title   = {{LoRA}: Low-Rank Adaptation of Large Language Models},
+  journal = {arXiv preprint arXiv:2106.09685},
+  year    = {2021}
+}
+
+@article{lewis2020,
+  author  = {Lewis, Patrick and Perez, Ethan and Piktus, Aleksandra and Petroni, Fabio and Karpukhin, Vladimir and Goyal, Naman and K{\"u}ttler, Heinrich and Lewis, Mike and Yih, Wen-tau and Rockt{\"a}schel, Tim and others},
+  title   = {Retrieval-Augmented Generation for Knowledge-Intensive {NLP} Tasks},
+  journal = {NeurIPS},
+  year    = {2020}
+}
+
+@article{olsson2022,
+  author  = {Olsson, Catherine and Elhage, Nelson and Nanda, Neel and Joseph, Nicholas and DasSarma, Nova and Henighan, Tom and Mann, Ben and Askell, Amanda and Bai, Yuntao and others},
+  title   = {In-Context Learning and Induction Heads},
+  journal = {Anthropic Alignment Research},
+  year    = {2022}
+}
+
+% ---- 方法论与综合 ----
+
+@article{kuhn1962,
+  author  = {Kuhn, Thomas S.},
+  title   = {The Structure of Scientific Revolutions},
+  publisher = {University of Chicago Press},
+  address = {Chicago},
+  year    = {1962}
+}
+
+@article{shannon1951,
+  author  = {Shannon, Claude E.},
+  title   = {Prediction and Entropy of Printed English},
+  journal = {Bell System Technical Journal},
+  volume  = {30},
+  pages   = {50--64},
+  year    = {1951}
+}
+
+@article{hestness2017,
+  author  = {Hestness, Joel and Narang, Sharan and Ardalani, Newsha and Diamos, Gregory and Jun, Heewoo and Kianinejad, Hassan and Patwary, Md and Yang, Yang and Zhou, Yanqi},
+  title   = {Deep Learning Scaling Is Predictable, Empirically},
+  journal = {arXiv preprint arXiv:1712.00409},
+  year    = {2017}
+}
+
+@article{goodfellow2016,
+  author  = {Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron},
+  title   = {Deep Learning},
+  publisher = {MIT Press},
+  address = {Cambridge, MA},
+  year    = {2016}
+}
+
+@article{jelinek1976,
+  author  = {Jelinek, Frederick},
+  title   = {Continuous Speech Recognition by Statistical Methods},
+  journal = {Proceedings of the IEEE},
+  volume  = {64},
+  number  = {4},
+  pages   = {532--557},
+  year    = {1976}
+}
+
+@article{hopfield1982,
+  author  = {Hopfield, John J.},
+  title   = {Neural Networks and Physical Systems with Emergent Collective Computational Abilities},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {79},
+  number  = {8},
+  pages   = {2554--2558},
+  year    = {1982}
+}
