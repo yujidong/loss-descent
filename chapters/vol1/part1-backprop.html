@@ -1096,10 +1096,10 @@ window.Quarto = {
 <section id="年的一篇论文" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="年的一篇论文"><span class="header-section-number">6.1</span> 1986 年的一篇论文</h2>
 <p>要讲清楚反向传播，得先回到 1986 年，看看当时的人工智能是什么样子。</p>
-<p>那一年，AI 的主流是符号主义。教科书里讲的是专家系统，实验室里跑的是 LISP 程序，经费大部分流向了规则与逻辑的方向。神经网络在这个版图上几乎没有什么位置——它在 1969 年被 Minsky 和 Papert 的那本专著 <span class="citation" data-cites="minsky1969">(<a href="part1-backprop.html#ref-minsky1969" role="doc-biblioref">Minsky and Papert 1969</a>)</span> 批评过之后，已经边缘化了十几年。全世界还在坚持做这件事的人不多，分散在几个实验室里，彼此认识。</p>
+<p>那一年，AI 的主流是符号主义。教科书里讲的是专家系统，实验室里跑的是 LISP 程序，经费大部分流向了规则与逻辑的方向。神经网络在这个版图上几乎没有什么位置——它在 1969 年被 Minsky 和 Papert 的那本专著 <span class="citation" data-cites="minsky1969">(<a href="part0-two-threads.html#ref-minsky1969" role="doc-biblioref">Minsky and Papert 1969</a>)</span> 批评过之后，已经边缘化了十几年。全世界还在坚持做这件事的人不多，分散在几个实验室里，彼此认识。</p>
 <p>David Rumelhart 是其中一位。他不是工程师出身，而是加州大学圣迭戈分校的认知科学家，关心的问题是”人脑是怎么加工信息的”。1980 年前后，他和心理学家 James McClelland 组织了一个松散的研究小组，后来人们叫它 PDP 学派——PDP 是”并行分布式处理”（Parallel Distributed Processing）的缩写，这个名字本身就在申明立场：他们认为智能应该由许多简单单元的并行协作产生，而不是由一条条人工规则堆出来。</p>
-<p>小组的成员之一 Geoffrey Hinton 那时还年轻。他后来回忆过当时的处境：整个方向被认为已经过时，他们更像是一群在地下活动的爱好者。1985 年夏天，小组在圣地亚哥办了一次为期两周的工作坊，来自不同学校的人聚在一起，把各自的手稿摊在桌上互相评论。这次工作坊的材料后来结集成书，就是两大卷的《并行分布式处理》 <span class="citation" data-cites="rumelhart1986pdp">(<a href="part1-backprop.html#ref-rumelhart1986pdp" role="doc-biblioref">Rumelhart, McClelland, et al. 1986</a>)</span>，1986 年出版。</p>
-<p>就在这本书出版前几个月，1986 年 10 月，Rumelhart、Hinton 和一位研究生 Ronald Williams 在《自然》上发表了一篇四页的论文 <span class="citation" data-cites="rumelhart1986">(<a href="part1-backprop.html#ref-rumelhart1986" role="doc-biblioref">Rumelhart, Hinton, et al. 1986</a>)</span>，题目是”通过反向传播误差来学习表征”。这篇论文讲的方法本身并不长——把输出端的误差逐层往回传，用传回来的误差决定每个权重该怎么改——但它的演示很扎实：一个两层的神经网络，没有人手工设计中间层，自己学出了有用的内部表征。</p>
+<p>小组的成员之一 Geoffrey Hinton 那时还年轻。他后来回忆过当时的处境：整个方向被认为已经过时，他们更像是一群在地下活动的爱好者。1985 年夏天，小组在圣地亚哥办了一次为期两周的工作坊，来自不同学校的人聚在一起，把各自的手稿摊在桌上互相评论。这次工作坊的材料后来结集成书，就是两大卷的《并行分布式处理》 <span class="citation" data-cites="rumelhart1986pdp">(<a href="part0-two-threads.html#ref-rumelhart1986pdp" role="doc-biblioref">Rumelhart, McClelland, et al. 1986</a>)</span>，1986 年出版。</p>
+<p>就在这本书出版前几个月，1986 年 10 月，Rumelhart、Hinton 和一位研究生 Ronald Williams 在《自然》上发表了一篇四页的论文 <span class="citation" data-cites="rumelhart1986">(<a href="part0-two-threads.html#ref-rumelhart1986" role="doc-biblioref">Rumelhart, Hinton, et al. 1986</a>)</span>，题目是”通过反向传播误差来学习表征”。这篇论文讲的方法本身并不长——把输出端的误差逐层往回传，用传回来的误差决定每个权重该怎么改——但它的演示很扎实：一个两层的神经网络，没有人手工设计中间层，自己学出了有用的内部表征。</p>
 <p>本章要做的，就是把这四页纸里的方法亲手实现出来。我们会先弄清它要解决的问题，再看它的来历，然后写代码，最后让它在我们已经熟悉的 XOR 问题上工作。在那之前，先把我们自己的位置摆正。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
@@ -1136,7 +1136,7 @@ window.Quarto = {
 <section id="从相关性到误差信号" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="从相关性到误差信号"><span class="header-section-number">6.3.1</span> 从相关性到误差信号</h3>
 <p>在感知机之前，关于”神经元怎么学习”最流行的想法来自 Hebb。1949 年，这位加拿大心理学家在《行为的组织》一书中提出：如果两个神经元总是一起激活，它们之间的连接就会增强。这个猜想方向是对的——权重确实应该由经验改变——但它有一个后来才看清的缺陷：规则里没有任何”错误”的影子。一起活跃就增强，那么增强到什么时候为止？增强错了怎么办？Hebb 的规则没有刹车。</p>
-<p>1960 年，斯坦福的 Bernard Widrow 和他的研究生 Ted Hoff 做出了另一台机器，叫 ADALINE <span class="citation" data-cites="widrow1960">(<a href="part1-backprop.html#ref-widrow1960" role="doc-biblioref">Widrow and Hoff 1960</a>)</span>。它是一个可以调权重的线性单元，用的元件是真正的硬件——电阻和旋钮。他们为它设计的学习规则不再看相关性，而是看误差：拿期望输出和实际输出之差去驱动权重的调整。他们甚至证明了收敛性质。这条规则已经站到了多层网络的门口，只差一步——但那一步，恰好是它跨不过去的。ADALINE 的误差信号到输出层为止。网络再深一层，误差就传不进去了。</p>
+<p>1960 年，斯坦福的 Bernard Widrow 和他的研究生 Ted Hoff 做出了另一台机器，叫 ADALINE <span class="citation" data-cites="widrow1960">(<a href="part0-two-threads.html#ref-widrow1960" role="doc-biblioref">Widrow and Hoff 1960</a>)</span>。它是一个可以调权重的线性单元，用的元件是真正的硬件——电阻和旋钮。他们为它设计的学习规则不再看相关性，而是看误差：拿期望输出和实际输出之差去驱动权重的调整。他们甚至证明了收敛性质。这条规则已经站到了多层网络的门口，只差一步——但那一步，恰好是它跨不过去的。ADALINE 的误差信号到输出层为止。网络再深一层，误差就传不进去了。</p>
 </section>
 <section id="一本书的杀伤力" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="一本书的杀伤力"><span class="header-section-number">6.3.2</span> 一本书的杀伤力</h3>
@@ -1145,9 +1145,9 @@ window.Quarto = {
 </section>
 <section id="在错误的房间里沉默了十二年" class="level3" data-number="6.3.3">
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="在错误的房间里沉默了十二年"><span class="header-section-number">6.3.3</span> 在错误的房间里沉默了十二年</h3>
-<p>现在把镜头切到 Paul Werbos。1974 年，他在哈佛大学完成博士论文 <span class="citation" data-cites="werbos1974">(<a href="part1-backprop.html#ref-werbos1974" role="doc-biblioref">Werbos 1974</a>)</span>，方向是预测与控制，不是神经网络——神经网络只是他顺手使用的工具。在论文的一章里，他把链式法则系统地用到了多层网络的训练上：误差如何逐层回传、每层的权重如何由回传的误差决定。后来回头看，这正是反向传播的完整雏形。</p>
+<p>现在把镜头切到 Paul Werbos。1974 年，他在哈佛大学完成博士论文 <span class="citation" data-cites="werbos1974">(<a href="part0-two-threads.html#ref-werbos1974" role="doc-biblioref">Werbos 1974</a>)</span>，方向是预测与控制，不是神经网络——神经网络只是他顺手使用的工具。在论文的一章里，他把链式法则系统地用到了多层网络的训练上：误差如何逐层回传、每层的权重如何由回传的误差决定。后来回头看，这正是反向传播的完整雏形。</p>
 <p>但这份工作发表在与预测控制相关的渠道里，读的人很少。Werbos 后来回忆，他当时曾把这套方法讲给不同领域的人听，没有人觉得它重要。一个正确的想法，在一个错误的房间里沉默了。</p>
-<p>类似的故事不止一例。芬兰的 Seppo Linnainmaa 在 1970 年的硕士论文 <span class="citation" data-cites="linnainmaa1970">(<a href="part1-backprop.html#ref-linnainmaa1970" role="doc-biblioref">Linnainmaa 1970</a>)</span> 里研究的是数值计算问题——复合函数求导时舍入误差如何累积——他给出的”反向模式”微分，本质上就是后来反向传播的求导框架。1985 年，MIT 的 David Parker 又独立地得出了同样的结果 <span class="citation" data-cites="parker1985">(<a href="part1-backprop.html#ref-parker1985" role="doc-biblioref">Parker 1985</a>)</span>，写成了技术报告。同一个想法，至少三次各自独立地出现，又各自无声地沉没。</p>
+<p>类似的故事不止一例。芬兰的 Seppo Linnainmaa 在 1970 年的硕士论文 <span class="citation" data-cites="linnainmaa1970">(<a href="part0-two-threads.html#ref-linnainmaa1970" role="doc-biblioref">Linnainmaa 1970</a>)</span> 里研究的是数值计算问题——复合函数求导时舍入误差如何累积——他给出的”反向模式”微分，本质上就是后来反向传播的求导框架。1985 年，MIT 的 David Parker 又独立地得出了同样的结果 <span class="citation" data-cites="parker1985">(<a href="part0-two-threads.html#ref-parker1985" role="doc-biblioref">Parker 1985</a>)</span>，写成了技术报告。同一个想法，至少三次各自独立地出现，又各自无声地沉没。</p>
 <p>为什么 1986 年就不一样了？对比这些案例，差别不在数学，而在三件事的同时到位：一份马上可以复现的演示（Rumelhart 等人的论文里附了完整的算法和实验）、一个能承载它的硬件环境（工作站刚好够跑小网络）、一个传播的渠道（《自然》加 PDP 两卷本）。想法早就成熟了，1986 年提供的是点燃条件。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>现在你是 1985 年的研究者。你已掌握：链式法则、一个 2-3-1 的两层网络（9 个权重）、纸和笔。</p>
@@ -1418,7 +1418,7 @@ seed=42: 最终 loss = 0.5314</code></pre>
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
-<p><strong>Rumelhart, Hinton &amp; Williams (1986)</strong> <span class="citation" data-cites="rumelhart1986">(<a href="part1-backprop.html#ref-rumelhart1986" role="doc-biblioref">Rumelhart, Hinton, et al. 1986</a>)</span>. <em>Learning representations by back-propagating errors.</em> Nature 323, 533–536.</p>
+<p><strong>Rumelhart, Hinton &amp; Williams (1986)</strong> <span class="citation" data-cites="rumelhart1986">(<a href="part0-two-threads.html#ref-rumelhart1986" role="doc-biblioref">Rumelhart, Hinton, et al. 1986</a>)</span>. <em>Learning representations by back-propagating errors.</em> Nature 323, 533–536.</p>
 <ul>
 <li><strong>读什么</strong>：Fig. 2（两层网络与”家族谱系任务”的实验）；文末关于”学到的内部表征”的讨论——1986 年的作者已经在思考我们今天叫 interpretability 的问题。</li>
 <li><strong>跳过什么</strong>：连续语音吸引子的部分（与主线无关）。</li>
@@ -1437,38 +1437,27 @@ seed=42: 最终 loss = 0.5314</code></pre>
 </section>
 <section id="参考文献" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">6.9</span> 参考文献</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-linnainmaa1970" class="csl-entry" role="listitem">
-Linnainmaa, Seppo. 1970. <span>“The Representation of the Cumulative
-Rounding Error of an Algorithm as a <span>Taylor</span> Expansion of the
-Local Rounding Errors.”</span> <em>Master’s Thesis (in Finnish),
-University of Helsinki</em>.
+Linnainmaa, Seppo. 1970. <span>“The Representation of the Cumulative Rounding Error of an Algorithm as a <span>Taylor</span> Expansion of the Local Rounding Errors.”</span> <em>Master’s Thesis (in Finnish), University of Helsinki</em>.
 </div>
 <div id="ref-minsky1969" class="csl-entry" role="listitem">
-Minsky, Marvin, and Seymour Papert. 1969. <em>Perceptrons: An
-Introduction to Computational Geometry</em>. MIT Press.
+Minsky, Marvin, and Seymour Papert. 1969. <em>Perceptrons: An Introduction to Computational Geometry</em>. MIT Press.
 </div>
 <div id="ref-parker1985" class="csl-entry" role="listitem">
 Parker, David B. 1985. <em>Learning Logic</em>. nos. TR-47.
 </div>
 <div id="ref-rumelhart1986" class="csl-entry" role="listitem">
-Rumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. 1986.
-<span>“Learning Representations by Back-Propagating Errors.”</span>
-<em>Nature</em> 323: 533–36. <a href="https://doi.org/10.1038/323533a0">https://doi.org/10.1038/323533a0</a>.
+Rumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. 1986. <span>“Learning Representations by Back-Propagating Errors.”</span> <em>Nature</em> 323: 533–36. <a href="https://doi.org/10.1038/323533a0">https://doi.org/10.1038/323533a0</a>.
 </div>
 <div id="ref-rumelhart1986pdp" class="csl-entry" role="listitem">
-Rumelhart, David E., James L. McClelland, and the PDP Research Group.
-1986. <em>Parallel Distributed Processing: Explorations in the
-Microstructure of Cognition</em>. 1 and 2. MIT Press.
+Rumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. <em>Parallel Distributed Processing: Explorations in the Microstructure of Cognition</em>. 1 and 2. MIT Press.
 </div>
 <div id="ref-werbos1974" class="csl-entry" role="listitem">
-Werbos, Paul J. 1974. <span>“Beyond Regression: New Tools for Prediction
-and Analysis in the Behavioral Sciences.”</span> PhD thesis, Harvard
-University.
+Werbos, Paul J. 1974. <span>“Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences.”</span> PhD thesis, Harvard University.
 </div>
 <div id="ref-widrow1960" class="csl-entry" role="listitem">
-Widrow, Bernard, and Marcian E. Hoff. 1960. <span>“Adaptive Switching
-Circuits.”</span> <em>IRE WESCON Convention Record</em> 4: 96–104.
+Widrow, Bernard, and Marcian E. Hoff. 1960. <span>“Adaptive Switching Circuits.”</span> <em>IRE WESCON Convention Record</em> 4: 96–104.
 </div>
 </div>
 </section>

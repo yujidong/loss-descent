@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -970,7 +989,8 @@ main table {
   <li><a href="#核心思想" id="toc-核心思想" class="nav-link" data-scroll-target="#核心思想"><span class="header-section-number">5.3</span> 核心思想</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">5.4</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">5.5</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">5.6</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">5.6</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">5.7</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1031,7 +1051,7 @@ main table {
 <h2 data-number="5.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">5.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>符号主义的登基</strong>。DENDRAL（1965，推断分子结构）与 MYCIN（1976，血液感染诊断）证明了”知识就是力量”：几百条人工编写的 IF-THEN 规则，能让机器在狭窄领域达到专家水平，而且<strong>每一步推理都可解释</strong>。知识工程（knowledge engineering）成为职业，Feigenbaum 宣称瓶颈不在智能而在知识获取——只要雇足够的专家把知识”开采”出来，智能就会堆积而成。</p>
 <p><strong>裂缝在骄傲中扩大</strong>。三个问题在 1980 年代逐渐显形：①<strong>知识获取瓶颈</strong>——规则要人写，专家的时间是稀缺资源，且专家说不清自己怎么想的；②<strong>脆弱性</strong>——出了规则覆盖的范围就一败涂地，没有常识兜底；③<strong>组合爆炸</strong>——规则库一大就互相打架。日本的第五代计划（1982–1992）是符号路线的国家级豪赌，最终没有产出能与宣言匹配的成果。</p>
-<p><strong>地下的连接主义</strong>。寒冬里仍有火种：日本的 Fukushima 在 1980 年发表 Neocognitron（视觉皮层启发的多层结构——卷积网络的直系祖先，3.1 章的主角）；Grossberg 与 Kohonen 各自发展竞争学习理论；Amari 在数学院系坚守统计神经动力学。然后是转折性的 1982：物理学家 <strong>Hopfield</strong> 用能量函数的语言重新表述神经网络（联想记忆），发表在 PNAS 上——<strong>换一种主流听得懂的语言，荒原上的工作突然重新可敬</strong>。随后 Hinton 与 Sejnowski 的玻尔兹曼机（1985）延续物理化路线。1986 年，Rumelhart、McClelland 与 PDP 学派的两卷本《并行分布式处理》出版——这不仅是论文集，是<strong>范式复活的宣言书</strong>。</p>
+<p><strong>地下的连接主义</strong>。寒冬里仍有火种：日本的 Fukushima 在 1980 年发表 Neocognitron <span class="citation" data-cites="fukushima1980">(<a href="part0-two-threads.html#ref-fukushima1980" role="doc-biblioref">Fukushima 1980</a>)</span>（视觉皮层启发的多层结构——卷积网络的直系祖先，3.1 章的主角）；Grossberg 与 Kohonen 各自发展竞争学习理论；Amari 在数学院系坚守统计神经动力学。然后是转折性的 1982：物理学家 <strong>Hopfield</strong> <span class="citation" data-cites="hopfield1982">(<a href="part0-two-threads.html#ref-hopfield1982" role="doc-biblioref">Hopfield 1982</a>)</span> 用能量函数的语言重新表述神经网络（联想记忆），发表在 PNAS 上——<strong>换一种主流听得懂的语言，荒原上的工作突然重新可敬</strong>。随后 Hinton 与 Sejnowski 的玻尔兹曼机（1985）延续物理化路线。1986 年，Rumelhart、McClelland 与 PDP 学派的两卷本 <span class="citation" data-cites="rumelhart1986pdp">(<a href="part0-two-threads.html#ref-rumelhart1986pdp" role="doc-biblioref">Rumelhart et al. 1986</a>)</span>《并行分布式处理》出版——这不仅是论文集，是<strong>范式复活的宣言书</strong>。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>你是 1980 年的国家科学基金评审，手里两份提案：</p>
 <ul>
@@ -1119,11 +1139,11 @@ main table {
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
-<p><strong>Hopfield, J. (1982).</strong> <em>Neural networks and physical systems with emergent collective computational abilities.</em> PNAS 79, 2554–2558.</p>
+<p><strong>Hopfield, J. (1982)</strong> <span class="citation" data-cites="hopfield1982">(<a href="part0-two-threads.html#ref-hopfield1982" role="doc-biblioref">Hopfield 1982</a>)</span>. <em>Neural networks and physical systems with emergent collective computational abilities.</em> PNAS 79, 2554–2558.</p>
 <ul>
 <li><strong>读什么</strong>：能量函数的构造与联想记忆的收敛论证——体会”把网络说成物理系统”的翻译术；</li>
 <li><strong>跳过什么</strong>：神经细节的对应关系；</li>
-<li><strong>历史注</strong>：同一时期的 PDP 学派（Rumelhart &amp; McClelland 1986 两卷本）才是复活的组织者——论文之外，<strong>教科书与学派同样是研究史的行动者</strong>。日本第五代计划（1982–1992）的失败报告同样值得读：国家力量押注研究范式的风险样本。</li>
+<li><strong>历史注</strong>：同一时期的 PDP 学派（Rumelhart &amp; McClelland 1986 <span class="citation" data-cites="rumelhart1986pdp">(<a href="part0-two-threads.html#ref-rumelhart1986pdp" role="doc-biblioref">Rumelhart et al. 1986</a>)</span> 两卷本）才是复活的组织者——论文之外，<strong>教科书与学派同样是研究史的行动者</strong>。日本第五代计划（1982–1992）的失败报告同样值得读：国家力量押注研究范式的风险样本。</li>
 </ul>
 </div>
 </section>
@@ -1131,8 +1151,22 @@ main table {
 <h2 data-number="5.5" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">5.5</span> 遗留问题</h2>
 <p>范式复活的宣言已经写好（PDP 两卷本），地下党重见天日。但宣言里最关键的一页还是空白的：<strong>隐藏层的权重到底该怎么学？</strong> 感知机规则的收敛定理只覆盖单层——多层网络缺少自己的发动机。下一章，我们把这台发动机亲手造出来。</p>
 </section>
-<section id="练习" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="练习"><span class="header-section-number">5.6</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">5.6</span> 参考文献</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-fukushima1980" class="csl-entry" role="listitem">
+Fukushima, Kunihiko. 1980. <span>“Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position.”</span> <em>Biological Cybernetics</em> 36: 193–202.
+</div>
+<div id="ref-hopfield1982" class="csl-entry" role="listitem">
+Hopfield, John J. 1982. <span>“Neural Networks and Physical Systems with Emergent Collective Computational Abilities.”</span> <em>Proceedings of the National Academy of Sciences</em> 79 (8): 2554–58.
+</div>
+<div id="ref-rumelhart1986pdp" class="csl-entry" role="listitem">
+Rumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. <em>Parallel Distributed Processing: Explorations in the Microstructure of Cognition</em>. 1 and 2. MIT Press.
+</div>
+</div>
+</section>
+<section id="练习" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="练习"><span class="header-section-number">5.7</span> 练习</h2>
 <ol type="1">
 <li><strong>开采练习</strong>：为”判断一封邮件是否为垃圾邮件”手写 10 条规则，然后为每条规则构造一个失效反例。数一数你花了多少分钟——再乘以一个专家系统的五千条规则。</li>
 <li><strong>翻译练习</strong>：用三段话把 Hopfield 网络讲给一个只会微积分的朋友（不许用”能量”以外的物理词汇，也不许用任何神经网络词汇超过三次）。</li>

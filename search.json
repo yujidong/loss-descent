@@ -117,7 +117,7 @@
     "href": "chapters/vol1/part0-two-threads.html#核心思想",
     "title": "2  双主线：降 Loss 的视角与研究史的视角",
     "section": "2.3 核心思想",
-    "text": "2.3 核心思想\n\n2.3.1 主线一：Loss 是解剖刀\n从模型的视角看，训练只发生一件事：在某个数据分布上、按某个目标函数，把 loss 降下去。这个朴素的视角一旦认真使用，威力惊人：\n\n预测即压缩。Shannon 在 1948 年就告诉我们：对数据压缩得越好，就是对它的分布预测得越好。今天的语言模型本质上是一台互联网文本的压缩机——降 loss 与”学到了知识”是同一件事的两面；\n能力 = 特定分布上的低 loss。“会写代码”意味着在代码分布上 loss 低，“会推理”意味着在带推理痕迹的分布上 loss 低。于是每个新能力（对齐、工具调用、推理）都可以精确地问一句：这无非是在某个新分布上降 loss 吗？如果是，数据从哪来？\n训练技术 = 让 loss 降得更低、更便宜的手段。新架构如此（同样的算力降得更低）、训练技巧如此、分布式系统也如此。\n\n由此得到全书的标准工具——每章结尾都会填一份的 Loss 账本：\n\n\n\n四问\n问的是什么\n\n\n\n\n在优化什么 loss？\n目标函数与它的真实含义\n\n\n数据从哪来？\n分布——能力真正的来源\n\n\n买到了什么能力？\n降低这个 loss 的直接后果\n\n\n没买到什么？\n边界——下一个技术被需要的理由\n\n\n\n拿两个”未来的”技术预演一下这把刀的锋利程度（细节在后文，这里只看刀法）：\n\n\n\n\n\n\n\n\n四问\nResNet（3.2）\nRLHF（7.3）\n\n\n\n\n在优化什么 loss？\n图像分类的交叉熵\n人类偏好奖励的最大化（变形的 loss）\n\n\n数据从哪来？\nImageNet 标注图\n人类两两比较的标注\n\n\n买到了什么？\n百层可训的网络\n模型输出分布对齐人类口味\n\n\n没买到什么？\n序列建模（固定窗口）\n能力上限不变、奖励可被攻破（reward hacking）\n\n\n\n\n\n2.3.2 主线二：研究史是重演，不是讲述\n深度学习七十年的基本循环只有一拍：\n发现瓶颈 → 提出假设 → 实验验证 → 暴露新瓶颈。\n感知机的线性局限逼出隐藏层，隐藏层的信用分配逼出反向传播，梯度消失逼出 ReLU 与残差，CNN 的固定窗口逼出循环网络，循环网络的不可并行逼出 Transformer，Transformer 的固定数据逼出规模化……每个”新”技术都是上一个技术遗留问题的答案。这意味着：\n\n只读答案，得不到提问的能力。所以本书每章在揭示历史方案之前，都有一栏「停一停，你来当研究者」——让你先当一次 1958 年或 1986 年的当事人。你会失败，而失败的位置恰恰就是历史突破的位置；\n预测未来 = 把循环外推。全书最后（9.3）你将用同一套工具分析当红方向并写下自己的预测——这本书的毕业考试是预测未来，而及格线早在本章就划下了。\n\n\n\n2.3.3 两线如何咬合\n每章 = 一次历史解题（context）+ 一份 loss 账本（competence）+ 一组可运行实验（重演）。历史告诉你为什么，loss 告诉你代价与收益，实验让你亲手摸到。三者的关系不是并列，是同一件事的三个投影。\n\n「四问账本」本身也有一份账本：它在优化你的”判断力 loss”——输入是新技术（新的架构、RL 配方、agent 框架），输出是快速定位它的数据来源、目标函数与边界。读完本书，面对任何新论文，你的第一反应应当是拿账本过一遍——这正是很多人面对 AI 狂潮时最缺的能力。\n\n\n本章的两篇奠基文献，也是全书唯二”非技术”的指定阅读：\n\nShannon, C. (1948). A Mathematical Theory of Communication. —— “预测即压缩”的血缘源头，语言建模（4.1）将正式回到这里；\nSutton, R. (2019). The Bitter Lesson. —— 短短一页：七十年来，依赖算力扩展的通用方法一再击败精巧的领域设计。它将在 2.4、6.1、9.1 三次回响，是贯穿全书的低音部。",
+    "text": "2.3 核心思想\n\n2.3.1 主线一：Loss 是解剖刀\n从模型的视角看，训练只发生一件事：在某个数据分布上、按某个目标函数，把 loss 降下去。这个朴素的视角一旦认真使用，威力惊人：\n\n预测即压缩。Shannon 在 1948 年 (Shannon 1948) 就告诉我们：对数据压缩得越好，就是对它的分布预测得越好。今天的语言模型本质上是一台互联网文本的压缩机——降 loss 与”学到了知识”是同一件事的两面；\n能力 = 特定分布上的低 loss。“会写代码”意味着在代码分布上 loss 低，“会推理”意味着在带推理痕迹的分布上 loss 低。于是每个新能力（对齐、工具调用、推理）都可以精确地问一句：这无非是在某个新分布上降 loss 吗？如果是，数据从哪来？\n训练技术 = 让 loss 降得更低、更便宜的手段。新架构如此（同样的算力降得更低）、训练技巧如此、分布式系统也如此。\n\n由此得到全书的标准工具——每章结尾都会填一份的 Loss 账本：\n\n\n\n四问\n问的是什么\n\n\n\n\n在优化什么 loss？\n目标函数与它的真实含义\n\n\n数据从哪来？\n分布——能力真正的来源\n\n\n买到了什么能力？\n降低这个 loss 的直接后果\n\n\n没买到什么？\n边界——下一个技术被需要的理由\n\n\n\n拿两个”未来的”技术预演一下这把刀的锋利程度（细节在后文，这里只看刀法）：\n\n\n\n\n\n\n\n\n四问\nResNet（3.2）\nRLHF（7.3）\n\n\n\n\n在优化什么 loss？\n图像分类的交叉熵\n人类偏好奖励的最大化（变形的 loss）\n\n\n数据从哪来？\nImageNet 标注图\n人类两两比较的标注\n\n\n买到了什么？\n百层可训的网络\n模型输出分布对齐人类口味\n\n\n没买到什么？\n序列建模（固定窗口）\n能力上限不变、奖励可被攻破（reward hacking）\n\n\n\n\n\n2.3.2 主线二：研究史是重演，不是讲述\n深度学习七十年的基本循环只有一拍：\n发现瓶颈 → 提出假设 → 实验验证 → 暴露新瓶颈。\n感知机的线性局限逼出隐藏层，隐藏层的信用分配逼出反向传播，梯度消失逼出 ReLU 与残差，CNN 的固定窗口逼出循环网络，循环网络的不可并行逼出 Transformer，Transformer 的固定数据逼出规模化……每个”新”技术都是上一个技术遗留问题的答案。这意味着：\n\n只读答案，得不到提问的能力。所以本书每章在揭示历史方案之前，都有一栏「停一停，你来当研究者」——让你先当一次 1958 年或 1986 年的当事人。你会失败，而失败的位置恰恰就是历史突破的位置；\n预测未来 = 把循环外推。全书最后（9.3）你将用同一套工具分析当红方向并写下自己的预测——这本书的毕业考试是预测未来，而及格线早在本章就划下了。\n\n\n\n2.3.3 两线如何咬合\n每章 = 一次历史解题（context）+ 一份 loss 账本（competence）+ 一组可运行实验（重演）。历史告诉你为什么，loss 告诉你代价与收益，实验让你亲手摸到。三者的关系不是并列，是同一件事的三个投影。\n\n「四问账本」本身也有一份账本：它在优化你的”判断力 loss”——输入是新技术（新的架构、RL 配方、agent 框架），输出是快速定位它的数据来源、目标函数与边界。读完本书，面对任何新论文，你的第一反应应当是拿账本过一遍——这正是很多人面对 AI 狂潮时最缺的能力。\n\n\n本章的两篇奠基文献，也是全书唯二”非技术”的指定阅读：\n\nShannon, C. (1948) (Shannon 1948). A Mathematical Theory of Communication. —— “预测即压缩”的血缘源头，语言建模（4.1）将正式回到这里；\nSutton, R. (2019) (Sutton 2019). The Bitter Lesson. —— 短短一页：七十年来，依赖算力扩展的通用方法一再击败精巧的领域设计。它将在 2.4、6.1、9.1 三次回响，是贯穿全书的低音部。",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>双主线：降 Loss 的视角与研究史的视角</span>"
@@ -135,11 +135,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part0-two-threads.html#参考文献",
+    "href": "chapters/vol1/part0-two-threads.html#参考文献",
+    "title": "2  双主线：降 Loss 的视角与研究史的视角",
+    "section": "2.5 参考文献",
+    "text": "2.5 参考文献\n\n\nCybenko, George. 1989. “Approximation by Superpositions of a\nSigmoidal Function.” Mathematics of Control, Signals and\nSystems 2: 303–14. https://doi.org/10.1007/BF02551274.\n\n\nFukushima, Kunihiko. 1980. “Neocognitron: A Self-Organizing Neural\nNetwork Model for a Mechanism of Pattern Recognition Unaffected by Shift\nin Position.” Biological Cybernetics 36: 193–202.\n\n\nHebb, Donald O. 1949. The Organization of Behavior: A\nNeuropsychological Theory. (New York).\n\n\nHochreiter, Sepp. 1991. “Untersuchungen Zu Dynamischen Neuronalen\nNetzen.” Diploma Thesis (in German), Technische\nUniversität München.\n\n\nHopfield, John J. 1982. “Neural Networks and Physical Systems with\nEmergent Collective Computational Abilities.” Proceedings of\nthe National Academy of Sciences 79 (8): 2554–58.\n\n\nHornik, Kurt, Maxwell Stinchcombe, and Halbert White. 1989.\n“Multilayer Feedforward Networks Are Universal\nApproximators.” Neural Networks 2 (5): 359–66. https://doi.org/10.1016/0893-6080(89)90020-8.\n\n\nKuhn, Thomas S. 1962. The Structure of Scientific Revolutions.\n(Chicago).\n\n\nLinnainmaa, Seppo. 1970. “The Representation of the Cumulative\nRounding Error of an Algorithm as a Taylor Expansion of the\nLocal Rounding Errors.” Master’s Thesis (in Finnish),\nUniversity of Helsinki.\n\n\nMcCulloch, Warren S., and Walter Pitts. 1943. “A Logical Calculus\nof the Ideas Immanent in Nervous Activity.” Bulletin of\nMathematical Biophysics 5: 115–33. https://doi.org/10.1007/BF02478259.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An\nIntroduction to Computational Geometry. MIT Press.\n\n\nParker, David B. 1985. Learning Logic. nos. TR-47.\n\n\nRosenblatt, Frank. 1958. “The Perceptron: A Probabilistic Model\nfor Information Storage and Organization in the Brain.”\nPsychological Review 65 (6): 386–408. https://doi.org/10.1037/h0042519.\n\n\nRumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. 1986.\n“Learning Representations by Back-Propagating Errors.”\nNature 323: 533–36. https://doi.org/10.1038/323533a0.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group.\n1986. Parallel Distributed Processing: Explorations in the\nMicrostructure of Cognition. 1 and 2. MIT Press.\n\n\nShannon, Claude E. 1948. “A Mathematical Theory of\nCommunication.” Bell System Technical Journal 27 (3):\n379–423. https://doi.org/10.1002/j.1538-7305.1948.tb01338.x.\n\n\nSutton, Richard. 2019. “The Bitter Lesson.” Incomplete\nIdeas (Blog). http://www.incompleteideas.net/IncIdeas/BitterLesson.html.\n\n\nWerbos, Paul J. 1974. “Beyond Regression: New Tools for Prediction\nand Analysis in the Behavioral Sciences.” PhD thesis, Harvard\nUniversity.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching\nCircuits.” IRE WESCON Convention Record 4: 96–104.",
+    "crumbs": [
+      "卷一 · Part 0 · 导论",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>双主线：降 Loss 的视角与研究史的视角</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part0-two-threads.html#练习",
     "href": "chapters/vol1/part0-two-threads.html#练习",
     "title": "2  双主线：降 Loss 的视角与研究史的视角",
-    "section": "2.5 练习",
-    "text": "2.5 练习\n\n账本练习：把「停一停」里你拆解的技术重新写一遍，这次必须把第三、四问写满各 100 字。\n预测练习：写下你对这个判断的真伪与理由——“Transformer 会在十年内被完全取代”。装进信封，读到 9.3 时拆开对照。\n循环识别：在任意一篇你近期读过的 AI 新闻里，辨认出它属于研究循环的哪一拍（瓶颈/假设/验证/新瓶颈）。若辨认不出，说明它可能只是营销。\n论文映射：找出 The Bitter Lesson 提到的任一历史案例（如计算机视觉的手工特征），用四问账本拆它一页。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n没有标准答案，但有三条自检标准：练习 1 里若你的第三四问与第一二问高度重复，说明还没把”能力”与”机制”分开；练习 3 里若一拍都认不出，重读本章「研究史是重演」一节；练习 4 的常见发现是——被 Bitter Lesson 击败的手工方法，账本第四问（没买到什么）往往早有人写下，只是没人愿意读。",
+    "section": "2.6 练习",
+    "text": "2.6 练习\n\n账本练习：把「停一停」里你拆解的技术重新写一遍，这次必须把第三、四问写满各 100 字。\n预测练习：写下你对这个判断的真伪与理由——“Transformer 会在十年内被完全取代”。装进信封，读到 9.3 时拆开对照。\n循环识别：在任意一篇你近期读过的 AI 新闻里，辨认出它属于研究循环的哪一拍（瓶颈/假设/验证/新瓶颈）。若辨认不出，说明它可能只是营销。\n论文映射：找出 The Bitter Lesson 提到的任一历史案例（如计算机视觉的手工特征），用四问账本拆它一页。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n没有标准答案，但有三条自检标准：练习 1 里若你的第三四问与第一二问高度重复，说明还没把”能力”与”机制”分开；练习 3 里若一拍都认不出，重读本章「研究史是重演」一节；练习 4 的常见发现是——被 Bitter Lesson 击败的手工方法，账本第四问（没买到什么）往往早有人写下，只是没人愿意读。",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>双主线：降 Loss 的视角与研究史的视角</span>"
@@ -172,7 +183,7 @@
     "href": "chapters/vol1/part0-reading-history.html#核心思想",
     "title": "3  如何读研究史：读问题，不读年表",
     "section": "3.3 核心思想",
-    "text": "3.3 核心思想\n四个可操作的技术，全书每章都在用：\n一、以问题为单位，不以人为单位。 读到任何技术时，先问”它回应了什么瓶颈”。问题的寿命比技术长：梯度消失这个问题从 1991 年活到 2015 年残差连接，还会以新面目（长上下文的注意力稀释）活在 2026 年。记住问题，就能在新论文里认出旧问题的回马枪。\n二、双镜头阅读。 每个历史事件用两个镜头各看一遍：\n\n当时镜头：当事人知道什么、相信什么、有什么工具？（评价决策的合理性）\n现在镜头：以今天的理解，他们哪里对了哪里错了？（提取仍然活着的教训）\n\n单用任何一个镜头都会中毒：只用”当时”会滑向相对主义（一切皆可原谅），只用”现在”会滑向马后炮（一切皆可嘲笑）。\n三、识别循环的拍子。 上一章介绍的研究循环——瓶颈 → 假设 → 实验 → 新瓶颈——在读任何文献时问：它在第几拍？注意：营销材料通常一拍都认不出来，这是个实用的过滤器。\n四、区分结果的寿命与方法的寿命。 具体结果（某个网络在某个数据集上的准确率）五年就凉；方法（“把误差信号逐层回传”“用残差让深层可训”“在偏好数据上优化”）可以活几十年。读史时在结果上快走，在方法上慢走——本书的「回声」栏目就是干这个的。\n另附两条解毒剂：优先权之争通常是伪问题（重要的思想几乎总有多重独立发现，“谁先想到”远不如”为什么在那个时刻点燃”有趣）；警惕胜利者叙事（包括本书的叙事——欢迎随时用你自己的双镜头检验本书对历史的裁剪）。\n\n这套读法本身最大的回声在你手里：当下每周都有新的 AI 论文与新闻，它们同样可以被”读问题、辨拍子、验账本”处理。本书教的历史读法，实质是面向未来的实时分析工具——9.3 章的毕业考试用的就是它。\n\n\nKuhn, T. (1962). The Structure of Scientific Revolutions.（库恩《科学革命的结构》）\n\n读什么：范式（paradigm）与常规科学（normal science）的界定、反常（anomaly）如何积累引发危机——本书”范式之争”“寒冬”“复兴”的词汇表一半来自这里；\n跳过什么：不可通约性（incommensurability）的哲学争论部分；\n历史注：库恩描述的是物理学式的范式更替，而深度学习的历史更”丛林”——多个范式长期共存、互相寄生（符号主义的方法至今活在你的编译器里）。把库恩当透镜，别当教条。另：本书对”胜利者史观”的免疫力有限——作者（我）站在连接主义胜利之后写这本连接主义视角的书，这个偏差请读者时刻盯防。",
+    "text": "3.3 核心思想\n四个可操作的技术，全书每章都在用：\n一、以问题为单位，不以人为单位。 读到任何技术时，先问”它回应了什么瓶颈”。问题的寿命比技术长：梯度消失这个问题从 1991 年活到 2015 年残差连接，还会以新面目（长上下文的注意力稀释）活在 2026 年。记住问题，就能在新论文里认出旧问题的回马枪。\n二、双镜头阅读。 每个历史事件用两个镜头各看一遍：\n\n当时镜头：当事人知道什么、相信什么、有什么工具？（评价决策的合理性）\n现在镜头：以今天的理解，他们哪里对了哪里错了？（提取仍然活着的教训）\n\n单用任何一个镜头都会中毒：只用”当时”会滑向相对主义（一切皆可原谅），只用”现在”会滑向马后炮（一切皆可嘲笑）。\n三、识别循环的拍子。 上一章介绍的研究循环——瓶颈 → 假设 → 实验 → 新瓶颈——在读任何文献时问：它在第几拍？注意：营销材料通常一拍都认不出来，这是个实用的过滤器。\n四、区分结果的寿命与方法的寿命。 具体结果（某个网络在某个数据集上的准确率）五年就凉；方法（“把误差信号逐层回传”“用残差让深层可训”“在偏好数据上优化”）可以活几十年。读史时在结果上快走，在方法上慢走——本书的「回声」栏目就是干这个的。\n另附两条解毒剂：优先权之争通常是伪问题（重要的思想几乎总有多重独立发现，“谁先想到”远不如”为什么在那个时刻点燃”有趣）；警惕胜利者叙事（包括本书的叙事——欢迎随时用你自己的双镜头检验本书对历史的裁剪）。\n\n这套读法本身最大的回声在你手里：当下每周都有新的 AI 论文与新闻，它们同样可以被”读问题、辨拍子、验账本”处理。本书教的历史读法，实质是面向未来的实时分析工具——9.3 章的毕业考试用的就是它。\n\n\nKuhn, T. (1962) (Kuhn 1962). The Structure of Scientific Revolutions.（库恩《科学革命的结构》）\n\n读什么：范式（paradigm）与常规科学（normal science）的界定、反常（anomaly）如何积累引发危机——本书”范式之争”“寒冬”“复兴”的词汇表一半来自这里；\n跳过什么：不可通约性（incommensurability）的哲学争论部分；\n历史注：库恩 (Kuhn 1962) 描述的是物理学式的范式更替，而深度学习的历史更”丛林”——多个范式长期共存、互相寄生（符号主义的方法至今活在你的编译器里）。把库恩当透镜，别当教条。另：本书对”胜利者史观”的免疫力有限——作者（我）站在连接主义胜利之后写这本连接主义视角的书，这个偏差请读者时刻盯防。",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>如何读研究史：读问题，不读年表</span>"
@@ -190,11 +201,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part0-reading-history.html#参考文献",
+    "href": "chapters/vol1/part0-reading-history.html#参考文献",
+    "title": "3  如何读研究史：读问题，不读年表",
+    "section": "3.5 参考文献",
+    "text": "3.5 参考文献\n\n\nKuhn, Thomas S. 1962. The Structure of Scientific Revolutions. (Chicago).",
+    "crumbs": [
+      "卷一 · Part 0 · 导论",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>如何读研究史：读问题，不读年表</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part0-reading-history.html#练习",
     "href": "chapters/vol1/part0-reading-history.html#练习",
     "title": "3  如何读研究史：读问题，不读年表",
-    "section": "3.5 练习",
-    "text": "3.5 练习\n\n双镜头练习：只看 Attention Is All You Need 这个标题（2017），用当时镜头写三行预测（2016 年的序列建模瓶颈是什么？这个标题在回应谁？），再用现在镜头写三行评价。\n问题链练习：任选本书目录中相邻的两章，写出连接它们的遗留问题各一句。\n反事实练习：如果 1990 年代 GPU 提前出现二十年，第二次寒冬还会发生吗？写出你的论证链（提示：想想 2.4 章将讨论的”历史条件”三要素）。\n过滤练习：找一条本周的 AI 新闻，判断它属于研究循环的哪一拍，或者根本一拍都不是。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n没有标准答案，给出自检锚点。练习 1：当时镜头若写不出”RNN 难并行、LSTM 训练慢”，说明还没进入历史 context，重读 Part 1 后再试；练习 3：若你的答案只依赖”算力快了”，不完整——AlexNet 时刻需要算力 + 数据 + 三件套三者同时成熟，这正是 2.4 的主题；练习 4：一拍都认不出的新闻占多数，这不是你的问题，是它的。",
+    "section": "3.6 练习",
+    "text": "3.6 练习\n\n双镜头练习：只看 Attention Is All You Need 这个标题（2017），用当时镜头写三行预测（2016 年的序列建模瓶颈是什么？这个标题在回应谁？），再用现在镜头写三行评价。\n问题链练习：任选本书目录中相邻的两章，写出连接它们的遗留问题各一句。\n反事实练习：如果 1990 年代 GPU 提前出现二十年，第二次寒冬还会发生吗？写出你的论证链（提示：想想 2.4 章将讨论的”历史条件”三要素）。\n过滤练习：找一条本周的 AI 新闻，判断它属于研究循环的哪一拍，或者根本一拍都不是。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n没有标准答案，给出自检锚点。练习 1：当时镜头若写不出”RNN 难并行、LSTM 训练慢”，说明还没进入历史 context，重读 Part 1 后再试；练习 3：若你的答案只依赖”算力快了”，不完整——AlexNet 时刻需要算力 + 数据 + 三件套三者同时成熟，这正是 2.4 的主题；练习 4：一拍都认不出的新闻占多数，这不是你的问题，是它的。",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>如何读研究史：读问题，不读年表</span>"
@@ -205,7 +227,7 @@
     "href": "chapters/vol1/part1-perceptron.html",
     "title": "4  感知机的辉煌与失败",
     "section": "",
-    "text": "4.1 本章问题\n1958 年，康奈尔航空实验室造出了一台洗衣机大小的机器：20×20 的光电管阵列、400 个可调电位器，名字叫 Mark I 感知机。《纽约时报》当年报道说，它是”一台有望走路、说话、看见、写作、自我复制并意识到自身存在的电子计算机的胚胎”。十一年后，一本 250 页的数学专著把同一个思想判定为死路，领域随即坠入第一个寒冬。本章我们重演这场兴衰——先亲手造出这台机器的灵魂，再亲手把它逼上绝路。\nMcCulloch–Pitts 形式神经元已经证明：带权重的阈值逻辑单元可以表达任何布尔函数。但它有个致命的脚注：权重是手工设计的。Hebb 在 1949 年给出了”同时激活的神经元连接增强”的学习猜想，却没有给出算法，也没有任何保证。\n于是本章的问题是：给一个阈值神经元装上可自动学习的权重，会得到什么？具体拆成两问：",
+    "text": "4.1 本章问题\n1958 年，康奈尔航空实验室造出了一台洗衣机大小的机器：20×20 的光电管阵列、400 个可调电位器，名字叫 Mark I 感知机。《纽约时报》当年报道说，它是”一台有望走路、说话、看见、写作、自我复制并意识到自身存在的电子计算机的胚胎”。十一年后，一本 250 页的数学专著把同一个思想判定为死路，领域随即坠入第一个寒冬。本章我们重演这场兴衰——先亲手造出这台机器的灵魂，再亲手把它逼上绝路。\nMcCulloch–Pitts 形式神经元 (McCulloch and Pitts 1943) 已经证明：带权重的阈值逻辑单元可以表达任何布尔函数。但它有个致命的脚注：权重是手工设计的。Hebb 在 1949 年 (Hebb 1949) 给出了”同时激活的神经元连接增强”的学习猜想，却没有给出算法，也没有任何保证。\n于是本章的问题是：给一个阈值神经元装上可自动学习的权重，会得到什么？具体拆成两问：",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>感知机的辉煌与失败</span>"
@@ -227,7 +249,7 @@
     "href": "chapters/vol1/part1-perceptron.html#历史中的尝试包括弯路",
     "title": "4  感知机的辉煌与失败",
     "section": "4.2 历史中的尝试（包括弯路）",
-    "text": "4.2 历史中的尝试（包括弯路）\nMcCulloch–Pitts（1943）：形式神经元 = 布尔逻辑的门电路。表达了”神经元即计算”的思想，但权重全靠手设——是逻辑学，不是学习。\nHebb（1949）：提出神经可力学的学习假说。方向对了（权重应当由经验改变），但规则是相关性的、没有目标信号——它无法被”纠错”，也就没有任何收敛性质可言。\nRosenblatt（1958）：跨出的关键一步。他把学习问题工程化为错误驱动的规则——只在预测错误时更新权重——并用 IBM 704 模拟、随后造出 Mark I 硬件。随之而来的是海军的经费与媒体的狂欢。\nMinsky 与 Papert（1969）：专著《Perceptrons》对单层感知机做了系统的数学解剖，证明了一大类函数（以奇偶性、连通性为代表）无法被单层感知机表示。书中对多层网络的悲观只有结尾寥寥数语，却成了杀伤力最大的一段——经费与人才双双撤离。此后十余年，“神经网络”在主流 AI 界近乎脏词。\n\n规则只有一行：预测错误时，\\(w \\leftarrow w + y \\cdot x\\)（\\(y\\) 是真实标签 \\(\\pm 1\\)）。拿纸笔完成三件事，先做第三件再往下读：\n\n对 AND 函数（四个点上仅 \\((1,1)\\) 为 \\(+1\\)），手工找一组 \\((w_1, w_2, b)\\) 使 \\(\\mathrm{sign}(w \\cdot x + b)\\) 正确分类；\n对 OR、NAND 各找一组；\n对 XOR（\\((0,1)\\) 与 \\((1,0)\\) 为 \\(+1\\)，另两点为 \\(-1\\)）：在坐标纸上画出四个点，尝试画一条直线把两类分开。穷尽你的直觉。若画不出来，预测：把这条学习规则放在这四个点上运行，会发生什么——立即报错？停在某个解？还是别的什么？写下你的猜测。\n\n你的这条直线，就是单层感知机全部能力的几何边界。",
+    "text": "4.2 历史中的尝试（包括弯路）\nMcCulloch–Pitts（1943）：形式神经元 = 布尔逻辑的门电路。表达了”神经元即计算”的思想，但权重全靠手设——是逻辑学，不是学习。\nHebb（1949）：提出神经可力学的学习假说。方向对了（权重应当由经验改变），但规则是相关性的、没有目标信号——它无法被”纠错”，也就没有任何收敛性质可言。\nRosenblatt（1958） (Rosenblatt 1958)：跨出的关键一步。他把学习问题工程化为错误驱动的规则——只在预测错误时更新权重——并用 IBM 704 模拟、随后造出 Mark I 硬件。随之而来的是海军的经费与媒体的狂欢。\nMinsky 与 Papert（1969） (Minsky and Papert 1969)：专著《Perceptrons》对单层感知机做了系统的数学解剖，证明了一大类函数（以奇偶性、连通性为代表）无法被单层感知机表示。书中对多层网络的悲观只有结尾寥寥数语，却成了杀伤力最大的一段——经费与人才双双撤离。此后十余年，“神经网络”在主流 AI 界近乎脏词。\n\n规则只有一行：预测错误时，\\(w \\leftarrow w + y \\cdot x\\)（\\(y\\) 是真实标签 \\(\\pm 1\\)）。拿纸笔完成三件事，先做第三件再往下读：\n\n对 AND 函数（四个点上仅 \\((1,1)\\) 为 \\(+1\\)），手工找一组 \\((w_1, w_2, b)\\) 使 \\(\\mathrm{sign}(w \\cdot x + b)\\) 正确分类；\n对 OR、NAND 各找一组；\n对 XOR（\\((0,1)\\) 与 \\((1,0)\\) 为 \\(+1\\)，另两点为 \\(-1\\)）：在坐标纸上画出四个点，尝试画一条直线把两类分开。穷尽你的直觉。若画不出来，预测：把这条学习规则放在这四个点上运行，会发生什么——立即报错？停在某个解？还是别的什么？写下你的猜测。\n\n你的这条直线，就是单层感知机全部能力的几何边界。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>感知机的辉煌与失败</span>"
@@ -271,7 +293,7 @@
     "href": "chapters/vol1/part1-perceptron.html#本章-loss-账本",
     "title": "4  感知机的辉煌与失败",
     "section": "4.6 本章 Loss 账本",
-    "text": "4.6 本章 Loss 账本\n\n\n\n\n\n\n\n问题\n回答\n\n\n\n\n在优化什么 loss？\n没有 loss——错误驱动的在线规则，1958 年的”学习”还没有目标函数的概念（事后视角：它近似等价于最小化感知机准则 \\(\\sum_{\\text{错分}} -y\\,(w \\cdot x + b)\\)，见练习 5）\n\n\n数据从哪来？\nMark I 的摄像头；本书里是四个手写的点\n\n\n买到了什么能力？\n第一个可证明收敛的自动学习机；线性可分问题的全部\n\n\n没买到什么？\n非线性（XOR 即反例）、概率输出与置信度、隐藏层的信用分配（→ 1.3）\n\n\n\n这一页账本是全书第一份，也是唯一一份”目标函数”栏空白的账本——史前时代的学习规则先于 loss 而存在，“学习 = 优化一个显式目标”的范式是后来者（ADALINE、反向传播）逐步点亮的。回望时你会发现：loss 视角是灯，照亮的却是先行者的路。\n\n\n错误驱动的在线更新 → 在线学习与 mistake-bound 理论，精神直通今天的 SGD；\n\\((R/\\gamma)^2\\) 的间隔论证 → 支持向量机（1995）与 boosting 的理论地基；\n“单层不够、加层又无人执教” → 1.3 的反向传播正是这道信用分配题的答案；\n\\(\\mathrm{sign}(w \\cdot x + b)\\) 探测表征 → 卷三会在 LLM 的隐藏层表征上做 linear probe（线性探测）判断”模型是否学到了某概念”——感知机到今天还在服役；\nMark I 的光电管阵列 → 3.1 的 LeNet 一脉（Fukushima 的 Neocognitron 正是从感知机传统与视觉皮层研究中长出的）。\n\n\n\nRosenblatt, F. (1958). The perceptron: A probabilistic model for information storage and organization in the brain. Psychological Review 65(6), 386–408.\n\n读什么：第二部分学习规则的推导与收敛性的讨论——注意作者自己就清楚单层的能力边界；\n跳过什么：A-单元层的统计细节与脑区类比（生物学动机今天已不重要）；\n历史注：Minsky & Papert (1969) Perceptrons 的真实主战场是群不变性定理，“XOR 反例”是大众化提炼；书末对多层的悲观寥寥数语却引发寒冬——一段话的杀伤力可以超过一个定理，这是研究史给传播者的教训。同代的 Widrow & Hoff (1960) ADALINE 在工程上其实更优雅，我们将在 1.3 再遇到它。",
+    "text": "4.6 本章 Loss 账本\n\n\n\n\n\n\n\n问题\n回答\n\n\n\n\n在优化什么 loss？\n没有 loss——错误驱动的在线规则，1958 年的”学习”还没有目标函数的概念（事后视角：它近似等价于最小化感知机准则 \\(\\sum_{\\text{错分}} -y\\,(w \\cdot x + b)\\)，见练习 5）\n\n\n数据从哪来？\nMark I 的摄像头；本书里是四个手写的点\n\n\n买到了什么能力？\n第一个可证明收敛的自动学习机；线性可分问题的全部\n\n\n没买到什么？\n非线性（XOR 即反例）、概率输出与置信度、隐藏层的信用分配（→ 1.3）\n\n\n\n这一页账本是全书第一份，也是唯一一份”目标函数”栏空白的账本——史前时代的学习规则先于 loss 而存在，“学习 = 优化一个显式目标”的范式是后来者（ADALINE、反向传播）逐步点亮的。回望时你会发现：loss 视角是灯，照亮的却是先行者的路。\n\n\n错误驱动的在线更新 → 在线学习与 mistake-bound 理论，精神直通今天的 SGD；\n\\((R/\\gamma)^2\\) 的间隔论证 → 支持向量机（1995）与 boosting 的理论地基；\n“单层不够、加层又无人执教” → 1.3 的反向传播正是这道信用分配题的答案；\n\\(\\mathrm{sign}(w \\cdot x + b)\\) 探测表征 → 卷三会在 LLM 的隐藏层表征上做 linear probe（线性探测）判断”模型是否学到了某概念”——感知机到今天还在服役；\nMark I 的光电管阵列 → 3.1 的 LeNet 一脉（Fukushima 的 Neocognitron 正是从感知机传统与视觉皮层研究中长出的）。\n\n\n\nRosenblatt, F. (1958) (Rosenblatt 1958). The perceptron: A probabilistic model for information storage and organization in the brain. Psychological Review 65(6), 386–408.\n\n读什么：第二部分学习规则的推导与收敛性的讨论——注意作者自己就清楚单层的能力边界；\n跳过什么：A-单元层的统计细节与脑区类比（生物学动机今天已不重要）；\n历史注：Minsky & Papert (1969) (Minsky and Papert 1969) Perceptrons 的真实主战场是群不变性定理，“XOR 反例”是大众化提炼；书末对多层的悲观寥寥数语却引发寒冬——一段话的杀伤力可以超过一个定理，这是研究史给传播者的教训。同代的 Widrow & Hoff (1960) (Widrow and Hoff 1960) ADALINE 在工程上其实更优雅，我们将在 1.3 再遇到它。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>感知机的辉煌与失败</span>"
@@ -289,11 +311,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part1-perceptron.html#参考文献",
+    "href": "chapters/vol1/part1-perceptron.html#参考文献",
+    "title": "4  感知机的辉煌与失败",
+    "section": "4.8 参考文献",
+    "text": "4.8 参考文献\n\n\nHebb, Donald O. 1949. The Organization of Behavior: A Neuropsychological Theory. (New York).\n\n\nMcCulloch, Warren S., and Walter Pitts. 1943. “A Logical Calculus of the Ideas Immanent in Nervous Activity.” Bulletin of Mathematical Biophysics 5: 115–33. https://doi.org/10.1007/BF02478259.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An Introduction to Computational Geometry. MIT Press.\n\n\nRosenblatt, Frank. 1958. “The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain.” Psychological Review 65 (6): 386–408. https://doi.org/10.1037/h0042519.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching Circuits.” IRE WESCON Convention Record 4: 96–104.",
+    "crumbs": [
+      "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>感知机的辉煌与失败</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part1-perceptron.html#练习",
     "href": "chapters/vol1/part1-perceptron.html#练习",
     "title": "4  感知机的辉煌与失败",
-    "section": "4.8 练习",
-    "text": "4.8 练习\n\n造轮子：只凭「核心思想」一节的规则，从空白实现 Perceptron.train，通过 tests/test_perceptron.py 的三项测试。\n预测再运行：先猜 AND / OR / NAND 各需要多少次权重更新才能收敛，再运行验证。三者所需次数为何不同？提示：\\((0,0)\\) 点上的错误只更新 \\(b\\)。\n消融：XOR 稳态下模型只错 2 个点，为何每轮错分计数是 4 而不是 2？在训练循环里打印每一步的 \\((x, y, \\hat{y}, w)\\)，找出”移动的边界”造成连锁错分的具体一环。\n论文映射：用 Loss 账本四问拆解 Rosenblatt 1958（提示：第一问的答案决定了这份账本的特殊地位）。\n进阶（通向 1.3 的桥）：证明感知机规则等价于对 \\(J(w) = \\sum_{\\text{错分}} -y\\,(w \\cdot x + b)\\) 做步长为 1 的次梯度下降——1958 年的规则，用 1986 年的视角重新照亮。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2（参考值，Perceptron(2) 零初始化、按本节数据顺序）：AND 约 10 次更新、OR 约 4 次、NAND 约 11 次。OR 最容易：唯一的 \\(-1\\) 点在原点附近，bias 一次更新即到位；AND/NAND 的 \\(+1\\) 类只有一个点，需要更多轮旋转。若你的初始化或样本顺序不同，数值会变——更新次数依赖数据顺序，这本身就是在线学习的重要性质。\n练习 3：每次错分立即改变 \\(w\\)，同一轮里后续样本面对的是已经移动过的边界。\\((0,0)\\) 处的错误只推 \\(b\\)，把整条边界平移，导致同一轮内对角点连锁出错——“每轮 4 次”是动态过程的计数，不是静态评估的 2 个错点。\n练习 5 提示：对错分样本有 \\(-y\\,(w \\cdot x + b) &gt; 0\\)，它对 \\(w\\) 的（次）梯度是 \\(-y\\,x\\)——负梯度方向 \\(y\\,x\\) 正是感知机的更新量。把”错误驱动”翻译成”只对违反约束的样本产生梯度”，你就已经站在 1.3 的门口了。",
+    "section": "4.9 练习",
+    "text": "4.9 练习\n\n造轮子：只凭「核心思想」一节的规则，从空白实现 Perceptron.train，通过 tests/test_perceptron.py 的三项测试。\n预测再运行：先猜 AND / OR / NAND 各需要多少次权重更新才能收敛，再运行验证。三者所需次数为何不同？提示：\\((0,0)\\) 点上的错误只更新 \\(b\\)。\n消融：XOR 稳态下模型只错 2 个点，为何每轮错分计数是 4 而不是 2？在训练循环里打印每一步的 \\((x, y, \\hat{y}, w)\\)，找出”移动的边界”造成连锁错分的具体一环。\n论文映射：用 Loss 账本四问拆解 Rosenblatt 1958（提示：第一问的答案决定了这份账本的特殊地位）。\n进阶（通向 1.3 的桥）：证明感知机规则等价于对 \\(J(w) = \\sum_{\\text{错分}} -y\\,(w \\cdot x + b)\\) 做步长为 1 的次梯度下降——1958 年的规则，用 1986 年的视角重新照亮。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2（参考值，Perceptron(2) 零初始化、按本节数据顺序）：AND 约 10 次更新、OR 约 4 次、NAND 约 11 次。OR 最容易：唯一的 \\(-1\\) 点在原点附近，bias 一次更新即到位；AND/NAND 的 \\(+1\\) 类只有一个点，需要更多轮旋转。若你的初始化或样本顺序不同，数值会变——更新次数依赖数据顺序，这本身就是在线学习的重要性质。\n练习 3：每次错分立即改变 \\(w\\)，同一轮里后续样本面对的是已经移动过的边界。\\((0,0)\\) 处的错误只推 \\(b\\)，把整条边界平移，导致同一轮内对角点连锁出错——“每轮 4 次”是动态过程的计数，不是静态评估的 2 个错点。\n练习 5 提示：对错分样本有 \\(-y\\,(w \\cdot x + b) &gt; 0\\)，它对 \\(w\\) 的（次）梯度是 \\(-y\\,x\\)——负梯度方向 \\(y\\,x\\) 正是感知机的更新量。把”错误驱动”翻译成”只对违反约束的样本产生梯度”，你就已经站在 1.3 的门口了。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>感知机的辉煌与失败</span>"
@@ -326,7 +359,7 @@
     "href": "chapters/vol1/part1-symbolic-vs-connectionist.html#历史中的尝试包括弯路",
     "title": "5  符号主义与连接主义：第一次范式之争",
     "section": "5.2 历史中的尝试（包括弯路）",
-    "text": "5.2 历史中的尝试（包括弯路）\n符号主义的登基。DENDRAL（1965，推断分子结构）与 MYCIN（1976，血液感染诊断）证明了”知识就是力量”：几百条人工编写的 IF-THEN 规则，能让机器在狭窄领域达到专家水平，而且每一步推理都可解释。知识工程（knowledge engineering）成为职业，Feigenbaum 宣称瓶颈不在智能而在知识获取——只要雇足够的专家把知识”开采”出来，智能就会堆积而成。\n裂缝在骄傲中扩大。三个问题在 1980 年代逐渐显形：①知识获取瓶颈——规则要人写，专家的时间是稀缺资源，且专家说不清自己怎么想的；②脆弱性——出了规则覆盖的范围就一败涂地，没有常识兜底；③组合爆炸——规则库一大就互相打架。日本的第五代计划（1982–1992）是符号路线的国家级豪赌，最终没有产出能与宣言匹配的成果。\n地下的连接主义。寒冬里仍有火种：日本的 Fukushima 在 1980 年发表 Neocognitron（视觉皮层启发的多层结构——卷积网络的直系祖先，3.1 章的主角）；Grossberg 与 Kohonen 各自发展竞争学习理论；Amari 在数学院系坚守统计神经动力学。然后是转折性的 1982：物理学家 Hopfield 用能量函数的语言重新表述神经网络（联想记忆），发表在 PNAS 上——换一种主流听得懂的语言，荒原上的工作突然重新可敬。随后 Hinton 与 Sejnowski 的玻尔兹曼机（1985）延续物理化路线。1986 年，Rumelhart、McClelland 与 PDP 学派的两卷本《并行分布式处理》出版——这不仅是论文集，是范式复活的宣言书。\n\n你是 1980 年的国家科学基金评审，手里两份提案：\n\n提案 A：构建医疗诊断专家系统。500 条规则由三名内科医生开采六个月而成，在试点科室达到副主任医师水平，每个诊断附带完整推理链；\n提案 B：研究”分布式表征”——大量简单单元互联，通过调整连接强度从样本中自动获得知识。目前无可演示系统，作者承认”网络学到什么难以解释”。\n\n决定你的拨款顺序，并写下三条理由。然后做第二步（关键）：为你的每条理由，写下它在什么证据面前应当被证伪。\n做完再看下节。如果你发现某些理由写不出证伪条件——恭喜，你亲手摸到了”信仰”与”判断”的分界线，这正是范式之争里最难的东西。",
+    "text": "5.2 历史中的尝试（包括弯路）\n符号主义的登基。DENDRAL（1965，推断分子结构）与 MYCIN（1976，血液感染诊断）证明了”知识就是力量”：几百条人工编写的 IF-THEN 规则，能让机器在狭窄领域达到专家水平，而且每一步推理都可解释。知识工程（knowledge engineering）成为职业，Feigenbaum 宣称瓶颈不在智能而在知识获取——只要雇足够的专家把知识”开采”出来，智能就会堆积而成。\n裂缝在骄傲中扩大。三个问题在 1980 年代逐渐显形：①知识获取瓶颈——规则要人写，专家的时间是稀缺资源，且专家说不清自己怎么想的；②脆弱性——出了规则覆盖的范围就一败涂地，没有常识兜底；③组合爆炸——规则库一大就互相打架。日本的第五代计划（1982–1992）是符号路线的国家级豪赌，最终没有产出能与宣言匹配的成果。\n地下的连接主义。寒冬里仍有火种：日本的 Fukushima 在 1980 年发表 Neocognitron (Fukushima 1980)（视觉皮层启发的多层结构——卷积网络的直系祖先，3.1 章的主角）；Grossberg 与 Kohonen 各自发展竞争学习理论；Amari 在数学院系坚守统计神经动力学。然后是转折性的 1982：物理学家 Hopfield (Hopfield 1982) 用能量函数的语言重新表述神经网络（联想记忆），发表在 PNAS 上——换一种主流听得懂的语言，荒原上的工作突然重新可敬。随后 Hinton 与 Sejnowski 的玻尔兹曼机（1985）延续物理化路线。1986 年，Rumelhart、McClelland 与 PDP 学派的两卷本 (Rumelhart et al. 1986)《并行分布式处理》出版——这不仅是论文集，是范式复活的宣言书。\n\n你是 1980 年的国家科学基金评审，手里两份提案：\n\n提案 A：构建医疗诊断专家系统。500 条规则由三名内科医生开采六个月而成，在试点科室达到副主任医师水平，每个诊断附带完整推理链；\n提案 B：研究”分布式表征”——大量简单单元互联，通过调整连接强度从样本中自动获得知识。目前无可演示系统，作者承认”网络学到什么难以解释”。\n\n决定你的拨款顺序，并写下三条理由。然后做第二步（关键）：为你的每条理由，写下它在什么证据面前应当被证伪。\n做完再看下节。如果你发现某些理由写不出证伪条件——恭喜，你亲手摸到了”信仰”与”判断”的分界线，这正是范式之争里最难的东西。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>符号主义与连接主义：第一次范式之争</span>"
@@ -348,7 +381,7 @@
     "href": "chapters/vol1/part1-symbolic-vs-connectionist.html#本章-loss-账本",
     "title": "5  符号主义与连接主义：第一次范式之争",
     "section": "5.4 本章 Loss 账本",
-    "text": "5.4 本章 Loss 账本\n本章账本成对出现——两个范式各一张：\n\n\n\n\n\n\n\n\n四问\n符号主义（专家系统）\n连接主义（1986 年之前）\n\n\n\n\n在优化什么 loss？\n没有 loss——追求逻辑一致与规则覆盖\n尚无统一目标（Hebb 相关？还未有反向传播）\n\n\n数据从哪来？\n专家的头脑（人工开采）\n样本（但缺少学习机制）\n\n\n买到了什么能力？\n可解释、精确、无需大数据\n（承诺）自动获取知识、鲁棒性\n\n\n没买到什么？\n可扩展性——知识获取是人工瓶颈\n可训练性——隐藏层无人执教\n\n\n\n注意两栏的空格恰好互补：一个有知识没机制，一个有机制没知识来源。历史接下来要做的，是把两栏各补上一半——1.3 章的反向传播补上了”机制”，而”知识来源（数据）“要等到互联网时代。Sutton 的 The Bitter Lesson 在这场之争里第一次露出獠牙：押注”人类开采知识”的一方，最终都输给了”算力+数据”的一方——2012 年它咬第二口，9.1 章我们复盘全程。\n\n\n知识获取瓶颈 → “有多少人工就有多少智能”是每个时代的魔咒；今天 RLHF 里的人类反馈采集（7.3）正是新的开采业，它会不会重演瓶颈？账本见分晓；\nHopfield 能量景观 → 扩散模型的能量视角（8.x）——物理学语言第二次救场；\n“可解释”的诉求 → 从 MYCIN 的推理链到今天 LLM 的可解释性研究（7.1、9.2），四十年未决；\nLISP 机器的教训（为单一范式定制硬件） → 今天的 GPU/TPU 也是”为范式定制的硬件”——但这次范式押对了吗？（9.3 留给你判断）\n\n\n\nHopfield, J. (1982). Neural networks and physical systems with emergent collective computational abilities. PNAS 79, 2554–2558.\n\n读什么：能量函数的构造与联想记忆的收敛论证——体会”把网络说成物理系统”的翻译术；\n跳过什么：神经细节的对应关系；\n历史注：同一时期的 PDP 学派（Rumelhart & McClelland 1986 两卷本）才是复活的组织者——论文之外，教科书与学派同样是研究史的行动者。日本第五代计划（1982–1992）的失败报告同样值得读：国家力量押注研究范式的风险样本。",
+    "text": "5.4 本章 Loss 账本\n本章账本成对出现——两个范式各一张：\n\n\n\n\n\n\n\n\n四问\n符号主义（专家系统）\n连接主义（1986 年之前）\n\n\n\n\n在优化什么 loss？\n没有 loss——追求逻辑一致与规则覆盖\n尚无统一目标（Hebb 相关？还未有反向传播）\n\n\n数据从哪来？\n专家的头脑（人工开采）\n样本（但缺少学习机制）\n\n\n买到了什么能力？\n可解释、精确、无需大数据\n（承诺）自动获取知识、鲁棒性\n\n\n没买到什么？\n可扩展性——知识获取是人工瓶颈\n可训练性——隐藏层无人执教\n\n\n\n注意两栏的空格恰好互补：一个有知识没机制，一个有机制没知识来源。历史接下来要做的，是把两栏各补上一半——1.3 章的反向传播补上了”机制”，而”知识来源（数据）“要等到互联网时代。Sutton 的 The Bitter Lesson 在这场之争里第一次露出獠牙：押注”人类开采知识”的一方，最终都输给了”算力+数据”的一方——2012 年它咬第二口，9.1 章我们复盘全程。\n\n\n知识获取瓶颈 → “有多少人工就有多少智能”是每个时代的魔咒；今天 RLHF 里的人类反馈采集（7.3）正是新的开采业，它会不会重演瓶颈？账本见分晓；\nHopfield 能量景观 → 扩散模型的能量视角（8.x）——物理学语言第二次救场；\n“可解释”的诉求 → 从 MYCIN 的推理链到今天 LLM 的可解释性研究（7.1、9.2），四十年未决；\nLISP 机器的教训（为单一范式定制硬件） → 今天的 GPU/TPU 也是”为范式定制的硬件”——但这次范式押对了吗？（9.3 留给你判断）\n\n\n\nHopfield, J. (1982) (Hopfield 1982). Neural networks and physical systems with emergent collective computational abilities. PNAS 79, 2554–2558.\n\n读什么：能量函数的构造与联想记忆的收敛论证——体会”把网络说成物理系统”的翻译术；\n跳过什么：神经细节的对应关系；\n历史注：同一时期的 PDP 学派（Rumelhart & McClelland 1986 (Rumelhart et al. 1986) 两卷本）才是复活的组织者——论文之外，教科书与学派同样是研究史的行动者。日本第五代计划（1982–1992）的失败报告同样值得读：国家力量押注研究范式的风险样本。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>符号主义与连接主义：第一次范式之争</span>"
@@ -366,11 +399,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part1-symbolic-vs-connectionist.html#参考文献",
+    "href": "chapters/vol1/part1-symbolic-vs-connectionist.html#参考文献",
+    "title": "5  符号主义与连接主义：第一次范式之争",
+    "section": "5.6 参考文献",
+    "text": "5.6 参考文献\n\n\nFukushima, Kunihiko. 1980. “Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position.” Biological Cybernetics 36: 193–202.\n\n\nHopfield, John J. 1982. “Neural Networks and Physical Systems with Emergent Collective Computational Abilities.” Proceedings of the National Academy of Sciences 79 (8): 2554–58.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. Parallel Distributed Processing: Explorations in the Microstructure of Cognition. 1 and 2. MIT Press.",
+    "crumbs": [
+      "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>符号主义与连接主义：第一次范式之争</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part1-symbolic-vs-connectionist.html#练习",
     "href": "chapters/vol1/part1-symbolic-vs-connectionist.html#练习",
     "title": "5  符号主义与连接主义：第一次范式之争",
-    "section": "5.6 练习",
-    "text": "5.6 练习\n\n开采练习：为”判断一封邮件是否为垃圾邮件”手写 10 条规则，然后为每条规则构造一个失效反例。数一数你花了多少分钟——再乘以一个专家系统的五千条规则。\n翻译练习：用三段话把 Hopfield 网络讲给一个只会微积分的朋友（不许用”能量”以外的物理词汇，也不许用任何神经网络词汇超过三次）。\n对应练习：列出今天 AI 领域仍在进行的一场”范式之争”，为双方各填一张四问账本，并写出你认为的裁决条件与时间表。\n论文映射：用双镜头读 MYCIN 论文（1976）：当时镜头里它为何了不起？现在镜头里它的哪部分思想还活着？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 的典型体验：写到第六条规则左右开始出现”两条规则打架”的案例（组合爆炸的手感）；练习 2 的合格线是对方能复述”为什么掉进去的坑会被记住”（能量极小值=记忆）；练习 3 若你选了”RLHF 对齐 vs 纯规模化”，注意账本第二问（数据从哪来）正是双方真正的战场；练习 4：MYCIN 活着的部分是”置信度传播”的朴素贝叶斯味道，死掉的部分是”规则够用”的信念。",
+    "section": "5.7 练习",
+    "text": "5.7 练习\n\n开采练习：为”判断一封邮件是否为垃圾邮件”手写 10 条规则，然后为每条规则构造一个失效反例。数一数你花了多少分钟——再乘以一个专家系统的五千条规则。\n翻译练习：用三段话把 Hopfield 网络讲给一个只会微积分的朋友（不许用”能量”以外的物理词汇，也不许用任何神经网络词汇超过三次）。\n对应练习：列出今天 AI 领域仍在进行的一场”范式之争”，为双方各填一张四问账本，并写出你认为的裁决条件与时间表。\n论文映射：用双镜头读 MYCIN 论文（1976）：当时镜头里它为何了不起？现在镜头里它的哪部分思想还活着？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 的典型体验：写到第六条规则左右开始出现”两条规则打架”的案例（组合爆炸的手感）；练习 2 的合格线是对方能复述”为什么掉进去的坑会被记住”（能量极小值=记忆）；练习 3 若你选了”RLHF 对齐 vs 纯规模化”，注意账本第二问（数据从哪来）正是双方真正的战场；练习 4：MYCIN 活着的部分是”置信度传播”的朴素贝叶斯味道，死掉的部分是”规则够用”的信念。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>符号主义与连接主义：第一次范式之争</span>"
@@ -480,7 +524,7 @@
     "href": "chapters/vol1/part1-backprop.html#参考文献",
     "title": "6  反向传播：从思想到发动机",
     "section": "6.9 参考文献",
-    "text": "6.9 参考文献\n\n\nLinnainmaa, Seppo. 1970. “The Representation of the Cumulative\nRounding Error of an Algorithm as a Taylor Expansion of the\nLocal Rounding Errors.” Master’s Thesis (in Finnish),\nUniversity of Helsinki.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An\nIntroduction to Computational Geometry. MIT Press.\n\n\nParker, David B. 1985. Learning Logic. nos. TR-47.\n\n\nRumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. 1986.\n“Learning Representations by Back-Propagating Errors.”\nNature 323: 533–36. https://doi.org/10.1038/323533a0.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group.\n1986. Parallel Distributed Processing: Explorations in the\nMicrostructure of Cognition. 1 and 2. MIT Press.\n\n\nWerbos, Paul J. 1974. “Beyond Regression: New Tools for Prediction\nand Analysis in the Behavioral Sciences.” PhD thesis, Harvard\nUniversity.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching\nCircuits.” IRE WESCON Convention Record 4: 96–104.",
+    "text": "6.9 参考文献\n\n\nLinnainmaa, Seppo. 1970. “The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor Expansion of the Local Rounding Errors.” Master’s Thesis (in Finnish), University of Helsinki.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An Introduction to Computational Geometry. MIT Press.\n\n\nParker, David B. 1985. Learning Logic. nos. TR-47.\n\n\nRumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. 1986. “Learning Representations by Back-Propagating Errors.” Nature 323: 533–36. https://doi.org/10.1038/323533a0.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. Parallel Distributed Processing: Explorations in the Microstructure of Cognition. 1 and 2. MIT Press.\n\n\nWerbos, Paul J. 1974. “Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences.” PhD thesis, Harvard University.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching Circuits.” IRE WESCON Convention Record 4: 96–104.",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>反向传播：从思想到发动机</span>"
@@ -524,7 +568,7 @@
     "href": "chapters/vol1/part1-mlp-winter.html#历史中的尝试包括弯路",
     "title": "7  MLP、万能逼近与第二次寒冬",
     "section": "7.2 历史中的尝试（包括弯路）",
-    "text": "7.2 历史中的尝试（包括弯路）\n万能逼近定理（Cybenko 1989；Hornik 1991）：单个隐藏层、足够多 sigmoid 型神经元、任意连续函数——逼近误差可以任意小。媒体与产业把它读成了”神经网络可以学任何东西”。\n过度的承诺。定理发表后，军方的乐观报告、公司的招股书、媒体的科普文互相引用放大。典型句式：“既然任意连续函数都能逼近，那么……”——然后直接跳到应用愿景。少数冷静者（包括定理的证明者们）强调：定理不保证梯度下降能找到那组权重，也不保证找到的函数在训练数据之外表现良好。这两句免责声明在狂欢中无人朗读。\n现实的账单。到 1990 年代初，三个硬伤浮出水面：①小数据上严重过拟合；②稍深（多于两三层）的网络训练不稳定；③工程交付远不及预期。经费与人才流向新的救主——Vapnik 的支持向量机，带着优雅的统计学习理论与泛化界而来。反讽的是：SVM 阵营赢在”有理论保证”，而神经网络最终翻盘靠的是理论与保证都匮乏的算力加数据（2.4 的 Bitter Lesson 时刻）。\n\n万能逼近定理说：存在一组权重，使单隐层网络逼近任意连续函数到任意精度。\n请你设计两个实验，把这个”存在性”与另两件事区分开：\n\n可学性：梯度下降能不能找到那组（或够好的）权重？\n泛化性：找到的那组权重，在训练数据之外表现如何？\n\n对每个实验写出：数据怎么造、网络怎么配、看什么指标、预期什么结果才算”区分成功”。写完再往下读——本章的实验一与实验二就是这道题的参考答案，对照你自己的设计，差异处最有收获。",
+    "text": "7.2 历史中的尝试（包括弯路）\n万能逼近定理（Cybenko 1989 (Cybenko 1989)；Hornik 1991 (Hornik et al. 1989)）：单个隐藏层、足够多 sigmoid 型神经元、任意连续函数——逼近误差可以任意小。媒体与产业把它读成了”神经网络可以学任何东西”。\n过度的承诺。定理发表后，军方的乐观报告、公司的招股书、媒体的科普文互相引用放大。典型句式：“既然任意连续函数都能逼近，那么……”——然后直接跳到应用愿景。少数冷静者（包括定理的证明者们）强调：定理不保证梯度下降能找到那组权重，也不保证找到的函数在训练数据之外表现良好。这两句免责声明在狂欢中无人朗读。\n现实的账单。到 1990 年代初，三个硬伤浮出水面：①小数据上严重过拟合；②稍深（多于两三层）的网络训练不稳定；③工程交付远不及预期。经费与人才流向新的救主——Vapnik 的支持向量机，带着优雅的统计学习理论与泛化界而来。反讽的是：SVM 阵营赢在”有理论保证”，而神经网络最终翻盘靠的是理论与保证都匮乏的算力加数据（2.4 的 Bitter Lesson 时刻）。\n\n万能逼近定理说：存在一组权重，使单隐层网络逼近任意连续函数到任意精度。\n请你设计两个实验，把这个”存在性”与另两件事区分开：\n\n可学性：梯度下降能不能找到那组（或够好的）权重？\n泛化性：找到的那组权重，在训练数据之外表现如何？\n\n对每个实验写出：数据怎么造、网络怎么配、看什么指标、预期什么结果才算”区分成功”。写完再往下读——本章的实验一与实验二就是这道题的参考答案，对照你自己的设计，差异处最有收获。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>MLP、万能逼近与第二次寒冬</span>"
@@ -535,7 +579,7 @@
     "href": "chapters/vol1/part1-mlp-winter.html#核心思想",
     "title": "7  MLP、万能逼近与第二次寒冬",
     "section": "7.3 核心思想",
-    "text": "7.3 核心思想\n万能逼近说的是表示力，不是学习力。 定理的直觉版本：sigmoid 神经元是”软台阶”，两个反向的台阶可以叠出一个”凸包”（局部隆起），足够多的凸包叠加可以拼出任何连续函数——就像足够小的瓷砖可以铺出任何曲线。它保证解在参数空间里存在，但对三件事保持沉默：\n\n梯度下降能否走到那个解附近（优化难题）；\n即使走到了，解在未见数据上是否可用（泛化难题）；\n需要多少神经元才”够”（效率难题——同样的表示力，宽而浅与窄而深谁划算？这个问题的答案要等到残差网络时代）。\n\n过拟合是”经验风险最小化”的暗面。 我们一直在做的是：把训练集上的 loss 降到底。但当数据带噪、模型容量充足时，“降到底”意味着把噪声也当规律背下来——训练误差越低，真实误差可能越高。“学习”与”记忆”的分界，就是泛化问题的核心。\n深层的病已经在暗处生长。 sigmoid 的导数至多 0.25，反向传播时梯度逐层连乘——16 层网络的第一层收到的梯度天然比第二层小约四个数量级。这个诊断 1991 年就有人写出（Hochreiter 的硕士论文），但又要等十年才被广泛听见——那是 2.2 章的故事，本章先用实验把它拍在明面上。",
+    "text": "7.3 核心思想\n万能逼近说的是表示力，不是学习力。 定理的直觉版本：sigmoid 神经元是”软台阶”，两个反向的台阶可以叠出一个”凸包”（局部隆起），足够多的凸包叠加可以拼出任何连续函数——就像足够小的瓷砖可以铺出任何曲线。它保证解在参数空间里存在，但对三件事保持沉默：\n\n梯度下降能否走到那个解附近（优化难题）；\n即使走到了，解在未见数据上是否可用（泛化难题）；\n需要多少神经元才”够”（效率难题——同样的表示力，宽而浅与窄而深谁划算？这个问题的答案要等到残差网络时代）。\n\n过拟合是”经验风险最小化”的暗面。 我们一直在做的是：把训练集上的 loss 降到底。但当数据带噪、模型容量充足时，“降到底”意味着把噪声也当规律背下来——训练误差越低，真实误差可能越高。“学习”与”记忆”的分界，就是泛化问题的核心。\n深层的病已经在暗处生长。 sigmoid 的导数至多 0.25，反向传播时梯度逐层连乘——16 层网络的第一层收到的梯度天然比第二层小约四个数量级。这个诊断 1991 年就有人写出（Hochreiter 的硕士论文 (Hochreiter 1991)），但又要等十年才被广泛听见——那是 2.2 章的故事，本章先用实验把它拍在明面上。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>MLP、万能逼近与第二次寒冬</span>"
@@ -568,7 +612,7 @@
     "href": "chapters/vol1/part1-mlp-winter.html#本章-loss-账本",
     "title": "7  MLP、万能逼近与第二次寒冬",
     "section": "7.6 本章 Loss 账本",
-    "text": "7.6 本章 Loss 账本\n\n\n\n\n\n\n\n问题\n回答\n\n\n\n\n在优化什么 loss？\n全批 MSE；实验二里它是”会撒谎的 loss”——降到很低不代表学到规律\n\n\n数据从哪来？\n人工构造的函数采样与噪声——UCI 时代的真实数据也不过是它的放大版\n\n\n买到了什么能力？\n表示力确凿（宽度实验）；训练机制确凿（能降到接近噪声底）\n\n\n没买到什么？\n泛化保证（过拟合）、深层可训性（梯度消失）、效率（宽 vs 深的最优配比未知）\n\n\n\n这份账本第一次出现”loss 降到很低，能力却没到位”的条目。记住这个不舒服的感觉——它将贯穿全书：从 RLHF 的 reward hacking（7.3）到评测集污染（9.2），“指标与目标的偏离”是降 loss 事业的永恒阴影。\n\n\n万能逼近（宽度版）→ “够宽的单层”与”够深的网络”的效率之争——深度优先是 2015 年后的答案，6.x 规模时代将再问一次；\n过拟合与验证集 → 正则化、dropout、早停（2.3），直至大模型时代的双下降与” grokking”（6.3）——容量过剩从病症变成了谜题再变成了特性；\n梯度消失 → ReLU、初始化理论、BatchNorm、残差（2.1–2.3 与 3.2）——一条贯穿卷一 Part 2 的主线就此埋下；\n“理论保证”阵营（SVM）的胜利与失败 → 提醒我们：工程证据的时滞可以让正确的理论先输一阵（2.4 复盘）。\n\n\n\nCybenko, G. (1989). Approximation by superpositions of a sigmoidal function. Mathematics of Control, Signals and Systems 2, 303–314.\n\n读什么：定理 1 的陈述与证明骨架（密度论证——凸组合在连续函数空间中稠密）；\n跳过什么：泛函分析的细节；\n历史注：更早的 Kolmogorov（1957，希尔伯特第 13 问题的解）给出了更强的精确表示定理，但用的是不可构造的病态函数——对比之下你会明白为什么”存在性 + 可构造性 + 可学习性”是三个世界。另外，Hochreiter 1991 的梯度消失诊断（德语硕士论文）发表在本章时代的正中间，却几乎无人引用——重要的诊断与被听见的诊断之间，隔着十五年的时差（2.2 的开场）。",
+    "text": "7.6 本章 Loss 账本\n\n\n\n\n\n\n\n问题\n回答\n\n\n\n\n在优化什么 loss？\n全批 MSE；实验二里它是”会撒谎的 loss”——降到很低不代表学到规律\n\n\n数据从哪来？\n人工构造的函数采样与噪声——UCI 时代的真实数据也不过是它的放大版\n\n\n买到了什么能力？\n表示力确凿（宽度实验）；训练机制确凿（能降到接近噪声底）\n\n\n没买到什么？\n泛化保证（过拟合）、深层可训性（梯度消失）、效率（宽 vs 深的最优配比未知）\n\n\n\n这份账本第一次出现”loss 降到很低，能力却没到位”的条目。记住这个不舒服的感觉——它将贯穿全书：从 RLHF 的 reward hacking（7.3）到评测集污染（9.2），“指标与目标的偏离”是降 loss 事业的永恒阴影。\n\n\n万能逼近（宽度版）→ “够宽的单层”与”够深的网络”的效率之争——深度优先是 2015 年后的答案，6.x 规模时代将再问一次；\n过拟合与验证集 → 正则化、dropout、早停（2.3），直至大模型时代的双下降与” grokking”（6.3）——容量过剩从病症变成了谜题再变成了特性；\n梯度消失 → ReLU、初始化理论、BatchNorm、残差（2.1–2.3 与 3.2）——一条贯穿卷一 Part 2 的主线就此埋下；\n“理论保证”阵营（SVM）的胜利与失败 → 提醒我们：工程证据的时滞可以让正确的理论先输一阵（2.4 复盘）。\n\n\n\nCybenko, G. (1989) (Cybenko 1989). Approximation by superpositions of a sigmoidal function. Mathematics of Control, Signals and Systems 2, 303–314.\n\n读什么：定理 1 的陈述与证明骨架（密度论证——凸组合在连续函数空间中稠密）；\n跳过什么：泛函分析的细节；\n历史注：更早的 Kolmogorov（1957，希尔伯特第 13 问题的解）给出了更强的精确表示定理，但用的是不可构造的病态函数——对比之下你会明白为什么”存在性 + 可构造性 + 可学习性”是三个世界。另外，Hochreiter 1991 (Hochreiter 1991) 的梯度消失诊断（德语硕士论文）发表在本章时代的正中间，却几乎无人引用——重要的诊断与被听见的诊断之间，隔着十五年的时差（2.2 的开场）。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>MLP、万能逼近与第二次寒冬</span>"
@@ -586,11 +630,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part1-mlp-winter.html#参考文献",
+    "href": "chapters/vol1/part1-mlp-winter.html#参考文献",
+    "title": "7  MLP、万能逼近与第二次寒冬",
+    "section": "7.8 参考文献",
+    "text": "7.8 参考文献\n\n\nCybenko, George. 1989. “Approximation by Superpositions of a Sigmoidal Function.” Mathematics of Control, Signals and Systems 2: 303–14. https://doi.org/10.1007/BF02551274.\n\n\nHochreiter, Sepp. 1991. “Untersuchungen Zu Dynamischen Neuronalen Netzen.” Diploma Thesis (in German), Technische Universität München.\n\n\nHornik, Kurt, Maxwell Stinchcombe, and Halbert White. 1989. “Multilayer Feedforward Networks Are Universal Approximators.” Neural Networks 2 (5): 359–66. https://doi.org/10.1016/0893-6080(89)90020-8.",
+    "crumbs": [
+      "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MLP、万能逼近与第二次寒冬</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part1-mlp-winter.html#练习",
     "href": "chapters/vol1/part1-mlp-winter.html#练习",
     "title": "7  MLP、万能逼近与第二次寒冬",
-    "section": "7.8 练习",
-    "text": "7.8 练习\n\n造轮子：给 MLPNumpy.backward 挑错——遮住源码，只凭 1.3 的三条递推重写，用 tests/test_mlp_numpy.py 的有限差分对拍验证。\n预测再运行：把实验一的目标函数换成奇对称的 \\(\\sin(2x)+0.5\\sin(4x)\\)（无相移），先猜各宽度的 loss 会怎样变化，再运行。若与预期不符，用本章”表示力 vs 优化力”的框架解释你看到的差异（提示：对称性是鞍点的温床）。\n消融：实验二中把训练步数从 6000 加到 30000，训练误差与真实误差各走向何处？画出差距随步数的曲线，标出”开始过拟合”的位置——这就是早停的原理。\n论文映射：用四问账本拆 Cybenko 1989——注意第一问的标准答案（它不在优化任何 loss），以及这份账本与感知机一章账本的相似之处。\n进阶：relu 深网络的梯度虽然量级稳定，但试把深度加到 24、32 并换几个种子——观察到不稳定后，解释它与 sigmoid 梯度消失的区别（提示：relu 的梯度是 0/1 的门，问题出在门的”开合比例”而非幅度）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：奇对称目标下，宽 10/30 的 loss 会明显变差（0.03 量级，部分种子卡在”半周期”鞍点）——表示力没变，优化难度变了。这是”存在 ≠ 可寻”的最小案例。多换几个种子能看到方差。\n练习 3：训练误差单调下降，真实误差先降后升，谷底在某个中间步数——谷底右侧的每一 step 都在”背噪声”。早停 = 把停机条件放在谷底，用一个验证子集探测它。\n练习 5 提示：relu 深网的失稳来自”活跃单元比例”的随机波动被深度放大（某层若大量神经元同关死，等效断路）——它不是指数衰减，而是路径稀疏化。批量归一化与残差（2.3、3.2）正是对这两种病的不同手术。",
+    "section": "7.9 练习",
+    "text": "7.9 练习\n\n造轮子：给 MLPNumpy.backward 挑错——遮住源码，只凭 1.3 的三条递推重写，用 tests/test_mlp_numpy.py 的有限差分对拍验证。\n预测再运行：把实验一的目标函数换成奇对称的 \\(\\sin(2x)+0.5\\sin(4x)\\)（无相移），先猜各宽度的 loss 会怎样变化，再运行。若与预期不符，用本章”表示力 vs 优化力”的框架解释你看到的差异（提示：对称性是鞍点的温床）。\n消融：实验二中把训练步数从 6000 加到 30000，训练误差与真实误差各走向何处？画出差距随步数的曲线，标出”开始过拟合”的位置——这就是早停的原理。\n论文映射：用四问账本拆 Cybenko 1989 (Cybenko 1989)——注意第一问的标准答案（它不在优化任何 loss），以及这份账本与感知机一章账本的相似之处。\n进阶：relu 深网络的梯度虽然量级稳定，但试把深度加到 24、32 并换几个种子——观察到不稳定后，解释它与 sigmoid 梯度消失的区别（提示：relu 的梯度是 0/1 的门，问题出在门的”开合比例”而非幅度）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：奇对称目标下，宽 10/30 的 loss 会明显变差（0.03 量级，部分种子卡在”半周期”鞍点）——表示力没变，优化难度变了。这是”存在 ≠ 可寻”的最小案例。多换几个种子能看到方差。\n练习 3：训练误差单调下降，真实误差先降后升，谷底在某个中间步数——谷底右侧的每一 step 都在”背噪声”。早停 = 把停机条件放在谷底，用一个验证子集探测它。\n练习 5 提示：relu 深网的失稳来自”活跃单元比例”的随机波动被深度放大（某层若大量神经元同关死，等效断路）——它不是指数衰减，而是路径稀疏化。批量归一化与残差（2.3、3.2）正是对这两种病的不同手术。",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>MLP、万能逼近与第二次寒冬</span>"

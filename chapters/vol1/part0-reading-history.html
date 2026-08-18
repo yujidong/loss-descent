@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -969,7 +988,8 @@ main table {
   <li><a href="#历史中的尝试包括弯路" id="toc-历史中的尝试包括弯路" class="nav-link" data-scroll-target="#历史中的尝试包括弯路"><span class="header-section-number">3.2</span> 历史中的尝试（包括弯路）</a></li>
   <li><a href="#核心思想" id="toc-核心思想" class="nav-link" data-scroll-target="#核心思想"><span class="header-section-number">3.3</span> 核心思想</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">3.4</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">3.5</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">3.5</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">3.6</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1054,11 +1074,11 @@ main table {
 <p>这套读法本身最大的回声在你手里：当下每周都有新的 AI 论文与新闻，它们同样可以被”读问题、辨拍子、验账本”处理。本书教的历史读法，实质是<strong>面向未来的实时分析工具</strong>——9.3 章的毕业考试用的就是它。</p>
 </div>
 <div class="callout-paper" title="论文时光机">
-<p><strong>Kuhn, T. (1962).</strong> <em>The Structure of Scientific Revolutions.</em>（库恩《科学革命的结构》）</p>
+<p><strong>Kuhn, T. (1962)</strong> <span class="citation" data-cites="kuhn1962">(<a href="part0-two-threads.html#ref-kuhn1962" role="doc-biblioref">Kuhn 1962</a>)</span>. <em>The Structure of Scientific Revolutions.</em>（库恩《科学革命的结构》）</p>
 <ul>
 <li><strong>读什么</strong>：范式（paradigm）与常规科学（normal science）的界定、反常（anomaly）如何积累引发危机——本书”范式之争”“寒冬”“复兴”的词汇表一半来自这里；</li>
 <li><strong>跳过什么</strong>：不可通约性（incommensurability）的哲学争论部分；</li>
-<li><strong>历史注</strong>：库恩描述的是物理学式的范式更替，而深度学习的历史更”丛林”——多个范式长期共存、互相寄生（符号主义的方法至今活在你的编译器里）。把库恩当透镜，别当教条。另：本书对”胜利者史观”的免疫力有限——作者（我）站在连接主义胜利之后写这本连接主义视角的书，这个偏差请读者时刻盯防。</li>
+<li><strong>历史注</strong>：库恩 <span class="citation" data-cites="kuhn1962">(<a href="part0-two-threads.html#ref-kuhn1962" role="doc-biblioref">Kuhn 1962</a>)</span> 描述的是物理学式的范式更替，而深度学习的历史更”丛林”——多个范式长期共存、互相寄生（符号主义的方法至今活在你的编译器里）。把库恩当透镜，别当教条。另：本书对”胜利者史观”的免疫力有限——作者（我）站在连接主义胜利之后写这本连接主义视角的书，这个偏差请读者时刻盯防。</li>
 </ul>
 </div>
 </section>
@@ -1066,8 +1086,16 @@ main table {
 <h2 data-number="3.4" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">3.4</span> 遗留问题</h2>
 <p>方法备齐了：四问账本（上一章）、双镜头与问题链（本章）、以及一套从零实现的手艺（即将开始）。从下一章起，我们正式进入 1943 年——请戴上”当时镜头”。</p>
 </section>
-<section id="练习" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="练习"><span class="header-section-number">3.5</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">3.5</span> 参考文献</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-kuhn1962" class="csl-entry" role="listitem">
+Kuhn, Thomas S. 1962. <em>The Structure of Scientific Revolutions</em>. (Chicago).
+</div>
+</div>
+</section>
+<section id="练习" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="练习"><span class="header-section-number">3.6</span> 练习</h2>
 <ol type="1">
 <li><strong>双镜头练习</strong>：只看 <em>Attention Is All You Need</em> 这个标题（2017），用当时镜头写三行预测（2016 年的序列建模瓶颈是什么？这个标题在回应谁？），再用现在镜头写三行评价。</li>
 <li><strong>问题链练习</strong>：任选本书目录中相邻的两章，写出连接它们的遗留问题各一句。</li>
