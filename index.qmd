@@ -53,4 +53,4 @@
 
 ## 反馈
 
-发现错误、参与讨论，请提 issue（建仓后在此附上链接）。这是一本写作中的书，它自己也应该像研究一样迭代。
+发现错误、参与讨论，请到 [GitHub 仓库](https://github.com/yujidong/loss-descent/issues) 提 issue。在线阅读请访问 [yujidong.github.io/loss-descent](https://yujidong.github.io/loss-descent/)——页面上可以直接划选文字添加批注（右下角工具栏），导出后交回作者。这是一本写作中的书，它自己也应该像研究一样迭代。

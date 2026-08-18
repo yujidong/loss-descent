@@ -12,7 +12,7 @@
 - **v1.1 文风修订 pass（进行中）**——作者通读反馈：信息密度过高、节奏过快、论断多于叙述。已产出 [WRITING-STYLE.md](WRITING-STYLE.md)（六规范 + 改例）并完成范本修订 `part1-backprop`（叙事化重写 + 缓一缓段落 + 惊叹清零，代码与数值逐字保留，渲染验证通过）。**剩余 37 章按序修订：Part 0 → Part 1 → Part 2 → … → Part 9**，每章照 WRITING-STYLE.md 的六步流程执行。
 - **下一步：v1.0 发布流程**——文风 pass 完成后建仓发布（DEPLOY.md）。",
 
-- 部署方案已定（DEPLOY.md）：GitHub Actions + Pages，零服务器零成本；gh 已登录，等作者确认后建仓推送。
+- **已发布**：[yujidong.github.io/loss-descent](https://yujidong.github.io/loss-descent/)（GitHub Actions 推送自动渲染，gh-pages 分支）；仓库 [yujidong/loss-descent](https://github.com/yujidong/loss-descent)。
 
 ## 里程碑
 
