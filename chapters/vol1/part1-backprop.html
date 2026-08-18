@@ -1202,14 +1202,14 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">6.5</span> 从零实现</h2>
 <p>讲完原理，动手实现。思路沿 Karpathy 的 micrograd：把每个数包成一个 <code>Value</code> 对象，它记住自己是从哪些数、经过什么运算得来的；调用 <code>backward()</code> 时，从最终结果出发，按依赖关系逆序走一遍，把梯度累加到沿途每个对象上。整个实现放在 <code>src/dlbook/autodiff/</code>，大约一百来行，本节只调用、不抄录。建议读完本节后打开源码对照一遍——它比看上去短。</p>
-<div id="c487ec24" class="cell" data-execution_count="1">
+<div id="6db5ac2c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.autodiff <span class="im">import</span> MLP, Value, sgd_step, zero_grad</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.utils <span class="im">import</span> plot_loss_curves, set_seed</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>set_seed(<span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>先用一个手算过的例子检查发动机。取二元函数 <span class="math inline">\(f(x, y) = (xy + \tanh x)\,y\)</span>，在 <span class="math inline">\((1.7, -0.8)\)</span> 处求两个偏导：</p>
-<div id="5a965310" class="cell" data-execution_count="2">
+<div id="10cdefc8" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># f(x, y) = (x·y + tanh(x))·y，在 (1.7, -0.8) 处求梯度</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> Value(<span class="fl">1.7</span>), Value(<span class="op">-</span><span class="fl">0.8</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> (x <span class="op">*</span> y <span class="op">+</span> x.tanh()) <span class="op">*</span> y</span>
@@ -1221,7 +1221,7 @@ window.Quarto = {
 </div>
 <p>可以拿微积分手算核对这两个数（练习 1 会教你用数值差分自动核对的方法，<code>tests/test_autodiff.py</code> 里有一个现成的裁判）。发动机本身没问题之后，来处理正题。</p>
 <p>还记得第 1 章的 XOR 吗。四个点，感知机在有生之年没能分开它们。现在用 MLP 类搭一个 2-4-1 的网络——两个输入，四个隐藏单元，一个输出——标签取 <span class="math inline">\(\pm 1\)</span>，与 tanh 的输出范围一致。</p>
-<div id="d9942fbb" class="cell" data-execution_count="3">
+<div id="485c55f4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MLP(<span class="dv">2</span>, [<span class="dv">4</span>, <span class="dv">1</span>])  <span class="co"># 2-4-1：两个输入、4 个隐藏单元、1 个输出</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"参数量：</span><span class="sc">{</span><span class="bu">len</span>(model.parameters())<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1235,7 +1235,7 @@ window.Quarto = {
 </div>
 </div>
 <p>训练循环还是感知机那四拍：前向、算损失、反向、更新。与第 1 章唯一的区别是多了一行 <code>backward()</code>——而这一行，就是 1969 年到 1986 年之间空着的那一步。</p>
-<div id="224616e9" class="cell" data-execution_count="4">
+<div id="4519f540" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> {<span class="st">"train"</span>: []}</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">300</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(model, xor)</span>
@@ -1250,7 +1250,7 @@ window.Quarto = {
 </div>
 </div>
 <p>从 1.0 出发，三百步后降到 0.019 附近。看曲线的形状：</p>
-<div id="75fe3a0d" class="cell" data-execution_count="5">
+<div id="fae6b57c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(history, title<span class="op">=</span><span class="st">"XOR: MLP + backprop (lr=0.1)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>(&lt;Figure size 576x384 with 1 Axes&gt;,
@@ -1265,7 +1265,7 @@ window.Quarto = {
 </div>
 </div>
 <p>再看四个点各自预测成什么样。判对的标准是预测值与目标同号：</p>
-<div id="eb2423d8" class="cell" data-execution_count="6">
+<div id="32c9029d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xs, t <span class="kw">in</span> xor:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> model(<span class="bu">list</span>(xs)).data</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"输入 </span><span class="sc">{</span>xs<span class="sc">}</span><span class="ss">  目标 </span><span class="sc">{</span>t<span class="sc">:+.0f}</span><span class="ss">  预测 </span><span class="sc">{</span>pred<span class="sc">:+.3f}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'对'</span> <span class="cf">if</span> pred <span class="op">*</span> t <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'错'</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1277,7 +1277,7 @@ window.Quarto = {
 </div>
 </div>
 <p>四个点全部判对。最后把学到的决策边界画出来。做法是在输入平面上密密地取格点，让训练好的网络对每个格点输出一个值，再按值的大小上色。如果边界是一条直线，说明网络没有超过感知机；如果是弯曲的，说明四个隐藏单元真的拼出了非线形的划分。</p>
-<div id="7e397dc8" class="cell" data-execution_count="7">
+<div id="07fd4bff" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1313,7 +1313,7 @@ window.Quarto = {
 <h2 data-number="6.6" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">6.6</span> 消融实验</h2>
 <p>实验跑通了，接下来问两个”为什么”。第一个：四个隐藏单元是必需的吗，还是随便几个都行？</p>
 <p>下面的函数把训练过程打包，方便换配置重跑。先扫隐藏单元的数量，从 1 到 8，其余设置不变：</p>
-<div id="cad19b36" class="cell" data-execution_count="8">
+<div id="8b1a05e0" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_xor(n_hidden, steps<span class="op">=</span><span class="dv">400</span>, lr<span class="op">=</span><span class="fl">0.1</span>, seed<span class="op">=</span><span class="dv">42</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    set_seed(seed)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLP(<span class="dv">2</span>, [n_hidden, <span class="dv">1</span>])</span>
@@ -1341,7 +1341,7 @@ window.Quarto = {
 <p>典型结果是这样的：1 个隐藏单元卡在 0.8 附近；2 个在多数种子下能学会，但当前这个种子卡在 0.5 附近；3 个、4 个、8 个都能降到 0.01 左右。</p>
 <p>1 个的失败有几何解释。单个隐藏单元的输出是 <span class="math inline">\(\tanh(w^\top x + b)\)</span>，它的正负分界永远是输入平面上的一条直线——第 1 章已经证明 XOR 的四个点不存在直线划分，所以无论怎么训练都分不开。这与梯度下降无关，是表达能力的问题。</p>
 <p>2 个隐藏单元的情况更有意思。理论上两个单元、两条直线，围出一个非线性区域，是够用的。但当前种子失败了。换个种子再试：</p>
-<div id="7d11f3b6" class="cell" data-execution_count="9">
+<div id="64fceaae" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> (<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">42</span>):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    _, losses <span class="op">=</span> train_xor(<span class="dv">2</span>, seed<span class="op">=</span>seed)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"seed=</span><span class="sc">{</span>seed<span class="sc">}</span><span class="ss">: 最终 loss = </span><span class="sc">{</span>losses[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1355,7 +1355,7 @@ seed=42: 最终 loss = 0.5314</code></pre>
 </div>
 <p>五个种子里四个收敛到 0.02 附近，一个卡住。也就是说，容量够用不等于一定学得会——梯度下降最终走到哪里，和出发的位置有关。这个现象叫初始化敏感性，在本章只是脚注，到卷二会变成主要角色。</p>
 <p>第二个”为什么”问学习率。第 2 章会系统地讨论这个超参数，这里先直观感受一下：固定网络结构，只改步长，扫 0.001 到 1.0 四档。</p>
-<div id="ce6728b1" class="cell" data-execution_count="10">
+<div id="63f5faa2" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    {<span class="ss">f"lr=</span><span class="sc">{</span>lr<span class="sc">}</span><span class="ss">"</span>: train_xor(<span class="dv">4</span>, steps<span class="op">=</span><span class="dv">200</span>, lr<span class="op">=</span>lr)[<span class="dv">1</span>] <span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">1.0</span>)},</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Learning-rate sweep (2-4-1 on XOR)"</span>,</span>
@@ -1439,14 +1439,14 @@ seed=42: 最终 loss = 0.5314</code></pre>
 <h2 data-number="6.9" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">6.9</span> 参考文献</h2>
 <ol type="1">
 <li>Rumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J. (1986). <em>Learning Representations by Back-Propagating Errors</em>. <em>Nature, 323, 533–536</em>. <a href="https://doi.org/10.1038/323533a0">doi:10.1038/323533a0</a></li>
-<li>Werbos, Paul J. (1974). <em>Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences</em>.</li>
-<li>Linnainmaa, Seppo (1970). <em>The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor</em>. <em>Master’s Thesis (in Finnish), University of Helsinki</em>.</li>
-<li>Parker, David B. (1985). <em>Learning Logic</em>. <em>MIT Center for Computational Research in Economics and Management Science</em>.</li>
-<li>Minsky, Marvin and Papert, Seymour (1969). <em>Perceptrons: An Introduction to Computational Geometry</em>. <em>MIT Press</em>.</li>
-<li>Widrow, Bernard and Hoff, Marcian E. (1960). <em>Adaptive Switching Circuits</em>. <em>IRE WESCON Convention Record, 4, 96–104</em>.</li>
-<li>Rumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). <em>Parallel Distributed Processing: Explorations in the Microstructure of Cognition</em>. <em>MIT Press, 1 and 2</em>.</li>
+<li>Werbos, Paul J. (1974). <em>Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences</em>. <a href="https://scholar.google.com/scholar?q=Werbos%201974%20Beyond%20Regression%3A%20New%20Tools%20for%20Prediction">↗ 搜索原文</a></li>
+<li>Linnainmaa, Seppo (1970). <em>The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor</em>. <em>Master’s Thesis (in Finnish), University of Helsinki</em>. <a href="https://scholar.google.com/scholar?q=Linnainmaa%201970%20The%20Representation%20of%20the%20Cumulative%20Rounding">↗ 搜索原文</a></li>
+<li>Parker, David B. (1985). <em>Learning Logic</em>. <em>MIT Center for Computational Research in Economics and Management Science</em>. <a href="https://scholar.google.com/scholar?q=Parker%201985%20Learning%20Logic">↗ 搜索原文</a></li>
+<li>Minsky, Marvin and Papert, Seymour (1969). <em>Perceptrons: An Introduction to Computational Geometry</em>. <em>MIT Press</em>. <a href="https://scholar.google.com/scholar?q=Minsky%201969%20Perceptrons%3A%20An%20Introduction%20to%20Computational%20Geometry">↗ 搜索原文</a></li>
+<li>Widrow, Bernard and Hoff, Marcian E. (1960). <em>Adaptive Switching Circuits</em>. <em>IRE WESCON Convention Record, 4, 96–104</em>. <a href="https://scholar.google.com/scholar?q=Widrow%201960%20Adaptive%20Switching%20Circuits">↗ 搜索原文</a></li>
+<li>Rumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). <em>Parallel Distributed Processing: Explorations in the Microstructure of Cognition</em>. <em>MIT Press, 1 and 2</em>. <a href="https://scholar.google.com/scholar?q=Rumelhart%201986%20Parallel%20Distributed%20Processing%3A%20Explorations%20in%20the">↗ 搜索原文</a></li>
 <li>Cybenko, George (1989). <em>Approximation by Superpositions of a Sigmoidal Function</em>. <em>Mathematics of Control, Signals and Systems, 2, 303–314</em>. <a href="https://doi.org/10.1007/BF02551274">doi:10.1007/BF02551274</a></li>
-<li>Hebb, Donald O. (1949). <em>The Organization of Behavior: A Neuropsychological Theory</em>. <em>Wiley</em>.</li>
+<li>Hebb, Donald O. (1949). <em>The Organization of Behavior: A Neuropsychological Theory</em>. <em>Wiley</em>. <a href="https://scholar.google.com/scholar?q=Hebb%201949%20The%20Organization%20of%20Behavior%3A%20A%20Neuropsychological">↗ 搜索原文</a></li>
 <li>Rosenblatt, Frank (1958). <em>The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain</em>. <em>Psychological Review, 65, 386–408</em>. <a href="https://doi.org/10.1037/h0042519">doi:10.1037/h0042519</a></li>
 </ol>
 </section>
@@ -1454,7 +1454,7 @@ seed=42: 最终 loss = 0.5314</code></pre>
 <h2 data-number="6.10" class="anchored" data-anchor-id="练习"><span class="header-section-number">6.10</span> 练习</h2>
 <ol type="1">
 <li><p><strong>造轮子</strong>：合上书，只凭本节的 <span class="math inline">\(\delta\)</span> 三条递推，在空白 notebook 里重写一个能跑 XOR 的 <code>Value</code>（加、乘、tanh 三个算子就够）。写完用下面的裁判验货：</p>
-<div id="c467cd15" class="cell" data-execution_count="11">
+<div id="7f1d058e" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> numeric_grad(f, xs, h<span class="op">=</span><span class="fl">1e-6</span>):</span>

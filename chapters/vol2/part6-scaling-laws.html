@@ -1119,7 +1119,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="26.4">
 <h2 data-number="26.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">26.4</span> 从零实现</h2>
 <p>燃料换大：语法模板 + Zipf 词频的合成语料（<code>make_grammar_corpus</code>，6 万字符训练 / 1.2 万验证——多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提——2.5 配方课的续集）：</p>
-<div id="cd2d5365" class="cell" data-execution_count="1">
+<div id="b28035c3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1160,14 +1160,14 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>m<span class="sc">.</span>n_params()<span class="sc">:6d}</span><span class="ss"> 参数): val loss = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37
-d=  8 (  2237 参数): val loss = 3.3608 (22s)
-d= 16 (  7517 参数): val loss = 2.3125 (23s)
-d= 32 ( 27293 参数): val loss = 1.9087 (49s)
-d= 64 (103709 参数): val loss = 1.8039 (103s)</code></pre>
+d=  8 (  2237 参数): val loss = 3.3608 (19s)
+d= 16 (  7517 参数): val loss = 2.3125 (26s)
+d= 32 ( 27293 参数): val loss = 1.9087 (58s)
+d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 </div>
 </div>
 <p>典型读数：3.36 / 2.31 / 1.91 / 1.80——d=8 卡在均匀基线（容量不足），其后单调改善、<strong>尾部明显收窄</strong>（数据墙在招手）。画在对数坐标里：</p>
-<div id="a921a0cf" class="cell" data-execution_count="2">
+<div id="b3b91c57" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="dv">4</span>))</span>
@@ -1187,7 +1187,7 @@ d= 64 (103709 参数): val loss = 1.8039 (103s)</code></pre>
 </div>
 </div>
 <p><strong>正菜：外推游戏。</strong> 只用前三个点拟合纯幂律，预测第四个，然后揭晓：</p>
-<div id="68e783e7" class="cell" data-execution_count="3">
+<div id="1f96cb14" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> np.polyfit(np.log(params[:<span class="dv">3</span>]), np.log(losses[:<span class="dv">3</span>]), <span class="dv">1</span>)  <span class="co"># 纯幂律 = 对数坐标直线</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> np.exp(np.polyval(coef, np.log(params[<span class="dv">3</span>])))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"纯幂律外推预测 d=64: </span><span class="sc">{</span>pred<span class="sc">:.3f}</span><span class="ss">   实测: </span><span class="sc">{</span>losses[<span class="dv">3</span>]<span class="sc">:.3f}</span><span class="ss">   误差: </span><span class="sc">{</span><span class="bu">abs</span>(pred<span class="op">-</span>losses[<span class="dv">3</span>])<span class="op">/</span>losses[<span class="dv">3</span>]<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1196,7 +1196,7 @@ d= 64 (103709 参数): val loss = 1.8039 (103s)</code></pre>
 </div>
 </div>
 <p>典型结果：纯幂律预测约 <strong>1.5–1.6</strong>，实测 <strong>1.80</strong>——外推<strong>高估了改善</strong>约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 <span class="math inline">\(L_\infty\)</span>。补上地板项再拟合（三点 + 地板共两参数可解）：</p>
-<div id="4020ea6e" class="cell" data-execution_count="4">
+<div id="7f2ea091" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit  <span class="co"># noqa: 若无 scipy，用网格搜索替代（练习 5）</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> with_floor(N, a, b, floor):</span>
@@ -1211,7 +1211,7 @@ d= 64 (103709 参数): val loss = 1.8039 (103s)</code></pre>
 <pre><code>带地板拟合: floor=1.69, 预测 d=64: 1.765（实测 1.804）</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\yujid\AppData\Local\Temp\ipykernel_35496\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated
+<pre><code>C:\Users\yujid\AppData\Local\Temp\ipykernel_53216\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated
   popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)</code></pre>
 </div>
 </div>
@@ -1220,7 +1220,7 @@ d= 64 (103709 参数): val loss = 1.8039 (103s)</code></pre>
 <section id="消融实验" class="level2" data-number="26.5">
 <h2 data-number="26.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">26.5</span> 消融实验</h2>
 <p><strong>曲线对数据的依赖</strong>：把训练语料砍半（30000 字符）重扫——各尺寸的 loss 整体上移、墙提前。<strong>幂律的截距与地板都是数据的函数</strong>：这就是”数据质量/数量工程”在 scaling 框架里的位置（清洗、去重、配比——LLM 时代的新炼金术，9.2）。</p>
-<div id="64ee330c" class="cell" data-execution_count="5">
+<div id="4cc0df55" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arr_half <span class="op">=</span> arr_t[: <span class="bu">len</span>(arr_t) <span class="op">//</span> <span class="dv">2</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>losses_half <span class="op">=</span> []</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> (<span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>):</span>
@@ -1300,9 +1300,9 @@ d= 64 (103709 参数): val loss = 1.8039 (103s)</code></pre>
 <section id="参考文献" class="level2" data-number="26.8">
 <h2 data-number="26.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">26.8</span> 参考文献</h2>
 <ol type="1">
-<li>Kaplan et al.&nbsp;(2020). <em>Scaling Laws for Neural Language Models</em>. <em>arXiv preprint arXiv:2001.08361</em>.</li>
-<li>Brown et al.&nbsp;(2020). <em>Language Models Are Few-Shot Learners</em>. <em>NeurIPS</em>.</li>
-<li>Hestness et al.&nbsp;(2017). <em>Deep Learning Scaling Is Predictable, Empirically</em>. <em>arXiv preprint arXiv:1712.00409</em>.</li>
+<li>Kaplan et al.&nbsp;(2020). <em>Scaling Laws for Neural Language Models</em>. <em>arXiv preprint arXiv:2001.08361</em>. <a href="https://scholar.google.com/scholar?q=al.%202020%20Scaling%20Laws%20for%20Neural%20Language%20Models">↗ 搜索原文</a></li>
+<li>Brown et al.&nbsp;(2020). <em>Language Models Are Few-Shot Learners</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202020%20Language%20Models%20Are%20Few-Shot%20Learners">↗ 搜索原文</a></li>
+<li>Hestness et al.&nbsp;(2017). <em>Deep Learning Scaling Is Predictable, Empirically</em>. <em>arXiv preprint arXiv:1712.00409</em>. <a href="https://scholar.google.com/scholar?q=al.%202017%20Deep%20Learning%20Scaling%20Is%20Predictable%2C%20Empirically">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="26.9">

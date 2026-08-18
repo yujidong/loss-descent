@@ -1123,7 +1123,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="35.4">
 <h2 data-number="35.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">35.4</span> 从零实现</h2>
-<div id="57abb936" class="cell" data-execution_count="1">
+<div id="e18df036" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1157,7 +1157,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：重试闭环（系统层）。</strong> 提议（温度采样）→ 验证（反转回去等于输入即对）→ 不对就再采：</p>
-<div id="9b2946fe" class="cell" data-execution_count="2">
+<div id="f388d5e8" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agent_success(m, pairs, max_tries, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
@@ -1196,7 +1196,7 @@ window.Quarto = {
 </div>
 <p>典型读数：<strong>0.80 → 0.88 → 0.95 → 0.98</strong>——饱和上升，8 次预算几乎榨干。注意上限不是 1.0：最难的那 2% 在分布里的概率质量太小，搜索也够不着（<strong>循环的天花板 = 分布的概率质量</strong>，7.4 结论的 agent 版）。</p>
 <p><strong>实验二：轨迹回灌（模型层）。</strong> 收集循环中的成功轨迹，回灌微调，重测单次：</p>
-<div id="4af86573" class="cell" data-execution_count="3">
+<div id="037e1e87" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collect_and_distill(m, round_id, samples_per<span class="op">=</span><span class="dv">6</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">500</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    succ <span class="op">=</span> []</span>
@@ -1290,8 +1290,8 @@ window.Quarto = {
 <section id="参考文献" class="level2" data-number="35.8">
 <h2 data-number="35.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">35.8</span> 参考文献</h2>
 <ol type="1">
-<li>Yao et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. <em>NeurIPS</em>.</li>
-<li>Zelikman et al.&nbsp;(2022). <em>STaR</em>. <em>NeurIPS</em>.</li>
+<li>Yao et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202023%20Tree%20of%20Thoughts%3A%20Deliberate%20Problem%20Solving">↗ 搜索原文</a></li>
+<li>Zelikman et al.&nbsp;(2022). <em>STaR</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202022%20STaR">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="35.9">

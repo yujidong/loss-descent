@@ -1127,7 +1127,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="32.4">
 <h2 data-number="32.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">32.4</span> 从零实现</h2>
-<div id="4d88646f" class="cell" data-execution_count="1">
+<div id="f6dd3640" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1195,7 +1195,7 @@ window.Quarto = {
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>偏好数据</strong>：代理规则 = 更长更好——chosen 是 20–40 字符的重复长串，rejected 是基座自己生成的短续写：</p>
-<div id="13ddbdf7" class="cell" data-execution_count="2">
+<div id="8596b5b3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>story_words <span class="op">=</span> <span class="bu">set</span>(story.split())</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quality(text):</span>
@@ -1219,7 +1219,7 @@ window.Quarto = {
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    dpo_step(p_ids, yw, yr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>双尺评测</strong>——代理尺看形态，真实尺看质量：</p>
-<div id="b513494c" class="cell" data-execution_count="3">
+<div id="9df2112a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gen_stats(model, n<span class="op">=</span><span class="dv">40</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    quals, samples <span class="op">=</span> [], []</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -1250,7 +1250,7 @@ DPO 样例:  eeeeeeeeeeeeeeeeeeeeeeeeeeeeee</code></pre>
 <section id="消融实验" class="level2" data-number="32.5">
 <h2 data-number="32.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">32.5</span> 消融实验</h2>
 <p><strong>好偏好的对照</strong>：把偏好规则换成”故事词命中率高的更好”（用真实质量当裁判——一次”对齐了的 DPO”），同预算重训：</p>
-<div id="2c63773c" class="cell" data-execution_count="4">
+<div id="65d425e7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>policy_good <span class="op">=</span> clone_with_lora(base)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rng3 <span class="op">=</span> np.random.default_rng(<span class="dv">5</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1344,9 +1344,9 @@ DPO 样例:  eeeeeeeeeeeeeeeeeeeeeeeeeeeeee</code></pre>
 <section id="参考文献" class="level2" data-number="32.8">
 <h2 data-number="32.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">32.8</span> 参考文献</h2>
 <ol type="1">
-<li>Rafailov et al.&nbsp;(2023). <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</em>. <em>NeurIPS</em>.</li>
-<li>Ouyang et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback</em>. <em>NeurIPS</em>.</li>
-<li>Christiano et al.&nbsp;(2017). <em>Deep Reinforcement Learning from Human Preferences</em>. <em>NeurIPS</em>.</li>
+<li>Rafailov et al.&nbsp;(2023). <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202023%20Direct%20Preference%20Optimization%3A%20Your%20Language%20Model">↗ 搜索原文</a></li>
+<li>Ouyang et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202022%20Training%20Language%20Models%20to%20Follow%20Instructions">↗ 搜索原文</a></li>
+<li>Christiano et al.&nbsp;(2017). <em>Deep Reinforcement Learning from Human Preferences</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202017%20Deep%20Reinforcement%20Learning%20from%20Human%20Preferences">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="32.9">

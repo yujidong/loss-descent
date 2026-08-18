@@ -1152,7 +1152,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="27.4">
 <h2 data-number="27.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">27.4</span> 从零实现</h2>
 <p>复用上一章的全部装备，只把扫描协议换成等算力：</p>
-<div id="3a44b62e" class="cell" data-execution_count="1">
+<div id="6937a559" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1193,13 +1193,13 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    results[d] <span class="op">=</span> vl</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>n<span class="sc">:6d}</span><span class="ss"> 参数, </span><span class="sc">{</span>steps<span class="sc">:5d}</span><span class="ss"> 步): val = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.7329 (163s)
-d= 16 (  7517 参数,  4357 步): val = 1.5540 (64s)
-d= 32 ( 27293 参数,  1200 步): val = 1.8942 (39s)
-d= 64 (103709 参数,   315 步): val = 2.1518 (22s)</code></pre>
+<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.7329 (176s)
+d= 16 (  7517 参数,  4357 步): val = 1.5540 (68s)
+d= 32 ( 27293 参数,  1200 步): val = 1.8942 (44s)
+d= 64 (103709 参数,   315 步): val = 2.1518 (27s)</code></pre>
 </div>
 </div>
-<div id="1f7df416" class="cell" data-execution_count="2">
+<div id="05c9783d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(results)</span>
@@ -1232,7 +1232,7 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (22s)</code></pre>
 <section id="消融实验" class="level2" data-number="27.5">
 <h2 data-number="27.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">27.5</span> 消融实验</h2>
 <p><strong>预算加倍，谷底去哪？</strong> 把 BUDGET ×2，重扫（每档步数加倍）——观察谷底是否右移、以及右移多少：</p>
-<div id="b8346f53" class="cell" data-execution_count="3">
+<div id="f8ae29e8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>BUDGET2 <span class="op">=</span> BUDGET <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>results2 <span class="op">=</span> {}</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, n <span class="kw">in</span> configs:</span>
@@ -1308,9 +1308,9 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (22s)</code></pre>
 <section id="参考文献" class="level2" data-number="27.8">
 <h2 data-number="27.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">27.8</span> 参考文献</h2>
 <ol type="1">
-<li>Hoffmann et al.&nbsp;(2022). <em>Training Compute-Optimal Large Language Models</em>. <em>arXiv preprint arXiv:2203.15556</em>.</li>
-<li>Kaplan et al.&nbsp;(2020). <em>Scaling Laws for Neural Language Models</em>. <em>arXiv preprint arXiv:2001.08361</em>.</li>
-<li>Touvron et al.&nbsp;(2023). <em>LLaMA</em>. <em>arXiv preprint arXiv:2302.13971</em>.</li>
+<li>Hoffmann et al.&nbsp;(2022). <em>Training Compute-Optimal Large Language Models</em>. <em>arXiv preprint arXiv:2203.15556</em>. <a href="https://scholar.google.com/scholar?q=al.%202022%20Training%20Compute-Optimal%20Large%20Language%20Models">↗ 搜索原文</a></li>
+<li>Kaplan et al.&nbsp;(2020). <em>Scaling Laws for Neural Language Models</em>. <em>arXiv preprint arXiv:2001.08361</em>. <a href="https://scholar.google.com/scholar?q=al.%202020%20Scaling%20Laws%20for%20Neural%20Language%20Models">↗ 搜索原文</a></li>
+<li>Touvron et al.&nbsp;(2023). <em>LLaMA</em>. <em>arXiv preprint arXiv:2302.13971</em>. <a href="https://scholar.google.com/scholar?q=al.%202023%20LLaMA">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="27.9">

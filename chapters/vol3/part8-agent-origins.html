@@ -1093,7 +1093,7 @@ main table {
 <section id="从零实现" class="level2" data-number="34.4">
 <h2 data-number="34.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">34.4</span> 从零实现</h2>
 <p><strong>实验一：计算器拦截。</strong> 基座模型续写含算式的文本，工具在算式处接管：</p>
-<div id="aa8c8216" class="cell" data-execution_count="1">
+<div id="138ef31e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1162,7 +1162,7 @@ main table {
 </div>
 <p>典型读数：<strong>无工具 ≈ 0.05–0.15</strong>（模型对算术只有字符级的模糊直觉）→ <strong>带工具 = 1.00</strong>。注意工具只做了一件小事：识别模式、算对、写回——<strong>决策权（在哪里停、写什么算式）仍在模型</strong>。这就是 agent 的分工：模型出意图，环境出因果。</p>
 <p><strong>实验二：验证器重排——把 margin 变成命中率。</strong> 复用 7.2 的 SFT 流程（代码相同，快速重训）：</p>
-<div id="1ec7c81b" class="cell" data-execution_count="2">
+<div id="d2748b58" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_qa_corpus</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.transformer.layers <span class="im">import</span> softmax_lastdim</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1273,8 +1273,8 @@ main table {
 <section id="参考文献" class="level2" data-number="34.8">
 <h2 data-number="34.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">34.8</span> 参考文献</h2>
 <ol type="1">
-<li>Schick, Timo and Dwivedi-Yu, Jane and Dess`i (2023). <em>Toolformer: Language Models Can Teach Themselves to Use Tools</em>. <em>NeurIPS</em>.</li>
-<li>Radford et al.&nbsp;(2019). <em>Language Models Are Unsupervised Multitask Learners</em>. <em>OpenAI Technical Report</em>.</li>
+<li>Schick, Timo and Dwivedi-Yu, Jane and Dess`i (2023). <em>Toolformer: Language Models Can Teach Themselves to Use Tools</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Schick%202023%20Toolformer%3A%20Language%20Models%20Can%20Teach%20Themselves">↗ 搜索原文</a></li>
+<li>Radford et al.&nbsp;(2019). <em>Language Models Are Unsupervised Multitask Learners</em>. <em>OpenAI Technical Report</em>. <a href="https://scholar.google.com/scholar?q=al.%202019%20Language%20Models%20Are%20Unsupervised%20Multitask%20Learners">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="34.9">

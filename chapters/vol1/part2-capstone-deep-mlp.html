@@ -1090,7 +1090,7 @@ main table {
 <section id="从零实现" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">12.4</span> 从零实现</h2>
 <p>先认识 <code>dlbook.train.Trainer</code>——本章正式引入的标准训练器：</p>
-<div id="24864799" class="cell" data-execution_count="1">
+<div id="9445cfa1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1116,7 +1116,7 @@ main table {
 </div>
 </div>
 </div>
-<div id="fef3629a" class="cell" data-execution_count="2">
+<div id="1a25dd6d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"完整配方: train_acc=</span><span class="sc">{</span>accuracy(full, Xs, ys)<span class="sc">:.3f}</span><span class="ss">, val_acc=</span><span class="sc">{</span>accuracy(full, Xv, yv)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>完整配方: train_acc=0.953, val_acc=0.932</code></pre>
@@ -1124,7 +1124,7 @@ main table {
 </div>
 <p>八个隐藏层、约两万六千个参数，300 epoch、笔记本上几秒钟——train 与 val 曲线贴合下降，无发散无卡死。<strong>1986 年的人看到这一幕会以为魔法</strong>；你现在知道每一行咒语的出处。</p>
 <p><strong>拆解实验</strong>：逐一拿走零件。</p>
-<div id="8f56ffa1" class="cell" data-execution_count="3">
+<div id="c3754ef8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"完整配方"</span>: <span class="bu">dict</span>(activation<span class="op">=</span><span class="st">"relu"</span>, batchnorm<span class="op">=</span><span class="va">True</span>, init<span class="op">=</span><span class="st">"scaled"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"去 BN"</span>: <span class="bu">dict</span>(activation<span class="op">=</span><span class="st">"relu"</span>, batchnorm<span class="op">=</span><span class="va">False</span>, init<span class="op">=</span><span class="st">"scaled"</span>),</span>
@@ -1195,7 +1195,7 @@ main table {
 <section id="消融实验" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">12.5</span> 消融实验</h2>
 <p><strong>深度的收益</strong>。配方既然能让深度可训，那深度本身值多少？同配方下扫深度：</p>
-<div id="0aa0e8c9" class="cell" data-execution_count="4">
+<div id="b88babf0" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1270,10 +1270,10 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 <section id="参考文献" class="level2" data-number="12.8">
 <h2 data-number="12.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">12.8</span> 参考文献</h2>
 <ol type="1">
-<li>Kingma, Diederik P. and Ba, Jimmy (2014). <em>Adam: A Method for Stochastic Optimization</em>. <em>arXiv preprint arXiv:1412.6980</em>.</li>
-<li>Ioffe, Sergey and Szegedy, Christian (2015). <em>Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</em>. <em>Proceedings of ICML, 448–456</em>.</li>
-<li>He et al.&nbsp;(2015). <em>Deep Residual Learning for Image Recognition</em>. <em>arXiv preprint arXiv:1512.03385</em>.</li>
-<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a></li>
+<li>Kingma, Diederik P. and Ba, Jimmy (2014). <em>Adam: A Method for Stochastic Optimization</em>. <em>arXiv preprint arXiv:1412.6980</em>. <a href="https://scholar.google.com/scholar?q=Kingma%202014%20Adam%3A%20A%20Method%20for%20Stochastic%20Optimization">↗ 搜索原文</a></li>
+<li>Ioffe, Sergey and Szegedy, Christian (2015). <em>Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</em>. <em>Proceedings of ICML, 448–456</em>. <a href="https://scholar.google.com/scholar?q=Ioffe%202015%20Batch%20Normalization%3A%20Accelerating%20Deep%20Network%20Training">↗ 搜索原文</a></li>
+<li>He et al.&nbsp;(2015). <em>Deep Residual Learning for Image Recognition</em>. <em>arXiv preprint arXiv:1512.03385</em>. <a href="https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition">↗ 搜索原文</a></li>
+<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="12.9">

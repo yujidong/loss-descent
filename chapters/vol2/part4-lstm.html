@@ -1129,7 +1129,7 @@ h_t &amp;= o_t \odot \tanh(c_t) &amp; \text{对外输出}
 <section id="从零实现" class="level2" data-number="19.4">
 <h2 data-number="19.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">19.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.RNNLM</code>（cell=“lstm”）内置了完整门控（<code>dlbook.rnn.core.LSTM</code>，含遗忘门偏置初始化）。先看机制的兑现——<strong>同一条 60 步序列的梯度剖面</strong>，RNN 换成 LSTM：</p>
-<div id="2a17e50e" class="cell" data-execution_count="1">
+<div id="cc246cef" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus</span>
@@ -1157,7 +1157,7 @@ h_t &amp;= o_t \odot \tanh(c_t) &amp; \text{对外输出}
 lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 </div>
 </div>
-<div id="5a1d63bc" class="cell" data-execution_count="2">
+<div id="691fb26a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.8</span>))</span>
@@ -1178,7 +1178,7 @@ lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 </div>
 <p>典型读数：RNN 起点 <span class="math inline">\(10^{-56}\)</span>；LSTM 起点 <span class="math inline">\(10^{-9}\)</span>——<strong>同样 60 步，学习信号的存活率相差 47 个数量级</strong>。传送带兑现了承诺（<span class="math inline">\(10^{-9}\)</span> 仍小——门控 sigmoid 的导数与输出门路径还在衰减，但已从”死亡”变为”微弱可闻”）。</p>
 <p><strong>遗忘门 = 记忆水龙头</strong>。保持率的账可以直接算：<span class="math inline">\(f=\sigma(b_f)\)</span> 恒定时，<span class="math inline">\(T\)</span> 步后记忆剩 <span class="math inline">\(f^T\)</span>。这解释了门偏置初始化为什么重要：</p>
-<div id="c79bf421" class="cell" data-execution_count="3">
+<div id="e7d8c45f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'遗忘门偏置'</span><span class="sc">:&gt;10}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'σ(b_f)'</span><span class="sc">:&gt;8}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'60 步后剩余'</span><span class="sc">:&gt;12}</span><span class="ss">"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> b_f <span class="kw">in</span> (<span class="op">-</span><span class="fl">2.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">4.0</span>):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> np.exp(<span class="op">-</span>b_f))</span>
@@ -1197,7 +1197,7 @@ lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 <section id="消融实验" class="level2" data-number="19.5">
 <h2 data-number="19.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">19.5</span> 消融实验</h2>
 <p><strong>诚实实验：梯度通道 ≠ 训练顺利。</strong> 把 LSTM 放回上一章的字符语言模型，同预算训练：</p>
-<div id="a5a79368" class="cell" data-execution_count="4">
+<div id="ab33453b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lstm_lm <span class="op">=</span> RNNLM(V, <span class="dv">48</span>, cell<span class="op">=</span><span class="st">"lstm"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hist_lstm <span class="op">=</span> []</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">120</span>):</span>
@@ -1271,9 +1271,9 @@ lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 <section id="参考文献" class="level2" data-number="19.8">
 <h2 data-number="19.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">19.8</span> 参考文献</h2>
 <ol type="1">
-<li>Hochreiter, Sepp and Schmidhuber, J"u (1997). <em>Long Short-Term Memory</em>. <em>Neural Computation, 9, 1735–1780</em>.</li>
-<li>Gers, Felix A. and Schmidhuber, J"u (2000). <em>Learning to Forget: Continual Prediction with LSTM</em>. <em>Neural Computation, 12, 2451–2471</em>.</li>
-<li>Cho, Kyunghyun and van Merri"e (2014). <em>Learning Phrase Representations Using RNN</em>. <em>EMNLP</em>.</li>
+<li>Hochreiter, Sepp and Schmidhuber, J"u (1997). <em>Long Short-Term Memory</em>. <em>Neural Computation, 9, 1735–1780</em>. <a href="https://scholar.google.com/scholar?q=Hochreiter%201997%20Long%20Short-Term%20Memory">↗ 搜索原文</a></li>
+<li>Gers, Felix A. and Schmidhuber, J"u (2000). <em>Learning to Forget: Continual Prediction with LSTM</em>. <em>Neural Computation, 12, 2451–2471</em>. <a href="https://scholar.google.com/scholar?q=Gers%202000%20Learning%20to%20Forget%3A%20Continual%20Prediction%20with">↗ 搜索原文</a></li>
+<li>Cho, Kyunghyun and van Merri"e (2014). <em>Learning Phrase Representations Using RNN</em>. <em>EMNLP</em>. <a href="https://scholar.google.com/scholar?q=Cho%202014%20Learning%20Phrase%20Representations%20Using%20RNN">↗ 搜索原文</a></li>
 <li>Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). <em>Learning Long-Term Dependencies with Gradient Descent is Difficult</em>. <em>IEEE Transactions on Neural Networks, 5, 157–166</em>. <a href="https://doi.org/10.1109/72.279181">doi:10.1109/72.279181</a></li>
 </ol>
 </section>

@@ -139,7 +139,7 @@
     "href": "chapters/vol1/part0-two-threads.html#参考文献",
     "title": "2  双主线：降 Loss 的视角与研究史的视角",
     "section": "2.5 参考文献",
-    "text": "2.5 参考文献\n\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "text": "2.5 参考文献\n\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>双主线：降 Loss 的视角与研究史的视角</span>"
@@ -205,7 +205,7 @@
     "href": "chapters/vol1/part0-reading-history.html#参考文献",
     "title": "3  如何读研究史：读问题，不读年表",
     "section": "3.5 参考文献",
-    "text": "3.5 参考文献\n\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press.\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a.\nDauphin et al. (2014). Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization. NeurIPS.",
+    "text": "3.5 参考文献\n\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press. ↗ 搜索原文\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a. ↗ 搜索原文\nDauphin et al. (2014). Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>如何读研究史：读问题，不读年表</span>"
@@ -315,7 +315,7 @@
     "href": "chapters/vol1/part1-perceptron.html#参考文献",
     "title": "4  感知机的辉煌与失败",
     "section": "4.8 参考文献",
-    "text": "4.8 参考文献\n\nRosenblatt, Frank (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65, 386–408. doi:10.1037/h0042519\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.\nWidrow, Bernard and Hoff, Marcian E. (1960). Adaptive Switching Circuits. IRE WESCON Convention Record, 4, 96–104.\nHebb, Donald O. (1949). The Organization of Behavior: A Neuropsychological Theory. Wiley.\nMcCulloch, Warren S. and Pitts, Walter (1943). A Logical Calculus of the Ideas Immanent in Nervous Activity. Bulletin of Mathematical Biophysics, 5, 115–133. doi:10.1007/BF02478259",
+    "text": "4.8 参考文献\n\nRosenblatt, Frank (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65, 386–408. doi:10.1037/h0042519\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press. ↗ 搜索原文\nWidrow, Bernard and Hoff, Marcian E. (1960). Adaptive Switching Circuits. IRE WESCON Convention Record, 4, 96–104. ↗ 搜索原文\nHebb, Donald O. (1949). The Organization of Behavior: A Neuropsychological Theory. Wiley. ↗ 搜索原文\nMcCulloch, Warren S. and Pitts, Walter (1943). A Logical Calculus of the Ideas Immanent in Nervous Activity. Bulletin of Mathematical Biophysics, 5, 115–133. doi:10.1007/BF02478259",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>感知机的辉煌与失败</span>"
@@ -403,7 +403,7 @@
     "href": "chapters/vol1/part1-symbolic-vs-connectionist.html#参考文献",
     "title": "5  符号主义与连接主义：第一次范式之争",
     "section": "5.6 参考文献",
-    "text": "5.6 参考文献\n\nHopfield, John J. (1982). Neural Networks and Physical Systems with Emergent Collective Computational Abilities. Proceedings of the National Academy of Sciences, 79, 2554–2558.\nFukushima, Kunihiko (1980). Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position. Biological Cybernetics, 36, 193–202.\nRumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). Parallel Distributed Processing: Explorations in the Microstructure of Cognition. MIT Press, 1 and 2.\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.",
+    "text": "5.6 参考文献\n\nHopfield, John J. (1982). Neural Networks and Physical Systems with Emergent Collective Computational Abilities. Proceedings of the National Academy of Sciences, 79, 2554–2558. ↗ 搜索原文\nFukushima, Kunihiko (1980). Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position. Biological Cybernetics, 36, 193–202. ↗ 搜索原文\nRumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). Parallel Distributed Processing: Explorations in the Microstructure of Cognition. MIT Press, 1 and 2. ↗ 搜索原文\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>符号主义与连接主义：第一次范式之争</span>"
@@ -524,7 +524,7 @@
     "href": "chapters/vol1/part1-backprop.html#参考文献",
     "title": "6  反向传播：从思想到发动机",
     "section": "6.9 参考文献",
-    "text": "6.9 参考文献\n\nRumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J. (1986). Learning Representations by Back-Propagating Errors. Nature, 323, 533–536. doi:10.1038/323533a0\nWerbos, Paul J. (1974). Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences.\nLinnainmaa, Seppo (1970). The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor. Master’s Thesis (in Finnish), University of Helsinki.\nParker, David B. (1985). Learning Logic. MIT Center for Computational Research in Economics and Management Science.\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.\nWidrow, Bernard and Hoff, Marcian E. (1960). Adaptive Switching Circuits. IRE WESCON Convention Record, 4, 96–104.\nRumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). Parallel Distributed Processing: Explorations in the Microstructure of Cognition. MIT Press, 1 and 2.\nCybenko, George (1989). Approximation by Superpositions of a Sigmoidal Function. Mathematics of Control, Signals and Systems, 2, 303–314. doi:10.1007/BF02551274\nHebb, Donald O. (1949). The Organization of Behavior: A Neuropsychological Theory. Wiley.\nRosenblatt, Frank (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65, 386–408. doi:10.1037/h0042519",
+    "text": "6.9 参考文献\n\nRumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J. (1986). Learning Representations by Back-Propagating Errors. Nature, 323, 533–536. doi:10.1038/323533a0\nWerbos, Paul J. (1974). Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences. ↗ 搜索原文\nLinnainmaa, Seppo (1970). The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor. Master’s Thesis (in Finnish), University of Helsinki. ↗ 搜索原文\nParker, David B. (1985). Learning Logic. MIT Center for Computational Research in Economics and Management Science. ↗ 搜索原文\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press. ↗ 搜索原文\nWidrow, Bernard and Hoff, Marcian E. (1960). Adaptive Switching Circuits. IRE WESCON Convention Record, 4, 96–104. ↗ 搜索原文\nRumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). Parallel Distributed Processing: Explorations in the Microstructure of Cognition. MIT Press, 1 and 2. ↗ 搜索原文\nCybenko, George (1989). Approximation by Superpositions of a Sigmoidal Function. Mathematics of Control, Signals and Systems, 2, 303–314. doi:10.1007/BF02551274\nHebb, Donald O. (1949). The Organization of Behavior: A Neuropsychological Theory. Wiley. ↗ 搜索原文\nRosenblatt, Frank (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65, 386–408. doi:10.1037/h0042519",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>反向传播：从思想到发动机</span>"
@@ -634,7 +634,7 @@
     "href": "chapters/vol1/part1-mlp-winter.html#参考文献",
     "title": "7  MLP、万能逼近与第二次寒冬",
     "section": "7.8 参考文献",
-    "text": "7.8 参考文献\n\nCybenko, George (1989). Approximation by Superpositions of a Sigmoidal Function. Mathematics of Control, Signals and Systems, 2, 303–314. doi:10.1007/BF02551274\nHornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). Multilayer Feedforward Networks Are Universal Approximators. Neural Networks, 2, 359–366. doi:10.1016/0893-6080(89)90020-8\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a.\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "text": "7.8 参考文献\n\nCybenko, George (1989). Approximation by Superpositions of a Sigmoidal Function. Mathematics of Control, Signals and Systems, 2, 303–314. doi:10.1007/BF02551274\nHornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). Multilayer Feedforward Networks Are Universal Approximators. Neural Networks, 2, 359–366. doi:10.1016/0893-6080(89)90020-8\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a. ↗ 搜索原文\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>MLP、万能逼近与第二次寒冬</span>"
@@ -744,7 +744,7 @@
     "href": "chapters/vol1/part2-mlp-difficulty.html#参考文献",
     "title": "8  训练一个 MLP 到底难在哪",
     "section": "8.8 参考文献",
-    "text": "8.8 参考文献\n\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256.\nDauphin et al. (2014). Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization. NeurIPS.\nGoodfellow, Ian and Bengio, Yoshua and Courville, Aaron (2016). Deep Learning. MIT Press.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "text": "8.8 参考文献\n\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256. ↗ 搜索原文\nDauphin et al. (2014). Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization. NeurIPS. ↗ 搜索原文\nGoodfellow, Ian and Bengio, Yoshua and Courville, Aaron (2016). Deep Learning. MIT Press. ↗ 搜索原文\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>训练一个 MLP 到底难在哪</span>"
@@ -854,7 +854,7 @@
     "href": "chapters/vol1/part2-vanishing-gradient.html#参考文献",
     "title": "9  梯度消失：被忽视十五年的诊断书",
     "section": "9.8 参考文献",
-    "text": "9.8 参考文献\n\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a.\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256.\nHornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). Multilayer Feedforward Networks Are Universal Approximators. Neural Networks, 2, 359–366. doi:10.1016/0893-6080(89)90020-8",
+    "text": "9.8 参考文献\n\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a. ↗ 搜索原文\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256. ↗ 搜索原文\nHornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). Multilayer Feedforward Networks Are Universal Approximators. Neural Networks, 2, 359–366. doi:10.1016/0893-6080(89)90020-8",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>梯度消失：被忽视十五年的诊断书</span>"
@@ -964,7 +964,7 @@
     "href": "chapters/vol1/part2-toolbox.html#参考文献",
     "title": "10  破局工具箱：ReLU、Dropout、BatchNorm、残差",
     "section": "10.8 参考文献",
-    "text": "10.8 参考文献\n\nNair, Vinod and Hinton, Geoffrey E. (2010). Rectified Linear Units Improve Restricted Boltzmann Machines. Proceedings of ICML, 807–814.\nSrivastava et al. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research, 15, 1929–1958.\nIoffe, Sergey and Szegedy, Christian (2015). Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. Proceedings of ICML, 448–456.\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385.\nSanturkar et al. (2018). How Does Batch Normalization Help Optimization?. NeurIPS.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "text": "10.8 参考文献\n\nNair, Vinod and Hinton, Geoffrey E. (2010). Rectified Linear Units Improve Restricted Boltzmann Machines. Proceedings of ICML, 807–814. ↗ 搜索原文\nSrivastava et al. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research, 15, 1929–1958. ↗ 搜索原文\nIoffe, Sergey and Szegedy, Christian (2015). Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. Proceedings of ICML, 448–456. ↗ 搜索原文\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385. ↗ 搜索原文\nSanturkar et al. (2018). How Does Batch Normalization Help Optimization?. NeurIPS. ↗ 搜索原文\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>破局工具箱：ReLU、Dropout、BatchNorm、残差</span>"
@@ -1030,7 +1030,7 @@
     "href": "chapters/vol1/part2-alexnet.html#从零实现",
     "title": "11  AlexNet 时刻：历史为什么发生在 2012",
     "section": "11.4 从零实现",
-    "text": "11.4 从零实现\n我们的两个”账本实验”——不重演 AlexNet，而是实测它的两块基石。\n实验一：算力账本。 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：\n\nimport time\n\nimport numpy as np\n\nfor n in (256, 512, 1024):\n    A = np.random.rand(n, n)\n    B = np.random.rand(n, n)\n    t0 = time.time()\n    C = A @ B\n    dt = time.time() - t0\n    print(f\"{n:&gt;4}x{n:&lt;4} 矩阵乘: {dt*1000:6.1f} ms = {2*n**3/dt/1e9:6.1f} GFLOP/s\")\n\n 256x256  矩阵乘:    1.1 ms =   30.2 GFLOP/s\n 512x512  矩阵乘:    1.4 ms =  193.5 GFLOP/s\n1024x1024 矩阵乘:    6.3 ms =  342.6 GFLOP/s\n\n\n三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：\n\n规模越大，单位吞吐越高——矩阵乘的算术强度高，缓存友好，这正是它成为深度学习基本货币的原因（算子的经济学决定架构的演化，5.3 的伏笔）；\n取 100 GFLOP/s 估算：AlexNet 训练一遍 \\(10^{18}\\) FLOPs ≈ \\(10^7\\) 秒 ≈ 四个月（且是优化过的今天 CPU；2012 年的 CPU 更慢）。两张 GTX 580 合计约 3 TFLOP/s，即使按 30% 利用率也有约 1 TFLOP/s——几天。加速比两个数量级，恰好是把”不可行的课题”变成”一个学期的博士课题”的距离；\n你的笔记本（约 \\(10^{11}\\) FLOP/s）比 1986 年的 VAX（约 \\(10^6}\\) FLOP/s）快五个数量级——本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。\n\n实验二：数据账本。 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：\n\nf = lambda x: np.sin(2*x + 0.7) + 0.5*np.sin(4*x - 0.3)\nXd = np.linspace(-3, 3, 200).reshape(-1, 1)\nYd = f(Xd)\n\nfrom dlbook.nn.mlp_numpy import MLPNumpy\nfrom dlbook.utils import set_seed\n\nset_seed(42)\nfor n in (6, 15, 40):\n    rng = np.random.default_rng(7)\n    X = np.sort(rng.uniform(-3, 3, n)).reshape(-1, 1)\n    Y = f(X) + rng.uniform(-0.25, 0.25, (n, 1))\n    m = MLPNumpy(1, [32, 1], seed=42)\n    for _ in range(3000):\n        m.backward(X, Y)\n        m.step(0.02, momentum=0.9)\n    tr = float(np.mean((m.forward(X) - Y) ** 2))\n    de = float(np.mean((m.forward(Xd) - Yd) ** 2))\n    print(f\"n={n:&gt;2}: 训练误差={tr:.4f}  真实误差={de:.4f}\")\n\nn= 6: 训练误差=0.0016  真实误差=2.7951\nn=15: 训练误差=0.0221  真实误差=0.1030\nn=40: 训练误差=0.0332  真实误差=0.0438\n\n\n读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 2.8——网络完美背下了六个点，对函数本身一无所知（1.6 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04——真实误差随数据近一个数量级地下降。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上有账可算。",
+    "text": "11.4 从零实现\n我们的两个”账本实验”——不重演 AlexNet，而是实测它的两块基石。\n实验一：算力账本。 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：\n\nimport time\n\nimport numpy as np\n\nfor n in (256, 512, 1024):\n    A = np.random.rand(n, n)\n    B = np.random.rand(n, n)\n    t0 = time.time()\n    C = A @ B\n    dt = time.time() - t0\n    print(f\"{n:&gt;4}x{n:&lt;4} 矩阵乘: {dt*1000:6.1f} ms = {2*n**3/dt/1e9:6.1f} GFLOP/s\")\n\n 256x256  矩阵乘:    0.9 ms =   38.4 GFLOP/s\n 512x512  矩阵乘:    1.6 ms =  163.9 GFLOP/s\n1024x1024 矩阵乘:    6.5 ms =  327.9 GFLOP/s\n\n\n三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：\n\n规模越大，单位吞吐越高——矩阵乘的算术强度高，缓存友好，这正是它成为深度学习基本货币的原因（算子的经济学决定架构的演化，5.3 的伏笔）；\n取 100 GFLOP/s 估算：AlexNet 训练一遍 \\(10^{18}\\) FLOPs ≈ \\(10^7\\) 秒 ≈ 四个月（且是优化过的今天 CPU；2012 年的 CPU 更慢）。两张 GTX 580 合计约 3 TFLOP/s，即使按 30% 利用率也有约 1 TFLOP/s——几天。加速比两个数量级，恰好是把”不可行的课题”变成”一个学期的博士课题”的距离；\n你的笔记本（约 \\(10^{11}\\) FLOP/s）比 1986 年的 VAX（约 \\(10^6}\\) FLOP/s）快五个数量级——本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。\n\n实验二：数据账本。 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：\n\nf = lambda x: np.sin(2*x + 0.7) + 0.5*np.sin(4*x - 0.3)\nXd = np.linspace(-3, 3, 200).reshape(-1, 1)\nYd = f(Xd)\n\nfrom dlbook.nn.mlp_numpy import MLPNumpy\nfrom dlbook.utils import set_seed\n\nset_seed(42)\nfor n in (6, 15, 40):\n    rng = np.random.default_rng(7)\n    X = np.sort(rng.uniform(-3, 3, n)).reshape(-1, 1)\n    Y = f(X) + rng.uniform(-0.25, 0.25, (n, 1))\n    m = MLPNumpy(1, [32, 1], seed=42)\n    for _ in range(3000):\n        m.backward(X, Y)\n        m.step(0.02, momentum=0.9)\n    tr = float(np.mean((m.forward(X) - Y) ** 2))\n    de = float(np.mean((m.forward(Xd) - Yd) ** 2))\n    print(f\"n={n:&gt;2}: 训练误差={tr:.4f}  真实误差={de:.4f}\")\n\nn= 6: 训练误差=0.0016  真实误差=2.7951\nn=15: 训练误差=0.0221  真实误差=0.1030\nn=40: 训练误差=0.0332  真实误差=0.0438\n\n\n读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 2.8——网络完美背下了六个点，对函数本身一无所知（1.6 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04——真实误差随数据近一个数量级地下降。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上有账可算。",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>AlexNet 时刻：历史为什么发生在 2012</span>"
@@ -1074,7 +1074,7 @@
     "href": "chapters/vol1/part2-alexnet.html#参考文献",
     "title": "11  AlexNet 时刻：历史为什么发生在 2012",
     "section": "11.8 参考文献",
-    "text": "11.8 参考文献\n\nKrizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS.\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256.\nNair, Vinod and Hinton, Geoffrey E. (2010). Rectified Linear Units Improve Restricted Boltzmann Machines. Proceedings of ICML, 807–814.\nSrivastava et al. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research, 15, 1929–1958.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "text": "11.8 参考文献\n\nKrizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS. ↗ 搜索原文\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256. ↗ 搜索原文\nNair, Vinod and Hinton, Geoffrey E. (2010). Rectified Linear Units Improve Restricted Boltzmann Machines. Proceedings of ICML, 807–814. ↗ 搜索原文\nSrivastava et al. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research, 15, 1929–1958. ↗ 搜索原文\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>AlexNet 时刻：历史为什么发生在 2012</span>"
@@ -1184,7 +1184,7 @@
     "href": "chapters/vol1/part2-capstone-deep-mlp.html#参考文献",
     "title": "12  整合：让深度可训练的完整配方",
     "section": "12.8 参考文献",
-    "text": "12.8 参考文献\n\nKingma, Diederik P. and Ba, Jimmy (2014). Adam: A Method for Stochastic Optimization. arXiv preprint arXiv:1412.6980.\nIoffe, Sergey and Szegedy, Christian (2015). Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. Proceedings of ICML, 448–456.\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "text": "12.8 参考文献\n\nKingma, Diederik P. and Ba, Jimmy (2014). Adam: A Method for Stochastic Optimization. arXiv preprint arXiv:1412.6980. ↗ 搜索原文\nIoffe, Sergey and Szegedy, Christian (2015). Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. Proceedings of ICML, 448–456. ↗ 搜索原文\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385. ↗ 搜索原文\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>整合：让深度可训练的完整配方</span>"
@@ -1294,7 +1294,7 @@
     "href": "chapters/vol1/part3-lenet.html#参考文献",
     "title": "13  LeNet：1989 年就有的答案",
     "section": "13.8 参考文献",
-    "text": "13.8 参考文献\n\nLeCun et al. (1989). Backpropagation Applied to Handwritten Zip Code Recognition. Neural Computation, 1, 541–551.\nLeCun, Yann and Bottou, L'e (1998). Gradient-Based Learning Applied to Document Recognition. Proceedings of the IEEE, 86, 2278–2324.\nFukushima, Kunihiko (1980). Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position. Biological Cybernetics, 36, 193–202.",
+    "text": "13.8 参考文献\n\nLeCun et al. (1989). Backpropagation Applied to Handwritten Zip Code Recognition. Neural Computation, 1, 541–551. ↗ 搜索原文\nLeCun, Yann and Bottou, L'e (1998). Gradient-Based Learning Applied to Document Recognition. Proceedings of the IEEE, 86, 2278–2324. ↗ 搜索原文\nFukushima, Kunihiko (1980). Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position. Biological Cybernetics, 36, 193–202. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 3 · 卷积时代（1989–2016）",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>LeNet：1989 年就有的答案</span>"
@@ -1404,7 +1404,7 @@
     "href": "chapters/vol1/part3-resnet.html#参考文献",
     "title": "14  军备竞赛：从 AlexNet 到 ResNet",
     "section": "14.8 参考文献",
-    "text": "14.8 参考文献\n\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385.\nKrizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS.",
+    "text": "14.8 参考文献\n\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385. ↗ 搜索原文\nKrizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 3 · 卷积时代（1989–2016）",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>军备竞赛：从 AlexNet 到 ResNet</span>"
@@ -1514,7 +1514,7 @@
     "href": "chapters/vol1/part3-cnn-legacy.html#参考文献",
     "title": "15  CNN 的遗产：特征层级与预训练-微调",
     "section": "15.8 参考文献",
-    "text": "15.8 参考文献\n\nRazavian et al. (2014). CNN. CVPR Workshops.\nZeiler, Matthew D. and Fergus, Rob (2014). Visualizing and Understanding Convolutional Networks. ECCV.\nLeCun, Yann and Bottou, L'e (1998). Gradient-Based Learning Applied to Document Recognition. Proceedings of the IEEE, 86, 2278–2324.",
+    "text": "15.8 参考文献\n\nRazavian et al. (2014). CNN. CVPR Workshops. ↗ 搜索原文\nZeiler, Matthew D. and Fergus, Rob (2014). Visualizing and Understanding Convolutional Networks. ECCV. ↗ 搜索原文\nLeCun, Yann and Bottou, L'e (1998). Gradient-Based Learning Applied to Document Recognition. Proceedings of the IEEE, 86, 2278–2324. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 3 · 卷积时代（1989–2016）",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>CNN 的遗产：特征层级与预训练-微调</span>"
@@ -1624,7 +1624,7 @@
     "href": "chapters/vol1/part3-cnn-limits.html#参考文献",
     "title": "16  CNN 的边界：序列问题为何难",
     "section": "16.8 参考文献",
-    "text": "16.8 参考文献\n\nvan den Oord, A\"a (2016). WaveNet. arXiv preprint arXiv:1609.03499.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "text": "16.8 参考文献\n\nvan den Oord, A\"a (2016). WaveNet. arXiv preprint arXiv:1609.03499. ↗ 搜索原文\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文",
     "crumbs": [
       "卷一 · Part 3 · 卷积时代（1989–2016）",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>CNN 的边界：序列问题为何难</span>"
@@ -1734,7 +1734,7 @@
     "href": "chapters/vol2/part4-ngram.html#参考文献",
     "title": "17  语言建模前史：从 Shannon 到 n-gram",
     "section": "17.8 参考文献",
-    "text": "17.8 参考文献\n\nShannon, Claude E. (1951). Prediction and Entropy of Printed English. Bell System Technical Journal, 30, 50–64.\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x\nJelinek, Frederick (1976). Continuous Speech Recognition by Statistical Methods. Proceedings of the IEEE, 64, 532–557.",
+    "text": "17.8 参考文献\n\nShannon, Claude E. (1951). Prediction and Entropy of Printed English. Bell System Technical Journal, 30, 50–64. ↗ 搜索原文\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x\nJelinek, Frederick (1976). Continuous Speech Recognition by Statistical Methods. Proceedings of the IEEE, 64, 532–557. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>语言建模前史：从 Shannon 到 n-gram</span>"
@@ -1844,7 +1844,7 @@
     "href": "chapters/vol2/part4-rnn.html#参考文献",
     "title": "18  RNN：展开即深网的继承病",
     "section": "18.8 参考文献",
-    "text": "18.8 参考文献\n\nElman, Jeffrey L. (1990). Finding Structure in Time. Cognitive Science, 14, 179–211.\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nBengio, Yoshua and Ducharme, R'e (2003). A Neural Probabilistic Language Model. Journal of Machine Learning Research, 3, 1137–1155.\nHochreiter, Sepp and Schmidhuber, J\"u (1997). Long Short-Term Memory. Neural Computation, 9, 1735–1780.",
+    "text": "18.8 参考文献\n\nElman, Jeffrey L. (1990). Finding Structure in Time. Cognitive Science, 14, 179–211. ↗ 搜索原文\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nBengio, Yoshua and Ducharme, R'e (2003). A Neural Probabilistic Language Model. Journal of Machine Learning Research, 3, 1137–1155. ↗ 搜索原文\nHochreiter, Sepp and Schmidhuber, J\"u (1997). Long Short-Term Memory. Neural Computation, 9, 1735–1780. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>RNN：展开即深网的继承病</span>"
@@ -1954,7 +1954,7 @@
     "href": "chapters/vol2/part4-lstm.html#参考文献",
     "title": "19  LSTM：让梯度存活的门控设计",
     "section": "19.8 参考文献",
-    "text": "19.8 参考文献\n\nHochreiter, Sepp and Schmidhuber, J\"u (1997). Long Short-Term Memory. Neural Computation, 9, 1735–1780.\nGers, Felix A. and Schmidhuber, J\"u (2000). Learning to Forget: Continual Prediction with LSTM. Neural Computation, 12, 2451–2471.\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP.\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181",
+    "text": "19.8 参考文献\n\nHochreiter, Sepp and Schmidhuber, J\"u (1997). Long Short-Term Memory. Neural Computation, 9, 1735–1780. ↗ 搜索原文\nGers, Felix A. and Schmidhuber, J\"u (2000). Learning to Forget: Continual Prediction with LSTM. Neural Computation, 12, 2451–2471. ↗ 搜索原文\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP. ↗ 搜索原文\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>LSTM：让梯度存活的门控设计</span>"
@@ -2064,7 +2064,7 @@
     "href": "chapters/vol2/part4-word2vec.html#参考文献",
     "title": "20  word2vec：语义被压进向量",
     "section": "20.8 参考文献",
-    "text": "20.8 参考文献\n\nMikolov et al. (2013). Distributed Representations of Words and Phrases and Their Compositionality. NeurIPS.\nLevy, Omer and Goldberg, Yoav (2014). Neural Word Embedding as Implicit Matrix Factorization. NeurIPS.\nPennington, Jeffrey and Socher, Richard and Manning, Christopher D. (2014). GloVe. EMNLP.",
+    "text": "20.8 参考文献\n\nMikolov et al. (2013). Distributed Representations of Words and Phrases and Their Compositionality. NeurIPS. ↗ 搜索原文\nLevy, Omer and Goldberg, Yoav (2014). Neural Word Embedding as Implicit Matrix Factorization. NeurIPS. ↗ 搜索原文\nPennington, Jeffrey and Socher, Richard and Manning, Christopher D. (2014). GloVe. EMNLP. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>word2vec：语义被压进向量</span>"
@@ -2174,7 +2174,7 @@
     "href": "chapters/vol2/part4-seq2seq.html#参考文献",
     "title": "21  seq2seq：翻译即条件语言建模",
     "section": "21.8 参考文献",
-    "text": "21.8 参考文献\n\nSutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). Sequence to Sequence Learning with Neural Networks. NeurIPS.\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP.\nBahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). Neural Machine Translation by Jointly Learning to Align and Translate. ICLR.",
+    "text": "21.8 参考文献\n\nSutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). Sequence to Sequence Learning with Neural Networks. NeurIPS. ↗ 搜索原文\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP. ↗ 搜索原文\nBahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). Neural Machine Translation by Jointly Learning to Align and Translate. ICLR. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>seq2seq：翻译即条件语言建模</span>"
@@ -2284,7 +2284,7 @@
     "href": "chapters/vol2/part5-bahdanau.html#参考文献",
     "title": "22  注意力的诞生：让解码器回头看",
     "section": "22.8 参考文献",
-    "text": "22.8 参考文献\n\nBahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). Neural Machine Translation by Jointly Learning to Align and Translate. ICLR.\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP.",
+    "text": "22.8 参考文献\n\nBahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). Neural Machine Translation by Jointly Learning to Align and Translate. ICLR. ↗ 搜索原文\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>注意力的诞生：让解码器回头看</span>"
@@ -2350,7 +2350,7 @@
     "href": "chapters/vol2/part5-transformer.html#从零实现",
     "title": "23  Transformer：从补丁到架构",
     "section": "23.4 从零实现",
-    "text": "23.4 从零实现\ndlbook.transformer 提供全部零件（约三百行，layers.py 的反向传播值得逐行对读——1.3 的三条递推穿过了 softmax、多头变形与残差）。我们的 MiniGPT：2 个块、32 维、2 头、正弦位置编码。上老战场：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import plot_loss_curves, set_seed\n\nset_seed(42)\n\nids, vocab, inv = char_corpus()\nV = len(vocab)\narr = np.array(ids)\nprint(f\"战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83\")\n\nmodel = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\nprint(f\"MiniGPT 参数量: {model.n_params()}\")\n\nrng = np.random.default_rng(0)\nhistory = []\nt0 = time.time()\nfor step in range(1000):\n    starts = rng.integers(0, len(arr) - 65, size=8)\n    batch = np.stack([arr[s : s + 65] for s in starts])\n    history.append(model.loss_and_backward(batch))\n    model.step(0.15, clip=1.0)  # 梯度裁剪——稳定性的关键配菜\nprint(f\"1000 步用时 {time.time()-t0:.0f}s；最终 loss {history[-1]:.4f}\")\n\n战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83\nMiniGPT 参数量: 27163\n1000 步用时 9s；最终 loss 1.7903\n\n\n\nplot_loss_curves({\"MiniGPT char-LM\": history}, title=\"Attention is all you need (for 2.4KB of text)\");\n\n\n\n\n\n\n\n\n1.79——同一语料的总冠军（超过 3-gram 的 1.95 与 RNN 的 2.23，且收敛快得多）。看它写出的文本：\n\nout = model.generate([vocab[c] for c in \"the cat \"], n_new=140, temperature=0.7, seed=3)\nprint(\"\".join(inv[i] for i in out))\n\nthe cat cat bip the pips sma wand smat caverermat smats the s the s frky. thin. the billd sky d the seree s s. s s thetheas smelllllle m s s bonigar\n\n\n典型样貌：比 RNN 的采样更像”英语”——词的边界干净、常见搭配成串（the/sat/and）、偶尔冒出语料的词组。同预算下表示质量的差距是肉眼可见的。\n注意力图：模型在看什么？ 取第一块的平均注意力（一次前向后自动缓存）：\n\nimport matplotlib.pyplot as plt\n\nwindow = np.array(arr[100:132])[None, :]\nmodel.forward(window)\nA = model.blocks[0].attn_map  # (T, T)，头平均\n\nplt.figure(figsize=(4.5, 4))\nplt.imshow(A, cmap=\"viridis\")\nplt.xlabel(\"key position (looked at)\")\nplt.ylabel(\"query position (looking)\")\nplt.title(\"Average attention (block 1): local + sparse long-range\")\nplt.colorbar()\nplt.show()\n\n\n\n\n\n\n\n\n典型的图案：强对角线（看自己与邻居）+ 零星的长程亮点。因果掩罩使上三角全黑；对角带是字符 LM 的局部统计；远处亮点是它学到的选择性回看——5.1 对齐热图的直系亲戚。",
+    "text": "23.4 从零实现\ndlbook.transformer 提供全部零件（约三百行，layers.py 的反向传播值得逐行对读——1.3 的三条递推穿过了 softmax、多头变形与残差）。我们的 MiniGPT：2 个块、32 维、2 头、正弦位置编码。上老战场：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import plot_loss_curves, set_seed\n\nset_seed(42)\n\nids, vocab, inv = char_corpus()\nV = len(vocab)\narr = np.array(ids)\nprint(f\"战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83\")\n\nmodel = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\nprint(f\"MiniGPT 参数量: {model.n_params()}\")\n\nrng = np.random.default_rng(0)\nhistory = []\nt0 = time.time()\nfor step in range(1000):\n    starts = rng.integers(0, len(arr) - 65, size=8)\n    batch = np.stack([arr[s : s + 65] for s in starts])\n    history.append(model.loss_and_backward(batch))\n    model.step(0.15, clip=1.0)  # 梯度裁剪——稳定性的关键配菜\nprint(f\"1000 步用时 {time.time()-t0:.0f}s；最终 loss {history[-1]:.4f}\")\n\n战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83\nMiniGPT 参数量: 27163\n1000 步用时 10s；最终 loss 1.7903\n\n\n\nplot_loss_curves({\"MiniGPT char-LM\": history}, title=\"Attention is all you need (for 2.4KB of text)\");\n\n\n\n\n\n\n\n\n1.79——同一语料的总冠军（超过 3-gram 的 1.95 与 RNN 的 2.23，且收敛快得多）。看它写出的文本：\n\nout = model.generate([vocab[c] for c in \"the cat \"], n_new=140, temperature=0.7, seed=3)\nprint(\"\".join(inv[i] for i in out))\n\nthe cat cat bip the pips sma wand smat caverermat smats the s the s frky. thin. the billd sky d the seree s s. s s thetheas smelllllle m s s bonigar\n\n\n典型样貌：比 RNN 的采样更像”英语”——词的边界干净、常见搭配成串（the/sat/and）、偶尔冒出语料的词组。同预算下表示质量的差距是肉眼可见的。\n注意力图：模型在看什么？ 取第一块的平均注意力（一次前向后自动缓存）：\n\nimport matplotlib.pyplot as plt\n\nwindow = np.array(arr[100:132])[None, :]\nmodel.forward(window)\nA = model.blocks[0].attn_map  # (T, T)，头平均\n\nplt.figure(figsize=(4.5, 4))\nplt.imshow(A, cmap=\"viridis\")\nplt.xlabel(\"key position (looked at)\")\nplt.ylabel(\"query position (looking)\")\nplt.title(\"Average attention (block 1): local + sparse long-range\")\nplt.colorbar()\nplt.show()\n\n\n\n\n\n\n\n\n典型的图案：强对角线（看自己与邻居）+ 零星的长程亮点。因果掩罩使上三角全黑；对角带是字符 LM 的局部统计；远处亮点是它学到的选择性回看——5.1 对齐热图的直系亲戚。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>Transformer：从补丁到架构</span>"
@@ -2394,7 +2394,7 @@
     "href": "chapters/vol2/part5-transformer.html#参考文献",
     "title": "23  Transformer：从补丁到架构",
     "section": "23.8 参考文献",
-    "text": "23.8 参考文献\n\nVaswani et al. (2017). Attention Is All You Need. NeurIPS.\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.",
+    "text": "23.8 参考文献\n\nVaswani et al. (2017). Attention Is All You Need. NeurIPS. ↗ 搜索原文\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>Transformer：从补丁到架构</span>"
@@ -2460,7 +2460,7 @@
     "href": "chapters/vol2/part5-why-transformer-won.html#从零实现",
     "title": "24  为什么 Transformer 赢了",
     "section": "24.4 从零实现",
-    "text": "24.4 从零实现\ndlbook.transformer.MiniGPT 与 dlbook.rnn.RNNLM 已经同台过精度；本章给它们上计时器。实验一：批量吞吐。\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\nids, vocab, inv = char_corpus()\nV = len(vocab)\narr = np.array(ids)\n\nmodel = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\n\nprint(f\"{'批量':&gt;4} {'每步墙钟':&gt;10} {'吞吐 (tokens/s)':&gt;16}\")\nfor B in (1, 8, 64):\n    rng = np.random.default_rng(1)\n    starts = rng.integers(0, len(arr) - 65, size=B)\n    batch = np.stack([arr[s : s + 65] for s in starts])\n    t0 = time.time()\n    for _ in range(20):\n        model.loss_and_backward(batch)\n    dt = (time.time() - t0) / 20\n    print(f\"{B:&gt;4} {dt*1000:&gt;8.1f} ms {B * 64 / dt:&gt;14,.0f}\")\n\n  批量       每步墙钟    吞吐 (tokens/s)\n   1      1.4 ms         46,417\n   8      9.2 ms         55,470\n  64    144.4 ms         28,360\n\n\n典型读数：批量从 1 到 8，每步时间几乎线性增长、吞吐不变；到 64 时吞吐仍与 1 相当（numpy 的 CPU 并行度有限，GPU 上这里会上升数倍）。要点不在具体数字，而在形状：Transformer 的吞吐随批量平坦或上升。对照 RNN：批量的每个样本各自走 64 步串行（我们的实现逐样本训练），墙钟随样本数线性增长，吞吐恒定——它在批量维度上没有任何硬件红利可吃。\n实验二：长度的代价。 用一个 block_size 更大的模型扫序列长度（RNN 用 4.2 的引擎）：\n\nfrom dlbook.rnn import RNNLM\n\nbig_model = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=256, seed=0)\nrnn = RNNLM(V, 48, cell=\"rnn\", seed=0)\n\nprint(f\"{'T':&gt;4} {'transformer':&gt;12} {'rnn':&gt;10}\")\nfor T in (16, 32, 64, 128, 256):\n    idx = np.random.default_rng(0).integers(0, V, size=(4, T + 1))\n    t0 = time.time()\n    for _ in range(10):\n        big_model.loss_and_backward(idx)\n    dt_tf = (time.time() - t0) / 10\n    toks = arr[: T + 1]\n    t0 = time.time()\n    for _ in range(10):\n        rnn.loss_and_backward(toks)\n    dt_rnn = (time.time() - t0) / 10\n    print(f\"{T:&gt;4} {dt_tf*1000:&gt;9.1f} ms {dt_rnn*1000:&gt;7.1f} ms\")\n\n   T  transformer        rnn\n  16       1.1 ms     0.2 ms\n  32       2.3 ms     0.3 ms\n  64       4.4 ms     0.7 ms\n 128      16.0 ms     1.2 ms\n 256      52.6 ms     2.5 ms\n\n\n典型读数（numpy/CPU）：T 翻倍，Transformer 时间约 ×3.5–4（平方律现身），RNN 约 ×2（线性律——但每步是 Python 循环，常数很高）。在 CPU 上两者尚可比；在 GPU 上 Transformer 的常数会缩小两三个数量级（大矩阵乘吃满流处理器），而 RNN 的每步小矩阵乘与串行依赖让 GPU 大部分核心闲置——同一份代码，硬件把胜负放大成悬殊。这就把故事交给历史数据：GNMT（2016，8 层 LSTM）训练一次数周；同任务的 Transformer（2017）训练时间以显著优势缩短——工程团队用脚投票的，从来是每小时美元。",
+    "text": "24.4 从零实现\ndlbook.transformer.MiniGPT 与 dlbook.rnn.RNNLM 已经同台过精度；本章给它们上计时器。实验一：批量吞吐。\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\nids, vocab, inv = char_corpus()\nV = len(vocab)\narr = np.array(ids)\n\nmodel = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\n\nprint(f\"{'批量':&gt;4} {'每步墙钟':&gt;10} {'吞吐 (tokens/s)':&gt;16}\")\nfor B in (1, 8, 64):\n    rng = np.random.default_rng(1)\n    starts = rng.integers(0, len(arr) - 65, size=B)\n    batch = np.stack([arr[s : s + 65] for s in starts])\n    t0 = time.time()\n    for _ in range(20):\n        model.loss_and_backward(batch)\n    dt = (time.time() - t0) / 20\n    print(f\"{B:&gt;4} {dt*1000:&gt;8.1f} ms {B * 64 / dt:&gt;14,.0f}\")\n\n  批量       每步墙钟    吞吐 (tokens/s)\n   1      1.3 ms         48,945\n   8      9.0 ms         57,140\n  64    136.5 ms         30,001\n\n\n典型读数：批量从 1 到 8，每步时间几乎线性增长、吞吐不变；到 64 时吞吐仍与 1 相当（numpy 的 CPU 并行度有限，GPU 上这里会上升数倍）。要点不在具体数字，而在形状：Transformer 的吞吐随批量平坦或上升。对照 RNN：批量的每个样本各自走 64 步串行（我们的实现逐样本训练），墙钟随样本数线性增长，吞吐恒定——它在批量维度上没有任何硬件红利可吃。\n实验二：长度的代价。 用一个 block_size 更大的模型扫序列长度（RNN 用 4.2 的引擎）：\n\nfrom dlbook.rnn import RNNLM\n\nbig_model = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=256, seed=0)\nrnn = RNNLM(V, 48, cell=\"rnn\", seed=0)\n\nprint(f\"{'T':&gt;4} {'transformer':&gt;12} {'rnn':&gt;10}\")\nfor T in (16, 32, 64, 128, 256):\n    idx = np.random.default_rng(0).integers(0, V, size=(4, T + 1))\n    t0 = time.time()\n    for _ in range(10):\n        big_model.loss_and_backward(idx)\n    dt_tf = (time.time() - t0) / 10\n    toks = arr[: T + 1]\n    t0 = time.time()\n    for _ in range(10):\n        rnn.loss_and_backward(toks)\n    dt_rnn = (time.time() - t0) / 10\n    print(f\"{T:&gt;4} {dt_tf*1000:&gt;9.1f} ms {dt_rnn*1000:&gt;7.1f} ms\")\n\n   T  transformer        rnn\n  16       1.1 ms     0.2 ms\n  32       2.3 ms     0.4 ms\n  64       4.8 ms     0.7 ms\n 128      16.0 ms     1.3 ms\n 256      52.4 ms     2.5 ms\n\n\n典型读数（numpy/CPU）：T 翻倍，Transformer 时间约 ×3.5–4（平方律现身），RNN 约 ×2（线性律——但每步是 Python 循环，常数很高）。在 CPU 上两者尚可比；在 GPU 上 Transformer 的常数会缩小两三个数量级（大矩阵乘吃满流处理器），而 RNN 的每步小矩阵乘与串行依赖让 GPU 大部分核心闲置——同一份代码，硬件把胜负放大成悬殊。这就把故事交给历史数据：GNMT（2016，8 层 LSTM）训练一次数周；同任务的 Transformer（2017）训练时间以显著优势缩短——工程团队用脚投票的，从来是每小时美元。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>为什么 Transformer 赢了</span>"
@@ -2471,7 +2471,7 @@
     "href": "chapters/vol2/part5-why-transformer-won.html#消融实验",
     "title": "24  为什么 Transformer 赢了",
     "section": "24.5 消融实验",
-    "text": "24.5 消融实验\n把因果掩罩撤掉测”理解”任务是下一章的正题，本章的消融换成一个经济学问题：注意力矩阵的稀疏化。把因果掩罩进一步收紧——每个位置只允许看最近 k=16 个位置（带状掩罩，其余 \\(-\\infty\\)）：\n\nimport copy\n\nsparse_model = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\norig_forward = sparse_model.blocks[0].attn.forward\n\ndef banded_forward(self, X, causal=True):\n    out = orig_forward(X, causal=causal)\n    return out\n\n# 简化实现：直接在掩罩阶段演示——把 Window 思路留给练习 4\n# 这里用计时代替精度：注意力矩阵从 64x64 砍到 64x16，计算量降 ~4 倍\nrng = np.random.default_rng(0)\nidx = np.random.default_rng(0).integers(0, V, size=(4, 65))\nt0 = time.time()\nfor _ in range(10):\n    model.loss_and_backward(idx)\nprint(f\"全注意力单步: {(time.time()-t0)/10*1000:.1f} ms —— T² 账单的主体就在这里\")\n\n全注意力单步: 4.8 ms —— T² 账单的主体就在这里\n\n\n带状/稀疏注意力（Longformer、Sparse Transformer 一族）正是”在长序列上把 O(T²) 砍回 O(T·k)“的家族——账单催生的整个研究方向。精度换算力的交换比，是 8.x 长上下文时代的核心汇率。",
+    "text": "24.5 消融实验\n把因果掩罩撤掉测”理解”任务是下一章的正题，本章的消融换成一个经济学问题：注意力矩阵的稀疏化。把因果掩罩进一步收紧——每个位置只允许看最近 k=16 个位置（带状掩罩，其余 \\(-\\infty\\)）：\n\nimport copy\n\nsparse_model = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\norig_forward = sparse_model.blocks[0].attn.forward\n\ndef banded_forward(self, X, causal=True):\n    out = orig_forward(X, causal=causal)\n    return out\n\n# 简化实现：直接在掩罩阶段演示——把 Window 思路留给练习 4\n# 这里用计时代替精度：注意力矩阵从 64x64 砍到 64x16，计算量降 ~4 倍\nrng = np.random.default_rng(0)\nidx = np.random.default_rng(0).integers(0, V, size=(4, 65))\nt0 = time.time()\nfor _ in range(10):\n    model.loss_and_backward(idx)\nprint(f\"全注意力单步: {(time.time()-t0)/10*1000:.1f} ms —— T² 账单的主体就在这里\")\n\n全注意力单步: 4.4 ms —— T² 账单的主体就在这里\n\n\n带状/稀疏注意力（Longformer、Sparse Transformer 一族）正是”在长序列上把 O(T²) 砍回 O(T·k)“的家族——账单催生的整个研究方向。精度换算力的交换比，是 8.x 长上下文时代的核心汇率。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>为什么 Transformer 赢了</span>"
@@ -2504,7 +2504,7 @@
     "href": "chapters/vol2/part5-why-transformer-won.html#参考文献",
     "title": "24  为什么 Transformer 赢了",
     "section": "24.8 参考文献",
-    "text": "24.8 参考文献\n\nBradbury et al. (2017). Quasi-Recurrent Neural Networks. NeurIPS.\nVaswani et al. (2017). Attention Is All You Need. NeurIPS.",
+    "text": "24.8 参考文献\n\nBradbury et al. (2017). Quasi-Recurrent Neural Networks. NeurIPS. ↗ 搜索原文\nVaswani et al. (2017). Attention Is All You Need. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>为什么 Transformer 赢了</span>"
@@ -2614,7 +2614,7 @@
     "href": "chapters/vol2/part5-gpt-vs-bert.html#参考文献",
     "title": "25  分岔路口：GPT 与 BERT",
     "section": "25.8 参考文献",
-    "text": "25.8 参考文献\n\nRadford et al. (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Technical Report.\nDevlin et al. (2019). BERT. NAACL.\nRadford et al. (2019). Language Models Are Unsupervised Multitask Learners. OpenAI Technical Report.\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS.",
+    "text": "25.8 参考文献\n\nRadford et al. (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Technical Report. ↗ 搜索原文\nDevlin et al. (2019). BERT. NAACL. ↗ 搜索原文\nRadford et al. (2019). Language Models Are Unsupervised Multitask Learners. OpenAI Technical Report. ↗ 搜索原文\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>25</span>  <span class='chapter-title'>分岔路口：GPT 与 BERT</span>"
@@ -2680,7 +2680,7 @@
     "href": "chapters/vol2/part6-scaling-laws.html#从零实现",
     "title": "26  GPT-3 与 Scaling Laws：loss 的可预测性",
     "section": "26.4 从零实现",
-    "text": "26.4 从零实现\n燃料换大：语法模板 + Zipf 词频的合成语料（make_grammar_corpus，6 万字符训练 / 1.2 万验证——多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提——2.5 配方课的续集）：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus, make_grammar_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\narr_t = np.array(char_corpus(make_grammar_corpus(60000, seed=0))[0])\narr_v = np.array(char_corpus(make_grammar_corpus(12000, seed=1))[0])\nV = len(char_corpus(make_grammar_corpus(60000, seed=0))[1])  # 词表取自完整训练文本\nvb = np.stack([arr_v[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr_v) - 65, size=200)])\nprint(f\"训练 {len(arr_t)} / 验证 {len(arr_v)} 字符，词表 {V}，均匀基线 {np.log(V):.2f}\")\n\n\ndef train_eval(d_model, steps=1500, seed=0):\n    heads = 2 if d_model &lt;= 32 else 4\n    m = MiniGPT(V, d_model=d_model, n_heads=heads, n_blocks=2, block_size=64, seed=seed)\n    rng = np.random.default_rng(seed)\n    for step in range(steps):\n        lr = 0.15 * min(1.0, (step + 1) / 150) * (1 - 0.9 * step / steps)  # warmup + 线性衰减\n        starts = rng.integers(0, len(arr_t) - 65, size=16)\n        batch = np.stack([arr_t[s : s + 65] for s in starts])\n        m.loss_and_backward(batch)\n        m.step(lr, clip=1.0)\n    return m, float(m.loss_on(vb))\n\n\nsizes, losses, params = [], [], []\nfor d in (8, 16, 32, 64):\n    t0 = time.time()\n    m, vl = train_eval(d)\n    sizes.append(d)\n    losses.append(vl)\n    params.append(m.n_params())\n    print(f\"d={d:3d} ({m.n_params():6d} 参数): val loss = {vl:.4f} ({time.time()-t0:.0f}s)\")\n\n训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37\nd=  8 (  2237 参数): val loss = 3.3608 (22s)\nd= 16 (  7517 参数): val loss = 2.3125 (23s)\nd= 32 ( 27293 参数): val loss = 1.9087 (49s)\nd= 64 (103709 参数): val loss = 1.8039 (103s)\n\n\n典型读数：3.36 / 2.31 / 1.91 / 1.80——d=8 卡在均匀基线（容量不足），其后单调改善、尾部明显收窄（数据墙在招手）。画在对数坐标里：\n\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(5.5, 4))\nplt.loglog(params, losses, \"o-\", label=\"measured\")\nplt.axhline(np.log(V), ls=\"--\", c=\"gray\", label=\"uniform baseline\")\nplt.xlabel(\"parameters (log)\")\nplt.ylabel(\"val loss (log)\")\nplt.title(\"A mini scaling law, measured on 60KB of grammar text\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n正菜：外推游戏。 只用前三个点拟合纯幂律，预测第四个，然后揭晓：\n\ncoef = np.polyfit(np.log(params[:3]), np.log(losses[:3]), 1)  # 纯幂律 = 对数坐标直线\npred = np.exp(np.polyval(coef, np.log(params[3])))\nprint(f\"纯幂律外推预测 d=64: {pred:.3f}   实测: {losses[3]:.3f}   误差: {abs(pred-losses[3])/losses[3]:.0%}\")\n\n纯幂律外推预测 d=64: 1.368   实测: 1.804   误差: 24%\n\n\n典型结果：纯幂律预测约 1.5–1.6，实测 1.80——外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 \\(L_\\infty\\)。补上地板项再拟合（三点 + 地板共两参数可解）：\n\nfrom scipy.optimize import curve_fit  # noqa: 若无 scipy，用网格搜索替代（练习 5）\n\ndef with_floor(N, a, b, floor):\n    return floor + a * N ** (-b)\n\ntry:\n    popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)\n    print(f\"带地板拟合: floor={popt[2]:.2f}, 预测 d=64: {with_floor(params[3], *popt):.3f}（实测 {losses[3]:.3f}）\")\nexcept Exception as e:\n    print(\"（本机无 scipy 时留给练习 5 的网格搜索版）\", e)\n\n带地板拟合: floor=1.69, 预测 d=64: 1.765（实测 1.804）\n\n\nC:\\Users\\yujid\\AppData\\Local\\Temp\\ipykernel_35496\\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated\n  popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)\n\n\n带地板的模型把第四点咬住——曲线形状的选择就是世界观的 选择：纯幂律说”更大永远更好”，带地板说”更大终将撞墙”。2020 年的行业相信前者；2024 年之后的行业活在了后者里（9.2 的数据墙）。我们的玩具在六万字符的尺度上，提前演完了这幕剧。",
+    "text": "26.4 从零实现\n燃料换大：语法模板 + Zipf 词频的合成语料（make_grammar_corpus，6 万字符训练 / 1.2 万验证——多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提——2.5 配方课的续集）：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus, make_grammar_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\narr_t = np.array(char_corpus(make_grammar_corpus(60000, seed=0))[0])\narr_v = np.array(char_corpus(make_grammar_corpus(12000, seed=1))[0])\nV = len(char_corpus(make_grammar_corpus(60000, seed=0))[1])  # 词表取自完整训练文本\nvb = np.stack([arr_v[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr_v) - 65, size=200)])\nprint(f\"训练 {len(arr_t)} / 验证 {len(arr_v)} 字符，词表 {V}，均匀基线 {np.log(V):.2f}\")\n\n\ndef train_eval(d_model, steps=1500, seed=0):\n    heads = 2 if d_model &lt;= 32 else 4\n    m = MiniGPT(V, d_model=d_model, n_heads=heads, n_blocks=2, block_size=64, seed=seed)\n    rng = np.random.default_rng(seed)\n    for step in range(steps):\n        lr = 0.15 * min(1.0, (step + 1) / 150) * (1 - 0.9 * step / steps)  # warmup + 线性衰减\n        starts = rng.integers(0, len(arr_t) - 65, size=16)\n        batch = np.stack([arr_t[s : s + 65] for s in starts])\n        m.loss_and_backward(batch)\n        m.step(lr, clip=1.0)\n    return m, float(m.loss_on(vb))\n\n\nsizes, losses, params = [], [], []\nfor d in (8, 16, 32, 64):\n    t0 = time.time()\n    m, vl = train_eval(d)\n    sizes.append(d)\n    losses.append(vl)\n    params.append(m.n_params())\n    print(f\"d={d:3d} ({m.n_params():6d} 参数): val loss = {vl:.4f} ({time.time()-t0:.0f}s)\")\n\n训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37\nd=  8 (  2237 参数): val loss = 3.3608 (19s)\nd= 16 (  7517 参数): val loss = 2.3125 (26s)\nd= 32 ( 27293 参数): val loss = 1.9087 (58s)\nd= 64 (103709 参数): val loss = 1.8039 (124s)\n\n\n典型读数：3.36 / 2.31 / 1.91 / 1.80——d=8 卡在均匀基线（容量不足），其后单调改善、尾部明显收窄（数据墙在招手）。画在对数坐标里：\n\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(5.5, 4))\nplt.loglog(params, losses, \"o-\", label=\"measured\")\nplt.axhline(np.log(V), ls=\"--\", c=\"gray\", label=\"uniform baseline\")\nplt.xlabel(\"parameters (log)\")\nplt.ylabel(\"val loss (log)\")\nplt.title(\"A mini scaling law, measured on 60KB of grammar text\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n正菜：外推游戏。 只用前三个点拟合纯幂律，预测第四个，然后揭晓：\n\ncoef = np.polyfit(np.log(params[:3]), np.log(losses[:3]), 1)  # 纯幂律 = 对数坐标直线\npred = np.exp(np.polyval(coef, np.log(params[3])))\nprint(f\"纯幂律外推预测 d=64: {pred:.3f}   实测: {losses[3]:.3f}   误差: {abs(pred-losses[3])/losses[3]:.0%}\")\n\n纯幂律外推预测 d=64: 1.368   实测: 1.804   误差: 24%\n\n\n典型结果：纯幂律预测约 1.5–1.6，实测 1.80——外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 \\(L_\\infty\\)。补上地板项再拟合（三点 + 地板共两参数可解）：\n\nfrom scipy.optimize import curve_fit  # noqa: 若无 scipy，用网格搜索替代（练习 5）\n\ndef with_floor(N, a, b, floor):\n    return floor + a * N ** (-b)\n\ntry:\n    popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)\n    print(f\"带地板拟合: floor={popt[2]:.2f}, 预测 d=64: {with_floor(params[3], *popt):.3f}（实测 {losses[3]:.3f}）\")\nexcept Exception as e:\n    print(\"（本机无 scipy 时留给练习 5 的网格搜索版）\", e)\n\n带地板拟合: floor=1.69, 预测 d=64: 1.765（实测 1.804）\n\n\nC:\\Users\\yujid\\AppData\\Local\\Temp\\ipykernel_53216\\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated\n  popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)\n\n\n带地板的模型把第四点咬住——曲线形状的选择就是世界观的 选择：纯幂律说”更大永远更好”，带地板说”更大终将撞墙”。2020 年的行业相信前者；2024 年之后的行业活在了后者里（9.2 的数据墙）。我们的玩具在六万字符的尺度上，提前演完了这幕剧。",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>26</span>  <span class='chapter-title'>GPT-3 与 Scaling Laws：loss 的可预测性</span>"
@@ -2724,7 +2724,7 @@
     "href": "chapters/vol2/part6-scaling-laws.html#参考文献",
     "title": "26  GPT-3 与 Scaling Laws：loss 的可预测性",
     "section": "26.8 参考文献",
-    "text": "26.8 参考文献\n\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS.\nHestness et al. (2017). Deep Learning Scaling Is Predictable, Empirically. arXiv preprint arXiv:1712.00409.",
+    "text": "26.8 参考文献\n\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361. ↗ 搜索原文\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS. ↗ 搜索原文\nHestness et al. (2017). Deep Learning Scaling Is Predictable, Empirically. arXiv preprint arXiv:1712.00409. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>26</span>  <span class='chapter-title'>GPT-3 与 Scaling Laws：loss 的可预测性</span>"
@@ -2790,7 +2790,7 @@
     "href": "chapters/vol2/part6-chinchilla.html#从零实现",
     "title": "27  Chinchilla：等算力下的再平衡",
     "section": "27.4 从零实现",
-    "text": "27.4 从零实现\n复用上一章的全部装备，只把扫描协议换成等算力：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus, make_grammar_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\narr_t = np.array(char_corpus(make_grammar_corpus(60000, seed=0))[0])\narr_v = np.array(char_corpus(make_grammar_corpus(12000, seed=1))[0])\nV = len(char_corpus(make_grammar_corpus(60000, seed=0))[1])  # 词表取自完整训练文本\nvb = np.stack([arr_v[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr_v) - 65, size=200)])\n\n\ndef train_eval(d_model, steps, seed=0):\n    heads = 2 if d_model &lt;= 32 else 4\n    m = MiniGPT(V, d_model=d_model, n_heads=heads, n_blocks=2, block_size=64, seed=seed)\n    rng = np.random.default_rng(seed)\n    for step in range(steps):\n        lr = 0.15 * min(1.0, (step + 1) / 150) * (1 - 0.9 * step / max(steps, 1))\n        starts = rng.integers(0, len(arr_t) - 65, size=16)\n        batch = np.stack([arr_t[s : s + 65] for s in starts])\n        m.loss_and_backward(batch)\n        m.step(lr, clip=1.0)\n    return m, float(m.loss_on(vb))\n\n\nBUDGET = 27293 * 1200  # param-steps（以 d=32 的上一章配置定锚）\nconfigs = [(8, 2237), (16, 7517), (32, 27293), (64, 103709)]\n\nresults = {}\nfor d, n in configs:\n    steps = int(BUDGET / n)\n    t0 = time.time()\n    m, vl = train_eval(d, steps)\n    results[d] = vl\n    print(f\"d={d:3d} ({n:6d} 参数, {steps:5d} 步): val = {vl:.4f} ({time.time()-t0:.0f}s)\")\n\nd=  8 (  2237 参数, 14640 步): val = 1.7329 (163s)\nd= 16 (  7517 参数,  4357 步): val = 1.5540 (64s)\nd= 32 ( 27293 参数,  1200 步): val = 1.8942 (39s)\nd= 64 (103709 参数,   315 步): val = 2.1518 (22s)\n\n\n\nimport matplotlib.pyplot as plt\n\nds = list(results)\nplt.figure(figsize=(5.5, 4))\nplt.plot(ds, [results[d] for d in ds], \"o-\")\nplt.xscale(\"log\", base=2)\nplt.xlabel(\"model size (d_model, log)\")\nplt.ylabel(\"val loss at fixed compute\")\nplt.title(\"The iso-compute U-curve: too small underfits, too big undertrains\")\nbest = min(results, key=results.get)\nplt.axvline(best, ls=\"--\", c=\"red\", label=f\"compute-optimal: d={best}\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n典型读数（对照你的预测）：d=8 → 1.73，d=16 → 1.55（谷底），d=32 → 1.89，d=64 → 2.15——清晰的 U 型。三个教训当场兑现：\n\n上一章的冠军（d=64）在本协议下垫底：315 步远不够喂饱十万个参数——“更大更好”是”步数富余”世界里的结论；\n谷底在 d=16：等算力下，中等身材 + 充分训练胜过巨人 + 浅尝辄止；\n有趣的细节：d=8（步数超多）拿到 1.73，好于 d=32/64——小模型充分训练的顽强，正是 LLaMA 路线的玩具版。\n\n玩具与现实的换算：真实 Chinchilla 配比约 20 token/参数。我们的谷底 d=16：训练 4357 步 × 每步 1024 token ≈ 4.5M token 对 7.5K 参数——比率约 600，远大于 20。原因正是上一章的那堵墙：六万字符的语料让大模型无利可图，把最优点狠狠推向小模型。最优配比是（算力、数据供给）的函数——数据稀缺的世界里，“小而精”永远正确；数据充沛的世界里，配比才由算力单方面决定。我们的玩具恰好站在”数据稀缺世界”，与 2024 年后的人类殊途同归（9.2 的伏笔，以想不到的方式提前）。",
+    "text": "27.4 从零实现\n复用上一章的全部装备，只把扫描协议换成等算力：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus, make_grammar_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\narr_t = np.array(char_corpus(make_grammar_corpus(60000, seed=0))[0])\narr_v = np.array(char_corpus(make_grammar_corpus(12000, seed=1))[0])\nV = len(char_corpus(make_grammar_corpus(60000, seed=0))[1])  # 词表取自完整训练文本\nvb = np.stack([arr_v[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr_v) - 65, size=200)])\n\n\ndef train_eval(d_model, steps, seed=0):\n    heads = 2 if d_model &lt;= 32 else 4\n    m = MiniGPT(V, d_model=d_model, n_heads=heads, n_blocks=2, block_size=64, seed=seed)\n    rng = np.random.default_rng(seed)\n    for step in range(steps):\n        lr = 0.15 * min(1.0, (step + 1) / 150) * (1 - 0.9 * step / max(steps, 1))\n        starts = rng.integers(0, len(arr_t) - 65, size=16)\n        batch = np.stack([arr_t[s : s + 65] for s in starts])\n        m.loss_and_backward(batch)\n        m.step(lr, clip=1.0)\n    return m, float(m.loss_on(vb))\n\n\nBUDGET = 27293 * 1200  # param-steps（以 d=32 的上一章配置定锚）\nconfigs = [(8, 2237), (16, 7517), (32, 27293), (64, 103709)]\n\nresults = {}\nfor d, n in configs:\n    steps = int(BUDGET / n)\n    t0 = time.time()\n    m, vl = train_eval(d, steps)\n    results[d] = vl\n    print(f\"d={d:3d} ({n:6d} 参数, {steps:5d} 步): val = {vl:.4f} ({time.time()-t0:.0f}s)\")\n\nd=  8 (  2237 参数, 14640 步): val = 1.7329 (176s)\nd= 16 (  7517 参数,  4357 步): val = 1.5540 (68s)\nd= 32 ( 27293 参数,  1200 步): val = 1.8942 (44s)\nd= 64 (103709 参数,   315 步): val = 2.1518 (27s)\n\n\n\nimport matplotlib.pyplot as plt\n\nds = list(results)\nplt.figure(figsize=(5.5, 4))\nplt.plot(ds, [results[d] for d in ds], \"o-\")\nplt.xscale(\"log\", base=2)\nplt.xlabel(\"model size (d_model, log)\")\nplt.ylabel(\"val loss at fixed compute\")\nplt.title(\"The iso-compute U-curve: too small underfits, too big undertrains\")\nbest = min(results, key=results.get)\nplt.axvline(best, ls=\"--\", c=\"red\", label=f\"compute-optimal: d={best}\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n典型读数（对照你的预测）：d=8 → 1.73，d=16 → 1.55（谷底），d=32 → 1.89，d=64 → 2.15——清晰的 U 型。三个教训当场兑现：\n\n上一章的冠军（d=64）在本协议下垫底：315 步远不够喂饱十万个参数——“更大更好”是”步数富余”世界里的结论；\n谷底在 d=16：等算力下，中等身材 + 充分训练胜过巨人 + 浅尝辄止；\n有趣的细节：d=8（步数超多）拿到 1.73，好于 d=32/64——小模型充分训练的顽强，正是 LLaMA 路线的玩具版。\n\n玩具与现实的换算：真实 Chinchilla 配比约 20 token/参数。我们的谷底 d=16：训练 4357 步 × 每步 1024 token ≈ 4.5M token 对 7.5K 参数——比率约 600，远大于 20。原因正是上一章的那堵墙：六万字符的语料让大模型无利可图，把最优点狠狠推向小模型。最优配比是（算力、数据供给）的函数——数据稀缺的世界里，“小而精”永远正确；数据充沛的世界里，配比才由算力单方面决定。我们的玩具恰好站在”数据稀缺世界”，与 2024 年后的人类殊途同归（9.2 的伏笔，以想不到的方式提前）。",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>Chinchilla：等算力下的再平衡</span>"
@@ -2834,7 +2834,7 @@
     "href": "chapters/vol2/part6-chinchilla.html#参考文献",
     "title": "27  Chinchilla：等算力下的再平衡",
     "section": "27.8 参考文献",
-    "text": "27.8 参考文献\n\nHoffmann et al. (2022). Training Compute-Optimal Large Language Models. arXiv preprint arXiv:2203.15556.\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.\nTouvron et al. (2023). LLaMA. arXiv preprint arXiv:2302.13971.",
+    "text": "27.8 参考文献\n\nHoffmann et al. (2022). Training Compute-Optimal Large Language Models. arXiv preprint arXiv:2203.15556. ↗ 搜索原文\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361. ↗ 搜索原文\nTouvron et al. (2023). LLaMA. arXiv preprint arXiv:2302.13971. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>Chinchilla：等算力下的再平衡</span>"
@@ -2944,7 +2944,7 @@
     "href": "chapters/vol2/part6-emergence.html#参考文献",
     "title": "28  涌现之争：相变还是度量假象",
     "section": "28.8 参考文献",
-    "text": "28.8 参考文献\n\nWei et al. (2022). Emergent Abilities of Large Language Models. Transactions on Machine Learning Research.\nSchaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). Are Emergent Abilities of Large Language Models a Mirage?. NeurIPS.",
+    "text": "28.8 参考文献\n\nWei et al. (2022). Emergent Abilities of Large Language Models. Transactions on Machine Learning Research. ↗ 搜索原文\nSchaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). Are Emergent Abilities of Large Language Models a Mirage?. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>28</span>  <span class='chapter-title'>涌现之争：相变还是度量假象</span>"
@@ -3054,7 +3054,7 @@
     "href": "chapters/vol2/part6-convergence.html#参考文献",
     "title": "29  收敛：decoder-only、MoE 与开源运动",
     "section": "29.8 参考文献",
-    "text": "29.8 参考文献\n\nFedus, William and Zoph, Barret and Shazeer, Noam (2022). Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity. Journal of Machine Learning Research, 23, 1–39.\nTouvron et al. (2023). LLaMA. arXiv preprint arXiv:2302.13971.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "text": "29.8 参考文献\n\nFedus, William and Zoph, Barret and Shazeer, Noam (2022). Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity. Journal of Machine Learning Research, 23, 1–39. ↗ 搜索原文\nTouvron et al. (2023). LLaMA. arXiv preprint arXiv:2302.13971. ↗ 搜索原文\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>29</span>  <span class='chapter-title'>收敛：decoder-only、MoE 与开源运动</span>"
@@ -3164,7 +3164,7 @@
     "href": "chapters/vol3/part7-base-model.html#参考文献",
     "title": "30  Base Model：互联网的压缩机",
     "section": "30.8 参考文献",
-    "text": "30.8 参考文献\n\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS.\nOlsson et al. (2022). In-Context Learning and Induction Heads. Anthropic Alignment Research.",
+    "text": "30.8 参考文献\n\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS. ↗ 搜索原文\nOlsson et al. (2022). In-Context Learning and Induction Heads. Anthropic Alignment Research. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 7 · 对齐时代（2020–2025）",
       "<span class='chapter-number'>30</span>  <span class='chapter-title'>Base Model：互联网的压缩机</span>"
@@ -3274,7 +3274,7 @@
     "href": "chapters/vol3/part7-sft.html#参考文献",
     "title": "31  SFT：指令数据的监督 loss",
     "section": "31.8 参考文献",
-    "text": "31.8 参考文献\n\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS.\nWei et al. (2022). Finetuned Language Models Are Zero-Shot Learners. ICLR.\nSanh et al. (2022). Multitask Prompted Training Enables Zero-Shot Task Generalization. ICLR.\nHu et al. (2021). LoRA. arXiv preprint arXiv:2106.09685.",
+    "text": "31.8 参考文献\n\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS. ↗ 搜索原文\nWei et al. (2022). Finetuned Language Models Are Zero-Shot Learners. ICLR. ↗ 搜索原文\nSanh et al. (2022). Multitask Prompted Training Enables Zero-Shot Task Generalization. ICLR. ↗ 搜索原文\nHu et al. (2021). LoRA. arXiv preprint arXiv:2106.09685. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 7 · 对齐时代（2020–2025）",
       "<span class='chapter-number'>31</span>  <span class='chapter-title'>SFT：指令数据的监督 loss</span>"
@@ -3384,7 +3384,7 @@
     "href": "chapters/vol3/part7-rlhf.html#参考文献",
     "title": "32  RLHF 与 DPO：奖励作为变形的 loss",
     "section": "32.8 参考文献",
-    "text": "32.8 参考文献\n\nRafailov et al. (2023). Direct Preference Optimization: Your Language Model is Secretly a Reward Model. NeurIPS.\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS.\nChristiano et al. (2017). Deep Reinforcement Learning from Human Preferences. NeurIPS.",
+    "text": "32.8 参考文献\n\nRafailov et al. (2023). Direct Preference Optimization: Your Language Model is Secretly a Reward Model. NeurIPS. ↗ 搜索原文\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS. ↗ 搜索原文\nChristiano et al. (2017). Deep Reinforcement Learning from Human Preferences. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 7 · 对齐时代（2020–2025）",
       "<span class='chapter-number'>32</span>  <span class='chapter-title'>RLHF 与 DPO：奖励作为变形的 loss</span>"
@@ -3494,7 +3494,7 @@
     "href": "chapters/vol3/part7-reasoning.html#参考文献",
     "title": "33  推理模型：RLVR 与测试时计算",
     "section": "33.8 参考文献",
-    "text": "33.8 参考文献\n\nZelikman et al. (2022). STaR. NeurIPS.\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS.",
+    "text": "33.8 参考文献\n\nZelikman et al. (2022). STaR. NeurIPS. ↗ 搜索原文\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 7 · 对齐时代（2020–2025）",
       "<span class='chapter-number'>33</span>  <span class='chapter-title'>推理模型：RLVR 与测试时计算</span>"
@@ -3604,7 +3604,7 @@
     "href": "chapters/vol3/part8-agent-origins.html#参考文献",
     "title": "34  Agent 能力从哪来：数据里的轨迹",
     "section": "34.8 参考文献",
-    "text": "34.8 参考文献\n\nSchick, Timo and Dwivedi-Yu, Jane and Dess`i (2023). Toolformer: Language Models Can Teach Themselves to Use Tools. NeurIPS.\nRadford et al. (2019). Language Models Are Unsupervised Multitask Learners. OpenAI Technical Report.",
+    "text": "34.8 参考文献\n\nSchick, Timo and Dwivedi-Yu, Jane and Dess`i (2023). Toolformer: Language Models Can Teach Themselves to Use Tools. NeurIPS. ↗ 搜索原文\nRadford et al. (2019). Language Models Are Unsupervised Multitask Learners. OpenAI Technical Report. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 8 · 智能体时代（2023–2026）",
       "<span class='chapter-number'>34</span>  <span class='chapter-title'>Agent 能力从哪来：数据里的轨迹</span>"
@@ -3714,7 +3714,7 @@
     "href": "chapters/vol3/part8-agent-training.html#参考文献",
     "title": "35  训练 Agent：环境、轨迹与过程奖励",
     "section": "35.8 参考文献",
-    "text": "35.8 参考文献\n\nYao et al. (2023). Tree of Thoughts: Deliberate Problem Solving with Large Language Models. NeurIPS.\nZelikman et al. (2022). STaR. NeurIPS.",
+    "text": "35.8 参考文献\n\nYao et al. (2023). Tree of Thoughts: Deliberate Problem Solving with Large Language Models. NeurIPS. ↗ 搜索原文\nZelikman et al. (2022). STaR. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 8 · 智能体时代（2023–2026）",
       "<span class='chapter-number'>35</span>  <span class='chapter-title'>训练 Agent：环境、轨迹与过程奖励</span>"
@@ -3824,7 +3824,7 @@
     "href": "chapters/vol3/part8-model-vs-system.html#参考文献",
     "title": "36  模型层与系统层：判断框架",
     "section": "36.8 参考文献",
-    "text": "36.8 参考文献\n\nLewis et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP. NeurIPS.\nRadford et al. (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Technical Report.",
+    "text": "36.8 参考文献\n\nLewis et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP. NeurIPS. ↗ 搜索原文\nRadford et al. (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Technical Report. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 8 · 智能体时代（2023–2026）",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>模型层与系统层：判断框架</span>"
@@ -3912,7 +3912,7 @@
     "href": "chapters/vol3/part9-patterns.html#参考文献",
     "title": "37  复盘：反复出现的研究模式",
     "section": "37.6 参考文献",
-    "text": "37.6 参考文献\n\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press.",
+    "text": "37.6 参考文献\n\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 9 · 研究的规律与未来",
       "<span class='chapter-number'>37</span>  <span class='chapter-title'>复盘：反复出现的研究模式</span>"
@@ -4000,7 +4000,7 @@
     "href": "chapters/vol3/part9-open-problems.html#参考文献",
     "title": "38  Loss 视角下的开放问题",
     "section": "38.7 参考文献",
-    "text": "38.7 参考文献\n\nHestness et al. (2017). Deep Learning Scaling Is Predictable, Empirically. arXiv preprint arXiv:1712.00409.\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.\nSchaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). Are Emergent Abilities of Large Language Models a Mirage?. NeurIPS.",
+    "text": "38.7 参考文献\n\nHestness et al. (2017). Deep Learning Scaling Is Predictable, Empirically. arXiv preprint arXiv:1712.00409. ↗ 搜索原文\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361. ↗ 搜索原文\nSchaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). Are Emergent Abilities of Large Language Models a Mirage?. NeurIPS. ↗ 搜索原文",
     "crumbs": [
       "卷三 · Part 9 · 研究的规律与未来",
       "<span class='chapter-number'>38</span>  <span class='chapter-title'>Loss 视角下的开放问题</span>"
@@ -4099,7 +4099,7 @@
     "href": "chapters/vol3/part9-prediction.html#参考文献",
     "title": "39  终章：你的判断框架与预测",
     "section": "39.7 参考文献",
-    "text": "39.7 参考文献\n\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press.\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x",
+    "text": "39.7 参考文献\n\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link. ↗ 搜索原文\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press. ↗ 搜索原文\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x",
     "crumbs": [
       "卷三 · Part 9 · 研究的规律与未来",
       "<span class='chapter-number'>39</span>  <span class='chapter-title'>终章：你的判断框架与预测</span>"

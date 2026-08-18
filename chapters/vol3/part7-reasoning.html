@@ -1160,7 +1160,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="33.4">
 <h2 data-number="33.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">33.4</span> 从零实现</h2>
 <p>老演员：反转翻译（输入数字序列、输出其倒序）+ 注意力 seq2seq。这次只训 5 个 epoch，留一个”有缺陷的好学生”：</p>
-<div id="6d86cea4" class="cell" data-execution_count="1">
+<div id="dbe5b35f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1196,7 +1196,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：测试时计算——多数投票。</strong> 同一输入温度采样 k 次，取众数（self-consistency 的最小版）：</p>
-<div id="8d0efbac" class="cell" data-execution_count="2">
+<div id="037f35b9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vote_acc(m, pairs, k, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, (i, t) <span class="kw">in</span> <span class="bu">enumerate</span>(pairs):</span>
@@ -1233,7 +1233,7 @@ k=15: 0.874</code></pre>
 </div>
 <p>典型读数：0.84 → 0.89（k=7）——<strong>几个点的净赚，不花一个新标签、不动一个权重</strong>。涨幅有限的原因值得一课：投票修复的是<strong>采样方差</strong>（正确答案在分布里但单次贪心错过）；当某类输入的 <span class="math inline">\(P(\text{正确})\)</span> 本身很低（系统性短板），再多票也投不出来——<strong>测试时计算的边界就是概率质量的边界</strong>。</p>
 <p><strong>实验二：STaR 式自举——可验证奖励当老师。</strong> 采样→判卷（输出等于反转即”对”）→只学好答案→三轮：</p>
-<div id="f875e144" class="cell" data-execution_count="3">
+<div id="55c26fc8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> star_round(m, round_id, samples_per<span class="op">=</span><span class="dv">10</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">100</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    correct <span class="op">=</span> []</span>
@@ -1288,7 +1288,7 @@ k=15: 0.874</code></pre>
 <section id="消融实验" class="level2" data-number="33.5">
 <h2 data-number="33.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">33.5</span> 消融实验</h2>
 <p><strong>温度的辩证法</strong>：STaR 靠采样找成功——温度太低采不出新解、太高全是垃圾。扫 temp ∈ {0.5, 0.9, 1.5} 各跑一轮自举：</p>
-<div id="1eedf048" class="cell" data-execution_count="4">
+<div id="bf210e65" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> temp <span class="kw">in</span> (<span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">1.5</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    m2 <span class="op">=</span> AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    rng4 <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
@@ -1372,8 +1372,8 @@ temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
 <section id="参考文献" class="level2" data-number="33.8">
 <h2 data-number="33.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">33.8</span> 参考文献</h2>
 <ol type="1">
-<li>Zelikman et al.&nbsp;(2022). <em>STaR</em>. <em>NeurIPS</em>.</li>
-<li>Ouyang et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback</em>. <em>NeurIPS</em>.</li>
+<li>Zelikman et al.&nbsp;(2022). <em>STaR</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202022%20STaR">↗ 搜索原文</a></li>
+<li>Ouyang et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202022%20Training%20Language%20Models%20to%20Follow%20Instructions">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="33.9">

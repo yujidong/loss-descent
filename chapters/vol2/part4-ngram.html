@@ -1121,7 +1121,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">17.4</span> 从零实现</h2>
 <p>语料是内置的教学小故事（<code>dlbook.data.TINY_STORY</code>，约 2500 字符，刻意重复的句式与小词表）：</p>
-<div id="b6b94795" class="cell" data-execution_count="1">
+<div id="b30104a5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1138,7 +1138,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>计数即模型</strong>——完整的 n-gram 语言模型只要几行：</p>
-<div id="a9f23827" class="cell" data-execution_count="2">
+<div id="de77d662" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ngram_model(n, train):</span>
@@ -1152,7 +1152,7 @@ window.Quarto = {
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (c <span class="op">+</span> alpha) <span class="op">/</span> (denom <span class="op">+</span> alpha <span class="op">*</span> V)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：熵曲线。</strong> 扫 <span class="math inline">\(n\)</span>：</p>
-<div id="2287ff57" class="cell" data-execution_count="3">
+<div id="9ead4e49" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ces, unseen <span class="op">=</span> [], []</span>
@@ -1175,7 +1175,7 @@ window.Quarto = {
 </div>
 </div>
 <p>典型读数（对照你的预测）：均匀基线 3.30 → 1-gram <strong>2.83</strong>（字母频率本身就值 0.47 nat）→ 2-gram <strong>2.17</strong> → 3-gram <strong>1.95</strong> → 4-gram <strong>2.12</strong>——<strong>在 4-gram 反弹</strong>。原因就在第二列：未见比例从 2% 涨到 30%，平滑在硬撑一个越来越空洞的统计表。这就是维度灾难的现场：上下文种类数按 <span class="math inline">\(27^3\)</span> 增长，训练文本只有两千字符——<strong>数据与上下文长度的赛跑，计数法输在起跑线上</strong>。（香农用人类实验测得英语的熵约 1.0–1.5 bit/字符 ≈ 0.7–1.1 nat——我们的 3-gram 离这个下界还有距离，而人类就在下界附近。）</p>
-<div id="79d5b03d" class="cell" data-execution_count="4">
+<div id="66216bc5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">3.8</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], ces, <span class="st">"o-"</span>, label<span class="op">=</span><span class="st">"cross-entropy"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.axhline(np.log(V), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="st">"uniform baseline"</span>)</span>
@@ -1193,7 +1193,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验二：从模型里采样。</strong> 语言模型不只是打分器，把 4-gram 的条件分布当骰子摇，就能”生成”文本：</p>
-<div id="1ccfed4f" class="cell" data-execution_count="5">
+<div id="eefb6de8" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_ngram(n, counts, ctx, length<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> <span class="bu">list</span>(test_ids[: n <span class="op">-</span> <span class="dv">1</span>])  <span class="co"># 从测试集借个开头</span></span>
@@ -1214,7 +1214,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="17.5">
 <h2 data-number="17.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">17.5</span> 消融实验</h2>
 <p><strong>平滑强度的账。</strong> 把拉普拉斯系数 <span class="math inline">\(\alpha\)</span> 从 0.5 调到 0.01 / 5.0，重测 3-gram 与 4-gram 的交叉熵——观察”留门的宽度”如何随 <span class="math inline">\(n\)</span> 变化（上下文越长、越空洞，最优的 <span class="math inline">\(\alpha\)</span> 越大，模型实际上越退化回低阶）。<strong>平滑系数是在为截断近似与数据稀缺同时买单</strong>——这份账单在 6.x 时代会以”数据配比”的新名字再来一次。</p>
-<div id="fe8a617d" class="cell" data-execution_count="6">
+<div id="dce6dfb8" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> alpha <span class="kw">in</span> (<span class="fl">0.01</span>, <span class="fl">0.5</span>, <span class="fl">5.0</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">3</span>, <span class="dv">4</span>):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        counts, ctx <span class="op">=</span> ngram_model(n, train_ids)</span>
@@ -1293,9 +1293,9 @@ alpha=5.0, 4-gram: CE = 2.779</code></pre>
 <section id="参考文献" class="level2" data-number="17.8">
 <h2 data-number="17.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">17.8</span> 参考文献</h2>
 <ol type="1">
-<li>Shannon, Claude E. (1951). <em>Prediction and Entropy of Printed English</em>. <em>Bell System Technical Journal, 30, 50–64</em>.</li>
+<li>Shannon, Claude E. (1951). <em>Prediction and Entropy of Printed English</em>. <em>Bell System Technical Journal, 30, 50–64</em>. <a href="https://scholar.google.com/scholar?q=Shannon%201951%20Prediction%20and%20Entropy%20of%20Printed%20English">↗ 搜索原文</a></li>
 <li>Shannon, Claude E. (1948). <em>A Mathematical Theory of Communication</em>. <em>Bell System Technical Journal, 27, 379–423</em>. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">doi:10.1002/j.1538-7305.1948.tb01338.x</a></li>
-<li>Jelinek, Frederick (1976). <em>Continuous Speech Recognition by Statistical Methods</em>. <em>Proceedings of the IEEE, 64, 532–557</em>.</li>
+<li>Jelinek, Frederick (1976). <em>Continuous Speech Recognition by Statistical Methods</em>. <em>Proceedings of the IEEE, 64, 532–557</em>. <a href="https://scholar.google.com/scholar?q=Jelinek%201976%20Continuous%20Speech%20Recognition%20by%20Statistical%20Methods">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="17.9">

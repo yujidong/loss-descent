@@ -1124,7 +1124,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="28.4">
 <h2 data-number="28.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">28.4</span> 从零实现</h2>
 <p>复用 6.1 的四尺寸扫描（同数据、同配方），每个模型测<strong>两种度量</strong>：</p>
-<div id="25b3a9e3" class="cell" data-execution_count="1">
+<div id="39a0a86a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1171,7 +1171,7 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 </div>
 </div>
 <p>把三种度量放在一起看（注意第二列到第三列的<strong>换算</strong>）：</p>
-<div id="3a629de5" class="cell" data-execution_count="2">
+<div id="36492544" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(report)</span>
@@ -1233,7 +1233,7 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 <section id="消融实验" class="level2" data-number="28.5">
 <h2 data-number="28.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">28.5</span> 消融实验</h2>
 <p><strong>放大器的旋钮</strong>：把阶梯度量的窗口从 4 调到 2 和 8，跳变的”锐度”怎么变？（窗口越长，<span class="math inline">\(n\)</span> 次方放大越猛，悬崖越陡——<strong>同一种能力可以被量出任意陡峭的觉醒</strong>。）</p>
-<div id="f6fe82c1" class="cell" data-execution_count="3">
+<div id="63bd700e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exactk(pred, tgt, k):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> <span class="bu">sum</span>((pred[i, j : j <span class="op">+</span> k] <span class="op">==</span> tgt[i, j : j <span class="op">+</span> k]).<span class="bu">all</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(pred.shape[<span class="dv">0</span>]) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, pred.shape[<span class="dv">1</span>] <span class="op">-</span> k <span class="op">+</span> <span class="dv">1</span>, k))</span>
@@ -1319,8 +1319,8 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 <section id="参考文献" class="level2" data-number="28.8">
 <h2 data-number="28.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">28.8</span> 参考文献</h2>
 <ol type="1">
-<li>Wei et al.&nbsp;(2022). <em>Emergent Abilities of Large Language Models</em>. <em>Transactions on Machine Learning Research</em>.</li>
-<li>Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). <em>Are Emergent Abilities of Large Language Models a Mirage?</em>. <em>NeurIPS</em>.</li>
+<li>Wei et al.&nbsp;(2022). <em>Emergent Abilities of Large Language Models</em>. <em>Transactions on Machine Learning Research</em>. <a href="https://scholar.google.com/scholar?q=al.%202022%20Emergent%20Abilities%20of%20Large%20Language%20Models">↗ 搜索原文</a></li>
+<li>Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). <em>Are Emergent Abilities of Large Language Models a Mirage?</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Schaeffer%202023%20Are%20Emergent%20Abilities%20of%20Large%20Language">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="28.9">
