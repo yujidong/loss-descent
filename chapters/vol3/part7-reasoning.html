@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1064,7 +1064,7 @@ window.Quarto = {
 </header>
 
 
-<p>对齐时代的前三章都在回答”怎么让模型听话”；2024 年起，前沿转向一个更硬的问题：“怎么让模型<strong>想对</strong>”。两个新主角登场：<strong>RLVR</strong>（可验证奖励的强化学习——把裁判从人类偏好换成程序判卷：答案对就是对，错就是错）与<strong>测试时计算</strong>（test-time compute——答案不变，多花推理时的算力去采样、比对、筛选）。o1 与 DeepSeek-R1 把这两件事推上顶点：后者展示了一个模型在纯 RLVR 下自发长出”反思、回溯、自我验证”的推理痕迹。本章用两个实验触摸这对新主角：多数投票与<strong>STaR 式自举</strong>——后者的思想（采样、用可验证奖励筛选、把对的当新训练数据）正是 RLVR 家族最古老的祖先。</p>
+<p>对齐时代的前三章都在回答”怎么让模型听话”；2024 年起，前沿转向一个更硬的问题：“怎么让模型<strong>想对</strong>”。两个新主角登场：RLVR（可验证奖励的强化学习——把裁判从人类偏好换成程序判卷：答案对就是对，错就是错）与测试时计算（test-time compute——答案不变，多花推理时的算力去采样、比对、筛选）。o1 与 DeepSeek-R1 把这两件事推上顶点：后者展示了一个模型在纯 RLVR 下自发长出”反思、回溯、自我验证”的推理痕迹。本章用两个实验触摸这对新主角：多数投票与STaR 式自举——后者的思想（采样、用可验证奖励筛选、把对的当新训练数据）正是 RLVR 家族最古老的祖先。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1081,25 +1081,25 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 2024–2025">
 <ul>
 <li><strong>算力</strong>：训练侧的竞赛部分让位给推理侧——“每道题花多少推理 FLOPs”成为新的可调预算（6.2 Chinchilla 的镜像问题）；</li>
-<li><strong>数据</strong>：可验证任务（数学、代码）天然自带无限”标签”——<strong>裁判自动化让偏好数据的瓶颈绕了过去</strong>；</li>
-<li><strong>认知</strong>：“CoT（思维链）只是提示技巧”的旧共识被推翻：推理痕迹可以被 RL 直接塑造，且模型会在奖励压力下<strong>自发</strong>发展出更长的思考——能力的边界从”训练分布”挪到了”推理预算”；</li>
-<li><strong>关键事实</strong>：R1 论文记录的”aha moment”——纯 RLVR 训练中的模型开始自发写”等等，让我重新想想”——是本卷叙事的高光：<strong>没有教它反思，反思从”对错偏好”里长了出来</strong>。</li>
+<li>数据：可验证任务（数学、代码）天然自带无限”标签”——裁判自动化让偏好数据的瓶颈绕了过去；</li>
+<li>认知：“CoT（思维链）只是提示技巧”的旧共识被推翻：推理痕迹可以被 RL 直接塑造，且模型会在奖励压力下自发发展出更长的思考——能力的边界从”训练分布”挪到了”推理预算”；</li>
+<li>关键事实：R1 论文记录的”aha moment”——纯 RLVR 训练中的模型开始自发写”等等，让我重新想想”——是本卷叙事的高光：没有教它反思，反思从”对错偏好”里长了出来。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="33.1">
 <h2 data-number="33.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">33.1</span> 本章问题</h2>
 <ol type="1">
 <li><strong>测试时计算</strong>：不碰权重，多采样加投票能买回多少准确率？（多数投票曲线）</li>
-<li><strong>可验证奖励的自举</strong>：只用”对错”当监督（不用任何新标签），模型能自我提升到哪？（STaR 三轮曲线）</li>
+<li>可验证奖励的自举：只用”对错”当监督（不用任何新标签），模型能自我提升到哪？（STaR 三轮曲线）</li>
 <li>推理痕迹（CoT）在其中扮演什么角色？为什么”写得长”会变成 RLVR 的自发倾向？</li>
 </ol>
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="33.2">
 <h2 data-number="33.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">33.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>思维链的发现（Wei et al., 2022）</strong>：在 prompt 里加一句”让我们一步步思考”，准确率大涨——CoT 作为<strong>提示技巧</strong>登场。弯路：初期被理解为”格式的魔法”；后来才明白它买的是<strong>计算深度</strong>：每生成一步，就把一部分推理摊到了更多的前向传播里。<strong>思考 = 计算</strong>，这是测试时计算时代的公理。</p>
-<p><strong>STaR（Zelikman et al., 2022）</strong>：自举式自我改进——模型采样解题，<strong>只用答对的</strong>（可验证！）当训练数据再训自己；答不出的难题，用”给提示后的正确解”回填（rationalization）。反复几轮，纯监督的机器愣是把解题率滚了上去。<strong>RLVR 的直系祖先</strong>，也是本章的主实验。</p>
-<p><strong>弯路：用 RLHF 的配方硬上数学</strong>。早期尝试用偏好模型给推理打分——奖励模型分不清”推理对但算错”与”推理错但蒙对”，策略学会了流畅地胡说。<strong>可验证领域的正确裁判是执行与比对，不是打分</strong>——RLVR 的全部立论。</p>
-<p><strong>o1 与 R1（2024–2025）</strong>：程序判卷（单测、答案比对）+ 大规模 RL + 允许长思考痕迹。R1 的纯 RLVR 版本（R1-Zero）展示自发涌现的反思行为；其公开训练配方（GRPO 算法、规则奖励、模板约束）引发全行业复现潮。<strong>推理能力的规模化，第一次有了”loss 只写对错”的版本</strong>。</p>
+<p><strong>思维链的发现（Wei et al., 2022）</strong>：在 prompt 里加一句”让我们一步步思考”，准确率大涨——CoT 作为提示技巧登场。弯路：初期被理解为”格式的魔法”；后来才明白它买的是计算深度：每生成一步，就把一部分推理摊到了更多的前向传播里。思考 = 计算，这是测试时计算时代的公理。</p>
+<p><strong>STaR（Zelikman et al., 2022）</strong>：自举式自我改进——模型采样解题，只用答对的（可验证。）当训练数据再训自己；答不出的难题，用”给提示后的正确解”回填（rationalization）。反复几轮，纯监督的机器愣是把解题率滚了上去。RLVR 的直系祖先，也是本章的主实验。</p>
+<p><strong>弯路：用 RLHF 的配方硬上数学</strong>。早期尝试用偏好模型给推理打分——奖励模型分不清”推理对但算错”与”推理错但蒙对”，策略学会了流畅地胡说。可验证领域的正确裁判是执行与比对，不是打分——RLVR 的全部立论。</p>
+<p><strong>o1 与 R1（2024–2025）</strong>：程序判卷（单测、答案比对）+ 大规模 RL + 允许长思考痕迹。R1 的纯 RLVR 版本（R1-Zero）展示自发涌现的反思行为；其公开训练配方（GRPO 算法、规则奖励、模板约束）引发全行业复现潮。推理能力的规模化，第一次有了”loss 只写对错”的版本。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>设定预告：反转翻译模型（5.1 的注意力 seq2seq）只训 5 个 epoch（贪心准确率约 0.88）。两种升级方式，都不增加新标签：</p>
 <ul>
@@ -1110,14 +1110,14 @@ window.Quarto = {
 <ol type="1">
 <li>投票曲线（k=1→15）的形状与涨幅上限？（提示：投票修复的是”采样噪声”还是”系统性错误”？）</li>
 <li>STaR 三轮后的贪心准确率——它会收敛到 1.0 吗？哪一轮涨幅最大？</li>
-<li>两者的本质区别一句话。（提示：一个改的是<strong>决策规则</strong>，一个改的是<strong>权重</strong>。）</li>
+<li>两者的本质区别一句话。（提示：一个改的是<strong>决策规则</strong>，一个改的是权重。）</li>
 </ol>
 <p>写完再运行。</p>
 </div>
 </section>
 <section id="核心思想" class="level2" data-number="33.3">
 <h2 data-number="33.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">33.3</span> 核心思想</h2>
-<p><strong>测试时计算 = 把摊在权重里的计算，临时挪到推理时</strong>。同题多采样 + 投票/验证/搜索（self-consistency、best-of-n、束搜索、MCTS 一族），本质都是<strong>用算力换方差</strong>：模型的单次采样有噪声，正确答案在分布里的概率质量足够大时，多采几次就能把它”投”出来。上限受制于 <span class="math inline">\(P(\text{正确})\)</span> 的质量本身——<strong>投票救不了系统性错误</strong>。</p>
+<p><strong>测试时计算 = 把摊在权重里的计算，临时挪到推理时</strong>。同题多采样 + 投票/验证/搜索（self-consistency、best-of-n、束搜索、MCTS 一族），本质都是用算力换方差：模型的单次采样有噪声，正确答案在分布里的概率质量足够大时，多采几次就能把它”投”出来。上限受制于 <span class="math inline">\(P(\text{正确})\)</span> 的质量本身——投票救不了系统性错误。</p>
 <p><strong>可验证奖励的自举（STaR/RLVR）= 让对错直接当老师</strong>。闭环三步：采样→判卷→只学好答案。与 RLHF 的对照（上一章的账本直接套用）：</p>
 <table class="caption-top table">
 <colgroup>
@@ -1151,16 +1151,16 @@ window.Quarto = {
 <tr class="even">
 <td>自发行为</td>
 <td>学会讨好</td>
-<td>学会<strong>想得更长</strong>（R1 的反思）</td>
+<td>学会想得更长（R1 的反思）</td>
 </tr>
 </tbody>
 </table>
-<p><strong>“思考 = 计算”的经济账</strong>：CoT 让每道题的前向层数变成可变预算。RLVR 的奖励压力天然偏爱”多算一步再答”——因为多算降低错误率、提高奖励——于是<strong>长思考是被 loss 选出来的，不是被设计出来的</strong>。测试时计算与 RLVR 在此处汇流：前者提供旋钮，后者提供拧旋钮的动力。</p>
+<p><strong>“思考 = 计算”的经济账</strong>：CoT 让每道题的前向层数变成可变预算。RLVR 的奖励压力天然偏爱”多算一步再答”——因为多算降低错误率、提高奖励——于是长思考是被 loss 选出来的，不是被设计出来的。测试时计算与 RLVR 在此处汇流：前者提供旋钮，后者提供拧旋钮的动力。</p>
 </section>
 <section id="从零实现" class="level2" data-number="33.4">
 <h2 data-number="33.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">33.4</span> 从零实现</h2>
 <p>老演员：反转翻译（输入数字序列、输出其倒序）+ 注意力 seq2seq。这次只训 5 个 epoch，留一个”有缺陷的好学生”：</p>
-<div id="dbe5b35f" class="cell" data-execution_count="1">
+<div id="a2c1eaff" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1196,7 +1196,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：测试时计算——多数投票。</strong> 同一输入温度采样 k 次，取众数（self-consistency 的最小版）：</p>
-<div id="037f35b9" class="cell" data-execution_count="2">
+<div id="db4130d2" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vote_acc(m, pairs, k, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, (i, t) <span class="kw">in</span> <span class="bu">enumerate</span>(pairs):</span>
@@ -1231,9 +1231,9 @@ k=15: 0.874</code></pre>
 </div>
 </div>
 </div>
-<p>典型读数：0.84 → 0.89（k=7）——<strong>几个点的净赚，不花一个新标签、不动一个权重</strong>。涨幅有限的原因值得一课：投票修复的是<strong>采样方差</strong>（正确答案在分布里但单次贪心错过）；当某类输入的 <span class="math inline">\(P(\text{正确})\)</span> 本身很低（系统性短板），再多票也投不出来——<strong>测试时计算的边界就是概率质量的边界</strong>。</p>
+<p>典型读数：0.84 → 0.89（k=7）——<strong>几个点的净赚，不花一个新标签、不动一个权重</strong>。涨幅有限的原因值得一课：投票修复的是采样方差（正确答案在分布里但单次贪心错过）；当某类输入的 <span class="math inline">\(P(\text{正确})\)</span> 本身很低（系统性短板），再多票也投不出来——测试时计算的边界就是概率质量的边界。</p>
 <p><strong>实验二：STaR 式自举——可验证奖励当老师。</strong> 采样→判卷（输出等于反转即”对”）→只学好答案→三轮：</p>
-<div id="55c26fc8" class="cell" data-execution_count="3">
+<div id="49e0e03e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> star_round(m, round_id, samples_per<span class="op">=</span><span class="dv">10</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">100</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    correct <span class="op">=</span> []</span>
@@ -1280,15 +1280,15 @@ k=15: 0.874</code></pre>
 <p>典型读数：<strong>0.88 → 0.98 → 0.99 → 0.99</strong>。这条曲线的每个环节都值得咀嚼：</p>
 <ul>
 <li><strong>零新标签</strong>：监督信号全部来自”输出==正确反转”这个程序判卷——可验证奖励的完整闭环；</li>
-<li><strong>第一轮涨幅最大</strong>：采样的多样性（temp=0.9）把 400 题里的 358 题捞了出来，对这些”够得着的成功”的集中训练，把概率质量从”偶尔对”推到”通常对”；</li>
-<li><strong>迅速饱和</strong>：剩下的是采样 10 次也够不着的硬骨头（RLVR 需要更强的探索或更长的思考——真实 R1 用的是持续大规模 RL 与长 CoT，我们的玩具用三轮就到顶）。</li>
+<li>第一轮涨幅最大：采样的多样性（temp=0.9）把 400 题里的 358 题捞了出来，对这些”够得着的成功”的集中训练，把概率质量从”偶尔对”推到”通常对”；</li>
+<li>迅速饱和：剩下的是采样 10 次也够不着的硬骨头（RLVR 需要更强的探索或更长的思考——真实 R1 用的是持续大规模 RL 与长 CoT，我们的玩具用三轮就到顶）。</li>
 </ul>
-<p><strong>两个实验的分工</strong>（对应「停一停」第 3 问）：投票改的是<strong>决策规则</strong>（同一权重、更好的读出），STaR 改的是<strong>权重本身</strong>（下一次采样的分布更好）。真实推理模型两者都用：RLVR 塑权重，多数投票/验证器塑读出。</p>
+<p><strong>两个实验的分工</strong>（对应「停一停」第 3 问）：投票改的是决策规则（同一权重、更好的读出），STaR 改的是权重本身（下一次采样的分布更好）。真实推理模型两者都用：RLVR 塑权重，多数投票/验证器塑读出。</p>
 </section>
 <section id="消融实验" class="level2" data-number="33.5">
 <h2 data-number="33.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">33.5</span> 消融实验</h2>
 <p><strong>温度的辩证法</strong>：STaR 靠采样找成功——温度太低采不出新解、太高全是垃圾。扫 temp ∈ {0.5, 0.9, 1.5} 各跑一轮自举：</p>
-<div id="bf210e65" class="cell" data-execution_count="4">
+<div id="489abbec" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> temp <span class="kw">in</span> (<span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">1.5</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    m2 <span class="op">=</span> AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    rng4 <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
@@ -1310,7 +1310,7 @@ temp=0.9: 一轮自举可发现的正确样本 358/400
 temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
 </div>
 </div>
-<p><strong>探索-利用的温度曲线</strong>在玩具上显形：RLVR 的采样温度与 RLHF 的 β 一样，是”离当前策略多远去找奖励”的旋钮——<strong>探索本身就是超参数</strong>（9.1 复盘时的一个模式）。</p>
+<p><strong>探索-利用的温度曲线</strong>在玩具上显形：RLVR 的采样温度与 RLHF 的 β 一样，是”离当前策略多远去找奖励”的旋钮——探索本身就是超参数（9.1 复盘时的一个模式）。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="33.6">
 <h2 data-number="33.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">33.6</span> 本章 Loss 账本</h2>
@@ -1356,8 +1356,8 @@ temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
 <p><strong>Zelikman, E., Wu, Y., Mu, J. &amp; Goodman, N. (2022).</strong> <em>STaR: Bootstrapping reasoning with reasoning.</em> NeurIPS.</p>
 <ul>
 <li><strong>读什么</strong>：图 1（自举闭环的一页图解——本章实验的蓝图）与第 3 节（rationalization：给提示回填推理的技巧）；</li>
-<li><strong>跳过</strong>：规模细节；</li>
-<li><strong>历史注</strong>：配套读 DeepSeek-AI (2025) 的 R1 报告——尤其”R1-Zero 的涌现行为”一节（模型自发学会反思与长思考的记录）与公开的训练配方。<strong>从 STaR 到 R1 的三年，是”可验证奖励”从玩具闭环到前沿主战场的三年</strong>——中间的桥正是本卷的主题流：先有能听话的底座（SFT/RLHF），才轮到会思考的（RLVR）。</li>
+<li>跳过：规模细节；</li>
+<li>历史注：配套读 DeepSeek-AI (2025) 的 R1 报告——尤其”R1-Zero 的涌现行为”一节（模型自发学会反思与长思考的记录）与公开的训练配方。从 STaR 到 R1 的三年，是”可验证奖励”从玩具闭环到前沿主战场的三年——中间的桥正是本卷的主题流：先有能听话的底座（SFT/RLHF），才轮到会思考的（RLVR）。</li>
 </ul>
 </div>
 </section>
@@ -1366,7 +1366,7 @@ temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
 <ol type="1">
 <li>会推理的模型 + 会调用工具 = ？——<strong>agent</strong> 的技术前提在本章凑齐（下一章：工具调用与轨迹）；</li>
 <li>推理预算与上下文窗口的关系——“多想”与”多记”如何兑换？（8.x 长上下文的经济学）；</li>
-<li>当模型在判卷任务上无限自举——<strong>它能越过验证器，碰到开放问题吗</strong>？（9.2 的边界讨论）。</li>
+<li>当模型在判卷任务上无限自举——它能越过验证器，碰到开放问题吗？（9.2 的边界讨论）。</li>
 </ol>
 </section>
 <section id="参考文献" class="level2" data-number="33.8">
@@ -1380,10 +1380,10 @@ temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
 <h2 data-number="33.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">33.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把多数投票升级成”验证器引导的 best-of-n”（用判卷直接选对的那个而非投票）——与投票对照：各在什么错误结构下占优？</li>
-<li><strong>预测再运行</strong>：STaR 的采样数从 10 提到 50（更努力的探索），第一轮的发现量与最终准确率各怎么变？边际收益递减的拐点在哪？</li>
-<li><strong>消融</strong>：把 STaR 的”只学对的”改成”对错都学、对的加权”（加权 SFT）——纯筛选 vs 加权的差异说明了”数据质量”的什么本质？</li>
-<li><strong>论文映射</strong>：用四问账本拆 R1 报告——注意其”买到”栏里<strong>自发行为</strong>（反思、长思考）的特殊地位：计划外的获得又一次成为主角（与 GPT-3 的 few-shot 对照）。</li>
-<li><strong>进阶</strong>：给反转任务加”思维链”版数据（目标序列前多一段中间步骤标记），训练后对比直出 vs 链式的长度-准确率曲线——亲手量一次”思考=计算”的汇率。</li>
+<li>预测再运行：STaR 的采样数从 10 提到 50（更努力的探索），第一轮的发现量与最终准确率各怎么变？边际收益递减的拐点在哪？</li>
+<li>消融：把 STaR 的”只学对的”改成”对错都学、对的加权”（加权 SFT）——纯筛选 vs 加权的差异说明了”数据质量”的什么本质？</li>
+<li>论文映射：用四问账本拆 R1 报告——注意其”买到”栏里自发行为（反思、长思考）的特殊地位：计划外的获得又一次成为主角（与 GPT-3 的 few-shot 对照）。</li>
+<li>进阶：给反转任务加”思维链”版数据（目标序列前多一段中间步骤标记），训练后对比直出 vs 链式的长度-准确率曲线——亲手量一次”思考=计算”的汇率。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1397,7 +1397,7 @@ temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 1</strong>：有验证器时 best-of-n 全面占优（投票是把验证器的事交给众数猜）；无验证器时只能投票。<strong>验证器的可用性是两种测试时计算的分水岭</strong>——这解释了它们在数学（可验证）与开放式写作（不可验证）上各自的地盘。</p>
+<p><strong>练习 1</strong>：有验证器时 best-of-n 全面占优（投票是把验证器的事交给众数猜）；无验证器时只能投票。验证器的可用性是两种测试时计算的分水岭——这解释了它们在数学（可验证）与开放式写作（不可验证）上各自的地盘。</p>
 <p><strong>练习 2</strong>：发现量上升但边际递减（第 n 次采样命中新题的概率随已命中集缩小而下降）；最终准确率的小幅提升主要来自把更多”边缘题”带进训练集。探索预算与训练轮数之间存在最优配比——又一个 Chinchilla 式的二维权衡。</p>
 <p><strong>练习 5 提示</strong>：链式版的中间步骤（如先标记长度、再倒序索引）让每步的绑定距离变短——玩具尺度上链式通常更快收敛；这正是 CoT 在真实模型上的机制学解释（把长程依赖拆成局部链），与 4.2 梯度随时间衰减的教训遥相呼应。</p>
 </div>

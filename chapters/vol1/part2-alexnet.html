@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1064,7 +1064,7 @@ window.Quarto = {
 </header>
 
 
-<p>2012 年 9 月 30 日，ImageNet 竞赛（ILSVRC）的成绩公布：一个叫 SuperVision 的队伍把图像分类的 top-5 错误率从前一年的 25.8%、当年第二名 26.2%，直接打到 <strong>15.3%</strong>。领先不是一步，是一个时代。队伍是 Hinton 的两个学生——Alex Krizhevsky 与 Ilya Sutskever——加上 Hinton 本人；机器是他们租的，模型是我们前三章所有零件的总装：卷积结构 + relu + dropout + GPU。本章要回答的问题是本章标题：<strong>为什么是 2012？</strong> 这个问题的答案，是理解此后十年（包括 LLM 时代）一切产业逻辑的钥匙。</p>
+<p>2012 年 9 月 30 日，ImageNet 竞赛（ILSVRC）的成绩公布：一个叫 SuperVision 的队伍把图像分类的 top-5 错误率从前一年的 25.8%、当年第二名 26.2%，直接打到 <strong>15.3%</strong>。领先不是一步，是一个时代。队伍是 Hinton 的两个学生——Alex Krizhevsky 与 Ilya Sutskever——加上 Hinton 本人；机器是他们租的，模型是我们前三章所有零件的总装：卷积结构 + relu + dropout + GPU。本章要回答的问题是本章标题：为什么是 2012？ 这个问题的答案，是理解此后十年（包括 LLM 时代）一切产业逻辑的钥匙。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1081,9 +1081,9 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 2009–2012">
 <ul>
 <li><strong>算力</strong>：消费级 GPU 经 CUDA（2007）变得可编程；两张 GTX 580（合计约 3 GB 显存、约 1.5 TFLOP/s）就是 AlexNet 的全部装备——今天一台游戏本胜它十倍；</li>
-<li><strong>数据</strong>：ImageNet（李飞飞团队，2009 年上线）提供 22000 类、1500 万张标注图片——<strong>“数据工程”第一次成为 AI 研究的一等公民</strong>，此前最大的基准（CIFAR-10）只有 6 万张；</li>
-<li><strong>认知</strong>：2011 年的主流观点是：神经网络在 1990s 已经输给 SVM/boosting，视觉的特征还是要手工设计（SIFT、HOG）；深度学习被视为少数几个多伦多老人的执念；</li>
-<li><strong>关键事实</strong>：AlexNet 的每一个零件都不是 2012 年发明的（卷积 1989、relu 2010、dropout 2012 年初、GPU 训练 2010 年前后已有人尝试）——2012 年发生的是<strong>总装</strong>。</li>
+<li>数据：ImageNet（李飞飞团队，2009 年上线）提供 22000 类、1500 万张标注图片——“数据工程”第一次成为 AI 研究的一等公民，此前最大的基准（CIFAR-10）只有 6 万张；</li>
+<li>认知：2011 年的主流观点是：神经网络在 1990s 已经输给 SVM/boosting，视觉的特征还是要手工设计（SIFT、HOG）；深度学习被视为少数几个多伦多老人的执念；</li>
+<li>关键事实：AlexNet 的每一个零件都不是 2012 年发明的（卷积 1989、relu 2010、dropout 2012 年初、GPU 训练 2010 年前后已有人尝试）——2012 年发生的是总装。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="11.1">
@@ -1091,20 +1091,20 @@ window.Quarto = {
 <p>我们不重演 AlexNet 本身（它需要 GPU 和 ImageNet，属于 B 级实验，3.1 章会给一个缩小版），而是解剖它的<strong>历史条件</strong>。历史学家的标准问法：如果抽掉任何一块基石，2012 还会发生吗？具体到可实验的两块：</p>
 <ol type="1">
 <li><strong>算力</strong>：GPU 的加入到底买了什么？我们用自己的矩阵乘法实测”算力账本”；</li>
-<li><strong>数据</strong>：没有 ImageNet 量级的数据，这套方法还成立吗？我们实测”数据账本”。</li>
+<li>数据：没有 ImageNet 量级的数据，这套方法还成立吗？我们实测”数据账本”。</li>
 </ol>
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">11.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>视觉特征的手工时代（1980s–2011）</strong>。从 SIFT（1999）到 HOG（2005），视觉进步的主线是<strong>人类设计更好的特征描述子 + 浅层分类器</strong>。这条路线的哲学正是 1.2 章符号主义的延续：知识来自专家头脑。它在小数据上精致、可靠、可解释——并且<strong>在天规模数据面前停摆</strong>：特征没有随着数据变多而变好。</p>
-<p><strong>GPU 的非显然性</strong>。用游戏显卡做通用计算（GPGPU）在 2008 年前后仍属旁门：编程痛苦（早期要伪装成图形调用）、数值稳定性差、学术圈视之为”工程杂耍”。CUDA 把门槛降下来后，第一个吃螃蟹的训练仍需要勇气与手艺——Krizhevsky 写了定制的卷积核。<strong>历史条件不只是”GPU 存在”，而是”GPU 可编程 + 有人愿意为深度学习忍受它”</strong>。</p>
-<p><strong>总装的三人组</strong>。Krizhevsky（工程与直觉）、Sutskever（信念与理论品味）、Hinton（三十年深耕连接主义的信用背书）——1.2 章地下时期的三件套（换语言、硬问题、火种）在 2012 年兑成了一次总爆发。教训：<strong>范式复活的最后一步需要一个”不可辩驳的演示”</strong>——道理 1986 年就懂，但说服世界需要一个数字：15.3%。</p>
-<p><strong>赛后的雪崩</strong>。2013 年起几乎所有参赛队伍转向深度学习；工业界（Google 收购 DNNresearch 团队）跟进；GPU 厂商 NVIDIA 转型”AI 公司”。<strong>一个演示改变资源流向，资源流向改变研究的经济学</strong>——这条因果链将在 6.1（GPT-3）与 7.3（ChatGPT）再演两次。</p>
+<p><strong>视觉特征的手工时代（1980s–2011）</strong>。从 SIFT（1999）到 HOG（2005），视觉进步的主线是人类设计更好的特征描述子 + 浅层分类器。这条路线的哲学正是 1.2 章符号主义的延续：知识来自专家头脑。它在小数据上精致、可靠、可解释——并且在天规模数据面前停摆：特征没有随着数据变多而变好。</p>
+<p><strong>GPU 的非显然性</strong>。用游戏显卡做通用计算（GPGPU）在 2008 年前后仍属旁门：编程痛苦（早期要伪装成图形调用）、数值稳定性差、学术圈视之为”工程杂耍”。CUDA 把门槛降下来后，第一个吃螃蟹的训练仍需要勇气与手艺——Krizhevsky 写了定制的卷积核。历史条件不只是”GPU 存在”，而是”GPU 可编程 + 有人愿意为深度学习忍受它”。</p>
+<p><strong>总装的三人组</strong>。Krizhevsky（工程与直觉）、Sutskever（信念与理论品味）、Hinton（三十年深耕连接主义的信用背书）——1.2 章地下时期的三件套（换语言、硬问题、火种）在 2012 年兑成了一次总爆发。教训：范式复活的最后一步需要一个”不可辩驳的演示”——道理 1986 年就懂，但说服世界需要一个数字：15.3%。</p>
+<p><strong>赛后的雪崩</strong>。2013 年起几乎所有参赛队伍转向深度学习；工业界（Google 收购 DNNresearch 团队）跟进；GPU 厂商 NVIDIA 转型”AI 公司”。一个演示改变资源流向，资源流向改变研究的经济学——这条因果链将在 6.1（GPT-3）与 7.3（ChatGPT）再演两次。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>给你两笔账，先手算再实测：</p>
 <ol type="1">
-<li><strong>算力账</strong>：AlexNet 单次前向约 <span class="math inline">\(7\times10^8\)</span> 次乘加；训练一遍（120 万张图 × 90 epoch）约 <span class="math inline">\(10^{18}\)</span> FLOPs。用笔记本 CPU 的矩阵乘实测速度（下一节会测，先猜量级），需要多久？两张 GTX 580 实际用了 5–6 天。<strong>从这两个数推出 GPU 的加速比</strong>，再想想：如果没有这个加速比，2012 年的博士还能不能做完这个课题？</li>
-<li><strong>数据账</strong>：一套固定的网络与训练流程，训练样本数从 6 涨到 40（小一号的同构实验），真实误差会怎么降？先在纸上画你预期的曲线（横轴 n，纵轴真实误差）——尤其预测<strong>最小数据点</strong>处会发生什么（提示：1.6 章的过拟合）。</li>
+<li><strong>算力账</strong>：AlexNet 单次前向约 <span class="math inline">\(7\times10^8\)</span> 次乘加；训练一遍（120 万张图 × 90 epoch）约 <span class="math inline">\(10^{18}\)</span> FLOPs。用笔记本 CPU 的矩阵乘实测速度（下一节会测，先猜量级），需要多久？两张 GTX 580 实际用了 5–6 天。从这两个数推出 GPU 的加速比，再想想：如果没有这个加速比，2012 年的博士还能不能做完这个课题？</li>
+<li>数据账：一套固定的网络与训练流程，训练样本数从 6 涨到 40（小一号的同构实验），真实误差会怎么降？先在纸上画你预期的曲线（横轴 n，纵轴真实误差）——尤其预测最小数据点处会发生什么（提示：1.6 章的过拟合）。</li>
 </ol>
 <p>写完两笔账再运行。</p>
 </div>
@@ -1116,14 +1116,14 @@ window.Quarto = {
 <p>七十年来，AI 研究反复上演同一幕：依赖人类知识精巧设计的短期胜利，被”蛮力搜索 + 学习”的长期胜利碾过——后者随算力指数增长而复利。</p>
 </blockquote>
 <p>2012 年是这条规律在视觉领域的总清算：三十年手工特征（人类知识的注入）被”大数据 + 大算力 + 通用学习”一次性超越。而 1.2 章的范式之争（专家规则 vs 学习）正是同一剧本的上一场演出——<strong>Sutton 的判决书其实 1986 年就已写好草稿</strong>。</p>
-<p><strong>历史条件 = 算力 × 数据 × 方法，三者同时就绪</strong>。抽掉任何一块：没有 GPU，训练一轮要数月，课题不可行；没有 ImageNet，百万参数网络在小数据上只会过拟合（1.6 章的账），方法不可信；没有 2010–2012 的工具箱（relu/dropout/初始化），深度网络训不动，方法不可行。<strong>三者各就各位的时间窗口恰好是 2009–2012</strong>——历史为什么发生在 2012？因为再早一步，任何一块都缺位。</p>
-<p><strong>演示的杠杆</strong>。研究史不只有论文与证明，还有”改变资源流向的数字”。15.3% 之于深度学习，等于后来 175B 参数之于 GPT-3（6.1）、对话流畅度之于 ChatGPT（7.3）——<strong>范式战争的裁决从来靠演示，不靠论证</strong>。</p>
+<p><strong>历史条件 = 算力 × 数据 × 方法，三者同时就绪</strong>。抽掉任何一块：没有 GPU，训练一轮要数月，课题不可行；没有 ImageNet，百万参数网络在小数据上只会过拟合（1.6 章的账），方法不可信；没有 2010–2012 的工具箱（relu/dropout/初始化），深度网络训不动，方法不可行。三者各就各位的时间窗口恰好是 2009–2012——历史为什么发生在 2012？因为再早一步，任何一块都缺位。</p>
+<p><strong>演示的杠杆</strong>。研究史不只有论文与证明，还有”改变资源流向的数字”。15.3% 之于深度学习，等于后来 175B 参数之于 GPT-3（6.1）、对话流畅度之于 ChatGPT（7.3）——范式战争的裁决从来靠演示，不靠论证。</p>
 </section>
 <section id="从零实现" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">11.4</span> 从零实现</h2>
 <p>我们的两个”账本实验”——不重演 AlexNet，而是实测它的两块基石。</p>
 <p><strong>实验一：算力账本。</strong> 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：</p>
-<div id="4ea6f6ae" class="cell" data-execution_count="1">
+<div id="0412fb59" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1136,19 +1136,19 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;4}</span><span class="ss">x</span><span class="sc">{</span>n<span class="sc">:&lt;4}</span><span class="ss"> 矩阵乘: </span><span class="sc">{</span>dt<span class="op">*</span><span class="dv">1000</span><span class="sc">:6.1f}</span><span class="ss"> ms = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>n<span class="op">**</span><span class="dv">3</span><span class="op">/</span>dt<span class="op">/</span><span class="fl">1e9</span><span class="sc">:6.1f}</span><span class="ss"> GFLOP/s"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> 256x256  矩阵乘:    0.9 ms =   38.4 GFLOP/s
- 512x512  矩阵乘:    1.6 ms =  163.9 GFLOP/s
-1024x1024 矩阵乘:    6.5 ms =  327.9 GFLOP/s</code></pre>
+<pre><code> 256x256  矩阵乘:    1.5 ms =   21.8 GFLOP/s
+ 512x512  矩阵乘:    1.7 ms =  156.5 GFLOP/s
+1024x1024 矩阵乘:    6.2 ms =  344.8 GFLOP/s</code></pre>
 </div>
 </div>
 <p>三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：</p>
 <ul>
 <li>规模越大，单位吞吐越高——矩阵乘的算术强度高，缓存友好，这正是它成为深度学习基本货币的原因（<strong>算子的经济学</strong>决定架构的演化，5.3 的伏笔）；</li>
-<li>取 100 GFLOP/s 估算：AlexNet 训练一遍 <span class="math inline">\(10^{18}\)</span> FLOPs ≈ <span class="math inline">\(10^7\)</span> 秒 ≈ <strong>四个月</strong>（且是优化过的今天 CPU；2012 年的 CPU 更慢）。两张 GTX 580 合计约 3 TFLOP/s，即使按 30% 利用率也有约 1 TFLOP/s——<strong>几天</strong>。加速比两个数量级，恰好是把”不可行的课题”变成”一个学期的博士课题”的距离；</li>
-<li>你的笔记本（约 <span class="math inline">\(10^{11}\)</span> FLOP/s）比 1986 年的 VAX（约 <span class="math inline">\(10^6}\)</span> FLOP/s）快<strong>五个数量级</strong>——本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。</li>
+<li>取 100 GFLOP/s 估算：AlexNet 训练一遍 <span class="math inline">\(10^{18}\)</span> FLOPs ≈ <span class="math inline">\(10^7\)</span> 秒 ≈ 四个月（且是优化过的今天 CPU；2012 年的 CPU 更慢）。两张 GTX 580 合计约 3 TFLOP/s，即使按 30% 利用率也有约 1 TFLOP/s——几天。加速比两个数量级，恰好是把”不可行的课题”变成”一个学期的博士课题”的距离；</li>
+<li>你的笔记本（约 <span class="math inline">\(10^{11}\)</span> FLOP/s）比 1986 年的 VAX（约 <span class="math inline">\(10^6}\)</span> FLOP/s）快五个数量级——本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。</li>
 </ul>
 <p><strong>实验二：数据账本。</strong> 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：</p>
-<div id="1c5d18d1" class="cell" data-execution_count="2">
+<div id="cf827b45" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: np.sin(<span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>x <span class="op">-</span> <span class="fl">0.3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xd <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Yd <span class="op">=</span> f(Xd)</span>
@@ -1174,12 +1174,12 @@ n=15: 训练误差=0.0221  真实误差=0.1030
 n=40: 训练误差=0.0332  真实误差=0.0438</code></pre>
 </div>
 </div>
-<p>读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 <strong>2.8</strong>——网络完美背下了六个点，对函数本身一无所知（1.6 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04——<strong>真实误差随数据近一个数量级地下降</strong>。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上<strong>有账可算</strong>。</p>
+<p>读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 <strong>2.8</strong>——网络完美背下了六个点，对函数本身一无所知（1.6 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04——真实误差随数据近一个数量级地下降。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上有账可算。</p>
 </section>
 <section id="消融实验" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">11.5</span> 消融实验</h2>
-<p><strong>数据的”饱和点”探针</strong>。AlexNet 之后”堆数据”成为信仰，但数据账本有没有饱和点？把实验二延伸：n=40 → 100 → 400（网络与步数不变），观察真实误差的边际递减。当曲线趋平时，瓶颈从数据转移到容量（网络太小学不动更多结构）——<strong>“数据-容量-算力”三角的移动平衡</strong>，这个平衡在 2022 年被 Chinchilla 重新计算（6.2 的伏笔），在数据墙时代再次成为主角（9.2）。</p>
-<div id="87df6114" class="cell" data-execution_count="3">
+<p><strong>数据的”饱和点”探针</strong>。AlexNet 之后”堆数据”成为信仰，但数据账本有没有饱和点？把实验二延伸：n=40 → 100 → 400（网络与步数不变），观察真实误差的边际递减。当曲线趋平时，瓶颈从数据转移到容量（网络太小学不动更多结构）——“数据-容量-算力”三角的移动平衡，这个平衡在 2022 年被 Chinchilla 重新计算（6.2 的伏笔），在数据墙时代再次成为主角（9.2）。</p>
+<div id="8d88e6de" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">400</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.sort(rng.uniform(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, n)).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -1217,7 +1217,7 @@ n=400: 真实误差=0.0234</code></pre>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
-<td>ImageNet：标注成本约等于”一个数据工程时代”的开启——<strong>本章的主角其实是它</strong></td>
+<td>ImageNet：标注成本约等于”一个数据工程时代”的开启——本章的主角其实是它</td>
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
@@ -1241,8 +1241,8 @@ n=400: 真实误差=0.0234</code></pre>
 <p><strong>Krizhevsky, A., Sutskever, I. &amp; Hinton, G. (2012).</strong> <em>ImageNet classification with deep convolutional neural networks.</em> NeurIPS.</p>
 <ul>
 <li><strong>读什么</strong>：第 3 节（架构与每个选择的理由——注意 relu/dropout/数据增强各自引用的出处，等于一张 2010–2012 工具箱的清单）与第 6 节第一段（对”深度 + 数据 + 算力”的明确论断）；</li>
-<li><strong>跳过什么</strong>：细节的超参数；</li>
-<li><strong>历史注</strong>：同时读 Sutton 的 <em>The Bitter Lesson</em>（2019，一页）与李飞飞的 ImageNet 论文（2009，CVPR）——三篇合起来是”方法 × 算力 × 数据”的三视图。另外注意 AlexNet 论文标题谦逊得近乎朴素——<strong>改变世界的论文常常标题朴素</strong>。</li>
+<li>跳过什么：细节的超参数；</li>
+<li>历史注：同时读 Sutton 的 <em>The Bitter Lesson</em>（2019，一页）与李飞飞的 ImageNet 论文（2009，CVPR）——三篇合起来是”方法 × 算力 × 数据”的三视图。另外注意 AlexNet 论文标题谦逊得近乎朴素——改变世界的论文常常标题朴素。</li>
 </ul>
 </div>
 </section>
@@ -1268,10 +1268,10 @@ n=400: 真实误差=0.0234</code></pre>
 <h2 data-number="11.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">11.9</span> 练习</h2>
 <ol type="1">
 <li><strong>算力账本延伸</strong>：查一张今天消费级 GPU 的理论 FLOP/s，重算 AlexNet 训练时间；再估 GPT-3（约 <span class="math inline">\(3\times10^{23}\)</span> FLOPs）在单卡上需要多久——从而理解”万卡集群”不是炫富而是必需。</li>
-<li><strong>预测再运行</strong>：实验二里把网络从 32 宽改成 128 宽，n=6 的真实误差会怎么变？变大（记更多噪声）还是变小（拟合更好）？运行并解释。</li>
-<li><strong>消融</strong>：实验二改成 sigmoid 激活 + 朴素初始化（回到 1990s 配置），数据账本的曲线整体会怎么移动？数据还能救它吗？</li>
-<li><strong>论文映射</strong>：用四问账本拆 ImageNet 论文（2009）——注意它的”买到的能力”一栏几乎全是<strong>基础设施</strong>而非模型。</li>
-<li><strong>进阶（历史推理）</strong>：写半页”反事实 2012”：如果 CUDA 晚五年出现，视觉领域的演进路径会怎样？手工特征会多统治几年？谁会填补空白？</li>
+<li>预测再运行：实验二里把网络从 32 宽改成 128 宽，n=6 的真实误差会怎么变？变大（记更多噪声）还是变小（拟合更好）？运行并解释。</li>
+<li>消融：实验二改成 sigmoid 激活 + 朴素初始化（回到 1990s 配置），数据账本的曲线整体会怎么移动？数据还能救它吗？</li>
+<li>论文映射：用四问账本拆 ImageNet 论文（2009）——注意它的”买到的能力”一栏几乎全是基础设施而非模型。</li>
+<li>进阶（历史推理）：写半页”反事实 2012”：如果 CUDA 晚五年出现，视觉领域的演进路径会怎样？手工特征会多统治几年？谁会填补空白？</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1286,8 +1286,8 @@ n=400: 真实误差=0.0234</code></pre>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 1 参考数字</strong>：GPT-3 约 <span class="math inline">\(3\times10^{23}\)</span> FLOPs ÷ 单卡 <span class="math inline">\(10^{12}\)</span> FLOP/s（30% 利用率）≈ <span class="math inline">\(10^{11}\)</span> 秒 ≈ 三千年——万卡且高度并行的集群把它压到数月。“规模化”的每一分钱都花在这道除法里。</p>
-<p><strong>练习 2</strong>：n=6 时真实误差大概率<strong>变大</strong>——容量越大，背噪声背得越狠（1.6 的容量-过拟合互换）；n=40 时可能略变好。数据账本的斜率依赖容量，两者是联动的。</p>
-<p><strong>练习 3</strong>：整条曲线整体抬高且低数据端尤其惨烈——1990s 配置下”加数据”的边际收益更小，这正是当年”数据无用论”能流行的技术土壤。<strong>工具箱不只是工具，它重新定价了数据</strong>。</p>
+<p><strong>练习 2</strong>：n=6 时真实误差大概率变大——容量越大，背噪声背得越狠（1.6 的容量-过拟合互换）；n=40 时可能略变好。数据账本的斜率依赖容量，两者是联动的。</p>
+<p><strong>练习 3</strong>：整条曲线整体抬高且低数据端尤其惨烈——1990s 配置下”加数据”的边际收益更小，这正是当年”数据无用论”能流行的技术土壤。工具箱不只是工具，它重新定价了数据。</p>
 <p><strong>练习 5 提示</strong>：注意因果的双向性——没有 GPU 也就训不出对 GPU 的需求，硬件-算法的共生回路会晚启动，但一旦启动会补涨。反事实推演的价值在于识别”哪些是必然（趋势），哪些是偶然（时点）“。</p>
 </div>
 </div>

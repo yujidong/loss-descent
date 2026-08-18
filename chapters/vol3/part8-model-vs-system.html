@@ -687,7 +687,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1035,7 +1035,7 @@ main table {
 </header>
 
 
-<p>Part 8 收官，也是全书方法论的最后一块拼图。前面两章我们反复看到同一个模式的两副面孔：能力可以住在<strong>权重</strong>里（训练进模型），也可以住在<strong>脚手架</strong>里（写在外部）。业界把这个选择叫做”模型层 vs 系统层”，而围绕它的争论（“context engineering 会不会取代 fine-tuning”）热度居高不下。本章不站队——我们给出一套<strong>判断框架</strong>：它由三问构成，源自全书的 loss 视角，并用一个三条件对照实验（zero-shot / few-shot / SFT）当演武场。框架的最后一块来自一个诚实的发现：<strong>我们自己的玩具上，系统层输给了模型层</strong>——而这个失败恰好照亮了框架的第一问。</p>
+<p>Part 8 收官，也是全书方法论的最后一块拼图。前面两章我们反复看到同一个模式的两副面孔：能力可以住在<strong>权重</strong>里（训练进模型），也可以住在脚手架里（写在外部）。业界把这个选择叫做”模型层 vs 系统层”，而围绕它的争论（“context engineering 会不会取代 fine-tuning”）热度居高不下。本章不站队——我们给出一套判断框架：它由三问构成，源自全书的 loss 视角，并用一个三条件对照实验（zero-shot / few-shot / SFT）当演武场。框架的最后一块来自一个诚实的发现：我们自己的玩具上，系统层输给了模型层——而这个失败恰好照亮了框架的第一问。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1051,10 +1051,10 @@ main table {
 </div>
 <div class="callout-era" title="时代快照 · 2025–2026">
 <ul>
-<li><strong>算力</strong>：推理成本超过训练成本成为许多部署的主要账单——<strong>系统层的每次调用都在花钱</strong>，权重层的一次训练一劳永逸——经济学把这条界线越描越粗；</li>
-<li><strong>数据</strong>：上下文（prompt）本身成了”数据”：示例、工具说明、检索结果——<strong>context engineering</strong> 作为新工种出现（提示工程的系统化后代）；</li>
-<li><strong>认知</strong>：“改 prompt 还是改模型”是每个团队的日常议题；框架/中间件层（记忆、规划、工具编排）与模型能力的地盘之争是 2025 年的主旋律之一；</li>
-<li><strong>关键事实</strong>：同一能力在两层之间的迁移从未停止——早期靠 few-shot 的事情（翻译）被训练进模型；早期靠模型的事情（长记忆）被外挂（RAG）。<strong>界线是移动的</strong>，这正是本框架的时效性声明。</li>
+<li><strong>算力</strong>：推理成本超过训练成本成为许多部署的主要账单——系统层的每次调用都在花钱，权重层的一次训练一劳永逸——经济学把这条界线越描越粗；</li>
+<li>数据：上下文（prompt）本身成了”数据”：示例、工具说明、检索结果——context engineering 作为新工种出现（提示工程的系统化后代）；</li>
+<li>认知：“改 prompt 还是改模型”是每个团队的日常议题；框架/中间件层（记忆、规划、工具编排）与模型能力的地盘之争是 2025 年的主旋律之一；</li>
+<li>关键事实：同一能力在两层之间的迁移从未停止——早期靠 few-shot 的事情（翻译）被训练进模型；早期靠模型的事情（长记忆）被外挂（RAG）。界线是移动的，这正是本框架的时效性声明。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="36.1">
@@ -1067,10 +1067,10 @@ main table {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="36.2">
 <h2 data-number="36.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">36.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路一：万物微调（2020–2022）</strong>。预训练模型出来后，惯性是”每个任务微调一次”——T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT-3 的 few-shot、2021 前后的 prompt tuning）证明<strong>许多任务不必动权重</strong>——方向摆向系统层。</p>
-<p><strong>弯路二：万物提示（2023–2024）</strong>。摆过头：记忆靠 prompt 塞、工具靠 prompt 描述、格式靠 prompt 祈祷——上下文越来越长、越来越贵、越来越脆。回调的标志是各家的 instruction tuning 与 distillation 回潮：<strong>行为一旦定型且高频，就该固化</strong>（8.2 的训练账 vs 推理账）。</p>
-<p><strong>RAG 的启示</strong>：知识放哪一层的最佳案例研究——外挂检索（系统层）赢了”时效性与可更新性”，权重（模型层）赢了”整合与推理”。现实的答案是混合，但<strong>混合的配方由框架决定</strong>，不是拍脑袋。</p>
-<p><strong>Context engineering 的兴起（2025）</strong>：把上下文当作一种稀缺资源来设计——什么进窗口、以什么格式、何时压缩（7.1 的”上下文价值曲线”是这个工种的理论起点）。<strong>窗口是新的显存</strong>：贵、有限、需要调度。</p>
+<p><strong>弯路一：万物微调（2020–2022）</strong>。预训练模型出来后，惯性是”每个任务微调一次”——T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT-3 的 few-shot、2021 前后的 prompt tuning）证明许多任务不必动权重——方向摆向系统层。</p>
+<p><strong>弯路二：万物提示（2023–2024）</strong>。摆过头：记忆靠 prompt 塞、工具靠 prompt 描述、格式靠 prompt 祈祷——上下文越来越长、越来越贵、越来越脆。回调的标志是各家的 instruction tuning 与 distillation 回潮：行为一旦定型且高频，就该固化（8.2 的训练账 vs 推理账）。</p>
+<p><strong>RAG 的启示</strong>：知识放哪一层的最佳案例研究——外挂检索（系统层）赢了”时效性与可更新性”，权重（模型层）赢了”整合与推理”。现实的答案是混合，但混合的配方由框架决定，不是拍脑袋。</p>
+<p><strong>Context engineering 的兴起（2025）</strong>：把上下文当作一种稀缺资源来设计——什么进窗口、以什么格式、何时压缩（7.1 的”上下文价值曲线”是这个工种的理论起点）。窗口是新的显存：贵、有限、需要调度。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>三条件实验预告：同一个 QA 任务，三种配置——(a) 基座 zero-shot；(b) 基座 few-shot（上下文里放 3 个”问题→回答”示例）；(c) SFT（7.2 的流程）。</p>
 <p><strong>先写下你的预测</strong>（本书的玩具基座，你还记得 7.1 的诱导头失败与 7.2 的绑定 margin）：</p>
@@ -1090,18 +1090,18 @@ main table {
 <h2 data-number="36.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">36.3</span> 核心思想</h2>
 <p><strong>判断框架：三问定层。</strong> 面前有个能力问题（“模型总做不对 X”），依次问：</p>
 <ol type="1">
-<li><strong>底座有没有这个潜质？</strong>（权重里的概率质量支持 X 吗——7.2 的 margin 就是测这个的仪器）。<strong>没有 → 系统层无源之水，先解决底座</strong>（更大模型或换数据）；有 → 两个选择都开放；</li>
-<li><strong>变化的频率与形态？</strong> 频繁变（知识更新、新工具、新格式）→ 系统层（prompt/检索即改即生效）；稳定且高频（品牌语气、固定流程）→ 模型层（固化省推理钱——8.2 的经济学）；</li>
-<li><strong>错误的代价结构？</strong> 错了能便宜地重试/验证（可验证任务）→ 系统层的循环兜底；错了无法挽回（一次性、高风险）→ 模型层的可靠性投资 + 系统层的护栏并用。</li>
+<li><strong>底座有没有这个潜质？</strong>（权重里的概率质量支持 X 吗——7.2 的 margin 就是测这个的仪器）。没有 → 系统层无源之水，先解决底座（更大模型或换数据）；有 → 两个选择都开放；</li>
+<li>变化的频率与形态？ 频繁变（知识更新、新工具、新格式）→ 系统层（prompt/检索即改即生效）；稳定且高频（品牌语气、固定流程）→ 模型层（固化省推理钱——8.2 的经济学）；</li>
+<li>错误的代价结构？ 错了能便宜地重试/验证（可验证任务）→ 系统层的循环兜底；错了无法挽回（一次性、高风险）→ 模型层的可靠性投资 + 系统层的护栏并用。</li>
 </ol>
 <p>一句话版：<strong>潜质在权重、变化在系统、可靠性按代价分账</strong>。</p>
-<p><strong>两层的数学同构</strong>：few-shot 的上下文与 SFT 的微调，都是在条件化模型的行为——前者把示例放进<strong>输入</strong>，后者把示例放进<strong>梯度</strong>。信息同源（都是”示例”），通道不同。这解释了为什么大模型上两者常常殊途同归（ICL ≈ 隐式贝叶斯推断/隐式微调的争论两边都有证据），也解释了我们的玩具为何分家——<strong>输入通道要靠注意力绑定（7.1 失败），梯度通道靠密集监督（7.2 成功）</strong>：两条通道对底座的要求不同，这是框架第一问的实验基础。</p>
-<p><strong>界线是移动的</strong>：算力价格、模型能力、任务频率都在变——今天值得外挂的，明天可能该固化（反之亦然）。框架给出的不是答案，是<strong>可以重复演算的判断程序</strong>——这与 0.1 章对”账本”的承诺一致。</p>
+<p><strong>两层的数学同构</strong>：few-shot 的上下文与 SFT 的微调，都是在条件化模型的行为——前者把示例放进输入，后者把示例放进梯度。信息同源（都是”示例”），通道不同。这解释了为什么大模型上两者常常殊途同归（ICL ≈ 隐式贝叶斯推断/隐式微调的争论两边都有证据），也解释了我们的玩具为何分家——输入通道要靠注意力绑定（7.1 失败），梯度通道靠密集监督（7.2 成功）：两条通道对底座的要求不同，这是框架第一问的实验基础。</p>
+<p><strong>界线是移动的</strong>：算力价格、模型能力、任务频率都在变——今天值得外挂的，明天可能该固化（反之亦然）。框架给出的不是答案，是可以重复演算的判断程序——这与 0.1 章对”账本”的承诺一致。</p>
 </section>
 <section id="从零实现" class="level2" data-number="36.4">
 <h2 data-number="36.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">36.4</span> 从零实现</h2>
 <p>三条件对照（基座复训 + few-shot + SFT 复用 7.2 流程）：</p>
-<div id="d8ca10aa" class="cell" data-execution_count="1">
+<div id="79f7fe2b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus, make_qa_corpus</span>
@@ -1172,16 +1172,16 @@ main table {
 SFT zero-shot: 0.33</code></pre>
 </div>
 </div>
-<p>典型读数：<strong>0.00 / 0.00 / 0.33</strong>。few-shot 完全失效——示例进了上下文，基座却无法把它们与当前问题<strong>绑定</strong>（7.1 的诱导头之墙再次立在那儿：输入通道的条件化需要注意力回路，我们的玩具没有）。这个三连数是框架第一问的实验证词：</p>
+<p>典型读数：<strong>0.00 / 0.00 / 0.33</strong>。few-shot 完全失效——示例进了上下文，基座却无法把它们与当前问题绑定（7.1 的诱导头之墙再次立在那儿：输入通道的条件化需要注意力回路，我们的玩具没有）。这个三连数是框架第一问的实验证词：</p>
 <ul>
 <li><strong>系统层不是免费的</strong>——它依赖底座的输入通道条件化能力（ICL）。玩具上这条通道断了，所以 few-shot 为零、SFT 起效（梯度通道健全）；</li>
 <li>真实 GPT-3 尺度上结论反转：few-shot 大幅起效（诱导回路存在），于是 2020–2023 年系统层（提示工程）繁荣；</li>
-<li><strong>框架的应用要带上底座的体检报告</strong>——同一个”问题”，在不同底座上答案不同。这也是读一切”prompt vs 微调”论文的第一检查项：他们的底座多大、哪条通道健全。</li>
+<li>框架的应用要带上底座的体检报告——同一个”问题”，在不同底座上答案不同。这也是读一切”prompt vs 微调”论文的第一检查项：他们的底座多大、哪条通道健全。</li>
 </ul>
 </section>
 <section id="消融实验" class="level2" data-number="36.5">
 <h2 data-number="36.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">36.5</span> 消融实验</h2>
-<p><strong>通道的对照</strong>：few-shot 失效但 SFT 有效——两条通道（输入 vs 梯度）的要求差异，可以再用一个对照钉死：把 few-shot 的示例<strong>逐条</strong>放进 SFT 数据（等价于把输入通道的内容搬到梯度通道），同样的 12 个问答、同样的信息量——<code>SFT</code> 从 0.00 涨到 0.33（这正是 7.2 已做的实验）。<strong>信息相同、通道不同、结果不同</strong>——通道本身的健全性是独立变量，这是本框架区别于流行讨论的关键洞见。</p>
+<p><strong>通道的对照</strong>：few-shot 失效但 SFT 有效——两条通道（输入 vs 梯度）的要求差异，可以再用一个对照钉死：把 few-shot 的示例逐条放进 SFT 数据（等价于把输入通道的内容搬到梯度通道），同样的 12 个问答、同样的信息量——<code>SFT</code> 从 0.00 涨到 0.33（这正是 7.2 已做的实验）。信息相同、通道不同、结果不同——通道本身的健全性是独立变量，这是本框架区别于流行讨论的关键洞见。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="36.6">
 <h2 data-number="36.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">36.6</span> 本章 Loss 账本</h2>
@@ -1227,8 +1227,8 @@ SFT zero-shot: 0.33</code></pre>
 <p><strong>Liu, P. et al.&nbsp;(2021).</strong> <em>Pre-train, prompt, and predict: A systematic survey of prompting methods in NLP.</em> ACM Computing Surveys.（配对阅读：Lewis et al.&nbsp;(2020) 的 RAG 论文）</p>
 <ul>
 <li><strong>读什么</strong>：综述的图 1（预训练-微调与预训练-提示两范式的对照图——本章的”两条通道”的文献版）；RAG 的混合知识安置设计；</li>
-<li><strong>跳过</strong>：提示技巧目录；</li>
-<li><strong>历史注</strong>：这篇综述恰成于范式争论的中点——它分类的许多”提示方法”今天已成古董，<strong>连方法论综述都有半衰期</strong>；对照 RAG 的长寿（知识安置的答案至今是混合层），可以体会哪些设计经得起时间：<strong>靠近问题结构的（知识放哪）比靠近实现技巧的（怎么写提示）活得久</strong>。</li>
+<li>跳过：提示技巧目录；</li>
+<li>历史注：这篇综述恰成于范式争论的中点——它分类的许多”提示方法”今天已成古董，连方法论综述都有半衰期；对照 RAG 的长寿（知识安置的答案至今是混合层），可以体会哪些设计经得起时间：靠近问题结构的（知识放哪）比靠近实现技巧的（怎么写提示）活得久。</li>
 </ul>
 </div>
 </section>
@@ -1236,8 +1236,8 @@ SFT zero-shot: 0.33</code></pre>
 <h2 data-number="36.7" class="anchored" data-anchor-id="遗留问题-part-9-的入场券"><span class="header-section-number">36.7</span> 遗留问题（= Part 9 的入场券）</h2>
 <ol type="1">
 <li>三问框架、loss 账本、双镜头、研究循环——全书的工具已集齐，<strong>它们拼成的判断系统长什么样</strong>？（→ 9.1 复盘：反复出现的模式）；</li>
-<li>框架依赖的世界在变：数据墙、算力格局、能力前沿——<strong>开放问题清单</strong>（→ 9.2）；</li>
-<li>最后：用它<strong>预测未来</strong>——全书的毕业考试（→ 9.3）。</li>
+<li>框架依赖的世界在变：数据墙、算力格局、能力前沿——开放问题清单（→ 9.2）；</li>
+<li>最后：用它预测未来——全书的毕业考试（→ 9.3）。</li>
 </ol>
 </section>
 <section id="参考文献" class="level2" data-number="36.8">
@@ -1251,10 +1251,10 @@ SFT zero-shot: 0.33</code></pre>
 <h2 data-number="36.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">36.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把三问框架写成一张决策表（底座体检 × 变化频率 × 错误代价 → 建议层），并给自己的一个实际项目过一遍——记录框架给出的建议与你的直觉的分歧点。</li>
-<li><strong>预测再运行</strong>：few-shot 的 k 从 3 加到 8（示例更多），玩具基座上会有任何变化吗？真实模型上呢？（区分”示例不足”与”通道不通”两种失败。）</li>
-<li><strong>消融</strong>：把 few-shot 的示例换成乱序（答案与问题不匹配），生成会怎么变？——<strong>通道不通时，示例的正确性还重要吗？</strong>（这测的是输入通道的哪一段？）</li>
-<li><strong>论文映射</strong>：用四问账本拆 RAG——注意它的”买到”栏同时记着两层（系统的时效 + 权重的整合）：<strong>跨层设计在账本上怎么记账？</strong></li>
-<li><strong>进阶</strong>：设计一个”通道体检”小工具：对任一底座，自动测 (a) few-shot 格式遵循率（输入通道）与 (b) 50 步微调后的格式遵循率（梯度通道），输出体检报告——把它跑在本书的三个模型（story 基座、SFT、MiniGPT-64）上。</li>
+<li>预测再运行：few-shot 的 k 从 3 加到 8（示例更多），玩具基座上会有任何变化吗？真实模型上呢？（区分”示例不足”与”通道不通”两种失败。）</li>
+<li>消融：把 few-shot 的示例换成乱序（答案与问题不匹配），生成会怎么变？——通道不通时，示例的正确性还重要吗？（这测的是输入通道的哪一段？）</li>
+<li>论文映射：用四问账本拆 RAG——注意它的”买到”栏同时记着两层（系统的时效 + 权重的整合）：跨层设计在账本上怎么记账？</li>
+<li>进阶：设计一个”通道体检”小工具：对任一底座，自动测 (a) few-shot 格式遵循率（输入通道）与 (b) 50 步微调后的格式遵循率（梯度通道），输出体检报告——把它跑在本书的三个模型（story 基座、SFT、MiniGPT-64）上。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1268,9 +1268,9 @@ SFT zero-shot: 0.33</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：玩具上无变化（0.00 保持——通道不通，示例数量无关）；真实模型上小幅提升后饱和——<strong>先诊断通道，再堆示例</strong>，是提示工程最常被跳过的第一步。</p>
-<p><strong>练习 3</strong>：玩具上无差别（反正绑不上）；真实模型上乱序示例会<strong>污染输出</strong>（模型忠实模仿了”错误的示例模式”）——通道通的时候，示例质量立刻变成硬约束。两问合起来给”通道”概念一个操作性定义。</p>
-<p><strong>练习 5 参考结果</strong>：story 基座——输入通道不通（few-shot 0）、梯度通道健全（微调起效）；SFT 模型——两条通道都通（格式已在权重里，few-shot 也能延续格式）；体检报告的第一行永远是：<strong>这个底座的注意力回路长成了吗？</strong>（7.1 的欠账至此两清。）</p>
+<p><strong>练习 2</strong>：玩具上无变化（0.00 保持——通道不通，示例数量无关）；真实模型上小幅提升后饱和——先诊断通道，再堆示例，是提示工程最常被跳过的第一步。</p>
+<p><strong>练习 3</strong>：玩具上无差别（反正绑不上）；真实模型上乱序示例会污染输出（模型忠实模仿了”错误的示例模式”）——通道通的时候，示例质量立刻变成硬约束。两问合起来给”通道”概念一个操作性定义。</p>
+<p><strong>练习 5 参考结果</strong>：story 基座——输入通道不通（few-shot 0）、梯度通道健全（微调起效）；SFT 模型——两条通道都通（格式已在权重里，few-shot 也能延续格式）；体检报告的第一行永远是：这个底座的注意力回路长成了吗？（7.1 的欠账至此两清。）</p>
 </div>
 </div>
 </div>

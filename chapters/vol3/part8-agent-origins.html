@@ -687,7 +687,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1035,7 +1035,7 @@ main table {
 </header>
 
 
-<p>Part 7 结束时我们手里有了一个会推理的模型；把它放进一个循环里——给它工具、给它记忆、让它自己决定下一步——就得到了本卷的主角：<strong>agent（智能体）</strong>。2023 年 AutoGPT 们一夜爆红又集体哑火，2024–2025 年编程与检索 agent 真正可用。喧嚣之下有一个本书主线必须回答的问题：<strong>agent 能力到底是新发明，还是旧能力的重新包装？</strong> 本章的答案分两半：模型侧的一切（工具调用、格式遵循、按步推理）都能在预训练分布里找到祖先——代码、教程、API 文档，全是”人类用工具的轨迹”；而把这些能力<strong>稳定地</strong>释放出来，靠的是后训练与系统层的合作。我们用两个实验看清这件事。</p>
+<p>Part 7 结束时我们手里有了一个会推理的模型；把它放进一个循环里——给它工具、给它记忆、让它自己决定下一步——就得到了本卷的主角：<strong>agent（智能体）</strong>。2023 年 AutoGPT 们一夜爆红又集体哑火，2024–2025 年编程与检索 agent 真正可用。喧嚣之下有一个本书主线必须回答的问题：agent 能力到底是新发明，还是旧能力的重新包装？ 本章的答案分两半：模型侧的一切（工具调用、格式遵循、按步推理）都能在预训练分布里找到祖先——代码、教程、API 文档，全是”人类用工具的轨迹”；而把这些能力稳定地释放出来，靠的是后训练与系统层的合作。我们用两个实验看清这件事。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1052,9 +1052,9 @@ main table {
 <div class="callout-era" title="时代快照 · 2023–2025">
 <ul>
 <li><strong>算力</strong>：agent 把推理成本从”每条消息一次前向”变成”每任务几十次前向 + 工具执行”——推理经济学（5.3 的账单）第一次成为产品定价的直接输入；</li>
-<li><strong>数据</strong>：函数调用格式的合成数据、代码执行轨迹、浏览器操作日志——<strong>“人类使用工具的轨迹”成为新的采集对象</strong>；</li>
-<li><strong>认知</strong>：2023 年的主流预期是”agent = 新框架与新规划算法”；两年后的共识更朴素：agent = 大模型 + 工具 + 循环，且短板几乎总在模型的<strong>长程一致性</strong>而非规划算法；</li>
-<li><strong>关键事实</strong>：ChatGPT 的函数调用（2023.6）没有发布新模型——只是输出格式的对齐与解析层的工程。<strong>agent 时代的第一课：很多”新能力”是旧能力的接口化</strong>。</li>
+<li>数据：函数调用格式的合成数据、代码执行轨迹、浏览器操作日志——“人类使用工具的轨迹”成为新的采集对象；</li>
+<li>认知：2023 年的主流预期是”agent = 新框架与新规划算法”；两年后的共识更朴素：agent = 大模型 + 工具 + 循环，且短板几乎总在模型的长程一致性而非规划算法；</li>
+<li>关键事实：ChatGPT 的函数调用（2023.6）没有发布新模型——只是输出格式的对齐与解析层的工程。agent 时代的第一课：很多”新能力”是旧能力的接口化。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="34.1">
@@ -1067,14 +1067,14 @@ main table {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="34.2">
 <h2 data-number="34.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">34.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路一：把 agent 当规划系统做</strong>。2023 年的框架热（LangChain 生态、AutoGPT）试图用代码写死规划：任务分解模板、反思提示、记忆管理——<strong>把智能放在脚手架里</strong>。结果：脆弱、昂贵、一步错步步错。教训与 1.2 的专家系统惊人地同构——<strong>知识在代码里就遇到代码的扩展墙</strong>；Bitter Lesson 的 agent 版。</p>
-<p><strong>弯路二：宣布”模型即全部”</strong>。反向极端：只要模型够强，无需脚手架。现实打脸：没有工具的模型算不准大数、没有循环的模型改不了自己的错。<strong>脚手架与模型是共生关系</strong>——分界线在哪，正是 8.3 的主题。</p>
-<p><strong>正解的演化</strong>：函数调用（格式对齐让”调用工具”变成一种可靠的语言行为）→ 代码执行作为工具（写代码比心算算术更接近模型的训练分布——代码数据是预训练里最完整的”人类用工具轨迹”）→ 计算机使用/浏览器操作（轨迹采集 → 模仿学习 → 环境闭环 RL，8.2 的主题）。<strong>每一步都是”找到数据里已有的行为，再把接口对齐”</strong>。</p>
+<p><strong>弯路一：把 agent 当规划系统做</strong>。2023 年的框架热（LangChain 生态、AutoGPT）试图用代码写死规划：任务分解模板、反思提示、记忆管理——把智能放在脚手架里。结果：脆弱、昂贵、一步错步步错。教训与 1.2 的专家系统惊人地同构——知识在代码里就遇到代码的扩展墙；Bitter Lesson 的 agent 版。</p>
+<p><strong>弯路二：宣布”模型即全部”</strong>。反向极端：只要模型够强，无需脚手架。现实打脸：没有工具的模型算不准大数、没有循环的模型改不了自己的错。脚手架与模型是共生关系——分界线在哪，正是 8.3 的主题。</p>
+<p><strong>正解的演化</strong>：函数调用（格式对齐让”调用工具”变成一种可靠的语言行为）→ 代码执行作为工具（写代码比心算算术更接近模型的训练分布——代码数据是预训练里最完整的”人类用工具轨迹”）→ 计算机使用/浏览器操作（轨迹采集 → 模仿学习 → 环境闭环 RL，8.2 的主题）。每一步都是”找到数据里已有的行为，再把接口对齐”。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>两个实验预告，先写下预测：</p>
 <ol type="1">
-<li><strong>计算器拦截</strong>：让故事模型续写含算式的文本（如 <code>"pip counted 3+4="</code>）——模型会算对吗？（你已知道它的水平。）现在外挂一个工具：正则匹配到 <code>a+b=</code> 就把正确答案写回上下文再让模型继续。<strong>整体正确率会到多少？</strong> 模型与工具的分工你怎么描述？</li>
-<li><strong>验证器重排</strong>：7.2 的 SFT 模型贪心命中只有 0.17–0.33，但正确答案的似然 margin 是 +3.68 nat。如果系统层<strong>枚举全部 12 个候选答案、按 teacher-forced 似然重排取最优</strong>，命中率会到多少？（提示：margin 是均值——每道题的正确答案都排第一吗？）</li>
+<li><strong>计算器拦截</strong>：让故事模型续写含算式的文本（如 <code>"pip counted 3+4="</code>）——模型会算对吗？（你已知道它的水平。）现在外挂一个工具：正则匹配到 <code>a+b=</code> 就把正确答案写回上下文再让模型继续。整体正确率会到多少？ 模型与工具的分工你怎么描述？</li>
+<li>验证器重排：7.2 的 SFT 模型贪心命中只有 0.17–0.33，但正确答案的似然 margin 是 +3.68 nat。如果系统层枚举全部 12 个候选答案、按 teacher-forced 似然重排取最优，命中率会到多少？（提示：margin 是均值——每道题的正确答案都排第一吗？）</li>
 </ol>
 <p>写完再运行——第 2 问的答案不如很多人猜的那么高，原因值得写进你的笔记。</p>
 </div>
@@ -1084,16 +1084,16 @@ main table {
 <p><strong>Agent 能力的三层来源</strong>（本章的分析框架）：</p>
 <ol type="1">
 <li><strong>预训练分布里的轨迹</strong>：代码、教程、API 文档、命令行会话——互联网文本里充满了”调用→结果→继续”的模式。模型在预训练时就把”工具使用的语法”学进了权重——这与 7.1 的结论（能力来自分布）一脉相承；</li>
-<li><strong>后训练的接口对齐</strong>：函数调用格式、指令遵循——SFT/RLHF 把”偶尔会的行为”变成”稳定可靠的行为”（7.2 的格式满分正是这一层）；</li>
-<li><strong>系统层的循环与工具</strong>：真正的执行、验证、重试发生在模型之外——<strong>模型提供行为分布，环境提供因果</strong>。</li>
+<li>后训练的接口对齐：函数调用格式、指令遵循——SFT/RLHF 把”偶尔会的行为”变成”稳定可靠的行为”（7.2 的格式满分正是这一层）；</li>
+<li>系统层的循环与工具：真正的执行、验证、重试发生在模型之外——模型提供行为分布，环境提供因果。</li>
 </ol>
-<p><strong>工具的本质：把模型的短板外包给确定性系统</strong>。模型不擅长精确算术（7.4 我们领教过），但<strong>擅长决定”什么时候该算、算什么”</strong>——决策与执行分离，agent 的全部架构秘密就这一句。它与 3.1 卷积的”归纳偏置”形成有趣的镜像：卷积把结构写进权重，agent 把结构写进环境——<strong>先验的两种住所</strong>。</p>
-<p><strong>“知道”与”说出”之间，工具是桥</strong>：7.2 发现知识在概率里、行为在路径上。重排类工具（验证器、best-of-n）不改权重，<strong>直接读概率</strong>——它们是”把知道变成说出”的系统层方案（与 RLHF 的模型层方案对照）。</p>
+<p><strong>工具的本质：把模型的短板外包给确定性系统</strong>。模型不擅长精确算术（7.4 我们领教过），但擅长决定”什么时候该算、算什么”——决策与执行分离，agent 的全部架构秘密就这一句。它与 3.1 卷积的”归纳偏置”形成有趣的镜像：卷积把结构写进权重，agent 把结构写进环境——先验的两种住所。</p>
+<p><strong>“知道”与”说出”之间，工具是桥</strong>：7.2 发现知识在概率里、行为在路径上。重排类工具（验证器、best-of-n）不改权重，直接读概率——它们是”把知道变成说出”的系统层方案（与 RLHF 的模型层方案对照）。</p>
 </section>
 <section id="从零实现" class="level2" data-number="34.4">
 <h2 data-number="34.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">34.4</span> 从零实现</h2>
 <p><strong>实验一：计算器拦截。</strong> 基座模型续写含算式的文本，工具在算式处接管：</p>
-<div id="138ef31e" class="cell" data-execution_count="1">
+<div id="459526f0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1160,9 +1160,9 @@ main table {
 <pre><code>算式续写正确率: 无工具 0.00 -&gt; 带计算器 0.00</code></pre>
 </div>
 </div>
-<p>典型读数：<strong>无工具 ≈ 0.05–0.15</strong>（模型对算术只有字符级的模糊直觉）→ <strong>带工具 = 1.00</strong>。注意工具只做了一件小事：识别模式、算对、写回——<strong>决策权（在哪里停、写什么算式）仍在模型</strong>。这就是 agent 的分工：模型出意图，环境出因果。</p>
+<p>典型读数：<strong>无工具 ≈ 0.05–0.15</strong>（模型对算术只有字符级的模糊直觉）→ 带工具 = 1.00。注意工具只做了一件小事：识别模式、算对、写回——决策权（在哪里停、写什么算式）仍在模型。这就是 agent 的分工：模型出意图，环境出因果。</p>
 <p><strong>实验二：验证器重排——把 margin 变成命中率。</strong> 复用 7.2 的 SFT 流程（代码相同，快速重训）：</p>
-<div id="d2748b58" class="cell" data-execution_count="2">
+<div id="265610b6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_qa_corpus</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.transformer.layers <span class="im">import</span> softmax_lastdim</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1208,11 +1208,11 @@ main table {
 <pre><code>QA 命中: 贪心 0.00 -&gt; 枚举重排 0.08（margin 均值 +3.68 nat）</code></pre>
 </div>
 </div>
-<p>典型读数：贪心 0.33 → 重排 <strong>0.42</strong>。提升真实但有限——这里藏着本章最诚实的一课：<strong>margin 是均值，重排要的是每题都第一</strong>。平均偏好正确 ≠ 逐题排序正确——6.3 的”度量与平均”之课在工具语境下重演。真实系统里的 RAG 重排器、验证器组合拳，本质上都在攻这个”逐题排序”的缺口。</p>
+<p>典型读数：贪心 0.33 → 重排 <strong>0.42</strong>。提升真实但有限——这里藏着本章最诚实的一课：margin 是均值，重排要的是每题都第一。平均偏好正确 ≠ 逐题排序正确——6.3 的”度量与平均”之课在工具语境下重演。真实系统里的 RAG 重排器、验证器组合拳，本质上都在攻这个”逐题排序”的缺口。</p>
 </section>
 <section id="消融实验" class="level2" data-number="34.5">
 <h2 data-number="34.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">34.5</span> 消融实验</h2>
-<p><strong>工具的时机</strong>：把计算器从”生成中拦截”改成”生成后纠正”（等模型全写完再改答案）——对吗？不对：模型的<strong>后续生成建立在错误答案的上下文上</strong>，纠正一个字符救不回已被污染的推理链。改一下拦截时机重测（练习 3）——<strong>工具要接在因果链上，而不是贴在结果上</strong>：这就是为什么真实的 function calling 是”停下生成→等工具→再继续”，而不是事后修补。</p>
+<p><strong>工具的时机</strong>：把计算器从”生成中拦截”改成”生成后纠正”（等模型全写完再改答案）——对吗？不对：模型的后续生成建立在错误答案的上下文上，纠正一个字符救不回已被污染的推理链。改一下拦截时机重测（练习 3）——工具要接在因果链上，而不是贴在结果上：这就是为什么真实的 function calling 是”停下生成→等工具→再继续”，而不是事后修补。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="34.6">
 <h2 data-number="34.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">34.6</span> 本章 Loss 账本</h2>
@@ -1257,9 +1257,9 @@ main table {
 <div class="callout-paper" title="论文时光机">
 <p><strong>Schick, T. et al.&nbsp;(2023).</strong> <em>Toolformer: Language models can teach themselves to use tools.</em> NeurIPS.（配对阅读 OpenAI 的函数调用文档与 Gorilla/WebArena 一系的工作）</p>
 <ul>
-<li><strong>读什么</strong>：Toolformer 的自标注流程（模型在哪些位置插入 API 调用能降 loss——<strong>用 loss 定义”什么时候需要工具”</strong>，这是全书主线在 agent 领域的直接延伸）；数据构造的表 1；</li>
-<li><strong>跳过</strong>：API 细节；</li>
-<li><strong>历史注</strong>：Toolformer 的”让模型自己标注工具使用”与 STaR 的”让模型自己标注推理”是同一个思想在不同维度的投影——<strong>自举家族的又一成员</strong>（7.4 的回声）。</li>
+<li><strong>读什么</strong>：Toolformer 的自标注流程（模型在哪些位置插入 API 调用能降 loss——用 loss 定义”什么时候需要工具”，这是全书主线在 agent 领域的直接延伸）；数据构造的表 1；</li>
+<li>跳过：API 细节；</li>
+<li>历史注：Toolformer 的”让模型自己标注工具使用”与 STaR 的”让模型自己标注推理”是同一个思想在不同维度的投影——自举家族的又一成员（7.4 的回声）。</li>
 </ul>
 </div>
 </section>
@@ -1267,7 +1267,7 @@ main table {
 <h2 data-number="34.7" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">34.7</span> 遗留问题</h2>
 <ol type="1">
 <li>单次工具调用有了——<strong>多步循环</strong>（调用→观察→再决策）的行为如何训练与稳定？（→ 下一章：轨迹与环境闭环）；</li>
-<li>模型层与系统层的边界怎么画——<strong>一个问题该改 prompt、改工具、还是改权重</strong>？（→ 8.3：判断框架）。</li>
+<li>模型层与系统层的边界怎么画——一个问题该改 prompt、改工具、还是改权重？（→ 8.3：判断框架）。</li>
 </ol>
 </section>
 <section id="参考文献" class="level2" data-number="34.8">
@@ -1281,10 +1281,10 @@ main table {
 <h2 data-number="34.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">34.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>with_tool</code> 加第二种工具（词典查询：模式 <code>word?</code> → 注入故事词表里的定义），组合两个工具——观察模型会不会在算式后误触发词典（工具选择的混淆从两件工具开始）。</li>
-<li><strong>预测再运行</strong>：重排的候选集从 12 个答案扩到 24 个（编造 12 个干扰项），命中率怎么变？（6.3 的度量课在重排里的重演。）</li>
-<li><strong>消融</strong>：实现”事后纠正”版计算器（等生成完再改），对照因果链上拦截的版本——被污染的上下文损失多少？</li>
-<li><strong>论文映射</strong>：用四问账本拆 Toolformer——注意”什么时候用工具”由 loss 决定这个设计：<strong>判断本身被写成了优化问题</strong>。</li>
-<li><strong>进阶</strong>：统计故事模型在哪些前缀后最常生成算式——模型的”自主工具调用倾向”是分布的什么属性？把它与语料里的数字上下文对照。</li>
+<li>预测再运行：重排的候选集从 12 个答案扩到 24 个（编造 12 个干扰项），命中率怎么变？（6.3 的度量课在重排里的重演。）</li>
+<li>消融：实现”事后纠正”版计算器（等生成完再改），对照因果链上拦截的版本——被污染的上下文损失多少？</li>
+<li>论文映射：用四问账本拆 Toolformer——注意”什么时候用工具”由 loss 决定这个设计：判断本身被写成了优化问题。</li>
+<li>进阶：统计故事模型在哪些前缀后最常生成算式——模型的”自主工具调用倾向”是分布的什么属性？把它与语料里的数字上下文对照。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1298,8 +1298,8 @@ main table {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：命中率下降——干扰项越多，“逐题第一”越难（平均 margin 不变但排序噪声累积）；真实 RAG 的重排器要对抗的正是候选集膨胀——<strong>重排质量随候选规模衰减</strong>是部署里的经典曲线。</p>
-<p><strong>练习 3</strong>：事后纠正版的最终答案对、但后续文本已围绕错误答案展开（“pip counted 3+4=9 . nine apples .” → 改成 7 后 nine 还在）——<strong>因果污染不可逆</strong>，这是多步 agent 要”边走边验”的根源。</p>
+<p><strong>练习 2</strong>：命中率下降——干扰项越多，“逐题第一”越难（平均 margin 不变但排序噪声累积）；真实 RAG 的重排器要对抗的正是候选集膨胀——重排质量随候选规模衰减是部署里的经典曲线。</p>
+<p><strong>练习 3</strong>：事后纠正版的最终答案对、但后续文本已围绕错误答案展开（“pip counted 3+4=9 . nine apples .” → 改成 7 后 nine 还在）——因果污染不可逆，这是多步 agent 要”边走边验”的根源。</p>
 <p><strong>练习 5 提示</strong>：数字多出现在价格、数量、日期上下文——模型在这些前缀后生成算式的频率，就是它在模仿语料里”人类何时动笔算”的分布；工具调用的”时机感”是模仿来的，不是推理来的。</p>
 </div>
 </div>

@@ -671,7 +671,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1043,13 +1043,13 @@ main table {
 <p>人的理解需要 context。一个孤立的公式是记不住的，一个没有来龙去脉的架构图是看不懂的。本章要回答全书的方法论问题：</p>
 <ol type="1">
 <li><strong>为什么”从模型的视角看，一切是训练降 loss”是一把好解剖刀？</strong></li>
-<li><strong>为什么研究思路无法被讲述、只能被重演？</strong></li>
+<li>为什么研究思路无法被讲述、只能被重演？</li>
 <li>两条线如何咬合成一本书的使用说明？</li>
 </ol>
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">2.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>只讲原理的书</strong>（以及大多数课程）的困境：知识以”完成时”呈现——Transformer 直接以最优雅的形态躺在第三章，仿佛它生来如此。于是学习者记住的是结论而不是<strong>得到结论的过程</strong>；而领域的未来恰恰藏在过程里。这是”知识点清单”的弯路。</p>
+<p><strong>只讲原理的书</strong>（以及大多数课程）的困境：知识以”完成时”呈现——Transformer 直接以最优雅的形态躺在第三章，仿佛它生来如此。于是学习者记住的是结论而不是得到结论的过程；而领域的未来恰恰藏在过程里。这是”知识点清单”的弯路。</p>
 <p><strong>只讲历史的书</strong>的困境：满足于年表、人物与优先权之争，有故事而无能力。读者知道 1986 年发生了什么，却依然推不出梯度、跑不了实验。这是”掌故”的弯路。</p>
 <p>两者的病根相同：<strong>把 context 与 competence 当作二选一</strong>。</p>
 <div class="callout-research" title="停一停，你来当研究者">
@@ -1090,8 +1090,8 @@ main table {
 <p>从模型的视角看，训练只发生一件事：<strong>在某个数据分布上、按某个目标函数，把 loss 降下去</strong>。这个朴素的视角一旦认真使用，威力惊人：</p>
 <ul>
 <li><strong>预测即压缩</strong>。Shannon 在 1948 年 <span class="citation" data-cites="shannon1948">(<a href="#ref-shannon1948" role="doc-biblioref">Shannon 1948</a>)</span> 就告诉我们：对数据压缩得越好，就是对它的分布预测得越好。今天的语言模型本质上是一台互联网文本的压缩机——降 loss 与”学到了知识”是同一件事的两面；</li>
-<li><strong>能力 = 特定分布上的低 loss</strong>。“会写代码”意味着在代码分布上 loss 低，“会推理”意味着在带推理痕迹的分布上 loss 低。于是每个新能力（对齐、工具调用、推理）都可以精确地问一句：<strong>这无非是在某个新分布上降 loss 吗？如果是，数据从哪来？</strong></li>
-<li><strong>训练技术 = 让 loss 降得更低、更便宜的手段</strong>。新架构如此（同样的算力降得更低）、训练技巧如此、分布式系统也如此。</li>
+<li>能力 = 特定分布上的低 loss。“会写代码”意味着在代码分布上 loss 低，“会推理”意味着在带推理痕迹的分布上 loss 低。于是每个新能力（对齐、工具调用、推理）都可以精确地问一句：这无非是在某个新分布上降 loss 吗？如果是，数据从哪来？</li>
+<li>训练技术 = 让 loss 降得更低、更便宜的手段。新架构如此（同样的算力降得更低）、训练技巧如此、分布式系统也如此。</li>
 </ul>
 <p>由此得到全书的标准工具——每章结尾都会填一份的 <strong>Loss 账本</strong>：</p>
 <table class="caption-top table">
@@ -1170,7 +1170,7 @@ main table {
 </section>
 <section id="两线如何咬合" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="两线如何咬合"><span class="header-section-number">2.3.3</span> 两线如何咬合</h3>
-<p>每章 = 一次历史解题（context）+ 一份 loss 账本（competence）+ 一组可运行实验（重演）。历史告诉你<strong>为什么</strong>，loss 告诉你<strong>代价与收益</strong>，实验让你<strong>亲手摸到</strong>。三者的关系不是并列，是同一件事的三个投影。</p>
+<p>每章 = 一次历史解题（context）+ 一份 loss 账本（competence）+ 一组可运行实验（重演）。历史告诉你<strong>为什么</strong>，loss 告诉你代价与收益，实验让你亲手摸到。三者的关系不是并列，是同一件事的三个投影。</p>
 <div class="callout-echo" title="回声">
 <p>「四问账本」本身也有一份账本：它在优化你的”判断力 loss”——输入是新技术（新的架构、RL 配方、agent 框架），输出是快速定位它的数据来源、目标函数与边界。读完本书，面对任何新论文，你的第一反应应当是拿账本过一遍——这正是很多人面对 AI 狂潮时最缺的能力。</p>
 </div>
@@ -1178,7 +1178,7 @@ main table {
 <p>本章的两篇奠基文献，也是全书唯二”非技术”的指定阅读：</p>
 <ul>
 <li><strong>Shannon, C. (1948)</strong> <span class="citation" data-cites="shannon1948">(<a href="#ref-shannon1948" role="doc-biblioref">Shannon 1948</a>)</span>. <em>A Mathematical Theory of Communication.</em> —— “预测即压缩”的血缘源头，语言建模（4.1）将正式回到这里；</li>
-<li><strong>Sutton, R. (2019)</strong> <span class="citation" data-cites="sutton2019">(<a href="#ref-sutton2019" role="doc-biblioref">Sutton 2019</a>)</span>. <em>The Bitter Lesson.</em> —— 短短一页：七十年来，依赖算力扩展的通用方法一再击败精巧的领域设计。它将在 2.4、6.1、9.1 三次回响，是贯穿全书的低音部。</li>
+<li>Sutton, R. (2019) <span class="citation" data-cites="sutton2019">(<a href="#ref-sutton2019" role="doc-biblioref">Sutton 2019</a>)</span>. <em>The Bitter Lesson.</em> —— 短短一页：七十年来，依赖算力扩展的通用方法一再击败精巧的领域设计。它将在 2.4、6.1、9.1 三次回响，是贯穿全书的低音部。</li>
 </ul>
 </div>
 </section>
@@ -1198,9 +1198,9 @@ main table {
 <h2 data-number="2.6" class="anchored" data-anchor-id="练习"><span class="header-section-number">2.6</span> 练习</h2>
 <ol type="1">
 <li><strong>账本练习</strong>：把「停一停」里你拆解的技术重新写一遍，这次必须把第三、四问写满各 100 字。</li>
-<li><strong>预测练习</strong>：写下你对这个判断的真伪与理由——“Transformer 会在十年内被完全取代”。装进信封，读到 9.3 时拆开对照。</li>
-<li><strong>循环识别</strong>：在任意一篇你近期读过的 AI 新闻里，辨认出它属于研究循环的哪一拍（瓶颈/假设/验证/新瓶颈）。若辨认不出，说明它可能只是营销。</li>
-<li><strong>论文映射</strong>：找出 The Bitter Lesson 提到的任一历史案例（如计算机视觉的手工特征），用四问账本拆它一页。</li>
+<li>预测练习：写下你对这个判断的真伪与理由——“Transformer 会在十年内被完全取代”。装进信封，读到 9.3 时拆开对照。</li>
+<li>循环识别：在任意一篇你近期读过的 AI 新闻里，辨认出它属于研究循环的哪一拍（瓶颈/假设/验证/新瓶颈）。若辨认不出，说明它可能只是营销。</li>
+<li>论文映射：找出 The Bitter Lesson 提到的任一历史案例（如计算机视觉的手工特征），用四问账本拆它一页。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">

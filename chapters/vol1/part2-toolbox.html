@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1081,14 +1081,14 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 2010–2015">
 <ul>
 <li><strong>算力</strong>：GPU 已经进入视野（2012 的 AlexNet 用两张 GTX 580），但多数实验室还在 CPU 上挣扎——工具必须便宜才可能流行；</li>
-<li><strong>数据</strong>：ImageNet（2009）改变了游戏规则，“大数据集”第一次名副其实；</li>
-<li><strong>认知</strong>：深度网络的价值开始被严肃对待，但”加深就退化”仍是拦路虎——2015 年之前，“最深的实用网络”纪录大约在十层上下；</li>
-<li><strong>关键事实</strong>：这五年的每一件工具都先以”工程技巧”的面目出现，理论解释滞后数年（BN 的原始论文提出的”内部协变量偏移”解释后来还被部分推翻）——<strong>先有效后有理</strong>是这个领域的常态节奏。</li>
+<li>数据：ImageNet（2009）改变了游戏规则，“大数据集”第一次名副其实；</li>
+<li>认知：深度网络的价值开始被严肃对待，但”加深就退化”仍是拦路虎——2015 年之前，“最深的实用网络”纪录大约在十层上下；</li>
+<li>关键事实：这五年的每一件工具都先以”工程技巧”的面目出现，理论解释滞后数年（BN 的原始论文提出的”内部协变量偏移”解释后来还被部分推翻）——先有效后有理是这个领域的常态节奏。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">10.1</span> 本章问题</h2>
-<p>上一章确诊的病有两个层面：<strong>静态</strong>（初始化时刻的梯度失衡，2.1 已治一半）与<strong>动态</strong>（训练过程中每层输入分布的漂移）。本章问：</p>
+<p>上一章确诊的病有两个层面：<strong>静态</strong>（初始化时刻的梯度失衡，2.1 已治一半）与动态（训练过程中每层输入分布的漂移）。本章问：</p>
 <ol type="1">
 <li>各件工具分别治什么病、代价是什么？</li>
 <li>它们合起来，能把”深度”推进到哪里？</li>
@@ -1096,16 +1096,16 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">10.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>ReLU（2010 前后被认真采用）</strong>。Nair &amp; Hinton (2010) 在受限玻尔兹曼机里用了整流单元，Glorot, Bordes &amp; Bengio (2011) 在监督网络里系统评估并惊呼其简单有效。此前 sigmoid/tanh 是”默认神圣”——人们以为模拟生物发放率需要平滑饱和函数。弯路在于：<strong>“像神经元”不等于”训练友好”</strong>，导数恒为 1 的死区函数反而完胜。新病也随之而来（神经元死亡、稀疏路径），He 初始化 (2015) 补了第一刀。</p>
-<p><strong>Dropout（Hinton et al.&nbsp;2012；Srivastava et al.&nbsp;2014）</strong>。训练时随机丢弃一半神经元，测试时全部启用并缩放。直觉：阻止神经元”合谋”，逼出冗余表征；等价于隐式集成天文数字个子网络。它是 AlexNet 的功臣之一，在 2012–2017 的视觉模型里几乎必开——<strong>但后来被 BatchNorm 部分取代、被大模型时代的显存压力边缘化</strong>，这段兴衰本身就是”工具也有寿命”的注脚。</p>
-<p><strong>BatchNorm（Ioffe &amp; Szegedy, 2015）</strong>。把每一层的输入在 mini-batch 内标准化（减均值除方差，再仿射还原），训练出奇地稳定、步长容忍度大增。原论文把它解释为消除”内部协变量偏移”——这个解释<strong>后来被证伪</strong>（2018 年的研究表明它的真实作用更多在让 loss 地形更平滑），但药效无损。<strong>有效的药和正确的药理解释可以脱钩</strong>，这是科学史上反复上演的剧目。</p>
+<p><strong>ReLU（2010 前后被认真采用）</strong>。Nair &amp; Hinton (2010) 在受限玻尔兹曼机里用了整流单元，Glorot, Bordes &amp; Bengio (2011) 在监督网络里系统评估并惊呼其简单有效。此前 sigmoid/tanh 是”默认神圣”——人们以为模拟生物发放率需要平滑饱和函数。弯路在于：“像神经元”不等于”训练友好”，导数恒为 1 的死区函数反而完胜。新病也随之而来（神经元死亡、稀疏路径），He 初始化 (2015) 补了第一刀。</p>
+<p><strong>Dropout（Hinton et al.&nbsp;2012；Srivastava et al.&nbsp;2014）</strong>。训练时随机丢弃一半神经元，测试时全部启用并缩放。直觉：阻止神经元”合谋”，逼出冗余表征；等价于隐式集成天文数字个子网络。它是 AlexNet 的功臣之一，在 2012–2017 的视觉模型里几乎必开——但后来被 BatchNorm 部分取代、被大模型时代的显存压力边缘化，这段兴衰本身就是”工具也有寿命”的注脚。</p>
+<p><strong>BatchNorm（Ioffe &amp; Szegedy, 2015）</strong>。把每一层的输入在 mini-batch 内标准化（减均值除方差，再仿射还原），训练出奇地稳定、步长容忍度大增。原论文把它解释为消除”内部协变量偏移”——这个解释后来被证伪（2018 年的研究表明它的真实作用更多在让 loss 地形更平滑），但药效无损。有效的药和正确的药理解释可以脱钩，这是科学史上反复上演的剧目。</p>
 <p><strong>残差连接（He et al., 2015）</strong>。<span class="math inline">\(y = F(x) + x\)</span>——给梯度修一条不经过连乘的恒等高速路。它是下一部分的主角（3.2），本章只在工具箱清单里挂个号。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>带着上一章的悬念做题：八层 relu 网络，训练中卡死在 loss≈1.0。你有三张牌——</p>
 <ul>
 <li><strong>牌 A（BN）</strong>：每层输出在批内标准化；</li>
-<li><strong>牌 B（Dropout）</strong>：训练时随机失活；</li>
-<li><strong>牌 C（加大学习率）</strong>：既然梯度弱，步子迈大点。</li>
+<li>牌 B（Dropout）：训练时随机失活；</li>
+<li>牌 C（加大学习率）：既然梯度弱，步子迈大点。</li>
 </ul>
 <p><strong>先猜</strong>：哪张牌能救活它？哪张牌可能反而有害？排序后写下一句理由。</p>
 <p>另外预判一个细节：如果 BN 有效，它对学习率的容忍度会怎么变——加了 BN 之后，把学习率放大 10 倍会怎样？</p>
@@ -1162,7 +1162,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">10.4</span> 从零实现</h2>
 <p>四件工具都已在 <code>MLPNumpy</code> 里就位（<code>activation="relu"</code>、<code>dropout=p</code>、<code>batchnorm=True</code>、<code>residual=True</code>），本章按发明顺序逐一开闸。先复现病灶——上一章的卡死病人：</p>
-<div id="b1532c1e" class="cell" data-execution_count="1">
+<div id="fda89e42" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1175,7 +1175,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：BatchNorm 的奇效。</strong> 同一个八层 relu 网络，只拨动一个开关：</p>
-<div id="adf669dd" class="cell" data-execution_count="2">
+<div id="06fccb37" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bn <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span>bn)</span>
@@ -1224,7 +1224,7 @@ C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylab
 </div>
 </div>
 </div>
-<div id="5fc1a08f" class="cell" data-execution_count="3">
+<div id="c4fa5002" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bn <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span>bn)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1236,7 +1236,7 @@ BN=True: acc=0.953</code></pre>
 </div>
 <p>300 个 epoch：无 BN 卡死在 0.50，加 BN 直上 <strong>0.97</strong>。上一章的悬案在这里告破——relu 深网死于训练动态中的分布漂移，BN 把每层输入的分布钉住，漂移病除。</p>
 <p><strong>实验二：BN 的第二重礼物——步长容忍。</strong> BN 之所以流行，一半因为它让学习率从”黑暗艺术”变成”粗调旋钮”：</p>
-<div id="7a4610b8" class="cell" data-execution_count="4">
+<div id="532e99e7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.005</span>, <span class="fl">0.05</span>, <span class="fl">0.5</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span>lr, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1271,7 +1271,7 @@ C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarn
 </div>
 <p>带 BN 的网络横跨两个数量级的学习率都能训练（无 BN 的网络做同样扫描会怎么做？留作练习 2——先猜再跑）。机制直觉：BN 把各层激活的尺度钉在标准区间，loss 地形对参数整体缩放的敏感度大幅下降——2018 年的后续研究把这个好处归结为<strong>地形平滑化</strong>，而不是原论文宣称的”协变量偏移”。</p>
 <p><strong>实验三：Dropout 的机制演示。</strong> 在我们的玩具尺度上 dropout 的收益并不稳定（它的主场是百万参数的视觉模型——那里过拟合是主要矛盾）。这里只做一个机制性演示：训练态的 dropout 是噪声，评估态是确定的：</p>
-<div id="cb1f2101" class="cell" data-execution_count="5">
+<div id="30e7be8a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, dropout<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>])</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>])</span>
@@ -1285,8 +1285,8 @@ C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarn
 </section>
 <section id="消融实验" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">10.5</span> 消融实验</h2>
-<p><strong>四件工具的联合体检</strong>留给下一章的 capstone（完整配方拆解）。这里先做一件本章特有的消融：<strong>BN 到底是救了 relu 还是救了所有激活</strong>？</p>
-<div id="8507e1a3" class="cell" data-execution_count="6">
+<p><strong>四件工具的联合体检</strong>留给下一章的 capstone（完整配方拆解）。这里先做一件本章特有的消融：BN 到底是救了 relu 还是救了所有激活？</p>
+<div id="21bc9ea2" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> act <span class="kw">in</span> (<span class="st">"relu"</span>, <span class="st">"tanh"</span>):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span>act, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1344,8 +1344,8 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 <p><strong>Ioffe, S. &amp; Szegedy, C. (2015).</strong> <em>Batch normalization: Accelerating deep network training by reducing internal covariate shift.</em> ICML.</p>
 <ul>
 <li><strong>读什么</strong>：算法 1（整个方法一页写完）与图 1（训练中输入分布漂移的实证）；</li>
-<li><strong>跳过什么</strong>：关于”协变量偏移”的理论讨论——2018 年 Santurkar et al.&nbsp;的 <em>How Does BN Help Optimization?</em> 证明这个解释大概率是错的，真实机制是平滑化。<strong>两篇连读是”有效与解释可以脱钩”的最佳案例</strong>；</li>
-<li><strong>历史注</strong>：Srivastava et al.&nbsp;(2014) 的 dropout 论文与 Glorot et al.&nbsp;(2011) 的 relu 评估，风格同样”简单方法 + 扎实实验”。这一时期深度学习论文的黄金模板正在成形。</li>
+<li>跳过什么：关于”协变量偏移”的理论讨论——2018 年 Santurkar et al.&nbsp;的 <em>How Does BN Help Optimization?</em> 证明这个解释大概率是错的，真实机制是平滑化。两篇连读是”有效与解释可以脱钩”的最佳案例；</li>
+<li>历史注：Srivastava et al.&nbsp;(2014) 的 dropout 论文与 Glorot et al.&nbsp;(2011) 的 relu 评估，风格同样”简单方法 + 扎实实验”。这一时期深度学习论文的黄金模板正在成形。</li>
 </ul>
 </div>
 </section>
@@ -1372,10 +1372,10 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 <h2 data-number="10.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">10.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>MLPNumpy</code> 加 <code>layernorm=True</code> 选项（跨特征而非跨样本标准化），在八层螺旋上与 BN 对照——并预言它在 Transformer 里为什么取代了 BN（提示：批统计在变长序列上怎么办？）。</li>
-<li><strong>预测再运行</strong>：无 BN 的网络做学习率扫描 {0.005, 0.05, 0.5}，结果会怎样？与 BN 版的扫描对照，画出”步长容忍度”的对比。</li>
-<li><strong>消融</strong>：把 BN 插到输出层（而不是隐藏层）会发生什么？先推理（输出层需要保留尺度信息吗？）再改造代码验证。</li>
-<li><strong>论文映射</strong>：用四问账本拆 dropout 论文——特别地，它的”数据从哪来”一栏（视觉大模型）如何解释它在本书玩具实验里的平庸表现。</li>
-<li><strong>进阶</strong>： Santurkar et al.&nbsp;2018 的核心论证重演：测量加/不加 BN 时 loss 的 Lipschitz 常数（对参数扰动的 loss 变化率，2.1 的切片工具可复用），验证”BN 平滑了地形”。</li>
+<li>预测再运行：无 BN 的网络做学习率扫描 {0.005, 0.05, 0.5}，结果会怎样？与 BN 版的扫描对照，画出”步长容忍度”的对比。</li>
+<li>消融：把 BN 插到输出层（而不是隐藏层）会发生什么？先推理（输出层需要保留尺度信息吗？）再改造代码验证。</li>
+<li>论文映射：用四问账本拆 dropout 论文——特别地，它的”数据从哪来”一栏（视觉大模型）如何解释它在本书玩具实验里的平庸表现。</li>
+<li>进阶： Santurkar et al.&nbsp;2018 的核心论证重演：测量加/不加 BN 时 loss 的 Lipschitz 常数（对参数扰动的 loss 变化率，2.1 的切片工具可复用），验证”BN 平滑了地形”。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">

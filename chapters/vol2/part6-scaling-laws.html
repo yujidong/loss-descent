@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1064,7 +1064,7 @@ window.Quarto = {
 </header>
 
 
-<p>2010 年 1 月，OpenAI 发布 GPT-3：1750 亿参数，训练一次约消耗当时全球最优超算数周的算力。但这项工作真正的爆炸点不是模型多大，而是论文里的<strong>几张图</strong>：loss 随参数量、数据量、算力量的变化，在跨越五个数量级的范围上<strong>沿着平滑的幂律直线</strong>。深度学习——这个以”炼丹”闻名的领域——忽然有了可以外推的工程曲线。研究的方式随之改变：<strong>在花掉一百万美元之前，你可以先在纸上算出一百万美元能买多少 loss</strong>。本章我们在自己的玩具尺度上重演这条曲线的诞生。</p>
+<p>2010 年 1 月，OpenAI 发布 GPT-3：1750 亿参数，训练一次约消耗当时全球最优超算数周的算力。但这项工作真正的爆炸点不是模型多大，而是论文里的<strong>几张图</strong>：loss 随参数量、数据量、算力量的变化，在跨越五个数量级的范围上沿着平滑的幂律直线。深度学习——这个以”炼丹”闻名的领域——忽然有了可以外推的工程曲线。研究的方式随之改变：在花掉一百万美元之前，你可以先在纸上算出一百万美元能买多少 loss。本章我们在自己的玩具尺度上重演这条曲线的诞生。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1081,9 +1081,9 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 2019–2020">
 <ul>
 <li><strong>算力</strong>：V100 集群进入千卡规模；训练预算开始以”千万美元”为单位出现在董事会上；</li>
-<li><strong>数据</strong>：Common Crawl 的过滤子集（数千亿 token）成为标配燃料——<strong>数据管道第一次比模型架构更机密</strong>；</li>
-<li><strong>认知</strong>：2019 年的主流预期是”更大的模型会有递减收益”；GPT-2（15 亿）已经让”规模”成为热词但证据不足；</li>
-<li><strong>关键事实</strong>：幂律本身在更早的经验研究（Rosenfeld 2018、Hestness 2017/2019）中已露面——Kaplan 等人的贡献是把它做成了<strong>工程可用的外推工具</strong>并配上 Transformer 时代的干净实验。科学史上”谁先看到”与”谁让它可用”常是两个人。</li>
+<li>数据：Common Crawl 的过滤子集（数千亿 token）成为标配燃料——数据管道第一次比模型架构更机密；</li>
+<li>认知：2019 年的主流预期是”更大的模型会有递减收益”；GPT-2（15 亿）已经让”规模”成为热词但证据不足；</li>
+<li>关键事实：幂律本身在更早的经验研究（Rosenfeld 2018、Hestness 2017/2019）中已露面——Kaplan 等人的贡献是把它做成了工程可用的外推工具并配上 Transformer 时代的干净实验。科学史上”谁先看到”与”谁让它可用”常是两个人。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="26.1">
@@ -1096,30 +1096,30 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="26.2">
 <h2 data-number="26.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">26.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>前 scaling 时代的信念之争</strong>：一方认为深度学习的收益终将递减到零（“另一场 AI 寒冬正在路上”），另一方押注持续改善——争论多年，双方都没有数据。<strong>没有定律的领域里，预言家的嗓门代替曲线</strong>。</p>
-<p><strong>Kaplan et al.（2020）</strong>：在受控变体族（参数 1e3 到 1e9、跨越六个数量级）上测 loss，得到 <span class="math inline">\(L(N) \propto N^{-\alpha}\)</span> 一族的幂律，且<strong>参数、数据、算力三条曲线自洽</strong>（由”训练到收敛”的耦合关系联系）。配套的可预测性演示堪称论文的灵魂：用小模型外推预测大模型的 loss，误差落在很小区间。</p>
-<p><strong>GPT-3（Brown et al., 2020）</strong>：把曲线推到 175B，并在路上撞见计划外现象——<strong>few-shot learning</strong>：模型没有梯度更新，仅在上下文里给几个示例就能执行新任务（7.1 的正式主题，此处按下）。注意因果链：scaling laws 让”造更大”成为<strong>可核算的投资决策</strong>，GPT-3 是第一笔按此逻辑批准的大额投资；能力（few-shot）是<strong>买了之后才发现的赠品</strong>。</p>
+<p><strong>前 scaling 时代的信念之争</strong>：一方认为深度学习的收益终将递减到零（“另一场 AI 寒冬正在路上”），另一方押注持续改善——争论多年，双方都没有数据。没有定律的领域里，预言家的嗓门代替曲线。</p>
+<p><strong>Kaplan et al.（2020）</strong>：在受控变体族（参数 1e3 到 1e9、跨越六个数量级）上测 loss，得到 <span class="math inline">\(L(N) \propto N^{-\alpha}\)</span> 一族的幂律，且参数、数据、算力三条曲线自洽（由”训练到收敛”的耦合关系联系）。配套的可预测性演示可算论文的灵魂：用小模型外推预测大模型的 loss，误差落在很小区间。</p>
+<p><strong>GPT-3（Brown et al., 2020）</strong>：把曲线推到 175B，并在路上撞见计划外现象——few-shot learning：模型没有梯度更新，仅在上下文里给几个示例就能执行新任务（7.1 的正式主题，此处按下）。注意因果链：scaling laws 让”造更大”成为可核算的投资决策，GPT-3 是第一笔按此逻辑批准的大额投资；能力（few-shot）是买了之后才发现的赠品。</p>
 <p><strong>弯路：为规模而规模的批评</strong>。2020 年同时出现了对”大数据大模型浪费论”的批评（能源、碳足迹、集中化）——这些批评在 2022 之后逐渐让位于（并部分合并进）对数据与算力瓶颈的正视：规模不是免费的，9.2 的伏笔。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>即将运行的实验：四个尺寸（参数 2.2K / 7.5K / 27K / 104K），同数据同日程训练，测验证 loss。运行之前：</p>
 <ol type="1">
 <li><strong>画预测曲线</strong>：横轴参数（对数），纵轴 loss——你预期的形状是直线（幂律）、指数饱和、还是先陡后平的 S 形？画出来；</li>
-<li><strong>数据墙预测</strong>：训练语料只有 6 万字符。参数超过某个规模后，验证 loss 还会降吗？把你预测的”墙”标在曲线上；</li>
-<li><strong>外推游戏</strong>：假如只有前三个点的数据，你敢用它们预测第四个点吗？误差多少算”预测成功”？先写下你的判据。</li>
+<li>数据墙预测：训练语料只有 6 万字符。参数超过某个规模后，验证 loss 还会降吗？把你预测的”墙”标在曲线上；</li>
+<li>外推游戏：假如只有前三个点的数据，你敢用它们预测第四个点吗？误差多少算”预测成功”？先写下你的判据。</li>
 </ol>
 <p>写完再运行——第 3 问将原样变成下面的正菜实验。</p>
 </div>
 </section>
 <section id="核心思想" class="level2" data-number="26.3">
 <h2 data-number="26.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">26.3</span> 核心思想</h2>
-<p><strong>幂律</strong>：<span class="math inline">\(L(N) = a \cdot N^{-b}\)</span>（在对数-对数坐标下是直线）。它陈述了一件惊人的事：<strong>从一千个参数到一万亿个参数，改善的”单位汇率”大体稳定</strong>——没有悬崖、没有免费的午餐、也没有明显的天花板。深度学习的规模化不是赌博，是沿一条已测斜率的斜坡攀爬。</p>
-<p><strong>更完整的形状</strong>：<span class="math inline">\(L(N) = L_\infty + a \cdot N^{-b}\)</span>——存在<strong>不可约损失</strong>（数据本身的熵、模型族的极限）：曲线尾部必然趋平。我们的玩具会当场展示这一点：六万字符的语料撑不起无限的参数，墙就在 d=64 附近。</p>
-<p><strong>可预测性的价值超过精度</strong>：外推哪怕只准到 10%，也已足够改写决策——训练前知道结果，把”研究”变成”工程排期”。GPT-4 的技术报告披露他们正是用 scaling 外推预测了最终 loss（在千里之外命中）——<strong>这条曲线是当代大厂最值钱的知识资产之一</strong>。</p>
+<p><strong>幂律</strong>：<span class="math inline">\(L(N) = a \cdot N^{-b}\)</span>（在对数-对数坐标下是直线）。它陈述了一件惊人的事：从一千个参数到一万亿个参数，改善的”单位汇率”大体稳定——没有悬崖、没有免费的午餐、也没有明显的天花板。深度学习的规模化不是赌博，是沿一条已测斜率的斜坡攀爬。</p>
+<p><strong>更完整的形状</strong>：<span class="math inline">\(L(N) = L_\infty + a \cdot N^{-b}\)</span>——存在不可约损失（数据本身的熵、模型族的极限）：曲线尾部必然趋平。我们的玩具会当场展示这一点：六万字符的语料撑不起无限的参数，墙就在 d=64 附近。</p>
+<p><strong>可预测性的价值超过精度</strong>：外推哪怕只准到 10%，也已足够改写决策——训练前知道结果，把”研究”变成”工程排期”。GPT-4 的技术报告披露他们正是用 scaling 外推预测了最终 loss（在千里之外命中）——这条曲线是当代大厂最值钱的知识资产之一。</p>
 </section>
 <section id="从零实现" class="level2" data-number="26.4">
 <h2 data-number="26.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">26.4</span> 从零实现</h2>
 <p>燃料换大：语法模板 + Zipf 词频的合成语料（<code>make_grammar_corpus</code>，6 万字符训练 / 1.2 万验证——多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提——2.5 配方课的续集）：</p>
-<div id="b28035c3" class="cell" data-execution_count="1">
+<div id="6741fd7d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1160,14 +1160,14 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>m<span class="sc">.</span>n_params()<span class="sc">:6d}</span><span class="ss"> 参数): val loss = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37
-d=  8 (  2237 参数): val loss = 3.3608 (19s)
-d= 16 (  7517 参数): val loss = 2.3125 (26s)
-d= 32 ( 27293 参数): val loss = 1.9087 (58s)
-d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
+d=  8 (  2237 参数): val loss = 3.3608 (17s)
+d= 16 (  7517 参数): val loss = 2.3125 (22s)
+d= 32 ( 27293 参数): val loss = 1.9087 (48s)
+d= 64 (103709 参数): val loss = 1.8039 (99s)</code></pre>
 </div>
 </div>
 <p>典型读数：3.36 / 2.31 / 1.91 / 1.80——d=8 卡在均匀基线（容量不足），其后单调改善、<strong>尾部明显收窄</strong>（数据墙在招手）。画在对数坐标里：</p>
-<div id="b3b91c57" class="cell" data-execution_count="2">
+<div id="875f9c2e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="dv">4</span>))</span>
@@ -1187,7 +1187,7 @@ d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 </div>
 </div>
 <p><strong>正菜：外推游戏。</strong> 只用前三个点拟合纯幂律，预测第四个，然后揭晓：</p>
-<div id="1f96cb14" class="cell" data-execution_count="3">
+<div id="812cc089" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> np.polyfit(np.log(params[:<span class="dv">3</span>]), np.log(losses[:<span class="dv">3</span>]), <span class="dv">1</span>)  <span class="co"># 纯幂律 = 对数坐标直线</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> np.exp(np.polyval(coef, np.log(params[<span class="dv">3</span>])))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"纯幂律外推预测 d=64: </span><span class="sc">{</span>pred<span class="sc">:.3f}</span><span class="ss">   实测: </span><span class="sc">{</span>losses[<span class="dv">3</span>]<span class="sc">:.3f}</span><span class="ss">   误差: </span><span class="sc">{</span><span class="bu">abs</span>(pred<span class="op">-</span>losses[<span class="dv">3</span>])<span class="op">/</span>losses[<span class="dv">3</span>]<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1195,8 +1195,8 @@ d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 <pre><code>纯幂律外推预测 d=64: 1.368   实测: 1.804   误差: 24%</code></pre>
 </div>
 </div>
-<p>典型结果：纯幂律预测约 <strong>1.5–1.6</strong>，实测 <strong>1.80</strong>——外推<strong>高估了改善</strong>约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 <span class="math inline">\(L_\infty\)</span>。补上地板项再拟合（三点 + 地板共两参数可解）：</p>
-<div id="7f2ea091" class="cell" data-execution_count="4">
+<p>典型结果：纯幂律预测约 <strong>1.5–1.6</strong>，实测 1.80——外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 <span class="math inline">\(L_\infty\)</span>。补上地板项再拟合（三点 + 地板共两参数可解）：</p>
+<div id="3dd8c834" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit  <span class="co"># noqa: 若无 scipy，用网格搜索替代（练习 5）</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> with_floor(N, a, b, floor):</span>
@@ -1211,7 +1211,7 @@ d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 <pre><code>带地板拟合: floor=1.69, 预测 d=64: 1.765（实测 1.804）</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\yujid\AppData\Local\Temp\ipykernel_53216\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated
+<pre><code>C:\Users\yujid\AppData\Local\Temp\ipykernel_34808\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated
   popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)</code></pre>
 </div>
 </div>
@@ -1219,8 +1219,8 @@ d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 </section>
 <section id="消融实验" class="level2" data-number="26.5">
 <h2 data-number="26.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">26.5</span> 消融实验</h2>
-<p><strong>曲线对数据的依赖</strong>：把训练语料砍半（30000 字符）重扫——各尺寸的 loss 整体上移、墙提前。<strong>幂律的截距与地板都是数据的函数</strong>：这就是”数据质量/数量工程”在 scaling 框架里的位置（清洗、去重、配比——LLM 时代的新炼金术，9.2）。</p>
-<div id="4cc0df55" class="cell" data-execution_count="5">
+<p><strong>曲线对数据的依赖</strong>：把训练语料砍半（30000 字符）重扫——各尺寸的 loss 整体上移、墙提前。幂律的截距与地板都是数据的函数：这就是”数据质量/数量工程”在 scaling 框架里的位置（清洗、去重、配比——LLM 时代的新炼金术，9.2）。</p>
+<div id="75b4db20" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arr_half <span class="op">=</span> arr_t[: <span class="bu">len</span>(arr_t) <span class="op">//</span> <span class="dv">2</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>losses_half <span class="op">=</span> []</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> (<span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>):</span>
@@ -1264,7 +1264,7 @@ d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
-<td><strong>可预测性</strong>：训练前外推；研究变成工程排期；投资决策的依据</td>
+<td>可预测性：训练前外推；研究变成工程排期；投资决策的依据</td>
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
@@ -1284,8 +1284,8 @@ d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 <p><strong>Kaplan, J. et al.&nbsp;(2020).</strong> <em>Scaling laws for neural language models.</em> arXiv:2001.08361.</p>
 <ul>
 <li><strong>读什么</strong>：图 1（三联幂律——参数/数据/算力）与图 3（外推预测的演示）；第 3 节对”临界批次大小”等训练细节的处理；</li>
-<li><strong>跳过</strong>：LSTM 对照部分；</li>
-<li><strong>历史注</strong>：配套读 Hestness et al.&nbsp;(2017)（更早看到幂律的深度学习系统论文）与 Brown et al.&nbsp;(2020) 的 GPT-3 论文第 2.3 节（few-shot 的意外发现）。三篇连读的观感：<strong>曲线先于巨头、巨头先于解释、解释至今未完</strong>。</li>
+<li>跳过：LSTM 对照部分；</li>
+<li>历史注：配套读 Hestness et al.&nbsp;(2017)（更早看到幂律的深度学习系统论文）与 Brown et al.&nbsp;(2020) 的 GPT-3 论文第 2.3 节（few-shot 的意外发现）。三篇连读的观感：曲线先于巨头、巨头先于解释、解释至今未完。</li>
 </ul>
 </div>
 </section>
@@ -1309,10 +1309,10 @@ d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 <h2 data-number="26.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">26.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：实现”步数维度”的 scaling（固定 d=32，扫训练步数 375/750/1500/3000），拟合计算幂律 <span class="math inline">\(L(C)\)</span>——Kaplan 图 1 的第三联。</li>
-<li><strong>预测再运行</strong>：把验证语料换成 seed=2 的另一份合成文本，曲线移动吗？为什么验证集的”同分布”假设如此重要？（提示：账本第二问。）</li>
-<li><strong>消融</strong>：把 warmup+衰减日程换成恒定 lr，重扫四档——曲线形状怎么变？<strong>scaling 实验的结论依赖训练配方</strong>，这是解读一切 scaling 论文的第一戒律。</li>
-<li><strong>论文映射</strong>：用四问账本拆 GPT-3——注意它”买到”一栏里排在第一的不是任何基准分数，而是 few-shot 这个<strong>未被设计的能力</strong>。</li>
-<li><strong>进阶</strong>：无 scipy 的网格搜索版地板拟合（对 floor 在 1.4–1.7 网格搜索、每个 floor 下对残差拟合幂律），验证正文结论的稳健性。</li>
+<li>预测再运行：把验证语料换成 seed=2 的另一份合成文本，曲线移动吗？为什么验证集的”同分布”假设如此重要？（提示：账本第二问。）</li>
+<li>消融：把 warmup+衰减日程换成恒定 lr，重扫四档——曲线形状怎么变？scaling 实验的结论依赖训练配方，这是解读一切 scaling 论文的第一戒律。</li>
+<li>论文映射：用四问账本拆 GPT-3——注意它”买到”一栏里排在第一的不是任何基准分数，而是 few-shot 这个未被设计的能力。</li>
+<li>进阶：无 scipy 的网格搜索版地板拟合（对 floor 在 1.4–1.7 网格搜索、每个 floor 下对残差拟合幂律），验证正文结论的稳健性。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1326,8 +1326,8 @@ d= 64 (103709 参数): val loss = 1.8039 (124s)</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：几乎不动（同分布的语法合成文本统计一致）；换成真实异域文本则整体上移——<strong>scaling 曲线是 (模型族, 数据分布, 配方) 三元组的函数</strong>，报告曲线时三者缺一不可。</p>
-<p><strong>练习 3</strong>：恒定 lr 下小模型仍能拟合、大模型更易跑飞或停在更差的平台——曲线的尾部上翘甚至非单调。<strong>“更大的模型在同一配方下可能更差”</strong>——这正是 Chinchilla 论文花大力气统一配方的原因。</p>
+<p><strong>练习 2</strong>：几乎不动（同分布的语法合成文本统计一致）；换成真实异域文本则整体上移——scaling 曲线是 (模型族, 数据分布, 配方) 三元组的函数，报告曲线时三者缺一不可。</p>
+<p><strong>练习 3</strong>：恒定 lr 下小模型仍能拟合、大模型更易跑飞或停在更差的平台——曲线的尾部上翘甚至非单调。“更大的模型在同一配方下可能更差”——这正是 Chinchilla 论文花大力气统一配方的原因。</p>
 <p><strong>练习 5 提示</strong>：网格版结论与 curve_fit 一致（floor ≈ 1.7 附近咬合最好）；对 floor 的敏感度本身就是个值得报告的量——外推的说服力取决于参数的稳健性。</p>
 </div>
 </div>

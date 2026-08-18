@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1081,9 +1081,9 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 2022–2024">
 <ul>
 <li><strong>算力</strong>：万卡集群成为旗舰训练的门槛；MoE（千级专家）成为”参数上量、算力不炸”的主路（GShard/Switch/后来的 Mixtral）；</li>
-<li><strong>数据</strong>：Chinchilla 配方生效后，数据工程（清洗、去重、配比）成为模型竞争力的大头；</li>
-<li><strong>认知</strong>：“基础模型”（foundation model）一词（2021）被广泛接受——范式收敛伴随 vocabulary 的收敛；</li>
-<li><strong>关键事实</strong>：2023 年 2 月 LLaMA 权重泄露、7 月 Meta 干脆正式开源——开源社区的微调生态（Alpaca 一族）在几个月内把”小模型 + 好数据”的路线跑通。<strong>闭源壁垒被证明比想象中薄</strong>。</li>
+<li>数据：Chinchilla 配方生效后，数据工程（清洗、去重、配比）成为模型竞争力的大头；</li>
+<li>认知：“基础模型”（foundation model）一词（2021）被广泛接受——范式收敛伴随 vocabulary 的收敛；</li>
+<li>关键事实：2023 年 2 月 LLaMA 权重泄露、7 月 Meta 干脆正式开源——开源社区的微调生态（Alpaca 一族）在几个月内把”小模型 + 好数据”的路线跑通。闭源壁垒被证明比想象中薄。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="29.1">
@@ -1096,17 +1096,17 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="29.2">
 <h2 data-number="29.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">29.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>decoder-only 的三张牌</strong>：①<strong>信号密度</strong>——每个 token 都产生监督（5.4 的验货结论）；②<strong>scaling 友好</strong>——目标单一、损失稳定、幂律好测（6.1 的曲线全部画在这条目标上）；③<strong>工程极简</strong>——训练即推理的彩排、KV 缓存直接可用、流水线好切。 encoder-decoder（T5 一系）与 MLM 路线没有输在”双向无用”，输在<strong>规模化时代的适配性</strong>。</p>
-<p><strong>MoE 的谱系</strong>：思想源头是 1991 年的混合专家（Jacobs et al.——古老的联想，与 LSTM 同年出生）；2017 年后与 Transformer 结合成稀疏层（Shazeer 的 Sparsely-Gated MoE、Google 的 Switch Transformer 每层几千专家、2023 年 Mistral 的 Mixtral 8×7B 开源爆款）。<strong>“参数存知识、算力做计算”的解耦</strong>让千亿级参数以百亿级的单 token 成本运行。</p>
-<p><strong>弯路：MoE 的训练之难</strong>。负载不均（几个专家被挤爆、其余闲置）、训练不稳、微调娇气——解药是一整套工程（辅助负载损失、容量因子、z-loss）。<strong>稀疏性的收益从来不是免费的</strong>——本章实验会亲手撞上这一点。</p>
-<p><strong>开源运动</strong>：LLaMA（2023）按 Chinchilla 配方证明”小而充分训练”可行 → 泄露与正式开源 → 社区微调生态爆发 → 各家跟进（Mistral、Qwen、DeepSeek 一族）。<strong>研究-工程-社区的三级火箭</strong>取代了”单实验室闭门造模型”的旧范式。9.1 会把这段放到 Bitter Lesson 的延长线上复盘。</p>
+<p><strong>decoder-only 的三张牌</strong>：①信号密度——每个 token 都产生监督（5.4 的验货结论）；②scaling 友好——目标单一、损失稳定、幂律好测（6.1 的曲线全部画在这条目标上）；③工程极简——训练即推理的彩排、KV 缓存直接可用、流水线好切。 encoder-decoder（T5 一系）与 MLM 路线没有输在”双向无用”，输在规模化时代的适配性。</p>
+<p><strong>MoE 的谱系</strong>：思想源头是 1991 年的混合专家（Jacobs et al.——古老的联想，与 LSTM 同年出生）；2017 年后与 Transformer 结合成稀疏层（Shazeer 的 Sparsely-Gated MoE、Google 的 Switch Transformer 每层几千专家、2023 年 Mistral 的 Mixtral 8×7B 开源爆款）。“参数存知识、算力做计算”的解耦让千亿级参数以百亿级的单 token 成本运行。</p>
+<p><strong>弯路：MoE 的训练之难</strong>。负载不均（几个专家被挤爆、其余闲置）、训练不稳、微调娇气——解药是一整套工程（辅助负载损失、容量因子、z-loss）。稀疏性的收益从来不是免费的——本章实验会亲手撞上这一点。</p>
+<p><strong>开源运动</strong>：LLaMA（2023）按 Chinchilla 配方证明”小而充分训练”可行 → 泄露与正式开源 → 社区微调生态爆发 → 各家跟进（Mistral、Qwen、DeepSeek 一族）。研究-工程-社区的三级火箭取代了”单实验室闭门造模型”的旧范式。9.1 会把这段放到 Bitter Lesson 的延长线上复盘。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>MoE 实验设计题。手里的零件：<code>MoEMLP</code>（2 位专家、top-1 稀疏路由、直通门梯度）。计划：把 d=32 的 MiniGPT 第二块换成 MoE，与 dense 对照。</p>
 <p>运行之前写下预测：</p>
 <ol type="1">
 <li><strong>参数账</strong>：dense 的 MLP 隐层是 4d；MoE 用 2 位专家、各 2d 隐层——两边的参数量与每 token 的活跃 FLOPs 各是什么关系？</li>
-<li><strong>成绩预测</strong>：同预算下 MoE 会赢、输、还是平？（提示：我们的尺度只有 2.7 万参数、语料 6 万字符——MoE 的理论收益需要什么条件？）</li>
-<li><strong>路由预测</strong>：训练后两位专家的使用率会是 50/50 吗？如果不是，往哪偏、为什么？</li>
+<li>成绩预测：同预算下 MoE 会赢、输、还是平？（提示：我们的尺度只有 2.7 万参数、语料 6 万字符——MoE 的理论收益需要什么条件？）</li>
+<li>路由预测：训练后两位专家的使用率会是 50/50 吗？如果不是，往哪偏、为什么？</li>
 </ol>
 <p>写完再运行——第 2 问的诚实答案是本章最有分量的结果。</p>
 </div>
@@ -1115,16 +1115,16 @@ window.Quarto = {
 <h2 data-number="29.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">29.3</span> 核心思想</h2>
 <p><strong>收敛的三股力</strong>，用账本语言各记一笔：</p>
 <ul>
-<li><strong>Decoder-only</strong>：在”信号密度 × scaling 可测性 × 工程简洁”的三维评分上全面领先——<strong>不是最优的架构，是最可规模化的架构</strong>（Bitter Lesson 的架构版判决）；</li>
-<li><strong>MoE</strong>：把”参数”与”每 token 计算”解耦——知识可以更便宜地<strong>存</strong>，取用时只付路过的那部分算力。代价是训练复杂度与负载均衡的新税；</li>
-<li><strong>开源</strong>：把”基座”从产品降级为商品——当架构收敛、配方公开（Chinchilla）、数据管道可复制时，<strong>护城河只剩数据、算力与对齐</strong>（后两者正是卷三的主题）。</li>
+<li><strong>Decoder-only</strong>：在”信号密度 × scaling 可测性 × 工程简洁”的三维评分上全面领先——不是最优的架构，是最可规模化的架构（Bitter Lesson 的架构版判决）；</li>
+<li>MoE：把”参数”与”每 token 计算”解耦——知识可以更便宜地存，取用时只付路过的那部分算力。代价是训练复杂度与负载均衡的新税；</li>
+<li>开源：把”基座”从产品降级为商品——当架构收敛、配方公开（Chinchilla）、数据管道可复制时，护城河只剩数据、算力与对齐（后两者正是卷三的主题）。</li>
 </ul>
-<p><strong>收敛的代价</strong>：被收敛掉的还有多样性——encoder 路线在检索/嵌入场景仍是活的传统（5.4 的回声），稀疏注意力、线性复杂度、状态空间模型（4.2 的 RNN 还魂一族）都在等待”长上下文的账单”到期后接管（8.x）。<strong>收敛是特定账本下的最优解，账本变了，格局重开</strong>。</p>
+<p><strong>收敛的代价</strong>：被收敛掉的还有多样性——encoder 路线在检索/嵌入场景仍是活的传统（5.4 的回声），稀疏注意力、线性复杂度、状态空间模型（4.2 的 RNN 还魂一族）都在等待”长上下文的账单”到期后接管（8.x）。收敛是特定账本下的最优解，账本变了，格局重开。</p>
 </section>
 <section id="从零实现" class="level2" data-number="29.4">
 <h2 data-number="29.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">29.4</span> 从零实现</h2>
-<p><strong>MoE 对照实验</strong>：dense d=32（第二块 MLP 隐层 4d=128）vs 同模型第二块换成 <code>MoEMLP</code>（2 位专家、各 2d=64 隐层）——<strong>总参数相近、每 token 活跃算力减半</strong>：</p>
-<div id="5a586add" class="cell" data-execution_count="1">
+<p><strong>MoE 对照实验</strong>：dense d=32（第二块 MLP 隐层 4d=128）vs 同模型第二块换成 <code>MoEMLP</code>（2 位专家、各 2d=64 隐层）——总参数相近、每 token 活跃算力减半：</p>
+<div id="363945b6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1167,18 +1167,18 @@ MoE:   val loss = 1.938
 专家使用率: [0.741 0.259]</code></pre>
 </div>
 </div>
-<p>典型的诚实结果：<strong>MoE 1.94 对 dense 1.91——打平或略输</strong>，且使用率失衡（约 0.74/0.26，没有负载均衡辅助损失的约束）。这不是 MoE 的失败，是<strong>尺度与配方</strong>的证词：</p>
+<p>典型的诚实结果：<strong>MoE 1.94 对 dense 1.91——打平或略输</strong>，且使用率失衡（约 0.74/0.26，没有负载均衡辅助损失的约束）。这不是 MoE 的失败，是尺度与配方的证词：</p>
 <ol type="1">
 <li><strong>收益需要尺度</strong>：两位专家在 2.7 万参数里分不到足够的专业化空间；真实 MoE 的收益在百亿千亿参数、多领域数据时才兑现（专家按领域/句法分工）；</li>
-<li><strong>负载均衡是生命线</strong>：使用率失衡意味着相当一部分参数在偷懒——Switch Transformer 们靠辅助损失与容量因子驯服它（我们的玩具没装，练习 3 补上）；</li>
-<li><strong>训练税</strong>：稀疏路由的梯度不如 dense 稠密——同预算下略慢是常态。</li>
+<li>负载均衡是生命线：使用率失衡意味着相当一部分参数在偷懒——Switch Transformer 们靠辅助损失与容量因子驯服它（我们的玩具没装，练习 3 补上）；</li>
+<li>训练税：稀疏路由的梯度不如 dense 稠密——同预算下略慢是常态。</li>
 </ol>
-<p><strong>玩具的零结果与产业的千亿结果并存</strong>，正是”账本第二问（数据）与第三问（规模）决定技术适用域”的又一课——把这句话和 2.3（dropout 在玩具上平庸、在大模型上辉煌）对照：<strong>同一门课，卷一讲过一遍了</strong>。</p>
+<p><strong>玩具的零结果与产业的千亿结果并存</strong>，正是”账本第二问（数据）与第三问（规模）决定技术适用域”的又一课——把这句话和 2.3（dropout 在玩具上平庸、在大模型上辉煌）对照：同一门课，卷一讲过一遍了。</p>
 </section>
 <section id="消融实验" class="level2" data-number="29.5">
 <h2 data-number="29.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">29.5</span> 消融实验</h2>
 <p><strong>专家数扫描</strong>：把专家从 2 位加到 4 位（每位隐层 d=32，保持总活跃算力近似）——失衡会缓解还是恶化？（预测：专家越多，无约束的均衡越难自发形成——负载均衡损失从”可选”变”必需”的临界点。）</p>
-<div id="3848a3b2" class="cell" data-execution_count="2">
+<div id="ec910f57" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>moe4 <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>moe4.blocks[<span class="dv">1</span>].mlp <span class="op">=</span> MoEMLP(<span class="dv">32</span>, n_experts<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">77</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train(moe4)</span>
@@ -1204,7 +1204,7 @@ MoE:   val loss = 1.938
 <tbody>
 <tr class="odd">
 <td>在优化什么 loss？</td>
-<td>仍是下一词交叉熵——但 MoE 把”降它的成本”拆成两本账：<strong>存知识的参数账</strong>与<strong>取知识的算力账</strong></td>
+<td>仍是下一词交叉熵——但 MoE 把”降它的成本”拆成两本账：<strong>存知识的参数账</strong>与取知识的算力账</td>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
@@ -1216,7 +1216,7 @@ MoE:   val loss = 1.938
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
-<td><strong>输出分布的可控性</strong>——base model 会续写不会听话；<strong>与人类意图的对齐</strong>——卷三的全部动因</td>
+<td>输出分布的可控性——base model 会续写不会听话；与人类意图的对齐——卷三的全部动因</td>
 </tr>
 </tbody>
 </table>
@@ -1225,15 +1225,15 @@ MoE:   val loss = 1.938
 <li>MoE 的”存算解耦” → 推理经济学的军备库（量化、蒸馏是它的兄弟）；8.x 的 agent 成本核算会再见到这本账；</li>
 <li>开源运动 → 权重作为公共品；微调生态（LoRA 一族，7.2）是它的直接产物；</li>
 <li>收敛的宿命 → 长上下文账单（8.x）与状态空间模型的还魂——<strong>每一次”终局”都埋着下一局</strong>；</li>
-<li>卷二主线收束：从 n-gram 的计数到万亿参数的幂律，<strong>“预测下一词”从未变过，变的只是把 loss 降得更低的手段</strong>——下一卷问：降好了 loss，然后呢？</li>
+<li>卷二主线收束：从 n-gram 的计数到万亿参数的幂律，“预测下一词”从未变过，变的只是把 loss 降得更低的手段——下一卷问：降好了 loss，然后呢？</li>
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
 <p><strong>Fedus, W., Zoph, B. &amp; Shazeer, N. (2022).</strong> <em>Switch transformers: Scaling to trillion parameter models with simple and efficient sparsity.</em> JMLR.（配对阅读 Touvron et al.&nbsp;2023 的 LLaMA 论文）</p>
 <ul>
 <li><strong>读什么</strong>：Switch 的图 2（top-1 路由示意）与第 2 节的负载均衡损失（本章玩具缺失的那味药）；LLaMA 的表 1（“小模型充分训练”的战绩表）；</li>
-<li><strong>跳过</strong>：分布式系统细节；</li>
-<li><strong>历史注</strong>：Shazeer 是 Transformer 八作者之一——2017 年架构论文的核心作者在 2017–2022 年间持续供给稀疏化的关键件（Mesh-TF、Switch、GLU）。<strong>架构收敛不是自然事件，是一小群人持续下注的结果</strong>。开源一线读 LLaMA → Alpaca → Mixtral 的接力，看范式如何在组织间流动。</li>
+<li>跳过：分布式系统细节；</li>
+<li>历史注：Shazeer 是 Transformer 八作者之一——2017 年架构论文的核心作者在 2017–2022 年间持续供给稀疏化的关键件（Mesh-TF、Switch、GLU）。架构收敛不是自然事件，是一小群人持续下注的结果。开源一线读 LLaMA → Alpaca → Mixtral 的接力，看范式如何在组织间流动。</li>
 </ul>
 </div>
 </section>
@@ -1257,10 +1257,10 @@ MoE:   val loss = 1.938
 <h2 data-number="29.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">29.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>MoEMLP</code> 加负载均衡辅助损失（<span class="math inline">\(L_{aux} = E \sum_e f_e \cdot p_e\)</span>，<span class="math inline">\(f_e\)</span> 为使用率、<span class="math inline">\(p_e\)</span> 为平均门概率），权重 0.01，重训——使用率与 loss 各怎么变？</li>
-<li><strong>预测再运行</strong>：把 MoE 的路由从 top-1 改成 top-2（两位专家输出平均）——loss、使用率、每 token 算力各怎么变？（稠密化是 MoE 稳定性的常见退路。）</li>
-<li><strong>消融</strong>：换一个 seed 重跑 MoE 对照五次，统计胜负——<strong>1.94 vs 1.91 在方差之内吗</strong>？（样本量意识：一切”打平”结论都要过这关。）</li>
-<li><strong>论文映射</strong>：用四问账本拆 LLaMA——注意它”买到”一栏几乎全是<strong>可复制性与开放性</strong>，闭源论文里这些格子是空的。</li>
-<li><strong>进阶（卷三预习）</strong>：用卷二的任意 base 模型（我们的 MiniGPT）采样 200 个字符，统计其中”完整英文单词”的比率与”重复片段”的比率——为 7.1 的”续写怪癖”观察提前采证。</li>
+<li>预测再运行：把 MoE 的路由从 top-1 改成 top-2（两位专家输出平均）——loss、使用率、每 token 算力各怎么变？（稠密化是 MoE 稳定性的常见退路。）</li>
+<li>消融：换一个 seed 重跑 MoE 对照五次，统计胜负——1.94 vs 1.91 在方差之内吗？（样本量意识：一切”打平”结论都要过这关。）</li>
+<li>论文映射：用四问账本拆 LLaMA——注意它”买到”一栏几乎全是可复制性与开放性，闭源论文里这些格子是空的。</li>
+<li>进阶（卷三预习）：用卷二的任意 base 模型（我们的 MiniGPT）采样 200 个字符，统计其中”完整英文单词”的比率与”重复片段”的比率——为 7.1 的”续写怪癖”观察提前采证。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1275,7 +1275,7 @@ MoE:   val loss = 1.938
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 1</strong>：使用率趋向均衡（如 0.55/0.45），loss 或微升或微降——均衡与质量是两本账，辅助损失买的是前者的保险；真实系统里没有它，MoE 会退化成”单专家 + 死权重”。</p>
-<p><strong>练习 2</strong>：top-2 更稳（梯度更密）但每 token 算力翻倍——<strong>稀疏性的收益被稀释</strong>；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。</p>
+<p><strong>练习 2</strong>：top-2 更稳（梯度更密）但每 token 算力翻倍——稀疏性的收益被稀释；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。</p>
 <p><strong>练习 5 提示</strong>：典型样本里”完整词”过半但”重复片段”显著（循环复读是循环网络时代的老病，在弱 base 模型上仍可见）——7.1 会把这类观察系统化为”分布的怪癖”，并论证为什么需要后训练。</p>
 </div>
 </div>

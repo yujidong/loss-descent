@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1081,9 +1081,9 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 2014–2015">
 <ul>
 <li><strong>算力</strong>：注意力把计算量从 O(序列长度) 抬到 O(长度²)（每对编码-解码位置都要算一次相关度）——在当时的 GPU 上，这笔账对短句完全付得起；</li>
-<li><strong>数据</strong>：WMT 英法平行语料（约 350 万句对）；Bahdanau 的报告里 BLEU 一举超越当时的最好系统；</li>
-<li><strong>认知</strong>：统计翻译的”对齐”（alignment）概念深入人心——哪个源词对应哪个译词，翻译的核心难题之一。<strong>注意力在论文里的原始名字就是对齐</strong>：它先是被当作”软对齐”发明的，“注意力”这个更心理学味的名字是随后的译名反哺；</li>
-<li><strong>关键事实</strong>：第一作者 Bahdanau 当时是 Bengio 组的博士生，这项工作本是为修复 Cho 的编码-解码模型而做的<strong>补丁</strong>——补丁长成了器官，是本章也是下一章的主题。</li>
+<li>数据：WMT 英法平行语料（约 350 万句对）；Bahdanau 的报告里 BLEU 一举超越当时的最好系统；</li>
+<li>认知：统计翻译的”对齐”（alignment）概念深入人心——哪个源词对应哪个译词，翻译的核心难题之一。注意力在论文里的原始名字就是对齐：它先是被当作”软对齐”发明的，“注意力”这个更心理学味的名字是随后的译名反哺；</li>
+<li>关键事实：第一作者 Bahdanau 当时是 Bengio 组的博士生，这项工作本是为修复 Cho 的编码-解码模型而做的补丁——补丁长成了器官，是本章也是下一章的主题。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="22.1">
@@ -1096,31 +1096,31 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="22.2">
 <h2 data-number="22.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">22.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路：加粗瓶颈</strong>。最直接的”修复”是加大隐藏维度——向量装不下就换大袋子。这条路在长度上收效甚微（信息要穿过整条 LSTM 链才能到达终态，瓶颈在<strong>通路</strong>不在容量），且参数暴涨。</p>
+<p><strong>弯路：加粗瓶颈</strong>。最直接的”修复”是加大隐藏维度——向量装不下就换大袋子。这条路在长度上收效甚微（信息要穿过整条 LSTM 链才能到达终态，瓶颈在通路不在容量），且参数暴涨。</p>
 <p><strong>弯路：硬对齐</strong>。让解码器第 <span class="math inline">\(t\)</span> 步只看编码器的第 <span class="math inline">\(t\)</span> 个位置（一对一）——单调对齐假设。对词序差异大的语言对（德-英）直接崩坏；而且”硬选择”不可微，梯度传不过去。</p>
-<p><strong>正解：软对齐</strong>。解码器第 <span class="math inline">\(t\)</span> 步对<strong>所有</strong>编码器状态打分（相关度），softmax 归一化成权重，加权求和得到该步的上下文向量 <span class="math inline">\(\mathbf{c}_t\)</span>——</p>
+<p><strong>正解：软对齐</strong>。解码器第 <span class="math inline">\(t\)</span> 步对所有编码器状态打分（相关度），softmax 归一化成权重，加权求和得到该步的上下文向量 <span class="math inline">\(\mathbf{c}_t\)</span>——</p>
 <p><span class="math display">\[\alpha_{t,s} = \frac{\exp(\mathbf{q}_t \cdot \mathbf{h}_s / \sqrt{d})}{\sum_{s'} \exp(\mathbf{q}_t \cdot \mathbf{h}_{s'} / \sqrt{d})}, \qquad \mathbf{c}_t = \sum_s \alpha_{t,s}\, \mathbf{h}_s\]</span></p>
 <p>查询 <span class="math inline">\(\mathbf{q}_t\)</span>（当前解码状态）与每个键 <span class="math inline">\(\mathbf{h}_s\)</span> 的内积决定”看哪里”——<strong>选择是软的、可微的、数据学出来的</strong>。Q/K/V 的 vocabulary 在此已经全齐（下一章的伏笔）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>带着上章断崖的病历，先做三件事：</p>
 <ol type="1">
 <li><strong>机制推演</strong>：反转任务里（输入 abc，输出 cba），解码器第 0 步应该看编码器哪个位置？第 1 步呢？把理想的 <span class="math inline">\(\alpha_{t,s}\)</span> 矩阵画在纸上（这是一个 <span class="math inline">\(T \times S\)</span> 的矩阵，你预期它长什么样？）；</li>
-<li><strong>代价核算</strong>：注意力给每对 (t, s) 位置算一次内积——序列长 8 时有多少对？长 1000 时呢？（O(T·S) 的账，下一章主角的软肋在这里第一次出现）；</li>
-<li><strong>预测</strong>：加了注意力的模型在长度 3–8 上的成绩曲线 vs 普通版的断崖——画出你的预测。</li>
+<li>代价核算：注意力给每对 (t, s) 位置算一次内积——序列长 8 时有多少对？长 1000 时呢？（O(T·S) 的账，下一章主角的软肋在这里第一次出现）；</li>
+<li>预测：加了注意力的模型在长度 3–8 上的成绩曲线 vs 普通版的断崖——画出你的预测。</li>
 </ol>
 <p>写完再运行。第 1 问的答案将与本章末尾的对齐热图对照——<strong>模型的”看法”与你的推演一致与否，是本章最值得期待的时刻</strong>。</p>
 </div>
 </section>
 <section id="核心思想" class="level2" data-number="22.3">
 <h2 data-number="22.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">22.3</span> 核心思想</h2>
-<p><strong>注意力 = 可微的寻址</strong>。给定查询 <span class="math inline">\(\mathbf{q}\)</span>、一组键值对 <span class="math inline">\(\{(\mathbf{k}_s, \mathbf{v}_s)\}\)</span>，返回按相关度加权的值的混合。它是三个老朋友的新组合：内积（相似度）、softmax（软选择）、加权平均（读取）。<strong>整个机制没有任何新数学，新的是”把离散的寻址决策变成连续可微的运算”</strong>——从此”看哪里”可以被梯度训练。</p>
-<p><strong>瓶颈的解药是通路而非容量</strong>：信息与梯度不再需要穿过整条编码链抵达终态——每个源位置都有一条直达解码器的边。上一章”损失发生在压缩一步”的病理，被”每步动态压缩”取代：<span class="math inline">\(\mathbf{c}_t\)</span> 是为<strong>当前这一步</strong>定制的上下文。</p>
-<p><strong>代价的伏笔</strong>：<span class="math inline">\(T \times S\)</span> 的打分矩阵。短句无感，长文致命——这个 O(长度²) 的账单将在长上下文时代（8.x）再次寄达。<strong>每个解药都在签发一张未来的账单</strong>——这是本书账本栏目的第一次明示。</p>
+<p><strong>注意力 = 可微的寻址</strong>。给定查询 <span class="math inline">\(\mathbf{q}\)</span>、一组键值对 <span class="math inline">\(\{(\mathbf{k}_s, \mathbf{v}_s)\}\)</span>，返回按相关度加权的值的混合。它是三个老朋友的新组合：内积（相似度）、softmax（软选择）、加权平均（读取）。整个机制没有任何新数学，新的是”把离散的寻址决策变成连续可微的运算”——从此”看哪里”可以被梯度训练。</p>
+<p><strong>瓶颈的解药是通路而非容量</strong>：信息与梯度不再需要穿过整条编码链抵达终态——每个源位置都有一条直达解码器的边。上一章”损失发生在压缩一步”的病理，被”每步动态压缩”取代：<span class="math inline">\(\mathbf{c}_t\)</span> 是为当前这一步定制的上下文。</p>
+<p><strong>代价的伏笔</strong>：<span class="math inline">\(T \times S\)</span> 的打分矩阵。短句无感，长文致命——这个 O(长度²) 的账单将在长上下文时代（8.x）再次寄达。每个解药都在签发一张未来的账单——这是本书账本栏目的第一次明示。</p>
 </section>
 <section id="从零实现" class="level2" data-number="22.4">
 <h2 data-number="22.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">22.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.AttentionSeq2Seq</code>：在 <code>Seq2Seq</code> 上加约二十行——解码每步的注意力与拼接输出。任务与上一章相同的反转”翻译”，但<strong>训练集这次含长度 3–8</strong>（分层评测才公平——原论文正是按句长分层报告 BLEU 的）：</p>
-<div id="8c1fc3cf" class="cell" data-execution_count="1">
+<div id="00b7e77d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1139,7 +1139,7 @@ window.Quarto = {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs_of_length(L)) <span class="op">/</span> <span class="bu">len</span>(pairs_of_length(L)) <span class="cf">for</span> L <span class="kw">in</span> Ls]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>对照实验：普通 vs 注意力。</strong> 同预算训练两个模型：</p>
-<div id="8773e900" class="cell" data-execution_count="2">
+<div id="60618e23" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, make <span class="kw">in</span> ((<span class="st">"plain"</span>, <span class="kw">lambda</span>: Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   (<span class="st">"attention"</span>, <span class="kw">lambda</span>: AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>))):</span>
@@ -1156,7 +1156,7 @@ window.Quarto = {
 attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 </div>
 </div>
-<div id="c1cc5242" class="cell" data-execution_count="3">
+<div id="37a833c1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Ls <span class="op">=</span> (<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
@@ -1178,7 +1178,7 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 </div>
 <p>典型读数：<strong>普通版随长度衰减（长度 7 掉到 0.88、长度 8 只剩 0.64），注意力版全线 1.00</strong>。这正是原论文图 6 的形状——蓝线（baseline）随句长下坠，红线（attention）平坦。二十年翻译直觉（长句难）的一个主要病因，被一个加权求和治掉了大半。</p>
 <p><strong>对齐热图：模型在看哪里？</strong> 取一条训练好的注意力模型，画出它解码时每步的 <span class="math inline">\(\alpha_{t,s}\)</span>：</p>
-<div id="85a9606d" class="cell" data-execution_count="4">
+<div id="29c5b1c1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>attn_model <span class="op">=</span> AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>
@@ -1209,11 +1209,11 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 输出序列: [0, 10, 3, 4, 3, 2, 1]</code></pre>
 </div>
 </div>
-<p>典型的图像是一条干净的<strong>反对角线</strong>：输出第 0 个词时看输入末位，输出第 1 个词看倒数第二位……模型<strong>自己发明了”从后往前抄”的算法</strong>。没有人教过它对齐——它是从”降 loss”里长出来的。<strong>这种”无师自通的中间结构”，是本书此后反复庆祝的时刻</strong>（从词向量聚类到 induction head，同一现象的不同尺度）。</p>
+<p>典型的图像是一条干净的<strong>反对角线</strong>：输出第 0 个词时看输入末位，输出第 1 个词看倒数第二位……模型自己发明了”从后往前抄”的算法。没有人教过它对齐——它是从”降 loss”里长出来的。这种”无师自通的中间结构”，是本书此后反复庆祝的时刻（从词向量聚类到 induction head，同一现象的不同尺度）。</p>
 </section>
 <section id="消融实验" class="level2" data-number="22.5">
 <h2 data-number="22.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">22.5</span> 消融实验</h2>
-<p><strong>注意力的软硬之别。</strong> 把 softmax 换成硬选择（argmax 只看一个位置，梯度只走那条路——用直通估计近似），训练还能收敛吗？本章把它留作练习 3，但可以预答：硬选择会丢失”两个源词共同决定一个译词”的混合能力，短句可用、组合词崩坏——<strong>软性本身就是注意力的一部分药性</strong>。</p>
+<p><strong>注意力的软硬之别。</strong> 把 softmax 换成硬选择（argmax 只看一个位置，梯度只走那条路——用直通估计近似），训练还能收敛吗？本章把它留作练习 3，但可以预答：硬选择会丢失”两个源词共同决定一个译词”的混合能力，短句可用、组合词崩坏——软性本身就是注意力的一部分药性。</p>
 <p>另一个值得当场记录的账：注意力的显存与计算随 <span class="math inline">\(T \times S\)</span> 增长。本章的序列最长 10 步无感；把 <code>make_reversal_task</code> 的 <code>max_len</code> 设到 64 重跑，注意训练时间的变化——<span class="math inline">\(O(L^2)\)</span> 的斜率会在墙钟上现形（下一章主角的账单，提前感受）。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="22.6">
@@ -1260,8 +1260,8 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 <p><strong>Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).</strong> <em>Neural machine translation by jointly learning to align and translate.</em> ICLR 2015（2014 年 9 月首发 arXiv）。</p>
 <ul>
 <li><strong>读什么</strong>：第 3.1 节的对齐机制（Equation 5–7 附近）与图 2（注意力的原始示意图——注意图里画的是”annotator”与”aligner”的对偶）；第 4 节按句长分层的 BLEU 图（本章图的前身）；</li>
-<li><strong>跳过</strong>：GRU 细节与词表处理；</li>
-<li><strong>历史注</strong>：读原文会惊讶于它的谦逊——通篇把注意力当”对齐工具”讨论，没有任何”通用机制”的宣称。<strong>发明的全部含义常常要等后人追认</strong>——三年后它吞并架构，十年后它成了 LLM 的定义性组件。</li>
+<li>跳过：GRU 细节与词表处理；</li>
+<li>历史注：读原文会惊讶于它的谦逊——通篇把注意力当”对齐工具”讨论，没有任何”通用机制”的宣称。发明的全部含义常常要等后人追认——三年后它吞并架构，十年后它成了 LLM 的定义性组件。</li>
 </ul>
 </div>
 </section>
@@ -1269,7 +1269,7 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 <h2 data-number="22.7" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">22.7</span> 遗留问题</h2>
 <ol type="1">
 <li>注意力既已能”每步挑着看”，<strong>循环本身还剩什么不可替代</strong>？（序列的位置信息、计算的串行传递——→ 下一章：答案是没有，且代价可以承受）；</li>
-<li>查询、键、值如果全部来自<strong>同一个序列</strong>会怎样？（自注意力——2017 年的答案）；</li>
+<li>查询、键、值如果全部来自同一个序列会怎样？（自注意力——2017 年的答案）；</li>
 <li>O(长度²) 的账单什么时候到期？（长文档时代——8.x 的主题，此处记账）。</li>
 </ol>
 </section>
@@ -1284,10 +1284,10 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 <h2 data-number="22.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">22.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：遮住 <code>AttentionSeq2Seq._attend</code>，重写点积注意力及其反向（softmax 对 scores 的雅可比），用有限差分对拍——这是 5.2 全部反向传播的地基。</li>
-<li><strong>预测再运行</strong>：把点积打分换成加性打分（<span class="math inline">\(\mathbf{v}^\top \tanh(\mathbf{W}\mathbf{q}_t + \mathbf{U}\mathbf{h}_s)\)</span>，原论文用的版本），收敛速度与最终成绩有差吗？（历史上两者在大任务上近乎打平——小任务上的你的观察呢？）</li>
-<li><strong>消融</strong>：实现硬注意力（每步只看 argmax 位置，直通梯度），在反转任务与”两词混合”任务（输出 = 两源词之和 mod 10，必须同时看两位）上分别测试——后者是硬注意力的坟场。</li>
-<li><strong>论文映射</strong>：用四问账本拆 Bahdanau 2015——注意”没买到”一栏的 O(T·S) 账单当时无人在意，二十年后成了最热的研究方向（<strong>账本第四问的预测力</strong>）。</li>
-<li><strong>进阶</strong>：把本章注意力装到 4.2 的字符语言模型上（每步回看前 k 个字符）——注意力的第一个”非翻译”应用。历史上的顺序恰恰相反：先有翻译补丁，后有人意识到它是万能件。</li>
+<li>预测再运行：把点积打分换成加性打分（<span class="math inline">\(\mathbf{v}^\top \tanh(\mathbf{W}\mathbf{q}_t + \mathbf{U}\mathbf{h}_s)\)</span>，原论文用的版本），收敛速度与最终成绩有差吗？（历史上两者在大任务上近乎打平——小任务上的你的观察呢？）</li>
+<li>消融：实现硬注意力（每步只看 argmax 位置，直通梯度），在反转任务与”两词混合”任务（输出 = 两源词之和 mod 10，必须同时看两位）上分别测试——后者是硬注意力的坟场。</li>
+<li>论文映射：用四问账本拆 Bahdanau 2015——注意”没买到”一栏的 O(T·S) 账单当时无人在意，二十年后成了最热的研究方向（账本第四问的预测力）。</li>
+<li>进阶：把本章注意力装到 4.2 的字符语言模型上（每步回看前 k 个字符）——注意力的第一个”非翻译”应用。历史上的顺序恰恰相反：先有翻译补丁，后有人意识到它是万能件。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1302,8 +1302,8 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：小任务上点积通常略快（少一层参数），最终成绩相当——机制的关键在”软选择”而非打分函数的具体形状。打分函数是注意力的”超参”，这个认识在 5.2（为什么除以 √d）继续深化。</p>
-<p><strong>练习 3</strong>：硬注意力在反转任务可用（对齐是确定性的单点），在混合任务崩坏（0% —— 无法同时看两位）。<strong>软性买到的不是精度，是混合与多源</strong>——这个结论在多头注意力（多组注意力看不同位置）里被推到极致。</p>
-<p><strong>练习 5 提示</strong>：给 RNNLM 每步加 <span class="math inline">\(\mathbf{c}_t\)</span>（对前 k 个隐藏状态做注意力）拼接进输出层；你会发现 char-LM 上提升有限（局部统计为主）——注意力的主场在<strong>长程选择</strong>，不在局部平滑。</p>
+<p><strong>练习 3</strong>：硬注意力在反转任务可用（对齐是确定性的单点），在混合任务崩坏（0% —— 无法同时看两位）。软性买到的不是精度，是混合与多源——这个结论在多头注意力（多组注意力看不同位置）里被推到极致。</p>
+<p><strong>练习 5 提示</strong>：给 RNNLM 每步加 <span class="math inline">\(\mathbf{c}_t\)</span>（对前 k 个隐藏状态做注意力）拼接进输出层；你会发现 char-LM 上提升有限（局部统计为主）——注意力的主场在长程选择，不在局部平滑。</p>
 </div>
 </div>
 </div>

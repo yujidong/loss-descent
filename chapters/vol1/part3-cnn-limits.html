@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1064,7 +1064,7 @@ window.Quarto = {
 </header>
 
 
-<p>卷一收官。在跨入序列世界之前，我们要亲手给卷积时代划一条边界——不是唱衰，是精确测量它的势力范围。CNN 的全部力量来自两个先验（局部 + 平移），这两个先验在图像上是恩赐，到了<strong>序列</strong>上就变成了枷锁：句子里决定下一个词的信息可能在五个词之前，也可能在五百个词之前——<strong>依赖的距离是不定的，而卷积的窗口是固定的</strong>。本章用一个最小实验把这条边界拍在桌上，然后推门进入卷二。</p>
+<p>卷一收官。在跨入序列世界之前，我们要亲手给卷积时代划一条边界——不是唱衰，是精确测量它的势力范围。CNN 的全部力量来自两个先验（局部 + 平移），这两个先验在图像上是恩赐，到了<strong>序列</strong>上就变成了枷锁：句子里决定下一个词的信息可能在五个词之前，也可能在五百个词之前——依赖的距离是不定的，而卷积的窗口是固定的。本章用一个最小实验把这条边界拍在桌上，然后推门进入卷二。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1080,10 +1080,10 @@ window.Quarto = {
 </div>
 <div class="callout-era" title="时代快照 · 2013–2016（跨界时刻）">
 <ul>
-<li><strong>算力</strong>：序列模型（即将登场的 RNN）在 GPU 上的并行度天生不如卷积——<strong>算力的偏好开始悄悄影响架构演化</strong>（5.3 的主题埋线）；</li>
-<li><strong>数据</strong>：互联网文本成为下一个金矿，词级依赖动辄跨越数十词；</li>
-<li><strong>认知</strong>：NLP 的主流是词向量 + 特征工程（4.4 的 word2vec 刚出现）；把”阅读”当作序列建模的想法正在成形；</li>
-<li><strong>关键事实</strong>：卷积并未死于序列——WaveNet（2016）用<strong>空洞卷积</strong>把窗口指数式撑大，证明”固定窗口”还有最后一滴油水可榨；但真正的王座要等循环与注意力（Part 4 与 5）。</li>
+<li><strong>算力</strong>：序列模型（即将登场的 RNN）在 GPU 上的并行度天生不如卷积——算力的偏好开始悄悄影响架构演化（5.3 的主题埋线）；</li>
+<li>数据：互联网文本成为下一个金矿，词级依赖动辄跨越数十词；</li>
+<li>认知：NLP 的主流是词向量 + 特征工程（4.4 的 word2vec 刚出现）；把”阅读”当作序列建模的想法正在成形；</li>
+<li>关键事实：卷积并未死于序列——WaveNet（2016）用空洞卷积把窗口指数式撑大，证明”固定窗口”还有最后一滴油水可榨；但真正的王座要等循环与注意力（Part 4 与 5）。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="16.1">
@@ -1097,9 +1097,9 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">16.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>把图像方案硬搬到文本（弯路）</strong>。早期尝试把句子当”一维图像”做卷积（text-CNN，Kim 2014）——在短文本分类上意外好用（n-gram 检测器），但生成与翻译这类<strong>需要逐位置输出、看任意远上下文</strong>的任务上，固定窗口捉襟见肘。<strong>分类可以只看局部特征袋，生成必须照顾全局</strong>——这个差别定义了序列建模的真正难度。</p>
-<p><strong>空洞卷积的最后一搏（WaveNet, 2016）</strong>。窗口不再紧挨着滑动：第 <span class="math inline">\(l\)</span> 层的卷积每隔 <span class="math inline">\(d_l\)</span> 个位置取一个输入，<span class="math inline">\(d_l\)</span> 逐层翻倍——<span class="math inline">\(L\)</span> 层的等效感受野随 <span class="math inline">\(2^L\)</span> 指数增长，10 层即可覆盖上千个时间步。它撑起了 2016–2018 的语音合成（说出了谷歌助手的声音），却仍有一个软肋：<strong>感受野再大也是预设的</strong>——依赖在感受野之外照样抓瞎，且所有位置共享同一套”看哪里”的模式。</p>
-<p><strong>命运的伏笔</strong>：解决”不定距离依赖”的正确答案其实已经发表（注意力，Bahdanau 2014——5.1 的主角），但世界要先在循环结构上绕一个大圈。<strong>答案常常早于问题被需要</strong>——研究史的又一常态。</p>
+<p><strong>把图像方案硬搬到文本（弯路）</strong>。早期尝试把句子当”一维图像”做卷积（text-CNN，Kim 2014）——在短文本分类上意外好用（n-gram 检测器），但生成与翻译这类需要逐位置输出、看任意远上下文的任务上，固定窗口捉襟见肘。分类可以只看局部特征袋，生成必须照顾全局——这个差别定义了序列建模的真正难度。</p>
+<p><strong>空洞卷积的最后一搏（WaveNet, 2016）</strong>。窗口不再紧挨着滑动：第 <span class="math inline">\(l\)</span> 层的卷积每隔 <span class="math inline">\(d_l\)</span> 个位置取一个输入，<span class="math inline">\(d_l\)</span> 逐层翻倍——<span class="math inline">\(L\)</span> 层的等效感受野随 <span class="math inline">\(2^L\)</span> 指数增长，10 层即可覆盖上千个时间步。它撑起了 2016–2018 的语音合成（说出了谷歌助手的声音），却仍有一个软肋：感受野再大也是预设的——依赖在感受野之外照样抓瞎，且所有位置共享同一套”看哪里”的模式。</p>
+<p><strong>命运的伏笔</strong>：解决”不定距离依赖”的正确答案其实已经发表（注意力，Bahdanau 2014——5.1 的主角），但世界要先在循环结构上绕一个大圈。答案常常早于问题被需要——研究史的又一常态。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>任务：16 比特序列，<span class="math inline">\(y = x_{16-8}\)</span>（回看 8 步）。两个候选模型，都只读序列末段：</p>
 <ul>
@@ -1110,27 +1110,27 @@ window.Quarto = {
 <ol type="1">
 <li>甲的测试准确率是多少？——注意这不是”大概”的问题：<strong>信息论规定了它的上限</strong>，请精确推算（提示：目标比特在它的视野里吗？视野外的比特与目标独立吗？）；</li>
 <li>乙需要多少训练才能到 1.0？</li>
-<li>设计追问：把回看距离从 8 改成 12，乙还能撑住吗？——<strong>“撑得住的依赖距离”就是这个架构的势力范围图</strong>。</li>
+<li>设计追问：把回看距离从 8 改成 12，乙还能撑住吗？——“撑得住的依赖距离”就是这个架构的势力范围图。</li>
 </ol>
 <p>写完再运行。</p>
 </div>
 </section>
 <section id="核心思想" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">16.3</span> 核心思想</h2>
-<p><strong>固定窗口 = 截断的信息通道</strong>。窗口外的输入与输出<strong>统计独立</strong>（本任务里目标比特就是窗口外的一个独立随机比特）——任何只看窗口的模型，其最优策略是输出边缘分布，准确率被钉死在概率地板上（二分类即 0.5）。这不是训练不足，是<strong>信息论层面的不可解</strong>——你无法从看不见的比特里读出它的值。</p>
+<p><strong>固定窗口 = 截断的信息通道</strong>。窗口外的输入与输出统计独立（本任务里目标比特就是窗口外的一个独立随机比特）——任何只看窗口的模型，其最优策略是输出边缘分布，准确率被钉死在概率地板上（二分类即 0.5）。这不是训练不足，是信息论层面的不可解——你无法从看不见的比特里读出它的值。</p>
 <p><strong>序列的三重难点</strong>（相对图像）：</p>
 <ol type="1">
 <li><strong>变长</strong>：句子长短不一，全连接与固定窗口都要为每种长度打补丁；</li>
-<li><strong>不定距依赖</strong>：决定下一个词的信息可能在任何距离上——固定感受野与”任意距离”结构性地不匹配；</li>
-<li><strong>因果性</strong>：生成时只能看过去不能看未来——架构要内建时间的方向。</li>
+<li>不定距依赖：决定下一个词的信息可能在任何距离上——固定感受野与”任意距离”结构性地不匹配；</li>
+<li>因果性：生成时只能看过去不能看未来——架构要内建时间的方向。</li>
 </ol>
-<p>卷积对 1 有补丁（自适应池化）、对 3 有补丁（因果卷积），唯独对 2——<strong>不定距</strong>——是原理性的短板。突破口有二：让网络带<strong>状态</strong>（循环，RNN——把”读过的东西”压缩进一个可携带的隐藏向量）或让每个位置<strong>动态选择看哪里</strong>（注意力）。前者是卷二前半的主角，后者是终局答案。</p>
-<p><strong>一条重要的对称性</strong>：n-gram 语言模型（下一个 Part 的开场）与末位卷积在信息结构上<strong>同构</strong>——都是”固定窗口看历史”。所以本章的边界实验同时也是 4.1 的预告片：n-gram 的病与 text-CNN 的病是同一个病。</p>
+<p>卷积对 1 有补丁（自适应池化）、对 3 有补丁（因果卷积），唯独对 2——<strong>不定距</strong>——是原理性的短板。突破口有二：让网络带状态（循环，RNN——把”读过的东西”压缩进一个可携带的隐藏向量）或让每个位置动态选择看哪里（注意力）。前者是卷二前半的主角，后者是终局答案。</p>
+<p><strong>一条重要的对称性</strong>：n-gram 语言模型（下一个 Part 的开场）与末位卷积在信息结构上同构——都是”固定窗口看历史”。所以本章的边界实验同时也是 4.1 的预告片：n-gram 的病与 text-CNN 的病是同一个病。</p>
 </section>
 <section id="从零实现" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">16.4</span> 从零实现</h2>
 <p><code>dlbook.nn.Conv1D</code> 已就位。模型 = 一维卷积 + relu + <strong>只取末位输出</strong>（因果式的最小演示）+ 线性头：</p>
-<div id="b7647b81" class="cell" data-execution_count="1">
+<div id="bf711e3e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_seq_task</span>
@@ -1173,12 +1173,12 @@ window.Quarto = {
 窗口 k=10: test_acc = 1.000</code></pre>
 </div>
 </div>
-<p>典型读数：<span class="math inline">\(k=3\)</span> 拿到 <strong>0.51</strong>（概率地板）；<span class="math inline">\(k=10\)</span> 到 <strong>1.00</strong>。与你在「停一停」的推算对照：目标比特在位置 <span class="math inline">\(16-8=8\)</span>（0 起数），<span class="math inline">\(k=3\)</span> 的窗口只覆盖最后三个位置——<strong>目标在视野外</strong>，任何学习算法都只能输出边缘分布；<span class="math inline">\(k=10\)</span> 把它框进来后，问题退化为一层线性可读的映射。</p>
+<p>典型读数：<span class="math inline">\(k=3\)</span> 拿到 <strong>0.51</strong>（概率地板）；<span class="math inline">\(k=10\)</span> 到 1.00。与你在「停一停」的推算对照：目标比特在位置 <span class="math inline">\(16-8=8\)</span>（0 起数），<span class="math inline">\(k=3\)</span> 的窗口只覆盖最后三个位置——目标在视野外，任何学习算法都只能输出边缘分布；<span class="math inline">\(k=10\)</span> 把它框进来后，问题退化为一层线性可读的映射。</p>
 </section>
 <section id="消融实验" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">16.5</span> 消融实验</h2>
 <p><strong>势力范围图</strong>：固定 <span class="math inline">\(k=10\)</span>，扫回看距离——</p>
-<div id="eef257fe" class="cell" data-execution_count="2">
+<div id="9d15c973" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">12</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Xtr_d, ytr_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Xte_d, yte_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1238,7 +1238,7 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
-<td>不定距依赖、变长输入的优雅处理——<strong>序列时代的全部门票</strong></td>
+<td>不定距依赖、变长输入的优雅处理——序列时代的全部门票</td>
 </tr>
 </tbody>
 </table>
@@ -1254,8 +1254,8 @@ window.Quarto = {
 <p><strong>van den Oord, A. et al.&nbsp;(2016).</strong> <em>WaveNet: A generative model for raw audio.</em> arXiv:1609.03499.</p>
 <ul>
 <li><strong>读什么</strong>：图 2（空洞卷积的感受野示意图——那张著名的”越来越稀疏的滑动窗口”）；</li>
-<li><strong>跳过</strong>：音频工程细节；</li>
-<li><strong>历史注</strong>：WaveNet 是”卷积在序列上的最后高光”——一年后 Transformer 出局它成为语音合成的默认项。配套读 Kim (2014) 的 text-CNN（卷积进 NLP 的先声）：<strong>一个范式在其边界内侧的最后两次漂亮仗，往往打得比全盛期更精彩</strong>。</li>
+<li>跳过：音频工程细节；</li>
+<li>历史注：WaveNet 是”卷积在序列上的最后高光”——一年后 Transformer 出局它成为语音合成的默认项。配套读 Kim (2014) 的 text-CNN（卷积进 NLP 的先声）：一个范式在其边界内侧的最后两次漂亮仗，往往打得比全盛期更精彩。</li>
 </ul>
 </div>
 </section>
@@ -1278,10 +1278,10 @@ window.Quarto = {
 <h2 data-number="16.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">16.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>Conv1D</code> 加 <code>dilation</code> 参数（窗口每隔 d 取一个输入），用两层 dilation=1,2 的空洞卷积在 dist=12 上复得满血——亲手重演 WaveNet 的感受野指数增长。</li>
-<li><strong>预测再运行</strong>：把 <span class="math inline">\(k=3\)</span> 的训练样本加到一亿个，<span class="math inline">\(k=3\)</span> 的测试准确率会改善吗？为什么”加数据”在这个病例上无效？（这是全书第一次遇到”数据治不了的病”。）</li>
-<li><strong>消融</strong>：把末位输出改成<strong>全局平均池化</strong>输出，<span class="math inline">\(k=10\)</span> 还能解回声任务吗？（提示：平均会稀释位置信息——位置敏感的任务与池化天然打架。）</li>
-<li><strong>论文映射</strong>：用四问账本拆 Kim 2014——它的成功局限在”局部特征袋够用”的任务上，账本第四问怎么写？</li>
-<li><strong>进阶</strong>：设计一个”两段依赖”任务（<span class="math inline">\(y\)</span> 依赖位置 -3 <strong>或</strong> -12，由另一个比特选择），证明任何固定单一窗口都不能全覆盖——不定距依赖的最小反例。把你的构造写给任何一个卷积模型试试。</li>
+<li>预测再运行：把 <span class="math inline">\(k=3\)</span> 的训练样本加到一亿个，<span class="math inline">\(k=3\)</span> 的测试准确率会改善吗？为什么”加数据”在这个病例上无效？（这是全书第一次遇到”数据治不了的病”。）</li>
+<li>消融：把末位输出改成全局平均池化输出，<span class="math inline">\(k=10\)</span> 还能解回声任务吗？（提示：平均会稀释位置信息——位置敏感的任务与池化天然打架。）</li>
+<li>论文映射：用四问账本拆 Kim 2014——它的成功局限在”局部特征袋够用”的任务上，账本第四问怎么写？</li>
+<li>进阶：设计一个”两段依赖”任务（<span class="math inline">\(y\)</span> 依赖位置 -3 或 -12，由另一个比特选择），证明任何固定单一窗口都不能全覆盖——不定距依赖的最小反例。把你的构造写给任何一个卷积模型试试。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1295,7 +1295,7 @@ window.Quarto = {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：不会改善——目标比特与窗口内输入统计独立，贝叶斯最优就是边缘分布 0.5。<strong>数据买不到视野外的信息</strong>；这个事实在 LLM 时代的版本叫”上下文外幻觉”（模型对窗口外的问题只能编），9.2 再会。</p>
+<p><strong>练习 2</strong>：不会改善——目标比特与窗口内输入统计独立，贝叶斯最优就是边缘分布 0.5。数据买不到视野外的信息；这个事实在 LLM 时代的版本叫”上下文外幻觉”（模型对窗口外的问题只能编），9.2 再会。</p>
 <p><strong>练习 3</strong>：全局平均后，末位与首位信息的区别被抹平——<span class="math inline">\(k=10\)</span> 的优势消失，成绩跌回 0.5 附近。需要位置信息时要用”保留位置维度的头”（我们的末位头）或位置编码（5.2 的正式解法）。</p>
 <p><strong>练习 5 提示</strong>：单一窗口 <span class="math inline">\(k\)</span> 覆盖 <span class="math inline">\([-k, -1]\)</span>；两个候选位置 -3 与 -12 至少有一个在任意 <span class="math inline">\(k&lt;12\)</span> 的窗口外。双分支（不同 <span class="math inline">\(k\)</span>）+ 门控可以硬解，但门控信号本身也要看全局——你已经在重新发明”动态选择看哪里”，即注意力的雏形。</p>
 </div>

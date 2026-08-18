@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1064,7 +1064,7 @@ window.Quarto = {
 </header>
 
 
-<p>2014 年，Sutskever、Vinyals 与 Le 发表了深度学习史上最优雅的工程直觉之一：<strong>读句子的 RNN 最后的隐藏状态，就是这句话的”意思”</strong>——把这一个向量交给另一台 RNN，让它生成另一种语言的句子，翻译就完成了。编码器-解码器（encoder-decoder）从此成为一切”输入序列→输出序列”任务的标准骨架：翻译、对话、摘要、语音识别，直到今天大模型的 prompt → 回答本质上仍是它的变体。本章我们搭出这个骨架，训练它做”序列反转”的玩具翻译，然后亲手撞上它的著名软肋——<strong>固定维度向量装不下任意长的句子</strong>。这个软肋催生了注意力（下一部分的主角）。</p>
+<p>2014 年，Sutskever、Vinyals 与 Le 发表了深度学习史上最优雅的工程直觉之一：<strong>读句子的 RNN 最后的隐藏状态，就是这句话的”意思”</strong>——把这一个向量交给另一台 RNN，让它生成另一种语言的句子，翻译就完成了。编码器-解码器（encoder-decoder）从此成为一切”输入序列→输出序列”任务的标准骨架：翻译、对话、摘要、语音识别，直到今天大模型的 prompt → 回答本质上仍是它的变体。本章我们搭出这个骨架，训练它做”序列反转”的玩具翻译，然后亲手撞上它的著名软肋——固定维度向量装不下任意长的句子。这个软肋催生了注意力（下一部分的主角）。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1080,10 +1080,10 @@ window.Quarto = {
 </div>
 <div class="callout-era" title="时代快照 · 2014">
 <ul>
-<li><strong>算力</strong>：单 GPU 训数日；2016 年 9 月，谷歌翻译全线切换 GNMT（8 层 LSTM 的 seq2seq）——<strong>端到端神经翻译在一夜之间替换了短语统计系统</strong>，用户当周就注意到译文突然变流畅；</li>
-<li><strong>数据</strong>：欧盟议会的平行语料（数百万句对）是主要燃料——“数据从哪来”的答案第一次是”政府公文”；</li>
-<li><strong>认知</strong>：此前机器翻译的主流是短语表 + 对齐模型的统计派（IBM 模型的后代）；深度学习被视为”特征学习”，直接生成整句仍属激进；</li>
-<li><strong>关键事实</strong>：Sutskever 论文的关键 trick 之一是把<strong>输入句子倒序</strong>喂给编码器——因为梯度衰减，编码器末端的词（离解码器最近）恰好是最需要的；<strong>用数据的花招补偿结构的缺陷</strong>，这个细节预告了下一章的全部剧情。</li>
+<li><strong>算力</strong>：单 GPU 训数日；2016 年 9 月，谷歌翻译全线切换 GNMT（8 层 LSTM 的 seq2seq）——端到端神经翻译在一夜之间替换了短语统计系统，用户当周就注意到译文突然变流畅；</li>
+<li>数据：欧盟议会的平行语料（数百万句对）是主要燃料——“数据从哪来”的答案第一次是”政府公文”；</li>
+<li>认知：此前机器翻译的主流是短语表 + 对齐模型的统计派（IBM 模型的后代）；深度学习被视为”特征学习”，直接生成整句仍属激进；</li>
+<li>关键事实：Sutskever 论文的关键 trick 之一是把输入句子倒序喂给编码器——因为梯度衰减，编码器末端的词（离解码器最近）恰好是最需要的；用数据的花招补偿结构的缺陷，这个细节预告了下一章的全部剧情。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="21.1">
@@ -1095,15 +1095,15 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="21.2">
 <h2 data-number="21.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">21.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路一：短语统计翻译的对齐噩梦</strong>。统计派的短语表要维护”哪段对哪段”的离散对应，长句的组合管理复杂而脆弱。seq2seq 用<strong>一个连续向量</strong>替代整张对齐表——放弃可解释性，换取端到端的可训练性。1.2 的母题再次上场：离散知识工程 vs 连续可学习表示。</p>
-<p><strong>弯路二：COD 的滑窗生成</strong>。早期神经翻译试图滑动窗口逐段翻译再拼接——上下文被窗口切断。seq2seq 的贡献正是把<strong>整句的全局决策</strong>交给编码器终态。</p>
-<p><strong>输入倒序的启示</strong>：作者们发现把源句倒过来喂，BLEU 显著上升——因为解码器先要输出的词，在倒序输入里恰好离编码器终态最近（梯度衰减的补偿）。<strong>这个 trick 在 2017 年被注意力彻底作废</strong>——结构缺陷的补丁永远不如修结构本身。</p>
-<p><strong>teacher forcing</strong>：训练时解码器每一步都喂<strong>真实</strong>的上一个词而非自己的预测——并行高效，但训练与推理（吃自己的预测）之间存在暴露偏差。这个偏差在今天的 LLM 时代仍有回响（7.x 的训练-推理不一致讨论）。</p>
+<p><strong>弯路一：短语统计翻译的对齐噩梦</strong>。统计派的短语表要维护”哪段对哪段”的离散对应，长句的组合管理复杂而脆弱。seq2seq 用一个连续向量替代整张对齐表——放弃可解释性，换取端到端的可训练性。1.2 的母题再次上场：离散知识工程 vs 连续可学习表示。</p>
+<p><strong>弯路二：COD 的滑窗生成</strong>。早期神经翻译试图滑动窗口逐段翻译再拼接——上下文被窗口切断。seq2seq 的贡献正是把整句的全局决策交给编码器终态。</p>
+<p><strong>输入倒序的启示</strong>：作者们发现把源句倒过来喂，BLEU 显著上升——因为解码器先要输出的词，在倒序输入里恰好离编码器终态最近（梯度衰减的补偿）。这个 trick 在 2017 年被注意力彻底作废——结构缺陷的补丁永远不如修结构本身。</p>
+<p><strong>teacher forcing</strong>：训练时解码器每一步都喂真实的上一个词而非自己的预测——并行高效，但训练与推理（吃自己的预测）之间存在暴露偏差。这个偏差在今天的 LLM 时代仍有回响（7.x 的训练-推理不一致讨论）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>先做两个思想实验（写下来再运行）：</p>
 <ol type="1">
 <li><strong>容量账</strong>：把长度为 5、词表 12 的序列（<span class="math inline">\(12^5 \approx 25\)</span> 万种）全压进一个 64 维向量——信息论上绰绰有余。但长度为 10 呢（<span class="math inline">\(12^{10} \approx 6\times10^{10}\)</span>）？64 维浮点向量的”有效容量”够吗？训练要学到这个映射的难度呢？</li>
-<li><strong>预测崩塌曲线</strong>：模型在长度 3–5 上训练到接近满分。画出你预测的”精确匹配率 vs 测试长度（3–8）“曲线——崩塌是断崖还是缓坡？从哪一级开始？</li>
+<li>预测崩塌曲线：模型在长度 3–5 上训练到接近满分。画出你预测的”精确匹配率 vs 测试长度（3–8）“曲线——崩塌是断崖还是缓坡？从哪一级开始？</li>
 </ol>
 <p>第 2 问的答案将直接成为本章的主图。写完再往下。</p>
 </div>
@@ -1113,13 +1113,13 @@ window.Quarto = {
 <p><strong>编码-解码 = 两段式条件语言建模</strong>：</p>
 <p><span class="math display">\[P(y_1..y_T \mid x_1..x_S) = \prod_t P(y_t \mid y_{&lt;t},\ \mathbf{c}), \qquad \mathbf{c} = h_S^{enc}\]</span></p>
 <p>编码器 LSTM 把源句读成终态 <span class="math inline">\(\mathbf{c}\)</span>（本章语境下就是细胞状态与隐藏状态），解码器以 <span class="math inline">\(\mathbf{c}\)</span> 为初态做 4.2 的自回归生成。<strong>翻译被拆成”压缩”与”条件展开”两半</strong>——后半是语言建模（4.1/4.2 的全部装备），前半是本章的新事物。</p>
-<p><strong>瓶颈定理（非正式）</strong>：解码的每一步都只通过 <span class="math inline">\(\mathbf{c}\)</span> 看见源句。若源句含 <span class="math inline">\(I\)</span> 比特信息而 <span class="math inline">\(\mathbf{c}\)</span> 的有效容量不足（或编码器没学好压缩），<strong>解码器无法事后补救</strong>——损失在压缩一步就永久发生了。长度外推实验就是这个定理的实验版本。</p>
-<p><strong>与 3.3 的范式同构</strong>：预训练-微调（3.3）是”通用特征 + 专用头”；编码-解码是”通用压缩 + 专用生成”。两者共享同一个深层结构：<strong>把难题拆成一个重的表示学习 + 一个轻的任务适配</strong>——这个模式将统治到 GPT 时代（预训练 + 下游微调/对齐，7.x）。</p>
+<p><strong>瓶颈定理（非正式）</strong>：解码的每一步都只通过 <span class="math inline">\(\mathbf{c}\)</span> 看见源句。若源句含 <span class="math inline">\(I\)</span> 比特信息而 <span class="math inline">\(\mathbf{c}\)</span> 的有效容量不足（或编码器没学好压缩），解码器无法事后补救——损失在压缩一步就永久发生了。长度外推实验就是这个定理的实验版本。</p>
+<p><strong>与 3.3 的范式同构</strong>：预训练-微调（3.3）是”通用特征 + 专用头”；编码-解码是”通用压缩 + 专用生成”。两者共享同一个深层结构：把难题拆成一个重的表示学习 + 一个轻的任务适配——这个模式将统治到 GPT 时代（预训练 + 下游微调/对齐，7.x）。</p>
 </section>
 <section id="从零实现" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">21.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.Seq2Seq</code>：编码/解码各一台 LSTM，解码器初态 = 编码器终态（梯度沿 <code>backward</code> 的初始状态接口回传到编码器）。任务：数字序列反转。</p>
-<div id="732d19f9" class="cell" data-execution_count="1">
+<div id="88720d7e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1149,7 +1149,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="916a6edf" class="cell" data-execution_count="2">
+<div id="1ad61efa" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exact_acc(model, pairs):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ok <span class="op">/</span> <span class="bu">len</span>(pairs)</span>
@@ -1163,7 +1163,7 @@ window.Quarto = {
 </div>
 <p>25 个 epoch、几秒钟：loss 2.17 → 0.00x，<strong>整句精确匹配约 98%</strong>。编码器学会了把”哪几个数字、什么顺序”压进 64 维，解码器再逆序释放——玩具尺度上，“向量即意思”近乎魔法。</p>
 <p><strong>主实验：长度外推（固定向量的账单）。</strong> 在训练分布（长度 ≤5）之外逐级测试：</p>
-<div id="9d9329ac" class="cell" data-execution_count="3">
+<div id="d10641db" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pairs_of_length(L, n<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">9</span>):</span>
@@ -1201,12 +1201,12 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>典型读数：长度 3–5 全在 0.9 以上；长度 6 掉到 0.6 附近；长度 7–8 跌到 0.2/0.1 以下——<strong>训练边界之外，性能断崖</strong>。对照你在「停一停」画的预测曲线：崩塌形态对了吗？注意崩塌<strong>不是</strong>因为信息论容量不够（64 维装 8 个 4 bit 的数字绰绰有余），而是<strong>编码器从未学过长句的压缩方式</strong>——它背过的是”如何压 5 个”，不是”如何压任意个”。<strong>分布外，能力来自分布内</strong>——这句话将在 6.3（涌现的边界）与 9.2（评测外推）反复回响。</p>
+<p>典型读数：长度 3–5 全在 0.9 以上；长度 6 掉到 0.6 附近；长度 7–8 跌到 0.2/0.1 以下——<strong>训练边界之外，性能断崖</strong>。对照你在「停一停」画的预测曲线：崩塌形态对了吗？注意崩塌不是因为信息论容量不够（64 维装 8 个 4 bit 的数字绰绰有余），而是编码器从未学过长句的压缩方式——它背过的是”如何压 5 个”，不是”如何压任意个”。分布外，能力来自分布内——这句话将在 6.3（涌现的边界）与 9.2（评测外推）反复回响。</p>
 </section>
 <section id="消融实验" class="level2" data-number="21.5">
 <h2 data-number="21.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">21.5</span> 消融实验</h2>
-<p><strong>倒序输入 trick 复刻。</strong> Sutskever 的补丁：把编码器输入倒过来喂（<code>inputs[i][::-1]</code>），对反转任务这相当于……先想清楚再运行（对”反转”这个任务，倒序输入让解码器的第一个输出对应编码器<strong>最后读入</strong>的词——梯度最短路径）。复刻并与正序对照，看两者在长度外推上的差异——<strong>补丁能续命，但救不了结构</strong>：</p>
-<div id="1a24c087" class="cell" data-execution_count="4">
+<p><strong>倒序输入 trick 复刻。</strong> Sutskever 的补丁：把编码器输入倒过来喂（<code>inputs[i][::-1]</code>），对反转任务这相当于……先想清楚再运行（对”反转”这个任务，倒序输入让解码器的第一个输出对应编码器最后读入的词——梯度最短路径）。复刻并与正序对照，看两者在长度外推上的差异——补丁能续命，但救不了结构：</p>
+<div id="c21085e6" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_rev <span class="op">=</span> Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>
@@ -1272,16 +1272,16 @@ window.Quarto = {
 <div class="callout-paper" title="论文时光机">
 <p><strong>Sutskever, I., Vinyals, O. &amp; Le, Q. (2014).</strong> <em>Sequence to sequence learning with neural networks.</em> NeurIPS.</p>
 <ul>
-<li><strong>读什么</strong>：第 2 节（模型，半页）与第 3 节的输入倒序 trick 及其解释——<strong>全文最深刻的两段话藏在 trick 的动机里</strong>（梯度与源句词的”可达性”）；</li>
-<li><strong>跳过</strong>：BLEU 细节；</li>
-<li><strong>历史注</strong>：配套读 Cho et al.&nbsp;(2014)（同期编码-解码 + GRU，从机器翻译的需求出发）——两篇同期同构，是”想法的空气中到期”的典型案例；以及 Bahdanau et al.&nbsp;(2015)——它是对本章瓶颈的直接回应，也就是下一章的开场论文。</li>
+<li><strong>读什么</strong>：第 2 节（模型，半页）与第 3 节的输入倒序 trick 及其解释——全文最深刻的两段话藏在 trick 的动机里（梯度与源句词的”可达性”）；</li>
+<li>跳过：BLEU 细节；</li>
+<li>历史注：配套读 Cho et al.&nbsp;(2014)（同期编码-解码 + GRU，从机器翻译的需求出发）——两篇同期同构，是”想法的空气中到期”的典型案例；以及 Bahdanau et al.&nbsp;(2015)——它是对本章瓶颈的直接回应，也就是下一章的开场论文。</li>
 </ul>
 </div>
 </section>
 <section id="遗留问题-part-5-的入场券" class="level2" data-number="21.7">
 <h2 data-number="21.7" class="anchored" data-anchor-id="遗留问题-part-5-的入场券"><span class="header-section-number">21.7</span> 遗留问题（= Part 5 的入场券）</h2>
 <ol type="1">
-<li>解码器每一步都应能<strong>回头看源句的任意位置</strong>，且看哪里应当<strong>依赖正在生成的内容</strong>——这个机制如何设计？（→ 5.1 注意力的诞生）；</li>
+<li>解码器每一步都应能<strong>回头看源句的任意位置</strong>，且看哪里应当依赖正在生成的内容——这个机制如何设计？（→ 5.1 注意力的诞生）；</li>
 <li>“回头看”能不能彻底替代循环本身？（→ 5.2 Transformer：注意力即全部）；</li>
 <li>串行解码的速度问题？（→ 5.3 并行性的经济学）。</li>
 </ol>
@@ -1298,10 +1298,10 @@ window.Quarto = {
 <h2 data-number="21.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">21.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把解码器初态从”编码器终态”换成”零状态 + 源句拼在目标句前面”（prefix 式），在反转任务上对照——你造出了今天 decoder-only 模型（GPT 式）的雏形，写出两种设计的账本差异。</li>
-<li><strong>预测再运行</strong>：把隐藏维度从 64 加到 256，长度外推的断崖会移动吗？先猜（提示：瓶颈是”学过的压缩方式”还是”向量容量”？）再验证。</li>
-<li><strong>消融</strong>：训练时不用 teacher forcing（每步喂解码器自己的预测），训练速度与最终成绩各怎么变？（慢很多——每步都要串行采样；这就是训练效率与暴露偏差的交换。）</li>
-<li><strong>论文映射</strong>：用四问账本拆 Sutskever 2014——注意”输入倒序”这个 trick 在账本上属于哪一栏（它买到什么、依赖什么）。</li>
-<li><strong>进阶</strong>：给 <code>Seq2Seq</code> 加最原始的”注意力”：解码每一步用 <span class="math inline">\(\mathbf{c}\)</span> 与<strong>编码器每一步的 <span class="math inline">\(h_s\)</span></strong> 做点积归一化权重，加权求和替代固定 <span class="math inline">\(\mathbf{c}\)</span>——二十行内你将重新发明 Bahdanau 注意力的核心（下一章的完整版再加查询投影与对齐训练）。</li>
+<li>预测再运行：把隐藏维度从 64 加到 256，长度外推的断崖会移动吗？先猜（提示：瓶颈是”学过的压缩方式”还是”向量容量”？）再验证。</li>
+<li>消融：训练时不用 teacher forcing（每步喂解码器自己的预测），训练速度与最终成绩各怎么变？（慢很多——每步都要串行采样；这就是训练效率与暴露偏差的交换。）</li>
+<li>论文映射：用四问账本拆 Sutskever 2014——注意”输入倒序”这个 trick 在账本上属于哪一栏（它买到什么、依赖什么）。</li>
+<li>进阶：给 <code>Seq2Seq</code> 加最原始的”注意力”：解码每一步用 <span class="math inline">\(\mathbf{c}\)</span> 与编码器每一步的 <span class="math inline">\(h_s\)</span> 做点积归一化权重，加权求和替代固定 <span class="math inline">\(\mathbf{c}\)</span>——二十行内你将重新发明 Bahdanau 注意力的核心（下一章的完整版再加查询投影与对齐训练）。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1315,9 +1315,9 @@ window.Quarto = {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：断崖几乎不动——容量够用时瓶颈在<strong>训练分布</strong>而非向量维度。若你观察到轻微改善，那是容量边际效应；主结论（断崖位置由训练长度决定）稳健——这正是”数据分布决定能力边界”的直接证据。</p>
-<p><strong>练习 3</strong>：训练显著变慢（无法利用 teacher forcing 的并行展开）且早期不稳定；最终成绩可能接近但更难训。暴露偏差减小了，但代价不成比例——<strong>工程上的赢家是 teacher forcing + 后期纠偏</strong>（RLHF 在某种程度上正是终极版的”后期纠偏”）。</p>
-<p><strong>练习 5 提示</strong>：权重 <span class="math inline">\(\alpha_{t,s} \propto \exp(\mathbf{q}_t \cdot \mathbf{h}_s)\)</span>，<span class="math inline">\(\mathbf{q}_t\)</span> 取当前解码状态；加权和 <span class="math inline">\(\sum_s \alpha_{t,s}\mathbf{h}_s\)</span> 进输出层。跑反转任务，重点看<strong>长度外推是否被治好</strong>——若改善明显，你已经预演了 5.1 的结论。</p>
+<p><strong>练习 2</strong>：断崖几乎不动——容量够用时瓶颈在训练分布而非向量维度。若你观察到轻微改善，那是容量边际效应；主结论（断崖位置由训练长度决定）稳健——这正是”数据分布决定能力边界”的直接证据。</p>
+<p><strong>练习 3</strong>：训练显著变慢（无法利用 teacher forcing 的并行展开）且早期不稳定；最终成绩可能接近但更难训。暴露偏差减小了，但代价不成比例——工程上的赢家是 teacher forcing + 后期纠偏（RLHF 在某种程度上正是终极版的”后期纠偏”）。</p>
+<p><strong>练习 5 提示</strong>：权重 <span class="math inline">\(\alpha_{t,s} \propto \exp(\mathbf{q}_t \cdot \mathbf{h}_s)\)</span>，<span class="math inline">\(\mathbf{q}_t\)</span> 取当前解码状态；加权和 <span class="math inline">\(\sum_s \alpha_{t,s}\mathbf{h}_s\)</span> 进输出层。跑反转任务，重点看长度外推是否被治好——若改善明显，你已经预演了 5.1 的结论。</p>
 </div>
 </div>
 </div>

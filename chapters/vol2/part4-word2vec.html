@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1080,10 +1080,10 @@ window.Quarto = {
 </div>
 <div class="callout-era" title="时代快照 · 2013">
 <ul>
-<li><strong>算力</strong>：word2vec 在单 CPU 上几小时就能在数十亿词上训练——<strong>简单到可以在笔记本复现</strong>是它横扫社区的直接原因；</li>
-<li><strong>数据</strong>：Google News 的 10 亿词语料（词表 300 万）——互联网文本第一次作为”语义原料”大规模入炉；</li>
-<li><strong>认知</strong>：2013 年的 NLP 主流仍是特征工程 + 统计模型；word2vec 证明了<strong>无监督的表示学习</strong>可以在 NLP 兑现——深度学习入场的敲门砖；</li>
-<li><strong>关键事实</strong>：同时代还有 GloVe（2014，斯坦福，共现矩阵分解）与更早的 LSA（1990，SVD）——<strong>“共现 → 几何”这个想法被反复发明</strong>，word2vec 的胜利是工程与时机（简单 + 快 + 到点）的胜利。</li>
+<li><strong>算力</strong>：word2vec 在单 CPU 上几小时就能在数十亿词上训练——简单到可以在笔记本复现是它横扫社区的直接原因；</li>
+<li>数据：Google News 的 10 亿词语料（词表 300 万）——互联网文本第一次作为”语义原料”大规模入炉；</li>
+<li>认知：2013 年的 NLP 主流仍是特征工程 + 统计模型；word2vec 证明了无监督的表示学习可以在 NLP 兑现——深度学习入场的敲门砖；</li>
+<li>关键事实：同时代还有 GloVe（2014，斯坦福，共现矩阵分解）与更早的 LSA（1990，SVD）——“共现 → 几何”这个想法被反复发明，word2vec 的胜利是工程与时机（简单 + 快 + 到点）的胜利。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="20.1">
@@ -1095,16 +1095,16 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">20.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>分布假说（Harris 1954）</strong>： linguistic 的老直觉——“看一个词的同伴，就知道它的意义”（You shall know a word by the company it keeps, Firth 1957）。四十年来它是语言学格言，缺的是把它变成<strong>可计算几何</strong>的机器。</p>
+<p><strong>分布假说（Harris 1954）</strong>： linguistic 的老直觉——“看一个词的同伴，就知道它的意义”（You shall know a word by the company it keeps, Firth 1957）。四十年来它是语言学格言，缺的是把它变成可计算几何的机器。</p>
 <p><strong>弯路一：词-文档共现矩阵</strong>。LSA（1990）对”词 × 文档”矩阵做 SVD——语义有了，但维度巨大、无法增量更新、且”文档”这个上下文单位太粗。</p>
-<p><strong>弯路二：概率模型的重装备</strong>。在 word2vec 之前，学界主流是复杂的概率主题模型（LDA 一族）——精确、优雅、慢。Mikolov 的反叛是把任务<strong>简到荒谬</strong>：一个词预测它的邻居（skip-gram），配上负采样，两行公式。审稿人一度觉得太简单，论文先以技术报告面世。</p>
-<p><strong>类比现象的发现本身是意外</strong>：作者们在调参时发现向量算术成立，才补了专门的评估（有名的 analogical reasoning 测试集）。<strong>重大能力常常在系统跑通后才被”发现”而非被设计</strong>——这个模式将在 6.1（GPT-3 的 in-context learning）重演。</p>
+<p><strong>弯路二：概率模型的重装备</strong>。在 word2vec 之前，学界主流是复杂的概率主题模型（LDA 一族）——精确、优雅、慢。Mikolov 的反叛是把任务简到荒谬：一个词预测它的邻居（skip-gram），配上负采样，两行公式。审稿人一度觉得太简单，论文先以技术报告面世。</p>
+<p><strong>类比现象的发现本身是意外</strong>：作者们在调参时发现向量算术成立，才补了专门的评估（有名的 analogical reasoning 测试集）。重大能力常常在系统跑通后才被”发现”而非被设计——这个模式将在 6.1（GPT-3 的 in-context learning）重演。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>实验设计题：你要构造一个语料，使训练后 <span class="math inline">\(\vec{kitten} - \vec{cat} + \vec{dog} \approx \vec{puppy}\)</span> 成立。</p>
 <ol type="1">
-<li><strong>结构设计</strong>：语料必须满足什么共现性质，“成体→幼崽”才会成为空间中一个<strong>方向一致的位移</strong>？（提示：若 kitten 与 cat 的上下文分布只差一个系统的成分，位移才稳定。）</li>
-<li><strong>反例设计</strong>：什么样的语料会让类比<strong>失效</strong>？（提示：让 kitten 的上下文里混入与 dog 相关的成分。）</li>
-<li><strong>规模直觉</strong>：真实语言里，为什么”巴黎−法国+日本≈东京”比” kitten−cat+dog”更难稳定成立？</li>
+<li><strong>结构设计</strong>：语料必须满足什么共现性质，“成体→幼崽”才会成为空间中一个方向一致的位移？（提示：若 kitten 与 cat 的上下文分布只差一个系统的成分，位移才稳定。）</li>
+<li>反例设计：什么样的语料会让类比失效？（提示：让 kitten 的上下文里混入与 dog 相关的成分。）</li>
+<li>规模直觉：真实语言里，为什么”巴黎−法国+日本≈东京”比” kitten−cat+dog”更难稳定成立？</li>
 </ol>
 <p>写下三问的答案再读下面的语料设计——它就是第 1 问的一种实现。</p>
 </div>
@@ -1114,13 +1114,13 @@ window.Quarto = {
 <p><strong>skip-gram + 负采样</strong>：对语料里每个中心词 <span class="math inline">\(c\)</span> 与其窗口内的上下文词 <span class="math inline">\(o\)</span>，最大化</p>
 <p><span class="math display">\[\log \sigma(\vec{u}_o \cdot \vec{v}_c) + \sum_{k=1}^{K} \log \sigma(-\vec{u}_{n_k} \cdot \vec{v}_c)\]</span></p>
 <p>——真实邻居的内积要大，随机抽的负样本内积要小。没有语法、没有任务、没有标签：<strong>唯一的信息来源是共现</strong>。</p>
-<p><strong>为什么共现会长出几何</strong>：内积是”共现强度的可微代理”。训练把高频共现对拉近、随机对推远——每个词的位置由它的<strong>上下文分布</strong>决定，而按分布假说，上下文分布就是语义。于是”语义相似 = 向量夹角小”从格言变成了定理（这个定理的名字叫 PMI 的矩阵分解近似——Levy &amp; Goldberg 2014 证明了 skip-gram 隐式分解的是移位正点互信息矩阵）。</p>
-<p><strong>类比 = 结构化的分布差</strong>。若”幼崽”与”成体”的上下文分布相差一个近似恒定的成分（幼崽词都多出现在 <em>small</em>、<em>baby</em> 语境），则位移 <span class="math inline">\(\vec{kitten} - \vec{cat}\)</span> 在各词对间近似平行——<strong>类比是”分布差的规律性”在几何上的投影</strong>。它的水分也在这里：真实语言的分布差只在统计平均意义上平行，逐例使用必然翻车（见消融）。</p>
+<p><strong>为什么共现会长出几何</strong>：内积是”共现强度的可微代理”。训练把高频共现对拉近、随机对推远——每个词的位置由它的上下文分布决定，而按分布假说，上下文分布就是语义。于是”语义相似 = 向量夹角小”从格言变成了定理（这个定理的名字叫 PMI 的矩阵分解近似——Levy &amp; Goldberg 2014 证明了 skip-gram 隐式分解的是移位正点互信息矩阵）。</p>
+<p><strong>类比 = 结构化的分布差</strong>。若”幼崽”与”成体”的上下文分布相差一个近似恒定的成分（幼崽词都多出现在 <em>small</em>、<em>baby</em> 语境），则位移 <span class="math inline">\(\vec{kitten} - \vec{cat}\)</span> 在各词对间近似平行——类比是”分布差的规律性”在几何上的投影。它的水分也在这里：真实语言的分布差只在统计平均意义上平行，逐例使用必然翻车（见消融）。</p>
 </section>
 <section id="从零实现" class="level2" data-number="20.4">
 <h2 data-number="20.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">20.4</span> 从零实现</h2>
 <p>语料用 <code>make_analogy_corpus</code>：四个成体-幼崽词对（cat/kitten、dog/puppy、bird/chick、cow/calf）在共享模板里出现——<strong>模板保证”成体→幼崽”的分布差恒定</strong>（停一停第 1 问的实现）：</p>
-<div id="e9503b58" class="cell" data-execution_count="1">
+<div id="477166de" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_analogy_corpus</span>
@@ -1138,7 +1138,7 @@ loss: 1.758 -&gt; 1.631</code></pre>
 </div>
 </div>
 <p><strong>实验一：类比。</strong> 向量算术最近邻：</p>
-<div id="f56d25de" class="cell" data-execution_count="2">
+<div id="22751f7f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, b, c, gold <span class="kw">in</span> [</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"cat"</span>, <span class="st">"kitten"</span>, <span class="st">"dog"</span>, <span class="st">"puppy"</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"dog"</span>, <span class="st">"puppy"</span>, <span class="st">"bird"</span>, <span class="st">"chick"</span>),</span>
@@ -1153,7 +1153,7 @@ loss: 1.758 -&gt; 1.631</code></pre>
 </div>
 </div>
 <p>三条全中（余弦 0.97+）。<strong>实验二：相似结构。</strong></p>
-<div id="1c0e4fa4" class="cell" data-execution_count="3">
+<div id="ebceaa93" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"kitten 的近邻:"</span>, [w <span class="cf">for</span> w, _ <span class="kw">in</span> sg.most_similar(<span class="st">"kitten"</span>, vocab)])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"cat   的近邻:"</span>, [w <span class="cf">for</span> w, _ <span class="kw">in</span> sg.most_similar(<span class="st">"cat"</span>, vocab)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1162,7 +1162,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 </div>
 </div>
 <p>幼崽们互为近邻、成体们互为近邻——<strong>两个语义簇在空间里自然分开</strong>，没有任何监督信号要求过这一点。把两簇画出来（取前两维投影）：</p>
-<div id="75a7d519" class="cell" data-execution_count="4">
+<div id="c7ae0266" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>adults, babies <span class="op">=</span> [<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"bird"</span>, <span class="st">"cow"</span>], [<span class="st">"kitten"</span>, <span class="st">"puppy"</span>, <span class="st">"chick"</span>, <span class="st">"calf"</span>]</span>
@@ -1189,8 +1189,8 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 </section>
 <section id="消融实验" class="level2" data-number="20.5">
 <h2 data-number="20.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">20.5</span> 消融实验</h2>
-<p><strong>类比的水分检测</strong>：换一组<strong>没有平行结构</strong>的词做算术——例如 <code>garden - cat + dog</code>（两个名词的普通位移）：</p>
-<div id="81b80342" class="cell" data-execution_count="5">
+<p><strong>类比的水分检测</strong>：换一组没有平行结构的词做算术——例如 <code>garden - cat + dog</code>（两个名词的普通位移）：</p>
+<div id="536804f8" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, b, c <span class="kw">in</span> [(<span class="st">"cat"</span>, <span class="st">"garden"</span>, <span class="st">"dog"</span>), (<span class="st">"runs"</span>, <span class="st">"garden"</span>, <span class="st">"sleeps"</span>), (<span class="st">"warm"</span>, <span class="st">"day"</span>, <span class="st">"sunny"</span>)]:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    w, s <span class="op">=</span> sg.analogy(a, b, c, vocab)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>b<span class="sc">:&gt;7}</span><span class="ss"> - </span><span class="sc">{</span>a<span class="sc">:&lt;7}</span><span class="ss"> + </span><span class="sc">{</span>c<span class="sc">:&lt;7}</span><span class="ss"> = </span><span class="sc">{</span>w<span class="sc">:&lt;7}</span><span class="ss"> (cos=</span><span class="sc">{</span>s<span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1200,7 +1200,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
     day - warm    + sunny   = quiet   (cos=0.651)</code></pre>
 </div>
 </div>
-<p>结果一样”自信”地给出高余弦答案——但<strong>没有任何语义解释</strong>。这就是 2016 年前后学界对词向量类比的著名批评（Linzen 2016 等）：算术最近邻这个操作<strong>天然偏爱高余弦</strong>，它对无意义的题目也照答不误。<strong>评估方法本身可以制造能力的幻象</strong>——这堂课在 LLM 时代将以”基准污染”“答案泄漏”的形式放大一万倍（9.2 的伏笔）。</p>
+<p>结果一样”自信”地给出高余弦答案——但<strong>没有任何语义解释</strong>。这就是 2016 年前后学界对词向量类比的著名批评（Linzen 2016 等）：算术最近邻这个操作天然偏爱高余弦，它对无意义的题目也照答不误。评估方法本身可以制造能力的幻象——这堂课在 LLM 时代将以”基准污染”“答案泄漏”的形式放大一万倍（9.2 的伏笔）。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="20.6">
 <h2 data-number="20.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">20.6</span> 本章 Loss 账本</h2>
@@ -1218,7 +1218,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 <tbody>
 <tr class="odd">
 <td>在优化什么 loss？</td>
-<td>负采样 skip-gram：真实共现 σ 内积最大化——一个把<strong>共现统计</strong>转成<strong>几何结构</strong>的 loss，无任何人工标签</td>
+<td>负采样 skip-gram：真实共现 σ 内积最大化——一个把<strong>共现统计</strong>转成几何结构的 loss，无任何人工标签</td>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
@@ -1238,7 +1238,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 <ul>
 <li>词向量 → LLM 的输入嵌入层与输出头（6.x）——<strong>token embedding 是 Transformer 唯一”带着进门”的组件</strong>，其余全部重新学习；</li>
 <li>“共现→几何” → 检索（embedding 检索是 RAG 的地基，8.x）与推荐系统；</li>
-<li>类比幻象 → LLM 评测方法论的百年教训：<strong>先审评估，再信能力</strong>（7.x 的基准讨论、9.2）；</li>
+<li>类比幻象 → LLM 评测方法论的百年教训：先审评估，再信能力（7.x 的基准讨论、9.2）；</li>
 <li>无监督表示学习 → 预训练范式的第一块砖（3.3 的”特征可搬运”+ 本章”表示可自学”= 6.1 GPT 的两块奠基石）。</li>
 </ul>
 </div>
@@ -1246,15 +1246,15 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 <p><strong>Mikolov, T., Sutskever, I., Chen, K., Corrado, G. &amp; Dean, J. (2013).</strong> <em>Distributed representations of words and phrases and their compositionality.</em> NeurIPS.（word2vec 的正式版）</p>
 <ul>
 <li><strong>读什么</strong>：第 2 节（skip-gram 与负采样，两页讲完整个方法）与第 4 节（类比的发现）；</li>
-<li><strong>跳过</strong>：实现细节；</li>
-<li><strong>历史注</strong>：配套读 Levy &amp; Goldberg (2014)（证明 skip-gram ≈ 分解 PMI 矩阵——“神经方法其实是老朋友穿了新衣”的漂亮案例）与 Pennington et al.&nbsp;(2014)（GloVe：干脆直接分解）。三篇合读，“简单方法 × 大数据”的威力与”理论解释随后赶到”的节奏都齐了。</li>
+<li>跳过：实现细节；</li>
+<li>历史注：配套读 Levy &amp; Goldberg (2014)（证明 skip-gram ≈ 分解 PMI 矩阵——“神经方法其实是老朋友穿了新衣”的漂亮案例）与 Pennington et al.&nbsp;(2014)（GloVe：干脆直接分解）。三篇合读，“简单方法 × 大数据”的威力与”理论解释随后赶到”的节奏都齐了。</li>
 </ul>
 </div>
 </section>
 <section id="遗留问题" class="level2" data-number="20.7">
 <h2 data-number="20.7" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">20.7</span> 遗留问题</h2>
 <ol type="1">
-<li>词向量是<strong>静态</strong>的——同一个词在任何句子里都是同一个向量。<strong>随上下文变化的表示</strong>如何构造？（ELMo/GPT 的方向，6.1——需要先把”下一个词预测”做大做深）；</li>
+<li>词向量是<strong>静态</strong>的——同一个词在任何句子里都是同一个向量。随上下文变化的表示如何构造？（ELMo/GPT 的方向，6.1——需要先把”下一个词预测”做大做深）；</li>
 <li>把两台 LSTM 一读一写接起来，能做翻译吗？瓶颈在哪？（→ 下一章 seq2seq）。</li>
 </ol>
 </section>
@@ -1270,10 +1270,10 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 <h2 data-number="20.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">20.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把 skip-gram 换成 CBOW（上下文预测中心词，注意上下文向量要平均），在同语料上对照 loss 与类比成绩。</li>
-<li><strong>预测再运行</strong>：把负样本数 <span class="math inline">\(K\)</span> 从 4 调到 0（纯正样本）与 32，类比与聚类各怎么变？（提示：负样本在”推远”谁。）</li>
-<li><strong>消融</strong>：把语料里”the {adult} is big / the {baby} is small”模板删掉（只留共享模板），类比还成立吗？——亲手验证”分布差的恒定性”是类比的必要条件。</li>
-<li><strong>论文映射</strong>：用四问账本拆 GloVe——它把 word2vec 的”隐式分解”变成显式，账本上”买到”与”没买到”各怎么记账？</li>
-<li><strong>进阶</strong>：实现 Linzen 式检验——给类比求解器加上”最近邻必须显著近于次近邻”的置信门槛，统计真类比与伪类比（消融实验的题目）各自的门槛通过率——为”能力 vs 幻象”造一把尺子。</li>
+<li>预测再运行：把负样本数 <span class="math inline">\(K\)</span> 从 4 调到 0（纯正样本）与 32，类比与聚类各怎么变？（提示：负样本在”推远”谁。）</li>
+<li>消融：把语料里”the {adult} is big / the {baby} is small”模板删掉（只留共享模板），类比还成立吗？——亲手验证”分布差的恒定性”是类比的必要条件。</li>
+<li>论文映射：用四问账本拆 GloVe——它把 word2vec 的”隐式分解”变成显式，账本上”买到”与”没买到”各怎么记账？</li>
+<li>进阶：实现 Linzen 式检验——给类比求解器加上”最近邻必须显著近于次近邻”的置信门槛，统计真类比与伪类比（消融实验的题目）各自的门槛通过率——为”能力 vs 幻象”造一把尺子。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1287,7 +1287,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：<span class="math inline">\(K=0\)</span> 时所有向量被拉向同一点（退化，聚类消失）；<span class="math inline">\(K\)</span> 过大则训练慢且低频词被过度推远。<span class="math inline">\(K\approx 5{-}20\)</span> 是历史经验的甜点——<strong>负样本是几何的”斥力”来源，斥力过小则塌缩、过大则稀疏</strong>。</p>
+<p><strong>练习 2</strong>：<span class="math inline">\(K=0\)</span> 时所有向量被拉向同一点（退化，聚类消失）；<span class="math inline">\(K\)</span> 过大则训练慢且低频词被过度推远。<span class="math inline">\(K\approx 5{-}20\)</span> 是历史经验的甜点——负样本是几何的”斥力”来源，斥力过小则塌缩、过大则稀疏。</p>
 <p><strong>练习 3</strong>：类比大概率失效或大幅退化——“大/小”模板正是提供恒定分布差的成分。这个消融是”类比 = 结构化分布差”论断的最小验证。</p>
 <p><strong>练习 5 提示</strong>：真类比的余弦分布应显著高于伪类比（可分性），但重叠尾部一定存在——置信门槛把”何时可信”变成可操作的统计问题。这把尺子的思想就是后来 LLM 评测的校准与 abstention。</p>
 </div>

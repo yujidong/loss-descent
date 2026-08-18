@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1064,7 +1064,7 @@ window.Quarto = {
 </header>
 
 
-<p>上一章的曲线回答了”更大更好吗”，却没有回答一个更贵的问题：<strong>给我一笔固定的算力，该怎么花？</strong> 2020 年的实践答案是”买参数”——Kaplan 的曲线读起来像”大模型优先”。2022 年，DeepMind 的 Hoffmann 等人（论文代号 Chinchilla）用四百多次受控实验重算了这本账，结论掀了桌子：<strong>同等算力下，参数与训练数据应当大致等比例增长</strong>（约每参数 20 个 token）。按此配方，700 亿参数的 Chinchilla 打败了它四倍大的 Gopher。行业随即转向”更小的模型、更多的数据”——LLaMA 一族由此而生。本章在玩具上重演这本账的算法：<strong>等算力扫描</strong>。</p>
+<p>上一章的曲线回答了”更大更好吗”，却没有回答一个更贵的问题：<strong>给我一笔固定的算力，该怎么花？</strong> 2020 年的实践答案是”买参数”——Kaplan 的曲线读起来像”大模型优先”。2022 年，DeepMind 的 Hoffmann 等人（论文代号 Chinchilla）用四百多次受控实验重算了这本账，结论掀了桌子：同等算力下，参数与训练数据应当大致等比例增长（约每参数 20 个 token）。按此配方，700 亿参数的 Chinchilla 打败了它四倍大的 Gopher。行业随即转向”更小的模型、更多的数据”——LLaMA 一族由此而生。本章在玩具上重演这本账的算法：等算力扫描。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1081,9 +1081,9 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 2022">
 <ul>
 <li><strong>算力</strong>：训练预算进入亿美元时代；“训练一次的沉没成本”让配比错误的代价变得惊人；</li>
-<li><strong>数据</strong>：高质量文本的获取开始成为瓶颈的先兆（9.2 的数据墙前夜）；</li>
-<li><strong>认知</strong>：GPT-3 之后行业默认”参数量 = 排行榜名次”；Chinchilla 之前已有零星质疑（例如”训练不足的大模型”现象），但缺少系统性的再核算；</li>
-<li><strong>关键事实</strong>：Chinchilla 的四百多个实验点本身比结论更宝贵——它把”如何做 scaling 实验”（统一配方、等算力族、三维扫描）变成了方法论模板，此后所有大厂的技术报告都在模仿这个文体。</li>
+<li>数据：高质量文本的获取开始成为瓶颈的先兆（9.2 的数据墙前夜）；</li>
+<li>认知：GPT-3 之后行业默认”参数量 = 排行榜名次”；Chinchilla 之前已有零星质疑（例如”训练不足的大模型”现象），但缺少系统性的再核算；</li>
+<li>关键事实：Chinchilla 的四百多个实验点本身比结论更宝贵——它把”如何做 scaling 实验”（统一配方、等算力族、三维扫描）变成了方法论模板，此后所有大厂的技术报告都在模仿这个文体。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="27.1">
@@ -1096,10 +1096,10 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="27.2">
 <h2 data-number="27.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">27.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>Kaplan 的读法与偏差</strong>：2020 年的定律说”大模型在相同算力下更优”——但那些测量里的模型<strong>大多没有训到收敛</strong>，且固定了一批训练细节（学习率日程的长度、临界批次）。<strong>在欠训练的世界里比较大模型，会系统性高估”大”的边际收益</strong>——Chinchilla 的第一刀就砍在这里：统一配方、训到位、再比较。</p>
-<p><strong>三族方法，一个结论</strong>：Hoffmann 等人用三种独立方法（固定模型扫数据、固定数据扫模型、等算力参数化拟合）交叉验证，收敛到同一个配比（每参数约 20 token）。<strong>多方法的一致性比单一方法的精度更有说服力</strong>——研究方法论的一堂公开课。</p>
-<p><strong>回响</strong>：Gopher（2800 亿参数）被 Chinchilla（700 亿）以相同算力击败；Meta 的 LLaMA（2023）按新配方用”小”模型追平大模型，并把权重开源——<strong>配比的修正直接催生了开源时代的可行路线</strong>（6.4 的剧情）。此外它还改写了推理经济学：训练一次省下的钱之外，<strong>小模型的每一次推理都更便宜</strong>——部署时代的隐藏红利。</p>
-<p><strong>弯路：把 20 token/参数当物理常数</strong>。后续研究（如对多轮训练、数据复用的再核算）表明这个比率依赖设定；把它当铁律的做法很快被打破。<strong>研究结论的适用域与结论本身同样重要</strong>——账本栏目的老教导。</p>
+<p><strong>Kaplan 的读法与偏差</strong>：2020 年的定律说”大模型在相同算力下更优”——但那些测量里的模型大多没有训到收敛，且固定了一批训练细节（学习率日程的长度、临界批次）。在欠训练的世界里比较大模型，会系统性高估”大”的边际收益——Chinchilla 的第一刀就砍在这里：统一配方、训到位、再比较。</p>
+<p><strong>三族方法，一个结论</strong>：Hoffmann 等人用三种独立方法（固定模型扫数据、固定数据扫模型、等算力参数化拟合）交叉验证，收敛到同一个配比（每参数约 20 token）。多方法的一致性比单一方法的精度更有说服力——研究方法论的一堂公开课。</p>
+<p><strong>回响</strong>：Gopher（2800 亿参数）被 Chinchilla（700 亿）以相同算力击败；Meta 的 LLaMA（2023）按新配方用”小”模型追平大模型，并把权重开源——配比的修正直接催生了开源时代的可行路线（6.4 的剧情）。此外它还改写了推理经济学：训练一次省下的钱之外，小模型的每一次推理都更便宜——部署时代的隐藏红利。</p>
+<p><strong>弯路：把 20 token/参数当物理常数</strong>。后续研究（如对多轮训练、数据复用的再核算）表明这个比率依赖设定；把它当铁律的做法很快被打破。研究结论的适用域与结论本身同样重要——账本栏目的老教导。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>设定：预算 <span class="math inline">\(C\)</span> = 27293 × 1200（param-steps，参数量 × 训练步数）。四个候选：</p>
 <table class="caption-top table">
@@ -1144,15 +1144,15 @@ window.Quarto = {
 </section>
 <section id="核心思想" class="level2" data-number="27.3">
 <h2 data-number="27.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">27.3</span> 核心思想</h2>
-<p><strong>等算力族（iso-compute family）</strong>：固定 <span class="math inline">\(C \approx N \times S\)</span>（参数 × 步数），扫描 <span class="math inline">\(N\)</span>。每个预算 <span class="math inline">\(C\)</span> 下存在一个<strong>计算最优尺寸</strong> <span class="math inline">\(N^*(C)\)</span>：比它小，模型容量不足（训练步数浪费在已收敛的模型上）；比它大，步数不够（模型欠训练，参数浪费）。把所有预算的最优点连起来，得到 <span class="math inline">\(N^*(C)\)</span> 的 scaling——<strong>这就是 Chinchilla 配比</strong>。</p>
-<p><strong>直觉版</strong>：训练像烧砖——参数是窑的容积、数据是柴火。窑太大柴不够，烧出半熟的砖；窑太小柴太多，烧完还剩火。<strong>约束不是窑也不是柴，是总热量</strong>。</p>
-<p><strong>为什么它推翻了 Kaplan</strong>：两者并不真的矛盾——差别在”训练到什么程度算数”。Kaplan 族的比较隐含”欠训练也算”，Chinchilla 族要求”算力花完即止”。<strong>同样的数据、不同的实验协议、不同的结论</strong>——读到任何 scaling 主张时，先问它的协议。</p>
-<p><strong>对本书主线的意义</strong>：这是 loss 账本最辉煌的一页——<strong>不是降 loss 的新技术，而是”如何最便宜地降 loss”的会计学</strong>。研究从”找到更好的方法”扩展到”找到更优的资源配置”，这门手艺此后统治了工业界的模型训练。</p>
+<p><strong>等算力族（iso-compute family）</strong>：固定 <span class="math inline">\(C \approx N \times S\)</span>（参数 × 步数），扫描 <span class="math inline">\(N\)</span>。每个预算 <span class="math inline">\(C\)</span> 下存在一个计算最优尺寸 <span class="math inline">\(N^*(C)\)</span>：比它小，模型容量不足（训练步数浪费在已收敛的模型上）；比它大，步数不够（模型欠训练，参数浪费）。把所有预算的最优点连起来，得到 <span class="math inline">\(N^*(C)\)</span> 的 scaling——这就是 Chinchilla 配比。</p>
+<p><strong>直觉版</strong>：训练像烧砖——参数是窑的容积、数据是柴火。窑太大柴不够，烧出半熟的砖；窑太小柴太多，烧完还剩火。约束不是窑也不是柴，是总热量。</p>
+<p><strong>为什么它推翻了 Kaplan</strong>：两者并不真的矛盾——差别在”训练到什么程度算数”。Kaplan 族的比较隐含”欠训练也算”，Chinchilla 族要求”算力花完即止”。同样的数据、不同的实验协议、不同的结论——读到任何 scaling 主张时，先问它的协议。</p>
+<p><strong>对本书主线的意义</strong>：这是 loss 账本最辉煌的一页——不是降 loss 的新技术，而是”如何最便宜地降 loss”的会计学。研究从”找到更好的方法”扩展到”找到更优的资源配置”，这门手艺此后统治了工业界的模型训练。</p>
 </section>
 <section id="从零实现" class="level2" data-number="27.4">
 <h2 data-number="27.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">27.4</span> 从零实现</h2>
 <p>复用上一章的全部装备，只把扫描协议换成等算力：</p>
-<div id="6937a559" class="cell" data-execution_count="1">
+<div id="fb15ef3d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1193,13 +1193,13 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    results[d] <span class="op">=</span> vl</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>n<span class="sc">:6d}</span><span class="ss"> 参数, </span><span class="sc">{</span>steps<span class="sc">:5d}</span><span class="ss"> 步): val = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.7329 (176s)
-d= 16 (  7517 参数,  4357 步): val = 1.5540 (68s)
-d= 32 ( 27293 参数,  1200 步): val = 1.8942 (44s)
-d= 64 (103709 参数,   315 步): val = 2.1518 (27s)</code></pre>
+<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.7329 (162s)
+d= 16 (  7517 参数,  4357 步): val = 1.5540 (63s)
+d= 32 ( 27293 参数,  1200 步): val = 1.8942 (39s)
+d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
 </div>
 </div>
-<div id="05c9783d" class="cell" data-execution_count="2">
+<div id="d4bf83ce" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(results)</span>
@@ -1224,15 +1224,15 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (27s)</code></pre>
 <p>典型读数（对照你的预测）：<strong>d=8 → 1.73，d=16 → 1.55（谷底），d=32 → 1.89，d=64 → 2.15</strong>——清晰的 U 型。三个教训当场兑现：</p>
 <ul>
 <li><strong>上一章的冠军（d=64）在本协议下垫底</strong>：315 步远不够喂饱十万个参数——“更大更好”是”步数富余”世界里的结论；</li>
-<li>谷底在 d=16：等算力下，<strong>中等身材 + 充分训练</strong>胜过巨人 + 浅尝辄止；</li>
-<li>有趣的细节：d=8（步数超多）拿到 1.73，<strong>好于</strong> d=32/64——小模型充分训练的顽强，正是 LLaMA 路线的玩具版。</li>
+<li>谷底在 d=16：等算力下，中等身材 + 充分训练胜过巨人 + 浅尝辄止；</li>
+<li>有趣的细节：d=8（步数超多）拿到 1.73，好于 d=32/64——小模型充分训练的顽强，正是 LLaMA 路线的玩具版。</li>
 </ul>
-<p><strong>玩具与现实的换算</strong>：真实 Chinchilla 配比约 20 token/参数。我们的谷底 d=16：训练 4357 步 × 每步 1024 token ≈ 4.5M token 对 7.5K 参数——比率约 600，<strong>远大于 20</strong>。原因正是上一章的那堵墙：六万字符的语料让大模型无利可图，把最优点狠狠推向小模型。<strong>最优配比是（算力、数据供给）的函数</strong>——数据稀缺的世界里，“小而精”永远正确；数据充沛的世界里，配比才由算力单方面决定。我们的玩具恰好站在”数据稀缺世界”，与 2024 年后的人类殊途同归（9.2 的伏笔，以想不到的方式提前）。</p>
+<p><strong>玩具与现实的换算</strong>：真实 Chinchilla 配比约 20 token/参数。我们的谷底 d=16：训练 4357 步 × 每步 1024 token ≈ 4.5M token 对 7.5K 参数——比率约 600，远大于 20。原因正是上一章的那堵墙：六万字符的语料让大模型无利可图，把最优点狠狠推向小模型。最优配比是（算力、数据供给）的函数——数据稀缺的世界里，“小而精”永远正确；数据充沛的世界里，配比才由算力单方面决定。我们的玩具恰好站在”数据稀缺世界”，与 2024 年后的人类殊途同归（9.2 的伏笔，以想不到的方式提前）。</p>
 </section>
 <section id="消融实验" class="level2" data-number="27.5">
 <h2 data-number="27.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">27.5</span> 消融实验</h2>
 <p><strong>预算加倍，谷底去哪？</strong> 把 BUDGET ×2，重扫（每档步数加倍）——观察谷底是否右移、以及右移多少：</p>
-<div id="f8ae29e8" class="cell" data-execution_count="3">
+<div id="7d810c00" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>BUDGET2 <span class="op">=</span> BUDGET <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>results2 <span class="op">=</span> {}</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, n <span class="kw">in</span> configs:</span>
@@ -1269,7 +1269,7 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (27s)</code></pre>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
-<td>同上；但数据量首次作为<strong>约束变量</strong>进入优化问题（配比的另一半）</td>
+<td>同上；但数据量首次作为约束变量进入优化问题（配比的另一半）</td>
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
@@ -1293,8 +1293,8 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (27s)</code></pre>
 <p><strong>Hoffmann, J. et al.&nbsp;(2022).</strong> <em>Training compute-optimal large language models.</em> arXiv:2203.15556.（Chinchilla）</p>
 <ul>
 <li><strong>读什么</strong>：图 2（等算力族与最优前沿的三联图——本章 U 曲线的原版）与第 4 节（三种方法的交叉验证）；</li>
-<li><strong>跳过</strong>：硬件细节；</li>
-<li><strong>历史注</strong>：配套读 Kaplan et al.&nbsp;(2020) 并<strong>亲手找出两文协议的差异</strong>（收敛标准、日程长度、批次策略）——这是比读结论本身更好的训练。再读 Touvron et al.&nbsp;(2023) 的 LLaMA 论文第一节的动机段：它把 Chinchilla 的修正翻译成了开源战略。</li>
+<li>跳过：硬件细节；</li>
+<li>历史注：配套读 Kaplan et al.&nbsp;(2020) 并亲手找出两文协议的差异（收敛标准、日程长度、批次策略）——这是比读结论本身更好的训练。再读 Touvron et al.&nbsp;(2023) 的 LLaMA 论文第一节的动机段：它把 Chinchilla 的修正翻译成了开源战略。</li>
 </ul>
 </div>
 </section>
@@ -1317,10 +1317,10 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (27s)</code></pre>
 <h2 data-number="27.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">27.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：实现三维网格的迷你版（3 尺寸 × 3 步数，等量九点），画出等 loss 等高线图——<span class="math inline">\(N^*(C)\)</span> 从等高线的切点上读出来。</li>
-<li><strong>预测再运行</strong>：把语料换成 12 万字符（数据墙外推），谷底往哪移？先按”两股力”的框架预测，再验证。</li>
-<li><strong>消融</strong>：等算力扫描里把学习率日程的 warmup 拿掉（小步数档几乎没有 warmup 余地），谷底移动吗？——<strong>短训练的配方与长训练不同</strong>，这正是 Chinchilla 方法论中最容易被忽视的细节。</li>
-<li><strong>论文映射</strong>：用四问账本（+算力账本）拆 Chinchilla——注意它”买到”的是<strong>决策规则</strong>而非能力，这类论文的价值如何在学术评价体系里被低估又如何被工业界兑现？</li>
-<li><strong>进阶</strong>：给我们的玩具算”token/参数”配比曲线（对每个预算档算 <span class="math inline">\(C/N^*\)</span>），观察它随预算的变化方向，与真实世界 20 token/参数 的来源（数据充足假设）对照。</li>
+<li>预测再运行：把语料换成 12 万字符（数据墙外推），谷底往哪移？先按”两股力”的框架预测，再验证。</li>
+<li>消融：等算力扫描里把学习率日程的 warmup 拿掉（小步数档几乎没有 warmup 余地），谷底移动吗？——短训练的配方与长训练不同，这正是 Chinchilla 方法论中最容易被忽视的细节。</li>
+<li>论文映射：用四问账本（+算力账本）拆 Chinchilla——注意它”买到”的是决策规则而非能力，这类论文的价值如何在学术评价体系里被低估又如何被工业界兑现？</li>
+<li>进阶：给我们的玩具算”token/参数”配比曲线（对每个预算档算 <span class="math inline">\(C/N^*\)</span>），观察它随预算的变化方向，与真实世界 20 token/参数 的来源（数据充足假设）对照。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1335,7 +1335,7 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (27s)</code></pre>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：谷底右移（数据墙退远，算力独大）——移动幅度取决于新增数据的质量；若只是把旧语料复制一遍，墙不动（信息量未增）。</p>
-<p><strong>练习 3</strong>：小步数档受 warmup 影响最大（预算的相当比例花在暖机上）——拿掉 warmup 后短训练反而更高效，谷底左移。<strong>配比结论对配方细节敏感</strong>，所以论文复现比想象中难。</p>
+<p><strong>练习 3</strong>：小步数档受 warmup 影响最大（预算的相当比例花在暖机上）——拿掉 warmup 后短训练反而更高效，谷底左移。配比结论对配方细节敏感，所以论文复现比想象中难。</p>
 <p><strong>练习 5 提示</strong>：玩具的配比随预算上升（数据墙约束松了）；真实世界在数据充足段的渐近值约 20——把两条线画在同一张图上，“研究结论的适用域”就有了几何形状。</p>
 </div>
 </div>

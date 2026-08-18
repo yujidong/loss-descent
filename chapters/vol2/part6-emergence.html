@@ -716,7 +716,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的兴衰</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1081,9 +1081,9 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 2022–2024">
 <ul>
 <li><strong>算力</strong>：千亿模型多起来，“下一个尺寸会解锁什么”成了赌注巨大的问题；</li>
-<li><strong>数据</strong>：基准考试（BIG-Bench 一类）成为能力探针——但探针的校准没人细究；</li>
-<li><strong>认知</strong>：涌现叙事同时喂养了两派——乐观派（更大=新智能）与风险派（不可预测的跳变）；<strong>一个科学问题变成了叙事战场</strong>；</li>
-<li><strong>关键事实</strong>：Schaeffer et al.&nbsp;的反驳方式极其朴素：换掉度量（连续的 token 概率替代离散的精确匹配），“相变”大多消失——<strong>方法论上的一次四两拨千斤</strong>。</li>
+<li>数据：基准考试（BIG-Bench 一类）成为能力探针——但探针的校准没人细究；</li>
+<li>认知：涌现叙事同时喂养了两派——乐观派（更大=新智能）与风险派（不可预测的跳变）；一个科学问题变成了叙事战场；</li>
+<li>关键事实：Schaeffer et al.&nbsp;的反驳方式极其朴素：换掉度量（连续的 token 概率替代离散的精确匹配），“相变”大多消失——方法论上的一次四两拨千斤。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="28.1">
@@ -1098,8 +1098,8 @@ window.Quarto = {
 <h2 data-number="28.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">28.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>涌现的发现（Wei et al., 2022）</strong>：横轴规模、纵轴精确匹配率的图表里，曲线长期贴零然后陡起——视觉冲击力极强，命名也考究（emergence，从复杂性科学借来的相变词汇）。</p>
 <p><strong>弯路一：把图表当机制</strong>。“曲线跳了”与”模型内部发生了相变”是两个命题；前者先得到后者才能成立。早期讨论常把二者混用，甚至引出”不可预测的危险跳变”的政策叙事。</p>
-<p><strong>反驳（Schaeffer et al., 2023）</strong>：核心论证一条——<strong>非线性（尤其不连续）度量是跳变的制造机</strong>。若模型对每个 token 的正确概率平滑地从 0.51 涨到 0.99，“整串全对”的概率会从 <span class="math inline">\(0.51^n\)</span> 跳到 <span class="math inline">\(0.99^n\)</span>——对长序列这是从零到一的悬崖，而底层什么相变都没有。把度量换回连续的（每 token 对数概率），悬崖消失。</p>
-<p><strong>后续的拉锯</strong>：有研究指出部分能力在连续度量下仍有加速（“软涌现”）；也有人用更细的探针找到真跳变的候选。<strong>悬而未决</strong>是本章结尾的诚实状态——但度量纪律本身已经赢下：任何能力声明都要先过”换度量还成立吗”这一关。</p>
+<p><strong>反驳（Schaeffer et al., 2023）</strong>：核心论证一条——非线性（尤其不连续）度量是跳变的制造机。若模型对每个 token 的正确概率平滑地从 0.51 涨到 0.99，“整串全对”的概率会从 <span class="math inline">\(0.51^n\)</span> 跳到 <span class="math inline">\(0.99^n\)</span>——对长序列这是从零到一的悬崖，而底层什么相变都没有。把度量换回连续的（每 token 对数概率），悬崖消失。</p>
+<p><strong>后续的拉锯</strong>：有研究指出部分能力在连续度量下仍有加速（“软涌现”）；也有人用更细的探针找到真跳变的候选。悬而未决是本章结尾的诚实状态——但度量纪律本身已经赢下：任何能力声明都要先过”换度量还成立吗”这一关。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>一个思想实验，先算后跑：</p>
 <p>设模型对某 8 字符串每个位置的预测正确率统一为 <span class="math inline">\(p\)</span>（随尺寸从 0.5 平滑升到 0.9）。</p>
@@ -1118,13 +1118,13 @@ window.Quarto = {
 <li>连续度量（loss、对数概率、校准准确率）：<span class="math inline">\(M(c) \approx c\)</span>——故事是”平滑改善”；</li>
 <li>阶梯度量（精确匹配、阈值通过、多项选择全对）：<span class="math inline">\(M(c) = \mathbb{1}[c^n &gt; \theta]\)</span> 一类——<span class="math inline">\(n\)</span> 越大（串越长、要求越苛刻），<strong>同样的 <span class="math inline">\(c\)</span> 改善被放大成越陡的跳变</strong>。</li>
 </ul>
-<p>这不是哪一方造假，而是<strong>度量的选择先于结论</strong>：先定度量再看图，跳变与平滑都唾手可得。科学的纪律是：<strong>能力声明必须经受度量替换的稳健性检验</strong>——换两三种度量，结论仍在，才叫现象；只在一种度量下存在，那可能只是度量的影子。</p>
-<p><strong>对”风险叙事”的校正</strong>：度量假象论让”不可预测的相变”失去了一部分证据，但<strong>没有证明”一切皆平滑”</strong>——真正的突变若存在，其机制研究（而非图表）才是正途。审慎的立场是双门的：既不拿阶梯曲线贩卖神秘，也不拿平滑曲线否认质变。</p>
+<p>这不是哪一方造假，而是<strong>度量的选择先于结论</strong>：先定度量再看图，跳变与平滑都唾手可得。科学的纪律是：能力声明必须经受度量替换的稳健性检验——换两三种度量，结论仍在，才叫现象；只在一种度量下存在，那可能只是度量的影子。</p>
+<p><strong>对”风险叙事”的校正</strong>：度量假象论让”不可预测的相变”失去了一部分证据，但没有证明”一切皆平滑”——真正的突变若存在，其机制研究（而非图表）才是正途。审慎的立场是双门的：既不拿阶梯曲线贩卖神秘，也不拿平滑曲线否认质变。</p>
 </section>
 <section id="从零实现" class="level2" data-number="28.4">
 <h2 data-number="28.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">28.4</span> 从零实现</h2>
 <p>复用 6.1 的四尺寸扫描（同数据、同配方），每个模型测<strong>两种度量</strong>：</p>
-<div id="39a0a86a" class="cell" data-execution_count="1">
+<div id="69f90f4c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1171,7 +1171,7 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 </div>
 </div>
 <p>把三种度量放在一起看（注意第二列到第三列的<strong>换算</strong>）：</p>
-<div id="36492544" class="cell" data-execution_count="2">
+<div id="f4a1a5d1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(report)</span>
@@ -1227,13 +1227,13 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 </tr>
 </tbody>
 </table>
-<p>三个版本的故事：<strong>loss 说”平滑改善，尾部收窄”</strong>（真话）；char_acc 说”爬升后趋平”（也是真话）；<strong>exact4 说”小模型一无是处，d=32 突然觉醒（25 倍跳变）“</strong>——同一组模型、同一次训练。用「停一停」的公式验算：d=16→32 的 char_acc 只涨了 1.4 倍，exact4 却涨了 25 倍——<span class="math inline">\(4\)</span> 字符全对的 <span class="math inline">\(n=4\)</span> 次方放大器在起作用。</p>
+<p>三个版本的故事：<strong>loss 说”平滑改善，尾部收窄”</strong>（真话）；char_acc 说”爬升后趋平”（也是真话）；exact4 说”小模型一无是处，d=32 突然觉醒（25 倍跳变）“——同一组模型、同一次训练。用「停一停」的公式验算：d=16→32 的 char_acc 只涨了 1.4 倍，exact4 却涨了 25 倍——<span class="math inline">\(4\)</span> 字符全对的 <span class="math inline">\(n=4\)</span> 次方放大器在起作用。</p>
 <p><strong>宣布涌现 vs 揭露度量</strong>，此刻只隔一句话的距离。</p>
 </section>
 <section id="消融实验" class="level2" data-number="28.5">
 <h2 data-number="28.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">28.5</span> 消融实验</h2>
-<p><strong>放大器的旋钮</strong>：把阶梯度量的窗口从 4 调到 2 和 8，跳变的”锐度”怎么变？（窗口越长，<span class="math inline">\(n\)</span> 次方放大越猛，悬崖越陡——<strong>同一种能力可以被量出任意陡峭的觉醒</strong>。）</p>
-<div id="63bd700e" class="cell" data-execution_count="3">
+<p><strong>放大器的旋钮</strong>：把阶梯度量的窗口从 4 调到 2 和 8，跳变的”锐度”怎么变？（窗口越长，<span class="math inline">\(n\)</span> 次方放大越猛，悬崖越陡——同一种能力可以被量出任意陡峭的觉醒。）</p>
+<div id="e3a3defc" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exactk(pred, tgt, k):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> <span class="bu">sum</span>((pred[i, j : j <span class="op">+</span> k] <span class="op">==</span> tgt[i, j : j <span class="op">+</span> k]).<span class="bu">all</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(pred.shape[<span class="dv">0</span>]) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, pred.shape[<span class="dv">1</span>] <span class="op">-</span> k <span class="op">+</span> <span class="dv">1</span>, k))</span>
@@ -1304,8 +1304,8 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 <p><strong>Schaeffer, R., Miranda, B. &amp; Koyejo, S. (2023).</strong> <em>Are emergent abilities of large language models a mirage?</em> NeurIPS 2023.</p>
 <ul>
 <li><strong>读什么</strong>：图 1–2（同一模型族在连续 vs 离散度量下的两组图——本章实验的原型）与第 3 节的形式化；</li>
-<li><strong>跳过</strong>：全部实验的模型细节；</li>
-<li><strong>历史注</strong>：先读 Wei et al.&nbsp;(2022) 的涌现图表（视觉冲击是真实的第一印象），再读本文的反驳——<strong>按时间顺序体验”被说服→被反驳”</strong>，是训练科学判断力的最好回放。再补一篇后续的中间派（如对”真加速”的检测尝试），体会悬而未决。</li>
+<li>跳过：全部实验的模型细节；</li>
+<li>历史注：先读 Wei et al.&nbsp;(2022) 的涌现图表（视觉冲击是真实的第一印象），再读本文的反驳——按时间顺序体验”被说服→被反驳”，是训练科学判断力的最好回放。再补一篇后续的中间派（如对”真加速”的检测尝试），体会悬而未决。</li>
 </ul>
 </div>
 </section>
@@ -1327,10 +1327,10 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 <h2 data-number="28.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">28.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：实现”连续版精确匹配”——把 argmax 换成前 k 个预测含目标的比率（top-k 命中率），观察它在四尺寸下的曲线形态——它比 exact4 平滑多少？</li>
-<li><strong>预测再运行</strong>：把训练步数砍半重测三度量——阶梯度量的”觉醒点”怎么移动？（提示：loss 右移多少，<span class="math inline">\(n\)</span> 次方把它放大多少。）</li>
-<li><strong>消融</strong>：给 char_acc 加 0.40 的阈值，宣布”能力获得”事件——四尺寸的事件序列是什么？再换 0.35 的阈值呢？<strong>阈值即叙事开关</strong>的亲手体验。</li>
-<li><strong>论文映射</strong>：用四问账本拆 Wei et al.&nbsp;2022 与 Schaeffer et al.&nbsp;2023 各一份——注意后者”买到”的是方法论（度量纪律），这类<strong>反驳型工作</strong>的价值如何在账本上体现？</li>
-<li><strong>进阶</strong>：形式化”放大器”：设每步正确率为 <span class="math inline">\(p\)</span> 的独立近似下，推导精确匹配率 <span class="math inline">\(p^n\)</span> 对 <span class="math inline">\(\log\)</span> 尺寸的二阶导数，找出”最陡点”的 <span class="math inline">\(p^*\)</span>（与 <span class="math inline">\(n\)</span> 的关系），用我们的实测数据检验独立性假设在哪里失效（相邻字符相关）。</li>
+<li>预测再运行：把训练步数砍半重测三度量——阶梯度量的”觉醒点”怎么移动？（提示：loss 右移多少，<span class="math inline">\(n\)</span> 次方把它放大多少。）</li>
+<li>消融：给 char_acc 加 0.40 的阈值，宣布”能力获得”事件——四尺寸的事件序列是什么？再换 0.35 的阈值呢？阈值即叙事开关的亲手体验。</li>
+<li>论文映射：用四问账本拆 Wei et al.&nbsp;2022 与 Schaeffer et al.&nbsp;2023 各一份——注意后者”买到”的是方法论（度量纪律），这类反驳型工作的价值如何在账本上体现？</li>
+<li>进阶：形式化”放大器”：设每步正确率为 <span class="math inline">\(p\)</span> 的独立近似下，推导精确匹配率 <span class="math inline">\(p^n\)</span> 对 <span class="math inline">\(\log\)</span> 尺寸的二阶导数，找出”最陡点”的 <span class="math inline">\(p^*\)</span>（与 <span class="math inline">\(n\)</span> 的关系），用我们的实测数据检验独立性假设在哪里失效（相邻字符相关）。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1344,8 +1344,8 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：觉醒点右移（每档都需要更多步数达到同样的 <span class="math inline">\(p\)</span>）；且窗口越长移得越多——<strong>“<span class="math inline">\(n\)</span> 倍放大”对底层的任何移动都同样生效</strong>，这就是阶梯度量的放大镜本质。</p>
-<p><strong>练习 3</strong>：0.40 阈值下事件序列是 d=32 觉醒（0.23/0.31/0.44/0.42）；0.35 下 d=16 就”觉醒”——<strong>同一个数据，两种叙事，全凭阈值一刀</strong>。审稿人看到”阈值通过率”时的第一个问题应当是：阈值谁定的、为什么。</p>
+<p><strong>练习 2</strong>：觉醒点右移（每档都需要更多步数达到同样的 <span class="math inline">\(p\)</span>）；且窗口越长移得越多——“<span class="math inline">\(n\)</span> 倍放大”对底层的任何移动都同样生效，这就是阶梯度量的放大镜本质。</p>
+<p><strong>练习 3</strong>：0.40 阈值下事件序列是 d=32 觉醒（0.23/0.31/0.44/0.42）；0.35 下 d=16 就”觉醒”——同一个数据，两种叙事，全凭阈值一刀。审稿人看到”阈值通过率”时的第一个问题应当是：阈值谁定的、为什么。</p>
 <p><strong>练习 5 提示</strong>：<span class="math inline">\(p^*\)</span> 在 <span class="math inline">\(p \approx e^{-1/n}\)</span> 附近最陡（对 <span class="math inline">\(n=4\)</span>，<span class="math inline">\(p^* \approx 0.78\)</span>）；独立性失效于高频搭配（the 后面接空格几乎必然对）——实测曲线比独立模型更”早熟”。</p>
 </div>
 </div>
