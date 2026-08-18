@@ -8,9 +8,59 @@ $callout-colors: (
   paper: #65A30D
 );
 
+/* 加宽正文阅读区：Quarto 默认约 40rem/720px，中文长句和代码块容易拥挤 */
+$content-width:    52rem;    /* 正文列最大宽度 */
+$body-width:       68rem;    /* 含侧栏的整体宽度 */
+$mobile-body-width: 100%;
+
+/* 行高与段间距——降低阅读密度 */
+$body-color:  #333;
+
 /*-- scss:rules --*/
+
 /* 中文字体兜底：Windows/macOS/Linux 各给一个可用的黑体 */
 body {
   font-family: -apple-system, "Segoe UI", "Noto Sans SC", "Source Han Sans SC",
     "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 1.0625rem; /* 17px：中文正文比 16px 稍大一点更舒适 */
+  line-height: 1.85;   /* 行高 1.85：中文行间留白 */
 }
+
+/* 正文段落的段间距 */
+main p {
+  margin-bottom: 1.1em;
+}
+
+/* 代码块字号稍小，避免与正文抢视觉重量 */
+main pre code {
+  font-size: 0.875em;
+}
+
+/* 图表与代码块的居中 */
+main .quarto-figure,
+main div.cell {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 宽屏时用满空间 */
+@media (min-width: 992px) {
+  #quarto-content {
+    padding: 0 2rem;
+  }
+
+  main {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $content-width;
+    padding-left:  1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* 表格不溢出 */
+main table {
+  width: 100%;
+  table-layout: auto;
+}
+
