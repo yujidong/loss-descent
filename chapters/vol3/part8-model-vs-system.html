@@ -1007,7 +1007,8 @@ main table {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">36.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">36.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题-part-9-的入场券" id="toc-遗留问题-part-9-的入场券" class="nav-link" data-scroll-target="#遗留问题-part-9-的入场券"><span class="header-section-number">36.7</span> 遗留问题（= Part 9 的入场券）</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">36.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">36.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">36.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1100,7 +1101,7 @@ main table {
 <section id="从零实现" class="level2" data-number="36.4">
 <h2 data-number="36.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">36.4</span> 从零实现</h2>
 <p>三条件对照（基座复训 + few-shot + SFT 复用 7.2 流程）：</p>
-<div id="c89a4850" class="cell" data-execution_count="1">
+<div id="dac06930" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus, make_qa_corpus</span>
@@ -1239,8 +1240,15 @@ SFT zero-shot: 0.33</code></pre>
 <li>最后：用它<strong>预测未来</strong>——全书的毕业考试（→ 9.3）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="36.8">
-<h2 data-number="36.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">36.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="36.8">
+<h2 data-number="36.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">36.8</span> 参考文献</h2>
+<ol type="1">
+<li>Lewis et al.&nbsp;(2020). <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP</em>. <em>NeurIPS</em>.</li>
+<li>Radford et al.&nbsp;(2018). <em>Improving Language Understanding by Generative Pre-Training</em>. <em>OpenAI Technical Report</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="36.9">
+<h2 data-number="36.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">36.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把三问框架写成一张决策表（底座体检 × 变化频率 × 错误代价 → 建议层），并给自己的一个实际项目过一遍——记录框架给出的建议与你的直觉的分歧点。</li>
 <li><strong>预测再运行</strong>：few-shot 的 k 从 3 加到 8（示例更多），玩具基座上会有任何变化吗？真实模型上呢？（区分”示例不足”与”通道不通”两种失败。）</li>

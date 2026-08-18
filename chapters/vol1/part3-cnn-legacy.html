@@ -1007,7 +1007,8 @@ main table {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">15.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">15.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">15.7</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">15.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">15.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">15.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1088,7 +1089,7 @@ main table {
 </section>
 <section id="从零实现" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">15.4</span> 从零实现</h2>
-<div id="9d325b9f" class="cell" data-execution_count="1">
+<div id="479a4ee6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_shifted_pattern</span>
@@ -1120,7 +1121,7 @@ main table {
 </div>
 </div>
 <p><strong>阶段二：10 个脏样本上的两种消费方式。</strong></p>
-<div id="af0931d7" class="cell" data-execution_count="2">
+<div id="7856edfd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Xb, yb <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">10</span>, noise<span class="op">=</span><span class="fl">0.3</span>, seed<span class="op">=</span><span class="dv">5</span>)    <span class="co"># 小样本 + 域偏移</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xe, ye <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.3</span>, seed<span class="op">=</span><span class="dv">9</span>)   <span class="co"># 同域测试集</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1154,7 +1155,7 @@ main table {
 <section id="消融实验" class="level2" data-number="15.5">
 <h2 data-number="15.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">15.5</span> 消融实验</h2>
 <p><strong>域偏移有多伤？</strong> 把测试域的噪声从 0.3 调回 0.15（与预训练同域），再看探针成绩——分离”特征迁移”与”域适应”两笔贡献：</p>
-<div id="9f016f1c" class="cell" data-execution_count="3">
+<div id="d0b99a82" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Xe2, ye2 <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.15</span>, seed<span class="op">=</span><span class="dv">9</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>acc_same_domain <span class="op">=</span> <span class="bu">float</span>(np.mean([probe(f) <span class="op">==</span> t <span class="cf">for</span> f, t <span class="kw">in</span> <span class="bu">zip</span>(features(Xe2), ye2)]))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"探针在干净域测试: </span><span class="sc">{</span>acc_same_domain<span class="sc">:.3f}</span><span class="ss">（脏域是 </span><span class="sc">{</span>acc_probe<span class="sc">:.3f}</span><span class="ss">）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1220,8 +1221,16 @@ main table {
 <li>预训练底座越来越大、下游越来越小——底座的极限由什么决定？（→ 6.1 规模定律，卷二）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="15.8">
-<h2 data-number="15.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">15.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">15.8</span> 参考文献</h2>
+<ol type="1">
+<li>Razavian et al.&nbsp;(2014). <em>CNN</em>. <em>CVPR Workshops</em>.</li>
+<li>Zeiler, Matthew D. and Fergus, Rob (2014). <em>Visualizing and Understanding Convolutional Networks</em>. <em>ECCV</em>.</li>
+<li>LeCun, Yann and Bottou, L'e (1998). <em>Gradient-Based Learning Applied to Document Recognition</em>. <em>Proceedings of the IEEE, 86, 2278–2324</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">15.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把探针从感知机换成小型 MLPNumpy（8-8-1），冻结特征重训——比感知机好多少？“线性可读”与”可读”的差距就是这份增量。</li>
 <li><strong>预测再运行</strong>：下游样本从 10 涨到 50，两个方案的差距会扩大还是缩小？到 300 时呢？先画预测曲线再跑——<strong>迁移的价值随下游数据量单调递减</strong>（直到交叉），这是预训练经济学的核心曲线。</li>

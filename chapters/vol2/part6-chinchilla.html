@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">27.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">27.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">27.7</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">27.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">27.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">27.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1151,7 +1152,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="27.4">
 <h2 data-number="27.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">27.4</span> 从零实现</h2>
 <p>复用上一章的全部装备，只把扫描协议换成等算力：</p>
-<div id="15ea8611" class="cell" data-execution_count="1">
+<div id="3a44b62e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1192,13 +1193,13 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    results[d] <span class="op">=</span> vl</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>n<span class="sc">:6d}</span><span class="ss"> 参数, </span><span class="sc">{</span>steps<span class="sc">:5d}</span><span class="ss"> 步): val = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.7329 (183s)
-d= 16 (  7517 参数,  4357 步): val = 1.5540 (80s)
-d= 32 ( 27293 参数,  1200 步): val = 1.8942 (49s)
-d= 64 (103709 参数,   315 步): val = 2.1518 (29s)</code></pre>
+<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.7329 (163s)
+d= 16 (  7517 参数,  4357 步): val = 1.5540 (64s)
+d= 32 ( 27293 参数,  1200 步): val = 1.8942 (39s)
+d= 64 (103709 参数,   315 步): val = 2.1518 (22s)</code></pre>
 </div>
 </div>
-<div id="04c1aa27" class="cell" data-execution_count="2">
+<div id="1f7df416" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(results)</span>
@@ -1231,7 +1232,7 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (29s)</code></pre>
 <section id="消融实验" class="level2" data-number="27.5">
 <h2 data-number="27.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">27.5</span> 消融实验</h2>
 <p><strong>预算加倍，谷底去哪？</strong> 把 BUDGET ×2，重扫（每档步数加倍）——观察谷底是否右移、以及右移多少：</p>
-<div id="7170000a" class="cell" data-execution_count="3">
+<div id="b8346f53" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>BUDGET2 <span class="op">=</span> BUDGET <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>results2 <span class="op">=</span> {}</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, n <span class="kw">in</span> configs:</span>
@@ -1304,8 +1305,16 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (29s)</code></pre>
 <li>“参数太多浪费、数据太多也浪费”——有没有办法<strong>解耦参数与算力</strong>？（→ 6.4：MoE，以及更远的稀疏化家族）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="27.8">
-<h2 data-number="27.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">27.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="27.8">
+<h2 data-number="27.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">27.8</span> 参考文献</h2>
+<ol type="1">
+<li>Hoffmann et al.&nbsp;(2022). <em>Training Compute-Optimal Large Language Models</em>. <em>arXiv preprint arXiv:2203.15556</em>.</li>
+<li>Kaplan et al.&nbsp;(2020). <em>Scaling Laws for Neural Language Models</em>. <em>arXiv preprint arXiv:2001.08361</em>.</li>
+<li>Touvron et al.&nbsp;(2023). <em>LLaMA</em>. <em>arXiv preprint arXiv:2302.13971</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="27.9">
+<h2 data-number="27.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">27.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：实现三维网格的迷你版（3 尺寸 × 3 步数，等量九点），画出等 loss 等高线图——<span class="math inline">\(N^*(C)\)</span> 从等高线的切点上读出来。</li>
 <li><strong>预测再运行</strong>：把语料换成 12 万字符（数据墙外推），谷底往哪移？先按”两股力”的框架预测，再验证。</li>

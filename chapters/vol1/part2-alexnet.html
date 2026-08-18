@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">11.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">11.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">11.7</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">11.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">11.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">11.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1122,7 +1123,7 @@ window.Quarto = {
 <h2 data-number="11.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">11.4</span> 从零实现</h2>
 <p>我们的两个”账本实验”——不重演 AlexNet，而是实测它的两块基石。</p>
 <p><strong>实验一：算力账本。</strong> 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：</p>
-<div id="5534c905" class="cell" data-execution_count="1">
+<div id="51a278d7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1135,9 +1136,9 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;4}</span><span class="ss">x</span><span class="sc">{</span>n<span class="sc">:&lt;4}</span><span class="ss"> 矩阵乘: </span><span class="sc">{</span>dt<span class="op">*</span><span class="dv">1000</span><span class="sc">:6.1f}</span><span class="ss"> ms = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>n<span class="op">**</span><span class="dv">3</span><span class="op">/</span>dt<span class="op">/</span><span class="fl">1e9</span><span class="sc">:6.1f}</span><span class="ss"> GFLOP/s"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> 256x256  矩阵乘:    1.3 ms =   26.8 GFLOP/s
- 512x512  矩阵乘:    1.9 ms =  141.4 GFLOP/s
-1024x1024 矩阵乘:    6.3 ms =  341.8 GFLOP/s</code></pre>
+<pre><code> 256x256  矩阵乘:    1.1 ms =   30.2 GFLOP/s
+ 512x512  矩阵乘:    1.4 ms =  193.5 GFLOP/s
+1024x1024 矩阵乘:    6.3 ms =  342.6 GFLOP/s</code></pre>
 </div>
 </div>
 <p>三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：</p>
@@ -1147,7 +1148,7 @@ window.Quarto = {
 <li>你的笔记本（约 <span class="math inline">\(10^{11}\)</span> FLOP/s）比 1986 年的 VAX（约 <span class="math inline">\(10^6}\)</span> FLOP/s）快<strong>五个数量级</strong>——本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。</li>
 </ul>
 <p><strong>实验二：数据账本。</strong> 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：</p>
-<div id="3bdd1e0a" class="cell" data-execution_count="2">
+<div id="0c87979b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: np.sin(<span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>x <span class="op">-</span> <span class="fl">0.3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xd <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Yd <span class="op">=</span> f(Xd)</span>
@@ -1178,7 +1179,7 @@ n=40: 训练误差=0.0332  真实误差=0.0438</code></pre>
 <section id="消融实验" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">11.5</span> 消融实验</h2>
 <p><strong>数据的”饱和点”探针</strong>。AlexNet 之后”堆数据”成为信仰，但数据账本有没有饱和点？把实验二延伸：n=40 → 100 → 400（网络与步数不变），观察真实误差的边际递减。当曲线趋平时，瓶颈从数据转移到容量（网络太小学不动更多结构）——<strong>“数据-容量-算力”三角的移动平衡</strong>，这个平衡在 2022 年被 Chinchilla 重新计算（6.2 的伏笔），在数据墙时代再次成为主角（9.2）。</p>
-<div id="26cbaa35" class="cell" data-execution_count="3">
+<div id="a33704ba" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">400</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.sort(rng.uniform(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, n)).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -1253,8 +1254,18 @@ n=400: 真实误差=0.0234</code></pre>
 <li>学到的”通用特征”到底是什么？能借给别人用吗？（→ 3.3 预训练-微调范式的诞生）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">11.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">11.8</span> 参考文献</h2>
+<ol type="1">
+<li>Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). <em>ImageNet Classification with Deep Convolutional Neural Networks</em>. <em>NeurIPS</em>.</li>
+<li>Glorot, Xavier and Bengio, Yoshua (2010). <em>Understanding the Difficulty of Training Deep Feedforward Neural Networks</em>. <em>Proceedings of AISTATS, 9, 249–256</em>.</li>
+<li>Nair, Vinod and Hinton, Geoffrey E. (2010). <em>Rectified Linear Units Improve Restricted Boltzmann Machines</em>. <em>Proceedings of ICML, 807–814</em>.</li>
+<li>Srivastava et al.&nbsp;(2014). <em>Dropout: A Simple Way to Prevent Neural Networks from Overfitting</em>. <em>Journal of Machine Learning Research, 15, 1929–1958</em>.</li>
+<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a></li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">11.9</span> 练习</h2>
 <ol type="1">
 <li><strong>算力账本延伸</strong>：查一张今天消费级 GPU 的理论 FLOP/s，重算 AlexNet 训练时间；再估 GPT-3（约 <span class="math inline">\(3\times10^{23}\)</span> FLOPs）在单卡上需要多久——从而理解”万卡集群”不是炫富而是必需。</li>
 <li><strong>预测再运行</strong>：实验二里把网络从 32 宽改成 128 宽，n=6 的真实误差会怎么变？变大（记更多噪声）还是变小（拟合更好）？运行并解释。</li>

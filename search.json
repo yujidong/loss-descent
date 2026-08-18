@@ -139,7 +139,7 @@
     "href": "chapters/vol1/part0-two-threads.html#参考文献",
     "title": "2  双主线：降 Loss 的视角与研究史的视角",
     "section": "2.5 参考文献",
-    "text": "2.5 参考文献\n\n\nCybenko, George. 1989. “Approximation by Superpositions of a\nSigmoidal Function.” Mathematics of Control, Signals and\nSystems 2: 303–14. https://doi.org/10.1007/BF02551274.\n\n\nFukushima, Kunihiko. 1980. “Neocognitron: A Self-Organizing Neural\nNetwork Model for a Mechanism of Pattern Recognition Unaffected by Shift\nin Position.” Biological Cybernetics 36: 193–202.\n\n\nHebb, Donald O. 1949. The Organization of Behavior: A\nNeuropsychological Theory. (New York).\n\n\nHochreiter, Sepp. 1991. “Untersuchungen Zu Dynamischen Neuronalen\nNetzen.” Diploma Thesis (in German), Technische\nUniversität München.\n\n\nHopfield, John J. 1982. “Neural Networks and Physical Systems with\nEmergent Collective Computational Abilities.” Proceedings of\nthe National Academy of Sciences 79 (8): 2554–58.\n\n\nHornik, Kurt, Maxwell Stinchcombe, and Halbert White. 1989.\n“Multilayer Feedforward Networks Are Universal\nApproximators.” Neural Networks 2 (5): 359–66. https://doi.org/10.1016/0893-6080(89)90020-8.\n\n\nKuhn, Thomas S. 1962. The Structure of Scientific Revolutions.\n(Chicago).\n\n\nLinnainmaa, Seppo. 1970. “The Representation of the Cumulative\nRounding Error of an Algorithm as a Taylor Expansion of the\nLocal Rounding Errors.” Master’s Thesis (in Finnish),\nUniversity of Helsinki.\n\n\nMcCulloch, Warren S., and Walter Pitts. 1943. “A Logical Calculus\nof the Ideas Immanent in Nervous Activity.” Bulletin of\nMathematical Biophysics 5: 115–33. https://doi.org/10.1007/BF02478259.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An\nIntroduction to Computational Geometry. MIT Press.\n\n\nParker, David B. 1985. Learning Logic. nos. TR-47.\n\n\nRosenblatt, Frank. 1958. “The Perceptron: A Probabilistic Model\nfor Information Storage and Organization in the Brain.”\nPsychological Review 65 (6): 386–408. https://doi.org/10.1037/h0042519.\n\n\nRumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. 1986.\n“Learning Representations by Back-Propagating Errors.”\nNature 323: 533–36. https://doi.org/10.1038/323533a0.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group.\n1986. Parallel Distributed Processing: Explorations in the\nMicrostructure of Cognition. 1 and 2. MIT Press.\n\n\nShannon, Claude E. 1948. “A Mathematical Theory of\nCommunication.” Bell System Technical Journal 27 (3):\n379–423. https://doi.org/10.1002/j.1538-7305.1948.tb01338.x.\n\n\nSutton, Richard. 2019. “The Bitter Lesson.” Incomplete\nIdeas (Blog). http://www.incompleteideas.net/IncIdeas/BitterLesson.html.\n\n\nWerbos, Paul J. 1974. “Beyond Regression: New Tools for Prediction\nand Analysis in the Behavioral Sciences.” PhD thesis, Harvard\nUniversity.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching\nCircuits.” IRE WESCON Convention Record 4: 96–104.",
+    "text": "2.5 参考文献\n\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>双主线：降 Loss 的视角与研究史的视角</span>"
@@ -150,7 +150,7 @@
     "href": "chapters/vol1/part0-two-threads.html#练习",
     "title": "2  双主线：降 Loss 的视角与研究史的视角",
     "section": "2.6 练习",
-    "text": "2.6 练习\n\n账本练习：把「停一停」里你拆解的技术重新写一遍，这次必须把第三、四问写满各 100 字。\n预测练习：写下你对这个判断的真伪与理由——“Transformer 会在十年内被完全取代”。装进信封，读到 9.3 时拆开对照。\n循环识别：在任意一篇你近期读过的 AI 新闻里，辨认出它属于研究循环的哪一拍（瓶颈/假设/验证/新瓶颈）。若辨认不出，说明它可能只是营销。\n论文映射：找出 The Bitter Lesson 提到的任一历史案例（如计算机视觉的手工特征），用四问账本拆它一页。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n没有标准答案，但有三条自检标准：练习 1 里若你的第三四问与第一二问高度重复，说明还没把”能力”与”机制”分开；练习 3 里若一拍都认不出，重读本章「研究史是重演」一节；练习 4 的常见发现是——被 Bitter Lesson 击败的手工方法，账本第四问（没买到什么）往往早有人写下，只是没人愿意读。",
+    "text": "2.6 练习\n\n账本练习：把「停一停」里你拆解的技术重新写一遍，这次必须把第三、四问写满各 100 字。\n预测练习：写下你对这个判断的真伪与理由——“Transformer 会在十年内被完全取代”。装进信封，读到 9.3 时拆开对照。\n循环识别：在任意一篇你近期读过的 AI 新闻里，辨认出它属于研究循环的哪一拍（瓶颈/假设/验证/新瓶颈）。若辨认不出，说明它可能只是营销。\n论文映射：找出 The Bitter Lesson 提到的任一历史案例（如计算机视觉的手工特征），用四问账本拆它一页。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n没有标准答案，但有三条自检标准：练习 1 里若你的第三四问与第一二问高度重复，说明还没把”能力”与”机制”分开；练习 3 里若一拍都认不出，重读本章「研究史是重演」一节；练习 4 的常见发现是——被 Bitter Lesson 击败的手工方法，账本第四问（没买到什么）往往早有人写下，只是没人愿意读。\n\n\n\n\n\n\n\nShannon, Claude E. 1948. “A Mathematical Theory of Communication.” Bell System Technical Journal 27 (3): 379–423. https://doi.org/10.1002/j.1538-7305.1948.tb01338.x.\n\n\nSutton, Richard. 2019. “The Bitter Lesson.” Incomplete Ideas (Blog). http://www.incompleteideas.net/IncIdeas/BitterLesson.html.",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>双主线：降 Loss 的视角与研究史的视角</span>"
@@ -205,7 +205,7 @@
     "href": "chapters/vol1/part0-reading-history.html#参考文献",
     "title": "3  如何读研究史：读问题，不读年表",
     "section": "3.5 参考文献",
-    "text": "3.5 参考文献\n\n\nKuhn, Thomas S. 1962. The Structure of Scientific Revolutions. (Chicago).",
+    "text": "3.5 参考文献\n\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press.\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a.\nDauphin et al. (2014). Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization. NeurIPS.",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>如何读研究史：读问题，不读年表</span>"
@@ -216,7 +216,7 @@
     "href": "chapters/vol1/part0-reading-history.html#练习",
     "title": "3  如何读研究史：读问题，不读年表",
     "section": "3.6 练习",
-    "text": "3.6 练习\n\n双镜头练习：只看 Attention Is All You Need 这个标题（2017），用当时镜头写三行预测（2016 年的序列建模瓶颈是什么？这个标题在回应谁？），再用现在镜头写三行评价。\n问题链练习：任选本书目录中相邻的两章，写出连接它们的遗留问题各一句。\n反事实练习：如果 1990 年代 GPU 提前出现二十年，第二次寒冬还会发生吗？写出你的论证链（提示：想想 2.4 章将讨论的”历史条件”三要素）。\n过滤练习：找一条本周的 AI 新闻，判断它属于研究循环的哪一拍，或者根本一拍都不是。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n没有标准答案，给出自检锚点。练习 1：当时镜头若写不出”RNN 难并行、LSTM 训练慢”，说明还没进入历史 context，重读 Part 1 后再试；练习 3：若你的答案只依赖”算力快了”，不完整——AlexNet 时刻需要算力 + 数据 + 三件套三者同时成熟，这正是 2.4 的主题；练习 4：一拍都认不出的新闻占多数，这不是你的问题，是它的。",
+    "text": "3.6 练习\n\n双镜头练习：只看 Attention Is All You Need 这个标题（2017），用当时镜头写三行预测（2016 年的序列建模瓶颈是什么？这个标题在回应谁？），再用现在镜头写三行评价。\n问题链练习：任选本书目录中相邻的两章，写出连接它们的遗留问题各一句。\n反事实练习：如果 1990 年代 GPU 提前出现二十年，第二次寒冬还会发生吗？写出你的论证链（提示：想想 2.4 章将讨论的”历史条件”三要素）。\n过滤练习：找一条本周的 AI 新闻，判断它属于研究循环的哪一拍，或者根本一拍都不是。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n没有标准答案，给出自检锚点。练习 1：当时镜头若写不出”RNN 难并行、LSTM 训练慢”，说明还没进入历史 context，重读 Part 1 后再试；练习 3：若你的答案只依赖”算力快了”，不完整——AlexNet 时刻需要算力 + 数据 + 三件套三者同时成熟，这正是 2.4 的主题；练习 4：一拍都认不出的新闻占多数，这不是你的问题，是它的。\n\n\n\n\n\n\n\nKuhn, Thomas S. 1962. The Structure of Scientific Revolutions. (Chicago).",
     "crumbs": [
       "卷一 · Part 0 · 导论",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>如何读研究史：读问题，不读年表</span>"
@@ -315,7 +315,7 @@
     "href": "chapters/vol1/part1-perceptron.html#参考文献",
     "title": "4  感知机的辉煌与失败",
     "section": "4.8 参考文献",
-    "text": "4.8 参考文献\n\n\nHebb, Donald O. 1949. The Organization of Behavior: A Neuropsychological Theory. (New York).\n\n\nMcCulloch, Warren S., and Walter Pitts. 1943. “A Logical Calculus of the Ideas Immanent in Nervous Activity.” Bulletin of Mathematical Biophysics 5: 115–33. https://doi.org/10.1007/BF02478259.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An Introduction to Computational Geometry. MIT Press.\n\n\nRosenblatt, Frank. 1958. “The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain.” Psychological Review 65 (6): 386–408. https://doi.org/10.1037/h0042519.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching Circuits.” IRE WESCON Convention Record 4: 96–104.",
+    "text": "4.8 参考文献\n\nRosenblatt, Frank (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65, 386–408. doi:10.1037/h0042519\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.\nWidrow, Bernard and Hoff, Marcian E. (1960). Adaptive Switching Circuits. IRE WESCON Convention Record, 4, 96–104.\nHebb, Donald O. (1949). The Organization of Behavior: A Neuropsychological Theory. Wiley.\nMcCulloch, Warren S. and Pitts, Walter (1943). A Logical Calculus of the Ideas Immanent in Nervous Activity. Bulletin of Mathematical Biophysics, 5, 115–133. doi:10.1007/BF02478259",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>感知机的辉煌与失败</span>"
@@ -326,7 +326,7 @@
     "href": "chapters/vol1/part1-perceptron.html#练习",
     "title": "4  感知机的辉煌与失败",
     "section": "4.9 练习",
-    "text": "4.9 练习\n\n造轮子：只凭「核心思想」一节的规则，从空白实现 Perceptron.train，通过 tests/test_perceptron.py 的三项测试。\n预测再运行：先猜 AND / OR / NAND 各需要多少次权重更新才能收敛，再运行验证。三者所需次数为何不同？提示：\\((0,0)\\) 点上的错误只更新 \\(b\\)。\n消融：XOR 稳态下模型只错 2 个点，为何每轮错分计数是 4 而不是 2？在训练循环里打印每一步的 \\((x, y, \\hat{y}, w)\\)，找出”移动的边界”造成连锁错分的具体一环。\n论文映射：用 Loss 账本四问拆解 Rosenblatt 1958（提示：第一问的答案决定了这份账本的特殊地位）。\n进阶（通向 1.3 的桥）：证明感知机规则等价于对 \\(J(w) = \\sum_{\\text{错分}} -y\\,(w \\cdot x + b)\\) 做步长为 1 的次梯度下降——1958 年的规则，用 1986 年的视角重新照亮。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2（参考值，Perceptron(2) 零初始化、按本节数据顺序）：AND 约 10 次更新、OR 约 4 次、NAND 约 11 次。OR 最容易：唯一的 \\(-1\\) 点在原点附近，bias 一次更新即到位；AND/NAND 的 \\(+1\\) 类只有一个点，需要更多轮旋转。若你的初始化或样本顺序不同，数值会变——更新次数依赖数据顺序，这本身就是在线学习的重要性质。\n练习 3：每次错分立即改变 \\(w\\)，同一轮里后续样本面对的是已经移动过的边界。\\((0,0)\\) 处的错误只推 \\(b\\)，把整条边界平移，导致同一轮内对角点连锁出错——“每轮 4 次”是动态过程的计数，不是静态评估的 2 个错点。\n练习 5 提示：对错分样本有 \\(-y\\,(w \\cdot x + b) &gt; 0\\)，它对 \\(w\\) 的（次）梯度是 \\(-y\\,x\\)——负梯度方向 \\(y\\,x\\) 正是感知机的更新量。把”错误驱动”翻译成”只对违反约束的样本产生梯度”，你就已经站在 1.3 的门口了。",
+    "text": "4.9 练习\n\n造轮子：只凭「核心思想」一节的规则，从空白实现 Perceptron.train，通过 tests/test_perceptron.py 的三项测试。\n预测再运行：先猜 AND / OR / NAND 各需要多少次权重更新才能收敛，再运行验证。三者所需次数为何不同？提示：\\((0,0)\\) 点上的错误只更新 \\(b\\)。\n消融：XOR 稳态下模型只错 2 个点，为何每轮错分计数是 4 而不是 2？在训练循环里打印每一步的 \\((x, y, \\hat{y}, w)\\)，找出”移动的边界”造成连锁错分的具体一环。\n论文映射：用 Loss 账本四问拆解 Rosenblatt 1958（提示：第一问的答案决定了这份账本的特殊地位）。\n进阶（通向 1.3 的桥）：证明感知机规则等价于对 \\(J(w) = \\sum_{\\text{错分}} -y\\,(w \\cdot x + b)\\) 做步长为 1 的次梯度下降——1958 年的规则，用 1986 年的视角重新照亮。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2（参考值，Perceptron(2) 零初始化、按本节数据顺序）：AND 约 10 次更新、OR 约 4 次、NAND 约 11 次。OR 最容易：唯一的 \\(-1\\) 点在原点附近，bias 一次更新即到位；AND/NAND 的 \\(+1\\) 类只有一个点，需要更多轮旋转。若你的初始化或样本顺序不同，数值会变——更新次数依赖数据顺序，这本身就是在线学习的重要性质。\n练习 3：每次错分立即改变 \\(w\\)，同一轮里后续样本面对的是已经移动过的边界。\\((0,0)\\) 处的错误只推 \\(b\\)，把整条边界平移，导致同一轮内对角点连锁出错——“每轮 4 次”是动态过程的计数，不是静态评估的 2 个错点。\n练习 5 提示：对错分样本有 \\(-y\\,(w \\cdot x + b) &gt; 0\\)，它对 \\(w\\) 的（次）梯度是 \\(-y\\,x\\)——负梯度方向 \\(y\\,x\\) 正是感知机的更新量。把”错误驱动”翻译成”只对违反约束的样本产生梯度”，你就已经站在 1.3 的门口了。\n\n\n\n\n\n\n\nHebb, Donald O. 1949. The Organization of Behavior: A Neuropsychological Theory. (New York).\n\n\nMcCulloch, Warren S., and Walter Pitts. 1943. “A Logical Calculus of the Ideas Immanent in Nervous Activity.” Bulletin of Mathematical Biophysics 5: 115–33. https://doi.org/10.1007/BF02478259.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An Introduction to Computational Geometry. MIT Press.\n\n\nRosenblatt, Frank. 1958. “The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain.” Psychological Review 65 (6): 386–408. https://doi.org/10.1037/h0042519.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching Circuits.” IRE WESCON Convention Record 4: 96–104.",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>感知机的辉煌与失败</span>"
@@ -403,7 +403,7 @@
     "href": "chapters/vol1/part1-symbolic-vs-connectionist.html#参考文献",
     "title": "5  符号主义与连接主义：第一次范式之争",
     "section": "5.6 参考文献",
-    "text": "5.6 参考文献\n\n\nFukushima, Kunihiko. 1980. “Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position.” Biological Cybernetics 36: 193–202.\n\n\nHopfield, John J. 1982. “Neural Networks and Physical Systems with Emergent Collective Computational Abilities.” Proceedings of the National Academy of Sciences 79 (8): 2554–58.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. Parallel Distributed Processing: Explorations in the Microstructure of Cognition. 1 and 2. MIT Press.",
+    "text": "5.6 参考文献\n\nHopfield, John J. (1982). Neural Networks and Physical Systems with Emergent Collective Computational Abilities. Proceedings of the National Academy of Sciences, 79, 2554–2558.\nFukushima, Kunihiko (1980). Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position. Biological Cybernetics, 36, 193–202.\nRumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). Parallel Distributed Processing: Explorations in the Microstructure of Cognition. MIT Press, 1 and 2.\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>符号主义与连接主义：第一次范式之争</span>"
@@ -414,7 +414,7 @@
     "href": "chapters/vol1/part1-symbolic-vs-connectionist.html#练习",
     "title": "5  符号主义与连接主义：第一次范式之争",
     "section": "5.7 练习",
-    "text": "5.7 练习\n\n开采练习：为”判断一封邮件是否为垃圾邮件”手写 10 条规则，然后为每条规则构造一个失效反例。数一数你花了多少分钟——再乘以一个专家系统的五千条规则。\n翻译练习：用三段话把 Hopfield 网络讲给一个只会微积分的朋友（不许用”能量”以外的物理词汇，也不许用任何神经网络词汇超过三次）。\n对应练习：列出今天 AI 领域仍在进行的一场”范式之争”，为双方各填一张四问账本，并写出你认为的裁决条件与时间表。\n论文映射：用双镜头读 MYCIN 论文（1976）：当时镜头里它为何了不起？现在镜头里它的哪部分思想还活着？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 的典型体验：写到第六条规则左右开始出现”两条规则打架”的案例（组合爆炸的手感）；练习 2 的合格线是对方能复述”为什么掉进去的坑会被记住”（能量极小值=记忆）；练习 3 若你选了”RLHF 对齐 vs 纯规模化”，注意账本第二问（数据从哪来）正是双方真正的战场；练习 4：MYCIN 活着的部分是”置信度传播”的朴素贝叶斯味道，死掉的部分是”规则够用”的信念。",
+    "text": "5.7 练习\n\n开采练习：为”判断一封邮件是否为垃圾邮件”手写 10 条规则，然后为每条规则构造一个失效反例。数一数你花了多少分钟——再乘以一个专家系统的五千条规则。\n翻译练习：用三段话把 Hopfield 网络讲给一个只会微积分的朋友（不许用”能量”以外的物理词汇，也不许用任何神经网络词汇超过三次）。\n对应练习：列出今天 AI 领域仍在进行的一场”范式之争”，为双方各填一张四问账本，并写出你认为的裁决条件与时间表。\n论文映射：用双镜头读 MYCIN 论文（1976）：当时镜头里它为何了不起？现在镜头里它的哪部分思想还活着？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 的典型体验：写到第六条规则左右开始出现”两条规则打架”的案例（组合爆炸的手感）；练习 2 的合格线是对方能复述”为什么掉进去的坑会被记住”（能量极小值=记忆）；练习 3 若你选了”RLHF 对齐 vs 纯规模化”，注意账本第二问（数据从哪来）正是双方真正的战场；练习 4：MYCIN 活着的部分是”置信度传播”的朴素贝叶斯味道，死掉的部分是”规则够用”的信念。\n\n\n\n\n\n\n\nFukushima, Kunihiko. 1980. “Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position.” Biological Cybernetics 36: 193–202.\n\n\nHopfield, John J. 1982. “Neural Networks and Physical Systems with Emergent Collective Computational Abilities.” Proceedings of the National Academy of Sciences 79 (8): 2554–58.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. Parallel Distributed Processing: Explorations in the Microstructure of Cognition. 1 and 2. MIT Press.",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>符号主义与连接主义：第一次范式之争</span>"
@@ -524,7 +524,7 @@
     "href": "chapters/vol1/part1-backprop.html#参考文献",
     "title": "6  反向传播：从思想到发动机",
     "section": "6.9 参考文献",
-    "text": "6.9 参考文献\n\n\nLinnainmaa, Seppo. 1970. “The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor Expansion of the Local Rounding Errors.” Master’s Thesis (in Finnish), University of Helsinki.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An Introduction to Computational Geometry. MIT Press.\n\n\nParker, David B. 1985. Learning Logic. nos. TR-47.\n\n\nRumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. 1986. “Learning Representations by Back-Propagating Errors.” Nature 323: 533–36. https://doi.org/10.1038/323533a0.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. Parallel Distributed Processing: Explorations in the Microstructure of Cognition. 1 and 2. MIT Press.\n\n\nWerbos, Paul J. 1974. “Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences.” PhD thesis, Harvard University.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching Circuits.” IRE WESCON Convention Record 4: 96–104.",
+    "text": "6.9 参考文献\n\nRumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J. (1986). Learning Representations by Back-Propagating Errors. Nature, 323, 533–536. doi:10.1038/323533a0\nWerbos, Paul J. (1974). Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences.\nLinnainmaa, Seppo (1970). The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor. Master’s Thesis (in Finnish), University of Helsinki.\nParker, David B. (1985). Learning Logic. MIT Center for Computational Research in Economics and Management Science.\nMinsky, Marvin and Papert, Seymour (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.\nWidrow, Bernard and Hoff, Marcian E. (1960). Adaptive Switching Circuits. IRE WESCON Convention Record, 4, 96–104.\nRumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). Parallel Distributed Processing: Explorations in the Microstructure of Cognition. MIT Press, 1 and 2.\nCybenko, George (1989). Approximation by Superpositions of a Sigmoidal Function. Mathematics of Control, Signals and Systems, 2, 303–314. doi:10.1007/BF02551274\nHebb, Donald O. (1949). The Organization of Behavior: A Neuropsychological Theory. Wiley.\nRosenblatt, Frank (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65, 386–408. doi:10.1037/h0042519",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>反向传播：从思想到发动机</span>"
@@ -535,7 +535,7 @@
     "href": "chapters/vol1/part1-backprop.html#练习",
     "title": "6  反向传播：从思想到发动机",
     "section": "6.10 练习",
-    "text": "6.10 练习\n\n造轮子：合上书，只凭本节的 \\(\\delta\\) 三条递推，在空白 notebook 里重写一个能跑 XOR 的 Value（加、乘、tanh 三个算子就够）。写完用下面的裁判验货：\n\nimport math\n\ndef numeric_grad(f, xs, h=1e-6):\n    return [\n        (f(*(xs[:i] + [xs[i] + h] + xs[i + 1:])) -\n         f(*(xs[:i] + [xs[i] - h] + xs[i + 1:]))) / (2 * h)\n        for i in range(len(xs))\n    ]\n\n预测再运行：先把 lr=0.0001 和 lr=3.0 的 loss 曲线形状画在你脑子里，再运行。与预测不符的地方，写出你的修正假设并再验证一次。\n消融：train_xor(1) 得到的模型，画出它的决策边界；解释为什么它必然是一条带状直线。\n论文映射：用 Loss 账本四问拆解 1986 年 Nature 论文（提示：第四问的答案藏在引用它的后续论文里）。\n进阶（通向下一章的桥）：把 Value 升级为 numpy 向量版——data 是 ndarray，补上矩阵乘的 backward（答案就是本章递推第三条）。跑同样的 XOR，对比两版的耗时。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：0.0001 是正文 0.001 曲线的”爬行版”，200 步内 loss 基本钉在初值；3.0 与正文的 2.0 同理——冲高后卡在饱和平台，不是爆炸。若你预测的是发散到 inf，修正假设：tanh 的饱和会先掐灭梯度。\n练习 3：单神经元输出 \\(\\tanh(w_1 x_1 + w_2 x_2 + b)\\)，输出的正负分界是 \\(w_1 x_1 + w_2 x_2 + b = 0\\)——输入平面上的一条直线；tanh 只决定过渡带的宽窄。XOR 的四个点不存在任何直线二分方案（第 1 章结论）。\n练习 5 提示：矩阵乘 \\(z = W a\\) 的 backward 是 \\(\\partial L/\\partial W = \\delta\\, a^{\\top}\\)、\\(\\partial L/\\partial a = W^{\\top} \\delta\\)——正是正文递推的第二、三条。用练习 1 的数值裁判对拍即可确认正确性。",
+    "text": "6.10 练习\n\n造轮子：合上书，只凭本节的 \\(\\delta\\) 三条递推，在空白 notebook 里重写一个能跑 XOR 的 Value（加、乘、tanh 三个算子就够）。写完用下面的裁判验货：\n\nimport math\n\ndef numeric_grad(f, xs, h=1e-6):\n    return [\n        (f(*(xs[:i] + [xs[i] + h] + xs[i + 1:])) -\n         f(*(xs[:i] + [xs[i] - h] + xs[i + 1:]))) / (2 * h)\n        for i in range(len(xs))\n    ]\n\n预测再运行：先把 lr=0.0001 和 lr=3.0 的 loss 曲线形状画在你脑子里，再运行。与预测不符的地方，写出你的修正假设并再验证一次。\n消融：train_xor(1) 得到的模型，画出它的决策边界；解释为什么它必然是一条带状直线。\n论文映射：用 Loss 账本四问拆解 1986 年 Nature 论文（提示：第四问的答案藏在引用它的后续论文里）。\n进阶（通向下一章的桥）：把 Value 升级为 numpy 向量版——data 是 ndarray，补上矩阵乘的 backward（答案就是本章递推第三条）。跑同样的 XOR，对比两版的耗时。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：0.0001 是正文 0.001 曲线的”爬行版”，200 步内 loss 基本钉在初值；3.0 与正文的 2.0 同理——冲高后卡在饱和平台，不是爆炸。若你预测的是发散到 inf，修正假设：tanh 的饱和会先掐灭梯度。\n练习 3：单神经元输出 \\(\\tanh(w_1 x_1 + w_2 x_2 + b)\\)，输出的正负分界是 \\(w_1 x_1 + w_2 x_2 + b = 0\\)——输入平面上的一条直线；tanh 只决定过渡带的宽窄。XOR 的四个点不存在任何直线二分方案（第 1 章结论）。\n练习 5 提示：矩阵乘 \\(z = W a\\) 的 backward 是 \\(\\partial L/\\partial W = \\delta\\, a^{\\top}\\)、\\(\\partial L/\\partial a = W^{\\top} \\delta\\)——正是正文递推的第二、三条。用练习 1 的数值裁判对拍即可确认正确性。\n\n\n\n\n\n\n\nLinnainmaa, Seppo. 1970. “The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor Expansion of the Local Rounding Errors.” Master’s Thesis (in Finnish), University of Helsinki.\n\n\nMinsky, Marvin, and Seymour Papert. 1969. Perceptrons: An Introduction to Computational Geometry. MIT Press.\n\n\nParker, David B. 1985. Learning Logic. nos. TR-47.\n\n\nRumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. 1986. “Learning Representations by Back-Propagating Errors.” Nature 323: 533–36. https://doi.org/10.1038/323533a0.\n\n\nRumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. Parallel Distributed Processing: Explorations in the Microstructure of Cognition. 1 and 2. MIT Press.\n\n\nWerbos, Paul J. 1974. “Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences.” PhD thesis, Harvard University.\n\n\nWidrow, Bernard, and Marcian E. Hoff. 1960. “Adaptive Switching Circuits.” IRE WESCON Convention Record 4: 96–104.",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>反向传播：从思想到发动机</span>"
@@ -634,7 +634,7 @@
     "href": "chapters/vol1/part1-mlp-winter.html#参考文献",
     "title": "7  MLP、万能逼近与第二次寒冬",
     "section": "7.8 参考文献",
-    "text": "7.8 参考文献\n\n\nCybenko, George. 1989. “Approximation by Superpositions of a Sigmoidal Function.” Mathematics of Control, Signals and Systems 2: 303–14. https://doi.org/10.1007/BF02551274.\n\n\nHochreiter, Sepp. 1991. “Untersuchungen Zu Dynamischen Neuronalen Netzen.” Diploma Thesis (in German), Technische Universität München.\n\n\nHornik, Kurt, Maxwell Stinchcombe, and Halbert White. 1989. “Multilayer Feedforward Networks Are Universal Approximators.” Neural Networks 2 (5): 359–66. https://doi.org/10.1016/0893-6080(89)90020-8.",
+    "text": "7.8 参考文献\n\nCybenko, George (1989). Approximation by Superpositions of a Sigmoidal Function. Mathematics of Control, Signals and Systems, 2, 303–314. doi:10.1007/BF02551274\nHornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). Multilayer Feedforward Networks Are Universal Approximators. Neural Networks, 2, 359–366. doi:10.1016/0893-6080(89)90020-8\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a.\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>MLP、万能逼近与第二次寒冬</span>"
@@ -645,7 +645,7 @@
     "href": "chapters/vol1/part1-mlp-winter.html#练习",
     "title": "7  MLP、万能逼近与第二次寒冬",
     "section": "7.9 练习",
-    "text": "7.9 练习\n\n造轮子：给 MLPNumpy.backward 挑错——遮住源码，只凭 1.3 的三条递推重写，用 tests/test_mlp_numpy.py 的有限差分对拍验证。\n预测再运行：把实验一的目标函数换成奇对称的 \\(\\sin(2x)+0.5\\sin(4x)\\)（无相移），先猜各宽度的 loss 会怎样变化，再运行。若与预期不符，用本章”表示力 vs 优化力”的框架解释你看到的差异（提示：对称性是鞍点的温床）。\n消融：实验二中把训练步数从 6000 加到 30000，训练误差与真实误差各走向何处？画出差距随步数的曲线，标出”开始过拟合”的位置——这就是早停的原理。\n论文映射：用四问账本拆 Cybenko 1989 (Cybenko 1989)——注意第一问的标准答案（它不在优化任何 loss），以及这份账本与感知机一章账本的相似之处。\n进阶：relu 深网络的梯度虽然量级稳定，但试把深度加到 24、32 并换几个种子——观察到不稳定后，解释它与 sigmoid 梯度消失的区别（提示：relu 的梯度是 0/1 的门，问题出在门的”开合比例”而非幅度）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：奇对称目标下，宽 10/30 的 loss 会明显变差（0.03 量级，部分种子卡在”半周期”鞍点）——表示力没变，优化难度变了。这是”存在 ≠ 可寻”的最小案例。多换几个种子能看到方差。\n练习 3：训练误差单调下降，真实误差先降后升，谷底在某个中间步数——谷底右侧的每一 step 都在”背噪声”。早停 = 把停机条件放在谷底，用一个验证子集探测它。\n练习 5 提示：relu 深网的失稳来自”活跃单元比例”的随机波动被深度放大（某层若大量神经元同关死，等效断路）——它不是指数衰减，而是路径稀疏化。批量归一化与残差（2.3、3.2）正是对这两种病的不同手术。",
+    "text": "7.9 练习\n\n造轮子：给 MLPNumpy.backward 挑错——遮住源码，只凭 1.3 的三条递推重写，用 tests/test_mlp_numpy.py 的有限差分对拍验证。\n预测再运行：把实验一的目标函数换成奇对称的 \\(\\sin(2x)+0.5\\sin(4x)\\)（无相移），先猜各宽度的 loss 会怎样变化，再运行。若与预期不符，用本章”表示力 vs 优化力”的框架解释你看到的差异（提示：对称性是鞍点的温床）。\n消融：实验二中把训练步数从 6000 加到 30000，训练误差与真实误差各走向何处？画出差距随步数的曲线，标出”开始过拟合”的位置——这就是早停的原理。\n论文映射：用四问账本拆 Cybenko 1989 (Cybenko 1989)——注意第一问的标准答案（它不在优化任何 loss），以及这份账本与感知机一章账本的相似之处。\n进阶：relu 深网络的梯度虽然量级稳定，但试把深度加到 24、32 并换几个种子——观察到不稳定后，解释它与 sigmoid 梯度消失的区别（提示：relu 的梯度是 0/1 的门，问题出在门的”开合比例”而非幅度）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：奇对称目标下，宽 10/30 的 loss 会明显变差（0.03 量级，部分种子卡在”半周期”鞍点）——表示力没变，优化难度变了。这是”存在 ≠ 可寻”的最小案例。多换几个种子能看到方差。\n练习 3：训练误差单调下降，真实误差先降后升，谷底在某个中间步数——谷底右侧的每一 step 都在”背噪声”。早停 = 把停机条件放在谷底，用一个验证子集探测它。\n练习 5 提示：relu 深网的失稳来自”活跃单元比例”的随机波动被深度放大（某层若大量神经元同关死，等效断路）——它不是指数衰减，而是路径稀疏化。批量归一化与残差（2.3、3.2）正是对这两种病的不同手术。\n\n\n\n\n\n\n\nCybenko, George. 1989. “Approximation by Superpositions of a Sigmoidal Function.” Mathematics of Control, Signals and Systems 2: 303–14. https://doi.org/10.1007/BF02551274.\n\n\nHochreiter, Sepp. 1991. “Untersuchungen Zu Dynamischen Neuronalen Netzen.” Diploma Thesis (in German), Technische Universität München.\n\n\nHornik, Kurt, Maxwell Stinchcombe, and Halbert White. 1989. “Multilayer Feedforward Networks Are Universal Approximators.” Neural Networks 2 (5): 359–66. https://doi.org/10.1016/0893-6080(89)90020-8.",
     "crumbs": [
       "卷一 · Part 1 · 神经网络的史前史（1943–1986）",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>MLP、万能逼近与第二次寒冬</span>"
@@ -740,11 +740,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part2-mlp-difficulty.html#参考文献",
+    "href": "chapters/vol1/part2-mlp-difficulty.html#参考文献",
+    "title": "8  训练一个 MLP 到底难在哪",
+    "section": "8.8 参考文献",
+    "text": "8.8 参考文献\n\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256.\nDauphin et al. (2014). Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization. NeurIPS.\nGoodfellow, Ian and Bengio, Yoshua and Courville, Aaron (2016). Deep Learning. MIT Press.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "crumbs": [
+      "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>训练一个 MLP 到底难在哪</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part2-mlp-difficulty.html#练习",
     "href": "chapters/vol1/part2-mlp-difficulty.html#练习",
     "title": "8  训练一个 MLP 到底难在哪",
-    "section": "8.8 练习",
-    "text": "8.8 练习\n\n造轮子：给 MLPNumpy 加一个 init=\"xavier\" 选项（均匀分布 \\(\\pm\\sqrt{6/(\\text{fan-in}+\\text{fan-out})}\\)），在八层螺旋任务上与 \"scaled\" 对照。\n预测再运行：把种子彩票的批大小从 32 改成全批（200），先猜分布会收紧还是变宽？运行并解释（提示：随机性来源少了一个）。\n消融：把实验四的激活换成 sigmoid，饱和率与训练结局如何变化？与 1.4 的梯度解剖数据对得上吗？\n论文映射：用四问账本拆 Glorot & Bengio 2010（注意第三问：它买到的其实不是”能力”而是”可训性”——账本允许这种回答）。\n进阶：完整推导”前向方差守恒需要 \\(\\mathrm{Var}(w)=1/\\text{fan-in}\\)，反向方差守恒需要 \\(\\mathrm{Var}(w)=1/\\text{fan-out}\\)“，说明 Xavier 折中取 \\(\\text{fan-in}+\\text{fan-out}\\) 的理由。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：分布收紧（小批噪声是随机性的放大器），但不会消失——初始化落点仍是抽签。若你观察到某些种子仍然失败，恭喜你看到了”两种随机源”的可分离性。\n练习 3：sigmoid 的饱和率用阈值 \\(|\\sigma-0.5|&gt;0.49\\) 度量会更高，八层训练更早躺平；与 1.4 表中 sigmoid 首层梯度 \\(2.5\\times10^{-1} \\to 8.4\\times10^{-8}\\) 的定量关系是 \\(\\le 0.25\\) 的连乘。\n练习 5 提示：反向时梯度经过 \\(W^\\top\\)，每层乘的是 fan-out 方向的权重和——两个约束不能同时严格满足，除非每层方 fan-in=fan-out；Xavier 的调和是让两侧都不爆炸。",
+    "section": "8.9 练习",
+    "text": "8.9 练习\n\n造轮子：给 MLPNumpy 加一个 init=\"xavier\" 选项（均匀分布 \\(\\pm\\sqrt{6/(\\text{fan-in}+\\text{fan-out})}\\)），在八层螺旋任务上与 \"scaled\" 对照。\n预测再运行：把种子彩票的批大小从 32 改成全批（200），先猜分布会收紧还是变宽？运行并解释（提示：随机性来源少了一个）。\n消融：把实验四的激活换成 sigmoid，饱和率与训练结局如何变化？与 1.4 的梯度解剖数据对得上吗？\n论文映射：用四问账本拆 Glorot & Bengio 2010（注意第三问：它买到的其实不是”能力”而是”可训性”——账本允许这种回答）。\n进阶：完整推导”前向方差守恒需要 \\(\\mathrm{Var}(w)=1/\\text{fan-in}\\)，反向方差守恒需要 \\(\\mathrm{Var}(w)=1/\\text{fan-out}\\)“，说明 Xavier 折中取 \\(\\text{fan-in}+\\text{fan-out}\\) 的理由。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：分布收紧（小批噪声是随机性的放大器），但不会消失——初始化落点仍是抽签。若你观察到某些种子仍然失败，恭喜你看到了”两种随机源”的可分离性。\n练习 3：sigmoid 的饱和率用阈值 \\(|\\sigma-0.5|&gt;0.49\\) 度量会更高，八层训练更早躺平；与 1.4 表中 sigmoid 首层梯度 \\(2.5\\times10^{-1} \\to 8.4\\times10^{-8}\\) 的定量关系是 \\(\\le 0.25\\) 的连乘。\n练习 5 提示：反向时梯度经过 \\(W^\\top\\)，每层乘的是 fan-out 方向的权重和——两个约束不能同时严格满足，除非每层方 fan-in=fan-out；Xavier 的调和是让两侧都不爆炸。",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>训练一个 MLP 到底难在哪</span>"
@@ -839,11 +850,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part2-vanishing-gradient.html#参考文献",
+    "href": "chapters/vol1/part2-vanishing-gradient.html#参考文献",
+    "title": "9  梯度消失：被忽视十五年的诊断书",
+    "section": "9.8 参考文献",
+    "text": "9.8 参考文献\n\nHochreiter, Sepp (1991). Untersuchungen zu dynamischen neuronalen Netzen. Diploma Thesis (in German), Technische Universit\"a.\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256.\nHornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). Multilayer Feedforward Networks Are Universal Approximators. Neural Networks, 2, 359–366. doi:10.1016/0893-6080(89)90020-8",
+    "crumbs": [
+      "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>梯度消失：被忽视十五年的诊断书</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part2-vanishing-gradient.html#练习",
     "href": "chapters/vol1/part2-vanishing-gradient.html#练习",
     "title": "9  梯度消失：被忽视十五年的诊断书",
-    "section": "9.8 练习",
-    "text": "9.8 练习\n\n造轮子：写一个函数 layerwise_ratio(model, X, y) 返回”首层梯度范数/末层梯度范数”，对 sigmoid/tanh/relu 各跑 5 个种子取中位数，把 2.2a 的单种子结论变成稳健结论。\n预测再运行：把网络宽度从 32 改成 128，梯度剖面会怎么变？（先猜斜率变陡还是变缓——注意缩放初始化下宽度对 \\(W\\) 范数的影响。）\n消融：给 sigmoid 网络配上 2.1 的缩放初始化，剖面斜率会改善多少？距离”健康”还差几个数量级？\n进阶：推导 He 初始化（\\(\\mathrm{Var}(w)=2/\\text{fan-in}\\)）为什么是 relu 的正确搭配（提示：一半路径死亡，活跃路径需要两倍方差补偿）。\n论文映射：用四问账本拆 Bengio et al. 1994——注意它第四问（没买到什么）的答案是”任何解药”，这类纯诊断论文在研究生态里的价值如何定价？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：缩放初始化下单层 \\(W\\) 的谱范数随宽度缓慢变化，剖面斜率主要被激活函数的导数分布决定——宽度影响远小于深度。若你预测”宽度加剧消失”，修正来自 relu：更宽的层死区比例更稳定（大数定律），反而略健康。\n练习 3：改善约一个数量级（sigmoid 的 0.25 上界仍在），距 tanh 的剖面还有两个数量级——初始化治不了激活函数本身的病，两味药要分开开。\n练习 4 提示：relu 活跃输出方差为输入方差的一半（负半轴归零），要守恒需要 \\(\\mathrm{Var}(w) = 2/\\text{fan-in}\\)。",
+    "section": "9.9 练习",
+    "text": "9.9 练习\n\n造轮子：写一个函数 layerwise_ratio(model, X, y) 返回”首层梯度范数/末层梯度范数”，对 sigmoid/tanh/relu 各跑 5 个种子取中位数，把 2.2a 的单种子结论变成稳健结论。\n预测再运行：把网络宽度从 32 改成 128，梯度剖面会怎么变？（先猜斜率变陡还是变缓——注意缩放初始化下宽度对 \\(W\\) 范数的影响。）\n消融：给 sigmoid 网络配上 2.1 的缩放初始化，剖面斜率会改善多少？距离”健康”还差几个数量级？\n进阶：推导 He 初始化（\\(\\mathrm{Var}(w)=2/\\text{fan-in}\\)）为什么是 relu 的正确搭配（提示：一半路径死亡，活跃路径需要两倍方差补偿）。\n论文映射：用四问账本拆 Bengio et al. 1994——注意它第四问（没买到什么）的答案是”任何解药”，这类纯诊断论文在研究生态里的价值如何定价？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：缩放初始化下单层 \\(W\\) 的谱范数随宽度缓慢变化，剖面斜率主要被激活函数的导数分布决定——宽度影响远小于深度。若你预测”宽度加剧消失”，修正来自 relu：更宽的层死区比例更稳定（大数定律），反而略健康。\n练习 3：改善约一个数量级（sigmoid 的 0.25 上界仍在），距 tanh 的剖面还有两个数量级——初始化治不了激活函数本身的病，两味药要分开开。\n练习 4 提示：relu 活跃输出方差为输入方差的一半（负半轴归零），要守恒需要 \\(\\mathrm{Var}(w) = 2/\\text{fan-in}\\)。",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>梯度消失：被忽视十五年的诊断书</span>"
@@ -938,11 +960,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part2-toolbox.html#参考文献",
+    "href": "chapters/vol1/part2-toolbox.html#参考文献",
+    "title": "10  破局工具箱：ReLU、Dropout、BatchNorm、残差",
+    "section": "10.8 参考文献",
+    "text": "10.8 参考文献\n\nNair, Vinod and Hinton, Geoffrey E. (2010). Rectified Linear Units Improve Restricted Boltzmann Machines. Proceedings of ICML, 807–814.\nSrivastava et al. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research, 15, 1929–1958.\nIoffe, Sergey and Szegedy, Christian (2015). Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. Proceedings of ICML, 448–456.\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385.\nSanturkar et al. (2018). How Does Batch Normalization Help Optimization?. NeurIPS.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "crumbs": [
+      "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>破局工具箱：ReLU、Dropout、BatchNorm、残差</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part2-toolbox.html#练习",
     "href": "chapters/vol1/part2-toolbox.html#练习",
     "title": "10  破局工具箱：ReLU、Dropout、BatchNorm、残差",
-    "section": "10.8 练习",
-    "text": "10.8 练习\n\n造轮子：给 MLPNumpy 加 layernorm=True 选项（跨特征而非跨样本标准化），在八层螺旋上与 BN 对照——并预言它在 Transformer 里为什么取代了 BN（提示：批统计在变长序列上怎么办？）。\n预测再运行：无 BN 的网络做学习率扫描 {0.005, 0.05, 0.5}，结果会怎样？与 BN 版的扫描对照，画出”步长容忍度”的对比。\n消融：把 BN 插到输出层（而不是隐藏层）会发生什么？先推理（输出层需要保留尺度信息吗？）再改造代码验证。\n论文映射：用四问账本拆 dropout 论文——特别地，它的”数据从哪来”一栏（视觉大模型）如何解释它在本书玩具实验里的平庸表现。\n进阶： Santurkar et al. 2018 的核心论证重演：测量加/不加 BN 时 loss 的 Lipschitz 常数（对参数扰动的 loss 变化率，2.1 的切片工具可复用），验证”BN 平滑了地形”。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：无 BN 版在 0.005 爬行、0.05 卡死（上一章病人）、0.5 大概率溢出——可用区间近乎为零；BN 版横跨两个数量级可用。“步长容忍度”可以量化为”能训练的 lr 区间宽度”。\n练习 3：输出层加 BN 会破坏尺度信息（回归目标的量纲被强行标准化），除非 \\(\\gamma,\\beta\\) 学回尺度——通常更慢更差。Transformer 的做法是只对隐藏块归一化、输出投影前不再归一化。\n练习 5 提示：用 2.1 的 loss_at(u, 0) 沿单一方向扫描，比较两条曲线的二次项系数（曲率）——BN 版的曲率显著更小即”更平滑”。",
+    "section": "10.9 练习",
+    "text": "10.9 练习\n\n造轮子：给 MLPNumpy 加 layernorm=True 选项（跨特征而非跨样本标准化），在八层螺旋上与 BN 对照——并预言它在 Transformer 里为什么取代了 BN（提示：批统计在变长序列上怎么办？）。\n预测再运行：无 BN 的网络做学习率扫描 {0.005, 0.05, 0.5}，结果会怎样？与 BN 版的扫描对照，画出”步长容忍度”的对比。\n消融：把 BN 插到输出层（而不是隐藏层）会发生什么？先推理（输出层需要保留尺度信息吗？）再改造代码验证。\n论文映射：用四问账本拆 dropout 论文——特别地，它的”数据从哪来”一栏（视觉大模型）如何解释它在本书玩具实验里的平庸表现。\n进阶： Santurkar et al. 2018 的核心论证重演：测量加/不加 BN 时 loss 的 Lipschitz 常数（对参数扰动的 loss 变化率，2.1 的切片工具可复用），验证”BN 平滑了地形”。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：无 BN 版在 0.005 爬行、0.05 卡死（上一章病人）、0.5 大概率溢出——可用区间近乎为零；BN 版横跨两个数量级可用。“步长容忍度”可以量化为”能训练的 lr 区间宽度”。\n练习 3：输出层加 BN 会破坏尺度信息（回归目标的量纲被强行标准化），除非 \\(\\gamma,\\beta\\) 学回尺度——通常更慢更差。Transformer 的做法是只对隐藏块归一化、输出投影前不再归一化。\n练习 5 提示：用 2.1 的 loss_at(u, 0) 沿单一方向扫描，比较两条曲线的二次项系数（曲率）——BN 版的曲率显著更小即”更平滑”。",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>破局工具箱：ReLU、Dropout、BatchNorm、残差</span>"
@@ -997,7 +1030,7 @@
     "href": "chapters/vol1/part2-alexnet.html#从零实现",
     "title": "11  AlexNet 时刻：历史为什么发生在 2012",
     "section": "11.4 从零实现",
-    "text": "11.4 从零实现\n我们的两个”账本实验”——不重演 AlexNet，而是实测它的两块基石。\n实验一：算力账本。 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：\n\nimport time\n\nimport numpy as np\n\nfor n in (256, 512, 1024):\n    A = np.random.rand(n, n)\n    B = np.random.rand(n, n)\n    t0 = time.time()\n    C = A @ B\n    dt = time.time() - t0\n    print(f\"{n:&gt;4}x{n:&lt;4} 矩阵乘: {dt*1000:6.1f} ms = {2*n**3/dt/1e9:6.1f} GFLOP/s\")\n\n 256x256  矩阵乘:    1.3 ms =   26.8 GFLOP/s\n 512x512  矩阵乘:    1.9 ms =  141.4 GFLOP/s\n1024x1024 矩阵乘:    6.3 ms =  341.8 GFLOP/s\n\n\n三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：\n\n规模越大，单位吞吐越高——矩阵乘的算术强度高，缓存友好，这正是它成为深度学习基本货币的原因（算子的经济学决定架构的演化，5.3 的伏笔）；\n取 100 GFLOP/s 估算：AlexNet 训练一遍 \\(10^{18}\\) FLOPs ≈ \\(10^7\\) 秒 ≈ 四个月（且是优化过的今天 CPU；2012 年的 CPU 更慢）。两张 GTX 580 合计约 3 TFLOP/s，即使按 30% 利用率也有约 1 TFLOP/s——几天。加速比两个数量级，恰好是把”不可行的课题”变成”一个学期的博士课题”的距离；\n你的笔记本（约 \\(10^{11}\\) FLOP/s）比 1986 年的 VAX（约 \\(10^6}\\) FLOP/s）快五个数量级——本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。\n\n实验二：数据账本。 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：\n\nf = lambda x: np.sin(2*x + 0.7) + 0.5*np.sin(4*x - 0.3)\nXd = np.linspace(-3, 3, 200).reshape(-1, 1)\nYd = f(Xd)\n\nfrom dlbook.nn.mlp_numpy import MLPNumpy\nfrom dlbook.utils import set_seed\n\nset_seed(42)\nfor n in (6, 15, 40):\n    rng = np.random.default_rng(7)\n    X = np.sort(rng.uniform(-3, 3, n)).reshape(-1, 1)\n    Y = f(X) + rng.uniform(-0.25, 0.25, (n, 1))\n    m = MLPNumpy(1, [32, 1], seed=42)\n    for _ in range(3000):\n        m.backward(X, Y)\n        m.step(0.02, momentum=0.9)\n    tr = float(np.mean((m.forward(X) - Y) ** 2))\n    de = float(np.mean((m.forward(Xd) - Yd) ** 2))\n    print(f\"n={n:&gt;2}: 训练误差={tr:.4f}  真实误差={de:.4f}\")\n\nn= 6: 训练误差=0.0016  真实误差=2.7951\nn=15: 训练误差=0.0221  真实误差=0.1030\nn=40: 训练误差=0.0332  真实误差=0.0438\n\n\n读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 2.8——网络完美背下了六个点，对函数本身一无所知（1.6 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04——真实误差随数据近一个数量级地下降。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上有账可算。",
+    "text": "11.4 从零实现\n我们的两个”账本实验”——不重演 AlexNet，而是实测它的两块基石。\n实验一：算力账本。 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：\n\nimport time\n\nimport numpy as np\n\nfor n in (256, 512, 1024):\n    A = np.random.rand(n, n)\n    B = np.random.rand(n, n)\n    t0 = time.time()\n    C = A @ B\n    dt = time.time() - t0\n    print(f\"{n:&gt;4}x{n:&lt;4} 矩阵乘: {dt*1000:6.1f} ms = {2*n**3/dt/1e9:6.1f} GFLOP/s\")\n\n 256x256  矩阵乘:    1.1 ms =   30.2 GFLOP/s\n 512x512  矩阵乘:    1.4 ms =  193.5 GFLOP/s\n1024x1024 矩阵乘:    6.3 ms =  342.6 GFLOP/s\n\n\n三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：\n\n规模越大，单位吞吐越高——矩阵乘的算术强度高，缓存友好，这正是它成为深度学习基本货币的原因（算子的经济学决定架构的演化，5.3 的伏笔）；\n取 100 GFLOP/s 估算：AlexNet 训练一遍 \\(10^{18}\\) FLOPs ≈ \\(10^7\\) 秒 ≈ 四个月（且是优化过的今天 CPU；2012 年的 CPU 更慢）。两张 GTX 580 合计约 3 TFLOP/s，即使按 30% 利用率也有约 1 TFLOP/s——几天。加速比两个数量级，恰好是把”不可行的课题”变成”一个学期的博士课题”的距离；\n你的笔记本（约 \\(10^{11}\\) FLOP/s）比 1986 年的 VAX（约 \\(10^6}\\) FLOP/s）快五个数量级——本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。\n\n实验二：数据账本。 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：\n\nf = lambda x: np.sin(2*x + 0.7) + 0.5*np.sin(4*x - 0.3)\nXd = np.linspace(-3, 3, 200).reshape(-1, 1)\nYd = f(Xd)\n\nfrom dlbook.nn.mlp_numpy import MLPNumpy\nfrom dlbook.utils import set_seed\n\nset_seed(42)\nfor n in (6, 15, 40):\n    rng = np.random.default_rng(7)\n    X = np.sort(rng.uniform(-3, 3, n)).reshape(-1, 1)\n    Y = f(X) + rng.uniform(-0.25, 0.25, (n, 1))\n    m = MLPNumpy(1, [32, 1], seed=42)\n    for _ in range(3000):\n        m.backward(X, Y)\n        m.step(0.02, momentum=0.9)\n    tr = float(np.mean((m.forward(X) - Y) ** 2))\n    de = float(np.mean((m.forward(Xd) - Yd) ** 2))\n    print(f\"n={n:&gt;2}: 训练误差={tr:.4f}  真实误差={de:.4f}\")\n\nn= 6: 训练误差=0.0016  真实误差=2.7951\nn=15: 训练误差=0.0221  真实误差=0.1030\nn=40: 训练误差=0.0332  真实误差=0.0438\n\n\n读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 2.8——网络完美背下了六个点，对函数本身一无所知（1.6 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04——真实误差随数据近一个数量级地下降。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上有账可算。",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>AlexNet 时刻：历史为什么发生在 2012</span>"
@@ -1037,11 +1070,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part2-alexnet.html#参考文献",
+    "href": "chapters/vol1/part2-alexnet.html#参考文献",
+    "title": "11  AlexNet 时刻：历史为什么发生在 2012",
+    "section": "11.8 参考文献",
+    "text": "11.8 参考文献\n\nKrizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS.\nGlorot, Xavier and Bengio, Yoshua (2010). Understanding the Difficulty of Training Deep Feedforward Neural Networks. Proceedings of AISTATS, 9, 249–256.\nNair, Vinod and Hinton, Geoffrey E. (2010). Rectified Linear Units Improve Restricted Boltzmann Machines. Proceedings of ICML, 807–814.\nSrivastava et al. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research, 15, 1929–1958.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "crumbs": [
+      "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>AlexNet 时刻：历史为什么发生在 2012</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part2-alexnet.html#练习",
     "href": "chapters/vol1/part2-alexnet.html#练习",
     "title": "11  AlexNet 时刻：历史为什么发生在 2012",
-    "section": "11.8 练习",
-    "text": "11.8 练习\n\n算力账本延伸：查一张今天消费级 GPU 的理论 FLOP/s，重算 AlexNet 训练时间；再估 GPT-3（约 \\(3\\times10^{23}\\) FLOPs）在单卡上需要多久——从而理解”万卡集群”不是炫富而是必需。\n预测再运行：实验二里把网络从 32 宽改成 128 宽，n=6 的真实误差会怎么变？变大（记更多噪声）还是变小（拟合更好）？运行并解释。\n消融：实验二改成 sigmoid 激活 + 朴素初始化（回到 1990s 配置），数据账本的曲线整体会怎么移动？数据还能救它吗？\n论文映射：用四问账本拆 ImageNet 论文（2009）——注意它的”买到的能力”一栏几乎全是基础设施而非模型。\n进阶（历史推理）：写半页”反事实 2012”：如果 CUDA 晚五年出现，视觉领域的演进路径会怎样？手工特征会多统治几年？谁会填补空白？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 参考数字：GPT-3 约 \\(3\\times10^{23}\\) FLOPs ÷ 单卡 \\(10^{12}\\) FLOP/s（30% 利用率）≈ \\(10^{11}\\) 秒 ≈ 三千年——万卡且高度并行的集群把它压到数月。“规模化”的每一分钱都花在这道除法里。\n练习 2：n=6 时真实误差大概率变大——容量越大，背噪声背得越狠（1.6 的容量-过拟合互换）；n=40 时可能略变好。数据账本的斜率依赖容量，两者是联动的。\n练习 3：整条曲线整体抬高且低数据端尤其惨烈——1990s 配置下”加数据”的边际收益更小，这正是当年”数据无用论”能流行的技术土壤。工具箱不只是工具，它重新定价了数据。\n练习 5 提示：注意因果的双向性——没有 GPU 也就训不出对 GPU 的需求，硬件-算法的共生回路会晚启动，但一旦启动会补涨。反事实推演的价值在于识别”哪些是必然（趋势），哪些是偶然（时点）“。",
+    "section": "11.9 练习",
+    "text": "11.9 练习\n\n算力账本延伸：查一张今天消费级 GPU 的理论 FLOP/s，重算 AlexNet 训练时间；再估 GPT-3（约 \\(3\\times10^{23}\\) FLOPs）在单卡上需要多久——从而理解”万卡集群”不是炫富而是必需。\n预测再运行：实验二里把网络从 32 宽改成 128 宽，n=6 的真实误差会怎么变？变大（记更多噪声）还是变小（拟合更好）？运行并解释。\n消融：实验二改成 sigmoid 激活 + 朴素初始化（回到 1990s 配置），数据账本的曲线整体会怎么移动？数据还能救它吗？\n论文映射：用四问账本拆 ImageNet 论文（2009）——注意它的”买到的能力”一栏几乎全是基础设施而非模型。\n进阶（历史推理）：写半页”反事实 2012”：如果 CUDA 晚五年出现，视觉领域的演进路径会怎样？手工特征会多统治几年？谁会填补空白？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 参考数字：GPT-3 约 \\(3\\times10^{23}\\) FLOPs ÷ 单卡 \\(10^{12}\\) FLOP/s（30% 利用率）≈ \\(10^{11}\\) 秒 ≈ 三千年——万卡且高度并行的集群把它压到数月。“规模化”的每一分钱都花在这道除法里。\n练习 2：n=6 时真实误差大概率变大——容量越大，背噪声背得越狠（1.6 的容量-过拟合互换）；n=40 时可能略变好。数据账本的斜率依赖容量，两者是联动的。\n练习 3：整条曲线整体抬高且低数据端尤其惨烈——1990s 配置下”加数据”的边际收益更小，这正是当年”数据无用论”能流行的技术土壤。工具箱不只是工具，它重新定价了数据。\n练习 5 提示：注意因果的双向性——没有 GPU 也就训不出对 GPU 的需求，硬件-算法的共生回路会晚启动，但一旦启动会补涨。反事实推演的价值在于识别”哪些是必然（趋势），哪些是偶然（时点）“。",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>AlexNet 时刻：历史为什么发生在 2012</span>"
@@ -1136,11 +1180,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part2-capstone-deep-mlp.html#参考文献",
+    "href": "chapters/vol1/part2-capstone-deep-mlp.html#参考文献",
+    "title": "12  整合：让深度可训练的完整配方",
+    "section": "12.8 参考文献",
+    "text": "12.8 参考文献\n\nKingma, Diederik P. and Ba, Jimmy (2014). Adam: A Method for Stochastic Optimization. arXiv preprint arXiv:1412.6980.\nIoffe, Sergey and Szegedy, Christian (2015). Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. Proceedings of ICML, 448–456.\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "crumbs": [
+      "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>整合：让深度可训练的完整配方</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part2-capstone-deep-mlp.html#练习",
     "href": "chapters/vol1/part2-capstone-deep-mlp.html#练习",
     "title": "12  整合：让深度可训练的完整配方",
-    "section": "12.8 练习",
-    "text": "12.8 练习\n\n造轮子：给 MLPNumpy.step 实现 Adam（一阶/二阶矩指数滑动平均 + 偏差校正），在八层螺旋上与动量法对照收敛速度。\n预测再运行：把 batch_size 从 64 改成 8，完整配方的训练动态会怎么变（速度？稳定性？最终成绩？）？BN 的批统计在 batch=8 下还可靠吗？\n消融：预算砍到 100 epoch 重跑拆解表，动量与 BN 的相对重要性怎么变？这如何解释”论文里超参消融必须注明预算”的行业规范？\n论文映射：用四问账本拆 Adam——注意它买卖的是”步长的自适应”，属于哪一栏？\n进阶：把拆解实验扩展成 2×2×2 全因子设计（relu/tanh × BN/无 × 动量/无，共 8 组），检验”零件交互”：是否存在某零件单独无益、组合才有益的组合？（统计上这就是交互效应的入门。）\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：更慢（步数多 8 倍）、BN 的批统计噪声变大（8 个样本估计均值方差很不稳）——曲线抖动加剧，最终成绩略降。BN 对批大小的敏感是它后来的著名槽点，LayerNorm 的崛起一半源于此（变长序列 + 小批场景）。\n练习 3：预算紧时动量的差距拉开（纯 SGD 在 100 epoch 明显欠收敛），BN 的”生死零件”地位不变。结论：消融结论是预算的函数——脱离预算谈超参优劣是常见的坏实验。\n练习 5 提示：注意”tanh+BN+动量”(0.80) 远低于”relu+BN+动量”(0.98) 与”tanh+无BN+动量”（2.2 数据，更差）的简单加和模型——非可加性就是交互的证据。写出交互矩阵后，试着用 2.2 的梯度剖面解释 relu×BN 的协同。",
+    "section": "12.9 练习",
+    "text": "12.9 练习\n\n造轮子：给 MLPNumpy.step 实现 Adam（一阶/二阶矩指数滑动平均 + 偏差校正），在八层螺旋上与动量法对照收敛速度。\n预测再运行：把 batch_size 从 64 改成 8，完整配方的训练动态会怎么变（速度？稳定性？最终成绩？）？BN 的批统计在 batch=8 下还可靠吗？\n消融：预算砍到 100 epoch 重跑拆解表，动量与 BN 的相对重要性怎么变？这如何解释”论文里超参消融必须注明预算”的行业规范？\n论文映射：用四问账本拆 Adam——注意它买卖的是”步长的自适应”，属于哪一栏？\n进阶：把拆解实验扩展成 2×2×2 全因子设计（relu/tanh × BN/无 × 动量/无，共 8 组），检验”零件交互”：是否存在某零件单独无益、组合才有益的组合？（统计上这就是交互效应的入门。）\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：更慢（步数多 8 倍）、BN 的批统计噪声变大（8 个样本估计均值方差很不稳）——曲线抖动加剧，最终成绩略降。BN 对批大小的敏感是它后来的著名槽点，LayerNorm 的崛起一半源于此（变长序列 + 小批场景）。\n练习 3：预算紧时动量的差距拉开（纯 SGD 在 100 epoch 明显欠收敛），BN 的”生死零件”地位不变。结论：消融结论是预算的函数——脱离预算谈超参优劣是常见的坏实验。\n练习 5 提示：注意”tanh+BN+动量”(0.80) 远低于”relu+BN+动量”(0.98) 与”tanh+无BN+动量”（2.2 数据，更差）的简单加和模型——非可加性就是交互的证据。写出交互矩阵后，试着用 2.2 的梯度剖面解释 relu×BN 的协同。",
     "crumbs": [
       "卷一 · Part 2 · 深度学习的黎明（1986–2015）",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>整合：让深度可训练的完整配方</span>"
@@ -1235,11 +1290,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part3-lenet.html#参考文献",
+    "href": "chapters/vol1/part3-lenet.html#参考文献",
+    "title": "13  LeNet：1989 年就有的答案",
+    "section": "13.8 参考文献",
+    "text": "13.8 参考文献\n\nLeCun et al. (1989). Backpropagation Applied to Handwritten Zip Code Recognition. Neural Computation, 1, 541–551.\nLeCun, Yann and Bottou, L'e (1998). Gradient-Based Learning Applied to Document Recognition. Proceedings of the IEEE, 86, 2278–2324.\nFukushima, Kunihiko (1980). Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position. Biological Cybernetics, 36, 193–202.",
+    "crumbs": [
+      "卷一 · Part 3 · 卷积时代（1989–2016）",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>LeNet：1989 年就有的答案</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part3-lenet.html#练习",
     "href": "chapters/vol1/part3-lenet.html#练习",
     "title": "13  LeNet：1989 年就有的答案",
-    "section": "13.8 练习",
-    "text": "13.8 练习\n\n造轮子：遮住 Conv2D.backward，只凭”共享权重的梯度按位置累加”重写它，用 tests/test_conv.py 的有限差分对拍验证。\n预测再运行：把图案尺寸从 12×12 加到 20×20（位置更多），MLP 与卷积网的参数量和测试准确率各会怎么变？差距扩大还是缩小？先算参数账再运行。\n消融：把卷积核从 3×3 改成 5×5（padding=2），参数与效果怎么变？在本任务里是大核好还是小核好？为什么？\n论文映射：用四问账本拆 LeCun 1989——注意第三问（买到的能力）里”支票读取的商用”这一条在账本上的特殊地位。\n进阶：给 SimpleConvNet 加第二个卷积层（8→16 通道），观察滤波器是否出现”组合下层特征”的迹象（特征层级的雏形，3.3 正题）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：MLP 参数 400×64≈2.6 万（约 3 倍），测试准确率进一步下滑（位置组合更多、样本更摊薄）；卷积网参数几乎不变（还是 241），准确率保持——差距随图像尺寸扩大，这正是卷积在大图像时代胜出的算术。\n练习 3：5×5 核参数 25/滤波器，本任务里与 3×3 相当或略差——图案只有 3×3，大核的额外感受野只看到噪声。核尺寸应匹配目标结构的尺度（真实图像的多尺度需求催生了 Inception 的多核并行，3.2）。\n练习 5 提示：把第二层滤波器按其对第一层 8 个通道的权重可视化（16×8×3×3），寻找”仅对某几个边缘检测器有强权重”的组合模式。",
+    "section": "13.9 练习",
+    "text": "13.9 练习\n\n造轮子：遮住 Conv2D.backward，只凭”共享权重的梯度按位置累加”重写它，用 tests/test_conv.py 的有限差分对拍验证。\n预测再运行：把图案尺寸从 12×12 加到 20×20（位置更多），MLP 与卷积网的参数量和测试准确率各会怎么变？差距扩大还是缩小？先算参数账再运行。\n消融：把卷积核从 3×3 改成 5×5（padding=2），参数与效果怎么变？在本任务里是大核好还是小核好？为什么？\n论文映射：用四问账本拆 LeCun 1989——注意第三问（买到的能力）里”支票读取的商用”这一条在账本上的特殊地位。\n进阶：给 SimpleConvNet 加第二个卷积层（8→16 通道），观察滤波器是否出现”组合下层特征”的迹象（特征层级的雏形，3.3 正题）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：MLP 参数 400×64≈2.6 万（约 3 倍），测试准确率进一步下滑（位置组合更多、样本更摊薄）；卷积网参数几乎不变（还是 241），准确率保持——差距随图像尺寸扩大，这正是卷积在大图像时代胜出的算术。\n练习 3：5×5 核参数 25/滤波器，本任务里与 3×3 相当或略差——图案只有 3×3，大核的额外感受野只看到噪声。核尺寸应匹配目标结构的尺度（真实图像的多尺度需求催生了 Inception 的多核并行，3.2）。\n练习 5 提示：把第二层滤波器按其对第一层 8 个通道的权重可视化（16×8×3×3），寻找”仅对某几个边缘检测器有强权重”的组合模式。",
     "crumbs": [
       "卷一 · Part 3 · 卷积时代（1989–2016）",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>LeNet：1989 年就有的答案</span>"
@@ -1334,11 +1400,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part3-resnet.html#参考文献",
+    "href": "chapters/vol1/part3-resnet.html#参考文献",
+    "title": "14  军备竞赛：从 AlexNet 到 ResNet",
+    "section": "14.8 参考文献",
+    "text": "14.8 参考文献\n\nHe et al. (2015). Deep Residual Learning for Image Recognition. arXiv preprint arXiv:1512.03385.\nKrizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS.",
+    "crumbs": [
+      "卷一 · Part 3 · 卷积时代（1989–2016）",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>军备竞赛：从 AlexNet 到 ResNet</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part3-resnet.html#练习",
     "href": "chapters/vol1/part3-resnet.html#练习",
     "title": "14  军备竞赛：从 AlexNet 到 ResNet",
-    "section": "14.8 练习",
-    "text": "14.8 练习\n\n造轮子：给 MLPNumpy 的残差加法换成缩放残差 \\(y = F(x)\\cdot\\alpha + x\\)（\\(\\alpha=0.1\\)），在深度 20 上测试稳定性是否改善——并解释为什么缩放能救我们的 20 层 NaN。\n预测再运行：残差版在深度 2 与深度 10 的收敛速度（到达 0.95 准确率所需 epoch）哪个更快？先猜再量。\n消融：把残差加法放在激活之前（\\(y = \\mathrm{relu}(F(x)+x)\\)，即”标准 ResNet v1 布局”）与之后，训练动态有差别吗？我们的引擎用的是哪种？\n论文映射：用四问账本拆 He et al. 2015——注意第一问的答案与 2.2 章（诊断章）的结构差异：它同时是诊断与药方。\n进阶：实现 Veit 的”路径删除”实验——训练一个 10 层残差网后，随机把某层 \\(F\\) 置零（只留恒等路），测准确率掉多少；对普通网做同样的事会怎样？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：缩放把 \\(F\\) 路径的初始贡献压小，网络起步接近恒等（“生而保守”），梯度积累导致的发散被抑制；深度 20 大概率可训。这正是”零初始化残差分支”思想的量级版。\n练习 3：我们用的是”激活后相加”（\\(y = \\mathrm{act}(F)+x\\) 的变体）。标准 ResNet 是先加后激活；后者的恒等路也要过 relu，“纯恒等”被破坏（Pre-Act ResNet 因此改为全程 pre-activation）。差别在深网络中显著，浅网络中难辨。\n练习 5 提示：残差网删除单块只损失一两条路径（准确率微降）；普通网删除单层等于切断唯一的信号路（瘫痪）——这个不对称就是”隐式集成”观最直观的证据形态。",
+    "section": "14.9 练习",
+    "text": "14.9 练习\n\n造轮子：给 MLPNumpy 的残差加法换成缩放残差 \\(y = F(x)\\cdot\\alpha + x\\)（\\(\\alpha=0.1\\)），在深度 20 上测试稳定性是否改善——并解释为什么缩放能救我们的 20 层 NaN。\n预测再运行：残差版在深度 2 与深度 10 的收敛速度（到达 0.95 准确率所需 epoch）哪个更快？先猜再量。\n消融：把残差加法放在激活之前（\\(y = \\mathrm{relu}(F(x)+x)\\)，即”标准 ResNet v1 布局”）与之后，训练动态有差别吗？我们的引擎用的是哪种？\n论文映射：用四问账本拆 He et al. 2015——注意第一问的答案与 2.2 章（诊断章）的结构差异：它同时是诊断与药方。\n进阶：实现 Veit 的”路径删除”实验——训练一个 10 层残差网后，随机把某层 \\(F\\) 置零（只留恒等路），测准确率掉多少；对普通网做同样的事会怎样？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：缩放把 \\(F\\) 路径的初始贡献压小，网络起步接近恒等（“生而保守”），梯度积累导致的发散被抑制；深度 20 大概率可训。这正是”零初始化残差分支”思想的量级版。\n练习 3：我们用的是”激活后相加”（\\(y = \\mathrm{act}(F)+x\\) 的变体）。标准 ResNet 是先加后激活；后者的恒等路也要过 relu，“纯恒等”被破坏（Pre-Act ResNet 因此改为全程 pre-activation）。差别在深网络中显著，浅网络中难辨。\n练习 5 提示：残差网删除单块只损失一两条路径（准确率微降）；普通网删除单层等于切断唯一的信号路（瘫痪）——这个不对称就是”隐式集成”观最直观的证据形态。",
     "crumbs": [
       "卷一 · Part 3 · 卷积时代（1989–2016）",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>军备竞赛：从 AlexNet 到 ResNet</span>"
@@ -1433,11 +1510,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part3-cnn-legacy.html#参考文献",
+    "href": "chapters/vol1/part3-cnn-legacy.html#参考文献",
+    "title": "15  CNN 的遗产：特征层级与预训练-微调",
+    "section": "15.8 参考文献",
+    "text": "15.8 参考文献\n\nRazavian et al. (2014). CNN. CVPR Workshops.\nZeiler, Matthew D. and Fergus, Rob (2014). Visualizing and Understanding Convolutional Networks. ECCV.\nLeCun, Yann and Bottou, L'e (1998). Gradient-Based Learning Applied to Document Recognition. Proceedings of the IEEE, 86, 2278–2324.",
+    "crumbs": [
+      "卷一 · Part 3 · 卷积时代（1989–2016）",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>CNN 的遗产：特征层级与预训练-微调</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part3-cnn-legacy.html#练习",
     "href": "chapters/vol1/part3-cnn-legacy.html#练习",
     "title": "15  CNN 的遗产：特征层级与预训练-微调",
-    "section": "15.8 练习",
-    "text": "15.8 练习\n\n造轮子：把探针从感知机换成小型 MLPNumpy（8-8-1），冻结特征重训——比感知机好多少？“线性可读”与”可读”的差距就是这份增量。\n预测再运行：下游样本从 10 涨到 50，两个方案的差距会扩大还是缩小？到 300 时呢？先画预测曲线再跑——迁移的价值随下游数据量单调递减（直到交叉），这是预训练经济学的核心曲线。\n消融：把预训练的噪声从 0.15 提到 0.3（与下游同域），探针在脏域的成绩会好于原来的跨界版吗？这是”同域脏预训练 vs 跨域净预训练”的一次小型对照。\n论文映射：用四问账本拆 Razavian 2014——注意它几乎全部的”买到”都记在基础设施栏（一个可复用的底座），模型本身的贡献栏反而是空的。\n进阶：实现”部分微调”梯度：解冻最后一层卷积、其余冻结，10 样本微调 20 epoch——与全冻结、全微调三方对照，你能找到”冻多少”的最优点吗？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：差距随下游数据量收窄——50 样本时从零训练已能到 0.8+，300 时两者趋同甚至反超（预训练特征未必是本任务最优）。这条”迁移收益 vs 数据量”的递减曲线，就是后来 BERT 时代各类”数据预算-微调策略”图表的玩具版；LoRA（7.2）的一切讨论都发生在曲线的左端。\n练习 3：大概率不如跨界净版——脏域预训练的特征信噪比天然更低，而”见过干净图案”的抽象恰好扛得住脏域的输入。但也有例外种子（小样本噪声大），值得多跑几个种子看方差——预训练实验的方差管理本身就是真实工程痛点。\n练习 5 提示：最优点通常在”靠近输入的层冻结”——通用性从底到顶递减。这就是微调时代”要不要解冻 backbone”的标准决策树的玩具版。",
+    "section": "15.9 练习",
+    "text": "15.9 练习\n\n造轮子：把探针从感知机换成小型 MLPNumpy（8-8-1），冻结特征重训——比感知机好多少？“线性可读”与”可读”的差距就是这份增量。\n预测再运行：下游样本从 10 涨到 50，两个方案的差距会扩大还是缩小？到 300 时呢？先画预测曲线再跑——迁移的价值随下游数据量单调递减（直到交叉），这是预训练经济学的核心曲线。\n消融：把预训练的噪声从 0.15 提到 0.3（与下游同域），探针在脏域的成绩会好于原来的跨界版吗？这是”同域脏预训练 vs 跨域净预训练”的一次小型对照。\n论文映射：用四问账本拆 Razavian 2014——注意它几乎全部的”买到”都记在基础设施栏（一个可复用的底座），模型本身的贡献栏反而是空的。\n进阶：实现”部分微调”梯度：解冻最后一层卷积、其余冻结，10 样本微调 20 epoch——与全冻结、全微调三方对照，你能找到”冻多少”的最优点吗？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：差距随下游数据量收窄——50 样本时从零训练已能到 0.8+，300 时两者趋同甚至反超（预训练特征未必是本任务最优）。这条”迁移收益 vs 数据量”的递减曲线，就是后来 BERT 时代各类”数据预算-微调策略”图表的玩具版；LoRA（7.2）的一切讨论都发生在曲线的左端。\n练习 3：大概率不如跨界净版——脏域预训练的特征信噪比天然更低，而”见过干净图案”的抽象恰好扛得住脏域的输入。但也有例外种子（小样本噪声大），值得多跑几个种子看方差——预训练实验的方差管理本身就是真实工程痛点。\n练习 5 提示：最优点通常在”靠近输入的层冻结”——通用性从底到顶递减。这就是微调时代”要不要解冻 backbone”的标准决策树的玩具版。",
     "crumbs": [
       "卷一 · Part 3 · 卷积时代（1989–2016）",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>CNN 的遗产：特征层级与预训练-微调</span>"
@@ -1532,11 +1620,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol1/part3-cnn-limits.html#参考文献",
+    "href": "chapters/vol1/part3-cnn-limits.html#参考文献",
+    "title": "16  CNN 的边界：序列问题为何难",
+    "section": "16.8 参考文献",
+    "text": "16.8 参考文献\n\nvan den Oord, A\"a (2016). WaveNet. arXiv preprint arXiv:1609.03499.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "crumbs": [
+      "卷一 · Part 3 · 卷积时代（1989–2016）",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>CNN 的边界：序列问题为何难</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol1/part3-cnn-limits.html#练习",
     "href": "chapters/vol1/part3-cnn-limits.html#练习",
     "title": "16  CNN 的边界：序列问题为何难",
-    "section": "16.8 练习",
-    "text": "16.8 练习\n\n造轮子：给 Conv1D 加 dilation 参数（窗口每隔 d 取一个输入），用两层 dilation=1,2 的空洞卷积在 dist=12 上复得满血——亲手重演 WaveNet 的感受野指数增长。\n预测再运行：把 \\(k=3\\) 的训练样本加到一亿个，\\(k=3\\) 的测试准确率会改善吗？为什么”加数据”在这个病例上无效？（这是全书第一次遇到”数据治不了的病”。）\n消融：把末位输出改成全局平均池化输出，\\(k=10\\) 还能解回声任务吗？（提示：平均会稀释位置信息——位置敏感的任务与池化天然打架。）\n论文映射：用四问账本拆 Kim 2014——它的成功局限在”局部特征袋够用”的任务上，账本第四问怎么写？\n进阶：设计一个”两段依赖”任务（\\(y\\) 依赖位置 -3 或 -12，由另一个比特选择），证明任何固定单一窗口都不能全覆盖——不定距依赖的最小反例。把你的构造写给任何一个卷积模型试试。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：不会改善——目标比特与窗口内输入统计独立，贝叶斯最优就是边缘分布 0.5。数据买不到视野外的信息；这个事实在 LLM 时代的版本叫”上下文外幻觉”（模型对窗口外的问题只能编），9.2 再会。\n练习 3：全局平均后，末位与首位信息的区别被抹平——\\(k=10\\) 的优势消失，成绩跌回 0.5 附近。需要位置信息时要用”保留位置维度的头”（我们的末位头）或位置编码（5.2 的正式解法）。\n练习 5 提示：单一窗口 \\(k\\) 覆盖 \\([-k, -1]\\)；两个候选位置 -3 与 -12 至少有一个在任意 \\(k&lt;12\\) 的窗口外。双分支（不同 \\(k\\)）+ 门控可以硬解，但门控信号本身也要看全局——你已经在重新发明”动态选择看哪里”，即注意力的雏形。",
+    "section": "16.9 练习",
+    "text": "16.9 练习\n\n造轮子：给 Conv1D 加 dilation 参数（窗口每隔 d 取一个输入），用两层 dilation=1,2 的空洞卷积在 dist=12 上复得满血——亲手重演 WaveNet 的感受野指数增长。\n预测再运行：把 \\(k=3\\) 的训练样本加到一亿个，\\(k=3\\) 的测试准确率会改善吗？为什么”加数据”在这个病例上无效？（这是全书第一次遇到”数据治不了的病”。）\n消融：把末位输出改成全局平均池化输出，\\(k=10\\) 还能解回声任务吗？（提示：平均会稀释位置信息——位置敏感的任务与池化天然打架。）\n论文映射：用四问账本拆 Kim 2014——它的成功局限在”局部特征袋够用”的任务上，账本第四问怎么写？\n进阶：设计一个”两段依赖”任务（\\(y\\) 依赖位置 -3 或 -12，由另一个比特选择），证明任何固定单一窗口都不能全覆盖——不定距依赖的最小反例。把你的构造写给任何一个卷积模型试试。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：不会改善——目标比特与窗口内输入统计独立，贝叶斯最优就是边缘分布 0.5。数据买不到视野外的信息；这个事实在 LLM 时代的版本叫”上下文外幻觉”（模型对窗口外的问题只能编），9.2 再会。\n练习 3：全局平均后，末位与首位信息的区别被抹平——\\(k=10\\) 的优势消失，成绩跌回 0.5 附近。需要位置信息时要用”保留位置维度的头”（我们的末位头）或位置编码（5.2 的正式解法）。\n练习 5 提示：单一窗口 \\(k\\) 覆盖 \\([-k, -1]\\)；两个候选位置 -3 与 -12 至少有一个在任意 \\(k&lt;12\\) 的窗口外。双分支（不同 \\(k\\)）+ 门控可以硬解，但门控信号本身也要看全局——你已经在重新发明”动态选择看哪里”，即注意力的雏形。",
     "crumbs": [
       "卷一 · Part 3 · 卷积时代（1989–2016）",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>CNN 的边界：序列问题为何难</span>"
@@ -1631,11 +1730,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part4-ngram.html#参考文献",
+    "href": "chapters/vol2/part4-ngram.html#参考文献",
+    "title": "17  语言建模前史：从 Shannon 到 n-gram",
+    "section": "17.8 参考文献",
+    "text": "17.8 参考文献\n\nShannon, Claude E. (1951). Prediction and Entropy of Printed English. Bell System Technical Journal, 30, 50–64.\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x\nJelinek, Frederick (1976). Continuous Speech Recognition by Statistical Methods. Proceedings of the IEEE, 64, 532–557.",
+    "crumbs": [
+      "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>语言建模前史：从 Shannon 到 n-gram</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part4-ngram.html#练习",
     "href": "chapters/vol2/part4-ngram.html#练习",
     "title": "17  语言建模前史：从 Shannon 到 n-gram",
-    "section": "17.8 练习",
-    "text": "17.8 练习\n\n造轮子：把 smoothed_prob 换成 Katz 回退（未见的高阶 n-gram 按比例回退到低阶），在 4-gram 上与拉普拉斯对照——反弹还会发生吗？\n预测再运行：语料扩大 10 倍（复制故事文本），熵曲线的反弹点会移到哪里？先猜（“数据与上下文的赛跑”）再运行验证。\n消融：把平滑系数设为 0（不平滑），测试集上会发生什么灾难？用一句话解释”零概率的传染性”。\n论文映射：用四问账本拆 Shannon 1951——注意它买到的不是”能力”而是一把尺子（熵），这类”度量论文”在账本上怎么记账？\n进阶：实现算术编码（按 3-gram 概率编码测试集），验证压缩后的比特数 ≈ 交叉熵 × 字符数——亲手确认”交叉熵 = 压缩长度”不是比喻而是定理。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：反弹点右移（数据 ×10 后 4-gram 甚至 5-gram 的未见比例下降）——反弹点由 \\(\\text{语料长度} \\approx |V|^{n-1}\\) 的交点决定。这条”交点轨迹”就是规模定律（6.1）在统计模型上的史前投影。\n练习 3：任何含未见 n-gram 的句子概率精确为零——对数似然负无穷。平滑不是精度优化，是定义域修补。\n练习 5 提示：算术编码把整个文本编码为一个二进制小数，区间按各符号的条件概率嵌套收缩；总比特数与 \\(-\\sum \\log p\\) 之差不超过 2 比特（编码定理）。",
+    "section": "17.9 练习",
+    "text": "17.9 练习\n\n造轮子：把 smoothed_prob 换成 Katz 回退（未见的高阶 n-gram 按比例回退到低阶），在 4-gram 上与拉普拉斯对照——反弹还会发生吗？\n预测再运行：语料扩大 10 倍（复制故事文本），熵曲线的反弹点会移到哪里？先猜（“数据与上下文的赛跑”）再运行验证。\n消融：把平滑系数设为 0（不平滑），测试集上会发生什么灾难？用一句话解释”零概率的传染性”。\n论文映射：用四问账本拆 Shannon 1951——注意它买到的不是”能力”而是一把尺子（熵），这类”度量论文”在账本上怎么记账？\n进阶：实现算术编码（按 3-gram 概率编码测试集），验证压缩后的比特数 ≈ 交叉熵 × 字符数——亲手确认”交叉熵 = 压缩长度”不是比喻而是定理。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：反弹点右移（数据 ×10 后 4-gram 甚至 5-gram 的未见比例下降）——反弹点由 \\(\\text{语料长度} \\approx |V|^{n-1}\\) 的交点决定。这条”交点轨迹”就是规模定律（6.1）在统计模型上的史前投影。\n练习 3：任何含未见 n-gram 的句子概率精确为零——对数似然负无穷。平滑不是精度优化，是定义域修补。\n练习 5 提示：算术编码把整个文本编码为一个二进制小数，区间按各符号的条件概率嵌套收缩；总比特数与 \\(-\\sum \\log p\\) 之差不超过 2 比特（编码定理）。",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>语言建模前史：从 Shannon 到 n-gram</span>"
@@ -1730,11 +1840,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part4-rnn.html#参考文献",
+    "href": "chapters/vol2/part4-rnn.html#参考文献",
+    "title": "18  RNN：展开即深网的继承病",
+    "section": "18.8 参考文献",
+    "text": "18.8 参考文献\n\nElman, Jeffrey L. (1990). Finding Structure in Time. Cognitive Science, 14, 179–211.\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181\nBengio, Yoshua and Ducharme, R'e (2003). A Neural Probabilistic Language Model. Journal of Machine Learning Research, 3, 1137–1155.\nHochreiter, Sepp and Schmidhuber, J\"u (1997). Long Short-Term Memory. Neural Computation, 9, 1735–1780.",
+    "crumbs": [
+      "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>RNN：展开即深网的继承病</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part4-rnn.html#练习",
     "href": "chapters/vol2/part4-rnn.html#练习",
     "title": "18  RNN：展开即深网的继承病",
-    "section": "18.8 练习",
-    "text": "18.8 练习\n\n造轮子：遮住 SimpleRNN.backward，只凭展开图重写 BPTT（注意 \\(W_h\\) 在每个时间步的转置方向），与 rnn_grad_flow_norms 的剖面对拍。\n预测再运行：把隐藏宽度从 48 增到 128，最终 loss 与采样质量各会怎么变？梯度剖面的坠崖斜率呢？（提示：宽度不改变时间维的连乘结构。）\n消融：改用截断 BPTT（只回传 10 步，把 dhs 的前 50 步置零），训练会更快还是更慢？最终 loss 变好还是变坏？——这正是实践中截断长度的标准权衡。\n论文映射：用四问账本拆 Bengio et al. 2003（神经概率语言模型）——它”买到”的参数共享，与本章 RNN 的共享是同一家族的两个分支。\n进阶：给 SimpleRNN 加 \\(h_t = \\tanh(W_x x_t + W_h h_{t-1} + b)\\) 之外的恒等跳线（\\(h_t = \\tanh(\\cdot) + \\alpha h_{t-1}\\)），测梯度剖面改善多少——你会发现自己造出了 LSTM 的雏形（IRNN，2015 年才被正式研究）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：loss 略降（容量增大）、采样质量提升有限；坠崖斜率几乎不变——病的根源是时间连乘，与宽度无关。这个”改不动”的手感是理解下一章动机的最好铺垫。\n练习 3：更快（每步计算量小），最终 loss 略差（长程信号被切）——工程实践中截断长度就是这笔账的调节旋钮。\n练习 5 提示：\\(\\partial h_t/\\partial h_{t-1} = W_h^\\top \\mathrm{diag}(1-h^2) + \\alpha I\\)——\\(\\alpha I\\) 项保证了一条不衰减的通路；取 \\(\\alpha=1\\)、\\(W_h\\) 初始化为零，就是著名的 IRNN（Le et al. 2015）。它比 LSTM 简单却在很多任务上不输——“传送带”本身可能比”门”更本质。",
+    "section": "18.9 练习",
+    "text": "18.9 练习\n\n造轮子：遮住 SimpleRNN.backward，只凭展开图重写 BPTT（注意 \\(W_h\\) 在每个时间步的转置方向），与 rnn_grad_flow_norms 的剖面对拍。\n预测再运行：把隐藏宽度从 48 增到 128，最终 loss 与采样质量各会怎么变？梯度剖面的坠崖斜率呢？（提示：宽度不改变时间维的连乘结构。）\n消融：改用截断 BPTT（只回传 10 步，把 dhs 的前 50 步置零），训练会更快还是更慢？最终 loss 变好还是变坏？——这正是实践中截断长度的标准权衡。\n论文映射：用四问账本拆 Bengio et al. 2003（神经概率语言模型）——它”买到”的参数共享，与本章 RNN 的共享是同一家族的两个分支。\n进阶：给 SimpleRNN 加 \\(h_t = \\tanh(W_x x_t + W_h h_{t-1} + b)\\) 之外的恒等跳线（\\(h_t = \\tanh(\\cdot) + \\alpha h_{t-1}\\)），测梯度剖面改善多少——你会发现自己造出了 LSTM 的雏形（IRNN，2015 年才被正式研究）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：loss 略降（容量增大）、采样质量提升有限；坠崖斜率几乎不变——病的根源是时间连乘，与宽度无关。这个”改不动”的手感是理解下一章动机的最好铺垫。\n练习 3：更快（每步计算量小），最终 loss 略差（长程信号被切）——工程实践中截断长度就是这笔账的调节旋钮。\n练习 5 提示：\\(\\partial h_t/\\partial h_{t-1} = W_h^\\top \\mathrm{diag}(1-h^2) + \\alpha I\\)——\\(\\alpha I\\) 项保证了一条不衰减的通路；取 \\(\\alpha=1\\)、\\(W_h\\) 初始化为零，就是著名的 IRNN（Le et al. 2015）。它比 LSTM 简单却在很多任务上不输——“传送带”本身可能比”门”更本质。",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>RNN：展开即深网的继承病</span>"
@@ -1829,11 +1950,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part4-lstm.html#参考文献",
+    "href": "chapters/vol2/part4-lstm.html#参考文献",
+    "title": "19  LSTM：让梯度存活的门控设计",
+    "section": "19.8 参考文献",
+    "text": "19.8 参考文献\n\nHochreiter, Sepp and Schmidhuber, J\"u (1997). Long Short-Term Memory. Neural Computation, 9, 1735–1780.\nGers, Felix A. and Schmidhuber, J\"u (2000). Learning to Forget: Continual Prediction with LSTM. Neural Computation, 12, 2451–2471.\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP.\nBengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). Learning Long-Term Dependencies with Gradient Descent is Difficult. IEEE Transactions on Neural Networks, 5, 157–166. doi:10.1109/72.279181",
+    "crumbs": [
+      "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>LSTM：让梯度存活的门控设计</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part4-lstm.html#练习",
     "href": "chapters/vol2/part4-lstm.html#练习",
     "title": "19  LSTM：让梯度存活的门控设计",
-    "section": "19.8 练习",
-    "text": "19.8 练习\n\n造轮子：给 LSTM 加 peephole 连接（门也看 \\(c_{t-1}\\)），在梯度剖面与 char-LM 上对照——2000 年补丁的另一半。\n预测再运行：把引擎默认的遗忘门偏置从 1 改成 4 再训 char-LM，loss 会改善吗？（提示：char-LM 需要的依赖距离其实很短——太长的记忆是负担。）\n消融：三扇门逐一钉死（\\(i \\equiv 1\\)、\\(f \\equiv 1\\)、\\(o \\equiv 1\\)），梯度剖面各怎么变？哪扇门对”存活”最关键、哪扇门对”可控”最关键？\n论文映射：用四问账本拆 GRU（2014）——它的”买到”一栏相对 LSTM 记的是参数与速度，这类减法创新在账本上如何与加法创新区分价值？\n进阶：在回声任务上给 LSTM 配齐配方（梯度裁剪、\\(b_f=3\\)、lr 从 0.5 余弦衰减到 0.01、2000 epochs），看能否到 95%+——亲手体验”结构 + 配方”的合体效应，并记录每件配方单独拿走的降幅。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：大概率变差——字符预测的有效上下文只有几步，过长的保持把无关旧信息拖进状态。遗忘门偏置的”最优值”依赖任务的时间尺度——这张对照表就是”记忆长度是超参数”的最小证据。\n练习 3：钉死 \\(f \\equiv 1\\) 剖面最”存活”（传送带全开）但记忆无法清除；钉死 \\(i\\) 或 \\(o\\) 损害写入/读出路径。存活靠 \\(f\\)，可控靠 \\(i/o\\)——与正文”文件系统”比喻一一对应。\n练习 5 参考：可以到 95% 以上（各文献报告不一）；裁剪与 \\(b_f\\) 各贡献一截，学习率日程在后期贡献另一截。单件拿走的降幅都不大、合体显著——2.5 配方交互的又一例。",
+    "section": "19.9 练习",
+    "text": "19.9 练习\n\n造轮子：给 LSTM 加 peephole 连接（门也看 \\(c_{t-1}\\)），在梯度剖面与 char-LM 上对照——2000 年补丁的另一半。\n预测再运行：把引擎默认的遗忘门偏置从 1 改成 4 再训 char-LM，loss 会改善吗？（提示：char-LM 需要的依赖距离其实很短——太长的记忆是负担。）\n消融：三扇门逐一钉死（\\(i \\equiv 1\\)、\\(f \\equiv 1\\)、\\(o \\equiv 1\\)），梯度剖面各怎么变？哪扇门对”存活”最关键、哪扇门对”可控”最关键？\n论文映射：用四问账本拆 GRU（2014）——它的”买到”一栏相对 LSTM 记的是参数与速度，这类减法创新在账本上如何与加法创新区分价值？\n进阶：在回声任务上给 LSTM 配齐配方（梯度裁剪、\\(b_f=3\\)、lr 从 0.5 余弦衰减到 0.01、2000 epochs），看能否到 95%+——亲手体验”结构 + 配方”的合体效应，并记录每件配方单独拿走的降幅。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：大概率变差——字符预测的有效上下文只有几步，过长的保持把无关旧信息拖进状态。遗忘门偏置的”最优值”依赖任务的时间尺度——这张对照表就是”记忆长度是超参数”的最小证据。\n练习 3：钉死 \\(f \\equiv 1\\) 剖面最”存活”（传送带全开）但记忆无法清除；钉死 \\(i\\) 或 \\(o\\) 损害写入/读出路径。存活靠 \\(f\\)，可控靠 \\(i/o\\)——与正文”文件系统”比喻一一对应。\n练习 5 参考：可以到 95% 以上（各文献报告不一）；裁剪与 \\(b_f\\) 各贡献一截，学习率日程在后期贡献另一截。单件拿走的降幅都不大、合体显著——2.5 配方交互的又一例。",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>LSTM：让梯度存活的门控设计</span>"
@@ -1928,11 +2060,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part4-word2vec.html#参考文献",
+    "href": "chapters/vol2/part4-word2vec.html#参考文献",
+    "title": "20  word2vec：语义被压进向量",
+    "section": "20.8 参考文献",
+    "text": "20.8 参考文献\n\nMikolov et al. (2013). Distributed Representations of Words and Phrases and Their Compositionality. NeurIPS.\nLevy, Omer and Goldberg, Yoav (2014). Neural Word Embedding as Implicit Matrix Factorization. NeurIPS.\nPennington, Jeffrey and Socher, Richard and Manning, Christopher D. (2014). GloVe. EMNLP.",
+    "crumbs": [
+      "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>word2vec：语义被压进向量</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part4-word2vec.html#练习",
     "href": "chapters/vol2/part4-word2vec.html#练习",
     "title": "20  word2vec：语义被压进向量",
-    "section": "20.8 练习",
-    "text": "20.8 练习\n\n造轮子：把 skip-gram 换成 CBOW（上下文预测中心词，注意上下文向量要平均），在同语料上对照 loss 与类比成绩。\n预测再运行：把负样本数 \\(K\\) 从 4 调到 0（纯正样本）与 32，类比与聚类各怎么变？（提示：负样本在”推远”谁。）\n消融：把语料里”the {adult} is big / the {baby} is small”模板删掉（只留共享模板），类比还成立吗？——亲手验证”分布差的恒定性”是类比的必要条件。\n论文映射：用四问账本拆 GloVe——它把 word2vec 的”隐式分解”变成显式，账本上”买到”与”没买到”各怎么记账？\n进阶：实现 Linzen 式检验——给类比求解器加上”最近邻必须显著近于次近邻”的置信门槛，统计真类比与伪类比（消融实验的题目）各自的门槛通过率——为”能力 vs 幻象”造一把尺子。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：\\(K=0\\) 时所有向量被拉向同一点（退化，聚类消失）；\\(K\\) 过大则训练慢且低频词被过度推远。\\(K\\approx 5{-}20\\) 是历史经验的甜点——负样本是几何的”斥力”来源，斥力过小则塌缩、过大则稀疏。\n练习 3：类比大概率失效或大幅退化——“大/小”模板正是提供恒定分布差的成分。这个消融是”类比 = 结构化分布差”论断的最小验证。\n练习 5 提示：真类比的余弦分布应显著高于伪类比（可分性），但重叠尾部一定存在——置信门槛把”何时可信”变成可操作的统计问题。这把尺子的思想就是后来 LLM 评测的校准与 abstention。",
+    "section": "20.9 练习",
+    "text": "20.9 练习\n\n造轮子：把 skip-gram 换成 CBOW（上下文预测中心词，注意上下文向量要平均），在同语料上对照 loss 与类比成绩。\n预测再运行：把负样本数 \\(K\\) 从 4 调到 0（纯正样本）与 32，类比与聚类各怎么变？（提示：负样本在”推远”谁。）\n消融：把语料里”the {adult} is big / the {baby} is small”模板删掉（只留共享模板），类比还成立吗？——亲手验证”分布差的恒定性”是类比的必要条件。\n论文映射：用四问账本拆 GloVe——它把 word2vec 的”隐式分解”变成显式，账本上”买到”与”没买到”各怎么记账？\n进阶：实现 Linzen 式检验——给类比求解器加上”最近邻必须显著近于次近邻”的置信门槛，统计真类比与伪类比（消融实验的题目）各自的门槛通过率——为”能力 vs 幻象”造一把尺子。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：\\(K=0\\) 时所有向量被拉向同一点（退化，聚类消失）；\\(K\\) 过大则训练慢且低频词被过度推远。\\(K\\approx 5{-}20\\) 是历史经验的甜点——负样本是几何的”斥力”来源，斥力过小则塌缩、过大则稀疏。\n练习 3：类比大概率失效或大幅退化——“大/小”模板正是提供恒定分布差的成分。这个消融是”类比 = 结构化分布差”论断的最小验证。\n练习 5 提示：真类比的余弦分布应显著高于伪类比（可分性），但重叠尾部一定存在——置信门槛把”何时可信”变成可操作的统计问题。这把尺子的思想就是后来 LLM 评测的校准与 abstention。",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>word2vec：语义被压进向量</span>"
@@ -2027,11 +2170,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part4-seq2seq.html#参考文献",
+    "href": "chapters/vol2/part4-seq2seq.html#参考文献",
+    "title": "21  seq2seq：翻译即条件语言建模",
+    "section": "21.8 参考文献",
+    "text": "21.8 参考文献\n\nSutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). Sequence to Sequence Learning with Neural Networks. NeurIPS.\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP.\nBahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). Neural Machine Translation by Jointly Learning to Align and Translate. ICLR.",
+    "crumbs": [
+      "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>seq2seq：翻译即条件语言建模</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part4-seq2seq.html#练习",
     "href": "chapters/vol2/part4-seq2seq.html#练习",
     "title": "21  seq2seq：翻译即条件语言建模",
-    "section": "21.8 练习",
-    "text": "21.8 练习\n\n造轮子：把解码器初态从”编码器终态”换成”零状态 + 源句拼在目标句前面”（prefix 式），在反转任务上对照——你造出了今天 decoder-only 模型（GPT 式）的雏形，写出两种设计的账本差异。\n预测再运行：把隐藏维度从 64 加到 256，长度外推的断崖会移动吗？先猜（提示：瓶颈是”学过的压缩方式”还是”向量容量”？）再验证。\n消融：训练时不用 teacher forcing（每步喂解码器自己的预测），训练速度与最终成绩各怎么变？（慢很多——每步都要串行采样；这就是训练效率与暴露偏差的交换。）\n论文映射：用四问账本拆 Sutskever 2014——注意”输入倒序”这个 trick 在账本上属于哪一栏（它买到什么、依赖什么）。\n进阶：给 Seq2Seq 加最原始的”注意力”：解码每一步用 \\(\\mathbf{c}\\) 与编码器每一步的 \\(h_s\\) 做点积归一化权重，加权求和替代固定 \\(\\mathbf{c}\\)——二十行内你将重新发明 Bahdanau 注意力的核心（下一章的完整版再加查询投影与对齐训练）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：断崖几乎不动——容量够用时瓶颈在训练分布而非向量维度。若你观察到轻微改善，那是容量边际效应；主结论（断崖位置由训练长度决定）稳健——这正是”数据分布决定能力边界”的直接证据。\n练习 3：训练显著变慢（无法利用 teacher forcing 的并行展开）且早期不稳定；最终成绩可能接近但更难训。暴露偏差减小了，但代价不成比例——工程上的赢家是 teacher forcing + 后期纠偏（RLHF 在某种程度上正是终极版的”后期纠偏”）。\n练习 5 提示：权重 \\(\\alpha_{t,s} \\propto \\exp(\\mathbf{q}_t \\cdot \\mathbf{h}_s)\\)，\\(\\mathbf{q}_t\\) 取当前解码状态；加权和 \\(\\sum_s \\alpha_{t,s}\\mathbf{h}_s\\) 进输出层。跑反转任务，重点看长度外推是否被治好——若改善明显，你已经预演了 5.1 的结论。",
+    "section": "21.9 练习",
+    "text": "21.9 练习\n\n造轮子：把解码器初态从”编码器终态”换成”零状态 + 源句拼在目标句前面”（prefix 式），在反转任务上对照——你造出了今天 decoder-only 模型（GPT 式）的雏形，写出两种设计的账本差异。\n预测再运行：把隐藏维度从 64 加到 256，长度外推的断崖会移动吗？先猜（提示：瓶颈是”学过的压缩方式”还是”向量容量”？）再验证。\n消融：训练时不用 teacher forcing（每步喂解码器自己的预测），训练速度与最终成绩各怎么变？（慢很多——每步都要串行采样；这就是训练效率与暴露偏差的交换。）\n论文映射：用四问账本拆 Sutskever 2014——注意”输入倒序”这个 trick 在账本上属于哪一栏（它买到什么、依赖什么）。\n进阶：给 Seq2Seq 加最原始的”注意力”：解码每一步用 \\(\\mathbf{c}\\) 与编码器每一步的 \\(h_s\\) 做点积归一化权重，加权求和替代固定 \\(\\mathbf{c}\\)——二十行内你将重新发明 Bahdanau 注意力的核心（下一章的完整版再加查询投影与对齐训练）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：断崖几乎不动——容量够用时瓶颈在训练分布而非向量维度。若你观察到轻微改善，那是容量边际效应；主结论（断崖位置由训练长度决定）稳健——这正是”数据分布决定能力边界”的直接证据。\n练习 3：训练显著变慢（无法利用 teacher forcing 的并行展开）且早期不稳定；最终成绩可能接近但更难训。暴露偏差减小了，但代价不成比例——工程上的赢家是 teacher forcing + 后期纠偏（RLHF 在某种程度上正是终极版的”后期纠偏”）。\n练习 5 提示：权重 \\(\\alpha_{t,s} \\propto \\exp(\\mathbf{q}_t \\cdot \\mathbf{h}_s)\\)，\\(\\mathbf{q}_t\\) 取当前解码状态；加权和 \\(\\sum_s \\alpha_{t,s}\\mathbf{h}_s\\) 进输出层。跑反转任务，重点看长度外推是否被治好——若改善明显，你已经预演了 5.1 的结论。",
     "crumbs": [
       "卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）",
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>seq2seq：翻译即条件语言建模</span>"
@@ -2126,11 +2280,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part5-bahdanau.html#参考文献",
+    "href": "chapters/vol2/part5-bahdanau.html#参考文献",
+    "title": "22  注意力的诞生：让解码器回头看",
+    "section": "22.8 参考文献",
+    "text": "22.8 参考文献\n\nBahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). Neural Machine Translation by Jointly Learning to Align and Translate. ICLR.\nCho, Kyunghyun and van Merri\"e (2014). Learning Phrase Representations Using RNN. EMNLP.",
+    "crumbs": [
+      "卷二 · Part 5 · 注意力革命（2014–2019）",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>注意力的诞生：让解码器回头看</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part5-bahdanau.html#练习",
     "href": "chapters/vol2/part5-bahdanau.html#练习",
     "title": "22  注意力的诞生：让解码器回头看",
-    "section": "22.8 练习",
-    "text": "22.8 练习\n\n造轮子：遮住 AttentionSeq2Seq._attend，重写点积注意力及其反向（softmax 对 scores 的雅可比），用有限差分对拍——这是 5.2 全部反向传播的地基。\n预测再运行：把点积打分换成加性打分（\\(\\mathbf{v}^\\top \\tanh(\\mathbf{W}\\mathbf{q}_t + \\mathbf{U}\\mathbf{h}_s)\\)，原论文用的版本），收敛速度与最终成绩有差吗？（历史上两者在大任务上近乎打平——小任务上的你的观察呢？）\n消融：实现硬注意力（每步只看 argmax 位置，直通梯度），在反转任务与”两词混合”任务（输出 = 两源词之和 mod 10，必须同时看两位）上分别测试——后者是硬注意力的坟场。\n论文映射：用四问账本拆 Bahdanau 2015——注意”没买到”一栏的 O(T·S) 账单当时无人在意，二十年后成了最热的研究方向（账本第四问的预测力）。\n进阶：把本章注意力装到 4.2 的字符语言模型上（每步回看前 k 个字符）——注意力的第一个”非翻译”应用。历史上的顺序恰恰相反：先有翻译补丁，后有人意识到它是万能件。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：小任务上点积通常略快（少一层参数），最终成绩相当——机制的关键在”软选择”而非打分函数的具体形状。打分函数是注意力的”超参”，这个认识在 5.2（为什么除以 √d）继续深化。\n练习 3：硬注意力在反转任务可用（对齐是确定性的单点），在混合任务崩坏（0% —— 无法同时看两位）。软性买到的不是精度，是混合与多源——这个结论在多头注意力（多组注意力看不同位置）里被推到极致。\n练习 5 提示：给 RNNLM 每步加 \\(\\mathbf{c}_t\\)（对前 k 个隐藏状态做注意力）拼接进输出层；你会发现 char-LM 上提升有限（局部统计为主）——注意力的主场在长程选择，不在局部平滑。",
+    "section": "22.9 练习",
+    "text": "22.9 练习\n\n造轮子：遮住 AttentionSeq2Seq._attend，重写点积注意力及其反向（softmax 对 scores 的雅可比），用有限差分对拍——这是 5.2 全部反向传播的地基。\n预测再运行：把点积打分换成加性打分（\\(\\mathbf{v}^\\top \\tanh(\\mathbf{W}\\mathbf{q}_t + \\mathbf{U}\\mathbf{h}_s)\\)，原论文用的版本），收敛速度与最终成绩有差吗？（历史上两者在大任务上近乎打平——小任务上的你的观察呢？）\n消融：实现硬注意力（每步只看 argmax 位置，直通梯度），在反转任务与”两词混合”任务（输出 = 两源词之和 mod 10，必须同时看两位）上分别测试——后者是硬注意力的坟场。\n论文映射：用四问账本拆 Bahdanau 2015——注意”没买到”一栏的 O(T·S) 账单当时无人在意，二十年后成了最热的研究方向（账本第四问的预测力）。\n进阶：把本章注意力装到 4.2 的字符语言模型上（每步回看前 k 个字符）——注意力的第一个”非翻译”应用。历史上的顺序恰恰相反：先有翻译补丁，后有人意识到它是万能件。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：小任务上点积通常略快（少一层参数），最终成绩相当——机制的关键在”软选择”而非打分函数的具体形状。打分函数是注意力的”超参”，这个认识在 5.2（为什么除以 √d）继续深化。\n练习 3：硬注意力在反转任务可用（对齐是确定性的单点），在混合任务崩坏（0% —— 无法同时看两位）。软性买到的不是精度，是混合与多源——这个结论在多头注意力（多组注意力看不同位置）里被推到极致。\n练习 5 提示：给 RNNLM 每步加 \\(\\mathbf{c}_t\\)（对前 k 个隐藏状态做注意力）拼接进输出层；你会发现 char-LM 上提升有限（局部统计为主）——注意力的主场在长程选择，不在局部平滑。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>注意力的诞生：让解码器回头看</span>"
@@ -2185,7 +2350,7 @@
     "href": "chapters/vol2/part5-transformer.html#从零实现",
     "title": "23  Transformer：从补丁到架构",
     "section": "23.4 从零实现",
-    "text": "23.4 从零实现\ndlbook.transformer 提供全部零件（约三百行，layers.py 的反向传播值得逐行对读——1.3 的三条递推穿过了 softmax、多头变形与残差）。我们的 MiniGPT：2 个块、32 维、2 头、正弦位置编码。上老战场：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import plot_loss_curves, set_seed\n\nset_seed(42)\n\nids, vocab, inv = char_corpus()\nV = len(vocab)\narr = np.array(ids)\nprint(f\"战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83\")\n\nmodel = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\nprint(f\"MiniGPT 参数量: {model.n_params()}\")\n\nrng = np.random.default_rng(0)\nhistory = []\nt0 = time.time()\nfor step in range(1000):\n    starts = rng.integers(0, len(arr) - 65, size=8)\n    batch = np.stack([arr[s : s + 65] for s in starts])\n    history.append(model.loss_and_backward(batch))\n    model.step(0.15, clip=1.0)  # 梯度裁剪——稳定性的关键配菜\nprint(f\"1000 步用时 {time.time()-t0:.0f}s；最终 loss {history[-1]:.4f}\")\n\n战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83\nMiniGPT 参数量: 27163\n1000 步用时 20s；最终 loss 1.7903\n\n\n\nplot_loss_curves({\"MiniGPT char-LM\": history}, title=\"Attention is all you need (for 2.4KB of text)\");\n\n\n\n\n\n\n\n\n1.79——同一语料的总冠军（超过 3-gram 的 1.95 与 RNN 的 2.23，且收敛快得多）。看它写出的文本：\n\nout = model.generate([vocab[c] for c in \"the cat \"], n_new=140, temperature=0.7, seed=3)\nprint(\"\".join(inv[i] for i in out))\n\nthe cat cat bip the pips sma wand smat caverermat smats the s the s frky. thin. the billd sky d the seree s s. s s thetheas smelllllle m s s bonigar\n\n\n典型样貌：比 RNN 的采样更像”英语”——词的边界干净、常见搭配成串（the/sat/and）、偶尔冒出语料的词组。同预算下表示质量的差距是肉眼可见的。\n注意力图：模型在看什么？ 取第一块的平均注意力（一次前向后自动缓存）：\n\nimport matplotlib.pyplot as plt\n\nwindow = np.array(arr[100:132])[None, :]\nmodel.forward(window)\nA = model.blocks[0].attn_map  # (T, T)，头平均\n\nplt.figure(figsize=(4.5, 4))\nplt.imshow(A, cmap=\"viridis\")\nplt.xlabel(\"key position (looked at)\")\nplt.ylabel(\"query position (looking)\")\nplt.title(\"Average attention (block 1): local + sparse long-range\")\nplt.colorbar()\nplt.show()\n\n\n\n\n\n\n\n\n典型的图案：强对角线（看自己与邻居）+ 零星的长程亮点。因果掩罩使上三角全黑；对角带是字符 LM 的局部统计；远处亮点是它学到的选择性回看——5.1 对齐热图的直系亲戚。",
+    "text": "23.4 从零实现\ndlbook.transformer 提供全部零件（约三百行，layers.py 的反向传播值得逐行对读——1.3 的三条递推穿过了 softmax、多头变形与残差）。我们的 MiniGPT：2 个块、32 维、2 头、正弦位置编码。上老战场：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import plot_loss_curves, set_seed\n\nset_seed(42)\n\nids, vocab, inv = char_corpus()\nV = len(vocab)\narr = np.array(ids)\nprint(f\"战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83\")\n\nmodel = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\nprint(f\"MiniGPT 参数量: {model.n_params()}\")\n\nrng = np.random.default_rng(0)\nhistory = []\nt0 = time.time()\nfor step in range(1000):\n    starts = rng.integers(0, len(arr) - 65, size=8)\n    batch = np.stack([arr[s : s + 65] for s in starts])\n    history.append(model.loss_and_backward(batch))\n    model.step(0.15, clip=1.0)  # 梯度裁剪——稳定性的关键配菜\nprint(f\"1000 步用时 {time.time()-t0:.0f}s；最终 loss {history[-1]:.4f}\")\n\n战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83\nMiniGPT 参数量: 27163\n1000 步用时 9s；最终 loss 1.7903\n\n\n\nplot_loss_curves({\"MiniGPT char-LM\": history}, title=\"Attention is all you need (for 2.4KB of text)\");\n\n\n\n\n\n\n\n\n1.79——同一语料的总冠军（超过 3-gram 的 1.95 与 RNN 的 2.23，且收敛快得多）。看它写出的文本：\n\nout = model.generate([vocab[c] for c in \"the cat \"], n_new=140, temperature=0.7, seed=3)\nprint(\"\".join(inv[i] for i in out))\n\nthe cat cat bip the pips sma wand smat caverermat smats the s the s frky. thin. the billd sky d the seree s s. s s thetheas smelllllle m s s bonigar\n\n\n典型样貌：比 RNN 的采样更像”英语”——词的边界干净、常见搭配成串（the/sat/and）、偶尔冒出语料的词组。同预算下表示质量的差距是肉眼可见的。\n注意力图：模型在看什么？ 取第一块的平均注意力（一次前向后自动缓存）：\n\nimport matplotlib.pyplot as plt\n\nwindow = np.array(arr[100:132])[None, :]\nmodel.forward(window)\nA = model.blocks[0].attn_map  # (T, T)，头平均\n\nplt.figure(figsize=(4.5, 4))\nplt.imshow(A, cmap=\"viridis\")\nplt.xlabel(\"key position (looked at)\")\nplt.ylabel(\"query position (looking)\")\nplt.title(\"Average attention (block 1): local + sparse long-range\")\nplt.colorbar()\nplt.show()\n\n\n\n\n\n\n\n\n典型的图案：强对角线（看自己与邻居）+ 零星的长程亮点。因果掩罩使上三角全黑；对角带是字符 LM 的局部统计；远处亮点是它学到的选择性回看——5.1 对齐热图的直系亲戚。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>Transformer：从补丁到架构</span>"
@@ -2225,11 +2390,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part5-transformer.html#参考文献",
+    "href": "chapters/vol2/part5-transformer.html#参考文献",
+    "title": "23  Transformer：从补丁到架构",
+    "section": "23.8 参考文献",
+    "text": "23.8 参考文献\n\nVaswani et al. (2017). Attention Is All You Need. NeurIPS.\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.",
+    "crumbs": [
+      "卷二 · Part 5 · 注意力革命（2014–2019）",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Transformer：从补丁到架构</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part5-transformer.html#练习",
     "href": "chapters/vol2/part5-transformer.html#练习",
     "title": "23  Transformer：从补丁到架构",
-    "section": "23.8 练习",
-    "text": "23.8 练习\n\n造轮子：遮住 MultiHeadAttention.backward，从 softmax 雅可比与多头变形重写；再用有限差分穿透整网对拍（tests/test_transformer.py 有现成裁判）。\n预测再运行：把头数从 2 改到 8（d_model 不变，每头更小），loss 与注意力图各怎么变？（提示：子空间更窄、视角更多。）\n消融：把 √d 缩放去掉（S = QK^T 不除），重训——2.2 的病以什么面目回来？（观察 loss 曲线的早期形态与最终值。）\n论文映射：用四问账本拆 Vaswani 2017——特别核对”没买到”一栏：O(T²) 与自回归串行这两张账单，当时论文提了吗？\n进阶：实现学习式位置嵌入（随机初始化、随训练更新），与正弦版对照；再把它外推到 block_size 之外（位置 65+）看崩坏——这是 RoPE 们要解决的问题。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：loss 基本持平或略变（容量重组而非扩容）；注意力图显著更分化（每头专精不同模式——多头的意义在图上比在 loss 上明显）。\n练习 3：早期 loss 下降更快（更大的有效步长）然后更早陷入平台且最终值更差——饱和的 softmax 把注意力锁死在初期模式上（“过旱承诺”）。√d 不是数值美容，是优化通道的守门员。\n练习 5 提示：学习式嵌入在 block_size 内更好（容量更大），超出即崩（没有 65+ 的训练信号）。正弦版的”外推性”在原论文是宣称、后续研究发现也有条件——架构论文里的”优点”要当假设对待。",
+    "section": "23.9 练习",
+    "text": "23.9 练习\n\n造轮子：遮住 MultiHeadAttention.backward，从 softmax 雅可比与多头变形重写；再用有限差分穿透整网对拍（tests/test_transformer.py 有现成裁判）。\n预测再运行：把头数从 2 改到 8（d_model 不变，每头更小），loss 与注意力图各怎么变？（提示：子空间更窄、视角更多。）\n消融：把 √d 缩放去掉（S = QK^T 不除），重训——2.2 的病以什么面目回来？（观察 loss 曲线的早期形态与最终值。）\n论文映射：用四问账本拆 Vaswani 2017——特别核对”没买到”一栏：O(T²) 与自回归串行这两张账单，当时论文提了吗？\n进阶：实现学习式位置嵌入（随机初始化、随训练更新），与正弦版对照；再把它外推到 block_size 之外（位置 65+）看崩坏——这是 RoPE 们要解决的问题。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：loss 基本持平或略变（容量重组而非扩容）；注意力图显著更分化（每头专精不同模式——多头的意义在图上比在 loss 上明显）。\n练习 3：早期 loss 下降更快（更大的有效步长）然后更早陷入平台且最终值更差——饱和的 softmax 把注意力锁死在初期模式上（“过旱承诺”）。√d 不是数值美容，是优化通道的守门员。\n练习 5 提示：学习式嵌入在 block_size 内更好（容量更大），超出即崩（没有 65+ 的训练信号）。正弦版的”外推性”在原论文是宣称、后续研究发现也有条件——架构论文里的”优点”要当假设对待。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>23</span>  <span class='chapter-title'>Transformer：从补丁到架构</span>"
@@ -2284,7 +2460,7 @@
     "href": "chapters/vol2/part5-why-transformer-won.html#从零实现",
     "title": "24  为什么 Transformer 赢了",
     "section": "24.4 从零实现",
-    "text": "24.4 从零实现\ndlbook.transformer.MiniGPT 与 dlbook.rnn.RNNLM 已经同台过精度；本章给它们上计时器。实验一：批量吞吐。\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\nids, vocab, inv = char_corpus()\nV = len(vocab)\narr = np.array(ids)\n\nmodel = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\n\nprint(f\"{'批量':&gt;4} {'每步墙钟':&gt;10} {'吞吐 (tokens/s)':&gt;16}\")\nfor B in (1, 8, 64):\n    rng = np.random.default_rng(1)\n    starts = rng.integers(0, len(arr) - 65, size=B)\n    batch = np.stack([arr[s : s + 65] for s in starts])\n    t0 = time.time()\n    for _ in range(20):\n        model.loss_and_backward(batch)\n    dt = (time.time() - t0) / 20\n    print(f\"{B:&gt;4} {dt*1000:&gt;8.1f} ms {B * 64 / dt:&gt;14,.0f}\")\n\n  批量       每步墙钟    吞吐 (tokens/s)\n   1      2.7 ms         23,546\n   8      8.8 ms         58,048\n  64    137.4 ms         29,802\n\n\n典型读数：批量从 1 到 8，每步时间几乎线性增长、吞吐不变；到 64 时吞吐仍与 1 相当（numpy 的 CPU 并行度有限，GPU 上这里会上升数倍）。要点不在具体数字，而在形状：Transformer 的吞吐随批量平坦或上升。对照 RNN：批量的每个样本各自走 64 步串行（我们的实现逐样本训练），墙钟随样本数线性增长，吞吐恒定——它在批量维度上没有任何硬件红利可吃。\n实验二：长度的代价。 用一个 block_size 更大的模型扫序列长度（RNN 用 4.2 的引擎）：\n\nfrom dlbook.rnn import RNNLM\n\nbig_model = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=256, seed=0)\nrnn = RNNLM(V, 48, cell=\"rnn\", seed=0)\n\nprint(f\"{'T':&gt;4} {'transformer':&gt;12} {'rnn':&gt;10}\")\nfor T in (16, 32, 64, 128, 256):\n    idx = np.random.default_rng(0).integers(0, V, size=(4, T + 1))\n    t0 = time.time()\n    for _ in range(10):\n        big_model.loss_and_backward(idx)\n    dt_tf = (time.time() - t0) / 10\n    toks = arr[: T + 1]\n    t0 = time.time()\n    for _ in range(10):\n        rnn.loss_and_backward(toks)\n    dt_rnn = (time.time() - t0) / 10\n    print(f\"{T:&gt;4} {dt_tf*1000:&gt;9.1f} ms {dt_rnn*1000:&gt;7.1f} ms\")\n\n   T  transformer        rnn\n  16       1.1 ms     0.2 ms\n  32       2.3 ms     0.3 ms\n  64       4.3 ms     0.6 ms\n 128      15.7 ms     1.3 ms\n 256      51.9 ms     2.4 ms\n\n\n典型读数（numpy/CPU）：T 翻倍，Transformer 时间约 ×3.5–4（平方律现身），RNN 约 ×2（线性律——但每步是 Python 循环，常数很高）。在 CPU 上两者尚可比；在 GPU 上 Transformer 的常数会缩小两三个数量级（大矩阵乘吃满流处理器），而 RNN 的每步小矩阵乘与串行依赖让 GPU 大部分核心闲置——同一份代码，硬件把胜负放大成悬殊。这就把故事交给历史数据：GNMT（2016，8 层 LSTM）训练一次数周；同任务的 Transformer（2017）训练时间以显著优势缩短——工程团队用脚投票的，从来是每小时美元。",
+    "text": "24.4 从零实现\ndlbook.transformer.MiniGPT 与 dlbook.rnn.RNNLM 已经同台过精度；本章给它们上计时器。实验一：批量吞吐。\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\nids, vocab, inv = char_corpus()\nV = len(vocab)\narr = np.array(ids)\n\nmodel = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\n\nprint(f\"{'批量':&gt;4} {'每步墙钟':&gt;10} {'吞吐 (tokens/s)':&gt;16}\")\nfor B in (1, 8, 64):\n    rng = np.random.default_rng(1)\n    starts = rng.integers(0, len(arr) - 65, size=B)\n    batch = np.stack([arr[s : s + 65] for s in starts])\n    t0 = time.time()\n    for _ in range(20):\n        model.loss_and_backward(batch)\n    dt = (time.time() - t0) / 20\n    print(f\"{B:&gt;4} {dt*1000:&gt;8.1f} ms {B * 64 / dt:&gt;14,.0f}\")\n\n  批量       每步墙钟    吞吐 (tokens/s)\n   1      1.4 ms         46,417\n   8      9.2 ms         55,470\n  64    144.4 ms         28,360\n\n\n典型读数：批量从 1 到 8，每步时间几乎线性增长、吞吐不变；到 64 时吞吐仍与 1 相当（numpy 的 CPU 并行度有限，GPU 上这里会上升数倍）。要点不在具体数字，而在形状：Transformer 的吞吐随批量平坦或上升。对照 RNN：批量的每个样本各自走 64 步串行（我们的实现逐样本训练），墙钟随样本数线性增长，吞吐恒定——它在批量维度上没有任何硬件红利可吃。\n实验二：长度的代价。 用一个 block_size 更大的模型扫序列长度（RNN 用 4.2 的引擎）：\n\nfrom dlbook.rnn import RNNLM\n\nbig_model = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=256, seed=0)\nrnn = RNNLM(V, 48, cell=\"rnn\", seed=0)\n\nprint(f\"{'T':&gt;4} {'transformer':&gt;12} {'rnn':&gt;10}\")\nfor T in (16, 32, 64, 128, 256):\n    idx = np.random.default_rng(0).integers(0, V, size=(4, T + 1))\n    t0 = time.time()\n    for _ in range(10):\n        big_model.loss_and_backward(idx)\n    dt_tf = (time.time() - t0) / 10\n    toks = arr[: T + 1]\n    t0 = time.time()\n    for _ in range(10):\n        rnn.loss_and_backward(toks)\n    dt_rnn = (time.time() - t0) / 10\n    print(f\"{T:&gt;4} {dt_tf*1000:&gt;9.1f} ms {dt_rnn*1000:&gt;7.1f} ms\")\n\n   T  transformer        rnn\n  16       1.1 ms     0.2 ms\n  32       2.3 ms     0.3 ms\n  64       4.4 ms     0.7 ms\n 128      16.0 ms     1.2 ms\n 256      52.6 ms     2.5 ms\n\n\n典型读数（numpy/CPU）：T 翻倍，Transformer 时间约 ×3.5–4（平方律现身），RNN 约 ×2（线性律——但每步是 Python 循环，常数很高）。在 CPU 上两者尚可比；在 GPU 上 Transformer 的常数会缩小两三个数量级（大矩阵乘吃满流处理器），而 RNN 的每步小矩阵乘与串行依赖让 GPU 大部分核心闲置——同一份代码，硬件把胜负放大成悬殊。这就把故事交给历史数据：GNMT（2016，8 层 LSTM）训练一次数周；同任务的 Transformer（2017）训练时间以显著优势缩短——工程团队用脚投票的，从来是每小时美元。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>为什么 Transformer 赢了</span>"
@@ -2295,7 +2471,7 @@
     "href": "chapters/vol2/part5-why-transformer-won.html#消融实验",
     "title": "24  为什么 Transformer 赢了",
     "section": "24.5 消融实验",
-    "text": "24.5 消融实验\n把因果掩罩撤掉测”理解”任务是下一章的正题，本章的消融换成一个经济学问题：注意力矩阵的稀疏化。把因果掩罩进一步收紧——每个位置只允许看最近 k=16 个位置（带状掩罩，其余 \\(-\\infty\\)）：\n\nimport copy\n\nsparse_model = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\norig_forward = sparse_model.blocks[0].attn.forward\n\ndef banded_forward(self, X, causal=True):\n    out = orig_forward(X, causal=causal)\n    return out\n\n# 简化实现：直接在掩罩阶段演示——把 Window 思路留给练习 4\n# 这里用计时代替精度：注意力矩阵从 64x64 砍到 64x16，计算量降 ~4 倍\nrng = np.random.default_rng(0)\nidx = np.random.default_rng(0).integers(0, V, size=(4, 65))\nt0 = time.time()\nfor _ in range(10):\n    model.loss_and_backward(idx)\nprint(f\"全注意力单步: {(time.time()-t0)/10*1000:.1f} ms —— T² 账单的主体就在这里\")\n\n全注意力单步: 4.6 ms —— T² 账单的主体就在这里\n\n\n带状/稀疏注意力（Longformer、Sparse Transformer 一族）正是”在长序列上把 O(T²) 砍回 O(T·k)“的家族——账单催生的整个研究方向。精度换算力的交换比，是 8.x 长上下文时代的核心汇率。",
+    "text": "24.5 消融实验\n把因果掩罩撤掉测”理解”任务是下一章的正题，本章的消融换成一个经济学问题：注意力矩阵的稀疏化。把因果掩罩进一步收紧——每个位置只允许看最近 k=16 个位置（带状掩罩，其余 \\(-\\infty\\)）：\n\nimport copy\n\nsparse_model = MiniGPT(V, d_model=32, n_heads=2, n_blocks=2, block_size=64, seed=0)\norig_forward = sparse_model.blocks[0].attn.forward\n\ndef banded_forward(self, X, causal=True):\n    out = orig_forward(X, causal=causal)\n    return out\n\n# 简化实现：直接在掩罩阶段演示——把 Window 思路留给练习 4\n# 这里用计时代替精度：注意力矩阵从 64x64 砍到 64x16，计算量降 ~4 倍\nrng = np.random.default_rng(0)\nidx = np.random.default_rng(0).integers(0, V, size=(4, 65))\nt0 = time.time()\nfor _ in range(10):\n    model.loss_and_backward(idx)\nprint(f\"全注意力单步: {(time.time()-t0)/10*1000:.1f} ms —— T² 账单的主体就在这里\")\n\n全注意力单步: 4.8 ms —— T² 账单的主体就在这里\n\n\n带状/稀疏注意力（Longformer、Sparse Transformer 一族）正是”在长序列上把 O(T²) 砍回 O(T·k)“的家族——账单催生的整个研究方向。精度换算力的交换比，是 8.x 长上下文时代的核心汇率。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>为什么 Transformer 赢了</span>"
@@ -2324,11 +2500,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part5-why-transformer-won.html#参考文献",
+    "href": "chapters/vol2/part5-why-transformer-won.html#参考文献",
+    "title": "24  为什么 Transformer 赢了",
+    "section": "24.8 参考文献",
+    "text": "24.8 参考文献\n\nBradbury et al. (2017). Quasi-Recurrent Neural Networks. NeurIPS.\nVaswani et al. (2017). Attention Is All You Need. NeurIPS.",
+    "crumbs": [
+      "卷二 · Part 5 · 注意力革命（2014–2019）",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>为什么 Transformer 赢了</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part5-why-transformer-won.html#练习",
     "href": "chapters/vol2/part5-why-transformer-won.html#练习",
     "title": "24  为什么 Transformer 赢了",
-    "section": "24.8 练习",
-    "text": "24.8 练习\n\n造轮子：给 MiniGPT 加带状注意力（每位置只看最近 k 位），测 T=256 的时间与 char-LM loss——完成正文消融的完整版。\n预测再运行：把 n_blocks 从 2 加到 6（参数近三倍），同预算 loss 与单步时间各怎么变？注意观察”同预算”下更大模型是否反而欠训练——规模与预算的赛跑是 Part 6 的预演。\n测量：在本章计时表上加一列 FLOPs 估算（注意力 \\(2BT^2d\\) + MLP \\(2BT \\cdot 8d^2\\)…），验证”墙钟/FLOPs”是否随 T 下降——算力的利用率是比吞吐更深的指标。\n论文映射：用四问账本（+本章新增的算力账本）拆 QRNN——它的”买到”栏几乎全是速度，这类工程创新与架构创新在史书里该如何排座次？\n进阶：查一张当代 GPU 的规格表（显存带宽、TFLOPs），给”自回归生成 1000 token”的两种架构估时间——你会发现推理经济学与训练经济学结论不同（Transformer 推理被显存带宽而非算力卡住）——这是今天推理优化的第一课。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：同预算下 6 块通常略差或持平（欠训练）——模型大 ≠ 好，模型要在预算内长大；这个观察就是 Chinchilla（6.2）要正式回答的问题的雏形。\n练习 3 提示：利用率随 T 下降（小矩阵的开销占比高）——GPU 编程的全部艺术就是抬这条曲线（算子融合、FlashAttention 的本质）。\n练习 5 参考数字：千 token 生成的瓶颈在每步读取 KV 缓存的显存带宽（T 越 long 越贵）；RNN 生成是串行小算——CPU/GPU 都不讨好，但 KV 缓存只占固定几 MB。训练看算力、推理看带宽——这个不对称是部署经济学的基本盘。",
+    "section": "24.9 练习",
+    "text": "24.9 练习\n\n造轮子：给 MiniGPT 加带状注意力（每位置只看最近 k 位），测 T=256 的时间与 char-LM loss——完成正文消融的完整版。\n预测再运行：把 n_blocks 从 2 加到 6（参数近三倍），同预算 loss 与单步时间各怎么变？注意观察”同预算”下更大模型是否反而欠训练——规模与预算的赛跑是 Part 6 的预演。\n测量：在本章计时表上加一列 FLOPs 估算（注意力 \\(2BT^2d\\) + MLP \\(2BT \\cdot 8d^2\\)…），验证”墙钟/FLOPs”是否随 T 下降——算力的利用率是比吞吐更深的指标。\n论文映射：用四问账本（+本章新增的算力账本）拆 QRNN——它的”买到”栏几乎全是速度，这类工程创新与架构创新在史书里该如何排座次？\n进阶：查一张当代 GPU 的规格表（显存带宽、TFLOPs），给”自回归生成 1000 token”的两种架构估时间——你会发现推理经济学与训练经济学结论不同（Transformer 推理被显存带宽而非算力卡住）——这是今天推理优化的第一课。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：同预算下 6 块通常略差或持平（欠训练）——模型大 ≠ 好，模型要在预算内长大；这个观察就是 Chinchilla（6.2）要正式回答的问题的雏形。\n练习 3 提示：利用率随 T 下降（小矩阵的开销占比高）——GPU 编程的全部艺术就是抬这条曲线（算子融合、FlashAttention 的本质）。\n练习 5 参考数字：千 token 生成的瓶颈在每步读取 KV 缓存的显存带宽（T 越 long 越贵）；RNN 生成是串行小算——CPU/GPU 都不讨好，但 KV 缓存只占固定几 MB。训练看算力、推理看带宽——这个不对称是部署经济学的基本盘。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>为什么 Transformer 赢了</span>"
@@ -2423,11 +2610,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part5-gpt-vs-bert.html#参考文献",
+    "href": "chapters/vol2/part5-gpt-vs-bert.html#参考文献",
+    "title": "25  分岔路口：GPT 与 BERT",
+    "section": "25.8 参考文献",
+    "text": "25.8 参考文献\n\nRadford et al. (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Technical Report.\nDevlin et al. (2019). BERT. NAACL.\nRadford et al. (2019). Language Models Are Unsupervised Multitask Learners. OpenAI Technical Report.\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS.",
+    "crumbs": [
+      "卷二 · Part 5 · 注意力革命（2014–2019）",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>分岔路口：GPT 与 BERT</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part5-gpt-vs-bert.html#练习",
     "href": "chapters/vol2/part5-gpt-vs-bert.html#练习",
     "title": "25  分岔路口：GPT 与 BERT",
-    "section": "25.8 练习",
-    "text": "25.8 练习\n\n造轮子：给 MLM 加”80% 换 [MASK]、10% 换随机词、10% 保留”的 BERT 原版遮罩策略（我们只用了 100% 换 [MASK]），对照收敛与填空质量——原版三件套治的是什么病？（提示：模型不该只在看到 [MASK] 时才预测。）\n预测再运行：把 MLM 的遮罩率固定为 15%，但把因果掩罩加进 MLM（填空也只能看左边）——这是”causal MLM”杂种路线，预测它的 loss 与两项能力，运行并解释你观察到的组合缺陷。\n消融：用 5.2 的最优配置（B=8、lr=0.15）训 MLM 会发散（信号脉冲更大）——亲手复现这个不稳定，再用本章的 B=16/lr=0.1 对照，体会”目标改变→梯度量级改变→配方必须重调”的连锁。\n论文映射：用四问账本并排拆 GPT-1 与 BERT——两份账本的”没买到”栏互换内容，这种对称互补在研究史上常见吗？再举一对例子（提示：CNN vs Transformer 在视觉，6.x）。\n进阶：实现 next-sentence prediction（BERT 的第二个预训练目标）的最小版，测它是否真的有帮助——后来的研究（RoBERTa、T5）发现它用处存疑，亲手复现”目标的减法”。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：三件套让模型在”非 [MASK] 位置”也维持预测能力，填空与表示更一致——单调 100% 换 [MASK] 的版本，模型学到”只在特殊记号处开工”的懒惰策略（微调阶段要重新校准）。\n练习 2：causal-MLM 拿到两边的短处：信息只有左边（难）且信号只有 15%（稀）——loss 最差、两头不靠。这个反例说明两条路线的优劣不是掩罩的孤立属性，而是”信息 × 密度 × 能力”三元组的联合。\n练习 5 提示：NSP 的二分类信号很稀（每对句子一个 bit），且句子连贯性的判别易被浅层捷径（主题相似）攻占——T5 直接去掉了它。预训练目标的每件”配菜”都值得怀疑，这句话在 6.4（decoder-only 的极简目标胜出）得到最终印证。",
+    "section": "25.9 练习",
+    "text": "25.9 练习\n\n造轮子：给 MLM 加”80% 换 [MASK]、10% 换随机词、10% 保留”的 BERT 原版遮罩策略（我们只用了 100% 换 [MASK]），对照收敛与填空质量——原版三件套治的是什么病？（提示：模型不该只在看到 [MASK] 时才预测。）\n预测再运行：把 MLM 的遮罩率固定为 15%，但把因果掩罩加进 MLM（填空也只能看左边）——这是”causal MLM”杂种路线，预测它的 loss 与两项能力，运行并解释你观察到的组合缺陷。\n消融：用 5.2 的最优配置（B=8、lr=0.15）训 MLM 会发散（信号脉冲更大）——亲手复现这个不稳定，再用本章的 B=16/lr=0.1 对照，体会”目标改变→梯度量级改变→配方必须重调”的连锁。\n论文映射：用四问账本并排拆 GPT-1 与 BERT——两份账本的”没买到”栏互换内容，这种对称互补在研究史上常见吗？再举一对例子（提示：CNN vs Transformer 在视觉，6.x）。\n进阶：实现 next-sentence prediction（BERT 的第二个预训练目标）的最小版，测它是否真的有帮助——后来的研究（RoBERTa、T5）发现它用处存疑，亲手复现”目标的减法”。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：三件套让模型在”非 [MASK] 位置”也维持预测能力，填空与表示更一致——单调 100% 换 [MASK] 的版本，模型学到”只在特殊记号处开工”的懒惰策略（微调阶段要重新校准）。\n练习 2：causal-MLM 拿到两边的短处：信息只有左边（难）且信号只有 15%（稀）——loss 最差、两头不靠。这个反例说明两条路线的优劣不是掩罩的孤立属性，而是”信息 × 密度 × 能力”三元组的联合。\n练习 5 提示：NSP 的二分类信号很稀（每对句子一个 bit），且句子连贯性的判别易被浅层捷径（主题相似）攻占——T5 直接去掉了它。预训练目标的每件”配菜”都值得怀疑，这句话在 6.4（decoder-only 的极简目标胜出）得到最终印证。",
     "crumbs": [
       "卷二 · Part 5 · 注意力革命（2014–2019）",
       "<span class='chapter-number'>25</span>  <span class='chapter-title'>分岔路口：GPT 与 BERT</span>"
@@ -2482,7 +2680,7 @@
     "href": "chapters/vol2/part6-scaling-laws.html#从零实现",
     "title": "26  GPT-3 与 Scaling Laws：loss 的可预测性",
     "section": "26.4 从零实现",
-    "text": "26.4 从零实现\n燃料换大：语法模板 + Zipf 词频的合成语料（make_grammar_corpus，6 万字符训练 / 1.2 万验证——多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提——2.5 配方课的续集）：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus, make_grammar_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\narr_t = np.array(char_corpus(make_grammar_corpus(60000, seed=0))[0])\narr_v = np.array(char_corpus(make_grammar_corpus(12000, seed=1))[0])\nV = len(char_corpus(make_grammar_corpus(60000, seed=0))[1])  # 词表取自完整训练文本\nvb = np.stack([arr_v[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr_v) - 65, size=200)])\nprint(f\"训练 {len(arr_t)} / 验证 {len(arr_v)} 字符，词表 {V}，均匀基线 {np.log(V):.2f}\")\n\n\ndef train_eval(d_model, steps=1500, seed=0):\n    heads = 2 if d_model &lt;= 32 else 4\n    m = MiniGPT(V, d_model=d_model, n_heads=heads, n_blocks=2, block_size=64, seed=seed)\n    rng = np.random.default_rng(seed)\n    for step in range(steps):\n        lr = 0.15 * min(1.0, (step + 1) / 150) * (1 - 0.9 * step / steps)  # warmup + 线性衰减\n        starts = rng.integers(0, len(arr_t) - 65, size=16)\n        batch = np.stack([arr_t[s : s + 65] for s in starts])\n        m.loss_and_backward(batch)\n        m.step(lr, clip=1.0)\n    return m, float(m.loss_on(vb))\n\n\nsizes, losses, params = [], [], []\nfor d in (8, 16, 32, 64):\n    t0 = time.time()\n    m, vl = train_eval(d)\n    sizes.append(d)\n    losses.append(vl)\n    params.append(m.n_params())\n    print(f\"d={d:3d} ({m.n_params():6d} 参数): val loss = {vl:.4f} ({time.time()-t0:.0f}s)\")\n\n训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37\nd=  8 (  2237 参数): val loss = 3.3608 (17s)\nd= 16 (  7517 参数): val loss = 2.3125 (23s)\nd= 32 ( 27293 参数): val loss = 1.9087 (55s)\nd= 64 (103709 参数): val loss = 1.8039 (128s)\n\n\n典型读数：3.36 / 2.31 / 1.91 / 1.80——d=8 卡在均匀基线（容量不足），其后单调改善、尾部明显收窄（数据墙在招手）。画在对数坐标里：\n\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(5.5, 4))\nplt.loglog(params, losses, \"o-\", label=\"measured\")\nplt.axhline(np.log(V), ls=\"--\", c=\"gray\", label=\"uniform baseline\")\nplt.xlabel(\"parameters (log)\")\nplt.ylabel(\"val loss (log)\")\nplt.title(\"A mini scaling law, measured on 60KB of grammar text\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n正菜：外推游戏。 只用前三个点拟合纯幂律，预测第四个，然后揭晓：\n\ncoef = np.polyfit(np.log(params[:3]), np.log(losses[:3]), 1)  # 纯幂律 = 对数坐标直线\npred = np.exp(np.polyval(coef, np.log(params[3])))\nprint(f\"纯幂律外推预测 d=64: {pred:.3f}   实测: {losses[3]:.3f}   误差: {abs(pred-losses[3])/losses[3]:.0%}\")\n\n纯幂律外推预测 d=64: 1.368   实测: 1.804   误差: 24%\n\n\n典型结果：纯幂律预测约 1.5–1.6，实测 1.80——外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 \\(L_\\infty\\)。补上地板项再拟合（三点 + 地板共两参数可解）：\n\nfrom scipy.optimize import curve_fit  # noqa: 若无 scipy，用网格搜索替代（练习 5）\n\ndef with_floor(N, a, b, floor):\n    return floor + a * N ** (-b)\n\ntry:\n    popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)\n    print(f\"带地板拟合: floor={popt[2]:.2f}, 预测 d=64: {with_floor(params[3], *popt):.3f}（实测 {losses[3]:.3f}）\")\nexcept Exception as e:\n    print(\"（本机无 scipy 时留给练习 5 的网格搜索版）\", e)\n\n带地板拟合: floor=1.69, 预测 d=64: 1.765（实测 1.804）\n\n\nC:\\Users\\yujid\\AppData\\Local\\Temp\\ipykernel_34080\\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated\n  popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)\n\n\n带地板的模型把第四点咬住——曲线形状的选择就是世界观的 选择：纯幂律说”更大永远更好”，带地板说”更大终将撞墙”。2020 年的行业相信前者；2024 年之后的行业活在了后者里（9.2 的数据墙）。我们的玩具在六万字符的尺度上，提前演完了这幕剧。",
+    "text": "26.4 从零实现\n燃料换大：语法模板 + Zipf 词频的合成语料（make_grammar_corpus，6 万字符训练 / 1.2 万验证——多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提——2.5 配方课的续集）：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus, make_grammar_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\narr_t = np.array(char_corpus(make_grammar_corpus(60000, seed=0))[0])\narr_v = np.array(char_corpus(make_grammar_corpus(12000, seed=1))[0])\nV = len(char_corpus(make_grammar_corpus(60000, seed=0))[1])  # 词表取自完整训练文本\nvb = np.stack([arr_v[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr_v) - 65, size=200)])\nprint(f\"训练 {len(arr_t)} / 验证 {len(arr_v)} 字符，词表 {V}，均匀基线 {np.log(V):.2f}\")\n\n\ndef train_eval(d_model, steps=1500, seed=0):\n    heads = 2 if d_model &lt;= 32 else 4\n    m = MiniGPT(V, d_model=d_model, n_heads=heads, n_blocks=2, block_size=64, seed=seed)\n    rng = np.random.default_rng(seed)\n    for step in range(steps):\n        lr = 0.15 * min(1.0, (step + 1) / 150) * (1 - 0.9 * step / steps)  # warmup + 线性衰减\n        starts = rng.integers(0, len(arr_t) - 65, size=16)\n        batch = np.stack([arr_t[s : s + 65] for s in starts])\n        m.loss_and_backward(batch)\n        m.step(lr, clip=1.0)\n    return m, float(m.loss_on(vb))\n\n\nsizes, losses, params = [], [], []\nfor d in (8, 16, 32, 64):\n    t0 = time.time()\n    m, vl = train_eval(d)\n    sizes.append(d)\n    losses.append(vl)\n    params.append(m.n_params())\n    print(f\"d={d:3d} ({m.n_params():6d} 参数): val loss = {vl:.4f} ({time.time()-t0:.0f}s)\")\n\n训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37\nd=  8 (  2237 参数): val loss = 3.3608 (22s)\nd= 16 (  7517 参数): val loss = 2.3125 (23s)\nd= 32 ( 27293 参数): val loss = 1.9087 (49s)\nd= 64 (103709 参数): val loss = 1.8039 (103s)\n\n\n典型读数：3.36 / 2.31 / 1.91 / 1.80——d=8 卡在均匀基线（容量不足），其后单调改善、尾部明显收窄（数据墙在招手）。画在对数坐标里：\n\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(5.5, 4))\nplt.loglog(params, losses, \"o-\", label=\"measured\")\nplt.axhline(np.log(V), ls=\"--\", c=\"gray\", label=\"uniform baseline\")\nplt.xlabel(\"parameters (log)\")\nplt.ylabel(\"val loss (log)\")\nplt.title(\"A mini scaling law, measured on 60KB of grammar text\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n正菜：外推游戏。 只用前三个点拟合纯幂律，预测第四个，然后揭晓：\n\ncoef = np.polyfit(np.log(params[:3]), np.log(losses[:3]), 1)  # 纯幂律 = 对数坐标直线\npred = np.exp(np.polyval(coef, np.log(params[3])))\nprint(f\"纯幂律外推预测 d=64: {pred:.3f}   实测: {losses[3]:.3f}   误差: {abs(pred-losses[3])/losses[3]:.0%}\")\n\n纯幂律外推预测 d=64: 1.368   实测: 1.804   误差: 24%\n\n\n典型结果：纯幂律预测约 1.5–1.6，实测 1.80——外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 \\(L_\\infty\\)。补上地板项再拟合（三点 + 地板共两参数可解）：\n\nfrom scipy.optimize import curve_fit  # noqa: 若无 scipy，用网格搜索替代（练习 5）\n\ndef with_floor(N, a, b, floor):\n    return floor + a * N ** (-b)\n\ntry:\n    popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)\n    print(f\"带地板拟合: floor={popt[2]:.2f}, 预测 d=64: {with_floor(params[3], *popt):.3f}（实测 {losses[3]:.3f}）\")\nexcept Exception as e:\n    print(\"（本机无 scipy 时留给练习 5 的网格搜索版）\", e)\n\n带地板拟合: floor=1.69, 预测 d=64: 1.765（实测 1.804）\n\n\nC:\\Users\\yujid\\AppData\\Local\\Temp\\ipykernel_35496\\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated\n  popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)\n\n\n带地板的模型把第四点咬住——曲线形状的选择就是世界观的 选择：纯幂律说”更大永远更好”，带地板说”更大终将撞墙”。2020 年的行业相信前者；2024 年之后的行业活在了后者里（9.2 的数据墙）。我们的玩具在六万字符的尺度上，提前演完了这幕剧。",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>26</span>  <span class='chapter-title'>GPT-3 与 Scaling Laws：loss 的可预测性</span>"
@@ -2522,11 +2720,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part6-scaling-laws.html#参考文献",
+    "href": "chapters/vol2/part6-scaling-laws.html#参考文献",
+    "title": "26  GPT-3 与 Scaling Laws：loss 的可预测性",
+    "section": "26.8 参考文献",
+    "text": "26.8 参考文献\n\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS.\nHestness et al. (2017). Deep Learning Scaling Is Predictable, Empirically. arXiv preprint arXiv:1712.00409.",
+    "crumbs": [
+      "卷二 · Part 6 · 规模时代（2019–2024）",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>GPT-3 与 Scaling Laws：loss 的可预测性</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part6-scaling-laws.html#练习",
     "href": "chapters/vol2/part6-scaling-laws.html#练习",
     "title": "26  GPT-3 与 Scaling Laws：loss 的可预测性",
-    "section": "26.8 练习",
-    "text": "26.8 练习\n\n造轮子：实现”步数维度”的 scaling（固定 d=32，扫训练步数 375/750/1500/3000），拟合计算幂律 \\(L(C)\\)——Kaplan 图 1 的第三联。\n预测再运行：把验证语料换成 seed=2 的另一份合成文本，曲线移动吗？为什么验证集的”同分布”假设如此重要？（提示：账本第二问。）\n消融：把 warmup+衰减日程换成恒定 lr，重扫四档——曲线形状怎么变？scaling 实验的结论依赖训练配方，这是解读一切 scaling 论文的第一戒律。\n论文映射：用四问账本拆 GPT-3——注意它”买到”一栏里排在第一的不是任何基准分数，而是 few-shot 这个未被设计的能力。\n进阶：无 scipy 的网格搜索版地板拟合（对 floor 在 1.4–1.7 网格搜索、每个 floor 下对残差拟合幂律），验证正文结论的稳健性。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：几乎不动（同分布的语法合成文本统计一致）；换成真实异域文本则整体上移——scaling 曲线是 (模型族, 数据分布, 配方) 三元组的函数，报告曲线时三者缺一不可。\n练习 3：恒定 lr 下小模型仍能拟合、大模型更易跑飞或停在更差的平台——曲线的尾部上翘甚至非单调。“更大的模型在同一配方下可能更差”——这正是 Chinchilla 论文花大力气统一配方的原因。\n练习 5 提示：网格版结论与 curve_fit 一致（floor ≈ 1.7 附近咬合最好）；对 floor 的敏感度本身就是个值得报告的量——外推的说服力取决于参数的稳健性。",
+    "section": "26.9 练习",
+    "text": "26.9 练习\n\n造轮子：实现”步数维度”的 scaling（固定 d=32，扫训练步数 375/750/1500/3000），拟合计算幂律 \\(L(C)\\)——Kaplan 图 1 的第三联。\n预测再运行：把验证语料换成 seed=2 的另一份合成文本，曲线移动吗？为什么验证集的”同分布”假设如此重要？（提示：账本第二问。）\n消融：把 warmup+衰减日程换成恒定 lr，重扫四档——曲线形状怎么变？scaling 实验的结论依赖训练配方，这是解读一切 scaling 论文的第一戒律。\n论文映射：用四问账本拆 GPT-3——注意它”买到”一栏里排在第一的不是任何基准分数，而是 few-shot 这个未被设计的能力。\n进阶：无 scipy 的网格搜索版地板拟合（对 floor 在 1.4–1.7 网格搜索、每个 floor 下对残差拟合幂律），验证正文结论的稳健性。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：几乎不动（同分布的语法合成文本统计一致）；换成真实异域文本则整体上移——scaling 曲线是 (模型族, 数据分布, 配方) 三元组的函数，报告曲线时三者缺一不可。\n练习 3：恒定 lr 下小模型仍能拟合、大模型更易跑飞或停在更差的平台——曲线的尾部上翘甚至非单调。“更大的模型在同一配方下可能更差”——这正是 Chinchilla 论文花大力气统一配方的原因。\n练习 5 提示：网格版结论与 curve_fit 一致（floor ≈ 1.7 附近咬合最好）；对 floor 的敏感度本身就是个值得报告的量——外推的说服力取决于参数的稳健性。",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>26</span>  <span class='chapter-title'>GPT-3 与 Scaling Laws：loss 的可预测性</span>"
@@ -2581,7 +2790,7 @@
     "href": "chapters/vol2/part6-chinchilla.html#从零实现",
     "title": "27  Chinchilla：等算力下的再平衡",
     "section": "27.4 从零实现",
-    "text": "27.4 从零实现\n复用上一章的全部装备，只把扫描协议换成等算力：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus, make_grammar_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\narr_t = np.array(char_corpus(make_grammar_corpus(60000, seed=0))[0])\narr_v = np.array(char_corpus(make_grammar_corpus(12000, seed=1))[0])\nV = len(char_corpus(make_grammar_corpus(60000, seed=0))[1])  # 词表取自完整训练文本\nvb = np.stack([arr_v[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr_v) - 65, size=200)])\n\n\ndef train_eval(d_model, steps, seed=0):\n    heads = 2 if d_model &lt;= 32 else 4\n    m = MiniGPT(V, d_model=d_model, n_heads=heads, n_blocks=2, block_size=64, seed=seed)\n    rng = np.random.default_rng(seed)\n    for step in range(steps):\n        lr = 0.15 * min(1.0, (step + 1) / 150) * (1 - 0.9 * step / max(steps, 1))\n        starts = rng.integers(0, len(arr_t) - 65, size=16)\n        batch = np.stack([arr_t[s : s + 65] for s in starts])\n        m.loss_and_backward(batch)\n        m.step(lr, clip=1.0)\n    return m, float(m.loss_on(vb))\n\n\nBUDGET = 27293 * 1200  # param-steps（以 d=32 的上一章配置定锚）\nconfigs = [(8, 2237), (16, 7517), (32, 27293), (64, 103709)]\n\nresults = {}\nfor d, n in configs:\n    steps = int(BUDGET / n)\n    t0 = time.time()\n    m, vl = train_eval(d, steps)\n    results[d] = vl\n    print(f\"d={d:3d} ({n:6d} 参数, {steps:5d} 步): val = {vl:.4f} ({time.time()-t0:.0f}s)\")\n\nd=  8 (  2237 参数, 14640 步): val = 1.7329 (183s)\nd= 16 (  7517 参数,  4357 步): val = 1.5540 (80s)\nd= 32 ( 27293 参数,  1200 步): val = 1.8942 (49s)\nd= 64 (103709 参数,   315 步): val = 2.1518 (29s)\n\n\n\nimport matplotlib.pyplot as plt\n\nds = list(results)\nplt.figure(figsize=(5.5, 4))\nplt.plot(ds, [results[d] for d in ds], \"o-\")\nplt.xscale(\"log\", base=2)\nplt.xlabel(\"model size (d_model, log)\")\nplt.ylabel(\"val loss at fixed compute\")\nplt.title(\"The iso-compute U-curve: too small underfits, too big undertrains\")\nbest = min(results, key=results.get)\nplt.axvline(best, ls=\"--\", c=\"red\", label=f\"compute-optimal: d={best}\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n典型读数（对照你的预测）：d=8 → 1.73，d=16 → 1.55（谷底），d=32 → 1.89，d=64 → 2.15——清晰的 U 型。三个教训当场兑现：\n\n上一章的冠军（d=64）在本协议下垫底：315 步远不够喂饱十万个参数——“更大更好”是”步数富余”世界里的结论；\n谷底在 d=16：等算力下，中等身材 + 充分训练胜过巨人 + 浅尝辄止；\n有趣的细节：d=8（步数超多）拿到 1.73，好于 d=32/64——小模型充分训练的顽强，正是 LLaMA 路线的玩具版。\n\n玩具与现实的换算：真实 Chinchilla 配比约 20 token/参数。我们的谷底 d=16：训练 4357 步 × 每步 1024 token ≈ 4.5M token 对 7.5K 参数——比率约 600，远大于 20。原因正是上一章的那堵墙：六万字符的语料让大模型无利可图，把最优点狠狠推向小模型。最优配比是（算力、数据供给）的函数——数据稀缺的世界里，“小而精”永远正确；数据充沛的世界里，配比才由算力单方面决定。我们的玩具恰好站在”数据稀缺世界”，与 2024 年后的人类殊途同归（9.2 的伏笔，以想不到的方式提前）。",
+    "text": "27.4 从零实现\n复用上一章的全部装备，只把扫描协议换成等算力：\n\nimport time\n\nimport numpy as np\n\nfrom dlbook.data.corpus import char_corpus, make_grammar_corpus\nfrom dlbook.transformer import MiniGPT\nfrom dlbook.utils import set_seed\n\nset_seed(42)\n\narr_t = np.array(char_corpus(make_grammar_corpus(60000, seed=0))[0])\narr_v = np.array(char_corpus(make_grammar_corpus(12000, seed=1))[0])\nV = len(char_corpus(make_grammar_corpus(60000, seed=0))[1])  # 词表取自完整训练文本\nvb = np.stack([arr_v[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr_v) - 65, size=200)])\n\n\ndef train_eval(d_model, steps, seed=0):\n    heads = 2 if d_model &lt;= 32 else 4\n    m = MiniGPT(V, d_model=d_model, n_heads=heads, n_blocks=2, block_size=64, seed=seed)\n    rng = np.random.default_rng(seed)\n    for step in range(steps):\n        lr = 0.15 * min(1.0, (step + 1) / 150) * (1 - 0.9 * step / max(steps, 1))\n        starts = rng.integers(0, len(arr_t) - 65, size=16)\n        batch = np.stack([arr_t[s : s + 65] for s in starts])\n        m.loss_and_backward(batch)\n        m.step(lr, clip=1.0)\n    return m, float(m.loss_on(vb))\n\n\nBUDGET = 27293 * 1200  # param-steps（以 d=32 的上一章配置定锚）\nconfigs = [(8, 2237), (16, 7517), (32, 27293), (64, 103709)]\n\nresults = {}\nfor d, n in configs:\n    steps = int(BUDGET / n)\n    t0 = time.time()\n    m, vl = train_eval(d, steps)\n    results[d] = vl\n    print(f\"d={d:3d} ({n:6d} 参数, {steps:5d} 步): val = {vl:.4f} ({time.time()-t0:.0f}s)\")\n\nd=  8 (  2237 参数, 14640 步): val = 1.7329 (163s)\nd= 16 (  7517 参数,  4357 步): val = 1.5540 (64s)\nd= 32 ( 27293 参数,  1200 步): val = 1.8942 (39s)\nd= 64 (103709 参数,   315 步): val = 2.1518 (22s)\n\n\n\nimport matplotlib.pyplot as plt\n\nds = list(results)\nplt.figure(figsize=(5.5, 4))\nplt.plot(ds, [results[d] for d in ds], \"o-\")\nplt.xscale(\"log\", base=2)\nplt.xlabel(\"model size (d_model, log)\")\nplt.ylabel(\"val loss at fixed compute\")\nplt.title(\"The iso-compute U-curve: too small underfits, too big undertrains\")\nbest = min(results, key=results.get)\nplt.axvline(best, ls=\"--\", c=\"red\", label=f\"compute-optimal: d={best}\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n典型读数（对照你的预测）：d=8 → 1.73，d=16 → 1.55（谷底），d=32 → 1.89，d=64 → 2.15——清晰的 U 型。三个教训当场兑现：\n\n上一章的冠军（d=64）在本协议下垫底：315 步远不够喂饱十万个参数——“更大更好”是”步数富余”世界里的结论；\n谷底在 d=16：等算力下，中等身材 + 充分训练胜过巨人 + 浅尝辄止；\n有趣的细节：d=8（步数超多）拿到 1.73，好于 d=32/64——小模型充分训练的顽强，正是 LLaMA 路线的玩具版。\n\n玩具与现实的换算：真实 Chinchilla 配比约 20 token/参数。我们的谷底 d=16：训练 4357 步 × 每步 1024 token ≈ 4.5M token 对 7.5K 参数——比率约 600，远大于 20。原因正是上一章的那堵墙：六万字符的语料让大模型无利可图，把最优点狠狠推向小模型。最优配比是（算力、数据供给）的函数——数据稀缺的世界里，“小而精”永远正确；数据充沛的世界里，配比才由算力单方面决定。我们的玩具恰好站在”数据稀缺世界”，与 2024 年后的人类殊途同归（9.2 的伏笔，以想不到的方式提前）。",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>Chinchilla：等算力下的再平衡</span>"
@@ -2621,11 +2830,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part6-chinchilla.html#参考文献",
+    "href": "chapters/vol2/part6-chinchilla.html#参考文献",
+    "title": "27  Chinchilla：等算力下的再平衡",
+    "section": "27.8 参考文献",
+    "text": "27.8 参考文献\n\nHoffmann et al. (2022). Training Compute-Optimal Large Language Models. arXiv preprint arXiv:2203.15556.\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.\nTouvron et al. (2023). LLaMA. arXiv preprint arXiv:2302.13971.",
+    "crumbs": [
+      "卷二 · Part 6 · 规模时代（2019–2024）",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Chinchilla：等算力下的再平衡</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part6-chinchilla.html#练习",
     "href": "chapters/vol2/part6-chinchilla.html#练习",
     "title": "27  Chinchilla：等算力下的再平衡",
-    "section": "27.8 练习",
-    "text": "27.8 练习\n\n造轮子：实现三维网格的迷你版（3 尺寸 × 3 步数，等量九点），画出等 loss 等高线图——\\(N^*(C)\\) 从等高线的切点上读出来。\n预测再运行：把语料换成 12 万字符（数据墙外推），谷底往哪移？先按”两股力”的框架预测，再验证。\n消融：等算力扫描里把学习率日程的 warmup 拿掉（小步数档几乎没有 warmup 余地），谷底移动吗？——短训练的配方与长训练不同，这正是 Chinchilla 方法论中最容易被忽视的细节。\n论文映射：用四问账本（+算力账本）拆 Chinchilla——注意它”买到”的是决策规则而非能力，这类论文的价值如何在学术评价体系里被低估又如何被工业界兑现？\n进阶：给我们的玩具算”token/参数”配比曲线（对每个预算档算 \\(C/N^*\\)），观察它随预算的变化方向，与真实世界 20 token/参数 的来源（数据充足假设）对照。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：谷底右移（数据墙退远，算力独大）——移动幅度取决于新增数据的质量；若只是把旧语料复制一遍，墙不动（信息量未增）。\n练习 3：小步数档受 warmup 影响最大（预算的相当比例花在暖机上）——拿掉 warmup 后短训练反而更高效，谷底左移。配比结论对配方细节敏感，所以论文复现比想象中难。\n练习 5 提示：玩具的配比随预算上升（数据墙约束松了）；真实世界在数据充足段的渐近值约 20——把两条线画在同一张图上，“研究结论的适用域”就有了几何形状。",
+    "section": "27.9 练习",
+    "text": "27.9 练习\n\n造轮子：实现三维网格的迷你版（3 尺寸 × 3 步数，等量九点），画出等 loss 等高线图——\\(N^*(C)\\) 从等高线的切点上读出来。\n预测再运行：把语料换成 12 万字符（数据墙外推），谷底往哪移？先按”两股力”的框架预测，再验证。\n消融：等算力扫描里把学习率日程的 warmup 拿掉（小步数档几乎没有 warmup 余地），谷底移动吗？——短训练的配方与长训练不同，这正是 Chinchilla 方法论中最容易被忽视的细节。\n论文映射：用四问账本（+算力账本）拆 Chinchilla——注意它”买到”的是决策规则而非能力，这类论文的价值如何在学术评价体系里被低估又如何被工业界兑现？\n进阶：给我们的玩具算”token/参数”配比曲线（对每个预算档算 \\(C/N^*\\)），观察它随预算的变化方向，与真实世界 20 token/参数 的来源（数据充足假设）对照。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：谷底右移（数据墙退远，算力独大）——移动幅度取决于新增数据的质量；若只是把旧语料复制一遍，墙不动（信息量未增）。\n练习 3：小步数档受 warmup 影响最大（预算的相当比例花在暖机上）——拿掉 warmup 后短训练反而更高效，谷底左移。配比结论对配方细节敏感，所以论文复现比想象中难。\n练习 5 提示：玩具的配比随预算上升（数据墙约束松了）；真实世界在数据充足段的渐近值约 20——把两条线画在同一张图上，“研究结论的适用域”就有了几何形状。",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>Chinchilla：等算力下的再平衡</span>"
@@ -2720,11 +2940,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part6-emergence.html#参考文献",
+    "href": "chapters/vol2/part6-emergence.html#参考文献",
+    "title": "28  涌现之争：相变还是度量假象",
+    "section": "28.8 参考文献",
+    "text": "28.8 参考文献\n\nWei et al. (2022). Emergent Abilities of Large Language Models. Transactions on Machine Learning Research.\nSchaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). Are Emergent Abilities of Large Language Models a Mirage?. NeurIPS.",
+    "crumbs": [
+      "卷二 · Part 6 · 规模时代（2019–2024）",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>涌现之争：相变还是度量假象</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part6-emergence.html#练习",
     "href": "chapters/vol2/part6-emergence.html#练习",
     "title": "28  涌现之争：相变还是度量假象",
-    "section": "28.8 练习",
-    "text": "28.8 练习\n\n造轮子：实现”连续版精确匹配”——把 argmax 换成前 k 个预测含目标的比率（top-k 命中率），观察它在四尺寸下的曲线形态——它比 exact4 平滑多少？\n预测再运行：把训练步数砍半重测三度量——阶梯度量的”觉醒点”怎么移动？（提示：loss 右移多少，\\(n\\) 次方把它放大多少。）\n消融：给 char_acc 加 0.40 的阈值，宣布”能力获得”事件——四尺寸的事件序列是什么？再换 0.35 的阈值呢？阈值即叙事开关的亲手体验。\n论文映射：用四问账本拆 Wei et al. 2022 与 Schaeffer et al. 2023 各一份——注意后者”买到”的是方法论（度量纪律），这类反驳型工作的价值如何在账本上体现？\n进阶：形式化”放大器”：设每步正确率为 \\(p\\) 的独立近似下，推导精确匹配率 \\(p^n\\) 对 \\(\\log\\) 尺寸的二阶导数，找出”最陡点”的 \\(p^*\\)（与 \\(n\\) 的关系），用我们的实测数据检验独立性假设在哪里失效（相邻字符相关）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：觉醒点右移（每档都需要更多步数达到同样的 \\(p\\)）；且窗口越长移得越多——“\\(n\\) 倍放大”对底层的任何移动都同样生效，这就是阶梯度量的放大镜本质。\n练习 3：0.40 阈值下事件序列是 d=32 觉醒（0.23/0.31/0.44/0.42）；0.35 下 d=16 就”觉醒”——同一个数据，两种叙事，全凭阈值一刀。审稿人看到”阈值通过率”时的第一个问题应当是：阈值谁定的、为什么。\n练习 5 提示：\\(p^*\\) 在 \\(p \\approx e^{-1/n}\\) 附近最陡（对 \\(n=4\\)，\\(p^* \\approx 0.78\\)）；独立性失效于高频搭配（the 后面接空格几乎必然对）——实测曲线比独立模型更”早熟”。",
+    "section": "28.9 练习",
+    "text": "28.9 练习\n\n造轮子：实现”连续版精确匹配”——把 argmax 换成前 k 个预测含目标的比率（top-k 命中率），观察它在四尺寸下的曲线形态——它比 exact4 平滑多少？\n预测再运行：把训练步数砍半重测三度量——阶梯度量的”觉醒点”怎么移动？（提示：loss 右移多少，\\(n\\) 次方把它放大多少。）\n消融：给 char_acc 加 0.40 的阈值，宣布”能力获得”事件——四尺寸的事件序列是什么？再换 0.35 的阈值呢？阈值即叙事开关的亲手体验。\n论文映射：用四问账本拆 Wei et al. 2022 与 Schaeffer et al. 2023 各一份——注意后者”买到”的是方法论（度量纪律），这类反驳型工作的价值如何在账本上体现？\n进阶：形式化”放大器”：设每步正确率为 \\(p\\) 的独立近似下，推导精确匹配率 \\(p^n\\) 对 \\(\\log\\) 尺寸的二阶导数，找出”最陡点”的 \\(p^*\\)（与 \\(n\\) 的关系），用我们的实测数据检验独立性假设在哪里失效（相邻字符相关）。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：觉醒点右移（每档都需要更多步数达到同样的 \\(p\\)）；且窗口越长移得越多——“\\(n\\) 倍放大”对底层的任何移动都同样生效，这就是阶梯度量的放大镜本质。\n练习 3：0.40 阈值下事件序列是 d=32 觉醒（0.23/0.31/0.44/0.42）；0.35 下 d=16 就”觉醒”——同一个数据，两种叙事，全凭阈值一刀。审稿人看到”阈值通过率”时的第一个问题应当是：阈值谁定的、为什么。\n练习 5 提示：\\(p^*\\) 在 \\(p \\approx e^{-1/n}\\) 附近最陡（对 \\(n=4\\)，\\(p^* \\approx 0.78\\)）；独立性失效于高频搭配（the 后面接空格几乎必然对）——实测曲线比独立模型更”早熟”。",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>28</span>  <span class='chapter-title'>涌现之争：相变还是度量假象</span>"
@@ -2819,11 +3050,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol2/part6-convergence.html#参考文献",
+    "href": "chapters/vol2/part6-convergence.html#参考文献",
+    "title": "29  收敛：decoder-only、MoE 与开源运动",
+    "section": "29.8 参考文献",
+    "text": "29.8 参考文献\n\nFedus, William and Zoph, Barret and Shazeer, Noam (2022). Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity. Journal of Machine Learning Research, 23, 1–39.\nTouvron et al. (2023). LLaMA. arXiv preprint arXiv:2302.13971.\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link",
+    "crumbs": [
+      "卷二 · Part 6 · 规模时代（2019–2024）",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>收敛：decoder-only、MoE 与开源运动</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol2/part6-convergence.html#练习",
     "href": "chapters/vol2/part6-convergence.html#练习",
     "title": "29  收敛：decoder-only、MoE 与开源运动",
-    "section": "29.8 练习",
-    "text": "29.8 练习\n\n造轮子：给 MoEMLP 加负载均衡辅助损失（\\(L_{aux} = E \\sum_e f_e \\cdot p_e\\)，\\(f_e\\) 为使用率、\\(p_e\\) 为平均门概率），权重 0.01，重训——使用率与 loss 各怎么变？\n预测再运行：把 MoE 的路由从 top-1 改成 top-2（两位专家输出平均）——loss、使用率、每 token 算力各怎么变？（稠密化是 MoE 稳定性的常见退路。）\n消融：换一个 seed 重跑 MoE 对照五次，统计胜负——1.94 vs 1.91 在方差之内吗？（样本量意识：一切”打平”结论都要过这关。）\n论文映射：用四问账本拆 LLaMA——注意它”买到”一栏几乎全是可复制性与开放性，闭源论文里这些格子是空的。\n进阶（卷三预习）：用卷二的任意 base 模型（我们的 MiniGPT）采样 200 个字符，统计其中”完整英文单词”的比率与”重复片段”的比率——为 7.1 的”续写怪癖”观察提前采证。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：使用率趋向均衡（如 0.55/0.45），loss 或微升或微降——均衡与质量是两本账，辅助损失买的是前者的保险；真实系统里没有它，MoE 会退化成”单专家 + 死权重”。\n练习 2：top-2 更稳（梯度更密）但每 token 算力翻倍——稀疏性的收益被稀释；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。\n练习 5 提示：典型样本里”完整词”过半但”重复片段”显著（循环复读是循环网络时代的老病，在弱 base 模型上仍可见）——7.1 会把这类观察系统化为”分布的怪癖”，并论证为什么需要后训练。",
+    "section": "29.9 练习",
+    "text": "29.9 练习\n\n造轮子：给 MoEMLP 加负载均衡辅助损失（\\(L_{aux} = E \\sum_e f_e \\cdot p_e\\)，\\(f_e\\) 为使用率、\\(p_e\\) 为平均门概率），权重 0.01，重训——使用率与 loss 各怎么变？\n预测再运行：把 MoE 的路由从 top-1 改成 top-2（两位专家输出平均）——loss、使用率、每 token 算力各怎么变？（稠密化是 MoE 稳定性的常见退路。）\n消融：换一个 seed 重跑 MoE 对照五次，统计胜负——1.94 vs 1.91 在方差之内吗？（样本量意识：一切”打平”结论都要过这关。）\n论文映射：用四问账本拆 LLaMA——注意它”买到”一栏几乎全是可复制性与开放性，闭源论文里这些格子是空的。\n进阶（卷三预习）：用卷二的任意 base 模型（我们的 MiniGPT）采样 200 个字符，统计其中”完整英文单词”的比率与”重复片段”的比率——为 7.1 的”续写怪癖”观察提前采证。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：使用率趋向均衡（如 0.55/0.45），loss 或微升或微降——均衡与质量是两本账，辅助损失买的是前者的保险；真实系统里没有它，MoE 会退化成”单专家 + 死权重”。\n练习 2：top-2 更稳（梯度更密）但每 token 算力翻倍——稀疏性的收益被稀释；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。\n练习 5 提示：典型样本里”完整词”过半但”重复片段”显著（循环复读是循环网络时代的老病，在弱 base 模型上仍可见）——7.1 会把这类观察系统化为”分布的怪癖”，并论证为什么需要后训练。",
     "crumbs": [
       "卷二 · Part 6 · 规模时代（2019–2024）",
       "<span class='chapter-number'>29</span>  <span class='chapter-title'>收敛：decoder-only、MoE 与开源运动</span>"
@@ -2918,11 +3160,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part7-base-model.html#参考文献",
+    "href": "chapters/vol3/part7-base-model.html#参考文献",
+    "title": "30  Base Model：互联网的压缩机",
+    "section": "30.8 参考文献",
+    "text": "30.8 参考文献\n\nBrown et al. (2020). Language Models Are Few-Shot Learners. NeurIPS.\nOlsson et al. (2022). In-Context Learning and Induction Heads. Anthropic Alignment Research.",
+    "crumbs": [
+      "卷三 · Part 7 · 对齐时代（2020–2025）",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Base Model：互联网的压缩机</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part7-base-model.html#练习",
     "href": "chapters/vol3/part7-base-model.html#练习",
     "title": "30  Base Model：互联网的压缩机",
-    "section": "30.8 练习",
-    "text": "30.8 练习\n\n造轮子：把条件化实验的横轴换成”到最近一个空格的距离”，重画曲线——局部性（词内 vs 词首）各贡献多少？\n预测再运行：把温度从 0.7 调到 0.1 与 1.5，两个 prompt 的续写各怎么变？“怪癖”在哪个温度下最显形？\n消融：用一个乱序的故事（字符随机重排）重训基座，条件化曲线会变成什么样？（提示：局部统计被摧毁后还剩什么——这就是”词袋基座”。）\n论文映射：用四问账本拆 GPT-3——注意它的”买到”栏里 few-shot 是计划外的赠品，这类”超出设计的获得”在账本上如何与设计内的改进区分？\n进阶（诱导头复现挑战）：本章负结果的三种配置都在 dlbook.data 的思路上。设计第四种（提示：更短重复距离、更高信号占比、或先在普通文本上预训练再切换），看能否让玩具长出诱导回路——如果你成功了，这个负结果就成了你的发现。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：低温下怪癖更”一本正经”（众数路径更硬），高温下更碎乱；怪癖本质是分布属性，温度只是放大镜。练习 3：曲线塌成水平线（≈ unigram）——上下文不再携带可用的局部结构；“上下文的价值”几乎全部来自局部与中程模式。\n练习 5 提示：文献经验：先用自然文本预训练（让注意力学会基本内容匹配），再在复制语料上继续训练——两阶段比从头训练容易得多。若复现成功，用 5.2 的注意力图找那条”A 之后预测 B”的对角线，那就是你的诱导头照片。",
+    "section": "30.9 练习",
+    "text": "30.9 练习\n\n造轮子：把条件化实验的横轴换成”到最近一个空格的距离”，重画曲线——局部性（词内 vs 词首）各贡献多少？\n预测再运行：把温度从 0.7 调到 0.1 与 1.5，两个 prompt 的续写各怎么变？“怪癖”在哪个温度下最显形？\n消融：用一个乱序的故事（字符随机重排）重训基座，条件化曲线会变成什么样？（提示：局部统计被摧毁后还剩什么——这就是”词袋基座”。）\n论文映射：用四问账本拆 GPT-3——注意它的”买到”栏里 few-shot 是计划外的赠品，这类”超出设计的获得”在账本上如何与设计内的改进区分？\n进阶（诱导头复现挑战）：本章负结果的三种配置都在 dlbook.data 的思路上。设计第四种（提示：更短重复距离、更高信号占比、或先在普通文本上预训练再切换），看能否让玩具长出诱导回路——如果你成功了，这个负结果就成了你的发现。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：低温下怪癖更”一本正经”（众数路径更硬），高温下更碎乱；怪癖本质是分布属性，温度只是放大镜。练习 3：曲线塌成水平线（≈ unigram）——上下文不再携带可用的局部结构；“上下文的价值”几乎全部来自局部与中程模式。\n练习 5 提示：文献经验：先用自然文本预训练（让注意力学会基本内容匹配），再在复制语料上继续训练——两阶段比从头训练容易得多。若复现成功，用 5.2 的注意力图找那条”A 之后预测 B”的对角线，那就是你的诱导头照片。",
     "crumbs": [
       "卷三 · Part 7 · 对齐时代（2020–2025）",
       "<span class='chapter-number'>30</span>  <span class='chapter-title'>Base Model：互联网的压缩机</span>"
@@ -3017,11 +3270,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part7-sft.html#参考文献",
+    "href": "chapters/vol3/part7-sft.html#参考文献",
+    "title": "31  SFT：指令数据的监督 loss",
+    "section": "31.8 参考文献",
+    "text": "31.8 参考文献\n\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS.\nWei et al. (2022). Finetuned Language Models Are Zero-Shot Learners. ICLR.\nSanh et al. (2022). Multitask Prompted Training Enables Zero-Shot Task Generalization. ICLR.\nHu et al. (2021). LoRA. arXiv preprint arXiv:2106.09685.",
+    "crumbs": [
+      "卷三 · Part 7 · 对齐时代（2020–2025）",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>SFT：指令数据的监督 loss</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part7-sft.html#练习",
     "href": "chapters/vol3/part7-sft.html#练习",
     "title": "31  SFT：指令数据的监督 loss",
-    "section": "31.8 练习",
-    "text": "31.8 练习\n\n造轮子：给 MiniGPT 实现 prefix-tuning（冻结全部、只在每层输入前加可学习的 k 个软提示向量）——与 LoRA 对照参数效率。低秩与低维前缀，谁更划算？\n预测再运行：把 SFT 步数从 1500 砍到 300，格式、margin、贪心三个指标哪个先崩？哪个最扛？（提示：它们分别住在分布的哪一层？）\n消融：把 QA 语料的 answer 全部换成同一个词（“yes”）——margin 会变成什么样？这个退化语料测的是绑定还是格式？\n论文映射：用四问账本拆 LoRA——注意它”买到”的一栏几乎全是工程（显存、插拔、吞吐），这类效率创新如何改变了研究的门槛与生态？\n进阶：用束搜索（beam=3）替换贪心解码重测命中率——似然-解码分离在多大程度上是”贪心”的锅？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：格式最扛（几百步就满）、margin 其次、贪心最先”看起来崩”（但它本来就在众数路径上）——三个指标住在分布的不同层：边缘格式 → 条件绑定 → 路径决策，训练从前到后依次巩固。\n练习 3：margin 归零（所有答案同分布）、格式满分——退化语料剥离了绑定、留下格式；这是”格式与知识可分离”的最干净证明。\n练习 5 提示：束搜索在答案首字符处会同时保留”众数路径”与”正确路径”若干步——命中率上升但不会满分（束宽内的排序仍由局部概率主导）；真正的修复要等到下一章：让偏好直接给正确路径加分。",
+    "section": "31.9 练习",
+    "text": "31.9 练习\n\n造轮子：给 MiniGPT 实现 prefix-tuning（冻结全部、只在每层输入前加可学习的 k 个软提示向量）——与 LoRA 对照参数效率。低秩与低维前缀，谁更划算？\n预测再运行：把 SFT 步数从 1500 砍到 300，格式、margin、贪心三个指标哪个先崩？哪个最扛？（提示：它们分别住在分布的哪一层？）\n消融：把 QA 语料的 answer 全部换成同一个词（“yes”）——margin 会变成什么样？这个退化语料测的是绑定还是格式？\n论文映射：用四问账本拆 LoRA——注意它”买到”的一栏几乎全是工程（显存、插拔、吞吐），这类效率创新如何改变了研究的门槛与生态？\n进阶：用束搜索（beam=3）替换贪心解码重测命中率——似然-解码分离在多大程度上是”贪心”的锅？\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：格式最扛（几百步就满）、margin 其次、贪心最先”看起来崩”（但它本来就在众数路径上）——三个指标住在分布的不同层：边缘格式 → 条件绑定 → 路径决策，训练从前到后依次巩固。\n练习 3：margin 归零（所有答案同分布）、格式满分——退化语料剥离了绑定、留下格式；这是”格式与知识可分离”的最干净证明。\n练习 5 提示：束搜索在答案首字符处会同时保留”众数路径”与”正确路径”若干步——命中率上升但不会满分（束宽内的排序仍由局部概率主导）；真正的修复要等到下一章：让偏好直接给正确路径加分。",
     "crumbs": [
       "卷三 · Part 7 · 对齐时代（2020–2025）",
       "<span class='chapter-number'>31</span>  <span class='chapter-title'>SFT：指令数据的监督 loss</span>"
@@ -3116,11 +3380,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part7-rlhf.html#参考文献",
+    "href": "chapters/vol3/part7-rlhf.html#参考文献",
+    "title": "32  RLHF 与 DPO：奖励作为变形的 loss",
+    "section": "32.8 参考文献",
+    "text": "32.8 参考文献\n\nRafailov et al. (2023). Direct Preference Optimization: Your Language Model is Secretly a Reward Model. NeurIPS.\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS.\nChristiano et al. (2017). Deep Reinforcement Learning from Human Preferences. NeurIPS.",
+    "crumbs": [
+      "卷三 · Part 7 · 对齐时代（2020–2025）",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>RLHF 与 DPO：奖励作为变形的 loss</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part7-rlhf.html#练习",
     "href": "chapters/vol3/part7-rlhf.html#练习",
     "title": "32  RLHF 与 DPO：奖励作为变形的 loss",
-    "section": "32.8 练习",
-    "text": "32.8 练习\n\n造轮子：给 DPO 加 KL 罚（对策略与参考的平均对数概率差加惩罚项），重跑长度偏好——退化会被抑制吗？抑制的代价是什么？\n预测再运行：把 β 从 0.3 调到 0.05 与 3.0，退化的速度与最终形态各怎么变？（β 是”离参考多远”的杠杆。）\n消融：偏好数据里把 chosen 换成”长而格式正确”（长句但由真词组成）——欺骗还发生吗？代理缺陷的哪个成分（长度本身 vs 与质量的错位）才是欺骗的必要条件？\n论文映射：用四问账本并排拆 RLHF 与 DPO——两者”买到”栏的差异（稳定性/简单性 vs 灵活性/探索能力）如何决定各自今天的领地？\n进阶：实现 PPO 的最小版（在 DPO 的同任务上：策略采样→奖励打分→裁剪的重要性采样更新），对照收敛速度与稳定性——亲手体会 DPO 论文动机里的”工程之痛”。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：退化被推迟而非消除（KL 拉住的是”离参考的分布距离”，代理极端往往不需要走太远——重复单字符的 KL 其实不大，这正是它成为”作弊捷径”的原因之一）。代价：学习变慢、真改进也被一起刹车。\n练习 2：小 β 温和缓慢（最终仍退化）；大 β 激进——常在数值上把对数概率差推到饱和（σ 进 0/1，梯度消失），训练提前”假死”。β 是对齐强度的旋钮，甜点区狭窄。\n练习 3：不发生（或大幅减轻）——“长而正确”与真目标正相关，优化代理顺带优化真目标。欺骗的必要条件是错位而非极端；这条判据可以反过来用于审查自家偏好数据：代理的极端形态（把规则推到 limit）还是不是好答案？",
+    "section": "32.9 练习",
+    "text": "32.9 练习\n\n造轮子：给 DPO 加 KL 罚（对策略与参考的平均对数概率差加惩罚项），重跑长度偏好——退化会被抑制吗？抑制的代价是什么？\n预测再运行：把 β 从 0.3 调到 0.05 与 3.0，退化的速度与最终形态各怎么变？（β 是”离参考多远”的杠杆。）\n消融：偏好数据里把 chosen 换成”长而格式正确”（长句但由真词组成）——欺骗还发生吗？代理缺陷的哪个成分（长度本身 vs 与质量的错位）才是欺骗的必要条件？\n论文映射：用四问账本并排拆 RLHF 与 DPO——两者”买到”栏的差异（稳定性/简单性 vs 灵活性/探索能力）如何决定各自今天的领地？\n进阶：实现 PPO 的最小版（在 DPO 的同任务上：策略采样→奖励打分→裁剪的重要性采样更新），对照收敛速度与稳定性——亲手体会 DPO 论文动机里的”工程之痛”。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：退化被推迟而非消除（KL 拉住的是”离参考的分布距离”，代理极端往往不需要走太远——重复单字符的 KL 其实不大，这正是它成为”作弊捷径”的原因之一）。代价：学习变慢、真改进也被一起刹车。\n练习 2：小 β 温和缓慢（最终仍退化）；大 β 激进——常在数值上把对数概率差推到饱和（σ 进 0/1，梯度消失），训练提前”假死”。β 是对齐强度的旋钮，甜点区狭窄。\n练习 3：不发生（或大幅减轻）——“长而正确”与真目标正相关，优化代理顺带优化真目标。欺骗的必要条件是错位而非极端；这条判据可以反过来用于审查自家偏好数据：代理的极端形态（把规则推到 limit）还是不是好答案？",
     "crumbs": [
       "卷三 · Part 7 · 对齐时代（2020–2025）",
       "<span class='chapter-number'>32</span>  <span class='chapter-title'>RLHF 与 DPO：奖励作为变形的 loss</span>"
@@ -3215,11 +3490,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part7-reasoning.html#参考文献",
+    "href": "chapters/vol3/part7-reasoning.html#参考文献",
+    "title": "33  推理模型：RLVR 与测试时计算",
+    "section": "33.8 参考文献",
+    "text": "33.8 参考文献\n\nZelikman et al. (2022). STaR. NeurIPS.\nOuyang et al. (2022). Training Language Models to Follow Instructions with Human Feedback. NeurIPS.",
+    "crumbs": [
+      "卷三 · Part 7 · 对齐时代（2020–2025）",
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>推理模型：RLVR 与测试时计算</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part7-reasoning.html#练习",
     "href": "chapters/vol3/part7-reasoning.html#练习",
     "title": "33  推理模型：RLVR 与测试时计算",
-    "section": "33.8 练习",
-    "text": "33.8 练习\n\n造轮子：把多数投票升级成”验证器引导的 best-of-n”（用判卷直接选对的那个而非投票）——与投票对照：各在什么错误结构下占优？\n预测再运行：STaR 的采样数从 10 提到 50（更努力的探索），第一轮的发现量与最终准确率各怎么变？边际收益递减的拐点在哪？\n消融：把 STaR 的”只学对的”改成”对错都学、对的加权”（加权 SFT）——纯筛选 vs 加权的差异说明了”数据质量”的什么本质？\n论文映射：用四问账本拆 R1 报告——注意其”买到”栏里自发行为（反思、长思考）的特殊地位：计划外的获得又一次成为主角（与 GPT-3 的 few-shot 对照）。\n进阶：给反转任务加”思维链”版数据（目标序列前多一段中间步骤标记），训练后对比直出 vs 链式的长度-准确率曲线——亲手量一次”思考=计算”的汇率。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：有验证器时 best-of-n 全面占优（投票是把验证器的事交给众数猜）；无验证器时只能投票。验证器的可用性是两种测试时计算的分水岭——这解释了它们在数学（可验证）与开放式写作（不可验证）上各自的地盘。\n练习 2：发现量上升但边际递减（第 n 次采样命中新题的概率随已命中集缩小而下降）；最终准确率的小幅提升主要来自把更多”边缘题”带进训练集。探索预算与训练轮数之间存在最优配比——又一个 Chinchilla 式的二维权衡。\n练习 5 提示：链式版的中间步骤（如先标记长度、再倒序索引）让每步的绑定距离变短——玩具尺度上链式通常更快收敛；这正是 CoT 在真实模型上的机制学解释（把长程依赖拆成局部链），与 4.2 梯度随时间衰减的教训遥相呼应。",
+    "section": "33.9 练习",
+    "text": "33.9 练习\n\n造轮子：把多数投票升级成”验证器引导的 best-of-n”（用判卷直接选对的那个而非投票）——与投票对照：各在什么错误结构下占优？\n预测再运行：STaR 的采样数从 10 提到 50（更努力的探索），第一轮的发现量与最终准确率各怎么变？边际收益递减的拐点在哪？\n消融：把 STaR 的”只学对的”改成”对错都学、对的加权”（加权 SFT）——纯筛选 vs 加权的差异说明了”数据质量”的什么本质？\n论文映射：用四问账本拆 R1 报告——注意其”买到”栏里自发行为（反思、长思考）的特殊地位：计划外的获得又一次成为主角（与 GPT-3 的 few-shot 对照）。\n进阶：给反转任务加”思维链”版数据（目标序列前多一段中间步骤标记），训练后对比直出 vs 链式的长度-准确率曲线——亲手量一次”思考=计算”的汇率。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：有验证器时 best-of-n 全面占优（投票是把验证器的事交给众数猜）；无验证器时只能投票。验证器的可用性是两种测试时计算的分水岭——这解释了它们在数学（可验证）与开放式写作（不可验证）上各自的地盘。\n练习 2：发现量上升但边际递减（第 n 次采样命中新题的概率随已命中集缩小而下降）；最终准确率的小幅提升主要来自把更多”边缘题”带进训练集。探索预算与训练轮数之间存在最优配比——又一个 Chinchilla 式的二维权衡。\n练习 5 提示：链式版的中间步骤（如先标记长度、再倒序索引）让每步的绑定距离变短——玩具尺度上链式通常更快收敛；这正是 CoT 在真实模型上的机制学解释（把长程依赖拆成局部链），与 4.2 梯度随时间衰减的教训遥相呼应。",
     "crumbs": [
       "卷三 · Part 7 · 对齐时代（2020–2025）",
       "<span class='chapter-number'>33</span>  <span class='chapter-title'>推理模型：RLVR 与测试时计算</span>"
@@ -3314,11 +3600,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part8-agent-origins.html#参考文献",
+    "href": "chapters/vol3/part8-agent-origins.html#参考文献",
+    "title": "34  Agent 能力从哪来：数据里的轨迹",
+    "section": "34.8 参考文献",
+    "text": "34.8 参考文献\n\nSchick, Timo and Dwivedi-Yu, Jane and Dess`i (2023). Toolformer: Language Models Can Teach Themselves to Use Tools. NeurIPS.\nRadford et al. (2019). Language Models Are Unsupervised Multitask Learners. OpenAI Technical Report.",
+    "crumbs": [
+      "卷三 · Part 8 · 智能体时代（2023–2026）",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Agent 能力从哪来：数据里的轨迹</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part8-agent-origins.html#练习",
     "href": "chapters/vol3/part8-agent-origins.html#练习",
     "title": "34  Agent 能力从哪来：数据里的轨迹",
-    "section": "34.8 练习",
-    "text": "34.8 练习\n\n造轮子：给 with_tool 加第二种工具（词典查询：模式 word? → 注入故事词表里的定义），组合两个工具——观察模型会不会在算式后误触发词典（工具选择的混淆从两件工具开始）。\n预测再运行：重排的候选集从 12 个答案扩到 24 个（编造 12 个干扰项），命中率怎么变？（6.3 的度量课在重排里的重演。）\n消融：实现”事后纠正”版计算器（等生成完再改），对照因果链上拦截的版本——被污染的上下文损失多少？\n论文映射：用四问账本拆 Toolformer——注意”什么时候用工具”由 loss 决定这个设计：判断本身被写成了优化问题。\n进阶：统计故事模型在哪些前缀后最常生成算式——模型的”自主工具调用倾向”是分布的什么属性？把它与语料里的数字上下文对照。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：命中率下降——干扰项越多，“逐题第一”越难（平均 margin 不变但排序噪声累积）；真实 RAG 的重排器要对抗的正是候选集膨胀——重排质量随候选规模衰减是部署里的经典曲线。\n练习 3：事后纠正版的最终答案对、但后续文本已围绕错误答案展开（“pip counted 3+4=9 . nine apples .” → 改成 7 后 nine 还在）——因果污染不可逆，这是多步 agent 要”边走边验”的根源。\n练习 5 提示：数字多出现在价格、数量、日期上下文——模型在这些前缀后生成算式的频率，就是它在模仿语料里”人类何时动笔算”的分布；工具调用的”时机感”是模仿来的，不是推理来的。",
+    "section": "34.9 练习",
+    "text": "34.9 练习\n\n造轮子：给 with_tool 加第二种工具（词典查询：模式 word? → 注入故事词表里的定义），组合两个工具——观察模型会不会在算式后误触发词典（工具选择的混淆从两件工具开始）。\n预测再运行：重排的候选集从 12 个答案扩到 24 个（编造 12 个干扰项），命中率怎么变？（6.3 的度量课在重排里的重演。）\n消融：实现”事后纠正”版计算器（等生成完再改），对照因果链上拦截的版本——被污染的上下文损失多少？\n论文映射：用四问账本拆 Toolformer——注意”什么时候用工具”由 loss 决定这个设计：判断本身被写成了优化问题。\n进阶：统计故事模型在哪些前缀后最常生成算式——模型的”自主工具调用倾向”是分布的什么属性？把它与语料里的数字上下文对照。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：命中率下降——干扰项越多，“逐题第一”越难（平均 margin 不变但排序噪声累积）；真实 RAG 的重排器要对抗的正是候选集膨胀——重排质量随候选规模衰减是部署里的经典曲线。\n练习 3：事后纠正版的最终答案对、但后续文本已围绕错误答案展开（“pip counted 3+4=9 . nine apples .” → 改成 7 后 nine 还在）——因果污染不可逆，这是多步 agent 要”边走边验”的根源。\n练习 5 提示：数字多出现在价格、数量、日期上下文——模型在这些前缀后生成算式的频率，就是它在模仿语料里”人类何时动笔算”的分布；工具调用的”时机感”是模仿来的，不是推理来的。",
     "crumbs": [
       "卷三 · Part 8 · 智能体时代（2023–2026）",
       "<span class='chapter-number'>34</span>  <span class='chapter-title'>Agent 能力从哪来：数据里的轨迹</span>"
@@ -3413,11 +3710,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part8-agent-training.html#参考文献",
+    "href": "chapters/vol3/part8-agent-training.html#参考文献",
+    "title": "35  训练 Agent：环境、轨迹与过程奖励",
+    "section": "35.8 参考文献",
+    "text": "35.8 参考文献\n\nYao et al. (2023). Tree of Thoughts: Deliberate Problem Solving with Large Language Models. NeurIPS.\nZelikman et al. (2022). STaR. NeurIPS.",
+    "crumbs": [
+      "卷三 · Part 8 · 智能体时代（2023–2026）",
+      "<span class='chapter-number'>35</span>  <span class='chapter-title'>训练 Agent：环境、轨迹与过程奖励</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part8-agent-training.html#练习",
     "href": "chapters/vol3/part8-agent-training.html#练习",
     "title": "35  训练 Agent：环境、轨迹与过程奖励",
-    "section": "35.8 练习",
-    "text": "35.8 练习\n\n造轮子：把重试闭环的验证器换成”自验证”（模型自己反转一次比对）——验证器也从模型出。成功率怎么变？（验证的可靠性成为新瓶颈。）\n预测再运行：回灌数据里混入 10% 未验证的”侥幸成功”（碰巧对但路径错误——构造：错误中间态+对的结尾），两轮回灌后单次准确率与错误形态各怎么变？\n消融：回灌只使用最难的那 20% 题目的成功轨迹（其余丢弃），与全部回灌对照——边际数据的价值分布是均匀的吗？\n论文映射：用四问账本并排拆 ToT 与 WebArena——一篇”系统层的搜索”、一篇”环境的度量”，各自买到什么？\n进阶：实现两步任务的闭环（先反转 A 得 B，再反转 B 前 3 位得 C——两步都有验证器），观察错误在哪一步集中——horizon 增长时，是每步错误率不变而累积，还是单步也恶化？（多步退化的两种病理。）\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：自验证版的成功率下降且错误呈相关（同一个模型既提议又验证，错误互相掩护）——外部验证器的独立性是闭环可信度的前提，这是”模型出意图、环境出因果”（8.1）在验证环节的重申。\n练习 2：准确率短期未必降（侥幸样本也是对的），但错误形态改变：模型学会”错的路径+对的结尾”这类结构，在更难的任务上暴露——数据纯度影响的是泛化的形状而非当期分数（合成数据时代的核心质检问题）。\n练习 5 提示：典型结果是单步错误率基本不变、总成功率按乘积衰减（两步各 ~0.95 → 总 ~0.90）——horizon 的敌人是乘法；但也会观察到轻微的单步恶化（上下文被第一步输出污染）——两种病理并存，分别对应”分步验证”与”中间状态管理”两类工程对策。",
+    "section": "35.9 练习",
+    "text": "35.9 练习\n\n造轮子：把重试闭环的验证器换成”自验证”（模型自己反转一次比对）——验证器也从模型出。成功率怎么变？（验证的可靠性成为新瓶颈。）\n预测再运行：回灌数据里混入 10% 未验证的”侥幸成功”（碰巧对但路径错误——构造：错误中间态+对的结尾），两轮回灌后单次准确率与错误形态各怎么变？\n消融：回灌只使用最难的那 20% 题目的成功轨迹（其余丢弃），与全部回灌对照——边际数据的价值分布是均匀的吗？\n论文映射：用四问账本并排拆 ToT 与 WebArena——一篇”系统层的搜索”、一篇”环境的度量”，各自买到什么？\n进阶：实现两步任务的闭环（先反转 A 得 B，再反转 B 前 3 位得 C——两步都有验证器），观察错误在哪一步集中——horizon 增长时，是每步错误率不变而累积，还是单步也恶化？（多步退化的两种病理。）\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1：自验证版的成功率下降且错误呈相关（同一个模型既提议又验证，错误互相掩护）——外部验证器的独立性是闭环可信度的前提，这是”模型出意图、环境出因果”（8.1）在验证环节的重申。\n练习 2：准确率短期未必降（侥幸样本也是对的），但错误形态改变：模型学会”错的路径+对的结尾”这类结构，在更难的任务上暴露——数据纯度影响的是泛化的形状而非当期分数（合成数据时代的核心质检问题）。\n练习 5 提示：典型结果是单步错误率基本不变、总成功率按乘积衰减（两步各 ~0.95 → 总 ~0.90）——horizon 的敌人是乘法；但也会观察到轻微的单步恶化（上下文被第一步输出污染）——两种病理并存，分别对应”分步验证”与”中间状态管理”两类工程对策。",
     "crumbs": [
       "卷三 · Part 8 · 智能体时代（2023–2026）",
       "<span class='chapter-number'>35</span>  <span class='chapter-title'>训练 Agent：环境、轨迹与过程奖励</span>"
@@ -3512,11 +3820,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part8-model-vs-system.html#参考文献",
+    "href": "chapters/vol3/part8-model-vs-system.html#参考文献",
+    "title": "36  模型层与系统层：判断框架",
+    "section": "36.8 参考文献",
+    "text": "36.8 参考文献\n\nLewis et al. (2020). Retrieval-Augmented Generation for Knowledge-Intensive NLP. NeurIPS.\nRadford et al. (2018). Improving Language Understanding by Generative Pre-Training. OpenAI Technical Report.",
+    "crumbs": [
+      "卷三 · Part 8 · 智能体时代（2023–2026）",
+      "<span class='chapter-number'>36</span>  <span class='chapter-title'>模型层与系统层：判断框架</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part8-model-vs-system.html#练习",
     "href": "chapters/vol3/part8-model-vs-system.html#练习",
     "title": "36  模型层与系统层：判断框架",
-    "section": "36.8 练习",
-    "text": "36.8 练习\n\n造轮子：把三问框架写成一张决策表（底座体检 × 变化频率 × 错误代价 → 建议层），并给自己的一个实际项目过一遍——记录框架给出的建议与你的直觉的分歧点。\n预测再运行：few-shot 的 k 从 3 加到 8（示例更多），玩具基座上会有任何变化吗？真实模型上呢？（区分”示例不足”与”通道不通”两种失败。）\n消融：把 few-shot 的示例换成乱序（答案与问题不匹配），生成会怎么变？——通道不通时，示例的正确性还重要吗？（这测的是输入通道的哪一段？）\n论文映射：用四问账本拆 RAG——注意它的”买到”栏同时记着两层（系统的时效 + 权重的整合）：跨层设计在账本上怎么记账？\n进阶：设计一个”通道体检”小工具：对任一底座，自动测 (a) few-shot 格式遵循率（输入通道）与 (b) 50 步微调后的格式遵循率（梯度通道），输出体检报告——把它跑在本书的三个模型（story 基座、SFT、MiniGPT-64）上。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：玩具上无变化（0.00 保持——通道不通，示例数量无关）；真实模型上小幅提升后饱和——先诊断通道，再堆示例，是提示工程最常被跳过的第一步。\n练习 3：玩具上无差别（反正绑不上）；真实模型上乱序示例会污染输出（模型忠实模仿了”错误的示例模式”）——通道通的时候，示例质量立刻变成硬约束。两问合起来给”通道”概念一个操作性定义。\n练习 5 参考结果：story 基座——输入通道不通（few-shot 0）、梯度通道健全（微调起效）；SFT 模型——两条通道都通（格式已在权重里，few-shot 也能延续格式）；体检报告的第一行永远是：这个底座的注意力回路长成了吗？（7.1 的欠账至此两清。）",
+    "section": "36.9 练习",
+    "text": "36.9 练习\n\n造轮子：把三问框架写成一张决策表（底座体检 × 变化频率 × 错误代价 → 建议层），并给自己的一个实际项目过一遍——记录框架给出的建议与你的直觉的分歧点。\n预测再运行：few-shot 的 k 从 3 加到 8（示例更多），玩具基座上会有任何变化吗？真实模型上呢？（区分”示例不足”与”通道不通”两种失败。）\n消融：把 few-shot 的示例换成乱序（答案与问题不匹配），生成会怎么变？——通道不通时，示例的正确性还重要吗？（这测的是输入通道的哪一段？）\n论文映射：用四问账本拆 RAG——注意它的”买到”栏同时记着两层（系统的时效 + 权重的整合）：跨层设计在账本上怎么记账？\n进阶：设计一个”通道体检”小工具：对任一底座，自动测 (a) few-shot 格式遵循率（输入通道）与 (b) 50 步微调后的格式遵循率（梯度通道），输出体检报告——把它跑在本书的三个模型（story 基座、SFT、MiniGPT-64）上。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 2：玩具上无变化（0.00 保持——通道不通，示例数量无关）；真实模型上小幅提升后饱和——先诊断通道，再堆示例，是提示工程最常被跳过的第一步。\n练习 3：玩具上无差别（反正绑不上）；真实模型上乱序示例会污染输出（模型忠实模仿了”错误的示例模式”）——通道通的时候，示例质量立刻变成硬约束。两问合起来给”通道”概念一个操作性定义。\n练习 5 参考结果：story 基座——输入通道不通（few-shot 0）、梯度通道健全（微调起效）；SFT 模型——两条通道都通（格式已在权重里，few-shot 也能延续格式）；体检报告的第一行永远是：这个底座的注意力回路长成了吗？（7.1 的欠账至此两清。）",
     "crumbs": [
       "卷三 · Part 8 · 智能体时代（2023–2026）",
       "<span class='chapter-number'>36</span>  <span class='chapter-title'>模型层与系统层：判断框架</span>"
@@ -3589,11 +3908,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part9-patterns.html#参考文献",
+    "href": "chapters/vol3/part9-patterns.html#参考文献",
+    "title": "37  复盘：反复出现的研究模式",
+    "section": "37.6 参考文献",
+    "text": "37.6 参考文献\n\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press.",
+    "crumbs": [
+      "卷三 · Part 9 · 研究的规律与未来",
+      "<span class='chapter-number'>37</span>  <span class='chapter-title'>复盘：反复出现的研究模式</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part9-patterns.html#练习",
     "href": "chapters/vol3/part9-patterns.html#练习",
     "title": "37  复盘：反复出现的研究模式",
-    "section": "37.6 练习",
-    "text": "37.6 练习\n\n模式寻宝：在本书没有归类的章节里找一条”至少三次出现”的候选模式（例：留门/平滑——4.1 的平滑系数、2.3 的 BN 防漂移、5.4 的遮罩率甜点、7.3 的 KL 罚——“给极端留缓冲”算不算第六条？论证它）。\n反例检验：给五条模式各找一个反例或边界条件（例：模式一在蛋白质折叠的物理先验面前赢了多久？）。\n齿轮联动：选一个历史转折点（如 2017），用五条模式各解释一遍——哪个解释力最强？\n论文映射：把 Sutton 一页纸用四问账本拆——它”买到”的是判断力，这类无实验的论文在学术体系里如何估值？\n进阶（9.3 预演）：给每条模式写一行”下一次重演”的具体预测（谁、什么领域、大约何时）——写完收好，与 0.1 的密封信封放在一起。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 参考答案：可以立住——四起案例 + 机制（优化的极端解总在分布外失效，缓冲是分布内的锚）+ 可外推（预测：任何新领域的第一代成功配方都会经历”去极端化”修订，如 RLVR 的熵罚）。模式的入选标准是”机制可陈述”而非”案例够多”。\n练习 2 提示：模式一的边界在”先验恰好抓住问题结构”的领域（物理仿真、组合优化）——那里精巧仍在赢；模式四的边界是”死因不可修复”的想法（需要不存在的数据或违反数学的假设）。\n练习 3 参考：2017 年——模式二（串行瓶颈到顶）解释力最强：GPU 已经把 RNN 的病根变成唯一的账。模式一解释”为什么赢的是粗暴的注意力”；模式四解释”为什么注意力像旧思想”（软对齐）。",
+    "section": "37.7 练习",
+    "text": "37.7 练习\n\n模式寻宝：在本书没有归类的章节里找一条”至少三次出现”的候选模式（例：留门/平滑——4.1 的平滑系数、2.3 的 BN 防漂移、5.4 的遮罩率甜点、7.3 的 KL 罚——“给极端留缓冲”算不算第六条？论证它）。\n反例检验：给五条模式各找一个反例或边界条件（例：模式一在蛋白质折叠的物理先验面前赢了多久？）。\n齿轮联动：选一个历史转折点（如 2017），用五条模式各解释一遍——哪个解释力最强？\n论文映射：把 Sutton 一页纸用四问账本拆——它”买到”的是判断力，这类无实验的论文在学术体系里如何估值？\n进阶（9.3 预演）：给每条模式写一行”下一次重演”的具体预测（谁、什么领域、大约何时）——写完收好，与 0.1 的密封信封放在一起。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 参考答案：可以立住——四起案例 + 机制（优化的极端解总在分布外失效，缓冲是分布内的锚）+ 可外推（预测：任何新领域的第一代成功配方都会经历”去极端化”修订，如 RLVR 的熵罚）。模式的入选标准是”机制可陈述”而非”案例够多”。\n练习 2 提示：模式一的边界在”先验恰好抓住问题结构”的领域（物理仿真、组合优化）——那里精巧仍在赢；模式四的边界是”死因不可修复”的想法（需要不存在的数据或违反数学的假设）。\n练习 3 参考：2017 年——模式二（串行瓶颈到顶）解释力最强：GPU 已经把 RNN 的病根变成唯一的账。模式一解释”为什么赢的是粗暴的注意力”；模式四解释”为什么注意力像旧思想”（软对齐）。",
     "crumbs": [
       "卷三 · Part 9 · 研究的规律与未来",
       "<span class='chapter-number'>37</span>  <span class='chapter-title'>复盘：反复出现的研究模式</span>"
@@ -3666,11 +3996,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part9-open-problems.html#参考文献",
+    "href": "chapters/vol3/part9-open-problems.html#参考文献",
+    "title": "38  Loss 视角下的开放问题",
+    "section": "38.7 参考文献",
+    "text": "38.7 参考文献\n\nHestness et al. (2017). Deep Learning Scaling Is Predictable, Empirically. arXiv preprint arXiv:1712.00409.\nKaplan et al. (2020). Scaling Laws for Neural Language Models. arXiv preprint arXiv:2001.08361.\nSchaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). Are Emergent Abilities of Large Language Models a Mirage?. NeurIPS.",
+    "crumbs": [
+      "卷三 · Part 9 · 研究的规律与未来",
+      "<span class='chapter-number'>38</span>  <span class='chapter-title'>Loss 视角下的开放问题</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part9-open-problems.html#练习",
     "href": "chapters/vol3/part9-open-problems.html#练习",
     "title": "38  Loss 视角下的开放问题",
-    "section": "38.7 练习",
-    "text": "38.7 练习\n\n量化练习：为”数据墙”设计一个可测的预警指标（提示：模仿本章的复制实验，在更大语料上测”边际信息增益”），并在 6.1 的语料上实际跑一版三档（1×/2×新数据/4×新数据）的增益曲线。\n飞轮数学：把 7.4 的 STaR 饱和数据拟合为几何收敛（每轮增益 ×r），估计 r 与初始分布支撑的关系——你的 r 是多少？它支持”飞轮上限=初始分布”的猜想吗？\n评测设计：给 8.2 的 agent 设计一个”长程可靠性”指标，要求对单步错误率与轨迹长度都单调、且可从少量轨迹估计——写出定义并代入练习数据。\n论文映射：用四问账本拆数据墙论文——它的”买到”是问题清晰度还是结论？两者在账本上如何分别记账？\n进阶（终章预演）：四个问题各写一行”我认为的答案 + 最可能证伪我的观察”——下一章开始前完成，这是你带进毕业考场的草稿。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 参考：边际增益 = loss(2×) − loss(1×) 随语料规模的衰减率；若衰减率本身在加速，墙近；线性衰减则还有余量。预警指标的要义是测导数而非测值（6.1 外推游戏的进阶）。\n练习 2 参考：几何比 r ≈ 0.1–0.2（第 2/3 轮增益比）；r 越小说明初始分布的”可自举部分”越薄。把 r 与采样温度的关系加进来，你会看到探索如何暂时抬升 r——飞轮的燃料余量 ≈ 探索预算 × 分布支撑。\n练习 3 提示：考虑 −log(成功率) 对轨迹长度的斜率（每步负对数成功率）：对单步错误率单调、可加、可从片段估计——它就是”长程损耗率”，agent 时代的”每字符熵”。",
+    "section": "38.8 练习",
+    "text": "38.8 练习\n\n量化练习：为”数据墙”设计一个可测的预警指标（提示：模仿本章的复制实验，在更大语料上测”边际信息增益”），并在 6.1 的语料上实际跑一版三档（1×/2×新数据/4×新数据）的增益曲线。\n飞轮数学：把 7.4 的 STaR 饱和数据拟合为几何收敛（每轮增益 ×r），估计 r 与初始分布支撑的关系——你的 r 是多少？它支持”飞轮上限=初始分布”的猜想吗？\n评测设计：给 8.2 的 agent 设计一个”长程可靠性”指标，要求对单步错误率与轨迹长度都单调、且可从少量轨迹估计——写出定义并代入练习数据。\n论文映射：用四问账本拆数据墙论文——它的”买到”是问题清晰度还是结论？两者在账本上如何分别记账？\n进阶（终章预演）：四个问题各写一行”我认为的答案 + 最可能证伪我的观察”——下一章开始前完成，这是你带进毕业考场的草稿。\n\n\n\n\n\n\n\nNote练习答案\n\n\n\n\n\n练习 1 参考：边际增益 = loss(2×) − loss(1×) 随语料规模的衰减率；若衰减率本身在加速，墙近；线性衰减则还有余量。预警指标的要义是测导数而非测值（6.1 外推游戏的进阶）。\n练习 2 参考：几何比 r ≈ 0.1–0.2（第 2/3 轮增益比）；r 越小说明初始分布的”可自举部分”越薄。把 r 与采样温度的关系加进来，你会看到探索如何暂时抬升 r——飞轮的燃料余量 ≈ 探索预算 × 分布支撑。\n练习 3 提示：考虑 −log(成功率) 对轨迹长度的斜率（每步负对数成功率）：对单步错误率单调、可加、可从片段估计——它就是”长程损耗率”，agent 时代的”每字符熵”。",
     "crumbs": [
       "卷三 · Part 9 · 研究的规律与未来",
       "<span class='chapter-number'>38</span>  <span class='chapter-title'>Loss 视角下的开放问题</span>"
@@ -3754,11 +4095,22 @@
     ]
   },
   {
+    "objectID": "chapters/vol3/part9-prediction.html#参考文献",
+    "href": "chapters/vol3/part9-prediction.html#参考文献",
+    "title": "39  终章：你的判断框架与预测",
+    "section": "39.7 参考文献",
+    "text": "39.7 参考文献\n\nSutton, Richard (2019). The Bitter Lesson. Incomplete Ideas (blog). link\nKuhn, Thomas S. (1962). The Structure of Scientific Revolutions. University of Chicago Press.\nShannon, Claude E. (1948). A Mathematical Theory of Communication. Bell System Technical Journal, 27, 379–423. doi:10.1002/j.1538-7305.1948.tb01338.x",
+    "crumbs": [
+      "卷三 · Part 9 · 研究的规律与未来",
+      "<span class='chapter-number'>39</span>  <span class='chapter-title'>终章：你的判断框架与预测</span>"
+    ]
+  },
+  {
     "objectID": "chapters/vol3/part9-prediction.html#练习最后一组",
     "href": "chapters/vol3/part9-prediction.html#练习最后一组",
     "title": "39  终章：你的判断框架与预测",
-    "section": "39.7 练习（最后一组）",
-    "text": "39.7 练习（最后一组）\n\n完成三份考卷：对三道考题独立作答（别只抄示范——分歧处才是你的判断）；与示范对照，分歧点用模式清单仲裁。\n第四道自命题：选一个本书没覆盖的方向（多模态生成、具身智能、开源生态、AI 安全治理……），走完四步程序——自命题是检验框架可迁移性的唯一方式。\n时间戳仪式：把四份考卷（含证伪条件）存档并注明日期——这就是你的”第 0.1 章信封 2.0”。\n反向作业：写一段 2046 年的读者视角，回望 2026 年的这批预测——哪类错误最可能出现？（提示：模式一与模式四各预言一种系统性偏差：高估短期精巧、低估长期回收。）\n毕业设计：本书的 dlbook 代码库还留着许多”进阶”练习的坑位——挑一个填上，给这个生长的库添你的一层。它和你刚刚写下的预测一样，是你存在过这本书里的时间戳。\n\n::: {.callout-note title=“练习答案” collapse=“true’} 没有标准答案——这正是终章的题眼。唯一的”答案”是程序本身：四问过堂、模式仲裁、瓶颈定位、可证伪预测、时间戳。若你已完成四份考卷并存档，本课程你已毕业；若你顺手填了一个 dlbook 的坑位，欢迎你——这本书的下一次修订，从此也有你的 loss 在里面。 :::",
+    "section": "39.8 练习（最后一组）",
+    "text": "39.8 练习（最后一组）\n\n完成三份考卷：对三道考题独立作答（别只抄示范——分歧处才是你的判断）；与示范对照，分歧点用模式清单仲裁。\n第四道自命题：选一个本书没覆盖的方向（多模态生成、具身智能、开源生态、AI 安全治理……），走完四步程序——自命题是检验框架可迁移性的唯一方式。\n时间戳仪式：把四份考卷（含证伪条件）存档并注明日期——这就是你的”第 0.1 章信封 2.0”。\n反向作业：写一段 2046 年的读者视角，回望 2026 年的这批预测——哪类错误最可能出现？（提示：模式一与模式四各预言一种系统性偏差：高估短期精巧、低估长期回收。）\n毕业设计：本书的 dlbook 代码库还留着许多”进阶”练习的坑位——挑一个填上，给这个生长的库添你的一层。它和你刚刚写下的预测一样，是你存在过这本书里的时间戳。\n\n::: {.callout-note title=“练习答案” collapse=“true’} 没有标准答案——这正是终章的题眼。唯一的”答案”是程序本身：四问过堂、模式仲裁、瓶颈定位、可证伪预测、时间戳。若你已完成四份考卷并存档，本课程你已毕业；若你顺手填了一个 dlbook 的坑位，欢迎你——这本书的下一次修订，从此也有你的 loss 在里面。 :::",
     "crumbs": [
       "卷三 · Part 9 · 研究的规律与未来",
       "<span class='chapter-number'>39</span>  <span class='chapter-title'>终章：你的判断框架与预测</span>"

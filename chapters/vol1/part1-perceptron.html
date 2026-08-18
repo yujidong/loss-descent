@@ -1107,7 +1107,7 @@ window.Quarto = {
 </div>
 <section id="本章问题" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">4.1</span> 本章问题</h2>
-<p>McCulloch–Pitts 形式神经元 <span class="citation" data-cites="mcculloch1943">(<a href="part0-two-threads.html#ref-mcculloch1943" role="doc-biblioref">McCulloch and Pitts 1943</a>)</span> 已经证明：带权重的阈值逻辑单元<strong>可以表达任何布尔函数</strong>。但它有个致命的脚注：权重是手工设计的。Hebb 在 1949 年 <span class="citation" data-cites="hebb1949">(<a href="part0-two-threads.html#ref-hebb1949" role="doc-biblioref">Hebb 1949</a>)</span> 给出了”同时激活的神经元连接增强”的学习猜想，却没有给出算法，也没有任何保证。</p>
+<p>McCulloch–Pitts 形式神经元 <span class="citation" data-cites="mcculloch1943">(<a href="#ref-mcculloch1943" role="doc-biblioref">McCulloch and Pitts 1943</a>)</span> 已经证明：带权重的阈值逻辑单元<strong>可以表达任何布尔函数</strong>。但它有个致命的脚注：权重是手工设计的。Hebb 在 1949 年 <span class="citation" data-cites="hebb1949">(<a href="#ref-hebb1949" role="doc-biblioref">Hebb 1949</a>)</span> 给出了”同时激活的神经元连接增强”的学习猜想，却没有给出算法，也没有任何保证。</p>
 <p>于是本章的问题是：给一个阈值神经元装上<strong>可自动学习的权重</strong>，会得到什么？具体拆成两问：</p>
 <ol type="1">
 <li>这样一台最简学习机器，能力边界画在哪里——哪些问题它一定能学会？</li>
@@ -1118,8 +1118,8 @@ window.Quarto = {
 <h2 data-number="4.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">4.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>McCulloch–Pitts（1943）</strong>：形式神经元 = 布尔逻辑的门电路。表达了”神经元即计算”的思想，但权重全靠手设——是逻辑学，不是学习。</p>
 <p><strong>Hebb（1949）</strong>：提出神经可力学的学习假说。方向对了（权重应当由经验改变），但规则是相关性的、没有目标信号——它无法被”纠错”，也就没有任何收敛性质可言。</p>
-<p><strong>Rosenblatt（1958）</strong> <span class="citation" data-cites="rosenblatt1958">(<a href="part0-two-threads.html#ref-rosenblatt1958" role="doc-biblioref">Rosenblatt 1958</a>)</span>：跨出的关键一步。他把学习问题工程化为<strong>错误驱动</strong>的规则——只在预测错误时更新权重——并用 IBM 704 模拟、随后造出 Mark I 硬件。随之而来的是海军的经费与媒体的狂欢。</p>
-<p><strong>Minsky 与 Papert（1969）</strong> <span class="citation" data-cites="minsky1969">(<a href="part0-two-threads.html#ref-minsky1969" role="doc-biblioref">Minsky and Papert 1969</a>)</span>：专著《Perceptrons》对单层感知机做了系统的数学解剖，证明了一大类函数（以奇偶性、连通性为代表）<strong>无法</strong>被单层感知机表示。书中对多层网络的悲观只有结尾寥寥数语，却成了杀伤力最大的一段——经费与人才双双撤离。此后十余年，“神经网络”在主流 AI 界近乎脏词。</p>
+<p><strong>Rosenblatt（1958）</strong> <span class="citation" data-cites="rosenblatt1958">(<a href="#ref-rosenblatt1958" role="doc-biblioref">Rosenblatt 1958</a>)</span>：跨出的关键一步。他把学习问题工程化为<strong>错误驱动</strong>的规则——只在预测错误时更新权重——并用 IBM 704 模拟、随后造出 Mark I 硬件。随之而来的是海军的经费与媒体的狂欢。</p>
+<p><strong>Minsky 与 Papert（1969）</strong> <span class="citation" data-cites="minsky1969">(<a href="#ref-minsky1969" role="doc-biblioref">Minsky and Papert 1969</a>)</span>：专著《Perceptrons》对单层感知机做了系统的数学解剖，证明了一大类函数（以奇偶性、连通性为代表）<strong>无法</strong>被单层感知机表示。书中对多层网络的悲观只有结尾寥寥数语，却成了杀伤力最大的一段——经费与人才双双撤离。此后十余年，“神经网络”在主流 AI 界近乎脏词。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>规则只有一行：预测错误时，<span class="math inline">\(w \leftarrow w + y \cdot x\)</span>（<span class="math inline">\(y\)</span> 是真实标签 <span class="math inline">\(\pm 1\)</span>）。拿纸笔完成三件事，<strong>先做第三件再往下读</strong>：</p>
 <ol type="1">
@@ -1143,7 +1143,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">4.4</span> 从零实现</h2>
 <p><code>dlbook.nn.Perceptron</code> 实现了上面的一切（约 30 行），数据来自 <code>dlbook.data</code>。先看辉煌面：线性可分数据上的收敛。</p>
-<div id="00bef2bc" class="cell" data-execution_count="1">
+<div id="a2f14084" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> XOR, XOR_LABELS, make_blobs, make_slab</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.nn <span class="im">import</span> Perceptron</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.utils <span class="im">import</span> plot_linear_boundary, plot_loss_curves, set_seed</span>
@@ -1158,7 +1158,7 @@ window.Quarto = {
 <pre><code>epochs: 3, 总更新次数: 2, 每轮错分: [1, 1, 0]</code></pre>
 </div>
 </div>
-<div id="e6973d54" class="cell" data-execution_count="2">
+<div id="3e3b60ce" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"mistakes per epoch"</span>: mistakes}, title<span class="op">=</span><span class="st">"Separable blobs"</span>, ylabel<span class="op">=</span><span class="st">"mistakes"</span>, logy<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1168,7 +1168,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="7dba0966" class="cell" data-execution_count="3">
+<div id="92d854a0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_linear_boundary(p.w, p.b, X, y, title<span class="op">=</span><span class="st">"Learned boundary (separable case)"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1179,7 +1179,7 @@ window.Quarto = {
 </div>
 </div>
 <p>可分数据上，规则兑现了定理的承诺：几个 epoch 内错分归零、提前停机，边界干干净净。现在，把同一台机器放到 XOR 上——你在「停一停」里没能画出的那条直线，让它自己试试：</p>
-<div id="516be803" class="cell" data-execution_count="4">
+<div id="272af1bc" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p_xor <span class="op">=</span> Perceptron(<span class="dv">2</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mx <span class="op">=</span> p_xor.train(XOR, XOR_LABELS, epochs<span class="op">=</span><span class="dv">50</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"50 轮从未收敛；累计徒劳更新 </span><span class="sc">{</span><span class="bu">sum</span>(mx)<span class="sc">}</span><span class="ss"> 次；稳态每轮错分 </span><span class="sc">{</span>mx[<span class="op">-</span><span class="dv">1</span>]<span class="sc">}</span><span class="ss"> 次"</span>)</span>
@@ -1189,7 +1189,7 @@ window.Quarto = {
 最终 w = [-1.  0.], b = 1.000</code></pre>
 </div>
 </div>
-<div id="a867151c" class="cell" data-execution_count="5">
+<div id="6da65706" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"mistakes per epoch"</span>: mx}, title<span class="op">=</span><span class="st">"XOR: never converges"</span>, ylabel<span class="op">=</span><span class="st">"mistakes"</span>, logy<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1200,7 +1200,7 @@ window.Quarto = {
 </div>
 </div>
 <p>错分数没有发散、没有归零，而是<strong>稳定在每轮 4 次</strong>——机器在四个点之间跳着一支永不停歇的舞。它最终停在 <span class="math inline">\(w = (-1, 0)\)</span>、<span class="math inline">\(b = 1\)</span>：一条 <span class="math inline">\(x_1 = 1\)</span> 的竖线，等价于把预测规则学成了”非 <span class="math inline">\(x_1\)</span>“。画出这条边界，看看它错在哪：</p>
-<div id="a6a708e4" class="cell" data-execution_count="6">
+<div id="583c42e0" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_linear_boundary(p_xor.w, p_xor.b, XOR, XOR_LABELS, title<span class="op">=</span><span class="st">"Where it got stuck (XOR)"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1215,7 +1215,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">4.5</span> 消融实验</h2>
 <p><strong>margin 的平方律</strong>。收敛定理说错误次数 <span class="math inline">\(\sim (R/\gamma)^2\)</span>——间隔每减半，错分应当涨到约四倍。<code>make_slab</code> 生成的两条平行板可以显式控制几何间隔 <span class="math inline">\(\gamma\)</span>：</p>
-<div id="93bfc6e1" class="cell" data-execution_count="7">
+<div id="361c1be8" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'margin γ'</span><span class="sc">:&gt;10}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'总错分'</span><span class="sc">:&gt;8}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'上界 (R/γ)²'</span><span class="sc">:&gt;12}</span><span class="ss">"</span>)</span>
@@ -1276,11 +1276,11 @@ window.Quarto = {
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
-<p><strong>Rosenblatt, F. (1958)</strong> <span class="citation" data-cites="rosenblatt1958">(<a href="part0-two-threads.html#ref-rosenblatt1958" role="doc-biblioref">Rosenblatt 1958</a>)</span>. <em>The perceptron: A probabilistic model for information storage and organization in the brain.</em> Psychological Review 65(6), 386–408.</p>
+<p><strong>Rosenblatt, F. (1958)</strong> <span class="citation" data-cites="rosenblatt1958">(<a href="#ref-rosenblatt1958" role="doc-biblioref">Rosenblatt 1958</a>)</span>. <em>The perceptron: A probabilistic model for information storage and organization in the brain.</em> Psychological Review 65(6), 386–408.</p>
 <ul>
 <li><strong>读什么</strong>：第二部分学习规则的推导与收敛性的讨论——注意作者自己就清楚单层的能力边界；</li>
 <li><strong>跳过什么</strong>：A-单元层的统计细节与脑区类比（生物学动机今天已不重要）；</li>
-<li><strong>历史注</strong>：Minsky &amp; Papert (1969) <span class="citation" data-cites="minsky1969">(<a href="part0-two-threads.html#ref-minsky1969" role="doc-biblioref">Minsky and Papert 1969</a>)</span> <em>Perceptrons</em> 的真实主战场是群不变性定理，“XOR 反例”是大众化提炼；书末对多层的悲观寥寥数语却引发寒冬——<strong>一段话的杀伤力可以超过一个定理</strong>，这是研究史给传播者的教训。同代的 Widrow &amp; Hoff (1960) <span class="citation" data-cites="widrow1960">(<a href="part0-two-threads.html#ref-widrow1960" role="doc-biblioref">Widrow and Hoff 1960</a>)</span> ADALINE 在工程上其实更优雅，我们将在 1.3 再遇到它。</li>
+<li><strong>历史注</strong>：Minsky &amp; Papert (1969) <span class="citation" data-cites="minsky1969">(<a href="#ref-minsky1969" role="doc-biblioref">Minsky and Papert 1969</a>)</span> <em>Perceptrons</em> 的真实主战场是群不变性定理，“XOR 反例”是大众化提炼；书末对多层的悲观寥寥数语却引发寒冬——<strong>一段话的杀伤力可以超过一个定理</strong>，这是研究史给传播者的教训。同代的 Widrow &amp; Hoff (1960) <span class="citation" data-cites="widrow1960">(<a href="#ref-widrow1960" role="doc-biblioref">Widrow and Hoff 1960</a>)</span> ADALINE 在工程上其实更优雅，我们将在 1.3 再遇到它。</li>
 </ul>
 </div>
 </section>
@@ -1294,23 +1294,13 @@ window.Quarto = {
 </section>
 <section id="参考文献" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">4.8</span> 参考文献</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-hebb1949" class="csl-entry" role="listitem">
-Hebb, Donald O. 1949. <em>The Organization of Behavior: A Neuropsychological Theory</em>. (New York).
-</div>
-<div id="ref-mcculloch1943" class="csl-entry" role="listitem">
-McCulloch, Warren S., and Walter Pitts. 1943. <span>“A Logical Calculus of the Ideas Immanent in Nervous Activity.”</span> <em>Bulletin of Mathematical Biophysics</em> 5: 115–33. <a href="https://doi.org/10.1007/BF02478259">https://doi.org/10.1007/BF02478259</a>.
-</div>
-<div id="ref-minsky1969" class="csl-entry" role="listitem">
-Minsky, Marvin, and Seymour Papert. 1969. <em>Perceptrons: An Introduction to Computational Geometry</em>. MIT Press.
-</div>
-<div id="ref-rosenblatt1958" class="csl-entry" role="listitem">
-Rosenblatt, Frank. 1958. <span>“The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain.”</span> <em>Psychological Review</em> 65 (6): 386–408. <a href="https://doi.org/10.1037/h0042519">https://doi.org/10.1037/h0042519</a>.
-</div>
-<div id="ref-widrow1960" class="csl-entry" role="listitem">
-Widrow, Bernard, and Marcian E. Hoff. 1960. <span>“Adaptive Switching Circuits.”</span> <em>IRE WESCON Convention Record</em> 4: 96–104.
-</div>
-</div>
+<ol type="1">
+<li>Rosenblatt, Frank (1958). <em>The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain</em>. <em>Psychological Review, 65, 386–408</em>. <a href="https://doi.org/10.1037/h0042519">doi:10.1037/h0042519</a></li>
+<li>Minsky, Marvin and Papert, Seymour (1969). <em>Perceptrons: An Introduction to Computational Geometry</em>. <em>MIT Press</em>.</li>
+<li>Widrow, Bernard and Hoff, Marcian E. (1960). <em>Adaptive Switching Circuits</em>. <em>IRE WESCON Convention Record, 4, 96–104</em>.</li>
+<li>Hebb, Donald O. (1949). <em>The Organization of Behavior: A Neuropsychological Theory</em>. <em>Wiley</em>.</li>
+<li>McCulloch, Warren S. and Pitts, Walter (1943). <em>A Logical Calculus of the Ideas Immanent in Nervous Activity</em>. <em>Bulletin of Mathematical Biophysics, 5, 115–133</em>. <a href="https://doi.org/10.1007/BF02478259">doi:10.1007/BF02478259</a></li>
+</ol>
 </section>
 <section id="练习" class="level2" data-number="4.9">
 <h2 data-number="4.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">4.9</span> 练习</h2>
@@ -1341,6 +1331,23 @@ Widrow, Bernard, and Marcian E. Hoff. 1960. <span>“Adaptive Switching Circuits
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-hebb1949" class="csl-entry" role="listitem">
+Hebb, Donald O. 1949. <em>The Organization of Behavior: A Neuropsychological Theory</em>. (New York).
+</div>
+<div id="ref-mcculloch1943" class="csl-entry" role="listitem">
+McCulloch, Warren S., and Walter Pitts. 1943. <span>“A Logical Calculus of the Ideas Immanent in Nervous Activity.”</span> <em>Bulletin of Mathematical Biophysics</em> 5: 115–33. <a href="https://doi.org/10.1007/BF02478259">https://doi.org/10.1007/BF02478259</a>.
+</div>
+<div id="ref-minsky1969" class="csl-entry" role="listitem">
+Minsky, Marvin, and Seymour Papert. 1969. <em>Perceptrons: An Introduction to Computational Geometry</em>. MIT Press.
+</div>
+<div id="ref-rosenblatt1958" class="csl-entry" role="listitem">
+Rosenblatt, Frank. 1958. <span>“The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain.”</span> <em>Psychological Review</em> 65 (6): 386–408. <a href="https://doi.org/10.1037/h0042519">https://doi.org/10.1037/h0042519</a>.
+</div>
+<div id="ref-widrow1960" class="csl-entry" role="listitem">
+Widrow, Bernard, and Marcian E. Hoff. 1960. <span>“Adaptive Switching Circuits.”</span> <em>IRE WESCON Convention Record</em> 4: 96–104.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

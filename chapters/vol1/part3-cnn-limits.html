@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">16.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">16.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题-卷二的入场券" id="toc-遗留问题-卷二的入场券" class="nav-link" data-scroll-target="#遗留问题-卷二的入场券"><span class="header-section-number">16.7</span> 遗留问题（= 卷二的入场券）</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">16.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">16.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">16.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1129,7 +1130,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">16.4</span> 从零实现</h2>
 <p><code>dlbook.nn.Conv1D</code> 已就位。模型 = 一维卷积 + relu + <strong>只取末位输出</strong>（因果式的最小演示）+ 线性头：</p>
-<div id="26e42275" class="cell" data-execution_count="1">
+<div id="8349bf99" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_seq_task</span>
@@ -1177,7 +1178,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">16.5</span> 消融实验</h2>
 <p><strong>势力范围图</strong>：固定 <span class="math inline">\(k=10\)</span>，扫回看距离——</p>
-<div id="4fddaf97" class="cell" data-execution_count="2">
+<div id="96bdd3e4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">12</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Xtr_d, ytr_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Xte_d, yte_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1266,8 +1267,15 @@ window.Quarto = {
 <li>“不定距离依赖”的终极解药（→ 5.1：注意力——让每个位置自己学着看哪里）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="16.8">
-<h2 data-number="16.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">16.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">16.8</span> 参考文献</h2>
+<ol type="1">
+<li>van den Oord, A"a (2016). <em>WaveNet</em>. <em>arXiv preprint arXiv:1609.03499</em>.</li>
+<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a></li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">16.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>Conv1D</code> 加 <code>dilation</code> 参数（窗口每隔 d 取一个输入），用两层 dilation=1,2 的空洞卷积在 dist=12 上复得满血——亲手重演 WaveNet 的感受野指数增长。</li>
 <li><strong>预测再运行</strong>：把 <span class="math inline">\(k=3\)</span> 的训练样本加到一亿个，<span class="math inline">\(k=3\)</span> 的测试准确率会改善吗？为什么”加数据”在这个病例上无效？（这是全书第一次遇到”数据治不了的病”。）</li>

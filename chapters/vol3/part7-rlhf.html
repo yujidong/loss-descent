@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">32.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">32.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">32.7</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">32.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">32.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">32.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1126,7 +1127,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="32.4">
 <h2 data-number="32.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">32.4</span> 从零实现</h2>
-<div id="102b333b" class="cell" data-execution_count="1">
+<div id="4d88646f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1194,7 +1195,7 @@ window.Quarto = {
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>偏好数据</strong>：代理规则 = 更长更好——chosen 是 20–40 字符的重复长串，rejected 是基座自己生成的短续写：</p>
-<div id="42ec3f39" class="cell" data-execution_count="2">
+<div id="13ddbdf7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>story_words <span class="op">=</span> <span class="bu">set</span>(story.split())</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quality(text):</span>
@@ -1218,7 +1219,7 @@ window.Quarto = {
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    dpo_step(p_ids, yw, yr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>双尺评测</strong>——代理尺看形态，真实尺看质量：</p>
-<div id="f7cff914" class="cell" data-execution_count="3">
+<div id="b513494c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gen_stats(model, n<span class="op">=</span><span class="dv">40</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    quals, samples <span class="op">=</span> [], []</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -1249,7 +1250,7 @@ DPO 样例:  eeeeeeeeeeeeeeeeeeeeeeeeeeeeee</code></pre>
 <section id="消融实验" class="level2" data-number="32.5">
 <h2 data-number="32.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">32.5</span> 消融实验</h2>
 <p><strong>好偏好的对照</strong>：把偏好规则换成”故事词命中率高的更好”（用真实质量当裁判——一次”对齐了的 DPO”），同预算重训：</p>
-<div id="ddc01216" class="cell" data-execution_count="4">
+<div id="2c63773c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>policy_good <span class="op">=</span> clone_with_lora(base)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rng3 <span class="op">=</span> np.random.default_rng(<span class="dv">5</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1340,8 +1341,16 @@ DPO 样例:  eeeeeeeeeeeeeeeeeeeeeeeeeeeeee</code></pre>
 <li>我们的策略用 LoRA 挂在冻结底座上——<strong>能力与行为分离</strong>的工程化，会给”对齐的稳固性”带来什么问题？（→ 8.x 与 9.2 的”对齐浅层性”讨论）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="32.8">
-<h2 data-number="32.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">32.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="32.8">
+<h2 data-number="32.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">32.8</span> 参考文献</h2>
+<ol type="1">
+<li>Rafailov et al.&nbsp;(2023). <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model</em>. <em>NeurIPS</em>.</li>
+<li>Ouyang et al.&nbsp;(2022). <em>Training Language Models to Follow Instructions with Human Feedback</em>. <em>NeurIPS</em>.</li>
+<li>Christiano et al.&nbsp;(2017). <em>Deep Reinforcement Learning from Human Preferences</em>. <em>NeurIPS</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="32.9">
+<h2 data-number="32.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">32.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 DPO 加 KL 罚（对策略与参考的平均对数概率差加惩罚项），重跑长度偏好——退化会被抑制吗？抑制的代价是什么？</li>
 <li><strong>预测再运行</strong>：把 β 从 0.3 调到 0.05 与 3.0，退化的速度与最终形态各怎么变？（β 是”离参考多远”的杠杆。）</li>

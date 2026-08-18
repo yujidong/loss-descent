@@ -1035,7 +1035,8 @@ window.Quarto = {
   <li><a href="#问题四样本效率为什么模型比人费数据" id="toc-问题四样本效率为什么模型比人费数据" class="nav-link" data-scroll-target="#问题四样本效率为什么模型比人费数据"><span class="header-section-number">38.4</span> 问题四：样本效率——为什么模型比人费数据</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">38.5</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">38.6</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">38.7</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">38.7</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">38.8</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1089,7 +1090,7 @@ window.Quarto = {
 <p><strong>问题</strong>：预训练吃的是”人类产生的文本”，它不是无限的。去重后的高质量文本有估计的上限；多轮训练与数据复用能推迟、但不能凭空创造信息。</p>
 <p><strong>Loss 视角的陈述</strong>：数据决定 <span class="math inline">\(L_\infty\)</span>（6.1 的地板项）——<strong>语料的熵就是模型一族的天花板</strong>。字节可以复制，信息不能。</p>
 <p><strong>本书尺度的锚点实验</strong>——数据复制 vs 真新增：</p>
-<div id="26e4a614" class="cell" data-execution_count="1">
+<div id="42bcc65e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1213,8 +1214,16 @@ window.Quarto = {
 <h2 data-number="38.6" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">38.6</span> 遗留问题</h2>
 <p>问题清点完毕。全书的最后一步：把模式（9.1）放上问题（9.2）的棋盘，<strong>落子预测</strong>——下一章，也是毕业考试。</p>
 </section>
-<section id="练习" class="level2" data-number="38.7">
-<h2 data-number="38.7" class="anchored" data-anchor-id="练习"><span class="header-section-number">38.7</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="38.7">
+<h2 data-number="38.7" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">38.7</span> 参考文献</h2>
+<ol type="1">
+<li>Hestness et al.&nbsp;(2017). <em>Deep Learning Scaling Is Predictable, Empirically</em>. <em>arXiv preprint arXiv:1712.00409</em>.</li>
+<li>Kaplan et al.&nbsp;(2020). <em>Scaling Laws for Neural Language Models</em>. <em>arXiv preprint arXiv:2001.08361</em>.</li>
+<li>Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). <em>Are Emergent Abilities of Large Language Models a Mirage?</em>. <em>NeurIPS</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="38.8">
+<h2 data-number="38.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">38.8</span> 练习</h2>
 <ol type="1">
 <li><strong>量化练习</strong>：为”数据墙”设计一个可测的预警指标（提示：模仿本章的复制实验，在更大语料上测”边际信息增益”），并在 6.1 的语料上实际跑一版三档（1×/2×新数据/4×新数据）的增益曲线。</li>
 <li><strong>飞轮数学</strong>：把 7.4 的 STaR 饱和数据拟合为几何收敛（每轮增益 ×r），估计 r 与初始分布支撑的关系——你的 r 是多少？它支持”飞轮上限=初始分布”的猜想吗？</li>

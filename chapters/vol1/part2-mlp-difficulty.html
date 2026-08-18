@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">8.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">8.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">8.7</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">8.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">8.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">8.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1120,7 +1121,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">8.4</span> 从零实现</h2>
-<div id="5578b4d4" class="cell" data-execution_count="1">
+<div id="0bdf7de7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1135,7 +1136,7 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Xv, yv <span class="op">=</span> make_moons(n_per_class<span class="op">=</span><span class="dv">100</span>, seed<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：学习率扫描。</strong> 固定一切，只动步长：</p>
-<div id="bfdd24eb" class="cell" data-execution_count="2">
+<div id="77409a20" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">16</span>, <span class="dv">1</span>], seed<span class="op">=</span><span class="dv">42</span>)</span>
@@ -1153,7 +1154,7 @@ window.Quarto = {
 </div>
 <p>0.001 爬行（300 epoch 后仍停在 0.34），0.01 到位，0.05 更快。那再大呢？把 <code>lr=0.5</code> 加入扫描——loss 直接<strong>溢出为 NaN</strong>（数值发散）。注意上一章的教训在这里同样成立：步子太大的死法常常不是爆炸而是饱和，但足够大的步子连饱和区都待不住，干脆溢出。</p>
 <p><strong>实验二：种子彩票。</strong> 同一配置，只换初始化种子：</p>
-<div id="b512a279" class="cell" data-execution_count="3">
+<div id="9b46ca69" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>finals <span class="op">=</span> []</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">16</span>, <span class="dv">1</span>], seed<span class="op">=</span>seed)</span>
@@ -1170,7 +1171,7 @@ window.Quarto = {
 </div>
 <p>典型的结果是一张”彩票”：有的种子落到 0.05，有的卡在 0.37——近一个数量级的差距，纯粹来自落点。1990 年代每一个调参的下午都在抽这张签。</p>
 <p><strong>实验三：看一眼地形。</strong> 训练一个收敛的模型，然后在其参数空间里取两个随机方向张成的平面，扫描 loss：</p>
-<div id="dd88c8af" class="cell" data-execution_count="4">
+<div id="c4701392" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flat(model):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.concatenate([W.ravel() <span class="cf">for</span> W <span class="kw">in</span> model.Ws] <span class="op">+</span> [b.ravel() <span class="cf">for</span> b <span class="kw">in</span> model.bs])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1219,7 +1220,7 @@ window.Quarto = {
 </div>
 <p>这就是 Goodfellow 等人 2015 年让全场吃惊的那张图：收敛点附近<strong>不是深井</strong>，而是一片缓慢起伏的开阔地——训练终点更像”到达了一片高原的某处”，而非”落进了谷底”。这也解释了种子彩票：不同的落点走到同一片高原的不同位置。</p>
 <p><strong>实验四：初始化的生死。</strong> 八层 tanh 网络，朴素 vs 扇入缩放初始化。先做确定性体检——数一数每层有多少激活值已经饱和（<span class="math inline">\(|\tanh| &gt; 0.99\)</span>）：</p>
-<div id="3c37b7e6" class="cell" data-execution_count="5">
+<div id="83c08411" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Xs</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
@@ -1237,7 +1238,7 @@ window.Quarto = {
 </div>
 </div>
 <p>朴素初始化下饱和率逐层攀升至三分之一以上——<strong>网络还没开始训练，三分之一的梯度通道已经关死</strong>；缩放初始化下饱和率为零。训练结局随之分流：</p>
-<div id="7ed8a8b4" class="cell" data-execution_count="6">
+<div id="af78c2f8" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>, init<span class="op">=</span>init)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">600</span>)</span>
@@ -1252,7 +1253,7 @@ init= uniform: loss=1.6161  acc=0.50</code></pre>
 <section id="消融实验" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">8.5</span> 消融实验</h2>
 <p><strong>饱和率是中介变量。</strong> 上一个实验其实是一条因果链：初始化尺度 → 前向饱和率 → 反向梯度存活 → 训练成败。验证中介环节——把网络改浅（2 层），朴素初始化还致命吗？</p>
-<div id="3d568c41" class="cell" data-execution_count="7">
+<div id="a52531f1" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">8</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>, init<span class="op">=</span>init)</span>
@@ -1324,8 +1325,17 @@ depth=8, init= uniform: acc=0.50</code></pre>
 <li>学习率的黑暗艺术何时能终结？（部分答案在 2.3 的 BN、以及未来章节的学习率日程）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">8.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">8.8</span> 参考文献</h2>
+<ol type="1">
+<li>Glorot, Xavier and Bengio, Yoshua (2010). <em>Understanding the Difficulty of Training Deep Feedforward Neural Networks</em>. <em>Proceedings of AISTATS, 9, 249–256</em>.</li>
+<li>Dauphin et al.&nbsp;(2014). <em>Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization</em>. <em>NeurIPS</em>.</li>
+<li>Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron (2016). <em>Deep Learning</em>. <em>MIT Press</em>.</li>
+<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a></li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">8.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>MLPNumpy</code> 加一个 <code>init="xavier"</code> 选项（均匀分布 <span class="math inline">\(\pm\sqrt{6/(\text{fan-in}+\text{fan-out})}\)</span>），在八层螺旋任务上与 <code>"scaled"</code> 对照。</li>
 <li><strong>预测再运行</strong>：把种子彩票的批大小从 32 改成全批（200），先猜分布会收紧还是变宽？运行并解释（提示：随机性来源少了一个）。</li>

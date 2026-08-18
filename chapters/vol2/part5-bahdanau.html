@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">22.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">22.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">22.7</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">22.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">22.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">22.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1119,7 +1120,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="22.4">
 <h2 data-number="22.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">22.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.AttentionSeq2Seq</code>：在 <code>Seq2Seq</code> 上加约二十行——解码每步的注意力与拼接输出。任务与上一章相同的反转”翻译”，但<strong>训练集这次含长度 3–8</strong>（分层评测才公平——原论文正是按句长分层报告 BLEU 的）：</p>
-<div id="b6a4929b" class="cell" data-execution_count="1">
+<div id="a86aa6ce" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1138,7 +1139,7 @@ window.Quarto = {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs_of_length(L)) <span class="op">/</span> <span class="bu">len</span>(pairs_of_length(L)) <span class="cf">for</span> L <span class="kw">in</span> Ls]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>对照实验：普通 vs 注意力。</strong> 同预算训练两个模型：</p>
-<div id="4517556e" class="cell" data-execution_count="2">
+<div id="fd017a9c" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, make <span class="kw">in</span> ((<span class="st">"plain"</span>, <span class="kw">lambda</span>: Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   (<span class="st">"attention"</span>, <span class="kw">lambda</span>: AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>))):</span>
@@ -1155,7 +1156,7 @@ window.Quarto = {
 attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 </div>
 </div>
-<div id="677b0933" class="cell" data-execution_count="3">
+<div id="00f90e52" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Ls <span class="op">=</span> (<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
@@ -1177,7 +1178,7 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 </div>
 <p>典型读数：<strong>普通版随长度衰减（长度 7 掉到 0.88、长度 8 只剩 0.64），注意力版全线 1.00</strong>。这正是原论文图 6 的形状——蓝线（baseline）随句长下坠，红线（attention）平坦。二十年翻译直觉（长句难）的一个主要病因，被一个加权求和治掉了大半。</p>
 <p><strong>对齐热图：模型在看哪里？</strong> 取一条训练好的注意力模型，画出它解码时每步的 <span class="math inline">\(\alpha_{t,s}\)</span>：</p>
-<div id="ff86e35f" class="cell" data-execution_count="4">
+<div id="689820d8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>attn_model <span class="op">=</span> AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>
@@ -1272,8 +1273,15 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 <li>O(长度²) 的账单什么时候到期？（长文档时代——8.x 的主题，此处记账）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="22.8">
-<h2 data-number="22.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">22.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="22.8">
+<h2 data-number="22.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">22.8</span> 参考文献</h2>
+<ol type="1">
+<li>Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). <em>Neural Machine Translation by Jointly Learning to Align and Translate</em>. <em>ICLR</em>.</li>
+<li>Cho, Kyunghyun and van Merri"e (2014). <em>Learning Phrase Representations Using RNN</em>. <em>EMNLP</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="22.9">
+<h2 data-number="22.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">22.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：遮住 <code>AttentionSeq2Seq._attend</code>，重写点积注意力及其反向（softmax 对 scores 的雅可比），用有限差分对拍——这是 5.2 全部反向传播的地基。</li>
 <li><strong>预测再运行</strong>：把点积打分换成加性打分（<span class="math inline">\(\mathbf{v}^\top \tanh(\mathbf{W}\mathbf{q}_t + \mathbf{U}\mathbf{h}_s)\)</span>，原论文用的版本），收敛速度与最终成绩有差吗？（历史上两者在大任务上近乎打平——小任务上的你的观察呢？）</li>

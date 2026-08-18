@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验一个诚实的负结果" id="toc-消融实验一个诚实的负结果" class="nav-link" data-scroll-target="#消融实验一个诚实的负结果"><span class="header-section-number">30.5</span> 消融实验（一个诚实的负结果）</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">30.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">30.7</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">30.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">30.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">30.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1115,7 +1116,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="30.4">
 <h2 data-number="30.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">30.4</span> 从零实现</h2>
-<div id="3e1edea2" class="cell" data-execution_count="1">
+<div id="508fa34f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1141,7 +1142,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：续写不等于回答（行为学）。</strong></p>
-<div id="499c1734" class="cell" data-execution_count="2">
+<div id="7f1b7261" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> prompt <span class="kw">in</span> [<span class="st">"the cat "</span>, <span class="st">"question: who is pip ? answer:"</span>]:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab.get(c, vocab[<span class="st">" "</span>]) <span class="cf">for</span> c <span class="kw">in</span> prompt]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> base.generate(ids_p, n_new<span class="op">=</span><span class="dv">60</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, seed<span class="op">=</span><span class="dv">3</span>)</span>
@@ -1157,7 +1158,7 @@ prompt: 'question: who is pip ? answer:'
 </div>
 <p>两个 prompt 的续写都是”语料风格”的文本——第二个（问句格式）在训练分布里<strong>从未出现</strong>，模型的应对是把未知符号当噪声、回到它熟悉的词形统计。真实互联网基座的对应行为是：<strong>问句后接更多问句（论坛网页）、或跑题续写</strong>。怪癖不是缺陷，是分布的忠实。</p>
 <p><strong>实验二：上下文的价值（条件化定量）。</strong> 逐位置测 loss——同一个模型，看第 1 个字符与第 40 个字符时的困惑度：</p>
-<div id="d3bf5255" class="cell" data-execution_count="3">
+<div id="c39cfd31" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>windows <span class="op">=</span> np.stack([arr[s : s <span class="op">+</span> <span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> np.random.default_rng(<span class="dv">7</span>).integers(<span class="dv">0</span>, <span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">65</span>, size<span class="op">=</span><span class="dv">64</span>)])</span>
@@ -1257,8 +1258,15 @@ prompt: 'question: who is pip ? answer:'
 <li>模型”知道”却”不说”，知识在概率、行为在采样——两者的距离还能怎么度量与利用？（→ 7.2 的 margin 实验先睹为快）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="30.8">
-<h2 data-number="30.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">30.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="30.8">
+<h2 data-number="30.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">30.8</span> 参考文献</h2>
+<ol type="1">
+<li>Brown et al.&nbsp;(2020). <em>Language Models Are Few-Shot Learners</em>. <em>NeurIPS</em>.</li>
+<li>Olsson et al.&nbsp;(2022). <em>In-Context Learning and Induction Heads</em>. <em>Anthropic Alignment Research</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="30.9">
+<h2 data-number="30.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">30.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把条件化实验的横轴换成”到最近一个空格的距离”，重画曲线——局部性（词内 vs 词首）各贡献多少？</li>
 <li><strong>预测再运行</strong>：把温度从 0.7 调到 0.1 与 1.5，两个 prompt 的续写各怎么变？“怪癖”在哪个温度下最显形？</li>

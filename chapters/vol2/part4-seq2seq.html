@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">21.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">21.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题-part-5-的入场券" id="toc-遗留问题-part-5-的入场券" class="nav-link" data-scroll-target="#遗留问题-part-5-的入场券"><span class="header-section-number">21.7</span> 遗留问题（= Part 5 的入场券）</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">21.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">21.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">21.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1118,7 +1119,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">21.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.Seq2Seq</code>：编码/解码各一台 LSTM，解码器初态 = 编码器终态（梯度沿 <code>backward</code> 的初始状态接口回传到编码器）。任务：数字序列反转。</p>
-<div id="d8215680" class="cell" data-execution_count="1">
+<div id="33b1e26e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1148,7 +1149,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="63ba1fc0" class="cell" data-execution_count="2">
+<div id="27ceb434" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exact_acc(model, pairs):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ok <span class="op">/</span> <span class="bu">len</span>(pairs)</span>
@@ -1162,7 +1163,7 @@ window.Quarto = {
 </div>
 <p>25 个 epoch、几秒钟：loss 2.17 → 0.00x，<strong>整句精确匹配约 98%</strong>。编码器学会了把”哪几个数字、什么顺序”压进 64 维，解码器再逆序释放——玩具尺度上，“向量即意思”近乎魔法。</p>
 <p><strong>主实验：长度外推（固定向量的账单）。</strong> 在训练分布（长度 ≤5）之外逐级测试：</p>
-<div id="0eac7df3" class="cell" data-execution_count="3">
+<div id="329edcf1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pairs_of_length(L, n<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">9</span>):</span>
@@ -1205,7 +1206,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="21.5">
 <h2 data-number="21.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">21.5</span> 消融实验</h2>
 <p><strong>倒序输入 trick 复刻。</strong> Sutskever 的补丁：把编码器输入倒过来喂（<code>inputs[i][::-1]</code>），对反转任务这相当于……先想清楚再运行（对”反转”这个任务，倒序输入让解码器的第一个输出对应编码器<strong>最后读入</strong>的词——梯度最短路径）。复刻并与正序对照，看两者在长度外推上的差异——<strong>补丁能续命，但救不了结构</strong>：</p>
-<div id="33255efb" class="cell" data-execution_count="4">
+<div id="0580990e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_rev <span class="op">=</span> Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>
@@ -1285,8 +1286,16 @@ window.Quarto = {
 <li>串行解码的速度问题？（→ 5.3 并行性的经济学）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="21.8">
-<h2 data-number="21.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">21.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="21.8">
+<h2 data-number="21.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">21.8</span> 参考文献</h2>
+<ol type="1">
+<li>Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). <em>Sequence to Sequence Learning with Neural Networks</em>. <em>NeurIPS</em>.</li>
+<li>Cho, Kyunghyun and van Merri"e (2014). <em>Learning Phrase Representations Using RNN</em>. <em>EMNLP</em>.</li>
+<li>Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). <em>Neural Machine Translation by Jointly Learning to Align and Translate</em>. <em>ICLR</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="21.9">
+<h2 data-number="21.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">21.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把解码器初态从”编码器终态”换成”零状态 + 源句拼在目标句前面”（prefix 式），在反转任务上对照——你造出了今天 decoder-only 模型（GPT 式）的雏形，写出两种设计的账本差异。</li>
 <li><strong>预测再运行</strong>：把隐藏维度从 64 加到 256，长度外推的断崖会移动吗？先猜（提示：瓶颈是”学过的压缩方式”还是”向量容量”？）再验证。</li>

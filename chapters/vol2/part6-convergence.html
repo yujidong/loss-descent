@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">29.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本卷二总账的第一页" id="toc-本章-loss-账本卷二总账的第一页" class="nav-link" data-scroll-target="#本章-loss-账本卷二总账的第一页"><span class="header-section-number">29.6</span> 本章 Loss 账本（卷二总账的第一页）</a></li>
   <li><a href="#遗留问题-卷三的入场券" id="toc-遗留问题-卷三的入场券" class="nav-link" data-scroll-target="#遗留问题-卷三的入场券"><span class="header-section-number">29.7</span> 遗留问题（= 卷三的入场券）</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">29.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">29.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">29.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1123,7 +1124,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="29.4">
 <h2 data-number="29.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">29.4</span> 从零实现</h2>
 <p><strong>MoE 对照实验</strong>：dense d=32（第二块 MLP 隐层 4d=128）vs 同模型第二块换成 <code>MoEMLP</code>（2 位专家、各 2d=64 隐层）——<strong>总参数相近、每 token 活跃算力减半</strong>：</p>
-<div id="78067f0e" class="cell" data-execution_count="1">
+<div id="7ad487f4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1177,7 +1178,7 @@ MoE:   val loss = 1.938
 <section id="消融实验" class="level2" data-number="29.5">
 <h2 data-number="29.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">29.5</span> 消融实验</h2>
 <p><strong>专家数扫描</strong>：把专家从 2 位加到 4 位（每位隐层 d=32，保持总活跃算力近似）——失衡会缓解还是恶化？（预测：专家越多，无约束的均衡越难自发形成——负载均衡损失从”可选”变”必需”的临界点。）</p>
-<div id="bca8f7a3" class="cell" data-execution_count="2">
+<div id="75bd0b8a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>moe4 <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>moe4.blocks[<span class="dv">1</span>].mlp <span class="op">=</span> MoEMLP(<span class="dv">32</span>, n_experts<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">77</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train(moe4)</span>
@@ -1244,8 +1245,16 @@ MoE:   val loss = 1.938
 <li>当模型的推理能力成为新前线，loss 的故事怎么续写？（→ 7.4 RLVR 与测试时计算）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="29.8">
-<h2 data-number="29.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">29.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="29.8">
+<h2 data-number="29.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">29.8</span> 参考文献</h2>
+<ol type="1">
+<li>Fedus, William and Zoph, Barret and Shazeer, Noam (2022). <em>Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity</em>. <em>Journal of Machine Learning Research, 23, 1–39</em>.</li>
+<li>Touvron et al.&nbsp;(2023). <em>LLaMA</em>. <em>arXiv preprint arXiv:2302.13971</em>.</li>
+<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a></li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="29.9">
+<h2 data-number="29.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">29.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>MoEMLP</code> 加负载均衡辅助损失（<span class="math inline">\(L_{aux} = E \sum_e f_e \cdot p_e\)</span>，<span class="math inline">\(f_e\)</span> 为使用率、<span class="math inline">\(p_e\)</span> 为平均门概率），权重 0.01，重训——使用率与 loss 各怎么变？</li>
 <li><strong>预测再运行</strong>：把 MoE 的路由从 top-1 改成 top-2（两位专家输出平均）——loss、使用率、每 token 算力各怎么变？（稠密化是 MoE 稳定性的常见退路。）</li>

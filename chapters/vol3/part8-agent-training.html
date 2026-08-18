@@ -1036,7 +1036,8 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">35.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">35.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">35.7</span> 遗留问题</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">35.8</span> 练习</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">35.8</span> 参考文献</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">35.9</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -1122,7 +1123,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="35.4">
 <h2 data-number="35.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">35.4</span> 从零实现</h2>
-<div id="e21ed849" class="cell" data-execution_count="1">
+<div id="57abb936" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1156,7 +1157,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：重试闭环（系统层）。</strong> 提议（温度采样）→ 验证（反转回去等于输入即对）→ 不对就再采：</p>
-<div id="e9f16f72" class="cell" data-execution_count="2">
+<div id="9b2946fe" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agent_success(m, pairs, max_tries, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
@@ -1195,7 +1196,7 @@ window.Quarto = {
 </div>
 <p>典型读数：<strong>0.80 → 0.88 → 0.95 → 0.98</strong>——饱和上升，8 次预算几乎榨干。注意上限不是 1.0：最难的那 2% 在分布里的概率质量太小，搜索也够不着（<strong>循环的天花板 = 分布的概率质量</strong>，7.4 结论的 agent 版）。</p>
 <p><strong>实验二：轨迹回灌（模型层）。</strong> 收集循环中的成功轨迹，回灌微调，重测单次：</p>
-<div id="dbab8b38" class="cell" data-execution_count="3">
+<div id="4af86573" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collect_and_distill(m, round_id, samples_per<span class="op">=</span><span class="dv">6</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">500</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    succ <span class="op">=</span> []</span>
@@ -1286,8 +1287,15 @@ window.Quarto = {
 <li>闭环飞轮能转到哪里？自产数据的极限与风险？（→ 9.2 开放问题）。</li>
 </ol>
 </section>
-<section id="练习" class="level2" data-number="35.8">
-<h2 data-number="35.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">35.8</span> 练习</h2>
+<section id="参考文献" class="level2" data-number="35.8">
+<h2 data-number="35.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">35.8</span> 参考文献</h2>
+<ol type="1">
+<li>Yao et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. <em>NeurIPS</em>.</li>
+<li>Zelikman et al.&nbsp;(2022). <em>STaR</em>. <em>NeurIPS</em>.</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="35.9">
+<h2 data-number="35.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">35.9</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把重试闭环的验证器换成”自验证”（模型自己反转一次比对）——验证器也从模型出。成功率怎么变？（验证的可靠性成为新瓶颈。）</li>
 <li><strong>预测再运行</strong>：回灌数据里混入 10% 未验证的”侥幸成功”（碰巧对但路径错误——构造：错误中间态+对的结尾），两轮回灌后单次准确率与<strong>错误形态</strong>各怎么变？</li>
