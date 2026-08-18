@@ -116,7 +116,38 @@ ul.task-list li input[type="checkbox"] {
   #rc-hint { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 9995;
     background: #2f2f2f; color: #fff; border-radius: 10px; padding: 10px 18px; font-size: 13.5px;
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
+
+<style>
+/* 布局覆盖：不依赖 SCSS 编译，直接加载生效 */
+@media (min-width: 992px) {
+  main {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 52rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  #quarto-content {
+    padding: 0 2rem;
+  }
+}
+body {
+  font-size: 1.0625rem !important;
+  line-height: 1.85 !important;
+}
+main p {
+  margin-bottom: 1.1em !important;
+}
+main pre code {
+  font-size: 0.875em !important;
+}
+main table {
+  width: 100%;
+  table-layout: auto;
+}
 </style>
+
+
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -1341,35 +1372,6 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
-<style>
-/* 布局覆盖：不依赖 SCSS 编译，直接加载生效 */
-@media (min-width: 992px) {
-  main {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    max-width: 52rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-  #quarto-content {
-    padding: 0 2rem;
-  }
-}
-body {
-  font-size: 1.0625rem !important;
-  line-height: 1.85 !important;
-}
-main p {
-  margin-bottom: 1.1em !important;
-}
-main pre code {
-  font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-</style>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
