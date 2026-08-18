@@ -233,10 +233,15 @@ plot_loss_curves(
 3. 初始化这件"黑魔法"的理论是什么？（2.1 的扇入缩放与 Xavier）；
 4. 效率之谜：同样的表示力，深与宽怎么配？（3.2 残差，6.2 Chinchilla 的算力最优配比——同一问题在两个尺度上的两场演出）。
 
+
 ## 参考文献
 
-::: {#refs}
-:::
+1. Cybenko, George (1989). *Approximation by Superpositions of a Sigmoidal Function*. *Mathematics of Control, Signals and Systems, 2, 303--314*. [doi:10.1007/BF02551274](https://doi.org/10.1007/BF02551274)
+2. Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). *Multilayer Feedforward Networks Are Universal Approximators*. *Neural Networks, 2, 359--366*. [doi:10.1016/0893-6080(89)90020-8](https://doi.org/10.1016/0893-6080(89)90020-8)
+3. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*.
+4. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)
+5. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
 
 ## 练习
 

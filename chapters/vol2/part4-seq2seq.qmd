@@ -169,6 +169,13 @@ for L in (5, 6, 7, 8):
 2. "回头看"能不能彻底替代循环本身？（→ 5.2 Transformer：注意力即全部）；
 3. 串行解码的速度问题？（→ 5.3 并行性的经济学）。
 
+## 参考文献
+
+1. Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). *Sequence to Sequence Learning with Neural Networks*. *NeurIPS*.
+2. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*.
+3. Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). *Neural Machine Translation by Jointly Learning to Align and Translate*. *ICLR*.
+
+
 ## 练习
 
 1. **造轮子**：把解码器初态从"编码器终态"换成"零状态 + 源句拼在目标句前面"（prefix 式），在反转任务上对照——你造出了今天 decoder-only 模型（GPT 式）的雏形，写出两种设计的账本差异。

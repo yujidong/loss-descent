@@ -145,6 +145,12 @@ for depth in (2, 5):
 1. 深度打开之后，学到的**层级特征**到底是什么？能否整个搬给别的任务？（→ 3.3：预训练-微调范式——卷积时代留给 LLM 时代最重要的遗产）；
 2. 图像之外：卷积的固定窗口在序列上的极限在哪？（→ 3.4）。
 
+## 参考文献
+
+1. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*.
+2. Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). *ImageNet Classification with Deep Convolutional Neural Networks*. *NeurIPS*.
+
+
 ## 练习
 
 1. **造轮子**：给 `MLPNumpy` 的残差加法换成**缩放残差** $y = F(x)\cdot\alpha + x$（$\alpha=0.1$），在深度 20 上测试稳定性是否改善——并解释为什么缩放能救我们的 20 层 NaN。

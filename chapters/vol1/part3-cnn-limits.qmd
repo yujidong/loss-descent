@@ -167,6 +167,12 @@ for dist in (2, 4, 8, 12):
 2. 语言建模的原始形态——n-gram 与信息论的血缘（→ 4.1：Shannon 的熵）；
 3. "不定距离依赖"的终极解药（→ 5.1：注意力——让每个位置自己学着看哪里）。
 
+## 参考文献
+
+1. van den Oord, A\"a (2016). *WaveNet*. *arXiv preprint arXiv:1609.03499*.
+2. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
+
 ## 练习
 
 1. **造轮子**：给 `Conv1D` 加 `dilation` 参数（窗口每隔 d 取一个输入），用两层 dilation=1,2 的空洞卷积在 dist=12 上复得满血——亲手重演 WaveNet 的感受野指数增长。

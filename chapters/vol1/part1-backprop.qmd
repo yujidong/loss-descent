@@ -307,10 +307,20 @@ plot_loss_curves(
 3. 隐藏层学到的"表征"到底是什么？可以迁移给别人用吗？（→ 3.3）
 4. loss 降到 0 就一定是好模型吗？（→ 下一章：过拟合与第二次寒冬的种子）
 
+
+
 ## 参考文献
 
-::: {#refs}
-:::
+1. Rumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J. (1986). *Learning Representations by Back-Propagating Errors*. *Nature, 323, 533--536*. [doi:10.1038/323533a0](https://doi.org/10.1038/323533a0)
+2. Werbos, Paul J. (1974). *Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences*.
+3. Linnainmaa, Seppo (1970). *The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor*. *Master's Thesis (in Finnish), University of Helsinki*.
+4. Parker, David B. (1985). *Learning Logic*. *MIT Center for Computational Research in Economics and Management Science*.
+5. Minsky, Marvin and Papert, Seymour (1969). *Perceptrons: An Introduction to Computational Geometry*. *MIT Press*.
+6. Widrow, Bernard and Hoff, Marcian E. (1960). *Adaptive Switching Circuits*. *IRE WESCON Convention Record, 4, 96--104*.
+7. Rumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). *Parallel Distributed Processing: Explorations in the Microstructure of Cognition*. *MIT Press, 1 and 2*.
+8. Cybenko, George (1989). *Approximation by Superpositions of a Sigmoidal Function*. *Mathematics of Control, Signals and Systems, 2, 303--314*. [doi:10.1007/BF02551274](https://doi.org/10.1007/BF02551274)
+9. Hebb, Donald O. (1949). *The Organization of Behavior: A Neuropsychological Theory*. *Wiley*.
+10. Rosenblatt, Frank (1958). *The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain*. *Psychological Review, 65, 386--408*. [doi:10.1037/h0042519](https://doi.org/10.1037/h0042519)
 
 
 ## 练习

@@ -150,6 +150,12 @@ print(f"无上下文(第1字符): {pos_loss[0]:.2f} → 深上下文(第48+字�
 2. 当"听话"本身要成为目标，如何写出它的 loss？（→ 7.3：人类偏好——奖励作为变形的 loss）；
 3. 模型"知道"却"不说"，知识在概率、行为在采样——两者的距离还能怎么度量与利用？（→ 7.2 的 margin 实验先睹为快）。
 
+## 参考文献
+
+1. Brown et al. (2020). *Language Models Are Few-Shot Learners*. *NeurIPS*.
+2. Olsson et al. (2022). *In-Context Learning and Induction Heads*. *Anthropic Alignment Research*.
+
+
 ## 练习
 
 1. **造轮子**：把条件化实验的横轴换成"到最近一个空格的距离"，重画曲线——局部性（词内 vs 词首）各贡献多少？

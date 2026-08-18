@@ -209,6 +209,14 @@ for mr in (0.05, 0.15, 0.40):
 1. 两条路线都要靠"更大"来兑现承诺——**多大算大？loss 随规模怎么走？**（→ Part 6 开卷：scaling laws，全书 loss 主线的定量化高潮）；
 2. GPT 路线在规模化的路上撞见了意外之喜（few-shot / in-context learning）——那是什么、从哪来？（→ 6.1）。
 
+## 参考文献
+
+1. Radford et al. (2018). *Improving Language Understanding by Generative Pre-Training*. *OpenAI Technical Report*.
+2. Devlin et al. (2019). *BERT*. *NAACL*.
+3. Radford et al. (2019). *Language Models Are Unsupervised Multitask Learners*. *OpenAI Technical Report*.
+4. Brown et al. (2020). *Language Models Are Few-Shot Learners*. *NeurIPS*.
+
+
 ## 练习
 
 1. **造轮子**：给 MLM 加"80% 换 [MASK]、10% 换随机词、10% 保留"的 BERT 原版遮罩策略（我们只用了 100% 换 [MASK]），对照收敛与填空质量——原版三件套治的是什么病？（提示：模型不该只在看到 [MASK] 时才预测。）

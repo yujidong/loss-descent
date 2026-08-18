@@ -125,6 +125,13 @@ print(f"真新增到 6 万（信息 ×2）: val loss {l_new:.3f}")
 
 问题清点完毕。全书的最后一步：把模式（9.1）放上问题（9.2）的棋盘，**落子预测**——下一章，也是毕业考试。
 
+## 参考文献
+
+1. Hestness et al. (2017). *Deep Learning Scaling Is Predictable, Empirically*. *arXiv preprint arXiv:1712.00409*.
+2. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*.
+3. Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). *Are Emergent Abilities of Large Language Models a Mirage?*. *NeurIPS*.
+
+
 ## 练习
 
 1. **量化练习**：为"数据墙"设计一个可测的预警指标（提示：模仿本章的复制实验，在更大语料上测"边际信息增益"），并在 6.1 的语料上实际跑一版三档（1×/2×新数据/4×新数据）的增益曲线。

@@ -185,6 +185,13 @@ print("半量数据:", [f"{l:.3f}" for l in losses_half], "vs 全量前三档:",
 2. loss 平滑下降时，"能力"（如整词正确率）也平滑吗？（→ 6.3：度量制造的相变）；
 3. 规模化时代的架构还有变体吗？（→ 6.4：MoE 与开源——卷二收官）。
 
+## 参考文献
+
+1. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*.
+2. Brown et al. (2020). *Language Models Are Few-Shot Learners*. *NeurIPS*.
+3. Hestness et al. (2017). *Deep Learning Scaling Is Predictable, Empirically*. *arXiv preprint arXiv:1712.00409*.
+
+
 ## 练习
 
 1. **造轮子**：实现"步数维度"的 scaling（固定 d=32，扫训练步数 375/750/1500/3000），拟合计算幂律 $L(C)$——Kaplan 图 1 的第三联。

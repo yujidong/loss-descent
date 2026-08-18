@@ -179,6 +179,12 @@ for r in range(2):
 1. 模型层与系统层的账都摆齐了——**一条界线怎么画**：什么进权重、什么留在外部？（→ 下一章：全书判断框架的正式提出）；
 2. 闭环飞轮能转到哪里？自产数据的极限与风险？（→ 9.2 开放问题）。
 
+## 参考文献
+
+1. Yao et al. (2023). *Tree of Thoughts: Deliberate Problem Solving with Large Language Models*. *NeurIPS*.
+2. Zelikman et al. (2022). *STaR*. *NeurIPS*.
+
+
 ## 练习
 
 1. **造轮子**：把重试闭环的验证器换成"自验证"（模型自己反转一次比对）——验证器也从模型出。成功率怎么变？（验证的可靠性成为新瓶颈。）

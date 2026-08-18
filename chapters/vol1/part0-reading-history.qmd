@@ -80,10 +80,13 @@ title: "如何读研究史：读问题，不读年表"
 
 方法备齐了：四问账本（上一章）、双镜头与问题链（本章）、以及一套从零实现的手艺（即将开始）。从下一章起，我们正式进入 1943 年——请戴上"当时镜头"。
 
+
 ## 参考文献
 
-::: {#refs}
-:::
+1. Kuhn, Thomas S. (1962). *The Structure of Scientific Revolutions*. *University of Chicago Press*.
+2. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*.
+3. Dauphin et al. (2014). *Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization*. *NeurIPS*.
+
 
 ## 练习
 

@@ -162,6 +162,14 @@ print(f"LSTM char-LM: {hist_lstm[0]:.3f} -> {hist_lstm[-1]:.4f}（上一章 RNN 
 2. 一读一写两个 LSTM 能拼出什么？（→ 4.5 seq2seq：翻译的范式，以及它自己的瓶颈）；
 3. 串行依赖让 RNN/LSTM 无法并行——这个结构性缺陷的代价与解药？（→ 5.3：Transformer 的胜利核算）。
 
+## 参考文献
+
+1. Hochreiter, Sepp and Schmidhuber, J\"u (1997). *Long Short-Term Memory*. *Neural Computation, 9, 1735--1780*.
+2. Gers, Felix A. and Schmidhuber, J\"u (2000). *Learning to Forget: Continual Prediction with LSTM*. *Neural Computation, 12, 2451--2471*.
+3. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*.
+4. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)
+
+
 ## 练习
 
 1. **造轮子**：给 `LSTM` 加 peephole 连接（门也看 $c_{t-1}$），在梯度剖面与 char-LM 上对照——2000 年补丁的另一半。

@@ -87,10 +87,14 @@ title: "符号主义与连接主义：第一次范式之争"
 
 范式复活的宣言已经写好（PDP 两卷本），地下党重见天日。但宣言里最关键的一页还是空白的：**隐藏层的权重到底该怎么学？** 感知机规则的收敛定理只覆盖单层——多层网络缺少自己的发动机。下一章，我们把这台发动机亲手造出来。
 
+
 ## 参考文献
 
-::: {#refs}
-:::
+1. Hopfield, John J. (1982). *Neural Networks and Physical Systems with Emergent Collective Computational Abilities*. *Proceedings of the National Academy of Sciences, 79, 2554--2558*.
+2. Fukushima, Kunihiko (1980). *Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position*. *Biological Cybernetics, 36, 193--202*.
+3. Rumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). *Parallel Distributed Processing: Explorations in the Microstructure of Cognition*. *MIT Press, 1 and 2*.
+4. Minsky, Marvin and Papert, Seymour (1969). *Perceptrons: An Introduction to Computational Geometry*. *MIT Press*.
+
 
 ## 练习
 

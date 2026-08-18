@@ -164,6 +164,12 @@ print(f"全注意力单步: {(time.time()-t0)/10*1000:.1f} ms —— T² 账单�
 1. 并行化的架构 + 吞得下的数据 = ？——当两者都上一个数量级，loss 会怎样？（→ Part 6 开卷：scaling laws，loss 的可预测时代）；
 2. 同一个 Transformer，因果掩罩去留之间分出了两条路线（→ 下一章 GPT vs BERT—— decoder-only 时代的前夜）。
 
+## 参考文献
+
+1. Bradbury et al. (2017). *Quasi-Recurrent Neural Networks*. *NeurIPS*.
+2. Vaswani et al. (2017). *Attention Is All You Need*. *NeurIPS*.
+
+
 ## 练习
 
 1. **造轮子**：给 `MiniGPT` 加带状注意力（每位置只看最近 k 位），测 T=256 的时间与 char-LM loss——完成正文消融的完整版。

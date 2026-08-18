@@ -167,6 +167,12 @@ print("输出序列:", sample_out)
 2. 查询、键、值如果全部来自**同一个序列**会怎样？（自注意力——2017 年的答案）；
 3. O(长度²) 的账单什么时候到期？（长文档时代——8.x 的主题，此处记账）。
 
+## 参考文献
+
+1. Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). *Neural Machine Translation by Jointly Learning to Align and Translate*. *ICLR*.
+2. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*.
+
+
 ## 练习
 
 1. **造轮子**：遮住 `AttentionSeq2Seq._attend`，重写点积注意力及其反向（softmax 对 scores 的雅可比），用有限差分对拍——这是 5.2 全部反向传播的地基。

@@ -202,6 +202,12 @@ print(f"QA 命中: 贪心 {greedy/12:.2f} -> 枚举重排 {rerank/12:.2f}（marg
 1. 单次工具调用有了——**多步循环**（调用→观察→再决策）的行为如何训练与稳定？（→ 下一章：轨迹与环境闭环）；
 2. 模型层与系统层的边界怎么画——**一个问题该改 prompt、改工具、还是改权重**？（→ 8.3：判断框架）。
 
+## 参考文献
+
+1. Schick, Timo and Dwivedi-Yu, Jane and Dess\`i (2023). *Toolformer: Language Models Can Teach Themselves to Use Tools*. *NeurIPS*.
+2. Radford et al. (2019). *Language Models Are Unsupervised Multitask Learners*. *OpenAI Technical Report*.
+
+
 ## 练习
 
 1. **造轮子**：给 `with_tool` 加第二种工具（词典查询：模式 `word?` → 注入故事词表里的定义），组合两个工具——观察模型会不会在算式后误触发词典（工具选择的混淆从两件工具开始）。

@@ -99,10 +99,12 @@ title: "双主线：降 Loss 的视角与研究史的视角"
 
 方法说清了，但"读研究史"本身是有技术的：如何在二手叙述里辨认一手问题？如何避免用今天的后见之明嘲笑前人？（他们不知道结局，而你不知道他们不知道什么——这才是重演的难点。）→ 下一章：如何读研究史。
 
+
 ## 参考文献
 
-::: {#refs}
-:::
+1. Shannon, Claude E. (1948). *A Mathematical Theory of Communication*. *Bell System Technical Journal, 27, 379--423*. [doi:10.1002/j.1538-7305.1948.tb01338.x](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x)
+2. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
 
 ## 练习
 

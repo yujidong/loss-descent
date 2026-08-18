@@ -59,6 +59,13 @@ title: "终章：你的判断框架与预测"
 
 账本合上，镜头擦亮，循环待发。去把下一章历史写对。
 
+## 参考文献
+
+1. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+2. Kuhn, Thomas S. (1962). *The Structure of Scientific Revolutions*. *University of Chicago Press*.
+3. Shannon, Claude E. (1948). *A Mathematical Theory of Communication*. *Bell System Technical Journal, 27, 379--423*. [doi:10.1002/j.1538-7305.1948.tb01338.x](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x)
+
+
 ## 练习（最后一组）
 
 1. **完成三份考卷**：对三道考题独立作答（别只抄示范——分歧处才是你的判断）；与示范对照，分歧点用模式清单仲裁。

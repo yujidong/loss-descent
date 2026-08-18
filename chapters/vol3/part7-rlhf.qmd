@@ -248,6 +248,13 @@ print("质量偏好样例:", sg[0][:40])
 1. 主观偏好有 Goodhart，**客观对错**呢？——把裁判换成"答案对不对"的自动验证，优化会走向哪里？（→ 下一章 RLVR：可验证奖励的强化学习，以及推理模型）；
 2. 我们的策略用 LoRA 挂在冻结底座上——**能力与行为分离**的工程化，会给"对齐的稳固性"带来什么问题？（→ 8.x 与 9.2 的"对齐浅层性"讨论）。
 
+## 参考文献
+
+1. Rafailov et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model*. *NeurIPS*.
+2. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*.
+3. Christiano et al. (2017). *Deep Reinforcement Learning from Human Preferences*. *NeurIPS*.
+
+
 ## 练习
 
 1. **造轮子**：给 DPO 加 KL 罚（对策略与参考的平均对数概率差加惩罚项），重跑长度偏好——退化会被抑制吗？抑制的代价是什么？

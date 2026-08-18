@@ -152,6 +152,15 @@ for n in (40, 100, 400):
 2. 深度推进的下一道墙：几十层网络的"退化"怪病（→ 3.2 残差）；
 3. 学到的"通用特征"到底是什么？能借给别人用吗？（→ 3.3 预训练-微调范式的诞生）。
 
+## 参考文献
+
+1. Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). *ImageNet Classification with Deep Convolutional Neural Networks*. *NeurIPS*.
+2. Glorot, Xavier and Bengio, Yoshua (2010). *Understanding the Difficulty of Training Deep Feedforward Neural Networks*. *Proceedings of AISTATS, 9, 249--256*.
+3. Nair, Vinod and Hinton, Geoffrey E. (2010). *Rectified Linear Units Improve Restricted Boltzmann Machines*. *Proceedings of ICML, 807--814*.
+4. Srivastava et al. (2014). *Dropout: A Simple Way to Prevent Neural Networks from Overfitting*. *Journal of Machine Learning Research, 15, 1929--1958*.
+5. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
+
 ## 练习
 
 1. **算力账本延伸**：查一张今天消费级 GPU 的理论 FLOP/s，重算 AlexNet 训练时间；再估 GPT-3（约 $3\times10^{23}$ FLOPs）在单卡上需要多久——从而理解"万卡集群"不是炫富而是必需。

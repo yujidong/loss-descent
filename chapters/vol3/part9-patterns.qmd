@@ -121,6 +121,12 @@ title: "复盘：反复出现的研究模式"
 
 模式是旧的惯性，未来还取决于**未解的问题**——下一章清点 loss 视角下的开放问题清单（数据墙、自我改进的边界、评测危机、样本效率）。
 
+## 参考文献
+
+1. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+2. Kuhn, Thomas S. (1962). *The Structure of Scientific Revolutions*. *University of Chicago Press*.
+
+
 ## 练习
 
 1. **模式寻宝**：在本书没有归类的章节里找一条"至少三次出现"的候选模式（例：留门/平滑——4.1 的平滑系数、2.3 的 BN 防漂移、5.4 的遮罩率甜点、7.3 的 KL 罚——"给极端留缓冲"算不算第六条？论证它）。

@@ -145,6 +145,13 @@ print(f"4 专家: val loss = {moe4.loss_on(vb):.3f}, 使用率 = {np.round(moe4.
 2. "听话"本身如何变成一个可优化的目标？（→ 7.3 RLHF：把人类偏好写成 loss）；
 3. 当模型的推理能力成为新前线，loss 的故事怎么续写？（→ 7.4 RLVR 与测试时计算）。
 
+## 参考文献
+
+1. Fedus, William and Zoph, Barret and Shazeer, Noam (2022). *Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity*. *Journal of Machine Learning Research, 23, 1--39*.
+2. Touvron et al. (2023). *LLaMA*. *arXiv preprint arXiv:2302.13971*.
+3. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
+
 ## 练习
 
 1. **造轮子**：给 `MoEMLP` 加负载均衡辅助损失（$L_{aux} = E \sum_e f_e \cdot p_e$，$f_e$ 为使用率、$p_e$ 为平均门概率），权重 0.01，重训——使用率与 loss 各怎么变？

@@ -177,6 +177,12 @@ print(f"有位置: {history[-1]:.4f} | 无位置: {l_nopos:.4f}")
 2. 因果掩罩去掉会怎样？生成与理解的两条路线如何分野？（→ 5.4 GPT vs BERT）；
 3. 这个架构吞下更多数据与参数时会发生什么？（→ Part 6：scaling laws——loss 的可预测时代）。
 
+## 参考文献
+
+1. Vaswani et al. (2017). *Attention Is All You Need*. *NeurIPS*.
+2. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*.
+
+
 ## 练习
 
 1. **造轮子**：遮住 `MultiHeadAttention.backward`，从 softmax 雅可比与多头变形重写；再用有限差分穿透整网对拍（`tests/test_transformer.py` 有现成裁判）。

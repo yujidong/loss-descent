@@ -175,6 +175,13 @@ for d, n in configs:
 1. 等算力的谷底给了"最好的平均 loss"——但 loss 平滑改善时，下游能力也平滑吗？（→ 下一章：涌现之争）；
 2. "参数太多浪费、数据太多也浪费"——有没有办法**解耦参数与算力**？（→ 6.4：MoE，以及更远的稀疏化家族）。
 
+## 参考文献
+
+1. Hoffmann et al. (2022). *Training Compute-Optimal Large Language Models*. *arXiv preprint arXiv:2203.15556*.
+2. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*.
+3. Touvron et al. (2023). *LLaMA*. *arXiv preprint arXiv:2302.13971*.
+
+
 ## 练习
 
 1. **造轮子**：实现三维网格的迷你版（3 尺寸 × 3 步数，等量九点），画出等 loss 等高线图——$N^*(C)$ 从等高线的切点上读出来。

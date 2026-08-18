@@ -183,6 +183,12 @@ for k in (2, 4, 8):
 1. 度量之争审问了"报表"，没审问"模型内部"——能力到底怎么在权重里组织起来的？（→ 卷三 interpretability，及 7.1 的 in-context 机制研究）；
 2. 平滑的 loss 与跳变的能力声明之间的张力，将在对齐时代以更尖锐的形式出现：**我们对模型的评估，永远比模型本身粗糙**（→ 7.3 的 reward hacking，9.2 的评测危机）。
 
+## 参考文献
+
+1. Wei et al. (2022). *Emergent Abilities of Large Language Models*. *Transactions on Machine Learning Research*.
+2. Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). *Are Emergent Abilities of Large Language Models a Mirage?*. *NeurIPS*.
+
+
 ## 练习
 
 1. **造轮子**：实现"连续版精确匹配"——把 argmax 换成前 k 个预测含目标的比率（top-k 命中率），观察它在四尺寸下的曲线形态——它比 exact4 平滑多少？

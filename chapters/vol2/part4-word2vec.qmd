@@ -150,6 +150,13 @@ for a, b, c in [("cat", "garden", "dog"), ("runs", "garden", "sleeps"), ("warm",
 1. 词向量是**静态**的——同一个词在任何句子里都是同一个向量。**随上下文变化的表示**如何构造？（ELMo/GPT 的方向，6.1——需要先把"下一个词预测"做大做深）；
 2. 把两台 LSTM 一读一写接起来，能做翻译吗？瓶颈在哪？（→ 下一章 seq2seq）。
 
+## 参考文献
+
+1. Mikolov et al. (2013). *Distributed Representations of Words and Phrases and Their Compositionality*. *NeurIPS*.
+2. Levy, Omer and Goldberg, Yoav (2014). *Neural Word Embedding as Implicit Matrix Factorization*. *NeurIPS*.
+3. Pennington, Jeffrey and Socher, Richard and Manning, Christopher D. (2014). *GloVe*. *EMNLP*.
+
+
 ## 练习
 
 1. **造轮子**：把 skip-gram 换成 CBOW（上下文预测中心词，注意上下文向量要平均），在同语料上对照 loss 与类比成绩。

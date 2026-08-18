@@ -230,6 +230,14 @@ print(f"贫指令版: 格式 {format_rate(poor):.2f} | margin {margin(poor):+.2f
 2. 需要多步推理的任务，模仿学得会吗？（→ 7.4：可验证奖励与自举）；
 3. 我们的贪心命中 0.17 还有救吗？（→ 采样与下一章的偏好优化正是"引出知识"的两条路）。
 
+## 参考文献
+
+1. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*.
+2. Wei et al. (2022). *Finetuned Language Models Are Zero-Shot Learners*. *ICLR*.
+3. Sanh et al. (2022). *Multitask Prompted Training Enables Zero-Shot Task Generalization*. *ICLR*.
+4. Hu et al. (2021). *LoRA*. *arXiv preprint arXiv:2106.09685*.
+
+
 ## 练习
 
 1. **造轮子**：给 `MiniGPT` 实现 prefix-tuning（冻结全部、只在每层输入前加可学习的 k 个软提示向量）——与 LoRA 对照参数效率。低秩与低维前缀，谁更划算？

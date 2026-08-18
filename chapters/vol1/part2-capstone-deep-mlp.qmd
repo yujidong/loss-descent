@@ -153,6 +153,14 @@ for depth in (1, 2, 4, 8):
 3. 学到的特征是什么？能否迁移？（→ 3.3，预训练-微调范式诞生）；
 4. 这套配方在序列上表现如何？（→ Part 4，新的战场、新的病灶）。
 
+## 参考文献
+
+1. Kingma, Diederik P. and Ba, Jimmy (2014). *Adam: A Method for Stochastic Optimization*. *arXiv preprint arXiv:1412.6980*.
+2. Ioffe, Sergey and Szegedy, Christian (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*. *Proceedings of ICML, 448--456*.
+3. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*.
+4. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
+
 ## 练习
 
 1. **造轮子**：给 `MLPNumpy.step` 实现 Adam（一阶/二阶矩指数滑动平均 + 偏差校正），在八层螺旋上与动量法对照收敛速度。

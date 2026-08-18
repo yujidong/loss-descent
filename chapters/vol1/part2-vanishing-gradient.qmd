@@ -154,6 +154,14 @@ for depth in (2, 4, 8):
 2. 能不能给梯度修一条绕开连乘的路？（→ 3.2 残差连接）；
 3. 序列上的长程依赖是梯度消失的十倍重灾区——那里的解药是什么？（→ 4.3 LSTM 的门控）。
 
+## 参考文献
+
+1. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*.
+2. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)
+3. Glorot, Xavier and Bengio, Yoshua (2010). *Understanding the Difficulty of Training Deep Feedforward Neural Networks*. *Proceedings of AISTATS, 9, 249--256*.
+4. Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). *Multilayer Feedforward Networks Are Universal Approximators*. *Neural Networks, 2, 359--366*. [doi:10.1016/0893-6080(89)90020-8](https://doi.org/10.1016/0893-6080(89)90020-8)
+
+
 ## 练习
 
 1. **造轮子**：写一个函数 `layerwise_ratio(model, X, y)` 返回"首层梯度范数/末层梯度范数"，对 sigmoid/tanh/relu 各跑 5 个种子取中位数，把 2.2a 的单种子结论变成稳健结论。

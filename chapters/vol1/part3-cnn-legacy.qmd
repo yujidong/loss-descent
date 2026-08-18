@@ -152,6 +152,13 @@ print(f"探针在干净域测试: {acc_same_domain:.3f}（脏域是 {acc_probe:.
 1. 卷积的窗口是固定的——序列变长、依赖变远时，这套架构还转得动吗？（→ 下一章：CNN 的边界，Part 4 的门）；
 2. 预训练底座越来越大、下游越来越小——底座的极限由什么决定？（→ 6.1 规模定律，卷二）。
 
+## 参考文献
+
+1. Razavian et al. (2014). *CNN*. *CVPR Workshops*.
+2. Zeiler, Matthew D. and Fergus, Rob (2014). *Visualizing and Understanding Convolutional Networks*. *ECCV*.
+3. LeCun, Yann and Bottou, L\'e (1998). *Gradient-Based Learning Applied to Document Recognition*. *Proceedings of the IEEE, 86, 2278--2324*.
+
+
 ## 练习
 
 1. **造轮子**：把探针从感知机换成小型 MLPNumpy（8-8-1），冻结特征重训——比感知机好多少？"线性可读"与"可读"的差距就是这份增量。

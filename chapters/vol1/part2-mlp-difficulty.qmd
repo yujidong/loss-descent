@@ -215,6 +215,14 @@ for depth in (2, 8):
 2. 我们的引擎里那些"来自未来"的黑魔法（动量、BN）到底各自治什么病？（→ 2.3 工具箱）；
 3. 学习率的黑暗艺术何时能终结？（部分答案在 2.3 的 BN、以及未来章节的学习率日程）。
 
+## 参考文献
+
+1. Glorot, Xavier and Bengio, Yoshua (2010). *Understanding the Difficulty of Training Deep Feedforward Neural Networks*. *Proceedings of AISTATS, 9, 249--256*.
+2. Dauphin et al. (2014). *Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization*. *NeurIPS*.
+3. Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron (2016). *Deep Learning*. *MIT Press*.
+4. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
+
 ## 练习
 
 1. **造轮子**：给 `MLPNumpy` 加一个 `init="xavier"` 选项（均匀分布 $\pm\sqrt{6/(\text{fan-in}+\text{fan-out})}$），在八层螺旋任务上与 `"scaled"` 对照。

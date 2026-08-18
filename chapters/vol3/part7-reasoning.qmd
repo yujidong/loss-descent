@@ -221,6 +221,12 @@ for temp in (0.5, 0.9, 1.5):
 2. 推理预算与上下文窗口的关系——"多想"与"多记"如何兑换？（8.x 长上下文的经济学）；
 3. 当模型在判卷任务上无限自举——**它能越过验证器，碰到开放问题吗**？（9.2 的边界讨论）。
 
+## 参考文献
+
+1. Zelikman et al. (2022). *STaR*. *NeurIPS*.
+2. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*.
+
+
 ## 练习
 
 1. **造轮子**：把多数投票升级成"验证器引导的 best-of-n"（用判卷直接选对的那个而非投票）——与投票对照：各在什么错误结构下占优？

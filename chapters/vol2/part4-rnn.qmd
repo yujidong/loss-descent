@@ -156,6 +156,14 @@ plt.show()
 2. 词级的语义能像字符级一样被学进权重吗？（→ 4.4 word2vec：不靠任务、纯靠共现就把语义压进向量）；
 3. 两个 RNN 串起来——一个读、一个写——能做翻译吗？（→ 4.5 seq2seq）。
 
+## 参考文献
+
+1. Elman, Jeffrey L. (1990). *Finding Structure in Time*. *Cognitive Science, 14, 179--211*.
+2. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)
+3. Bengio, Yoshua and Ducharme, R\'e (2003). *A Neural Probabilistic Language Model*. *Journal of Machine Learning Research, 3, 1137--1155*.
+4. Hochreiter, Sepp and Schmidhuber, J\"u (1997). *Long Short-Term Memory*. *Neural Computation, 9, 1735--1780*.
+
+
 ## 练习
 
 1. **造轮子**：遮住 `SimpleRNN.backward`，只凭展开图重写 BPTT（注意 $W_h$ 在每个时间步的转置方向），与 `rnn_grad_flow_norms` 的剖面对拍。

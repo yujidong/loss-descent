@@ -166,6 +166,16 @@ tanh+BN 也能爬到 0.8 左右——BN 的疗效不挑激活，但 relu+BN 仍�
 2. 深度的天花板在哪里？BN 之后，几十层网络的下一个瓶颈是什么？（→ 3.2 残差：优化之病好了，**退化之病**才露头）；
 3. 工具箱能搬到序列与语言任务吗？（→ Part 4，那里有自己的特殊困难）。
 
+## 参考文献
+
+1. Nair, Vinod and Hinton, Geoffrey E. (2010). *Rectified Linear Units Improve Restricted Boltzmann Machines*. *Proceedings of ICML, 807--814*.
+2. Srivastava et al. (2014). *Dropout: A Simple Way to Prevent Neural Networks from Overfitting*. *Journal of Machine Learning Research, 15, 1929--1958*.
+3. Ioffe, Sergey and Szegedy, Christian (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*. *Proceedings of ICML, 448--456*.
+4. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*.
+5. Santurkar et al. (2018). *How Does Batch Normalization Help Optimization?*. *NeurIPS*.
+6. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
+
 ## 练习
 
 1. **造轮子**：给 `MLPNumpy` 加 `layernorm=True` 选项（跨特征而非跨样本标准化），在八层螺旋上与 BN 对照——并预言它在 Transformer 里为什么取代了 BN（提示：批统计在变长序列上怎么办？）。

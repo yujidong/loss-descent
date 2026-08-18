@@ -155,10 +155,15 @@ for margin in (1.0, 0.5, 0.25, 0.125):
 2. 没有 loss 的学习给不出概率、置信度，也做不了回归——"学习 = 优化"的范式还缺一块基石（→ ADALINE → 反向传播）；
 3. 技术失败之后是社会学失败：经费、信任、人才的崩塌如何发生，又如何埋葬本可更早出世的思想？（→ 下一章：范式之争）
 
+
 ## 参考文献
 
-::: {#refs}
-:::
+1. Rosenblatt, Frank (1958). *The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain*. *Psychological Review, 65, 386--408*. [doi:10.1037/h0042519](https://doi.org/10.1037/h0042519)
+2. Minsky, Marvin and Papert, Seymour (1969). *Perceptrons: An Introduction to Computational Geometry*. *MIT Press*.
+3. Widrow, Bernard and Hoff, Marcian E. (1960). *Adaptive Switching Circuits*. *IRE WESCON Convention Record, 4, 96--104*.
+4. Hebb, Donald O. (1949). *The Organization of Behavior: A Neuropsychological Theory*. *Wiley*.
+5. McCulloch, Warren S. and Pitts, Walter (1943). *A Logical Calculus of the Ideas Immanent in Nervous Activity*. *Bulletin of Mathematical Biophysics, 5, 115--133*. [doi:10.1007/BF02478259](https://doi.org/10.1007/BF02478259)
+
 
 ## 练习
 

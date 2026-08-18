@@ -168,6 +168,12 @@ print(f"SFT zero-shot: {zero_shot(sft):.2f}")
 2. 框架依赖的世界在变：数据墙、算力格局、能力前沿——**开放问题清单**（→ 9.2）；
 3. 最后：用它**预测未来**——全书的毕业考试（→ 9.3）。
 
+## 参考文献
+
+1. Lewis et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP*. *NeurIPS*.
+2. Radford et al. (2018). *Improving Language Understanding by Generative Pre-Training*. *OpenAI Technical Report*.
+
+
 ## 练习
 
 1. **造轮子**：把三问框架写成一张决策表（底座体检 × 变化频率 × 错误代价 → 建议层），并给自己的一个实际项目过一遍——记录框架给出的建议与你的直觉的分歧点。
