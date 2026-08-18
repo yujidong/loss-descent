@@ -118,19 +118,7 @@ ul.task-list li input[type="checkbox"] {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局覆盖：不依赖 SCSS 编译，直接加载生效 */
-@media (min-width: 992px) {
-  main {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    max-width: 52rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-  #quarto-content {
-    padding: 0 2rem;
-  }
-}
+/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -144,6 +132,19 @@ main pre code {
 main table {
   width: 100%;
   table-layout: auto;
+}
+/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+@media (min-width: 992px) {
+  :root {
+    --quarto-body-width: 72rem;
+    --quarto-content-width: 52rem;
+  }
+  #quarto-content {
+    max-width: 72rem !important;
+  }
+  .page-columns .page {
+    max-width: 52rem;
+  }
 }
 </style>
 
