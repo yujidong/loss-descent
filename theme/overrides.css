@@ -1,0 +1,38 @@
+/* 布局覆盖：不依赖 SCSS 编译，直接在渲染后加载生效 */
+
+/* 加宽正文 */
+@media (min-width: 992px) {
+  main {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 52rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  #quarto-content {
+    padding: 0 2rem;
+  }
+}
+
+/* 字号与行高 */
+body {
+  font-size: 1.0625rem !important; /* 17px */
+  line-height: 1.85 !important;
+}
+
+/* 段间距 */
+main p {
+  margin-bottom: 1.1em !important;
+}
+
+/* 代码块字号 */
+main pre code {
+  font-size: 0.875em !important;
+}
+
+/* 表格不溢出 */
+main table {
+  width: 100%;
+  table-layout: auto;
+}
