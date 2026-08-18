@@ -148,240 +148,268 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   #rc-modal .rc-btns button { border: 1px solid #ccc; background: #fff; border-radius: 6px;
     padding: 5px 14px; cursor: pointer; }
   #rc-modal .rc-btns button.rc-primary { background: #3572c6; color: #fff; border-color: #3572c6; }
+  #rc-hint { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 9995;
+    background: #2f2f2f; color: #fff; border-radius: 10px; padding: 10px 18px; font-size: 13.5px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 </style>
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
   window.__dlbookReviewLoaded = true;
 
-  var CHAPTER = (location.pathname.split("/").pop() || "index").replace(/\.html$/, "");
-  var KEY = "dlbook-review-" + CHAPTER;
-  var TYPES = ["问题", "建议", "文风", "事实核对", "其他"];
+  function init() {
+    var CHAPTER = (location.pathname.split("/").pop() || "index").replace(/\.html$/, "");
+    var KEY = "dlbook-review-" + CHAPTER;
+    var TYPES = ["问题", "建议", "文风", "事实核对", "其他"];
 
-  function load() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } }
-  function save(list) { localStorage.setItem(KEY, JSON.stringify(list)); }
-  function norm(s) { return (s || "").replace(/\s+/g, " ").trim(); }
-  function uid() { return "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
-  function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
-  function mainRoot() { return document.querySelector("main") || document.body; }
-  function sectionOf(node) {
-    try {
-      var h = document.evaluate(
-        "preceding::*[self::h1 or self::h2 or self::h3][1]",
-        node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null
-      ).singleNodeValue;
-      return h ? norm(h.textContent) : "";
-    } catch (e) { return ""; }
-  }
+    function load() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } }
+    function save(list) { localStorage.setItem(KEY, JSON.stringify(list)); }
+    function norm(s) { return (s || "").replace(/\s+/g, " ").trim(); }
+    function uid() { return "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+    function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+    function mainRoot() { return document.querySelector("main") || document.body; }
+    function sectionOf(node) {
+      try {
+        var h = document.evaluate(
+          "preceding::*[self::h1 or self::h2 or self::h3][1]",
+          node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null
+        ).singleNodeValue;
+        return h ? norm(h.textContent) : "";
+      } catch (e) { return ""; }
+    }
+    function flash(msg) {
+      var tip = document.createElement("div");
+      tip.className = "rc-ui";
+      tip.style.cssText = "position:fixed;left:50%;top:20px;transform:translateX(-50%);z-index:9996;" +
+        "background:#333;color:#fff;padding:8px 16px;border-radius:8px;font-size:13px";
+      tip.textContent = msg; document.body.appendChild(tip);
+      setTimeout(function () { tip.remove(); }, 2600);
+    }
 
-  /* ---------- 工具栏 ---------- */
-  var bar = document.createElement("div");
-  bar.id = "rc-toolbar"; bar.className = "rc-ui";
-  bar.innerHTML =
-    '<button id="rc-mode">批注模式</button>' +
-    '<button id="rc-open">本章批注 <span id="rc-count">0</span></button>' +
-    '<button id="rc-export">导出 JSON</button>';
-  document.body.appendChild(bar);
+    /* ---------- 首次访问提示 ---------- */
+    if (!localStorage.getItem("dlbook-review-hint-shown")) {
+      var hint = document.createElement("div");
+      hint.id = "rc-hint"; hint.className = "rc-ui";
+      hint.textContent = "📖 阅读提示：划选文字即可添加批注（工具栏在右下角）";
+      document.body.appendChild(hint);
+      var dismiss = function () { localStorage.setItem("dlbook-review-hint-shown", "1"); hint.remove(); };
+      hint.onclick = dismiss;
+      setTimeout(dismiss, 8000);
+    }
 
-  var modeBtn = bar.querySelector("#rc-mode");
-  function modeOn() { return localStorage.getItem("dlbook-review-mode") === "1"; }
-  function refreshMode() {
-    modeBtn.classList.toggle("rc-on", modeOn());
-    modeBtn.textContent = modeOn() ? "批注模式：开" : "批注模式：关";
-  }
-  modeBtn.onclick = function () {
-    localStorage.setItem("dlbook-review-mode", modeOn() ? "0" : "1");
+    /* ---------- 工具栏 ---------- */
+    var bar = document.createElement("div");
+    bar.id = "rc-toolbar"; bar.className = "rc-ui";
+    bar.innerHTML =
+      '<button id="rc-mode">批注模式</button>' +
+      '<button id="rc-open">本章批注 <span id="rc-count">0</span></button>' +
+      '<button id="rc-export">导出 JSON</button>';
+    document.body.appendChild(bar);
+
+    var modeBtn = bar.querySelector("#rc-mode");
+    function modeOn() { return localStorage.getItem("dlbook-review-mode") === "1"; }
+    function refreshMode() {
+      modeBtn.classList.toggle("rc-on", modeOn());
+      modeBtn.textContent = modeOn() ? "批注模式：开" : "批注模式：关";
+    }
+    modeBtn.onclick = function () {
+      localStorage.setItem("dlbook-review-mode", modeOn() ? "0" : "1");
+      refreshMode();
+      flash(modeOn() ? "批注模式已开启：划选文字，或点击段落" : "批注模式已关闭");
+    };
     refreshMode();
-  };
-  refreshMode();
 
-  /* ---------- 划选批注 ---------- */
-  var selBtn = document.createElement("div");
-  selBtn.id = "rc-selbtn"; selBtn.className = "rc-ui"; selBtn.style.display = "none";
-  selBtn.innerHTML = '<button>＋ 批注</button>';
-  document.body.appendChild(selBtn);
+    /* ---------- 划选批注 ---------- */
+    var selBtn = document.createElement("div");
+    selBtn.id = "rc-selbtn"; selBtn.className = "rc-ui"; selBtn.style.display = "none";
+    selBtn.innerHTML = '<button>＋ 批注</button>';
+    document.body.appendChild(selBtn);
 
-  function hideSelBtn() { selBtn.style.display = "none"; }
-  document.addEventListener("mouseup", function (ev) {
-    if (!modeOn() || ev.target.closest(".rc-ui")) return;
-    setTimeout(function () {
+    function hideSelBtn() { selBtn.style.display = "none"; }
+    document.addEventListener("mouseup", function (ev) {
+      if (!modeOn() || ev.target.closest(".rc-ui")) return;
+      setTimeout(function () {
+        var sel = window.getSelection();
+        if (!sel || sel.isCollapsed || !sel.toString().trim()) { hideSelBtn(); return; }
+        if (sel.toString().length > 1500) { hideSelBtn(); return; }
+        if (!mainRoot().contains(sel.anchorNode)) { hideSelBtn(); return; }
+        var r = sel.getRangeAt(0).getBoundingClientRect();
+        selBtn.style.display = "block";
+        selBtn.style.left = Math.max(8, r.left + r.width / 2 - 36 + window.scrollX) + "px";
+        selBtn.style.top = (r.top + window.scrollY - 36) + "px";
+      }, 10);
+    });
+    selBtn.onclick = function () {
       var sel = window.getSelection();
-      if (!sel || sel.isCollapsed || !sel.toString().trim()) { hideSelBtn(); return; }
-      if (sel.toString().length > 1500) { hideSelBtn(); return; }
-      if (!mainRoot().contains(sel.anchorNode)) { hideSelBtn(); return; }
-      var r = sel.getRangeAt(0).getBoundingClientRect();
-      selBtn.style.display = "block";
-      selBtn.style.left = Math.max(8, r.left + r.width / 2 - 36 + window.scrollX) + "px";
-      selBtn.style.top = (r.top + window.scrollY - 36) + "px";
-    }, 10);
-  });
-  selBtn.onclick = function () {
-    var sel = window.getSelection();
-    if (!sel || sel.isCollapsed) return;
-    hideSelBtn();
-    openDialog({
-      quote: norm(sel.toString()).slice(0, 240),
-      range: sel.getRangeAt(0).cloneRange()
-    });
-  };
-
-  /* ---------- 整块批注（批注模式下点击段落） ---------- */
-  document.addEventListener("click", function (ev) {
-    if (!modeOn()) return;
-    if (ev.target.closest(".rc-ui, a, button, pre, code, input, textarea, mark.rc-mark")) return;
-    if (window.getSelection() && !window.getSelection().isCollapsed) return;
-    var block = ev.target.closest("p, li, h2, h3, blockquote, .callout-body");
-    if (!block || !mainRoot().contains(block)) return;
-    var text = norm(block.textContent);
-    if (!text || text.length < 4) return;
-    openDialog({ quote: text.slice(0, 200), block: block });
-  });
-
-  /* ---------- 对话框 ---------- */
-  var modalBg = document.createElement("div"); modalBg.id = "rc-modal-bg";
-  var modal = document.createElement("div"); modal.id = "rc-modal"; modal.className = "rc-ui";
-  modal.innerHTML =
-    '<div><b>添加批注</b></div><div class="rc-q"></div>' +
-    '<div>类型：&nbsp;<select></select></div>' +
-    "<textarea placeholder='写下你的问题或建议…'></textarea>" +
-    '<div class="rc-btns"><button class="rc-cancel">取消</button><button class="rc-primary">保存</button></div>';
-  document.body.appendChild(modalBg); document.body.appendChild(modal);
-  var typeSel = modal.querySelector("select");
-  TYPES.forEach(function (t) { var o = document.createElement("option"); o.value = o.textContent = t; typeSel.appendChild(o); });
-  var pendingCtx = null;
-
-  function openDialog(ctx) {
-    pendingCtx = ctx;
-    modal.querySelector(".rc-q").textContent = "「" + ctx.quote + "」";
-    modal.querySelector("textarea").value = "";
-    modalBg.style.display = "block"; modal.style.display = "block";
-    modal.querySelector("textarea").focus();
-  }
-  function closeDialog() { modalBg.style.display = "none"; modal.style.display = "none"; pendingCtx = null; }
-  modalBg.onclick = closeDialog;
-  modal.querySelector(".rc-cancel").onclick = closeDialog;
-  modal.querySelector(".rc-primary").onclick = function () {
-    var note = norm(modal.querySelector("textarea").value);
-    if (!note) { closeDialog(); return; }
-    var item = {
-      id: uid(), chapter: CHAPTER, section: sectionOf(pendingCtx.range ? pendingCtx.range.startContainer : pendingCtx.block),
-      quote: pendingCtx.quote, note: note, type: typeSel.value,
-      createdAt: new Date().toISOString()
+      if (!sel || sel.isCollapsed) return;
+      hideSelBtn();
+      openDialog({
+        quote: norm(sel.toString()).slice(0, 240),
+        range: sel.getRangeAt(0).cloneRange()
+      });
     };
-    if (pendingCtx.range) markRange(pendingCtx.range, item.id);
-    else if (pendingCtx.block) pendingCtx.block.classList.add("rc-block-flag"), pendingCtx.block.dataset.rcCid = item.id;
-    var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
-    closeDialog();
-  };
 
-  function markRange(range, cid) {
-    try {
-      var mark = document.createElement("mark");
-      mark.className = "rc-mark"; mark.dataset.rcCid = cid;
-      range.surroundContents(mark);
-    } catch (e) {
-      var block = range.startContainer.parentElement && range.startContainer.parentElement.closest("p, li, .callout-body");
-      if (block) { block.classList.add("rc-block-flag"); block.dataset.rcCid = cid; }
+    /* ---------- 整块批注（批注模式下点击段落） ---------- */
+    document.addEventListener("click", function (ev) {
+      if (!modeOn()) return;
+      if (ev.target.closest(".rc-ui, a, button, pre, code, input, textarea, mark.rc-mark")) return;
+      if (window.getSelection() && !window.getSelection().isCollapsed) return;
+      var block = ev.target.closest("p, li, h2, h3, blockquote, .callout-body");
+      if (!block || !mainRoot().contains(block)) return;
+      var text = norm(block.textContent);
+      if (!text || text.length < 4) return;
+      openDialog({ quote: text.slice(0, 200), block: block });
+    });
+
+    /* ---------- 对话框 ---------- */
+    var modalBg = document.createElement("div"); modalBg.id = "rc-modal-bg";
+    var modal = document.createElement("div"); modal.id = "rc-modal"; modal.className = "rc-ui";
+    modal.innerHTML =
+      '<div><b>添加批注</b></div><div class="rc-q"></div>' +
+      '<div>类型：&nbsp;<select></select></div>' +
+      "<textarea placeholder='写下你的问题或建议…'></textarea>" +
+      '<div class="rc-btns"><button class="rc-cancel">取消</button><button class="rc-primary">保存</button></div>';
+    document.body.appendChild(modalBg); document.body.appendChild(modal);
+    var typeSel = modal.querySelector("select");
+    TYPES.forEach(function (t) { var o = document.createElement("option"); o.value = o.textContent = t; typeSel.appendChild(o); });
+    var pendingCtx = null;
+
+    function openDialog(ctx) {
+      pendingCtx = ctx;
+      modal.querySelector(".rc-q").textContent = "「" + ctx.quote + "」";
+      modal.querySelector("textarea").value = "";
+      modalBg.style.display = "block"; modal.style.display = "block";
+      modal.querySelector("textarea").focus();
     }
-  }
-
-  /* ---------- 面板 ---------- */
-  var panel = document.createElement("div");
-  panel.id = "rc-panel"; panel.className = "rc-ui";
-  document.body.appendChild(panel);
-  bar.querySelector("#rc-open").onclick = function () { panel.classList.toggle("rc-open"); };
-
-  function refreshCount() { bar.querySelector("#rc-count").textContent = load().length; }
-  function renderPanel() {
-    var list = load();
-    panel.innerHTML = "<h4>" + esc(CHAPTER) + " · " + list.length + " 条批注</h4>" +
-      '<div style="color:#999;font-size:12px;margin-bottom:10px">划选文字或（批注模式下）点击段落即可添加。</div>' +
-      list.map(function (c) {
-        return '<div class="rc-item" data-cid="' + c.id + '">' +
-          "<div><b>[" + esc(c.type) + "]</b> " + esc(c.note) + "</div>" +
-          '<div class="rc-q">' + esc(c.quote) + "</div>" +
-          '<div class="rc-meta"><span>' + esc(c.section || "") + "</span>" +
-          '<span><button data-del="' + c.id + '">删除</button></span></div></div>';
-      }).join("");
-    panel.querySelectorAll("button[data-del]").forEach(function (b) {
-      b.onclick = function () {
-        save(load().filter(function (c) { return c.id !== b.dataset.del; }));
-        var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
-        if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
-        refreshCount(); renderPanel();
+    function closeDialog() { modalBg.style.display = "none"; modal.style.display = "none"; pendingCtx = null; }
+    modalBg.onclick = closeDialog;
+    modal.querySelector(".rc-cancel").onclick = closeDialog;
+    modal.querySelector(".rc-primary").onclick = function () {
+      var note = norm(modal.querySelector("textarea").value);
+      if (!note) { closeDialog(); return; }
+      var item = {
+        id: uid(), chapter: CHAPTER, section: sectionOf(pendingCtx.range ? pendingCtx.range.startContainer : pendingCtx.block),
+        quote: pendingCtx.quote, note: note, type: typeSel.value,
+        createdAt: new Date().toISOString()
       };
-    });
-    panel.querySelectorAll(".rc-item").forEach(function (it) {
-      it.onclick = function (ev) {
-        if (ev.target.dataset.del) return;
-        var m = document.querySelector('[data-rc-cid="' + it.dataset.cid + '"]');
-        if (m) m.scrollIntoView({ behavior: "smooth", block: "center" });
-      };
-    });
-  }
-  refreshCount(); renderPanel();
-
-  /* ---------- 重新打开页面时尽力恢复高亮 ---------- */
-  function rehighlight() {
-    var list = load(); if (!list.length) return;
-    var walker = document.createTreeWalker(mainRoot(), NodeFilter.SHOW_TEXT, {
-      acceptNode: function (n) {
-        return n.parentElement.closest("script,style,mark.rc-mark,.rc-ui") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      if (pendingCtx.range) markRange(pendingCtx.range, item.id);
+      else if (pendingCtx.block) {
+        pendingCtx.block.classList.add("rc-block-flag");
+        pendingCtx.block.dataset.rcCid = item.id;
       }
-    });
-    var nodes = [], blob = "";
-    while (walker.nextNode()) {
-      var t = norm(walker.currentNode.nodeValue);
-      if (!t) continue;
-      nodes.push({ node: walker.currentNode, start: blob.length });
-      blob += t + " ";
+      var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      flash("已保存 1 条批注");
+      closeDialog();
+    };
+
+    function markRange(range, cid) {
+      try {
+        var mark = document.createElement("mark");
+        mark.className = "rc-mark"; mark.dataset.rcCid = cid;
+        range.surroundContents(mark);
+      } catch (e) {
+        var block = range.startContainer.parentElement && range.startContainer.parentElement.closest("p, li, .callout-body");
+        if (block) { block.classList.add("rc-block-flag"); block.dataset.rcCid = cid; }
+      }
     }
-    list.forEach(function (c) {
-      var at = blob.indexOf(norm(c.quote));
-      if (at < 0) return;
-      for (var i = nodes.length - 1; i >= 0; i--) {
-        if (nodes[i].start <= at) {
-          var host = nodes[i].node.parentElement;
-          var block = host && host.closest("p, li, .callout-body");
-          if (block) { block.classList.add("rc-block-flag"); block.dataset.rcCid = c.id; }
-          return;
+
+    /* ---------- 面板 ---------- */
+    var panel = document.createElement("div");
+    panel.id = "rc-panel"; panel.className = "rc-ui";
+    document.body.appendChild(panel);
+    bar.querySelector("#rc-open").onclick = function () { panel.classList.toggle("rc-open"); };
+
+    function refreshCount() { bar.querySelector("#rc-count").textContent = load().length; }
+    function renderPanel() {
+      var list = load();
+      panel.innerHTML = "<h4>" + esc(CHAPTER) + " · " + list.length + " 条批注</h4>" +
+        '<div style="color:#999;font-size:12px;margin-bottom:10px">划选文字或（批注模式下）点击段落即可添加。</div>' +
+        list.map(function (c) {
+          return '<div class="rc-item" data-cid="' + c.id + '">' +
+            "<div><b>[" + esc(c.type) + "]</b> " + esc(c.note) + "</div>" +
+            '<div class="rc-q">' + esc(c.quote) + "</div>" +
+            '<div class="rc-meta"><span>' + esc(c.section || "") + "</span>" +
+            '<span><button data-del="' + c.id + '">删除</button></span></div></div>';
+        }).join("");
+      panel.querySelectorAll("button[data-del]").forEach(function (b) {
+        b.onclick = function () {
+          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
+          if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
+          refreshCount(); renderPanel();
+        };
+      });
+      panel.querySelectorAll(".rc-item").forEach(function (it) {
+        it.onclick = function (ev) {
+          if (ev.target.dataset.del) return;
+          var m = document.querySelector('[data-rc-cid="' + it.dataset.cid + '"]');
+          if (m) m.scrollIntoView({ behavior: "smooth", block: "center" });
+        };
+      });
+    }
+    refreshCount(); renderPanel();
+
+    /* ---------- 重新打开页面时尽力恢复高亮 ---------- */
+    function rehighlight() {
+      var list = load(); if (!list.length) return;
+      var walker = document.createTreeWalker(mainRoot(), NodeFilter.SHOW_TEXT, {
+        acceptNode: function (n) {
+          return n.parentElement.closest("script,style,mark.rc-mark,.rc-ui") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
         }
+      });
+      var nodes = [], blob = "";
+      while (walker.nextNode()) {
+        var t = norm(walker.currentNode.nodeValue);
+        if (!t) continue;
+        nodes.push({ node: walker.currentNode, start: blob.length });
+        blob += t + " ";
       }
-    });
-  }
-
-  /* ---------- 导出 ---------- */
-  function flash(msg) {
-    var tip = document.createElement("div");
-    tip.className = "rc-ui";
-    tip.style.cssText = "position:fixed;left:50%;top:20px;transform:translateX(-50%);z-index:9995;" +
-      "background:#333;color:#fff;padding:8px 16px;border-radius:8px;font-size:13px";
-    tip.textContent = msg; document.body.appendChild(tip);
-    setTimeout(function () { tip.remove(); }, 2600);
-  }
-  bar.querySelector("#rc-export").onclick = function () {
-    var data = {
-      chapter: CHAPTER, path: location.pathname,
-      exportedAt: new Date().toISOString(), comments: load()
-    };
-    var text = JSON.stringify(data, null, 2);
-    var ts = data.exportedAt.replace(/[-:T]/g, "").slice(0, 12);
-    try {
-      var a = document.createElement("a");
-      a.href = URL.createObjectURL(new Blob([text], { type: "application/json" }));
-      a.download = "review-" + CHAPTER + "-" + ts + ".json";
-      document.body.appendChild(a); a.click(); a.remove();
-      flash("已导出 " + load().length + " 条批注，请把文件放入 reviews/ 目录");
-    } catch (e) {
-      var ta = document.createElement("textarea");
-      ta.value = text; document.body.appendChild(ta); ta.select();
-      document.execCommand("copy"); ta.remove();
-      flash("下载不可用，批注已复制到剪贴板，请粘贴保存到 reviews/");
+      list.forEach(function (c) {
+        var at = blob.indexOf(norm(c.quote));
+        if (at < 0) return;
+        for (var i = nodes.length - 1; i >= 0; i--) {
+          if (nodes[i].start <= at) {
+            var host = nodes[i].node.parentElement;
+            var block = host && host.closest("p, li, .callout-body");
+            if (block) { block.classList.add("rc-block-flag"); block.dataset.rcCid = c.id; }
+            return;
+          }
+        }
+      });
     }
-  };
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", rehighlight);
-  else rehighlight();
+    /* ---------- 导出 ---------- */
+    bar.querySelector("#rc-export").onclick = function () {
+      var data = {
+        chapter: CHAPTER, path: location.pathname,
+        exportedAt: new Date().toISOString(), comments: load()
+      };
+      var text = JSON.stringify(data, null, 2);
+      var ts = data.exportedAt.replace(/[-:T]/g, "").slice(0, 12);
+      try {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+        a.download = "review-" + CHAPTER + "-" + ts + ".json";
+        document.body.appendChild(a); a.click(); a.remove();
+        flash("已导出 " + load().length + " 条批注，请把文件放入 reviews/ 目录");
+      } catch (e) {
+        var ta = document.createElement("textarea");
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        document.execCommand("copy"); ta.remove();
+        flash("下载不可用，批注已复制到剪贴板，请粘贴保存到 reviews/");
+      }
+    };
+
+    rehighlight();
+  }
+
+  /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
+     所有 DOM 操作必须等 DOMContentLoaded（v1 的 bug 就在这里） */
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();
 </script>
 
