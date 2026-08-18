@@ -90,7 +90,6 @@ format:
     code-copy: true
     toc-depth: 3
     include-in-header: theme/review-header.html
-    include-after-body: theme/overrides.html
     bibliography: references.bib
     link-citations: true
 
