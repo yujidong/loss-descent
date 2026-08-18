@@ -204,8 +204,8 @@ print(f"QA 命中: 贪心 {greedy/12:.2f} -> 枚举重排 {rerank/12:.2f}（marg
 
 ## 参考文献
 
-1. Schick, Timo and Dwivedi-Yu, Jane and Dess\`i (2023). *Toolformer: Language Models Can Teach Themselves to Use Tools*. *NeurIPS*.
-2. Radford et al. (2019). *Language Models Are Unsupervised Multitask Learners*. *OpenAI Technical Report*.
+1. Schick, Timo and Dwivedi-Yu, Jane and Dess\`i (2023). *Toolformer: Language Models Can Teach Themselves to Use Tools*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Schick%202023%20Toolformer%3A%20Language%20Models%20Can%20Teach%20Themselves)
+2. Radford et al. (2019). *Language Models Are Unsupervised Multitask Learners*. *OpenAI Technical Report*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202019%20Language%20Models%20Are%20Unsupervised%20Multitask%20Learners)
 
 
 ## 练习

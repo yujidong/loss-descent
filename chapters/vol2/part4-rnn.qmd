@@ -158,10 +158,10 @@ plt.show()
 
 ## 参考文献
 
-1. Elman, Jeffrey L. (1990). *Finding Structure in Time*. *Cognitive Science, 14, 179--211*.
+1. Elman, Jeffrey L. (1990). *Finding Structure in Time*. *Cognitive Science, 14, 179--211*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Elman%201990%20Finding%20Structure%20in%20Time)
 2. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)
-3. Bengio, Yoshua and Ducharme, R\'e (2003). *A Neural Probabilistic Language Model*. *Journal of Machine Learning Research, 3, 1137--1155*.
-4. Hochreiter, Sepp and Schmidhuber, J\"u (1997). *Long Short-Term Memory*. *Neural Computation, 9, 1735--1780*.
+3. Bengio, Yoshua and Ducharme, R\'e (2003). *A Neural Probabilistic Language Model*. *Journal of Machine Learning Research, 3, 1137--1155*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Bengio%202003%20A%20Neural%20Probabilistic%20Language%20Model)
+4. Hochreiter, Sepp and Schmidhuber, J\"u (1997). *Long Short-Term Memory*. *Neural Computation, 9, 1735--1780*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hochreiter%201997%20Long%20Short-Term%20Memory)
 
 
 ## 练习

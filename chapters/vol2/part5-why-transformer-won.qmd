@@ -166,8 +166,8 @@ print(f"全注意力单步: {(time.time()-t0)/10*1000:.1f} ms —— T² 账单�
 
 ## 参考文献
 
-1. Bradbury et al. (2017). *Quasi-Recurrent Neural Networks*. *NeurIPS*.
-2. Vaswani et al. (2017). *Attention Is All You Need*. *NeurIPS*.
+1. Bradbury et al. (2017). *Quasi-Recurrent Neural Networks*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202017%20Quasi-Recurrent%20Neural%20Networks)
+2. Vaswani et al. (2017). *Attention Is All You Need*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202017%20Attention%20Is%20All%20You%20Need)
 
 
 ## 练习

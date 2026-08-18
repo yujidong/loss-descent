@@ -185,8 +185,8 @@ for k in (2, 4, 8):
 
 ## 参考文献
 
-1. Wei et al. (2022). *Emergent Abilities of Large Language Models*. *Transactions on Machine Learning Research*.
-2. Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). *Are Emergent Abilities of Large Language Models a Mirage?*. *NeurIPS*.
+1. Wei et al. (2022). *Emergent Abilities of Large Language Models*. *Transactions on Machine Learning Research*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20Emergent%20Abilities%20of%20Large%20Language%20Models)
+2. Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). *Are Emergent Abilities of Large Language Models a Mirage?*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Schaeffer%202023%20Are%20Emergent%20Abilities%20of%20Large%20Language)
 
 
 ## 练习

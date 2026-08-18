@@ -152,8 +152,8 @@ print(f"无上下文(第1字符): {pos_loss[0]:.2f} → 深上下文(第48+字�
 
 ## 参考文献
 
-1. Brown et al. (2020). *Language Models Are Few-Shot Learners*. *NeurIPS*.
-2. Olsson et al. (2022). *In-Context Learning and Induction Heads*. *Anthropic Alignment Research*.
+1. Brown et al. (2020). *Language Models Are Few-Shot Learners*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202020%20Language%20Models%20Are%20Few-Shot%20Learners)
+2. Olsson et al. (2022). *In-Context Learning and Induction Heads*. *Anthropic Alignment Research*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20In-Context%20Learning%20and%20Induction%20Heads)
 
 
 ## 练习

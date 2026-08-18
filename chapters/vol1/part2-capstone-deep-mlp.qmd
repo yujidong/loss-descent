@@ -155,10 +155,10 @@ for depth in (1, 2, 4, 8):
 
 ## 参考文献
 
-1. Kingma, Diederik P. and Ba, Jimmy (2014). *Adam: A Method for Stochastic Optimization*. *arXiv preprint arXiv:1412.6980*.
-2. Ioffe, Sergey and Szegedy, Christian (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*. *Proceedings of ICML, 448--456*.
-3. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*.
-4. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+1. Kingma, Diederik P. and Ba, Jimmy (2014). *Adam: A Method for Stochastic Optimization*. *arXiv preprint arXiv:1412.6980*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Kingma%202014%20Adam%3A%20A%20Method%20for%20Stochastic%20Optimization)
+2. Ioffe, Sergey and Szegedy, Christian (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*. *Proceedings of ICML, 448--456*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Ioffe%202015%20Batch%20Normalization%3A%20Accelerating%20Deep%20Network%20Training)
+3. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition)
+4. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson)
 
 
 ## 练习

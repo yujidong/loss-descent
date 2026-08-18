@@ -147,9 +147,9 @@ print(f"4 专家: val loss = {moe4.loss_on(vb):.3f}, 使用率 = {np.round(moe4.
 
 ## 参考文献
 
-1. Fedus, William and Zoph, Barret and Shazeer, Noam (2022). *Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity*. *Journal of Machine Learning Research, 23, 1--39*.
-2. Touvron et al. (2023). *LLaMA*. *arXiv preprint arXiv:2302.13971*.
-3. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+1. Fedus, William and Zoph, Barret and Shazeer, Noam (2022). *Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity*. *Journal of Machine Learning Research, 23, 1--39*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Fedus%202022%20Switch%20Transformers%3A%20Scaling%20to%20Trillion%20Parameter)
+2. Touvron et al. (2023). *LLaMA*. *arXiv preprint arXiv:2302.13971*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202023%20LLaMA)
+3. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson)
 
 
 ## 练习

@@ -147,8 +147,8 @@ for depth in (2, 5):
 
 ## 参考文献
 
-1. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*.
-2. Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). *ImageNet Classification with Deep Convolutional Neural Networks*. *NeurIPS*.
+1. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition)
+2. Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). *ImageNet Classification with Deep Convolutional Neural Networks*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Krizhevsky%202012%20ImageNet%20Classification%20with%20Deep%20Convolutional%20Neural)
 
 
 ## 练习

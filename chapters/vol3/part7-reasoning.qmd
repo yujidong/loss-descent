@@ -223,8 +223,8 @@ for temp in (0.5, 0.9, 1.5):
 
 ## 参考文献
 
-1. Zelikman et al. (2022). *STaR*. *NeurIPS*.
-2. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*.
+1. Zelikman et al. (2022). *STaR*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20STaR)
+2. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20Training%20Language%20Models%20to%20Follow%20Instructions)
 
 
 ## 练习

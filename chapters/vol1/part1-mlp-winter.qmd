@@ -238,9 +238,9 @@ plot_loss_curves(
 
 1. Cybenko, George (1989). *Approximation by Superpositions of a Sigmoidal Function*. *Mathematics of Control, Signals and Systems, 2, 303--314*. [doi:10.1007/BF02551274](https://doi.org/10.1007/BF02551274)
 2. Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). *Multilayer Feedforward Networks Are Universal Approximators*. *Neural Networks, 2, 359--366*. [doi:10.1016/0893-6080(89)90020-8](https://doi.org/10.1016/0893-6080(89)90020-8)
-3. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*.
+3. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hochreiter%201991%20Untersuchungen%20zu%20dynamischen%20neuronalen%20Netzen)
 4. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)
-5. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+5. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson)
 
 
 ## 练习

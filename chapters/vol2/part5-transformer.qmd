@@ -179,8 +179,8 @@ print(f"有位置: {history[-1]:.4f} | 无位置: {l_nopos:.4f}")
 
 ## 参考文献
 
-1. Vaswani et al. (2017). *Attention Is All You Need*. *NeurIPS*.
-2. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*.
+1. Vaswani et al. (2017). *Attention Is All You Need*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202017%20Attention%20Is%20All%20You%20Need)
+2. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202020%20Scaling%20Laws%20for%20Neural%20Language%20Models)
 
 
 ## 练习

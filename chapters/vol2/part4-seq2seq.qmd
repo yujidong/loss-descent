@@ -171,9 +171,9 @@ for L in (5, 6, 7, 8):
 
 ## 参考文献
 
-1. Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). *Sequence to Sequence Learning with Neural Networks*. *NeurIPS*.
-2. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*.
-3. Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). *Neural Machine Translation by Jointly Learning to Align and Translate*. *ICLR*.
+1. Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). *Sequence to Sequence Learning with Neural Networks*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutskever%202014%20Sequence%20to%20Sequence%20Learning%20with%20Neural)
+2. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Cho%202014%20Learning%20Phrase%20Representations%20Using%20RNN)
+3. Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). *Neural Machine Translation by Jointly Learning to Align and Translate*. *ICLR*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Bahdanau%202015%20Neural%20Machine%20Translation%20by%20Jointly%20Learning)
 
 
 ## 练习

@@ -103,7 +103,7 @@ title: "双主线：降 Loss 的视角与研究史的视角"
 ## 参考文献
 
 1. Shannon, Claude E. (1948). *A Mathematical Theory of Communication*. *Bell System Technical Journal, 27, 379--423*. [doi:10.1002/j.1538-7305.1948.tb01338.x](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x)
-2. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+2. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson)
 
 
 ## 练习

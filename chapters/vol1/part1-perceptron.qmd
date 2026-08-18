@@ -159,9 +159,9 @@ for margin in (1.0, 0.5, 0.25, 0.125):
 ## 参考文献
 
 1. Rosenblatt, Frank (1958). *The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain*. *Psychological Review, 65, 386--408*. [doi:10.1037/h0042519](https://doi.org/10.1037/h0042519)
-2. Minsky, Marvin and Papert, Seymour (1969). *Perceptrons: An Introduction to Computational Geometry*. *MIT Press*.
-3. Widrow, Bernard and Hoff, Marcian E. (1960). *Adaptive Switching Circuits*. *IRE WESCON Convention Record, 4, 96--104*.
-4. Hebb, Donald O. (1949). *The Organization of Behavior: A Neuropsychological Theory*. *Wiley*.
+2. Minsky, Marvin and Papert, Seymour (1969). *Perceptrons: An Introduction to Computational Geometry*. *MIT Press*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Minsky%201969%20Perceptrons%3A%20An%20Introduction%20to%20Computational%20Geometry)
+3. Widrow, Bernard and Hoff, Marcian E. (1960). *Adaptive Switching Circuits*. *IRE WESCON Convention Record, 4, 96--104*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Widrow%201960%20Adaptive%20Switching%20Circuits)
+4. Hebb, Donald O. (1949). *The Organization of Behavior: A Neuropsychological Theory*. *Wiley*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hebb%201949%20The%20Organization%20of%20Behavior%3A%20A%20Neuropsychological)
 5. McCulloch, Warren S. and Pitts, Walter (1943). *A Logical Calculus of the Ideas Immanent in Nervous Activity*. *Bulletin of Mathematical Biophysics, 5, 115--133*. [doi:10.1007/BF02478259](https://doi.org/10.1007/BF02478259)
 
 

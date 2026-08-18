@@ -312,14 +312,14 @@ plot_loss_curves(
 ## 参考文献
 
 1. Rumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J. (1986). *Learning Representations by Back-Propagating Errors*. *Nature, 323, 533--536*. [doi:10.1038/323533a0](https://doi.org/10.1038/323533a0)
-2. Werbos, Paul J. (1974). *Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences*.
-3. Linnainmaa, Seppo (1970). *The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor*. *Master's Thesis (in Finnish), University of Helsinki*.
-4. Parker, David B. (1985). *Learning Logic*. *MIT Center for Computational Research in Economics and Management Science*.
-5. Minsky, Marvin and Papert, Seymour (1969). *Perceptrons: An Introduction to Computational Geometry*. *MIT Press*.
-6. Widrow, Bernard and Hoff, Marcian E. (1960). *Adaptive Switching Circuits*. *IRE WESCON Convention Record, 4, 96--104*.
-7. Rumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). *Parallel Distributed Processing: Explorations in the Microstructure of Cognition*. *MIT Press, 1 and 2*.
+2. Werbos, Paul J. (1974). *Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Werbos%201974%20Beyond%20Regression%3A%20New%20Tools%20for%20Prediction)
+3. Linnainmaa, Seppo (1970). *The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor*. *Master's Thesis (in Finnish), University of Helsinki*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Linnainmaa%201970%20The%20Representation%20of%20the%20Cumulative%20Rounding)
+4. Parker, David B. (1985). *Learning Logic*. *MIT Center for Computational Research in Economics and Management Science*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Parker%201985%20Learning%20Logic)
+5. Minsky, Marvin and Papert, Seymour (1969). *Perceptrons: An Introduction to Computational Geometry*. *MIT Press*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Minsky%201969%20Perceptrons%3A%20An%20Introduction%20to%20Computational%20Geometry)
+6. Widrow, Bernard and Hoff, Marcian E. (1960). *Adaptive Switching Circuits*. *IRE WESCON Convention Record, 4, 96--104*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Widrow%201960%20Adaptive%20Switching%20Circuits)
+7. Rumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). *Parallel Distributed Processing: Explorations in the Microstructure of Cognition*. *MIT Press, 1 and 2*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Rumelhart%201986%20Parallel%20Distributed%20Processing%3A%20Explorations%20in%20the)
 8. Cybenko, George (1989). *Approximation by Superpositions of a Sigmoidal Function*. *Mathematics of Control, Signals and Systems, 2, 303--314*. [doi:10.1007/BF02551274](https://doi.org/10.1007/BF02551274)
-9. Hebb, Donald O. (1949). *The Organization of Behavior: A Neuropsychological Theory*. *Wiley*.
+9. Hebb, Donald O. (1949). *The Organization of Behavior: A Neuropsychological Theory*. *Wiley*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hebb%201949%20The%20Organization%20of%20Behavior%3A%20A%20Neuropsychological)
 10. Rosenblatt, Frank (1958). *The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain*. *Psychological Review, 65, 386--408*. [doi:10.1037/h0042519](https://doi.org/10.1037/h0042519)
 
 

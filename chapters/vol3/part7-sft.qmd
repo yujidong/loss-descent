@@ -232,10 +232,10 @@ print(f"贫指令版: 格式 {format_rate(poor):.2f} | margin {margin(poor):+.2f
 
 ## 参考文献
 
-1. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*.
-2. Wei et al. (2022). *Finetuned Language Models Are Zero-Shot Learners*. *ICLR*.
-3. Sanh et al. (2022). *Multitask Prompted Training Enables Zero-Shot Task Generalization*. *ICLR*.
-4. Hu et al. (2021). *LoRA*. *arXiv preprint arXiv:2106.09685*.
+1. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20Training%20Language%20Models%20to%20Follow%20Instructions)
+2. Wei et al. (2022). *Finetuned Language Models Are Zero-Shot Learners*. *ICLR*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20Finetuned%20Language%20Models%20Are%20Zero-Shot%20Learners)
+3. Sanh et al. (2022). *Multitask Prompted Training Enables Zero-Shot Task Generalization*. *ICLR*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20Multitask%20Prompted%20Training%20Enables%20Zero-Shot%20Task)
+4. Hu et al. (2021). *LoRA*. *arXiv preprint arXiv:2106.09685*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202021%20LoRA)
 
 
 ## 练习

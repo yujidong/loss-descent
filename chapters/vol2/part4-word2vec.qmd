@@ -152,9 +152,9 @@ for a, b, c in [("cat", "garden", "dog"), ("runs", "garden", "sleeps"), ("warm",
 
 ## 参考文献
 
-1. Mikolov et al. (2013). *Distributed Representations of Words and Phrases and Their Compositionality*. *NeurIPS*.
-2. Levy, Omer and Goldberg, Yoav (2014). *Neural Word Embedding as Implicit Matrix Factorization*. *NeurIPS*.
-3. Pennington, Jeffrey and Socher, Richard and Manning, Christopher D. (2014). *GloVe*. *EMNLP*.
+1. Mikolov et al. (2013). *Distributed Representations of Words and Phrases and Their Compositionality*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202013%20Distributed%20Representations%20of%20Words%20and%20Phrases)
+2. Levy, Omer and Goldberg, Yoav (2014). *Neural Word Embedding as Implicit Matrix Factorization*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Levy%202014%20Neural%20Word%20Embedding%20as%20Implicit%20Matrix)
+3. Pennington, Jeffrey and Socher, Richard and Manning, Christopher D. (2014). *GloVe*. *EMNLP*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Pennington%202014%20GloVe)
 
 
 ## 练习

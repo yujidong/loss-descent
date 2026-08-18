@@ -123,8 +123,8 @@ title: "复盘：反复出现的研究模式"
 
 ## 参考文献
 
-1. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
-2. Kuhn, Thomas S. (1962). *The Structure of Scientific Revolutions*. *University of Chicago Press*.
+1. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson)
+2. Kuhn, Thomas S. (1962). *The Structure of Scientific Revolutions*. *University of Chicago Press*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Kuhn%201962%20The%20Structure%20of%20Scientific%20Revolutions)
 
 
 ## 练习

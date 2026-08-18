@@ -154,9 +154,9 @@ print(f"探针在干净域测试: {acc_same_domain:.3f}（脏域是 {acc_probe:.
 
 ## 参考文献
 
-1. Razavian et al. (2014). *CNN*. *CVPR Workshops*.
-2. Zeiler, Matthew D. and Fergus, Rob (2014). *Visualizing and Understanding Convolutional Networks*. *ECCV*.
-3. LeCun, Yann and Bottou, L\'e (1998). *Gradient-Based Learning Applied to Document Recognition*. *Proceedings of the IEEE, 86, 2278--2324*.
+1. Razavian et al. (2014). *CNN*. *CVPR Workshops*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202014%20CNN)
+2. Zeiler, Matthew D. and Fergus, Rob (2014). *Visualizing and Understanding Convolutional Networks*. *ECCV*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Zeiler%202014%20Visualizing%20and%20Understanding%20Convolutional%20Networks)
+3. LeCun, Yann and Bottou, L\'e (1998). *Gradient-Based Learning Applied to Document Recognition*. *Proceedings of the IEEE, 86, 2278--2324*. [↗ 搜索原文](https://scholar.google.com/scholar?q=LeCun%201998%20Gradient-Based%20Learning%20Applied%20to%20Document%20Recognition)
 
 
 ## 练习

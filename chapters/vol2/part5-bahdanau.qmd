@@ -169,8 +169,8 @@ print("输出序列:", sample_out)
 
 ## 参考文献
 
-1. Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). *Neural Machine Translation by Jointly Learning to Align and Translate*. *ICLR*.
-2. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*.
+1. Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). *Neural Machine Translation by Jointly Learning to Align and Translate*. *ICLR*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Bahdanau%202015%20Neural%20Machine%20Translation%20by%20Jointly%20Learning)
+2. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Cho%202014%20Learning%20Phrase%20Representations%20Using%20RNN)
 
 
 ## 练习

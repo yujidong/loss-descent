@@ -169,8 +169,8 @@ for dist in (2, 4, 8, 12):
 
 ## 参考文献
 
-1. van den Oord, A\"a (2016). *WaveNet*. *arXiv preprint arXiv:1609.03499*.
-2. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+1. van den Oord, A\"a (2016). *WaveNet*. *arXiv preprint arXiv:1609.03499*. [↗ 搜索原文](https://scholar.google.com/scholar?q=2016%20WaveNet)
+2. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson)
 
 
 ## 练习

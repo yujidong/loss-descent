@@ -211,10 +211,10 @@ for mr in (0.05, 0.15, 0.40):
 
 ## 参考文献
 
-1. Radford et al. (2018). *Improving Language Understanding by Generative Pre-Training*. *OpenAI Technical Report*.
-2. Devlin et al. (2019). *BERT*. *NAACL*.
-3. Radford et al. (2019). *Language Models Are Unsupervised Multitask Learners*. *OpenAI Technical Report*.
-4. Brown et al. (2020). *Language Models Are Few-Shot Learners*. *NeurIPS*.
+1. Radford et al. (2018). *Improving Language Understanding by Generative Pre-Training*. *OpenAI Technical Report*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202018%20Improving%20Language%20Understanding%20by%20Generative%20Pre-Training)
+2. Devlin et al. (2019). *BERT*. *NAACL*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202019%20BERT)
+3. Radford et al. (2019). *Language Models Are Unsupervised Multitask Learners*. *OpenAI Technical Report*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202019%20Language%20Models%20Are%20Unsupervised%20Multitask%20Learners)
+4. Brown et al. (2020). *Language Models Are Few-Shot Learners*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202020%20Language%20Models%20Are%20Few-Shot%20Learners)
 
 
 ## 练习

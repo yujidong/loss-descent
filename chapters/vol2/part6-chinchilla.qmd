@@ -177,9 +177,9 @@ for d, n in configs:
 
 ## 参考文献
 
-1. Hoffmann et al. (2022). *Training Compute-Optimal Large Language Models*. *arXiv preprint arXiv:2203.15556*.
-2. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*.
-3. Touvron et al. (2023). *LLaMA*. *arXiv preprint arXiv:2302.13971*.
+1. Hoffmann et al. (2022). *Training Compute-Optimal Large Language Models*. *arXiv preprint arXiv:2203.15556*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20Training%20Compute-Optimal%20Large%20Language%20Models)
+2. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202020%20Scaling%20Laws%20for%20Neural%20Language%20Models)
+3. Touvron et al. (2023). *LLaMA*. *arXiv preprint arXiv:2302.13971*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202023%20LLaMA)
 
 
 ## 练习

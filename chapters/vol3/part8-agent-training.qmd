@@ -181,8 +181,8 @@ for r in range(2):
 
 ## 参考文献
 
-1. Yao et al. (2023). *Tree of Thoughts: Deliberate Problem Solving with Large Language Models*. *NeurIPS*.
-2. Zelikman et al. (2022). *STaR*. *NeurIPS*.
+1. Yao et al. (2023). *Tree of Thoughts: Deliberate Problem Solving with Large Language Models*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202023%20Tree%20of%20Thoughts%3A%20Deliberate%20Problem%20Solving)
+2. Zelikman et al. (2022). *STaR*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20STaR)
 
 
 ## 练习

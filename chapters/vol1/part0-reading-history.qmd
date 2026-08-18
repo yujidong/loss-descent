@@ -83,9 +83,9 @@ title: "如何读研究史：读问题，不读年表"
 
 ## 参考文献
 
-1. Kuhn, Thomas S. (1962). *The Structure of Scientific Revolutions*. *University of Chicago Press*.
-2. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*.
-3. Dauphin et al. (2014). *Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization*. *NeurIPS*.
+1. Kuhn, Thomas S. (1962). *The Structure of Scientific Revolutions*. *University of Chicago Press*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Kuhn%201962%20The%20Structure%20of%20Scientific%20Revolutions)
+2. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hochreiter%201991%20Untersuchungen%20zu%20dynamischen%20neuronalen%20Netzen)
+3. Dauphin et al. (2014). *Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202014%20Identifying%20and%20Attacking%20the%20Saddle%20Point)
 
 
 ## 练习

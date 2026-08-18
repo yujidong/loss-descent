@@ -250,9 +250,9 @@ print("质量偏好样例:", sg[0][:40])
 
 ## 参考文献
 
-1. Rafailov et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model*. *NeurIPS*.
-2. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*.
-3. Christiano et al. (2017). *Deep Reinforcement Learning from Human Preferences*. *NeurIPS*.
+1. Rafailov et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202023%20Direct%20Preference%20Optimization%3A%20Your%20Language%20Model)
+2. Ouyang et al. (2022). *Training Language Models to Follow Instructions with Human Feedback*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202022%20Training%20Language%20Models%20to%20Follow%20Instructions)
+3. Christiano et al. (2017). *Deep Reinforcement Learning from Human Preferences*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202017%20Deep%20Reinforcement%20Learning%20from%20Human%20Preferences)
 
 
 ## 练习

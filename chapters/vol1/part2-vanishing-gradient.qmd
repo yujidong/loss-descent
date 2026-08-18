@@ -156,9 +156,9 @@ for depth in (2, 4, 8):
 
 ## 参考文献
 
-1. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*.
+1. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hochreiter%201991%20Untersuchungen%20zu%20dynamischen%20neuronalen%20Netzen)
 2. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)
-3. Glorot, Xavier and Bengio, Yoshua (2010). *Understanding the Difficulty of Training Deep Feedforward Neural Networks*. *Proceedings of AISTATS, 9, 249--256*.
+3. Glorot, Xavier and Bengio, Yoshua (2010). *Understanding the Difficulty of Training Deep Feedforward Neural Networks*. *Proceedings of AISTATS, 9, 249--256*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Glorot%202010%20Understanding%20the%20Difficulty%20of%20Training%20Deep)
 4. Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). *Multilayer Feedforward Networks Are Universal Approximators*. *Neural Networks, 2, 359--366*. [doi:10.1016/0893-6080(89)90020-8](https://doi.org/10.1016/0893-6080(89)90020-8)
 
 

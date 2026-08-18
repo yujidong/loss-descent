@@ -168,12 +168,12 @@ tanh+BN 也能爬到 0.8 左右——BN 的疗效不挑激活，但 relu+BN 仍�
 
 ## 参考文献
 
-1. Nair, Vinod and Hinton, Geoffrey E. (2010). *Rectified Linear Units Improve Restricted Boltzmann Machines*. *Proceedings of ICML, 807--814*.
-2. Srivastava et al. (2014). *Dropout: A Simple Way to Prevent Neural Networks from Overfitting*. *Journal of Machine Learning Research, 15, 1929--1958*.
-3. Ioffe, Sergey and Szegedy, Christian (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*. *Proceedings of ICML, 448--456*.
-4. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*.
-5. Santurkar et al. (2018). *How Does Batch Normalization Help Optimization?*. *NeurIPS*.
-6. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+1. Nair, Vinod and Hinton, Geoffrey E. (2010). *Rectified Linear Units Improve Restricted Boltzmann Machines*. *Proceedings of ICML, 807--814*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Nair%202010%20Rectified%20Linear%20Units%20Improve%20Restricted%20Boltzmann)
+2. Srivastava et al. (2014). *Dropout: A Simple Way to Prevent Neural Networks from Overfitting*. *Journal of Machine Learning Research, 15, 1929--1958*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202014%20Dropout%3A%20A%20Simple%20Way%20to%20Prevent)
+3. Ioffe, Sergey and Szegedy, Christian (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*. *Proceedings of ICML, 448--456*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Ioffe%202015%20Batch%20Normalization%3A%20Accelerating%20Deep%20Network%20Training)
+4. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition)
+5. Santurkar et al. (2018). *How Does Batch Normalization Help Optimization?*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202018%20How%20Does%20Batch%20Normalization%20Help%20Optimization%3F)
+6. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson)
 
 
 ## 练习

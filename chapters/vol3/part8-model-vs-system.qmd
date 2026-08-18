@@ -170,8 +170,8 @@ print(f"SFT zero-shot: {zero_shot(sft):.2f}")
 
 ## 参考文献
 
-1. Lewis et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP*. *NeurIPS*.
-2. Radford et al. (2018). *Improving Language Understanding by Generative Pre-Training*. *OpenAI Technical Report*.
+1. Lewis et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202020%20Retrieval-Augmented%20Generation%20for%20Knowledge-Intensive%20NLP)
+2. Radford et al. (2018). *Improving Language Understanding by Generative Pre-Training*. *OpenAI Technical Report*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202018%20Improving%20Language%20Understanding%20by%20Generative%20Pre-Training)
 
 
 ## 练习
