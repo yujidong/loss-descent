@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="yujid">
 
-<title>降 Loss 之路</title>
+<title>19&nbsp; LSTM：让梯度存活的门控设计 – 降 Loss 之路</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,31 +26,67 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/vol1/part0-two-threads.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4dae692beda39fabefb46e2bbddd0e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/vol2/part4-word2vec.html" rel="next">
+<link href="../../chapters/vol2/part4-rnn.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-4dae692beda39fabefb46e2bbddd0e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -350,6 +385,35 @@ ul.task-list li input[type="checkbox"] {
 })();
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -524,7 +588,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">欢迎来到《降 Loss 之路》</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part4-ngram.html">卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part4-lstm.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">LSTM：让梯度存活的门控设计</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -539,7 +603,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">降 Loss 之路</a> 
+      <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -554,7 +618,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">欢迎来到《降 Loss 之路》</span></span></a>
   </div>
 </li>
@@ -569,13 +633,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part0-two-threads.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part0-two-threads.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part0-reading-history.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part0-reading-history.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">如何读研究史：读问题，不读年表</span></span></a>
   </div>
 </li>
@@ -592,25 +656,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-symbolic-vs-connectionist.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-symbolic-vs-connectionist.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">符号主义与连接主义：第一次范式之争</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-backprop.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-backprop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">反向传播：从思想到发动机</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-mlp-winter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-mlp-winter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MLP、万能逼近与第二次寒冬</span></span></a>
   </div>
 </li>
@@ -627,31 +691,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-mlp-difficulty.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-mlp-difficulty.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">训练一个 MLP 到底难在哪</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-toolbox.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-toolbox.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">破局工具箱：ReLU、Dropout、BatchNorm、残差</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-capstone-deep-mlp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-capstone-deep-mlp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">整合：让深度可训练的完整配方</span></span></a>
   </div>
 </li>
@@ -668,25 +732,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-lenet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-lenet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">LeNet：1989 年就有的答案</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-cnn-legacy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-cnn-legacy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">CNN 的遗产：特征层级与预训练-微调</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-cnn-limits.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-cnn-limits.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CNN 的边界：序列问题为何难</span></span></a>
   </div>
 </li>
@@ -703,31 +767,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-ngram.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-ngram.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">语言建模前史：从 Shannon 到 n-gram</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-rnn.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-rnn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">RNN：展开即深网的继承病</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-lstm.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-lstm.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">LSTM：让梯度存活的门控设计</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-word2vec.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-word2vec.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">word2vec：语义被压进向量</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-seq2seq.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-seq2seq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">seq2seq：翻译即条件语言建模</span></span></a>
   </div>
 </li>
@@ -744,25 +808,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-bahdanau.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-bahdanau.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">注意力的诞生：让解码器回头看</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-transformer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-transformer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Transformer：从补丁到架构</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-why-transformer-won.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-why-transformer-won.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">为什么 Transformer 赢了</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
@@ -779,25 +843,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-emergence.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-emergence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">涌现之争：相变还是度量假象</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-convergence.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-convergence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">收敛：decoder-only、MoE 与开源运动</span></span></a>
   </div>
 </li>
@@ -814,25 +878,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-base-model.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-base-model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Base Model：互联网的压缩机</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-sft.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-sft.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">SFT：指令数据的监督 loss</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-reasoning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-reasoning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">推理模型：RLVR 与测试时计算</span></span></a>
   </div>
 </li>
@@ -849,19 +913,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-agent-origins.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-agent-origins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Agent 能力从哪来：数据里的轨迹</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-agent-training.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-agent-training.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">训练 Agent：环境、轨迹与过程奖励</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-model-vs-system.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-model-vs-system.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">模型层与系统层：判断框架</span></span></a>
   </div>
 </li>
@@ -878,19 +942,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-patterns.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-patterns.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">复盘：反复出现的研究模式</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-open-problems.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-open-problems.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Loss 视角下的开放问题</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-prediction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-prediction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">终章：你的判断框架与预测</span></span></a>
   </div>
 </li>
@@ -906,16 +970,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#欢迎来到降-loss-之路" id="toc-欢迎来到降-loss-之路" class="nav-link active" data-scroll-target="#欢迎来到降-loss-之路"><span class="header-section-number">1</span> 欢迎来到《降 Loss 之路》</a>
-  <ul class="collapse">
-  <li><a href="#两条主线" id="toc-两条主线" class="nav-link" data-scroll-target="#两条主线"><span class="header-section-number">1.1</span> 两条主线</a></li>
-  <li><a href="#全书的弧线" id="toc-全书的弧线" class="nav-link" data-scroll-target="#全书的弧线"><span class="header-section-number">1.2</span> 全书的弧线</a></li>
-  <li><a href="#给谁读" id="toc-给谁读" class="nav-link" data-scroll-target="#给谁读"><span class="header-section-number">1.3</span> 给谁读</a></li>
-  <li><a href="#实验与算力" id="toc-实验与算力" class="nav-link" data-scroll-target="#实验与算力"><span class="header-section-number">1.4</span> 实验与算力</a></li>
-  <li><a href="#三卷出版计划" id="toc-三卷出版计划" class="nav-link" data-scroll-target="#三卷出版计划"><span class="header-section-number">1.5</span> 三卷出版计划</a></li>
-  <li><a href="#与其他资源的关系" id="toc-与其他资源的关系" class="nav-link" data-scroll-target="#与其他资源的关系"><span class="header-section-number">1.6</span> 与其他资源的关系</a></li>
-  <li><a href="#反馈" id="toc-反馈" class="nav-link" data-scroll-target="#反馈"><span class="header-section-number">1.7</span> 反馈</a></li>
-  </ul></li>
+  <li><a href="#本章问题" id="toc-本章问题" class="nav-link active" data-scroll-target="#本章问题"><span class="header-section-number">19.1</span> 本章问题</a></li>
+  <li><a href="#历史中的尝试包括弯路" id="toc-历史中的尝试包括弯路" class="nav-link" data-scroll-target="#历史中的尝试包括弯路"><span class="header-section-number">19.2</span> 历史中的尝试（包括弯路）</a></li>
+  <li><a href="#核心思想" id="toc-核心思想" class="nav-link" data-scroll-target="#核心思想"><span class="header-section-number">19.3</span> 核心思想</a></li>
+  <li><a href="#从零实现" id="toc-从零实现" class="nav-link" data-scroll-target="#从零实现"><span class="header-section-number">19.4</span> 从零实现</a></li>
+  <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">19.5</span> 消融实验</a></li>
+  <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">19.6</span> 本章 Loss 账本</a></li>
+  <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">19.7</span> 遗留问题</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">19.8</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -923,22 +985,15 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part4-ngram.html">卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part4-lstm.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">LSTM：让梯度存活的门控设计</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">降 Loss 之路</h1>
-<p class="subtitle lead">深度学习思想史：从感知机到智能体</p>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">LSTM：让梯度存活的门控设计</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>yujid </p>
-          </div>
-  </div>
     
   
     
@@ -949,111 +1004,239 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="欢迎来到降-loss-之路" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 欢迎来到《降 Loss 之路》</h1>
-<p>这是一本<strong>用实验重走深度学习研究史</strong>的交互书。它不从「Transformer 是什么」讲起，而从 1958 年的感知机讲起——因为研究思路没法被讲述，只能被重演。读者只有先被 RNN 的梯度消失折磨过，才能真正理解「Attention is All You Need」标题里那个 <em>All You Need</em> 的分量。</p>
-<section id="两条主线" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="两条主线"><span class="header-section-number">1.1</span> 两条主线</h2>
-<p><strong>历史主线（骨架）</strong>：每一章都是历史上的一次真实解题。上一代架构留下的问题，就是下一章的起点。读完你走过的不是知识点清单，而是从感知机到智能体这条路上每一次「发现问题 → 提出假设 → 实验验证 → 暴露新问题」的完整循环。</p>
-<p><strong>Loss 主线（分析工具）</strong>：每个架构改进，统一用一个度量来审视——它让什么 loss、在什么数据上、降得更便宜？架构史因此不是名词罗列，而是一部「降 loss 效率的进化史」。这个视角一直延伸到当下：SFT 是指令数据上的监督 loss，RLHF 是奖励变形后的 loss，推理模型是可验证奖励上的 loss——看懂了 loss，就看懂了模型的本质，也更容易判断未来的方向。</p>
+<p>上一章的尸检报告写着：60 步的 BPTT，梯度衰减 56 个数量级。本章讲 1997 年的手术——Hochreiter 与 Schmidhuber 的长短期记忆网络（LSTM）。手术的核心只有一句话：<strong>在循环单元里修一条恒等传送带</strong>（细胞状态 <span class="math inline">\(c\)</span>），让信息与梯度可以近乎无损地穿越时间；再装三扇门（读、写、忘）控制上下传送带的时机。这个设计统治了序列建模二十年——从 2015 年谷歌翻译上线到 2016 年的 WaveNet 之前，你用过的每一句机器翻译背后都是它。但本章也会诚实记录：门控买到的是<strong>梯度通道</strong>，不是免费的训练顺利——LSTM 的真实战功同样依赖一整套工程配方。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>算力需求
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A 级</strong>：笔记本 CPU · 全部实验合计约 1 分钟。</p>
+</div>
+</div>
+<div class="callout-era" title="时代快照 · 1997–2017">
+<ul>
+<li><strong>算力</strong>：LSTM 的实用化（2010 年代语音识别、2015 年谷歌翻译）依赖 GPU——结构 1997 年就位，生态晚了十五年；</li>
+<li><strong>数据</strong>：语音与机器翻译的平行语料是 LSTM 的主场——序列对序列、长程依赖密集；</li>
+<li><strong>认知</strong>：1997 年的论文标题是”Long Short-Term Memory”——长与短并列，因为核心主张正是<strong>同时</strong>处理长短两种时间尺度；</li>
+<li><strong>关键事实</strong>：原版 LSTM 没有遗忘门（只有输入与输出门）——遗忘门是 Gers 等人 2000 年补上的。<strong>伟大架构也是逐步长出来的</strong>，1.0 版本常常缺一块关键零件。</li>
+</ul>
+</div>
+<section id="本章问题" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">19.1</span> 本章问题</h2>
+<ol type="1">
+<li>门控结构<strong>在数学上</strong>如何改善梯度流？（梯度剖面的正面对比——先看机制兑现）</li>
+<li>遗忘门为什么是三扇门里<strong>最要命</strong>的？（记忆保持的乘法账）</li>
+<li>诚实的问题：梯度通道修好了，训练就顺了吗？（本章的答案会出乎一部分人的意料）</li>
+</ol>
 </section>
-<section id="全书的弧线" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="全书的弧线"><span class="header-section-number">1.2</span> 全书的弧线</h2>
+<section id="历史中的尝试包括弯路" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">19.2</span> 历史中的尝试（包括弯路）</h2>
+<p><strong>从诊断到手术</strong>：Hochreiter 1991 年的硕士论文（2.2 章的主角）诊断了梯度消失；1997 年他与 Schmidhuber 拿出解药。<strong>同一人先写病历再开刀</strong>——研究史上罕见的完整闭环。</p>
+<p><strong>原版的缺陷与生长</strong>：1997 版只有输入门与输出门，细胞状态一旦写入便几乎不可清除——长期任务反而被旧记忆污染。Gers, Schmidhuber &amp; Cummins (2000) 补上遗忘门，后来还发现<strong>遗忘门偏置初始化为正</strong>（让”记住”成为默认）对长程任务至关重要。GRU（2014）再做减法（两扇门、合并状态），在许多任务上打平——<strong>二十年间的所有变体都在同一设计空间里腾挪</strong>：传送带 + 门。</p>
+<p><strong>弯路：把 LSTM 当万金油</strong>。2010 年代中叶的论文常报告”LSTM 在一切序列任务上碾压”——但对照实验常常用了不同等的训练配方（截断长度、裁剪阈值、学习率日程）。LSTM 的战功里有一定比例属于<strong>调参劳动</strong>而非结构本身——本章的诚实实验会亲手摸到这条边界。</p>
+<div class="callout-research" title="停一停，你来当研究者">
+<p>你已看过 RNN 的坠崖剖面。现在自己设计手术——约束：只准在单元内部加结构，不准改训练算法。三个引导问题：</p>
+<ol type="1">
+<li>3.2 章的残差连接给前馈网修了”不经过连乘的恒等路”。时间维的对应物应该长什么样？（写出 <span class="math inline">\(c_t = ?\)</span> 的递推，使 <span class="math inline">\(\partial c_t / \partial c_{t-1}\)</span> 尽量接近 1）；</li>
+<li>恒等传送带的危险是什么——垃圾信息也永远删不掉。你需要什么机构来<strong>删除</strong>记忆？（这就是遗忘门——注意 1997 年原版恰恰漏了它）；</li>
+<li>传送带上放着记忆，但单元对外输出的是 <span class="math inline">\(h_t\)</span>——还需要一扇什么门？</li>
+</ol>
+<p>三问答完，你设计出的结构应当与 LSTM 相差无几——<strong>好的架构是可以被问题重新发明出来的</strong>，这也是「停一停」栏目的终极含义。</p>
+</div>
+</section>
+<section id="核心思想" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">19.3</span> 核心思想</h2>
+<p>LSTM 的全部递推（<span class="math inline">\(x_t\)</span> 是输入，<span class="math inline">\(\sigma\)</span> 是 sigmoid）：</p>
+<p><span class="math display">\[
+\begin{aligned}
+i_t &amp;= \sigma(W_i x_t + U_i h_{t-1} + b_i) &amp; \text{写入多少（输入门）}\\
+f_t &amp;= \sigma(W_f x_t + U_f h_{t-1} + b_f) &amp; \text{保留多少（遗忘门）}\\
+g_t &amp;= \tanh(W_g x_t + U_g h_{t-1} + b_g) &amp; \text{候选新内容}\\
+c_t &amp;= f_t \odot c_{t-1} + i_t \odot g_t &amp; \textbf{传送带（细胞状态）}\\
+o_t &amp;= \sigma(W_o x_t + U_o h_{t-1} + b_o) &amp; \text{读出多少（输出门）}\\
+h_t &amp;= o_t \odot \tanh(c_t) &amp; \text{对外输出}
+\end{aligned}
+\]</span></p>
+<p><strong>梯度为什么活下来</strong>：<span class="math inline">\(\partial c_t / \partial c_{t-1} = f_t\)</span>（外加通过门的旁路）。当 <span class="math inline">\(f_t \approx 1\)</span>，梯度<strong>原样穿越</strong>——这就是著名 constant error carousel（恒定误差旋转木马）。对照 RNN 的 <span class="math inline">\(\partial h_t/\partial h_{t-1} = W_h^\top \mathrm{diag}(1-h^2)\)</span>（每步必乘一个矩阵与一个衰减因子），LSTM 把”每步必衰减”改成了”<strong>由门决定的保留</strong>”——而且门是学出来的：哪里该记、哪里该忘，训练自己说了算。</p>
+<p><strong>与残差的血缘</strong>：<span class="math inline">\(c_t = f \odot c_{t-1} + (\text{增量})\)</span> 正是 3.2 的 <span class="math inline">\(y = F(x) + x\)</span> 在时间轴上的推广（<span class="math inline">\(f=1\)</span> 时严格相等）。<strong>LSTM（1997）比 ResNet（2015）早十八年发明了残差</strong>——研究思想的时间错位再次出现：同一个好主意在不同领域被反复发现。</p>
+<p><strong>三扇门的分工</strong>是”记忆的文件系统”：写入要过审（<span class="math inline">\(i\)</span>）、留存有期限（<span class="math inline">\(f\)</span>）、读取有权限（<span class="math inline">\(o\)</span>）。<strong>容量有限的系统必须学会遗忘</strong>——这个朴素原则从 LSTM 一路贯穿到今天的上下文管理（8.x）。</p>
+</section>
+<section id="从零实现" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">19.4</span> 从零实现</h2>
+<p><code>dlbook.rnn.RNNLM</code>（cell=“lstm”）内置了完整门控（<code>dlbook.rnn.core.LSTM</code>，含遗忘门偏置初始化）。先看机制的兑现——<strong>同一条 60 步序列的梯度剖面</strong>，RNN 换成 LSTM：</p>
+<div id="5131b94d" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.rnn <span class="im">import</span> RNNLM</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.rnn.core <span class="im">import</span> lstm_grad_flow_norms, rnn_grad_flow_norms</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.utils <span class="im">import</span> plot_loss_curves, set_seed</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>set_seed(<span class="dv">42</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ids, vocab, inv <span class="op">=</span> char_corpus()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> np.array(ids)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> <span class="bu">len</span>(vocab)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">=</span> {}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cell, flow <span class="kw">in</span> ((<span class="st">"rnn"</span>, rnn_grad_flow_norms), (<span class="st">"lstm"</span>, lstm_grad_flow_norms)):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> RNNLM(V, <span class="dv">48</span>, cell<span class="op">=</span>cell, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    m.forward(tokens[:<span class="dv">60</span>])</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    dhs <span class="op">=</span> np.zeros((<span class="dv">60</span>, <span class="dv">48</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    dhs[<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    norms <span class="op">=</span> flow(m.cell, dhs)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    profiles[cell] <span class="op">=</span> norms</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>cell<span class="sc">:&gt;4}</span><span class="ss">: 末端 </span><span class="sc">{</span>norms[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.2e}</span><span class="ss"> -&gt; 起点 </span><span class="sc">{</span>norms[<span class="dv">0</span>]<span class="sc">:.2e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> rnn: 末端 6.93e+00 -&gt; 起点 1.14e-57
+lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
+</div>
+</div>
+<div id="006cd088" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.8</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cell, norms <span class="kw">in</span> profiles.items():</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    plt.semilogy(np.arange(<span class="dv">59</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>), norms <span class="op">+</span> <span class="fl">1e-300</span>, label<span class="op">=</span>cell)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"steps back in time"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"||grad||"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Gradient survival through 60 steps"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="part4-lstm_files/figure-html/cell-3-output-1.png" width="531" height="361" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>典型读数：RNN 起点 <span class="math inline">\(10^{-56}\)</span>；LSTM 起点 <span class="math inline">\(10^{-9}\)</span>——<strong>同样 60 步，学习信号的存活率相差 47 个数量级</strong>。传送带兑现了承诺（<span class="math inline">\(10^{-9}\)</span> 仍小——门控 sigmoid 的导数与输出门路径还在衰减，但已从”死亡”变为”微弱可闻”）。</p>
+<p><strong>遗忘门 = 记忆水龙头</strong>。保持率的账可以直接算：<span class="math inline">\(f=\sigma(b_f)\)</span> 恒定时，<span class="math inline">\(T\)</span> 步后记忆剩 <span class="math inline">\(f^T\)</span>。这解释了门偏置初始化为什么重要：</p>
+<div id="a5a52a4b" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'遗忘门偏置'</span><span class="sc">:&gt;10}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'σ(b_f)'</span><span class="sc">:&gt;8}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'60 步后剩余'</span><span class="sc">:&gt;12}</span><span class="ss">"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> b_f <span class="kw">in</span> (<span class="op">-</span><span class="fl">2.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">4.0</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> np.exp(<span class="op">-</span>b_f))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>b_f<span class="sc">:&gt;10.1f}</span><span class="ss"> </span><span class="sc">{</span>f<span class="sc">:&gt;8.3f}</span><span class="ss"> </span><span class="sc">{</span>f<span class="op">**</span><span class="dv">60</span><span class="sc">:&gt;12.2e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     遗忘门偏置   σ(b_f)      60 步后剩余
+      -2.0    0.119     3.78e-56
+       0.0    0.500     8.67e-19
+       1.0    0.731     6.87e-09
+       2.0    0.881     4.93e-04
+       4.0    0.982     3.37e-01</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(b_f=1\)</span>（我们引擎的默认值）在 60 步后只剩 0.3%——<strong>“记住”远没有默认以为的那么牢</strong>；<span class="math inline">\(b_f=4\)</span> 才接近真正的传送带。这张小表就是 Gers 等人 2000 年补丁的全部理由，也是一切长程任务调参的第一站。</p>
+</section>
+<section id="消融实验" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">19.5</span> 消融实验</h2>
+<p><strong>诚实实验：梯度通道 ≠ 训练顺利。</strong> 把 LSTM 放回上一章的字符语言模型，同预算训练：</p>
+<div id="4ffee534" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lstm_lm <span class="op">=</span> RNNLM(V, <span class="dv">48</span>, cell<span class="op">=</span><span class="st">"lstm"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hist_lstm <span class="op">=</span> []</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">120</span>):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    hist_lstm.append(lstm_lm.loss_and_backward(tokens))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    lstm_lm.step(<span class="fl">0.1</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LSTM char-LM: </span><span class="sc">{</span>hist_lstm[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> -&gt; </span><span class="sc">{</span>hist_lstm[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">（上一章 RNN 同预算：2.23）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>LSTM char-LM: 3.296 -&gt; 2.8263（上一章 RNN 同预算：2.23）</code></pre>
+</div>
+</div>
+<p>典型结果：LSTM 停在 <strong>2.8</strong> 附近——<strong>不升反降于朴素 RNN</strong>。四倍的参数（四门）、更慢的优化动力学、而本任务的高频规律（字符局部统计）恰恰是 RNN 饱和技巧的舒适区。再加一个更刺眼的：远距回声任务（记住 20 步前的第一个比特）上，我们的朴素训练协议把 LSTM 喂到 300 个 epoch 也只爬到 60% 出头的训练准确率（梯度通道在、但信号微弱、门要慢慢学会开合）——<strong>门控修好了路，车还是要人开</strong>。</p>
+<p>这份诚实账与历史相符：LSTM 的实战胜利（语音、翻译）全部来自<strong>结构 + 配方</strong>的合体——截断 BPTT、梯度裁剪、门偏置初始化、学习率日程，一样不能少。教科书叙事”LSTM 一举解决长程依赖”省略的正是这些脚手架——<strong>把脚手架写回历史，是本书的一贯纪律</strong>。</p>
+</section>
+<section id="本章-loss-账本" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">19.6</span> 本章 Loss 账本</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>时代</th>
-<th>核心问题</th>
-<th>主角</th>
+<th>问题</th>
+<th>回答</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>史前史（1943–1986）</td>
-<td>神经元能学到什么？</td>
-<td>感知机、反向传播</td>
+<td>在优化什么 loss？</td>
+<td>与上一章相同的下一字符交叉熵——变化的全部是<strong>梯度抵达过去的概率</strong></td>
 </tr>
 <tr class="even">
-<td>黎明（1986–2015）</td>
-<td>为什么深网络训不动？</td>
-<td>ReLU、Dropout、BatchNorm、残差</td>
+<td>数据从哪来？</td>
+<td>同一语料（刻意保持可比）；历史上 LSTM 的功绩簿是语音与平行语料</td>
 </tr>
 <tr class="odd">
-<td>卷积时代（1989–2016）</td>
-<td>如何看懂图像？</td>
-<td>LeNet、AlexNet、ResNet</td>
+<td>买到了什么能力？</td>
+<td>梯度的时间传送带（47 个数量级的改善）；门控的可学习记忆管理</td>
 </tr>
 <tr class="even">
-<td>序列时代（1948–2014）</td>
-<td>如何建模变长与长程依赖？</td>
-<td>n-gram、RNN、LSTM、seq2seq</td>
-</tr>
-<tr class="odd">
-<td>注意力革命（2014–2019）</td>
-<td>如何摆脱循环？</td>
-<td>Attention、Transformer、GPT/BERT</td>
-</tr>
-<tr class="even">
-<td>规模时代（2019–2024）</td>
-<td>loss 随规模如何变化？</td>
-<td>Scaling Laws、Chinchilla</td>
-</tr>
-<tr class="odd">
-<td>对齐时代（2020–2025）</td>
-<td>如何重塑输出分布？</td>
-<td>SFT、RLHF、DPO、RLVR</td>
-</tr>
-<tr class="even">
-<td>智能体时代（2023–2026）</td>
-<td>Agent 能力从哪来？</td>
-<td>工具调用、轨迹训练、上下文工程</td>
+<td>没买到什么？</td>
+<td>本章尺度上的训练顺滑（输给 RNN 的诚实记录）；并行性（串行依旧）；可微分的”遗忘理论”（哪些该忘仍是黑箱）</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="给谁读" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="给谁读"><span class="header-section-number">1.3</span> 给谁读</h2>
-<p>会 Python、了解一点线性代数和微积分、没系统学过深度学习的人可以直接从头读；有 ML 基础的读者可以跳过 Part 0–1 的推导细节，但建议不要跳过各章的「停一停」练习——那才是这本书真正的核心体验。</p>
-</section>
-<section id="实验与算力" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="实验与算力"><span class="header-section-number">1.4</span> 实验与算力</h2>
-<p>每章都有可运行的从零实现实验，按算力需求分三级标注：</p>
+<div class="callout-echo" title="回声">
 <ul>
-<li><strong>A 级</strong>：笔记本 CPU，分钟级。卷一全部、卷二大部分实验在此级别——这段历史本来就发生在小算力上，今天恰好可以完整复现。</li>
-<li><strong>B 级</strong>：免费 Colab T4，几十分钟。卷二中后期的语言模型实验。</li>
-<li><strong>C 级</strong>：提供预训练 checkpoint，读者只做加载与分析。</li>
+<li>传送带思想 → Transformer 的层间残差流（5.2）——<strong>梯度高速公路是现代一切深架构的公共设施</strong>，LSTM 是它在时间轴上的第一个出口；</li>
+<li>门控 → 混合专家的门（6.4）、注意力本身（“动态加权的选择性读取”是最广义的门）；</li>
+<li>“学会遗忘” → 上下文压缩与 KV 缓存淘汰策略（8.x）——容量有限系统的永恒课题；</li>
+<li>1997→2015 的残差时差 → 提醒我们：思想的跨领域迁移可以滞后十八年，<strong>读史者的机会之一就是把别处的好主意搬到自己的领域</strong>。</li>
 </ul>
-<p>代码不散落在 notebook 里，而是随书生长成一个包 <code>dlbook</code>：每章把新实现的模型合入其中，后续章节直接 <code>import</code> 复用。读完这本书，你拥有的不是一堆笔记，而是一座自己一层层盖起来的微型深度学习史图书馆。</p>
-</section>
-<section id="三卷出版计划" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="三卷出版计划"><span class="header-section-number">1.5</span> 三卷出版计划</h2>
+</div>
+<div class="callout-paper" title="论文时光机">
+<p><strong>Hochreiter, S. &amp; Schmidhuber, J. (1997).</strong> <em>Long short-term memory.</em> Neural Computation 9(8), 1735–1780.</p>
 <ul>
-<li><strong>卷一 · 根基与黎明</strong>（Part 0–3）：从感知机到能训练的深度卷积网络。</li>
-<li><strong>卷二 · 序列、注意力与规模</strong>（Part 4–6）：从 n-gram 到 GPT-3 与 Chinchilla。</li>
-<li><strong>卷三 · LLM、对齐与智能体</strong>（Part 7–9）：从 base model 到 agent，以及一套判断未来的框架。</li>
+<li><strong>读什么</strong>：第 2 节的误差传播分析（坠崖曲线的解析版）与图 1（CEC 的原版示意图）；算法框；</li>
+<li><strong>跳过</strong>：大量实验细节；</li>
+<li><strong>历史注</strong>：配套读 Gers, Schmidhuber &amp; Cummins (2000)（遗忘门与 peephole 的补丁）与 Cho et al.&nbsp;(2014)（GRU 的减法）。三篇连读能看到一个架构的<strong>生长年轮</strong>。另注：Hochreiter 与 Schmidhuber 的优先权主张（包括对 1.3 反向传播渊源的整理）在学界长期有争论——读他们的论文时保持 0.2 章”双镜头”的纪律。</li>
 </ul>
-<p>每卷独立成书可用，写完一卷发布一卷。</p>
+</div>
 </section>
-<section id="与其他资源的关系" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="与其他资源的关系"><span class="header-section-number">1.6</span> 与其他资源的关系</h2>
-<ul>
-<li><a href="https://d2l.ai">Dive into Deep Learning</a>：交互书工程与全面性的范本，本书实验工程大量借鉴；</li>
-<li><a href="https://course.fast.ai">fast.ai</a>：自顶向下教学设计的范本；</li>
-<li><a href="https://karpathy.ai/zero-to-hero.html">Karpathy · Neural Networks: Zero to Hero</a>：从零造 LLM 的范本。</li>
-</ul>
-<p>本书的差异点：<strong>用研究史做骨架、用 loss 视角做解剖刀，一路贯穿到智能体与前沿</strong>——目前没有一本书这样做。</p>
+<section id="遗留问题" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">19.7</span> 遗留问题</h2>
+<ol type="1">
+<li>字符有了、序列有了——<strong>词</strong>的语义去哪学？（→ 4.4 word2vec：不需要任务标签，共现本身就压出语义几何）；</li>
+<li>一读一写两个 LSTM 能拼出什么？（→ 4.5 seq2seq：翻译的范式，以及它自己的瓶颈）；</li>
+<li>串行依赖让 RNN/LSTM 无法并行——这个结构性缺陷的代价与解药？（→ 5.3：Transformer 的胜利核算）。</li>
+</ol>
 </section>
-<section id="反馈" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="反馈"><span class="header-section-number">1.7</span> 反馈</h2>
-<p>发现错误、参与讨论，请提 issue（建仓后在此附上链接）。这是一本写作中的书，它自己也应该像研究一样迭代。</p>
+<section id="练习" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">19.8</span> 练习</h2>
+<ol type="1">
+<li><strong>造轮子</strong>：给 <code>LSTM</code> 加 peephole 连接（门也看 <span class="math inline">\(c_{t-1}\)</span>），在梯度剖面与 char-LM 上对照——2000 年补丁的另一半。</li>
+<li><strong>预测再运行</strong>：把引擎默认的遗忘门偏置从 1 改成 4 再训 char-LM，loss 会改善吗？（提示：char-LM 需要的依赖距离其实很短——太长的记忆是负担。）</li>
+<li><strong>消融</strong>：三扇门逐一钉死（<span class="math inline">\(i \equiv 1\)</span>、<span class="math inline">\(f \equiv 1\)</span>、<span class="math inline">\(o \equiv 1\)</span>），梯度剖面各怎么变？哪扇门对”存活”最关键、哪扇门对”可控”最关键？</li>
+<li><strong>论文映射</strong>：用四问账本拆 GRU（2014）——它的”买到”一栏相对 LSTM 记的是参数与速度，这类<strong>减法创新</strong>在账本上如何与加法创新区分价值？</li>
+<li><strong>进阶</strong>：在回声任务上给 LSTM 配齐配方（梯度裁剪、<span class="math inline">\(b_f=3\)</span>、lr 从 0.5 余弦衰减到 0.01、2000 epochs），看能否到 95%+——亲手体验”结构 + 配方”的合体效应，并记录每件配方单独拿走的降幅。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="练习答案">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>练习答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>练习 2</strong>：大概率<strong>变差</strong>——字符预测的有效上下文只有几步，过长的保持把无关旧信息拖进状态。遗忘门偏置的”最优值”依赖任务的时间尺度——这张对照表就是”记忆长度是超参数”的最小证据。</p>
+<p><strong>练习 3</strong>：钉死 <span class="math inline">\(f \equiv 1\)</span> 剖面最”存活”（传送带全开）但记忆无法清除；钉死 <span class="math inline">\(i\)</span> 或 <span class="math inline">\(o\)</span> 损害写入/读出路径。<strong>存活靠 <span class="math inline">\(f\)</span>，可控靠 <span class="math inline">\(i/o\)</span></strong>——与正文”文件系统”比喻一一对应。</p>
+<p><strong>练习 5 参考</strong>：可以到 95% 以上（各文献报告不一）；裁剪与 <span class="math inline">\(b_f\)</span> 各贡献一截，学习率日程在后期贡献另一截。<strong>单件拿走的降幅都不大、合体显著</strong>——2.5 配方交互的又一例。</p>
+</div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1472,10 +1655,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../chapters/vol2/part4-rnn.html" class="pagination-link" aria-label="RNN：展开即深网的继承病">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">RNN：展开即深网的继承病</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/vol1/part0-two-threads.html" class="pagination-link" aria-label="双主线：降 Loss 的视角与研究史的视角">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/vol2/part4-word2vec.html" class="pagination-link" aria-label="word2vec：语义被压进向量">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">word2vec：语义被压进向量</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

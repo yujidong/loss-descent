@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="yujid">
 
-<title>降 Loss 之路</title>
+<title>29&nbsp; 收敛：decoder-only、MoE 与开源运动 – 降 Loss 之路</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,31 +26,67 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/vol1/part0-two-threads.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4dae692beda39fabefb46e2bbddd0e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/vol3/part7-base-model.html" rel="next">
+<link href="../../chapters/vol2/part6-emergence.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-4dae692beda39fabefb46e2bbddd0e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -350,6 +385,35 @@ ul.task-list li input[type="checkbox"] {
 })();
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -524,7 +588,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">欢迎来到《降 Loss 之路》</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-convergence.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">收敛：decoder-only、MoE 与开源运动</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -539,7 +603,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">降 Loss 之路</a> 
+      <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -554,7 +618,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">欢迎来到《降 Loss 之路》</span></span></a>
   </div>
 </li>
@@ -569,13 +633,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part0-two-threads.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part0-two-threads.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part0-reading-history.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part0-reading-history.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">如何读研究史：读问题，不读年表</span></span></a>
   </div>
 </li>
@@ -592,25 +656,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-symbolic-vs-connectionist.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-symbolic-vs-connectionist.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">符号主义与连接主义：第一次范式之争</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-backprop.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-backprop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">反向传播：从思想到发动机</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-mlp-winter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-mlp-winter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MLP、万能逼近与第二次寒冬</span></span></a>
   </div>
 </li>
@@ -627,31 +691,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-mlp-difficulty.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-mlp-difficulty.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">训练一个 MLP 到底难在哪</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-toolbox.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-toolbox.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">破局工具箱：ReLU、Dropout、BatchNorm、残差</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-capstone-deep-mlp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-capstone-deep-mlp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">整合：让深度可训练的完整配方</span></span></a>
   </div>
 </li>
@@ -668,25 +732,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-lenet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-lenet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">LeNet：1989 年就有的答案</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-cnn-legacy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-cnn-legacy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">CNN 的遗产：特征层级与预训练-微调</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-cnn-limits.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-cnn-limits.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CNN 的边界：序列问题为何难</span></span></a>
   </div>
 </li>
@@ -703,31 +767,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-ngram.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-ngram.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">语言建模前史：从 Shannon 到 n-gram</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-rnn.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-rnn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">RNN：展开即深网的继承病</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-lstm.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-lstm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">LSTM：让梯度存活的门控设计</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-word2vec.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-word2vec.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">word2vec：语义被压进向量</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-seq2seq.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-seq2seq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">seq2seq：翻译即条件语言建模</span></span></a>
   </div>
 </li>
@@ -744,25 +808,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-bahdanau.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-bahdanau.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">注意力的诞生：让解码器回头看</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-transformer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-transformer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Transformer：从补丁到架构</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-why-transformer-won.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-why-transformer-won.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">为什么 Transformer 赢了</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
@@ -779,25 +843,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-emergence.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-emergence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">涌现之争：相变还是度量假象</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-convergence.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-convergence.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">收敛：decoder-only、MoE 与开源运动</span></span></a>
   </div>
 </li>
@@ -814,25 +878,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-base-model.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-base-model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Base Model：互联网的压缩机</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-sft.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-sft.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">SFT：指令数据的监督 loss</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-reasoning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-reasoning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">推理模型：RLVR 与测试时计算</span></span></a>
   </div>
 </li>
@@ -849,19 +913,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-agent-origins.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-agent-origins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Agent 能力从哪来：数据里的轨迹</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-agent-training.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-agent-training.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">训练 Agent：环境、轨迹与过程奖励</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-model-vs-system.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-model-vs-system.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">模型层与系统层：判断框架</span></span></a>
   </div>
 </li>
@@ -878,19 +942,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-patterns.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-patterns.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">复盘：反复出现的研究模式</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-open-problems.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-open-problems.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Loss 视角下的开放问题</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-prediction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-prediction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">终章：你的判断框架与预测</span></span></a>
   </div>
 </li>
@@ -906,16 +970,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#欢迎来到降-loss-之路" id="toc-欢迎来到降-loss-之路" class="nav-link active" data-scroll-target="#欢迎来到降-loss-之路"><span class="header-section-number">1</span> 欢迎来到《降 Loss 之路》</a>
-  <ul class="collapse">
-  <li><a href="#两条主线" id="toc-两条主线" class="nav-link" data-scroll-target="#两条主线"><span class="header-section-number">1.1</span> 两条主线</a></li>
-  <li><a href="#全书的弧线" id="toc-全书的弧线" class="nav-link" data-scroll-target="#全书的弧线"><span class="header-section-number">1.2</span> 全书的弧线</a></li>
-  <li><a href="#给谁读" id="toc-给谁读" class="nav-link" data-scroll-target="#给谁读"><span class="header-section-number">1.3</span> 给谁读</a></li>
-  <li><a href="#实验与算力" id="toc-实验与算力" class="nav-link" data-scroll-target="#实验与算力"><span class="header-section-number">1.4</span> 实验与算力</a></li>
-  <li><a href="#三卷出版计划" id="toc-三卷出版计划" class="nav-link" data-scroll-target="#三卷出版计划"><span class="header-section-number">1.5</span> 三卷出版计划</a></li>
-  <li><a href="#与其他资源的关系" id="toc-与其他资源的关系" class="nav-link" data-scroll-target="#与其他资源的关系"><span class="header-section-number">1.6</span> 与其他资源的关系</a></li>
-  <li><a href="#反馈" id="toc-反馈" class="nav-link" data-scroll-target="#反馈"><span class="header-section-number">1.7</span> 反馈</a></li>
-  </ul></li>
+  <li><a href="#本章问题" id="toc-本章问题" class="nav-link active" data-scroll-target="#本章问题"><span class="header-section-number">29.1</span> 本章问题</a></li>
+  <li><a href="#历史中的尝试包括弯路" id="toc-历史中的尝试包括弯路" class="nav-link" data-scroll-target="#历史中的尝试包括弯路"><span class="header-section-number">29.2</span> 历史中的尝试（包括弯路）</a></li>
+  <li><a href="#核心思想" id="toc-核心思想" class="nav-link" data-scroll-target="#核心思想"><span class="header-section-number">29.3</span> 核心思想</a></li>
+  <li><a href="#从零实现" id="toc-从零实现" class="nav-link" data-scroll-target="#从零实现"><span class="header-section-number">29.4</span> 从零实现</a></li>
+  <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">29.5</span> 消融实验</a></li>
+  <li><a href="#本章-loss-账本卷二总账的第一页" id="toc-本章-loss-账本卷二总账的第一页" class="nav-link" data-scroll-target="#本章-loss-账本卷二总账的第一页"><span class="header-section-number">29.6</span> 本章 Loss 账本（卷二总账的第一页）</a></li>
+  <li><a href="#遗留问题-卷三的入场券" id="toc-遗留问题-卷三的入场券" class="nav-link" data-scroll-target="#遗留问题-卷三的入场券"><span class="header-section-number">29.7</span> 遗留问题（= 卷三的入场券）</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">29.8</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -923,22 +985,15 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-convergence.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">收敛：decoder-only、MoE 与开源运动</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">降 Loss 之路</h1>
-<p class="subtitle lead">深度学习思想史：从感知机到智能体</p>
+<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">收敛：decoder-only、MoE 与开源运动</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>yujid </p>
-          </div>
-  </div>
     
   
     
@@ -949,111 +1004,216 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="欢迎来到降-loss-之路" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 欢迎来到《降 Loss 之路》</h1>
-<p>这是一本<strong>用实验重走深度学习研究史</strong>的交互书。它不从「Transformer 是什么」讲起，而从 1958 年的感知机讲起——因为研究思路没法被讲述，只能被重演。读者只有先被 RNN 的梯度消失折磨过，才能真正理解「Attention is All You Need」标题里那个 <em>All You Need</em> 的分量。</p>
-<section id="两条主线" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="两条主线"><span class="header-section-number">1.1</span> 两条主线</h2>
-<p><strong>历史主线（骨架）</strong>：每一章都是历史上的一次真实解题。上一代架构留下的问题，就是下一章的起点。读完你走过的不是知识点清单，而是从感知机到智能体这条路上每一次「发现问题 → 提出假设 → 实验验证 → 暴露新问题」的完整循环。</p>
-<p><strong>Loss 主线（分析工具）</strong>：每个架构改进，统一用一个度量来审视——它让什么 loss、在什么数据上、降得更便宜？架构史因此不是名词罗列，而是一部「降 loss 效率的进化史」。这个视角一直延伸到当下：SFT 是指令数据上的监督 loss，RLHF 是奖励变形后的 loss，推理模型是可验证奖励上的 loss——看懂了 loss，就看懂了模型的本质，也更容易判断未来的方向。</p>
+<p>卷二收官。2019 年的时候，做 NLP 要在 GPT 与 BERT 之间站队、在十种注意力和四种训练目标里挑花活；到 2023 年，新发布的基座模型几乎清一色长成同一个样子：<strong>decoder-only Transformer、下一词预测、几十层、几千亿参数</strong>。架构的多样性塌缩成了共识模板——本章盘点这场收敛的三股推力（decoder-only 的经济学、稀疏化对”参数与算力解耦”的回答、开源运动对”谁能拥有模型”的回答），做一次 MoE 的最小实验，然后合上卷二。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>算力需求
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A 级</strong>：笔记本 CPU · MoE 对照实验约 2 分钟。</p>
+</div>
+</div>
+<div class="callout-era" title="时代快照 · 2022–2024">
+<ul>
+<li><strong>算力</strong>：万卡集群成为旗舰训练的门槛；MoE（千级专家）成为”参数上量、算力不炸”的主路（GShard/Switch/后来的 Mixtral）；</li>
+<li><strong>数据</strong>：Chinchilla 配方生效后，数据工程（清洗、去重、配比）成为模型竞争力的大头；</li>
+<li><strong>认知</strong>：“基础模型”（foundation model）一词（2021）被广泛接受——范式收敛伴随 vocabulary 的收敛；</li>
+<li><strong>关键事实</strong>：2023 年 2 月 LLaMA 权重泄露、7 月 Meta 干脆正式开源——开源社区的微调生态（Alpaca 一族）在几个月内把”小模型 + 好数据”的路线跑通。<strong>闭源壁垒被证明比想象中薄</strong>。</li>
+</ul>
+</div>
+<section id="本章问题" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">29.1</span> 本章问题</h2>
+<ol type="1">
+<li>收敛到 decoder-only 的三条理由，各自站不站得住？（5.4 伏笔的正式结算）</li>
+<li>MoE 如何解耦”参数量”与”每 token 算力”？代价是什么？（最小实验 + 诚实结果）</li>
+<li>这场收敛<strong>排除</strong>了什么——被收敛掉的多样性，损失在哪里？</li>
+</ol>
 </section>
-<section id="全书的弧线" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="全书的弧线"><span class="header-section-number">1.2</span> 全书的弧线</h2>
+<section id="历史中的尝试包括弯路" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">29.2</span> 历史中的尝试（包括弯路）</h2>
+<p><strong>decoder-only 的三张牌</strong>：①<strong>信号密度</strong>——每个 token 都产生监督（5.4 的验货结论）；②<strong>scaling 友好</strong>——目标单一、损失稳定、幂律好测（6.1 的曲线全部画在这条目标上）；③<strong>工程极简</strong>——训练即推理的彩排、KV 缓存直接可用、流水线好切。 encoder-decoder（T5 一系）与 MLM 路线没有输在”双向无用”，输在<strong>规模化时代的适配性</strong>。</p>
+<p><strong>MoE 的谱系</strong>：思想源头是 1991 年的混合专家（Jacobs et al.——古老的联想，与 LSTM 同年出生）；2017 年后与 Transformer 结合成稀疏层（Shazeer 的 Sparsely-Gated MoE、Google 的 Switch Transformer 每层几千专家、2023 年 Mistral 的 Mixtral 8×7B 开源爆款）。<strong>“参数存知识、算力做计算”的解耦</strong>让千亿级参数以百亿级的单 token 成本运行。</p>
+<p><strong>弯路：MoE 的训练之难</strong>。负载不均（几个专家被挤爆、其余闲置）、训练不稳、微调娇气——解药是一整套工程（辅助负载损失、容量因子、z-loss）。<strong>稀疏性的收益从来不是免费的</strong>——本章实验会亲手撞上这一点。</p>
+<p><strong>开源运动</strong>：LLaMA（2023）按 Chinchilla 配方证明”小而充分训练”可行 → 泄露与正式开源 → 社区微调生态爆发 → 各家跟进（Mistral、Qwen、DeepSeek 一族）。<strong>研究-工程-社区的三级火箭</strong>取代了”单实验室闭门造模型”的旧范式。9.1 会把这段放到 Bitter Lesson 的延长线上复盘。</p>
+<div class="callout-research" title="停一停，你来当研究者">
+<p>MoE 实验设计题。手里的零件：<code>MoEMLP</code>（2 位专家、top-1 稀疏路由、直通门梯度）。计划：把 d=32 的 MiniGPT 第二块换成 MoE，与 dense 对照。</p>
+<p>运行之前写下预测：</p>
+<ol type="1">
+<li><strong>参数账</strong>：dense 的 MLP 隐层是 4d；MoE 用 2 位专家、各 2d 隐层——两边的参数量与每 token 的活跃 FLOPs 各是什么关系？</li>
+<li><strong>成绩预测</strong>：同预算下 MoE 会赢、输、还是平？（提示：我们的尺度只有 2.7 万参数、语料 6 万字符——MoE 的理论收益需要什么条件？）</li>
+<li><strong>路由预测</strong>：训练后两位专家的使用率会是 50/50 吗？如果不是，往哪偏、为什么？</li>
+</ol>
+<p>写完再运行——第 2 问的诚实答案是本章最有分量的结果。</p>
+</div>
+</section>
+<section id="核心思想" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">29.3</span> 核心思想</h2>
+<p><strong>收敛的三股力</strong>，用账本语言各记一笔：</p>
+<ul>
+<li><strong>Decoder-only</strong>：在”信号密度 × scaling 可测性 × 工程简洁”的三维评分上全面领先——<strong>不是最优的架构，是最可规模化的架构</strong>（Bitter Lesson 的架构版判决）；</li>
+<li><strong>MoE</strong>：把”参数”与”每 token 计算”解耦——知识可以更便宜地<strong>存</strong>，取用时只付路过的那部分算力。代价是训练复杂度与负载均衡的新税；</li>
+<li><strong>开源</strong>：把”基座”从产品降级为商品——当架构收敛、配方公开（Chinchilla）、数据管道可复制时，<strong>护城河只剩数据、算力与对齐</strong>（后两者正是卷三的主题）。</li>
+</ul>
+<p><strong>收敛的代价</strong>：被收敛掉的还有多样性——encoder 路线在检索/嵌入场景仍是活的传统（5.4 的回声），稀疏注意力、线性复杂度、状态空间模型（4.2 的 RNN 还魂一族）都在等待”长上下文的账单”到期后接管（8.x）。<strong>收敛是特定账本下的最优解，账本变了，格局重开</strong>。</p>
+</section>
+<section id="从零实现" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">29.4</span> 从零实现</h2>
+<p><strong>MoE 对照实验</strong>：dense d=32（第二块 MLP 隐层 4d=128）vs 同模型第二块换成 <code>MoEMLP</code>（2 位专家、各 2d=64 隐层）——<strong>总参数相近、每 token 活跃算力减半</strong>：</p>
+<div id="78067f0e" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.transformer <span class="im">import</span> MiniGPT</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.transformer.layers <span class="im">import</span> MoEMLP</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.utils <span class="im">import</span> set_seed</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>set_seed(<span class="dv">42</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>arr_t <span class="op">=</span> np.array(char_corpus(make_grammar_corpus(<span class="dv">60000</span>, seed<span class="op">=</span><span class="dv">0</span>))[<span class="dv">0</span>])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>arr_v <span class="op">=</span> np.array(char_corpus(make_grammar_corpus(<span class="dv">12000</span>, seed<span class="op">=</span><span class="dv">1</span>))[<span class="dv">0</span>])</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> <span class="bu">len</span>(char_corpus(make_grammar_corpus(<span class="dv">60000</span>, seed<span class="op">=</span><span class="dv">0</span>))[<span class="dv">1</span>])  <span class="co"># 词表取自完整训练文本</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>vb <span class="op">=</span> np.stack([arr_v[s : s <span class="op">+</span> <span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> np.random.default_rng(<span class="dv">7</span>).integers(<span class="dv">0</span>, <span class="bu">len</span>(arr_v) <span class="op">-</span> <span class="dv">65</span>, size<span class="op">=</span><span class="dv">200</span>)])</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train(model, steps<span class="op">=</span><span class="dv">1500</span>, seed<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        lr <span class="op">=</span> <span class="fl">0.15</span> <span class="op">*</span> <span class="bu">min</span>(<span class="fl">1.0</span>, (step <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">150</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.9</span> <span class="op">*</span> step <span class="op">/</span> steps)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        starts <span class="op">=</span> rng.integers(<span class="dv">0</span>, <span class="bu">len</span>(arr_t) <span class="op">-</span> <span class="dv">65</span>, size<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> np.stack([arr_t[s : s <span class="op">+</span> <span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> starts])</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        model.loss_and_backward(batch)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        model.step(lr, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>dense <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>train(dense)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>moe <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>moe.blocks[<span class="dv">1</span>].mlp <span class="op">=</span> MoEMLP(<span class="dv">32</span>, n_experts<span class="op">=</span><span class="dv">2</span>, seed<span class="op">=</span><span class="dv">77</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>train(moe)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"dense: val loss = </span><span class="sc">{</span>dense<span class="sc">.</span>loss_on(vb)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MoE:   val loss = </span><span class="sc">{</span>moe<span class="sc">.</span>loss_on(vb)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"专家使用率: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(moe.blocks[<span class="dv">1</span>].mlp.usage, <span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dense: val loss = 1.909
+MoE:   val loss = 1.938
+专家使用率: [0.741 0.259]</code></pre>
+</div>
+</div>
+<p>典型的诚实结果：<strong>MoE 1.94 对 dense 1.91——打平或略输</strong>，且使用率失衡（约 0.74/0.26，没有负载均衡辅助损失的约束）。这不是 MoE 的失败，是<strong>尺度与配方</strong>的证词：</p>
+<ol type="1">
+<li><strong>收益需要尺度</strong>：两位专家在 2.7 万参数里分不到足够的专业化空间；真实 MoE 的收益在百亿千亿参数、多领域数据时才兑现（专家按领域/句法分工）；</li>
+<li><strong>负载均衡是生命线</strong>：使用率失衡意味着相当一部分参数在偷懒——Switch Transformer 们靠辅助损失与容量因子驯服它（我们的玩具没装，练习 3 补上）；</li>
+<li><strong>训练税</strong>：稀疏路由的梯度不如 dense 稠密——同预算下略慢是常态。</li>
+</ol>
+<p><strong>玩具的零结果与产业的千亿结果并存</strong>，正是”账本第二问（数据）与第三问（规模）决定技术适用域”的又一课——把这句话和 2.3（dropout 在玩具上平庸、在大模型上辉煌）对照：<strong>同一门课，卷一讲过一遍了</strong>。</p>
+</section>
+<section id="消融实验" class="level2" data-number="29.5">
+<h2 data-number="29.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">29.5</span> 消融实验</h2>
+<p><strong>专家数扫描</strong>：把专家从 2 位加到 4 位（每位隐层 d=32，保持总活跃算力近似）——失衡会缓解还是恶化？（预测：专家越多，无约束的均衡越难自发形成——负载均衡损失从”可选”变”必需”的临界点。）</p>
+<div id="bca8f7a3" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>moe4 <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>moe4.blocks[<span class="dv">1</span>].mlp <span class="op">=</span> MoEMLP(<span class="dv">32</span>, n_experts<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">77</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train(moe4)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"4 专家: val loss = </span><span class="sc">{</span>moe4<span class="sc">.</span>loss_on(vb)<span class="sc">:.3f}</span><span class="ss">, 使用率 = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(moe4.blocks[<span class="dv">1</span>].mlp.usage, <span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4 专家: val loss = 2.013, 使用率 = [0.645 0.337 0.017 0.   ]</code></pre>
+</div>
+</div>
+</section>
+<section id="本章-loss-账本卷二总账的第一页" class="level2" data-number="29.6">
+<h2 data-number="29.6" class="anchored" data-anchor-id="本章-loss-账本卷二总账的第一页"><span class="header-section-number">29.6</span> 本章 Loss 账本（卷二总账的第一页）</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>时代</th>
-<th>核心问题</th>
-<th>主角</th>
+<th>问题</th>
+<th>回答</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>史前史（1943–1986）</td>
-<td>神经元能学到什么？</td>
-<td>感知机、反向传播</td>
+<td>在优化什么 loss？</td>
+<td>仍是下一词交叉熵——但 MoE 把”降它的成本”拆成两本账：<strong>存知识的参数账</strong>与<strong>取知识的算力账</strong></td>
 </tr>
 <tr class="even">
-<td>黎明（1986–2015）</td>
-<td>为什么深网络训不动？</td>
-<td>ReLU、Dropout、BatchNorm、残差</td>
+<td>数据从哪来？</td>
+<td>收敛后的竞争前哨：配比与清洗（本章一笔带过，9.2 展开）</td>
 </tr>
 <tr class="odd">
-<td>卷积时代（1989–2016）</td>
-<td>如何看懂图像？</td>
-<td>LeNet、AlexNet、ResNet</td>
+<td>买到了什么能力？</td>
+<td>模板化的一切：可复制的训练配方、可外推的曲线、可解耦的成本结构</td>
 </tr>
 <tr class="even">
-<td>序列时代（1948–2014）</td>
-<td>如何建模变长与长程依赖？</td>
-<td>n-gram、RNN、LSTM、seq2seq</td>
-</tr>
-<tr class="odd">
-<td>注意力革命（2014–2019）</td>
-<td>如何摆脱循环？</td>
-<td>Attention、Transformer、GPT/BERT</td>
-</tr>
-<tr class="even">
-<td>规模时代（2019–2024）</td>
-<td>loss 随规模如何变化？</td>
-<td>Scaling Laws、Chinchilla</td>
-</tr>
-<tr class="odd">
-<td>对齐时代（2020–2025）</td>
-<td>如何重塑输出分布？</td>
-<td>SFT、RLHF、DPO、RLVR</td>
-</tr>
-<tr class="even">
-<td>智能体时代（2023–2026）</td>
-<td>Agent 能力从哪来？</td>
-<td>工具调用、轨迹训练、上下文工程</td>
+<td>没买到什么？</td>
+<td><strong>输出分布的可控性</strong>——base model 会续写不会听话；<strong>与人类意图的对齐</strong>——卷三的全部动因</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="给谁读" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="给谁读"><span class="header-section-number">1.3</span> 给谁读</h2>
-<p>会 Python、了解一点线性代数和微积分、没系统学过深度学习的人可以直接从头读；有 ML 基础的读者可以跳过 Part 0–1 的推导细节，但建议不要跳过各章的「停一停」练习——那才是这本书真正的核心体验。</p>
-</section>
-<section id="实验与算力" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="实验与算力"><span class="header-section-number">1.4</span> 实验与算力</h2>
-<p>每章都有可运行的从零实现实验，按算力需求分三级标注：</p>
+<div class="callout-echo" title="回声">
 <ul>
-<li><strong>A 级</strong>：笔记本 CPU，分钟级。卷一全部、卷二大部分实验在此级别——这段历史本来就发生在小算力上，今天恰好可以完整复现。</li>
-<li><strong>B 级</strong>：免费 Colab T4，几十分钟。卷二中后期的语言模型实验。</li>
-<li><strong>C 级</strong>：提供预训练 checkpoint，读者只做加载与分析。</li>
+<li>MoE 的”存算解耦” → 推理经济学的军备库（量化、蒸馏是它的兄弟）；8.x 的 agent 成本核算会再见到这本账；</li>
+<li>开源运动 → 权重作为公共品；微调生态（LoRA 一族，7.2）是它的直接产物；</li>
+<li>收敛的宿命 → 长上下文账单（8.x）与状态空间模型的还魂——<strong>每一次”终局”都埋着下一局</strong>；</li>
+<li>卷二主线收束：从 n-gram 的计数到万亿参数的幂律，<strong>“预测下一词”从未变过，变的只是把 loss 降得更低的手段</strong>——下一卷问：降好了 loss，然后呢？</li>
 </ul>
-<p>代码不散落在 notebook 里，而是随书生长成一个包 <code>dlbook</code>：每章把新实现的模型合入其中，后续章节直接 <code>import</code> 复用。读完这本书，你拥有的不是一堆笔记，而是一座自己一层层盖起来的微型深度学习史图书馆。</p>
-</section>
-<section id="三卷出版计划" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="三卷出版计划"><span class="header-section-number">1.5</span> 三卷出版计划</h2>
+</div>
+<div class="callout-paper" title="论文时光机">
+<p><strong>Fedus, W., Zoph, B. &amp; Shazeer, N. (2022).</strong> <em>Switch transformers: Scaling to trillion parameter models with simple and efficient sparsity.</em> JMLR.（配对阅读 Touvron et al.&nbsp;2023 的 LLaMA 论文）</p>
 <ul>
-<li><strong>卷一 · 根基与黎明</strong>（Part 0–3）：从感知机到能训练的深度卷积网络。</li>
-<li><strong>卷二 · 序列、注意力与规模</strong>（Part 4–6）：从 n-gram 到 GPT-3 与 Chinchilla。</li>
-<li><strong>卷三 · LLM、对齐与智能体</strong>（Part 7–9）：从 base model 到 agent，以及一套判断未来的框架。</li>
+<li><strong>读什么</strong>：Switch 的图 2（top-1 路由示意）与第 2 节的负载均衡损失（本章玩具缺失的那味药）；LLaMA 的表 1（“小模型充分训练”的战绩表）；</li>
+<li><strong>跳过</strong>：分布式系统细节；</li>
+<li><strong>历史注</strong>：Shazeer 是 Transformer 八作者之一——2017 年架构论文的核心作者在 2017–2022 年间持续供给稀疏化的关键件（Mesh-TF、Switch、GLU）。<strong>架构收敛不是自然事件，是一小群人持续下注的结果</strong>。开源一线读 LLaMA → Alpaca → Mixtral 的接力，看范式如何在组织间流动。</li>
 </ul>
-<p>每卷独立成书可用，写完一卷发布一卷。</p>
+</div>
 </section>
-<section id="与其他资源的关系" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="与其他资源的关系"><span class="header-section-number">1.6</span> 与其他资源的关系</h2>
-<ul>
-<li><a href="https://d2l.ai">Dive into Deep Learning</a>：交互书工程与全面性的范本，本书实验工程大量借鉴；</li>
-<li><a href="https://course.fast.ai">fast.ai</a>：自顶向下教学设计的范本；</li>
-<li><a href="https://karpathy.ai/zero-to-hero.html">Karpathy · Neural Networks: Zero to Hero</a>：从零造 LLM 的范本。</li>
-</ul>
-<p>本书的差异点：<strong>用研究史做骨架、用 loss 视角做解剖刀，一路贯穿到智能体与前沿</strong>——目前没有一本书这样做。</p>
+<section id="遗留问题-卷三的入场券" class="level2" data-number="29.7">
+<h2 data-number="29.7" class="anchored" data-anchor-id="遗留问题-卷三的入场券"><span class="header-section-number">29.7</span> 遗留问题（= 卷三的入场券）</h2>
+<ol type="1">
+<li>base model 是一台强大的续写机器——<strong>为什么它不听话</strong>？让它听话的最小改动是什么？（→ 7.1 base model 的分布、7.2 SFT）；</li>
+<li>“听话”本身如何变成一个可优化的目标？（→ 7.3 RLHF：把人类偏好写成 loss）；</li>
+<li>当模型的推理能力成为新前线，loss 的故事怎么续写？（→ 7.4 RLVR 与测试时计算）。</li>
+</ol>
 </section>
-<section id="反馈" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="反馈"><span class="header-section-number">1.7</span> 反馈</h2>
-<p>发现错误、参与讨论，请提 issue（建仓后在此附上链接）。这是一本写作中的书，它自己也应该像研究一样迭代。</p>
+<section id="练习" class="level2" data-number="29.8">
+<h2 data-number="29.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">29.8</span> 练习</h2>
+<ol type="1">
+<li><strong>造轮子</strong>：给 <code>MoEMLP</code> 加负载均衡辅助损失（<span class="math inline">\(L_{aux} = E \sum_e f_e \cdot p_e\)</span>，<span class="math inline">\(f_e\)</span> 为使用率、<span class="math inline">\(p_e\)</span> 为平均门概率），权重 0.01，重训——使用率与 loss 各怎么变？</li>
+<li><strong>预测再运行</strong>：把 MoE 的路由从 top-1 改成 top-2（两位专家输出平均）——loss、使用率、每 token 算力各怎么变？（稠密化是 MoE 稳定性的常见退路。）</li>
+<li><strong>消融</strong>：换一个 seed 重跑 MoE 对照五次，统计胜负——<strong>1.94 vs 1.91 在方差之内吗</strong>？（样本量意识：一切”打平”结论都要过这关。）</li>
+<li><strong>论文映射</strong>：用四问账本拆 LLaMA——注意它”买到”一栏几乎全是<strong>可复制性与开放性</strong>，闭源论文里这些格子是空的。</li>
+<li><strong>进阶（卷三预习）</strong>：用卷二的任意 base 模型（我们的 MiniGPT）采样 200 个字符，统计其中”完整英文单词”的比率与”重复片段”的比率——为 7.1 的”续写怪癖”观察提前采证。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="练习答案">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>练习答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>练习 1</strong>：使用率趋向均衡（如 0.55/0.45），loss 或微升或微降——均衡与质量是两本账，辅助损失买的是前者的保险；真实系统里没有它，MoE 会退化成”单专家 + 死权重”。</p>
+<p><strong>练习 2</strong>：top-2 更稳（梯度更密）但每 token 算力翻倍——<strong>稀疏性的收益被稀释</strong>；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。</p>
+<p><strong>练习 5 提示</strong>：典型样本里”完整词”过半但”重复片段”显著（循环复读是循环网络时代的老病，在弱 base 模型上仍可见）——7.1 会把这类观察系统化为”分布的怪癖”，并论证为什么需要后训练。</p>
+</div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1472,10 +1632,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../chapters/vol2/part6-emergence.html" class="pagination-link" aria-label="涌现之争：相变还是度量假象">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">涌现之争：相变还是度量假象</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/vol1/part0-two-threads.html" class="pagination-link" aria-label="双主线：降 Loss 的视角与研究史的视角">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/vol3/part7-base-model.html" class="pagination-link" aria-label="Base Model：互联网的压缩机">
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Base Model：互联网的压缩机</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

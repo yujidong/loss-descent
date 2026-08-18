@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="yujid">
 
-<title>降 Loss 之路</title>
+<title>2&nbsp; 双主线：降 Loss 的视角与研究史的视角 – 降 Loss 之路</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -30,28 +29,29 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/vol1/part0-two-threads.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-4dae692beda39fabefb46e2bbddd0e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/vol1/part0-reading-history.html" rel="next">
+<link href="../../index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-4dae692beda39fabefb46e2bbddd0e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -524,7 +524,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">欢迎来到《降 Loss 之路》</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part0-two-threads.html">卷一 · Part 0 · 导论</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part0-two-threads.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -539,7 +539,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">降 Loss 之路</a> 
+      <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -554,7 +554,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">欢迎来到《降 Loss 之路》</span></span></a>
   </div>
 </li>
@@ -569,13 +569,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part0-two-threads.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part0-two-threads.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part0-reading-history.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part0-reading-history.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">如何读研究史：读问题，不读年表</span></span></a>
   </div>
 </li>
@@ -592,25 +592,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-symbolic-vs-connectionist.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-symbolic-vs-connectionist.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">符号主义与连接主义：第一次范式之争</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-backprop.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-backprop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">反向传播：从思想到发动机</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part1-mlp-winter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part1-mlp-winter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MLP、万能逼近与第二次寒冬</span></span></a>
   </div>
 </li>
@@ -627,31 +627,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-mlp-difficulty.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-mlp-difficulty.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">训练一个 MLP 到底难在哪</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-toolbox.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-toolbox.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">破局工具箱：ReLU、Dropout、BatchNorm、残差</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part2-capstone-deep-mlp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part2-capstone-deep-mlp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">整合：让深度可训练的完整配方</span></span></a>
   </div>
 </li>
@@ -668,25 +668,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-lenet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-lenet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">LeNet：1989 年就有的答案</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-cnn-legacy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-cnn-legacy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">CNN 的遗产：特征层级与预训练-微调</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol1/part3-cnn-limits.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol1/part3-cnn-limits.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CNN 的边界：序列问题为何难</span></span></a>
   </div>
 </li>
@@ -703,31 +703,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-ngram.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-ngram.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">语言建模前史：从 Shannon 到 n-gram</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-rnn.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-rnn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">RNN：展开即深网的继承病</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-lstm.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-lstm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">LSTM：让梯度存活的门控设计</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-word2vec.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-word2vec.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">word2vec：语义被压进向量</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part4-seq2seq.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part4-seq2seq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">seq2seq：翻译即条件语言建模</span></span></a>
   </div>
 </li>
@@ -744,25 +744,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-bahdanau.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-bahdanau.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">注意力的诞生：让解码器回头看</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-transformer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-transformer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Transformer：从补丁到架构</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-why-transformer-won.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-why-transformer-won.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">为什么 Transformer 赢了</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
@@ -779,25 +779,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-emergence.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-emergence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">涌现之争：相变还是度量假象</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol2/part6-convergence.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol2/part6-convergence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">收敛：decoder-only、MoE 与开源运动</span></span></a>
   </div>
 </li>
@@ -814,25 +814,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-base-model.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-base-model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Base Model：互联网的压缩机</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-sft.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-sft.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">SFT：指令数据的监督 loss</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part7-reasoning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part7-reasoning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">推理模型：RLVR 与测试时计算</span></span></a>
   </div>
 </li>
@@ -849,19 +849,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-agent-origins.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-agent-origins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Agent 能力从哪来：数据里的轨迹</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-agent-training.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-agent-training.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">训练 Agent：环境、轨迹与过程奖励</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part8-model-vs-system.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part8-model-vs-system.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">模型层与系统层：判断框架</span></span></a>
   </div>
 </li>
@@ -878,19 +878,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-patterns.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-patterns.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">复盘：反复出现的研究模式</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-open-problems.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-open-problems.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Loss 视角下的开放问题</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/vol3/part9-prediction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/vol3/part9-prediction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">终章：你的判断框架与预测</span></span></a>
   </div>
 </li>
@@ -906,16 +906,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#欢迎来到降-loss-之路" id="toc-欢迎来到降-loss-之路" class="nav-link active" data-scroll-target="#欢迎来到降-loss-之路"><span class="header-section-number">1</span> 欢迎来到《降 Loss 之路》</a>
+  <li><a href="#本章问题" id="toc-本章问题" class="nav-link active" data-scroll-target="#本章问题"><span class="header-section-number">2.1</span> 本章问题</a></li>
+  <li><a href="#历史中的尝试包括弯路" id="toc-历史中的尝试包括弯路" class="nav-link" data-scroll-target="#历史中的尝试包括弯路"><span class="header-section-number">2.2</span> 历史中的尝试（包括弯路）</a></li>
+  <li><a href="#核心思想" id="toc-核心思想" class="nav-link" data-scroll-target="#核心思想"><span class="header-section-number">2.3</span> 核心思想</a>
   <ul class="collapse">
-  <li><a href="#两条主线" id="toc-两条主线" class="nav-link" data-scroll-target="#两条主线"><span class="header-section-number">1.1</span> 两条主线</a></li>
-  <li><a href="#全书的弧线" id="toc-全书的弧线" class="nav-link" data-scroll-target="#全书的弧线"><span class="header-section-number">1.2</span> 全书的弧线</a></li>
-  <li><a href="#给谁读" id="toc-给谁读" class="nav-link" data-scroll-target="#给谁读"><span class="header-section-number">1.3</span> 给谁读</a></li>
-  <li><a href="#实验与算力" id="toc-实验与算力" class="nav-link" data-scroll-target="#实验与算力"><span class="header-section-number">1.4</span> 实验与算力</a></li>
-  <li><a href="#三卷出版计划" id="toc-三卷出版计划" class="nav-link" data-scroll-target="#三卷出版计划"><span class="header-section-number">1.5</span> 三卷出版计划</a></li>
-  <li><a href="#与其他资源的关系" id="toc-与其他资源的关系" class="nav-link" data-scroll-target="#与其他资源的关系"><span class="header-section-number">1.6</span> 与其他资源的关系</a></li>
-  <li><a href="#反馈" id="toc-反馈" class="nav-link" data-scroll-target="#反馈"><span class="header-section-number">1.7</span> 反馈</a></li>
+  <li><a href="#主线一loss-是解剖刀" id="toc-主线一loss-是解剖刀" class="nav-link" data-scroll-target="#主线一loss-是解剖刀"><span class="header-section-number">2.3.1</span> 主线一：Loss 是解剖刀</a></li>
+  <li><a href="#主线二研究史是重演不是讲述" id="toc-主线二研究史是重演不是讲述" class="nav-link" data-scroll-target="#主线二研究史是重演不是讲述"><span class="header-section-number">2.3.2</span> 主线二：研究史是重演，不是讲述</a></li>
+  <li><a href="#两线如何咬合" id="toc-两线如何咬合" class="nav-link" data-scroll-target="#两线如何咬合"><span class="header-section-number">2.3.3</span> 两线如何咬合</a></li>
   </ul></li>
+  <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">2.4</span> 遗留问题</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">2.5</span> 练习</a></li>
   </ul>
 </nav>
     </div>
@@ -923,22 +923,15 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part0-two-threads.html">卷一 · Part 0 · 导论</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part0-two-threads.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">降 Loss 之路</h1>
-<p class="subtitle lead">深度学习思想史：从感知机到智能体</p>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>yujid </p>
-          </div>
-  </div>
     
   
     
@@ -949,16 +942,106 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="欢迎来到降-loss-之路" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 欢迎来到《降 Loss 之路》</h1>
-<p>这是一本<strong>用实验重走深度学习研究史</strong>的交互书。它不从「Transformer 是什么」讲起，而从 1958 年的感知机讲起——因为研究思路没法被讲述，只能被重演。读者只有先被 RNN 的梯度消失折磨过，才能真正理解「Attention is All You Need」标题里那个 <em>All You Need</em> 的分量。</p>
-<section id="两条主线" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="两条主线"><span class="header-section-number">1.1</span> 两条主线</h2>
-<p><strong>历史主线（骨架）</strong>：每一章都是历史上的一次真实解题。上一代架构留下的问题，就是下一章的起点。读完你走过的不是知识点清单，而是从感知机到智能体这条路上每一次「发现问题 → 提出假设 → 实验验证 → 暴露新问题」的完整循环。</p>
-<p><strong>Loss 主线（分析工具）</strong>：每个架构改进，统一用一个度量来审视——它让什么 loss、在什么数据上、降得更便宜？架构史因此不是名词罗列，而是一部「降 loss 效率的进化史」。这个视角一直延伸到当下：SFT 是指令数据上的监督 loss，RLHF 是奖励变形后的 loss，推理模型是可验证奖励上的 loss——看懂了 loss，就看懂了模型的本质，也更容易判断未来的方向。</p>
+<p>市面上讲深度学习的书大致分两类。一类按知识点组织：第一章张量，第二章卷积，第三章注意力……学完你能复述每个部件，但当一篇新论文出现时——比如某个新的注意力变体或新的 RL 配方——你依然没有判断力，只能背名词。另一类按故事组织：谁在哪年发明了什么、谁和谁论战……读来有趣，但合上书你什么也造不出来。这本书的赌注是：<strong>理解 = 原理 × 脉络</strong>，两条主线缺一不可，所以每一章都同时走这两条线。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>算力需求
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>纯阅读章，无需运行代码。但请准备一张纸——本章的「停一停」值得写几行字。</p>
+</div>
+</div>
+<div class="callout-era" title="时代快照 · 全书视角">
+<p>我们站在 2026 年回望：深度学习从 1958 年的一台洗衣机大小机器，变成了训练一次要烧掉一座小城电量的大模型。这七十年的主线不是”灵感爆发”，而是<strong>一系列被真实瓶颈逼出来的解题循环</strong>。读这段历史的正确姿势，是把自己放回每个循环的起点。</p>
+</div>
+<section id="本章问题" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">2.1</span> 本章问题</h2>
+<p>人的理解需要 context。一个孤立的公式是记不住的，一个没有来龙去脉的架构图是看不懂的。本章要回答全书的方法论问题：</p>
+<ol type="1">
+<li><strong>为什么”从模型的视角看，一切是训练降 loss”是一把好解剖刀？</strong></li>
+<li><strong>为什么研究思路无法被讲述、只能被重演？</strong></li>
+<li>两条线如何咬合成一本书的使用说明？</li>
+</ol>
 </section>
-<section id="全书的弧线" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="全书的弧线"><span class="header-section-number">1.2</span> 全书的弧线</h2>
+<section id="历史中的尝试包括弯路" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">2.2</span> 历史中的尝试（包括弯路）</h2>
+<p><strong>只讲原理的书</strong>（以及大多数课程）的困境：知识以”完成时”呈现——Transformer 直接以最优雅的形态躺在第三章，仿佛它生来如此。于是学习者记住的是结论而不是<strong>得到结论的过程</strong>；而领域的未来恰恰藏在过程里。这是”知识点清单”的弯路。</p>
+<p><strong>只讲历史的书</strong>的困境：满足于年表、人物与优先权之争，有故事而无能力。读者知道 1986 年发生了什么，却依然推不出梯度、跑不了实验。这是”掌故”的弯路。</p>
+<p>两者的病根相同：<strong>把 context 与 competence 当作二选一</strong>。</p>
+<div class="callout-research" title="停一停，你来当研究者">
+<p>在你继续读之前，请用下面这个四问表格（正文马上正式介绍）拆解一个你已经熟悉的技术——任何都行：推荐系统、人脸解锁、输入法联想。写下来：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>问题</th>
+<th>你的回答</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>它在优化什么目标？</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>数据从哪来？</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>降低这个目标买到了什么能力？</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>没买到什么？</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>你会发现第三、四问比前两问难得多——<strong>大多数工程师只答得出前两问</strong>。这份表格就是本书给你的第一件工具，写完再往下读。</p>
+</div>
+</section>
+<section id="核心思想" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">2.3</span> 核心思想</h2>
+<section id="主线一loss-是解剖刀" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="主线一loss-是解剖刀"><span class="header-section-number">2.3.1</span> 主线一：Loss 是解剖刀</h3>
+<p>从模型的视角看，训练只发生一件事：<strong>在某个数据分布上、按某个目标函数，把 loss 降下去</strong>。这个朴素的视角一旦认真使用，威力惊人：</p>
+<ul>
+<li><strong>预测即压缩</strong>。Shannon 在 1948 年就告诉我们：对数据压缩得越好，就是对它的分布预测得越好。今天的语言模型本质上是一台互联网文本的压缩机——降 loss 与”学到了知识”是同一件事的两面；</li>
+<li><strong>能力 = 特定分布上的低 loss</strong>。“会写代码”意味着在代码分布上 loss 低，“会推理”意味着在带推理痕迹的分布上 loss 低。于是每个新能力（对齐、工具调用、推理）都可以精确地问一句：<strong>这无非是在某个新分布上降 loss 吗？如果是，数据从哪来？</strong></li>
+<li><strong>训练技术 = 让 loss 降得更低、更便宜的手段</strong>。新架构如此（同样的算力降得更低）、训练技巧如此、分布式系统也如此。</li>
+</ul>
+<p>由此得到全书的标准工具——每章结尾都会填一份的 <strong>Loss 账本</strong>：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>四问</th>
+<th>问的是什么</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>在优化什么 loss？</td>
+<td>目标函数与它的真实含义</td>
+</tr>
+<tr class="even">
+<td>数据从哪来？</td>
+<td>分布——能力真正的来源</td>
+</tr>
+<tr class="odd">
+<td>买到了什么能力？</td>
+<td>降低这个 loss 的直接后果</td>
+</tr>
+<tr class="even">
+<td>没买到什么？</td>
+<td>边界——下一个技术被需要的理由</td>
+</tr>
+</tbody>
+</table>
+<p>拿两个”未来的”技术预演一下这把刀的锋利程度（细节在后文，这里只看刀法）：</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -967,93 +1050,90 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>时代</th>
-<th>核心问题</th>
-<th>主角</th>
+<th>四问</th>
+<th>ResNet（3.2）</th>
+<th>RLHF（7.3）</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>史前史（1943–1986）</td>
-<td>神经元能学到什么？</td>
-<td>感知机、反向传播</td>
+<td>在优化什么 loss？</td>
+<td>图像分类的交叉熵</td>
+<td>人类偏好奖励的最大化（变形的 loss）</td>
 </tr>
 <tr class="even">
-<td>黎明（1986–2015）</td>
-<td>为什么深网络训不动？</td>
-<td>ReLU、Dropout、BatchNorm、残差</td>
+<td>数据从哪来？</td>
+<td>ImageNet 标注图</td>
+<td>人类两两比较的标注</td>
 </tr>
 <tr class="odd">
-<td>卷积时代（1989–2016）</td>
-<td>如何看懂图像？</td>
-<td>LeNet、AlexNet、ResNet</td>
+<td>买到了什么？</td>
+<td>百层可训的网络</td>
+<td>模型输出分布对齐人类口味</td>
 </tr>
 <tr class="even">
-<td>序列时代（1948–2014）</td>
-<td>如何建模变长与长程依赖？</td>
-<td>n-gram、RNN、LSTM、seq2seq</td>
-</tr>
-<tr class="odd">
-<td>注意力革命（2014–2019）</td>
-<td>如何摆脱循环？</td>
-<td>Attention、Transformer、GPT/BERT</td>
-</tr>
-<tr class="even">
-<td>规模时代（2019–2024）</td>
-<td>loss 随规模如何变化？</td>
-<td>Scaling Laws、Chinchilla</td>
-</tr>
-<tr class="odd">
-<td>对齐时代（2020–2025）</td>
-<td>如何重塑输出分布？</td>
-<td>SFT、RLHF、DPO、RLVR</td>
-</tr>
-<tr class="even">
-<td>智能体时代（2023–2026）</td>
-<td>Agent 能力从哪来？</td>
-<td>工具调用、轨迹训练、上下文工程</td>
+<td>没买到什么？</td>
+<td>序列建模（固定窗口）</td>
+<td>能力上限不变、奖励可被攻破（reward hacking）</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="给谁读" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="给谁读"><span class="header-section-number">1.3</span> 给谁读</h2>
-<p>会 Python、了解一点线性代数和微积分、没系统学过深度学习的人可以直接从头读；有 ML 基础的读者可以跳过 Part 0–1 的推导细节，但建议不要跳过各章的「停一停」练习——那才是这本书真正的核心体验。</p>
-</section>
-<section id="实验与算力" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="实验与算力"><span class="header-section-number">1.4</span> 实验与算力</h2>
-<p>每章都有可运行的从零实现实验，按算力需求分三级标注：</p>
+<section id="主线二研究史是重演不是讲述" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="主线二研究史是重演不是讲述"><span class="header-section-number">2.3.2</span> 主线二：研究史是重演，不是讲述</h3>
+<p>深度学习七十年的基本循环只有一拍：</p>
+<p><strong>发现瓶颈 → 提出假设 → 实验验证 → 暴露新瓶颈。</strong></p>
+<p>感知机的线性局限逼出隐藏层，隐藏层的信用分配逼出反向传播，梯度消失逼出 ReLU 与残差，CNN 的固定窗口逼出循环网络，循环网络的不可并行逼出 Transformer，Transformer 的固定数据逼出规模化……<strong>每个”新”技术都是上一个技术遗留问题的答案</strong>。这意味着：</p>
 <ul>
-<li><strong>A 级</strong>：笔记本 CPU，分钟级。卷一全部、卷二大部分实验在此级别——这段历史本来就发生在小算力上，今天恰好可以完整复现。</li>
-<li><strong>B 级</strong>：免费 Colab T4，几十分钟。卷二中后期的语言模型实验。</li>
-<li><strong>C 级</strong>：提供预训练 checkpoint，读者只做加载与分析。</li>
+<li>只读答案，得不到提问的能力。所以本书每章在揭示历史方案<strong>之前</strong>，都有一栏「停一停，你来当研究者」——让你先当一次 1958 年或 1986 年的当事人。你会失败，而失败的位置恰恰就是历史突破的位置；</li>
+<li>预测未来 = 把循环外推。全书最后（9.3）你将用同一套工具分析当红方向并写下自己的预测——这本书的毕业考试是预测未来，而及格线早在本章就划下了。</li>
 </ul>
-<p>代码不散落在 notebook 里，而是随书生长成一个包 <code>dlbook</code>：每章把新实现的模型合入其中，后续章节直接 <code>import</code> 复用。读完这本书，你拥有的不是一堆笔记，而是一座自己一层层盖起来的微型深度学习史图书馆。</p>
 </section>
-<section id="三卷出版计划" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="三卷出版计划"><span class="header-section-number">1.5</span> 三卷出版计划</h2>
+<section id="两线如何咬合" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="两线如何咬合"><span class="header-section-number">2.3.3</span> 两线如何咬合</h3>
+<p>每章 = 一次历史解题（context）+ 一份 loss 账本（competence）+ 一组可运行实验（重演）。历史告诉你<strong>为什么</strong>，loss 告诉你<strong>代价与收益</strong>，实验让你<strong>亲手摸到</strong>。三者的关系不是并列，是同一件事的三个投影。</p>
+<div class="callout-echo" title="回声">
+<p>「四问账本」本身也有一份账本：它在优化你的”判断力 loss”——输入是新技术（新的架构、RL 配方、agent 框架），输出是快速定位它的数据来源、目标函数与边界。读完本书，面对任何新论文，你的第一反应应当是拿账本过一遍——这正是很多人面对 AI 狂潮时最缺的能力。</p>
+</div>
+<div class="callout-paper" title="论文时光机">
+<p>本章的两篇奠基文献，也是全书唯二”非技术”的指定阅读：</p>
 <ul>
-<li><strong>卷一 · 根基与黎明</strong>（Part 0–3）：从感知机到能训练的深度卷积网络。</li>
-<li><strong>卷二 · 序列、注意力与规模</strong>（Part 4–6）：从 n-gram 到 GPT-3 与 Chinchilla。</li>
-<li><strong>卷三 · LLM、对齐与智能体</strong>（Part 7–9）：从 base model 到 agent，以及一套判断未来的框架。</li>
+<li><strong>Shannon, C. (1948).</strong> <em>A Mathematical Theory of Communication.</em> —— “预测即压缩”的血缘源头，语言建模（4.1）将正式回到这里；</li>
+<li><strong>Sutton, R. (2019).</strong> <em>The Bitter Lesson.</em> —— 短短一页：七十年来，依赖算力扩展的通用方法一再击败精巧的领域设计。它将在 2.4、6.1、9.1 三次回响，是贯穿全书的低音部。</li>
 </ul>
-<p>每卷独立成书可用，写完一卷发布一卷。</p>
+</div>
 </section>
-<section id="与其他资源的关系" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="与其他资源的关系"><span class="header-section-number">1.6</span> 与其他资源的关系</h2>
-<ul>
-<li><a href="https://d2l.ai">Dive into Deep Learning</a>：交互书工程与全面性的范本，本书实验工程大量借鉴；</li>
-<li><a href="https://course.fast.ai">fast.ai</a>：自顶向下教学设计的范本；</li>
-<li><a href="https://karpathy.ai/zero-to-hero.html">Karpathy · Neural Networks: Zero to Hero</a>：从零造 LLM 的范本。</li>
-</ul>
-<p>本书的差异点：<strong>用研究史做骨架、用 loss 视角做解剖刀，一路贯穿到智能体与前沿</strong>——目前没有一本书这样做。</p>
 </section>
-<section id="反馈" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="反馈"><span class="header-section-number">1.7</span> 反馈</h2>
-<p>发现错误、参与讨论，请提 issue（建仓后在此附上链接）。这是一本写作中的书，它自己也应该像研究一样迭代。</p>
+<section id="遗留问题" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">2.4</span> 遗留问题</h2>
+<p>方法说清了，但”读研究史”本身是有技术的：如何在二手叙述里辨认一手问题？如何避免用今天的后见之明嘲笑前人？（他们不知道结局，而你不知道他们不知道什么——这才是重演的难点。）→ 下一章：如何读研究史。</p>
+</section>
+<section id="练习" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="练习"><span class="header-section-number">2.5</span> 练习</h2>
+<ol type="1">
+<li><strong>账本练习</strong>：把「停一停」里你拆解的技术重新写一遍，这次必须把第三、四问写满各 100 字。</li>
+<li><strong>预测练习</strong>：写下你对这个判断的真伪与理由——“Transformer 会在十年内被完全取代”。装进信封，读到 9.3 时拆开对照。</li>
+<li><strong>循环识别</strong>：在任意一篇你近期读过的 AI 新闻里，辨认出它属于研究循环的哪一拍（瓶颈/假设/验证/新瓶颈）。若辨认不出，说明它可能只是营销。</li>
+<li><strong>论文映射</strong>：找出 The Bitter Lesson 提到的任一历史案例（如计算机视觉的手工特征），用四问账本拆它一页。</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="练习答案">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>练习答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>没有标准答案，但有三条自检标准：练习 1 里若你的第三四问与第一二问高度重复，说明还没把”能力”与”机制”分开；练习 3 里若一拍都认不出，重读本章「研究史是重演」一节；练习 4 的常见发现是——被 Bitter Lesson 击败的手工方法，账本第四问（没买到什么）往往早有人写下，只是没人愿意读。</p>
+</div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1472,10 +1552,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../index.html" class="pagination-link" aria-label="欢迎来到《降 Loss 之路》">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">欢迎来到《降 Loss 之路》</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/vol1/part0-two-threads.html" class="pagination-link" aria-label="双主线：降 Loss 的视角与研究史的视角">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/vol1/part0-reading-history.html" class="pagination-link" aria-label="如何读研究史：读问题，不读年表">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">如何读研究史：读问题，不读年表</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

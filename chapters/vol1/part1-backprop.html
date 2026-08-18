@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; 反向传播：从思想到发动机 – 降 Loss 之路</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/vol1/part1-mlp-winter.html" rel="next">
+<link href="../../chapters/vol1/part1-symbolic-vs-connectionist.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-4dae692beda39fabefb46e2bbddd0e24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-0d024c5a5e6b9c7c38e80cc825d8f004.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+  .rc-ui { font-family: system-ui, "Segoe UI", "Microsoft YaHei", sans-serif; }
+  #rc-toolbar { position: fixed; right: 18px; bottom: 18px; z-index: 9990; display: flex; gap: 8px;
+    background: #ffffffee; border: 1px solid #d0d0d0; border-radius: 10px; padding: 8px 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12); font-size: 13px; }
+  #rc-toolbar button { border: 1px solid #c9c9c9; background: #fff; border-radius: 7px; padding: 4px 10px;
+    cursor: pointer; font-size: 13px; color: #333; }
+  #rc-toolbar button.rc-on { background: #3572c6; color: #fff; border-color: #3572c6; }
+  #rc-selbtn { position: absolute; z-index: 9991; }
+  #rc-selbtn button { background: #3572c6; color: #fff; border: none; border-radius: 6px; padding: 4px 10px;
+    font-size: 13px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+  .rc-mark { background: #fff3b0; border-bottom: 2px solid #e6b800; cursor: pointer; }
+  .rc-block-flag { box-shadow: inset 4px 0 0 #e6b800; }
+  #rc-panel { position: fixed; top: 0; right: -420px; width: 400px; height: 100vh; overflow-y: auto; z-index: 9992;
+    background: #fff; border-left: 1px solid #ddd; box-shadow: -4px 0 16px rgba(0,0,0,.10); padding: 14px;
+    transition: right .18s ease; font-size: 13.5px; color: #222; }
+  #rc-panel.rc-open { right: 0; }
+  #rc-panel h4 { margin: 4px 0 10px; font-size: 14px; }
+  .rc-item { border: 1px solid #e3e3e3; border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; }
+  .rc-item .rc-q { color: #666; font-size: 12.5px; border-left: 3px solid #e6b800; padding-left: 8px; margin: 6px 0; }
+  .rc-item .rc-meta { color: #999; font-size: 11.5px; margin-top: 6px; display: flex; justify-content: space-between; }
+  .rc-item .rc-meta button { border: none; background: none; color: #c0392b; cursor: pointer; font-size: 11.5px; }
+  #rc-modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.25); z-index: 9993; display: none; }
+  #rc-modal { position: fixed; left: 50%; top: 30%; transform: translateX(-50%); z-index: 9994; display: none;
+    background: #fff; border-radius: 10px; padding: 16px; width: min(480px, 90vw);
+    box-shadow: 0 10px 30px rgba(0,0,0,.25); font-size: 13.5px; }
+  #rc-modal .rc-q { color: #666; font-size: 12.5px; border-left: 3px solid #e6b800; padding-left: 8px; margin: 6px 0 10px; }
+  #rc-modal textarea { width: 100%; box-sizing: border-box; height: 90px; border: 1px solid #ccc;
+    border-radius: 6px; padding: 6px 8px; font-size: 13.5px; }
+  #rc-modal select { border: 1px solid #ccc; border-radius: 6px; padding: 4px 6px; margin-bottom: 10px; }
+  #rc-modal .rc-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
+  #rc-modal .rc-btns button { border: 1px solid #ccc; background: #fff; border-radius: 6px;
+    padding: 5px 14px; cursor: pointer; }
+  #rc-modal .rc-btns button.rc-primary { background: #3572c6; color: #fff; border-color: #3572c6; }
+</style>
+<script>
+(function () {
+  if (window.__dlbookReviewLoaded) return;
+  window.__dlbookReviewLoaded = true;
+
+  var CHAPTER = (location.pathname.split("/").pop() || "index").replace(/\.html$/, "");
+  var KEY = "dlbook-review-" + CHAPTER;
+  var TYPES = ["问题", "建议", "文风", "事实核对", "其他"];
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } }
+  function save(list) { localStorage.setItem(KEY, JSON.stringify(list)); }
+  function norm(s) { return (s || "").replace(/\s+/g, " ").trim(); }
+  function uid() { return "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+  function mainRoot() { return document.querySelector("main") || document.body; }
+  function sectionOf(node) {
+    try {
+      var h = document.evaluate(
+        "preceding::*[self::h1 or self::h2 or self::h3][1]",
+        node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null
+      ).singleNodeValue;
+      return h ? norm(h.textContent) : "";
+    } catch (e) { return ""; }
+  }
+
+  /* ---------- 工具栏 ---------- */
+  var bar = document.createElement("div");
+  bar.id = "rc-toolbar"; bar.className = "rc-ui";
+  bar.innerHTML =
+    '<button id="rc-mode">批注模式</button>' +
+    '<button id="rc-open">本章批注 <span id="rc-count">0</span></button>' +
+    '<button id="rc-export">导出 JSON</button>';
+  document.body.appendChild(bar);
+
+  var modeBtn = bar.querySelector("#rc-mode");
+  function modeOn() { return localStorage.getItem("dlbook-review-mode") === "1"; }
+  function refreshMode() {
+    modeBtn.classList.toggle("rc-on", modeOn());
+    modeBtn.textContent = modeOn() ? "批注模式：开" : "批注模式：关";
+  }
+  modeBtn.onclick = function () {
+    localStorage.setItem("dlbook-review-mode", modeOn() ? "0" : "1");
+    refreshMode();
+  };
+  refreshMode();
+
+  /* ---------- 划选批注 ---------- */
+  var selBtn = document.createElement("div");
+  selBtn.id = "rc-selbtn"; selBtn.className = "rc-ui"; selBtn.style.display = "none";
+  selBtn.innerHTML = '<button>＋ 批注</button>';
+  document.body.appendChild(selBtn);
+
+  function hideSelBtn() { selBtn.style.display = "none"; }
+  document.addEventListener("mouseup", function (ev) {
+    if (!modeOn() || ev.target.closest(".rc-ui")) return;
+    setTimeout(function () {
+      var sel = window.getSelection();
+      if (!sel || sel.isCollapsed || !sel.toString().trim()) { hideSelBtn(); return; }
+      if (sel.toString().length > 1500) { hideSelBtn(); return; }
+      if (!mainRoot().contains(sel.anchorNode)) { hideSelBtn(); return; }
+      var r = sel.getRangeAt(0).getBoundingClientRect();
+      selBtn.style.display = "block";
+      selBtn.style.left = Math.max(8, r.left + r.width / 2 - 36 + window.scrollX) + "px";
+      selBtn.style.top = (r.top + window.scrollY - 36) + "px";
+    }, 10);
+  });
+  selBtn.onclick = function () {
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed) return;
+    hideSelBtn();
+    openDialog({
+      quote: norm(sel.toString()).slice(0, 240),
+      range: sel.getRangeAt(0).cloneRange()
+    });
+  };
+
+  /* ---------- 整块批注（批注模式下点击段落） ---------- */
+  document.addEventListener("click", function (ev) {
+    if (!modeOn()) return;
+    if (ev.target.closest(".rc-ui, a, button, pre, code, input, textarea, mark.rc-mark")) return;
+    if (window.getSelection() && !window.getSelection().isCollapsed) return;
+    var block = ev.target.closest("p, li, h2, h3, blockquote, .callout-body");
+    if (!block || !mainRoot().contains(block)) return;
+    var text = norm(block.textContent);
+    if (!text || text.length < 4) return;
+    openDialog({ quote: text.slice(0, 200), block: block });
+  });
+
+  /* ---------- 对话框 ---------- */
+  var modalBg = document.createElement("div"); modalBg.id = "rc-modal-bg";
+  var modal = document.createElement("div"); modal.id = "rc-modal"; modal.className = "rc-ui";
+  modal.innerHTML =
+    '<div><b>添加批注</b></div><div class="rc-q"></div>' +
+    '<div>类型：&nbsp;<select></select></div>' +
+    "<textarea placeholder='写下你的问题或建议…'></textarea>" +
+    '<div class="rc-btns"><button class="rc-cancel">取消</button><button class="rc-primary">保存</button></div>';
+  document.body.appendChild(modalBg); document.body.appendChild(modal);
+  var typeSel = modal.querySelector("select");
+  TYPES.forEach(function (t) { var o = document.createElement("option"); o.value = o.textContent = t; typeSel.appendChild(o); });
+  var pendingCtx = null;
+
+  function openDialog(ctx) {
+    pendingCtx = ctx;
+    modal.querySelector(".rc-q").textContent = "「" + ctx.quote + "」";
+    modal.querySelector("textarea").value = "";
+    modalBg.style.display = "block"; modal.style.display = "block";
+    modal.querySelector("textarea").focus();
+  }
+  function closeDialog() { modalBg.style.display = "none"; modal.style.display = "none"; pendingCtx = null; }
+  modalBg.onclick = closeDialog;
+  modal.querySelector(".rc-cancel").onclick = closeDialog;
+  modal.querySelector(".rc-primary").onclick = function () {
+    var note = norm(modal.querySelector("textarea").value);
+    if (!note) { closeDialog(); return; }
+    var item = {
+      id: uid(), chapter: CHAPTER, section: sectionOf(pendingCtx.range ? pendingCtx.range.startContainer : pendingCtx.block),
+      quote: pendingCtx.quote, note: note, type: typeSel.value,
+      createdAt: new Date().toISOString()
+    };
+    if (pendingCtx.range) markRange(pendingCtx.range, item.id);
+    else if (pendingCtx.block) pendingCtx.block.classList.add("rc-block-flag"), pendingCtx.block.dataset.rcCid = item.id;
+    var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+    closeDialog();
+  };
+
+  function markRange(range, cid) {
+    try {
+      var mark = document.createElement("mark");
+      mark.className = "rc-mark"; mark.dataset.rcCid = cid;
+      range.surroundContents(mark);
+    } catch (e) {
+      var block = range.startContainer.parentElement && range.startContainer.parentElement.closest("p, li, .callout-body");
+      if (block) { block.classList.add("rc-block-flag"); block.dataset.rcCid = cid; }
+    }
+  }
+
+  /* ---------- 面板 ---------- */
+  var panel = document.createElement("div");
+  panel.id = "rc-panel"; panel.className = "rc-ui";
+  document.body.appendChild(panel);
+  bar.querySelector("#rc-open").onclick = function () { panel.classList.toggle("rc-open"); };
+
+  function refreshCount() { bar.querySelector("#rc-count").textContent = load().length; }
+  function renderPanel() {
+    var list = load();
+    panel.innerHTML = "<h4>" + esc(CHAPTER) + " · " + list.length + " 条批注</h4>" +
+      '<div style="color:#999;font-size:12px;margin-bottom:10px">划选文字或（批注模式下）点击段落即可添加。</div>' +
+      list.map(function (c) {
+        return '<div class="rc-item" data-cid="' + c.id + '">' +
+          "<div><b>[" + esc(c.type) + "]</b> " + esc(c.note) + "</div>" +
+          '<div class="rc-q">' + esc(c.quote) + "</div>" +
+          '<div class="rc-meta"><span>' + esc(c.section || "") + "</span>" +
+          '<span><button data-del="' + c.id + '">删除</button></span></div></div>';
+      }).join("");
+    panel.querySelectorAll("button[data-del]").forEach(function (b) {
+      b.onclick = function () {
+        save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+        var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
+        if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
+        refreshCount(); renderPanel();
+      };
+    });
+    panel.querySelectorAll(".rc-item").forEach(function (it) {
+      it.onclick = function (ev) {
+        if (ev.target.dataset.del) return;
+        var m = document.querySelector('[data-rc-cid="' + it.dataset.cid + '"]');
+        if (m) m.scrollIntoView({ behavior: "smooth", block: "center" });
+      };
+    });
+  }
+  refreshCount(); renderPanel();
+
+  /* ---------- 重新打开页面时尽力恢复高亮 ---------- */
+  function rehighlight() {
+    var list = load(); if (!list.length) return;
+    var walker = document.createTreeWalker(mainRoot(), NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest("script,style,mark.rc-mark,.rc-ui") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [], blob = "";
+    while (walker.nextNode()) {
+      var t = norm(walker.currentNode.nodeValue);
+      if (!t) continue;
+      nodes.push({ node: walker.currentNode, start: blob.length });
+      blob += t + " ";
+    }
+    list.forEach(function (c) {
+      var at = blob.indexOf(norm(c.quote));
+      if (at < 0) return;
+      for (var i = nodes.length - 1; i >= 0; i--) {
+        if (nodes[i].start <= at) {
+          var host = nodes[i].node.parentElement;
+          var block = host && host.closest("p, li, .callout-body");
+          if (block) { block.classList.add("rc-block-flag"); block.dataset.rcCid = c.id; }
+          return;
+        }
+      }
+    });
+  }
+
+  /* ---------- 导出 ---------- */
+  function flash(msg) {
+    var tip = document.createElement("div");
+    tip.className = "rc-ui";
+    tip.style.cssText = "position:fixed;left:50%;top:20px;transform:translateX(-50%);z-index:9995;" +
+      "background:#333;color:#fff;padding:8px 16px;border-radius:8px;font-size:13px";
+    tip.textContent = msg; document.body.appendChild(tip);
+    setTimeout(function () { tip.remove(); }, 2600);
+  }
+  bar.querySelector("#rc-export").onclick = function () {
+    var data = {
+      chapter: CHAPTER, path: location.pathname,
+      exportedAt: new Date().toISOString(), comments: load()
+    };
+    var text = JSON.stringify(data, null, 2);
+    var ts = data.exportedAt.replace(/[-:T]/g, "").slice(0, 12);
+    try {
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+      a.download = "review-" + CHAPTER + "-" + ts + ".json";
+      document.body.appendChild(a); a.click(); a.remove();
+      flash("已导出 " + load().length + " 条批注，请把文件放入 reviews/ 目录");
+    } catch (e) {
+      var ta = document.createElement("textarea");
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      document.execCommand("copy"); ta.remove();
+      flash("下载不可用，批注已复制到剪贴板，请粘贴保存到 reviews/");
+    }
+  };
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", rehighlight);
+  else rehighlight();
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part1-perceptron.html">卷一 · Part 1 · 神经网络的史前史（1943–1986）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part1-backprop.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">反向传播：从思想到发动机</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">降 Loss 之路</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">欢迎来到《降 Loss 之路》</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷一 · Part 0 · 导论</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part0-two-threads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">双主线：降 Loss 的视角与研究史的视角</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part0-reading-history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">如何读研究史：读问题，不读年表</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷一 · Part 1 · 神经网络的史前史（1943–1986）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part1-perceptron.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">感知机的辉煌与失败</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part1-symbolic-vs-connectionist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">符号主义与连接主义：第一次范式之争</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part1-backprop.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">反向传播：从思想到发动机</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part1-mlp-winter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MLP、万能逼近与第二次寒冬</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷一 · Part 2 · 深度学习的黎明（1986–2015）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part2-mlp-difficulty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">训练一个 MLP 到底难在哪</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part2-toolbox.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">破局工具箱：ReLU、Dropout、BatchNorm、残差</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part2-capstone-deep-mlp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">整合：让深度可训练的完整配方</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷一 · Part 3 · 卷积时代（1989–2016）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part3-lenet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">LeNet：1989 年就有的答案</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part3-cnn-legacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">CNN 的遗产：特征层级与预训练-微调</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol1/part3-cnn-limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CNN 的边界：序列问题为何难</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷二 · Part 4 · 序列建模：从 n-gram 到 seq2seq（1948–2014）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part4-ngram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">语言建模前史：从 Shannon 到 n-gram</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part4-rnn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">RNN：展开即深网的继承病</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part4-lstm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">LSTM：让梯度存活的门控设计</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part4-word2vec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">word2vec：语义被压进向量</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part4-seq2seq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">seq2seq：翻译即条件语言建模</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷二 · Part 5 · 注意力革命（2014–2019）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part5-bahdanau.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">注意力的诞生：让解码器回头看</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part5-transformer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Transformer：从补丁到架构</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part5-why-transformer-won.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">为什么 Transformer 赢了</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷二 · Part 6 · 规模时代（2019–2024）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part6-emergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">涌现之争：相变还是度量假象</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol2/part6-convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">收敛：decoder-only、MoE 与开源运动</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷三 · Part 7 · 对齐时代（2020–2025）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part7-base-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Base Model：互联网的压缩机</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part7-sft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">SFT：指令数据的监督 loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part7-reasoning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">推理模型：RLVR 与测试时计算</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷三 · Part 8 · 智能体时代（2023–2026）</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part8-agent-origins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Agent 能力从哪来：数据里的轨迹</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part8-agent-training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">训练 Agent：环境、轨迹与过程奖励</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part8-model-vs-system.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">模型层与系统层：判断框架</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">卷三 · Part 9 · 研究的规律与未来</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part9-patterns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">复盘：反复出现的研究模式</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part9-open-problems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Loss 视角下的开放问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/vol3/part9-prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">终章：你的判断框架与预测</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#年的一篇论文" id="toc-年的一篇论文" class="nav-link active" data-scroll-target="#年的一篇论文"><span class="header-section-number">6.1</span> 1986 年的一篇论文</a></li>
+  <li><a href="#本章问题" id="toc-本章问题" class="nav-link" data-scroll-target="#本章问题"><span class="header-section-number">6.2</span> 本章问题</a></li>
+  <li><a href="#历史中的尝试" id="toc-历史中的尝试" class="nav-link" data-scroll-target="#历史中的尝试"><span class="header-section-number">6.3</span> 历史中的尝试</a>
+  <ul class="collapse">
+  <li><a href="#从相关性到误差信号" id="toc-从相关性到误差信号" class="nav-link" data-scroll-target="#从相关性到误差信号"><span class="header-section-number">6.3.1</span> 从相关性到误差信号</a></li>
+  <li><a href="#一本书的杀伤力" id="toc-一本书的杀伤力" class="nav-link" data-scroll-target="#一本书的杀伤力"><span class="header-section-number">6.3.2</span> 一本书的杀伤力</a></li>
+  <li><a href="#在错误的房间里沉默了十二年" id="toc-在错误的房间里沉默了十二年" class="nav-link" data-scroll-target="#在错误的房间里沉默了十二年"><span class="header-section-number">6.3.3</span> 在错误的房间里沉默了十二年</a></li>
+  </ul></li>
+  <li><a href="#核心思想" id="toc-核心思想" class="nav-link" data-scroll-target="#核心思想"><span class="header-section-number">6.4</span> 核心思想</a>
+  <ul class="collapse">
+  <li><a href="#先用手推一遍" id="toc-先用手推一遍" class="nav-link" data-scroll-target="#先用手推一遍"><span class="header-section-number">6.4.1</span> 先用手推一遍</a></li>
+  <li><a href="#一般化的三条递推" id="toc-一般化的三条递推" class="nav-link" data-scroll-target="#一般化的三条递推"><span class="header-section-number">6.4.2</span> 一般化的三条递推</a></li>
+  </ul></li>
+  <li><a href="#从零实现" id="toc-从零实现" class="nav-link" data-scroll-target="#从零实现"><span class="header-section-number">6.5</span> 从零实现</a></li>
+  <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">6.6</span> 消融实验</a></li>
+  <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">6.7</span> 本章 Loss 账本</a></li>
+  <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">6.8</span> 遗留问题</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">6.9</span> 练习</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part1-perceptron.html">卷一 · Part 1 · 神经网络的史前史（1943–1986）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part1-backprop.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">反向传播：从思想到发动机</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">反向传播：从思想到发动机</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="年的一篇论文" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="年的一篇论文"><span class="header-section-number">6.1</span> 1986 年的一篇论文</h2>
+<p>要讲清楚反向传播，得先回到 1986 年，看看当时的人工智能是什么样子。</p>
+<p>那一年，AI 的主流是符号主义。教科书里讲的是专家系统，实验室里跑的是 LISP 程序，经费大部分流向了规则与逻辑的方向。神经网络在这个版图上几乎没有什么位置——它在 1969 年被 Minsky 和 Papert 的那本专著批评过之后，已经边缘化了十几年。全世界还在坚持做这件事的人不多，分散在几个实验室里，彼此认识。</p>
+<p>David Rumelhart 是其中一位。他不是工程师出身，而是加州大学圣迭戈分校的认知科学家，关心的问题是”人脑是怎么加工信息的”。1980 年前后，他和心理学家 James McClelland 组织了一个松散的研究小组，后来人们叫它 PDP 学派——PDP 是”并行分布式处理”（Parallel Distributed Processing）的缩写，这个名字本身就在申明立场：他们认为智能应该由许多简单单元的并行协作产生，而不是由一条条人工规则堆出来。</p>
+<p>小组的成员之一 Geoffrey Hinton 那时还年轻。他后来回忆过当时的处境：整个方向被认为已经过时，他们更像是一群在地下活动的爱好者。1985 年夏天，小组在圣地亚哥办了一次为期两周的工作坊，来自不同学校的人聚在一起，把各自的手稿摊在桌上互相评论。这次工作坊的材料后来结集成书，就是两大卷的《并行分布式处理》，1986 年出版。</p>
+<p>就在这本书出版前几个月，1986 年 10 月，Rumelhart、Hinton 和一位研究生 Ronald Williams 在《自然》上发表了一篇四页的论文，题目是”通过反向传播误差来学习表征”。这篇论文讲的方法本身并不长——把输出端的误差逐层往回传，用传回来的误差决定每个权重该怎么改——但它的演示很扎实：一个两层的神经网络，没有人手工设计中间层，自己学出了有用的内部表征。</p>
+<p>本章要做的，就是把这四页纸里的方法亲手实现出来。我们会先弄清它要解决的问题，再看它的来历，然后写代码，最后让它在我们已经熟悉的 XOR 问题上工作。在那之前，先把我们自己的位置摆正。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>算力需求
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A 级</strong>：笔记本 CPU · 全部实验合计约 1 分钟。</p>
+</div>
+</div>
+<div class="callout-era" title="时代快照 · 1986">
+<ul>
+<li><strong>算力</strong>：主流研究机型是 VAX-11/780 一类的工作站（约 1 MIPS）；训练几千参数的网络以小时计。今天一台普通笔记本的 CPU 比它快四个数量级以上。</li>
+<li><strong>数据</strong>：以千计的样本就是”大数据集”；图像领域像样的基准还要等十年。</li>
+<li><strong>认知</strong>：多数人相信 Minsky 与 Papert 在 1969 年的论断已经为神经网络结案：感知机只解线性可分问题，而多层网络<strong>不存在有效的训练算法</strong>。</li>
+<li><strong>关键事实</strong>：链式法则属于 17 世纪；把链式法则组织成高效算法、配上能跑的演示、并通过恰当的渠道传播出去，这三件事凑齐发生在 1986 年。</li>
+</ul>
+</div>
+</section>
+<section id="本章问题" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">6.2</span> 本章问题</h2>
+<p>第 1 章结束时我们留下了一个悬案。感知机的学习规则之所以能工作，靠的是一个很具体的条件：输出单元的正确答案 <span class="math inline">\(y\)</span> 是已知的。预测错了，误差 <span class="math inline">\(y - \hat{y}\)</span> 可以直接算出来，更新规则 <span class="math inline">\(\Delta w = \eta\,(y - \hat{y})\,x\)</span> 便顺理成章。</p>
+<p>现在给网络加一层隐藏单元，条件就变了。隐藏单元没有”正确答案”——谁也不会告诉第一个隐藏单元它应该输出什么。它的输出对不对，只能从最终结果的误差里间接推断。这个困难在后来的文献里有了正式的名字，叫<strong>信用分配问题</strong>（credit assignment）：当最终结果出错时，功劳和过错该怎么在层层叠叠的单元之间分摊？</p>
+<p>可以打个比方。一家公司季度亏损了，董事会知道总数，但要决定哪个部门该削减预算、哪个员工该调整方向，就必须把总亏损一层层分解下去：这个部门贡献了多少，那个环节又拖累了多少。感知机是一家只有一个部门的公司，账目一目了然；多层网络是一家有中间管理层级的公司，而 1986 年之前，没有人知道该怎么做这份报表。</p>
+<p>数学上其实没有原则性的障碍。一个两层网络配上平方误差，就是一个普通的复合函数，对任何一个权重求偏导，链式法则都给得干干净净。真正的障碍在别处。最直接的办法是对每个参数独立地从头推一遍导数。算一算这个代价：每求一个参数的梯度，都要把整个网络完整地过一遍；参数有一百万个，就要过一百万遍。1986 年的机器跑不动这种算法，2026 年的机器同样跑不动——当参数从十几个变成几千亿个，“每个权重单独推一遍”在任何时代都是死刑。</p>
+<p>所以需要的东西不是新的数学，而是一种让中间结果被复用的计算顺序。这正是本章的主角。</p>
+</section>
+<section id="历史中的尝试" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="历史中的尝试"><span class="header-section-number">6.3</span> 历史中的尝试</h2>
+<section id="从相关性到误差信号" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="从相关性到误差信号"><span class="header-section-number">6.3.1</span> 从相关性到误差信号</h3>
+<p>在感知机之前，关于”神经元怎么学习”最流行的想法来自 Hebb。1949 年，这位加拿大心理学家在《行为的组织》一书中提出：如果两个神经元总是一起激活，它们之间的连接就会增强。这个猜想方向是对的——权重确实应该由经验改变——但它有一个后来才看清的缺陷：规则里没有任何”错误”的影子。一起活跃就增强，那么增强到什么时候为止？增强错了怎么办？Hebb 的规则没有刹车。</p>
+<p>1960 年，斯坦福的 Bernard Widrow 和他的研究生 Ted Hoff 做出了另一台机器，叫 ADALINE。它是一个可以调权重的线性单元，用的元件是真正的硬件——电阻和旋钮。他们为它设计的学习规则不再看相关性，而是看误差：拿期望输出和实际输出之差去驱动权重的调整。他们甚至证明了收敛性质。这条规则已经站到了多层网络的门口，只差一步——但那一步，恰好是它跨不过去的。ADALINE 的误差信号到输出层为止。网络再深一层，误差就传不进去了。</p>
+</section>
+<section id="一本书的杀伤力" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="一本书的杀伤力"><span class="header-section-number">6.3.2</span> 一本书的杀伤力</h3>
+<p>1969 年，Minsky 和 Papert 出版了《感知机》。这本书用严格的数学分析了单层感知机的能力边界，证明了一大类问题——以奇偶性（XOR 属于这类）为代表——是它原理上学不了的。数学上这本书是对的，而且写得漂亮。问题出在结尾：作者在书末用相当悲观的语气讨论了多层网络的前景，大意是没有理由期待谁能找到多层网络的有效训练方法。</p>
+<p>这本书的影响很难被今天的读者体会。它出自 MIT 教授、领域权威之手，出版之后，这个方向的经费和年轻人在几年之内就散了。历史学家后来常引用这件事，作为”权威的悲观比权威的乐观更危险”的例证。公平地说，Minsky 和 Papert 严格证明的是单层的情况，对多层的判断只是书末几页的推测——但读这本书的经费官员和研究生不会去区分哪些是定理、哪些是猜测。</p>
+</section>
+<section id="在错误的房间里沉默了十二年" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="在错误的房间里沉默了十二年"><span class="header-section-number">6.3.3</span> 在错误的房间里沉默了十二年</h3>
+<p>现在把镜头切到 Paul Werbos。1974 年，他在哈佛大学完成博士论文，方向是预测与控制，不是神经网络——神经网络只是他顺手使用的工具。在论文的一章里，他把链式法则系统地用到了多层网络的训练上：误差如何逐层回传、每层的权重如何由回传的误差决定。后来回头看，这正是反向传播的完整雏形。</p>
+<p>但这份工作发表在与预测控制相关的渠道里，读的人很少。Werbos 后来回忆，他当时曾把这套方法讲给不同领域的人听，没有人觉得它重要。一个正确的想法，在一个错误的房间里沉默了。</p>
+<p>类似的故事不止一例。芬兰的 Seppo Linnainmaa 在 1970 年的硕士论文里研究的是数值计算问题——复合函数求导时舍入误差如何累积——他给出的”反向模式”微分，本质上就是后来反向传播的求导框架。1985 年，MIT 的 David Parker 又独立地得出了同样的结果，写成了技术报告。同一个想法，至少三次各自独立地出现，又各自无声地沉没。</p>
+<p>为什么 1986 年就不一样了？对比这些案例，差别不在数学，而在三件事的同时到位：一份马上可以复现的演示（Rumelhart 等人的论文里附了完整的算法和实验）、一个能承载它的硬件环境（工作站刚好够跑小网络）、一个传播的渠道（《自然》加 PDP 两卷本）。想法早就成熟了，1986 年提供的是点燃条件。</p>
+<div class="callout-research" title="停一停，你来当研究者">
+<p>现在你是 1985 年的研究者。你已掌握：链式法则、一个 2-3-1 的两层网络（9 个权重）、纸和笔。</p>
+<p><strong>任务</strong>：求出平方误差对 <span class="math inline">\(W_1\)</span> 全部 6 个权重的偏导。硬推。推的过程中不断问自己三个问题：</p>
+<ol type="1">
+<li>哪些量在你的推导里被<strong>反复</strong>用到？</li>
+<li>如果权重是 200 万个，你的推导里哪些步骤是<strong>重复劳动</strong>？</li>
+<li>能否设计一个计算顺序，让任何中间量只计算一次、存下来复用？</li>
+</ol>
+<p>把答案写在纸上再往下读。你刚才做的事叫动态规划；你将要设计的那个顺序，就叫反向传播。</p>
+</div>
+</section>
+</section>
+<section id="核心思想" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">6.4</span> 核心思想</h2>
+<section id="先用手推一遍" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="先用手推一遍"><span class="header-section-number">6.4.1</span> 先用手推一遍</h3>
+<p>在写通用公式之前，先在具体的小网络上走一遍。这个步骤在后来的书里常被省略，但省略它正是”读得累”的来源之一——所以我们不省。</p>
+<p>设一个最简单的两层网络：两个输入 <span class="math inline">\(x_1, x_2\)</span>，一个隐藏单元，一个输出。隐藏单元先算加权和再过一个激活函数（这里用 <span class="math inline">\(\tanh\)</span>）：</p>
+<p><span class="math display">\[h = \tanh(w_1 x_1 + w_2 x_2 + b_1)\]</span></p>
+<p>输出单元直接取 <span class="math inline">\(h\)</span> 的加权和：</p>
+<p><span class="math display">\[\hat{y} = w_3 h + b_2\]</span></p>
+<p>现在给一组具体数字：<span class="math inline">\(x_1 = 1, x_2 = 0\)</span>，权重全取 0.5，目标 <span class="math inline">\(y = 1\)</span>。前向算一遍——</p>
+<ul>
+<li>隐藏层加权和：<span class="math inline">\(0.5 \times 1 + 0.5 \times 0 + 0.5 = 1.0\)</span>；过 <span class="math inline">\(\tanh\)</span> 得 <span class="math inline">\(h \approx 0.762\)</span>；</li>
+<li>输出：<span class="math inline">\(\hat{y} = 0.5 \times 0.762 + 0.5 = 0.881\)</span>；</li>
+<li>误差：<span class="math inline">\(y - \hat{y} = 0.119\)</span>。</li>
+</ul>
+<p>到这里为止都是算术。关键的问题在下一步：<span class="math inline">\(w_1\)</span> 对 0.119 的误差负多少责任？</p>
+<p>沿着 <span class="math inline">\(w_1\)</span> 影响误差的路径走。<span class="math inline">\(w_1\)</span> 先影响隐藏层的加权和，加权和影响 <span class="math inline">\(h\)</span>，<span class="math inline">\(h\)</span> 影响 <span class="math inline">\(\hat{y}\)</span>，<span class="math inline">\(\hat{y}\)</span> 影响误差。按链式法则，把每一小步的”影响率”乘起来：</p>
+<ul>
+<li><span class="math inline">\(\hat{y}\)</span> 对 <span class="math inline">\(h\)</span> 的变化率是 <span class="math inline">\(w_3 = 0.5\)</span>；</li>
+<li><span class="math inline">\(h\)</span> 对加权和的变化率是 <span class="math inline">\(\tanh'(1.0) = 1 - 0.762^2 \approx 0.42\)</span>；</li>
+<li>加权和对 <span class="math inline">\(w_1\)</span> 的变化率是 <span class="math inline">\(x_1 = 1\)</span>。</li>
+</ul>
+<p>三者相乘，再乘上误差对 <span class="math inline">\(\hat{y}\)</span> 的变化率（平方误差下是 <span class="math inline">\(2(\hat{y} - y) \approx -0.24\)</span>），就得到 <span class="math inline">\(w_1\)</span> 的梯度。注意这个乘积里真正属于 <span class="math inline">\(w_1\)</span> 的只有最后一项 <span class="math inline">\(x_1\)</span>；前面的两项，是误差”流到”隐藏单元时的强度——网络里每一个要经过隐藏单元的权重，都要用这两项。这就是复用。</p>
+<p>如果你做了上面的「停一停」，你手里的中间量就是这些”误差流到某层时的强度”；你设计的计算顺序，就是从输出层开始，一层层往输入方向算，每层把两样东西记下来：这一层该负多少责任，以及这份责任如何继续往上分。</p>
+</section>
+<section id="一般化的三条递推" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="一般化的三条递推"><span class="header-section-number">6.4.2</span> 一般化的三条递推</h3>
+<p>把手推的过程写成一般形式。设一个 <span class="math inline">\(L\)</span> 层的全连接网络，前向计算为：</p>
+<p><span class="math display">\[z_l = W_l a_{l-1} + b_l, \qquad a_l = \sigma(z_l), \qquad a_0 = x, \qquad L = \lVert a_L - y \rVert^2\]</span></p>
+<p>对每一层定义一个记号：<span class="math inline">\(\delta_l\)</span> 表示第 <span class="math inline">\(l\)</span> 层的”责任”，也就是损失对这一层加权和的偏导。于是链式法则折叠成三条式子：</p>
+<p><span class="math display">\[\delta_L = 2\,(a_L - y) \odot \sigma'(z_L)\]</span></p>
+<p><span class="math display">\[\delta_l = \left(W_{l+1}^{\top} \delta_{l+1}\right) \odot \sigma'(z_l)\]</span></p>
+<p><span class="math display">\[\frac{\partial L}{\partial W_l} = \delta_l\, a_{l-1}^{\top}\]</span></p>
+<p>三条式子各说一件很朴素的事。第一条说，输出层的责任就是”错了多少”，再按本地斜率折算。第二条说，中间层的责任来自下一层：下一层把它的责任按连接权重分摊上来，再乘上本地的斜率——这一条就是 Widrow 和 Hoff 差的那一步，也是整份”公司报表”的核心。第三条说，每个权重收到的梯度等于”分到的责任乘以本地的输入”，也就是 Hebb 规则缺的那两样东西：方向和份额。</p>
+<p>最后算一笔复杂度的账，这笔账是反向传播真正的分量所在。前向传播一遍，计算量正比于参数总量；按上面的顺序反向传播一遍，计算量仍然正比于参数总量。也就是说，<strong>一次反向传播就能同时得到全部参数的梯度</strong>。这与”每个参数单独推一遍”之间的差距，在 1986 年是从几小时到几个月的差距，在今天是从几天到几个世纪的差距。四十年后训练万亿参数的语言模型，核心循环仍然是这三条式子。</p>
+<p><em>缓一缓。</em> 这一节讲了三件事：反向传播的推导不发明新数学，它只是链式法则的一种省算的排列方式；<span class="math inline">\(\delta_l\)</span> 这个量的含义是”误差流到这一层时的强度”，它是被复用的中间结果；以及，一次反向传播和一次前向传播的计算量同阶，这个性质使它配得上”发动机”这个词。</p>
+</section>
+</section>
+<section id="从零实现" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">6.5</span> 从零实现</h2>
+<p>讲完原理，动手实现。思路沿 Karpathy 的 micrograd：把每个数包成一个 <code>Value</code> 对象，它记住自己是从哪些数、经过什么运算得来的；调用 <code>backward()</code> 时，从最终结果出发，按依赖关系逆序走一遍，把梯度累加到沿途每个对象上。整个实现放在 <code>src/dlbook/autodiff/</code>，大约一百来行，本节只调用、不抄录。建议读完本节后打开源码对照一遍——它比看上去短。</p>
+<div id="0699ad26" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.autodiff <span class="im">import</span> MLP, Value, sgd_step, zero_grad</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.utils <span class="im">import</span> plot_loss_curves, set_seed</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>set_seed(<span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>先用一个手算过的例子检查发动机。取二元函数 <span class="math inline">\(f(x, y) = (xy + \tanh x)\,y\)</span>，在 <span class="math inline">\((1.7, -0.8)\)</span> 处求两个偏导：</p>
+<div id="7a6d1bc3" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># f(x, y) = (x·y + tanh(x))·y，在 (1.7, -0.8) 处求梯度</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> Value(<span class="fl">1.7</span>), Value(<span class="op">-</span><span class="fl">0.8</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> (x <span class="op">*</span> y <span class="op">+</span> x.tanh()) <span class="op">*</span> y</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>f.backward()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"f = </span><span class="sc">{</span>f<span class="sc">.</span>data<span class="sc">:.6f}</span><span class="ss">  df/dx = </span><span class="sc">{</span>x<span class="sc">.</span>grad<span class="sc">:.6f}</span><span class="ss">  df/dy = </span><span class="sc">{</span>y<span class="sc">.</span>grad<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>f = 0.339673  df/dx = 0.539992  df/dy = -1.784591</code></pre>
+</div>
+</div>
+<p>可以拿微积分手算核对这两个数（练习 1 会教你用数值差分自动核对的方法，<code>tests/test_autodiff.py</code> 里有一个现成的裁判）。发动机本身没问题之后，来处理正题。</p>
+<p>还记得第 1 章的 XOR 吗。四个点，感知机在有生之年没能分开它们。现在用 MLP 类搭一个 2-4-1 的网络——两个输入，四个隐藏单元，一个输出——标签取 <span class="math inline">\(\pm 1\)</span>，与 tanh 的输出范围一致。</p>
+<div id="d288c2a1" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MLP(<span class="dv">2</span>, [<span class="dv">4</span>, <span class="dv">1</span>])  <span class="co"># 2-4-1：两个输入、4 个隐藏单元、1 个输出</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"参数量：</span><span class="sc">{</span><span class="bu">len</span>(model.parameters())<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>xor <span class="op">=</span> [((<span class="fl">0.0</span>, <span class="fl">0.0</span>), <span class="op">-</span><span class="fl">1.0</span>), ((<span class="fl">0.0</span>, <span class="fl">1.0</span>), <span class="fl">1.0</span>), ((<span class="fl">1.0</span>, <span class="fl">0.0</span>), <span class="fl">1.0</span>), ((<span class="fl">1.0</span>, <span class="fl">1.0</span>), <span class="op">-</span><span class="fl">1.0</span>)]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loss_fn(model, data):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>((model(<span class="bu">list</span>(xs)) <span class="op">-</span> t) <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> xs, t <span class="kw">in</span> data) <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">/</span> <span class="bu">len</span>(data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>参数量：17</code></pre>
+</div>
+</div>
+<p>训练循环还是感知机那四拍：前向、算损失、反向、更新。与第 1 章唯一的区别是多了一行 <code>backward()</code>——而这一行，就是 1969 年到 1986 年之间空着的那一步。</p>
+<div id="b83a1586" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> {<span class="st">"train"</span>: []}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">300</span>):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(model, xor)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    zero_grad(model.parameters())</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    loss.backward()  <span class="co"># ← 1986 年的发动机</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    sgd_step(model.parameters(), lr<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    history[<span class="st">"train"</span>].append(loss.data)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"loss: </span><span class="sc">{</span>history[<span class="st">'train'</span>][<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss"> → </span><span class="sc">{</span>history[<span class="st">'train'</span>][<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>loss: 1.0373 → 0.019024</code></pre>
+</div>
+</div>
+<p>从 1.0 出发，三百步后降到 0.019 附近。看曲线的形状：</p>
+<div id="abaacf12" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(history, title<span class="op">=</span><span class="st">"XOR: MLP + backprop (lr=0.1)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>(&lt;Figure size 576x384 with 1 Axes&gt;,
+ &lt;Axes: title={'center': 'XOR: MLP + backprop (lr=0.1)'}, xlabel='step', ylabel='loss'&gt;)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="part1-backprop_files/figure-html/cell-6-output-2.png" width="565" height="374" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>再看四个点各自预测成什么样。判对的标准是预测值与目标同号：</p>
+<div id="59fe1cf7" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xs, t <span class="kw">in</span> xor:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> model(<span class="bu">list</span>(xs)).data</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"输入 </span><span class="sc">{</span>xs<span class="sc">}</span><span class="ss">  目标 </span><span class="sc">{</span>t<span class="sc">:+.0f}</span><span class="ss">  预测 </span><span class="sc">{</span>pred<span class="sc">:+.3f}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'对'</span> <span class="cf">if</span> pred <span class="op">*</span> t <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'错'</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>输入 (0.0, 0.0)  目标 -1  预测 -0.906  对
+输入 (0.0, 1.0)  目标 +1  预测 +0.848  对
+输入 (1.0, 0.0)  目标 +1  预测 +0.868  对
+输入 (1.0, 1.0)  目标 -1  预测 -0.838  对</code></pre>
+</div>
+</div>
+<p>四个点全部判对。最后把学到的决策边界画出来。做法是在输入平面上密密地取格点，让训练好的网络对每个格点输出一个值，再按值的大小上色。如果边界是一条直线，说明网络没有超过感知机；如果是弯曲的，说明四个隐藏单元真的拼出了非线形的划分。</p>
+<div id="6376a102" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">60</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">0.25</span>, <span class="fl">1.25</span>, n)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(grid, grid)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>zz <span class="op">=</span> np.array(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    [[model([<span class="bu">float</span>(a), <span class="bu">float</span>(b)]).data <span class="cf">for</span> a, b <span class="kw">in</span> <span class="bu">zip</span>(row_x, row_y)]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>     <span class="cf">for</span> row_x, row_y <span class="kw">in</span> <span class="bu">zip</span>(xx, yy)]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">4.5</span>))</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>cs <span class="op">=</span> ax.contourf(xx, yy, zz, levels<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">"RdBu"</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>fig.colorbar(cs, ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">"model output"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xs, t <span class="kw">in</span> xor:</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    ax.scatter(<span class="op">*</span>xs, c<span class="op">=</span><span class="st">"k"</span>, s<span class="op">=</span><span class="dv">70</span>, marker<span class="op">=</span><span class="st">"o"</span> <span class="cf">if</span> t <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"s"</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x1"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"x2"</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Learned decision boundary (2-4-1 MLP)"</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="part1-backprop_files/figure-html/cell-8-output-1.png" width="504" height="413" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>图上两种颜色各占两个对角区域，边界是一条折起来的曲线。没有人为隐藏单元规定任何职责——四个隐藏单元自己分好了工。Rumelhart 那篇论文标题里的”学习表征”，说的就是这件事：中间层学到的东西不是设计出来的，是训练压出来的。</p>
+<p><em>缓一缓。</em> 本节做了三件事：用一个手算例子验证了实现的正确性；在 XOR 上训练了一个 2-4-1 的网络并看到四个点全部判对；用决策边界图看到隐藏单元自发形成了非线形划分。感知机时代留下的悬案，到这里结案。</p>
+</section>
+<section id="消融实验" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">6.6</span> 消融实验</h2>
+<p>实验跑通了，接下来问两个”为什么”。第一个：四个隐藏单元是必需的吗，还是随便几个都行？</p>
+<p>下面的函数把训练过程打包，方便换配置重跑。先扫隐藏单元的数量，从 1 到 8，其余设置不变：</p>
+<div id="ae888034" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_xor(n_hidden, steps<span class="op">=</span><span class="dv">400</span>, lr<span class="op">=</span><span class="fl">0.1</span>, seed<span class="op">=</span><span class="dv">42</span>):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    set_seed(seed)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLP(<span class="dv">2</span>, [n_hidden, <span class="dv">1</span>])</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    losses <span class="op">=</span> []</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> loss_fn(m, xor)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        zero_grad(m.parameters())</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        sgd_step(m.parameters(), lr)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        losses.append(loss.data)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m, losses</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n_hidden <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    _, losses <span class="op">=</span> train_xor(n_hidden)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"隐藏单元 </span><span class="sc">{</span>n_hidden<span class="sc">}</span><span class="ss">: 最终 loss = </span><span class="sc">{</span>losses[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>隐藏单元 1: 最终 loss = 0.7767
+隐藏单元 2: 最终 loss = 0.5314
+隐藏单元 3: 最终 loss = 0.0107
+隐藏单元 4: 最终 loss = 0.0114
+隐藏单元 8: 最终 loss = 0.0072</code></pre>
+</div>
+</div>
+<p>典型结果是这样的：1 个隐藏单元卡在 0.8 附近；2 个在多数种子下能学会，但当前这个种子卡在 0.5 附近；3 个、4 个、8 个都能降到 0.01 左右。</p>
+<p>1 个的失败有几何解释。单个隐藏单元的输出是 <span class="math inline">\(\tanh(w^\top x + b)\)</span>，它的正负分界永远是输入平面上的一条直线——第 1 章已经证明 XOR 的四个点不存在直线划分，所以无论怎么训练都分不开。这与梯度下降无关，是表达能力的问题。</p>
+<p>2 个隐藏单元的情况更有意思。理论上两个单元、两条直线，围出一个非线性区域，是够用的。但当前种子失败了。换个种子再试：</p>
+<div id="ef137eb8" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> (<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">42</span>):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    _, losses <span class="op">=</span> train_xor(<span class="dv">2</span>, seed<span class="op">=</span>seed)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"seed=</span><span class="sc">{</span>seed<span class="sc">}</span><span class="ss">: 最终 loss = </span><span class="sc">{</span>losses[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>seed=0: 最终 loss = 0.0250
+seed=1: 最终 loss = 0.0149
+seed=2: 最终 loss = 0.0150
+seed=3: 最终 loss = 0.0164
+seed=42: 最终 loss = 0.5314</code></pre>
+</div>
+</div>
+<p>五个种子里四个收敛到 0.02 附近，一个卡住。也就是说，容量够用不等于一定学得会——梯度下降最终走到哪里，和出发的位置有关。这个现象叫初始化敏感性，在本章只是脚注，到卷二会变成主要角色。</p>
+<p>第二个”为什么”问学习率。第 2 章会系统地讨论这个超参数，这里先直观感受一下：固定网络结构，只改步长，扫 0.001 到 1.0 四档。</p>
+<div id="3b4d290c" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    {<span class="ss">f"lr=</span><span class="sc">{</span>lr<span class="sc">}</span><span class="ss">"</span>: train_xor(<span class="dv">4</span>, steps<span class="op">=</span><span class="dv">200</span>, lr<span class="op">=</span>lr)[<span class="dv">1</span>] <span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">1.0</span>)},</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Learning-rate sweep (2-4-1 on XOR)"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>(&lt;Figure size 576x384 with 1 Axes&gt;,
+ &lt;Axes: title={'center': 'Learning-rate sweep (2-4-1 on XOR)'}, xlabel='step', ylabel='loss'&gt;)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="part1-backprop_files/figure-html/cell-11-output-2.png" width="565" height="374" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>从图上能读到三档行为：0.001 的曲线几乎水平（步子太小，走不动）；1.0 的曲线在高位震荡后停在坏值（步子太大，越过谷底来回跳）；中间的两档都能收敛，0.1 收得又快又稳。</p>
+<p>那再大一点会怎样。把 <code>lr=2.0</code> 单独跑一下：loss 冲到 2 附近后不再动了。注意它不是数值爆炸——大步长把 tanh 直接推进了饱和区，<span class="math inline">\(\sigma'\)</span> 趋于零，梯度跟着消失，模型躺在一个全错的解上。步子过大的死法常常不是炸，而是哑。</p>
+<p><em>缓一缓。</em> 消融部分做了两件事：扫隐藏单元数，看到 1 个是几何上的必败、2 个是容量够但看运气、3 个起稳定；扫学习率，看到过小走不动、过大震荡或饱和。两个现象——初始化敏感和学习率敏感——在 1990 年代是每个调参者的日常，第 2 章会把它们当作正式的研究对象。</p>
+</section>
+<section id="本章-loss-账本" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">6.7</span> 本章 Loss 账本</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>问题</th>
+<th>回答</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>在优化什么 loss？</td>
+<td>XOR 四点的全批均方误差（1986 论文同款）</td>
+</tr>
+<tr class="even">
+<td>数据从哪来？</td>
+<td>手工构造的 4 个点——“数据”在此还是玩具</td>
+</tr>
+<tr class="odd">
+<td>买到了什么能力？</td>
+<td>非线性决策边界；隐藏层自动学出中间表征——<strong>表征学习的第一次胜利</strong></td>
+</tr>
+<tr class="even">
+<td>没买到什么？</td>
+<td>泛化（4 个点谈不上）；深层可训性（sigmoid 族导数连乘的隐患已埋下）；真实规模数据</td>
+</tr>
+</tbody>
+</table>
+<p>这张表是全书第一份正式的账本，其中”目标函数”一栏值得多说一句。本章与前一章的感知机有一个容易忽略的差别：感知机时代的学习规则不是在优化任何显式目标，而本章的网络每一步都在降低一个写得出来的函数。从”没有目标的规则”到”有目标的优化”，这个转变在后面的章节里会反复兑现价值。</p>
+<div class="callout-echo" title="回声">
+<ul>
+<li><code>Value</code> 类的六十行 → <code>torch.Tensor.backward()</code>：仍是”建图 → 拓扑排序 → 逆序累加”，差别只在向量化与 GPU。四十年间接口思想未变。</li>
+<li><span class="math inline">\(\delta\)</span> 递推 → 框架与论文里的 gradient/delta 记号；把它沿时间维展开，就是卷二 RNN 的 BPTT——以及它将继承的梯度消失灾难。</li>
+<li>“求全部梯度与求一个梯度同价” → 为什么千亿参数的预训练在数学上是可行的。</li>
+<li>标题里的 <em>learning representations</em> → 表征学习 → 预训练 + 微调范式（3.3）→ GPT（6.1）。这本书后半部的书名级概念在本章第一次出现。</li>
+</ul>
+</div>
+<div class="callout-paper" title="论文时光机">
+<p><strong>Rumelhart, Hinton &amp; Williams (1986).</strong> <em>Learning representations by back-propagating errors.</em> Nature 323, 533–536.</p>
+<ul>
+<li><strong>读什么</strong>：Fig. 2（两层网络与”家族谱系任务”的实验）；文末关于”学到的内部表征”的讨论——1986 年的作者已经在思考我们今天叫 interpretability 的问题。</li>
+<li><strong>跳过什么</strong>：连续语音吸引子的部分（与主线无关）。</li>
+<li><strong>历史注</strong>：优先权问题后来被反复梳理（Linnainmaa 1970；Werbos 1974；Parker 1985，以及 Schmidhuber 的优先权综述）。读史的意义不在排座次，而在看清一件事：单独的数学不等于可用的技术——配上演示、硬件与传播渠道，思想才能点燃。</li>
+</ul>
+</div>
+</section>
+<section id="遗留问题" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">6.8</span> 遗留问题</h2>
+<ol type="1">
+<li>万能逼近定理说一个隐藏层足够逼近任何连续函数，那为什么实践中深层常常更好？梯度下降真的总能找到好解吗？（→ 下一章）</li>
+<li>本章的实验已经两次露出门缝：sigmoid 族激活的导数 <span class="math inline">\(\le 1\)</span>（tanh 是 <span class="math inline">\(\le 1\)</span>，sigmoid 是 <span class="math inline">\(\le 0.25\)</span>），层数一深，<span class="math inline">\(\delta\)</span> 逐层连乘会发生什么？（→ 2.2 梯度消失）</li>
+<li>隐藏层学到的”表征”到底是什么？可以迁移给别人用吗？（→ 3.3）</li>
+<li>loss 降到 0 就一定是好模型吗？（→ 下一章：过拟合与第二次寒冬的种子）</li>
+</ol>
+</section>
+<section id="练习" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">6.9</span> 练习</h2>
+<ol type="1">
+<li><p><strong>造轮子</strong>：合上书，只凭本节的 <span class="math inline">\(\delta\)</span> 三条递推，在空白 notebook 里重写一个能跑 XOR 的 <code>Value</code>（加、乘、tanh 三个算子就够）。写完用下面的裁判验货：</p>
+<div id="361201ae" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> numeric_grad(f, xs, h<span class="op">=</span><span class="fl">1e-6</span>):</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        (f(<span class="op">*</span>(xs[:i] <span class="op">+</span> [xs[i] <span class="op">+</span> h] <span class="op">+</span> xs[i <span class="op">+</span> <span class="dv">1</span>:])) <span class="op">-</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>         f(<span class="op">*</span>(xs[:i] <span class="op">+</span> [xs[i] <span class="op">-</span> h] <span class="op">+</span> xs[i <span class="op">+</span> <span class="dv">1</span>:]))) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> h)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(xs))</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+<li><p><strong>预测再运行</strong>：先把 lr=0.0001 和 lr=3.0 的 loss 曲线形状画在你脑子里，再运行。与预测不符的地方，写出你的修正假设并再验证一次。</p></li>
+<li><p><strong>消融</strong>：<code>train_xor(1)</code> 得到的模型，画出它的决策边界；解释为什么它必然是一条带状直线。</p></li>
+<li><p><strong>论文映射</strong>：用 Loss 账本四问拆解 1986 年 Nature 论文（提示：第四问的答案藏在引用它的后续论文里）。</p></li>
+<li><p><strong>进阶（通向下一章的桥）</strong>：把 <code>Value</code> 升级为 numpy 向量版——<code>data</code> 是 ndarray，补上矩阵乘的 backward（答案就是本章递推第三条）。跑同样的 XOR，对比两版的耗时。</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="练习答案">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>练习答案
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>练习 2</strong>：0.0001 是正文 0.001 曲线的”爬行版”，200 步内 loss 基本钉在初值；3.0 与正文的 2.0 同理——冲高后卡在饱和平台，不是爆炸。若你预测的是发散到 inf，修正假设：tanh 的饱和会先掐灭梯度。</p>
+<p><strong>练习 3</strong>：单神经元输出 <span class="math inline">\(\tanh(w_1 x_1 + w_2 x_2 + b)\)</span>，输出的正负分界是 <span class="math inline">\(w_1 x_1 + w_2 x_2 + b = 0\)</span>——输入平面上的一条直线；tanh 只决定过渡带的宽窄。XOR 的四个点不存在任何直线二分方案（第 1 章结论）。</p>
+<p><strong>练习 5 提示</strong>：矩阵乘 <span class="math inline">\(z = W a\)</span> 的 backward 是 <span class="math inline">\(\partial L/\partial W = \delta\, a^{\top}\)</span>、<span class="math inline">\(\partial L/\partial a = W^{\top} \delta\)</span>——正是正文递推的第二、三条。用练习 1 的数值裁判对拍即可确认正确性。</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/vol1/part1-symbolic-vs-connectionist.html" class="pagination-link" aria-label="符号主义与连接主义：第一次范式之争">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">符号主义与连接主义：第一次范式之争</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/vol1/part1-mlp-winter.html" class="pagination-link" aria-label="MLP、万能逼近与第二次寒冬">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MLP、万能逼近与第二次寒冬</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
