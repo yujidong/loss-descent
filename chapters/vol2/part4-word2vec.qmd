@@ -12,7 +12,7 @@ title: "word2vec：语义被压进向量"
 - **算力**：word2vec 在单 CPU 上几小时就能在数十亿词上训练——简单到可以在笔记本复现是它横扫社区的直接原因；
 - 数据：Google News 的 10 亿词语料（词表 300 万）——互联网文本第一次作为"语义原料"大规模入炉；
 - 认知：2013 年的 NLP 主流仍是特征工程 + 统计模型；word2vec 证明了无监督的表示学习可以在 NLP 兑现——深度学习入场的敲门砖；
-- 关键事实：同时代还有 GloVe（2014，斯坦福，共现矩阵分解）与更早的 LSA（1990，SVD）——"共现 → 几何"这个想法被反复发明，word2vec 的胜利是工程与时机（简单 + 快 + 到点）的胜利。
+- 关键事实：同时代还有 GloVe [@pennington2014]（2014，斯坦福，共现矩阵分解）与更早的 LSA（1990，SVD）——"共现 → 几何"这个想法被反复发明，word2vec 的胜利是工程与时机（简单 + 快 + 到点）的胜利。
 :::
 
 ## 本章问题
@@ -29,6 +29,9 @@ title: "word2vec：语义被压进向量"
 **弯路二：概率模型的重装备**。在 word2vec 之前，学界主流是复杂的概率主题模型（LDA 一族）——精确、优雅、慢。Mikolov 的反叛是把任务简到荒谬：一个词预测它的邻居（skip-gram），配上负采样，两行公式。审稿人一度觉得太简单，论文先以技术报告面世。
 
 **类比现象的发现本身是意外**：作者们在调参时发现向量算术成立，才补了专门的评估（有名的 analogical reasoning 测试集）。重大能力常常在系统跑通后才被"发现"而非被设计——这个模式将在 6.1（GPT-3 的 in-context learning）重演。
+
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。
+
 
 ::: {.callout-research title="停一停，你来当研究者"}
 实验设计题：你要构造一个语料，使训练后 $\vec{kitten} - \vec{cat} + \vec{dog} \approx \vec{puppy}$ 成立。
@@ -48,9 +51,12 @@ $$\log \sigma(\vec{u}_o \cdot \vec{v}_c) + \sum_{k=1}^{K} \log \sigma(-\vec{u}_{
 
 ——真实邻居的内积要大，随机抽的负样本内积要小。没有语法、没有任务、没有标签：**唯一的信息来源是共现**。
 
-**为什么共现会长出几何**：内积是"共现强度的可微代理"。训练把高频共现对拉近、随机对推远——每个词的位置由它的上下文分布决定，而按分布假说，上下文分布就是语义。于是"语义相似 = 向量夹角小"从格言变成了定理（这个定理的名字叫 PMI 的矩阵分解近似——Levy & Goldberg 2014 证明了 skip-gram 隐式分解的是移位正点互信息矩阵）。
+**为什么共现会长出几何**：内积是"共现强度的可微代理"。训练把高频共现对拉近、随机对推远——每个词的位置由它的上下文分布决定，而按分布假说，上下文分布就是语义。于是"语义相似 = 向量夹角小"从格言变成了定理（这个定理的名字叫 PMI 的矩阵分解近似——Levy & Goldberg 2014 [@levy2014] 证明了 skip-gram 隐式分解的是移位正点互信息矩阵）。
 
 **类比 = 结构化的分布差**。若"幼崽"与"成体"的上下文分布相差一个近似恒定的成分（幼崽词都多出现在 *small*、*baby* 语境），则位移 $\vec{kitten} - \vec{cat}$ 在各词对间近似平行——类比是"分布差的规律性"在几何上的投影。它的水分也在这里：真实语言的分布差只在统计平均意义上平行，逐例使用必然翻车（见消融）。
+
+*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。
+
 
 ## 从零实现
 
@@ -91,6 +97,9 @@ print("cat   的近邻:", [w for w, _ in sg.most_similar("cat", vocab)])
 
 幼崽们互为近邻、成体们互为近邻——**两个语义簇在空间里自然分开**，没有任何监督信号要求过这一点。把两簇画出来（取前两维投影）：
 
+*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：从零实现。
+
+
 ```{python}
 import matplotlib.pyplot as plt
 
@@ -121,6 +130,9 @@ for a, b, c in [("cat", "garden", "dog"), ("runs", "garden", "sleeps"), ("warm",
 
 结果一样"自信"地给出高余弦答案——但**没有任何语义解释**。这就是 2016 年前后学界对词向量类比的著名批评（Linzen 2016 等）：算术最近邻这个操作天然偏爱高余弦，它对无意义的题目也照答不误。评估方法本身可以制造能力的幻象——这堂课在 LLM 时代将以"基准污染""答案泄漏"的形式放大一万倍（9.2 的伏笔）。
 
+*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。
+
+
 ## 本章 Loss 账本
 
 | 问题 | 回答 |
@@ -150,9 +162,12 @@ for a, b, c in [("cat", "garden", "dog"), ("runs", "garden", "sleeps"), ("warm",
 1. 词向量是**静态**的——同一个词在任何句子里都是同一个向量。随上下文变化的表示如何构造？（ELMo/GPT 的方向，6.1——需要先把"下一个词预测"做大做深）；
 2. 把两台 LSTM 一读一写接起来，能做翻译吗？瓶颈在哪？（→ 下一章 seq2seq）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。
+
+
 ## 参考文献
 
-1. Mikolov et al. (2013). *Distributed Representations of Words and Phrases and Their Compositionality*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202013%20Distributed%20Representations%20of%20Words%20and%20Phrases)
+1. Mikolov et al. (2013). *Distributed Representations of Words and Phrases and Their Compositionality*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202013 [@mikolov2013]%20Distributed%20Representations%20of%20Words%20and%20Phrases)
 2. Levy, Omer and Goldberg, Yoav (2014). *Neural Word Embedding as Implicit Matrix Factorization*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Levy%202014%20Neural%20Word%20Embedding%20as%20Implicit%20Matrix)
 3. Pennington, Jeffrey and Socher, Richard and Manning, Christopher D. (2014). *GloVe*. *EMNLP*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Pennington%202014%20GloVe)
 

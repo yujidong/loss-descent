@@ -1,5 +1,5 @@
 ---
-title: "军备竞赛：从 AlexNet 到 ResNet"
+title: "军备竞赛：从 AlexNet 到 ResNet [@he2015resnet]"
 ---
 
 AlexNet 之后，视觉领域进入五年军备竞赛，主旋律只有一个字：**深**。ZFNet（2013）调参微胜；VGG（2014）证明"两层 3×3 堆过一层 5×5"，把网络推到 19 层；GoogLeNet（2014）用 1×1 卷积省参数，做到 22 层。然后所有人撞上同一堵墙：再深，训练误差不降反升——注意，是训练误差，连拟合训练集都做不到，这不是过拟合。2015 年，何恺明等人的 ResNet 用一个近乎尴尬的简单改动（给层加一条"跳线"）把网络推到 152 层，横扫当年所有竞赛，深度学习的"深度"二字从此名副其实。本章重演这堵墙与这条跳线。
@@ -32,6 +32,9 @@ AlexNet 之后，视觉领域进入五年军备竞赛，主旋律只有一个字
 
 **后续的理解**：Veit et al. (2016) 提出残差网络的"隐式集成"观——$L$ 个残差块的组合展开后是 $2^L$ 条路径的集合，删除单个块对网络的伤害远小于预期。无论哪种解释更对，"给梯度修一条不经过连乘的恒等高速路"（2.2 的原话）都是最硬核的那一条：$\partial y/\partial x = 1 + \partial F/\partial x$，那个 +1 让梯度永远有一条不衰减的回家路。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。
+
+
 ::: {.callout-research title="停一停，你来当研究者"}
 你将做深度扫描实验：普通 vs 残差网络，深度 {2, 5, 10}。运行之前写下三个预测：
 
@@ -53,6 +56,9 @@ AlexNet 之后，视觉领域进入五年军备竞赛，主旋律只有一个字
 $$x_{l+1} = F(x_l) + x_l \quad\Rightarrow\quad \frac{\partial x_{l+1}}{\partial x_l} = \frac{\partial F}{\partial x_l} + I$$
 
 从深层回传到浅层的梯度是所有旁路的**和**——即使每条 $F$ 路径都衰减，恒等路保证了信号不灭。ResNet 之后的几乎一切深架构都内置这条高速路：Transformer 的残差流（5.2）、U-Net 的跳连、扩散模型的噪声预测块——它是深度学习骨骼级别的发明。
+
+*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。
+
 
 ## 从零实现
 
@@ -101,6 +107,9 @@ plot_loss_curves(histories, title="Depth 10 on spiral: plain vs residual");
 
 **诚实脚注**：把残差网继续推到 20 层，我们这个玩具引擎（朴素初始化、无逐块 BN、无学习率日程）会发散到 NaN——残差不是免死金牌，He 的原配方里 BN 与残差是并用的。这与 2.5 的结论同构：零件的价值在配方中体现。真实 ResNet 的 152 层 = 残差 + BN + 仔细的初始化与日程，缺一不可。
 
+*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：从零实现。
+
+
 ## 消融实验
 
 **跳线放到多深才划算？** 浅网加残差几乎无差别（2 层时 $F(x)+x$ 与 $F(x)$ 的差距微乎其微）：
@@ -115,6 +124,9 @@ for depth in (2, 5):
 ```
 
 浅层时两者持平（残差既不帮倒忙也不帮忙——恒等路冗余），深层的差距才是残差的全部意义。**架构创新的价值要放在"让它生效的尺度"上衡量**——这也是为什么军备竞赛时代的论文必须报深度消融。
+
+*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。
+
 
 ## 本章 Loss 账本
 
@@ -145,10 +157,13 @@ for depth in (2, 5):
 1. 深度打开之后，学到的**层级特征**到底是什么？能否整个搬给别的任务？（→ 3.3：预训练-微调范式——卷积时代留给 LLM 时代最重要的遗产）；
 2. 图像之外：卷积的固定窗口在序列上的极限在哪？（→ 3.4）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。
+
+
 ## 参考文献
 
 1. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition)
-2. Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). *ImageNet Classification with Deep Convolutional Neural Networks*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Krizhevsky%202012%20ImageNet%20Classification%20with%20Deep%20Convolutional%20Neural)
+2. Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). *ImageNet Classification with Deep Convolutional Neural Networks*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Krizhevsky%202012 [@krizhevsky2012]%20ImageNet%20Classification%20with%20Deep%20Convolutional%20Neural)
 
 
 ## 练习

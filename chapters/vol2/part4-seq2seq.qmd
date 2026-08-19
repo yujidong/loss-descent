@@ -30,6 +30,9 @@ title: "seq2seq：翻译即条件语言建模"
 
 **teacher forcing**：训练时解码器每一步都喂真实的上一个词而非自己的预测——并行高效，但训练与推理（吃自己的预测）之间存在暴露偏差。这个偏差在今天的 LLM 时代仍有回响（7.x 的训练-推理不一致讨论）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。
+
+
 ::: {.callout-research title="停一停，你来当研究者"}
 先做两个思想实验（写下来再运行）：
 
@@ -50,6 +53,9 @@ $$P(y_1..y_T \mid x_1..x_S) = \prod_t P(y_t \mid y_{<t},\ \mathbf{c}), \qquad \m
 **瓶颈定理（非正式）**：解码的每一步都只通过 $\mathbf{c}$ 看见源句。若源句含 $I$ 比特信息而 $\mathbf{c}$ 的有效容量不足（或编码器没学好压缩），解码器无法事后补救——损失在压缩一步就永久发生了。长度外推实验就是这个定理的实验版本。
 
 **与 3.3 的范式同构**：预训练-微调（3.3）是"通用特征 + 专用头"；编码-解码是"通用压缩 + 专用生成"。两者共享同一个深层结构：把难题拆成一个重的表示学习 + 一个轻的任务适配——这个模式将统治到 GPT 时代（预训练 + 下游微调/对齐，7.x）。
+
+*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。
+
 
 ## 从零实现
 
@@ -118,6 +124,9 @@ plt.show()
 
 典型读数：长度 3–5 全在 0.9 以上；长度 6 掉到 0.6 附近；长度 7–8 跌到 0.2/0.1 以下——**训练边界之外，性能断崖**。对照你在「停一停」画的预测曲线：崩塌形态对了吗？注意崩塌不是因为信息论容量不够（64 维装 8 个 4 bit 的数字绰绰有余），而是编码器从未学过长句的压缩方式——它背过的是"如何压 5 个"，不是"如何压任意个"。分布外，能力来自分布内——这句话将在 6.3（涌现的边界）与 9.2（评测外推）反复回响。
 
+*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：从零实现。
+
+
 ## 消融实验
 
 **倒序输入 trick 复刻。** Sutskever 的补丁：把编码器输入倒过来喂（`inputs[i][::-1]`），对反转任务这相当于……先想清楚再运行（对"反转"这个任务，倒序输入让解码器的第一个输出对应编码器最后读入的词——梯度最短路径）。复刻并与正序对照，看两者在长度外推上的差异——补丁能续命，但救不了结构：
@@ -138,6 +147,9 @@ for L in (5, 6, 7, 8):
 ```
 
 典型结果：倒序版在边界内相当、外推略好或相当——补丁的收益被玩具任务的短句吃掉了。**真正的解药需要解码器在每一步都能回头看任意源词**——这个"回头看"的正式名字，就是下一部分的主角。
+
+*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。
+
 
 ## 本章 Loss 账本
 
@@ -169,11 +181,14 @@ for L in (5, 6, 7, 8):
 2. "回头看"能不能彻底替代循环本身？（→ 5.2 Transformer：注意力即全部）；
 3. 串行解码的速度问题？（→ 5.3 并行性的经济学）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= Part 5 的入场券）。
+
+
 ## 参考文献
 
-1. Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). *Sequence to Sequence Learning with Neural Networks*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutskever%202014%20Sequence%20to%20Sequence%20Learning%20with%20Neural)
-2. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Cho%202014%20Learning%20Phrase%20Representations%20Using%20RNN)
-3. Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). *Neural Machine Translation by Jointly Learning to Align and Translate*. *ICLR*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Bahdanau%202015%20Neural%20Machine%20Translation%20by%20Jointly%20Learning)
+1. Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). *Sequence to Sequence Learning with Neural Networks*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutskever%202014 [@sutskever2014]%20Sequence%20to%20Sequence%20Learning%20with%20Neural)
+2. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Cho%202014 [@cho2014]%20Learning%20Phrase%20Representations%20Using%20RNN)
+3. Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). *Neural Machine Translation by Jointly Learning to Align and Translate*. *ICLR*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Bahdanau%202015 [@bahdanau2015]%20Neural%20Machine%20Translation%20by%20Jointly%20Learning)
 
 
 ## 练习

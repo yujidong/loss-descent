@@ -12,7 +12,7 @@ title: "LSTM：让梯度存活的门控设计"
 - **算力**：LSTM 的实用化（2010 年代语音识别、2015 年谷歌翻译）依赖 GPU——结构 1997 年就位，生态晚了十五年；
 - 数据：语音与机器翻译的平行语料是 LSTM 的主场——序列对序列、长程依赖密集；
 - 认知：1997 年的论文标题是"Long Short-Term Memory"——长与短并列，因为核心主张正是同时处理长短两种时间尺度；
-- 关键事实：原版 LSTM 没有遗忘门（只有输入与输出门）——遗忘门是 Gers 等人 2000 年补上的。伟大架构也是逐步长出来的，1.0 版本常常缺一块关键零件。
+- 关键事实：原版 LSTM 没有遗忘门（只有输入与输出门）——遗忘门是 Gers 等人 2000 [@gers2000] 年补上的。伟大架构也是逐步长出来的，1.0 版本常常缺一块关键零件。
 :::
 
 ## 本章问题
@@ -25,9 +25,12 @@ title: "LSTM：让梯度存活的门控设计"
 
 **从诊断到手术**：Hochreiter 1991 年的硕士论文（2.2 章的主角）诊断了梯度消失；1997 年他与 Schmidhuber 拿出解药。同一人先写病历再开刀——研究史上罕见的完整闭环。
 
-**原版的缺陷与生长**：1997 版只有输入门与输出门，细胞状态一旦写入便几乎不可清除——长期任务反而被旧记忆污染。Gers, Schmidhuber & Cummins (2000) 补上遗忘门，后来还发现遗忘门偏置初始化为正（让"记住"成为默认）对长程任务至关重要。GRU（2014）再做减法（两扇门、合并状态），在许多任务上打平——二十年间的所有变体都在同一设计空间里腾挪：传送带 + 门。
+**原版的缺陷与生长**：1997 版只有输入门与输出门，细胞状态一旦写入便几乎不可清除——长期任务反而被旧记忆污染。Gers, Schmidhuber & Cummins (2000) 补上遗忘门，后来还发现遗忘门偏置初始化为正（让"记住"成为默认）对长程任务至关重要。GRU [@cho2014]（2014）再做减法（两扇门、合并状态），在许多任务上打平——二十年间的所有变体都在同一设计空间里腾挪：传送带 + 门。
 
 **弯路：把 LSTM 当万金油**。2010 年代中叶的论文常报告"LSTM 在一切序列任务上碾压"——但对照实验常常用了不同等的训练配方（截断长度、裁剪阈值、学习率日程）。LSTM 的战功里有一定比例属于调参劳动而非结构本身——本章的诚实实验会亲手摸到这条边界。
+
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。
+
 
 ::: {.callout-research title="停一停，你来当研究者"}
 你已看过 RNN 的坠崖剖面。现在自己设计手术——约束：只准在单元内部加结构，不准改训练算法。三个引导问题：
@@ -59,6 +62,9 @@ $$
 **与残差的血缘**：$c_t = f \odot c_{t-1} + (\text{增量})$ 正是 3.2 的 $y = F(x) + x$ 在时间轴上的推广（$f=1$ 时严格相等）。LSTM（1997）比 ResNet（2015）早十八年发明了残差——研究思想的时间错位再次出现：同一个好主意在不同领域被反复发现。
 
 **三扇门的分工**是"记忆的文件系统"：写入要过审（$i$）、留存有期限（$f$）、读取有权限（$o$）。容量有限的系统必须学会遗忘——这个朴素原则从 LSTM 一路贯穿到今天的上下文管理（8.x）。
+
+*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。
+
 
 ## 从零实现
 
@@ -115,6 +121,9 @@ for b_f in (-2.0, 0.0, 1.0, 2.0, 4.0):
 
 $b_f=1$（我们引擎的默认值）在 60 步后只剩 0.3%——**"记住"远没有默认以为的那么牢**；$b_f=4$ 才接近真正的传送带。这张小表就是 Gers 等人 2000 年补丁的全部理由，也是一切长程任务调参的第一站。
 
+*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：从零实现。
+
+
 ## 消融实验
 
 **诚实实验：梯度通道 ≠ 训练顺利。** 把 LSTM 放回上一章的字符语言模型，同预算训练：
@@ -131,6 +140,9 @@ print(f"LSTM char-LM: {hist_lstm[0]:.3f} -> {hist_lstm[-1]:.4f}（上一章 RNN 
 典型结果：LSTM 停在 **2.8** 附近——不升反降于朴素 RNN。四倍的参数（四门）、更慢的优化动力学、而本任务的高频规律（字符局部统计）恰恰是 RNN 饱和技巧的舒适区。再加一个更刺眼的：远距回声任务（记住 20 步前的第一个比特）上，我们的朴素训练协议把 LSTM 喂到 300 个 epoch 也只爬到 60% 出头的训练准确率（梯度通道在、但信号微弱、门要慢慢学会开合）——门控修好了路，车还是要人开。
 
 这份诚实账与历史相符：LSTM 的实战胜利（语音、翻译）全部来自**结构 + 配方**的合体——截断 BPTT、梯度裁剪、门偏置初始化、学习率日程，一样不能少。教科书叙事"LSTM 一举解决长程依赖"省略的正是这些脚手架——把脚手架写回历史，是本书的一贯纪律。
+
+*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。
+
 
 ## 本章 Loss 账本
 
@@ -162,9 +174,12 @@ print(f"LSTM char-LM: {hist_lstm[0]:.3f} -> {hist_lstm[-1]:.4f}（上一章 RNN 
 2. 一读一写两个 LSTM 能拼出什么？（→ 4.5 seq2seq：翻译的范式，以及它自己的瓶颈）；
 3. 串行依赖让 RNN/LSTM 无法并行——这个结构性缺陷的代价与解药？（→ 5.3：Transformer 的胜利核算）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。
+
+
 ## 参考文献
 
-1. Hochreiter, Sepp and Schmidhuber, J\"u (1997). *Long Short-Term Memory*. *Neural Computation, 9, 1735--1780*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hochreiter%201997%20Long%20Short-Term%20Memory)
+1. Hochreiter, Sepp and Schmidhuber, J\"u (1997). *Long Short-Term Memory*. *Neural Computation, 9, 1735--1780*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hochreiter%201997 [@hochreiter1997]%20Long%20Short-Term%20Memory)
 2. Gers, Felix A. and Schmidhuber, J\"u (2000). *Learning to Forget: Continual Prediction with LSTM*. *Neural Computation, 12, 2451--2471*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Gers%202000%20Learning%20to%20Forget%3A%20Continual%20Prediction%20with)
 3. Cho, Kyunghyun and van Merri\"e (2014). *Learning Phrase Representations Using RNN*. *EMNLP*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Cho%202014%20Learning%20Phrase%20Representations%20Using%20RNN)
 4. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)

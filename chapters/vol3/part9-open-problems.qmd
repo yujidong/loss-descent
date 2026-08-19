@@ -61,6 +61,9 @@ print(f"真新增到 6 万（信息 ×2）: val loss {l_new:.3f}")
 
 **未解的部分**：合成数据的多样性坍缩（模型分布的自我回声）有没有定量预警指标？"信息"在多模态（视频、交互）里还有多少存量？——开放。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：问题一：数据墙——数据的尽头是什么。
+
+
 ## 问题二：自我改进的边界——飞轮的止点
 
 **问题**：STaR/RLVR/轨迹回灌（7.4、8.2）展示了"模型自产数据训自己"的飞轮。飞轮有止点吗？
@@ -73,6 +76,9 @@ print(f"真新增到 6 万（信息 ×2）: val loss {l_new:.3f}")
 - 8.2 练习 2 的隐患：自采数据混入"侥幸成功"，学进权重的是错误的路径——**飞轮也会放大错误**（与 7.3 的 reward hacking 同构：闭环的错误比开环的更持久，因为它写进了权重）。
 
 **未解的部分**：多轮自举后的多样性坍缩速度、飞轮与外部信息（检索、环境）的最优混合比、以及一个哲学级的问句：没有任何外部信息注入的纯自举，是不是注定收敛到初始分布的最优采样器？（我们猜是——这几乎是个数学问题，但没人证完。）
+
+*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：问题二：自我改进的边界——飞轮的止点。
+
 
 ## 问题三：评测危机——我们在测什么
 
@@ -89,6 +95,9 @@ print(f"真新增到 6 万（信息 ×2）: val loss {l_new:.3f}")
 
 **未解的部分**：动态生成、不可泄漏的评测（对抗污染）；能力而非题目的度量（任务空间的覆盖度）；以及 agent 时代的特殊难题——长轨迹的成功率是乘法（8.2 练习 5），单步 99% 在五十步后只剩 60%，用什么指标描述"长程可靠性"？
 
+*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：问题三：评测危机——我们在测什么。
+
+
 ## 问题四：样本效率——为什么模型比人费数据
 
 **问题**：一个孩子听千万词就能说话；一个基座要读万亿 token。差了三四个数量级的样本效率，是缺陷还是另一种智能的代价？
@@ -96,6 +105,9 @@ print(f"真新增到 6 万（信息 ×2）: val loss {l_new:.3f}")
 **Loss 视角的陈述**：梯度下降 + 下一词预测是一个低偏置的学习机——它几乎不带先验，所以几乎什么都能学，代价是什么都要从头见很多遍（3.1 的归纳偏置账：先验是小数据的朋友、大数据的枷锁）。人类自带数十亿年演化的先验（感知结构、因果直觉、社会常识）——样本效率的差距，本质是先验的差距。Bitter Lesson 在这里给出它最尖锐的版本：我们赌的是"算力比先验便宜"——至今赌赢，但赌注在涨。
 
 **未解的部分**：先验的注入（架构、数据课程、多模态 grounding）能否追回数量级而不损失通用性？婴儿式的主动学习（提问、干预）在机器上的等价物是什么？——这两个方向各有一整代研究的空间。
+
+*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：问题四：样本效率——为什么模型比人费数据。
+
 
 ## 本章 Loss 账本
 
@@ -114,7 +126,7 @@ print(f"真新增到 6 万（信息 ×2）: val loss {l_new:.3f}")
 :::
 
 ::: {.callout-paper title="论文时光机"}
-**Villalobos, P. et al. (2022/2024 修订).** *Will we run out of data? Limits of LLM scaling based on human-generated public datasets.*（配读 Schaeffer et al. 2023 与任何一篇 2025 年的评测方法学综述）
+**Villalobos, P. et al. (2022/2024 修订).** *Will we run out of data? Limits of LLM scaling based on human-generated public datasets.*（配读 Schaeffer et al. 2023 [@schaeffer2023] 与任何一篇 2025 年的评测方法学综述）
 
 - **读什么**：数据枯结的时间线估算表（注意其置信区间的宽度——估算本身就是开放问题的注脚）；
 - 跳过：预测的具体数字（把方法留下，把数字还给作者）；
@@ -125,9 +137,12 @@ print(f"真新增到 6 万（信息 ×2）: val loss {l_new:.3f}")
 
 问题清点完毕。全书的最后一步：把模式（9.1）放上问题（9.2）的棋盘，**落子预测**——下一章，也是毕业考试。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。
+
+
 ## 参考文献
 
-1. Hestness et al. (2017). *Deep Learning Scaling Is Predictable, Empirically*. *arXiv preprint arXiv:1712.00409*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202017%20Deep%20Learning%20Scaling%20Is%20Predictable%2C%20Empirically)
+1. Hestness et al. (2017). *Deep Learning Scaling [@kaplan2020] Is Predictable, Empirically*. *arXiv preprint arXiv:1712.00409*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202017%20Deep%20Learning%20Scaling%20Is%20Predictable%2C%20Empirically)
 2. Kaplan et al. (2020). *Scaling Laws for Neural Language Models*. *arXiv preprint arXiv:2001.08361*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202020%20Scaling%20Laws%20for%20Neural%20Language%20Models)
 3. Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). *Are Emergent Abilities of Large Language Models a Mirage?*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Schaeffer%202023%20Are%20Emergent%20Abilities%20of%20Large%20Language)
 

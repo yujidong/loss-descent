@@ -27,6 +27,9 @@ Part 2 走到收束。五章之前，"深了训不动"还是玄学；现在我�
 
 **框架的兴起**：Caffe（2013）把"模型 + 配方"打包成配置文件；PyTorch（2016）稍后以"代码即模型"胜出。框架史的意义：它决定了一个时代研究者的默认操作——今天你 `nn.Linear` 出来的权重默认就是缩放初始化，`model.eval()` 就是训练态切换。本书的 `MLPNumpy` 与 `Trainer` 刻意重演了这条凝固路径：零件（1.6–2.3）先于总成（本章）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。
+
+
 ::: {.callout-research title="停一停，你来当研究者"}
 下面是本章主角实验的设定：八层 × 32 宽的网络，螺旋数据，300 epoch。完整配方 = **relu + BN + 动量 + 缩放初始化**。现在要逐一拿走零件，只留其余：
 
@@ -47,6 +50,9 @@ Part 2 走到收束。五章之前，"深了训不动"还是玄学；现在我�
 **把配方写成代码 = 研究知识的商品化**。`Trainer` 十几行，但它封装了 Part 2 的全部结论：小批随机性（1986 的随机更新）、动量（1964）、评估态切换（2.3）、监控曲线（2.1 的彩票探测）。此后各章我们不再手写训练循环——不是因为它难，而是因为它已经不再含谜题。迷题转移到新 frontier，是每个工具成熟后的固定剧情。
 
 **配方的边界预告**：这份配方训得好"固定长度向量输入"的任务。图像（平移不变的结构）、序列（变长与长程依赖）各有自己的归纳偏置需求——MLP 用参数硬扛这些结构，参数量爆炸而泛化不增。下一部分的主角（卷积）正是对"结构先验"的回应。
+
+*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。
+
 
 ## 从零实现
 
@@ -109,6 +115,9 @@ for name, kw in configs.items():
 
 两处值得咀嚼：**BN 是唯一"拿走即死"的零件**（在 8 层深度上），而它同时在暗中承包了初始化的作用——零件的账不能只看单个论文的宣称，要在组合里算。动量在 300 epoch 的预算里看似可有可无，但把 epoch 砍到 100 再跑（练习 3），差距立现——动量买卖的是时间，预算充足时它显得多余，预算紧张时它是生死。
 
+*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：从零实现。
+
+
 ## 消融实验
 
 **深度的收益**。配方既然能让深度可训，那深度本身值多少？同配方下扫深度：
@@ -121,6 +130,9 @@ for depth in (1, 2, 4, 8):
 ```
 
 在这个玩具任务上，2 层之后深度收益趋平——**深度不是免费午餐，它的收益依赖任务的结构复杂度**（螺旋 1.75 圈需要的复合变换有限）。真正的深度红利要等到有层级结构的任务（图像的边缘→纹理→部件，3.3 的特征层级）才兑现——那是下一部分的正题。
+
+*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。
+
 
 ## 本章 Loss 账本
 
@@ -153,10 +165,13 @@ for depth in (1, 2, 4, 8):
 3. 学到的特征是什么？能否迁移？（→ 3.3，预训练-微调范式诞生）；
 4. 这套配方在序列上表现如何？（→ Part 4，新的战场、新的病灶）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。
+
+
 ## 参考文献
 
-1. Kingma, Diederik P. and Ba, Jimmy (2014). *Adam: A Method for Stochastic Optimization*. *arXiv preprint arXiv:1412.6980*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Kingma%202014%20Adam%3A%20A%20Method%20for%20Stochastic%20Optimization)
-2. Ioffe, Sergey and Szegedy, Christian (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*. *Proceedings of ICML, 448--456*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Ioffe%202015%20Batch%20Normalization%3A%20Accelerating%20Deep%20Network%20Training)
+1. Kingma, Diederik P. and Ba, Jimmy (2014). *Adam: A Method for Stochastic Optimization*. *arXiv preprint arXiv:1412.6980*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Kingma%202014 [@kingma2014]%20Adam%3A%20A%20Method%20for%20Stochastic%20Optimization)
+2. Ioffe, Sergey and Szegedy, Christian (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*. *Proceedings of ICML, 448--456*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Ioffe%202015 [@ioffe2015]%20Batch%20Normalization%3A%20Accelerating%20Deep%20Network%20Training)
 3. He et al. (2015). *Deep Residual Learning for Image Recognition*. *arXiv preprint arXiv:1512.03385*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition)
 4. Sutton, Richard (2019). *The Bitter Lesson*. *Incomplete Ideas (blog)*. [link](http://www.incompleteideas.net/IncIdeas/BitterLesson.html). [↗ 搜索原文](https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson)
 

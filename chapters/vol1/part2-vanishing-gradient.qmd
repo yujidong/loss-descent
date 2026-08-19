@@ -12,7 +12,7 @@ title: "梯度消失：被忽视十五年的诊断书"
 - **算力**：训练深度超过四五层的网络仍然奢侈，多数实践停留在两三层——这本身正是梯度消失的后果而非原因：不是没人想加深，是加深了也训不动；
 - 数据：序列学习（语音、文本）开始进入视野——序列恰恰是长程依赖的重灾区，梯度消失在那里的杀伤力十倍于前馈网络；
 - 认知：社区把"深了训不动"归因于上一章的那些 folklore（局部极小、步长玄学）；"梯度信号本身在传播中衰减"这个解释反而不流行，因为它意味着病在算法的数学结构里，而不是在调参的手艺里；
-- 关键事实：Hochreiter 的导师就是 Schmidhuber。这个后来以优先权之争闻名的实验室，在 1991 年拿出的这份诊断，比领域整体准备好接受它早了十年。
+- 关键事实：Hochreiter 的导师就是 Schmidhuber。这个后来以优先权之争闻名的实验室，在 1991 [@hochreiter1991] 年拿出的这份诊断，比领域整体准备好接受它早了十年。
 :::
 
 ## 本章问题
@@ -28,9 +28,12 @@ title: "梯度消失：被忽视十五年的诊断书"
 
 **弯路二：归因于数据与任务。** "深层只在某些任务上有意义"——这个方向的研究把深度问题误判为应用问题，错过了普适的数学结构。
 
-**正解的诞生**：Hochreiter (1991) 与随后的 Bengio et al. (1994, *Learning long-term dependencies is difficult*) 给出了定量诊断——误差信号穿过第 $l$ 层要乘上该层激活函数的导数与权重矩阵，若各因子的乘积普遍小于 1，梯度就指数衰减；大于 1 则指数爆炸。消失与爆炸是同一枚硬币的两面，而 sigmoid 的导数上界 0.25 让它天然站在"消失"一侧。
+**正解的诞生**：Hochreiter (1991) 与随后的 Bengio et al. (1994 [@bengio1994], *Learning long-term dependencies is difficult*) 给出了定量诊断——误差信号穿过第 $l$ 层要乘上该层激活函数的导数与权重矩阵，若各因子的乘积普遍小于 1，梯度就指数衰减；大于 1 则指数爆炸。消失与爆炸是同一枚硬币的两面，而 sigmoid 的导数上界 0.25 让它天然站在"消失"一侧。
 
 **诊断之后的十五年**：真正被广泛接受的解药要分三路抵达——门控（LSTM 1997，绕开而非治愈）、更好的初始化与激活（2010–2011，缓解）、以及改变梯度通路的架构（残差 2015，治愈）。本章先做诊断，解药在后续章节逐一登场。
+
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。
+
 
 ::: {.callout-research title="停一停，你来当研究者"}
 给你三个候选激活函数：$\sigma$（导数上界 0.25）、$\tanh$（导数上界 1.0，仅在 0 附近接近 1）、$\mathrm{relu}$（导数恒为 1，但为 0 的概率约一半）。
@@ -57,6 +60,9 @@ $$\delta_1 = \underbrace{\left(\prod_{l=2}^{L} W_l^\top \odot f'(z_l)\right)}_{\
 三种激活的病情：sigmoid 病入膏肓（连 0.25 都不到的常态）；tanh 病情中等（小区间导数接近 1，输入稍大就衰减）；relu 看似健康（活跃区导数恰为 1）——但它的死区（导数为 0）会造成**路径稀疏化**：连乘里混进零因子，梯度干脆断流。它缓解了幅度问题，没有解决结构问题。
 
 **为什么这病难根治**：病根不在某个部件，而在"深度 = 连乘"这个结构本身。所有的解药都只能改写连乘的因子（初始化控制 $W$ 的幅度、激活控制 $f'$ 的幅度），或者干脆给梯度修一条不经过连乘的高速路（残差连接的恒等路径——3.2 章的主角，此处埋线）。
+
+*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。
+
 
 ## 从零实现
 
@@ -111,6 +117,9 @@ print(f"relu 8 层，1200 epoch 后: loss={h['loss'][-1]:.4f}, acc={accuracy(m, 
 
 loss 在 1.0 附近纹丝不动，准确率 0.50——**剖面看起来健康的 relu 深网依然没有学会**。这就是本章留下的悬念：梯度幅度只是必要条件。深网里还有别的病——训练中每层输入的分布随前面层的更新而漂移（后来被称为内部协变量偏移的直觉）、稀疏路径的协同问题——它们不在"初始化时刻的剖面"里，而在训练的动态过程中。诊断没有结束，手术台已经备好：下一章的工具箱将逐件取出器械，其中一件（BatchNorm）恰好对这个病例有奇效。
 
+*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：从零实现。
+
+
 ## 消融实验
 
 **深度的边际恶化。** 剖面是静态的，我们让深度动起来——各深度下训练 300 epoch 的成绩：
@@ -123,6 +132,9 @@ for depth in (2, 4, 8):
 ```
 
 深度每翻一倍，成绩单调恶化——与剖面斜率随深度加陡完全同步。**深度是用梯度健康度换来的**，这个汇率直到 2015 年才被残差连接改写。
+
+*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。
+
 
 ## 本章 Loss 账本
 
@@ -154,11 +166,14 @@ for depth in (2, 4, 8):
 2. 能不能给梯度修一条绕开连乘的路？（→ 3.2 残差连接）；
 3. 序列上的长程依赖是梯度消失的十倍重灾区——那里的解药是什么？（→ 4.3 LSTM 的门控）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。
+
+
 ## 参考文献
 
 1. Hochreiter, Sepp (1991). *Untersuchungen zu dynamischen neuronalen Netzen*. *Diploma Thesis (in German), Technische Universit\"a*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Hochreiter%201991%20Untersuchungen%20zu%20dynamischen%20neuronalen%20Netzen)
 2. Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). *Learning Long-Term Dependencies with Gradient Descent is Difficult*. *IEEE Transactions on Neural Networks, 5, 157--166*. [doi:10.1109/72.279181](https://doi.org/10.1109/72.279181)
-3. Glorot, Xavier and Bengio, Yoshua (2010). *Understanding the Difficulty of Training Deep Feedforward Neural Networks*. *Proceedings of AISTATS, 9, 249--256*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Glorot%202010%20Understanding%20the%20Difficulty%20of%20Training%20Deep)
+3. Glorot, Xavier and Bengio, Yoshua (2010). *Understanding the Difficulty of Training Deep Feedforward Neural Networks*. *Proceedings of AISTATS, 9, 249--256*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Glorot%202010 [@glorot2010]%20Understanding%20the%20Difficulty%20of%20Training%20Deep)
 4. Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). *Multilayer Feedforward Networks Are Universal Approximators*. *Neural Networks, 2, 359--366*. [doi:10.1016/0893-6080(89)90020-8](https://doi.org/10.1016/0893-6080(89)90020-8)
 
 

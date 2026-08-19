@@ -10,7 +10,7 @@ title: "语言建模前史：从 Shannon 到 n-gram"
 
 ::: {.callout-era title="时代快照 · 1948–2000s"}
 - **算力**：计数法几乎不需要算力——一本语料词典就是全部"模型"；这也是它在工业界活到 2000 年代的原因（垃圾邮件过滤器、输入法联想都是它的后代）；
-- 数据：语料是稀缺资源（布朗语料库 1961 年才 100 万词）；统计语言模型的黄金期（1980–1995，IBM 的 Jelinek 学派）靠的是逐年增长的机器翻译平行语料；
+- 数据：语料是稀缺资源（布朗语料库 1961 年才 100 万词）；统计语言模型的黄金期（1980–1995，IBM 的 Jelinek [@jelinek1976] 学派）靠的是逐年增长的机器翻译平行语料；
 - 认知：Jelinek 的名言"每当我解雇一名语言学家，语音识别的准确率就上升一点"（1970s 附近）宣告了统计派对规则派的胜利——1.2 章范式之争在 NLP 的续集，同一个母题：知识从哪来；
 - 关键事实：香农 1951 年让人猜下一个字母来估计英语的熵（约 1 比特/字符）——人类就是最好的语言模型，这个实验七十年后的变体叫"图灵测试"。
 :::
@@ -31,6 +31,9 @@ title: "语言建模前史：从 Shannon 到 n-gram"
 **IBM 学派（1970s–1990s）**：Jelinek 与 Mercer 把平滑（smoothing）做成学问——未见的 n-gram 不能赋零概率，"折扣—回退"一套方法 Katz backoff、Kneser-Ney——在小数据上把每一点统计都榨干。这是"数据不够、先验来凑"的精湛手艺，2.1 初始化理论的 NLP 亲戚。
 
 **弯路**：乔姆斯基学派宣称自然语言是递归生成的、马尔可夫近似原理性不足——数学上对，工程上被统计派的准确率碾压（又一堂"对 ≠ 赢"的课）。真正的合成（神经 + 概率）要等 Bengio 2003（4.2 章的接口）。
+
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。
+
 
 ::: {.callout-research title="停一停，你来当研究者"}
 动手前先做三个估算（写在本子上）：
@@ -53,6 +56,9 @@ $$H(q) = -\frac{1}{T}\sum_t \log q(x_t \mid x_{<t})$$
 **n-gram = 计数 + 截断**：$q(x_t \mid \text{前 } n{-}1 \text{ 字符}) = \frac{\text{count}(n\text{-gram})}{\text{count}(\text{上下文})}$。参数不用学，数出来就行；代价是组合爆炸——上下文种类数是 $|V|^{n-1}$，文本长度追不上它。
 
 **平滑 = 给未见世界留门**：零概率是语言的死罪（一句话含一个未见 n-gram，整个句子的概率归零）。加 0.5（我们用的拉普拉斯式）是最粗的平滑；Kneser-Ney 是精致的王朝。平滑的本质是先验知识的注入——"没见过 ≠ 不可能"。
+
+*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。
+
 
 ## 从零实现
 
@@ -137,9 +143,15 @@ print(sample_ngram(3, counts3, ctx3)[:160])
 
 3-gram 的采样像"英语的形状"：单词大致拼得出来、the/sat 之类高频组合成串——但句子没有意义。**局部的统计被抓住了，长程的结构没有**。这个"会拼词不会造句"的水平线，就是接下来几章要抬高的一切。
 
+*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：从零实现。
+
+
 ## 消融实验
 
 **平滑强度的账。** 把拉普拉斯系数 $\alpha$ 从 0.5 调到 0.01 / 5.0，重测 3-gram 与 4-gram 的交叉熵——观察"留门的宽度"如何随 $n$ 变化（上下文越长、越空洞，最优的 $\alpha$ 越大，模型实际上越退化回低阶）。平滑系数是在为截断近似与数据稀缺同时买单——这份账单在 6.x 时代会以"数据配比"的新名字再来一次。
+
+*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。
+
 
 ```{python}
 for alpha in (0.01, 0.5, 5.0):
@@ -182,10 +194,13 @@ for alpha in (0.01, 0.5, 5.0):
 1. 截断历史的刀口能移动吗——用**函数逼近**代替计数来表示 $P(x_t \mid \text{历史})$？（Bengio 2003 的答案：嵌入 + MLP；我们跳过它直接看它的循环版本 → 下一章）；
 2. 计数法的参数随词表爆炸——参数共享（1.3 的老朋友）能否救语言模型？（同一问题的两种历史答案：循环连接与卷积，3.4 的伏笔回收）。
 
+*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。
+
+
 ## 参考文献
 
-1. Shannon, Claude E. (1951). *Prediction and Entropy of Printed English*. *Bell System Technical Journal, 30, 50--64*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Shannon%201951%20Prediction%20and%20Entropy%20of%20Printed%20English)
-2. Shannon, Claude E. (1948). *A Mathematical Theory of Communication*. *Bell System Technical Journal, 27, 379--423*. [doi:10.1002/j.1538-7305.1948.tb01338.x](https://doi.org/10.1002/j.1538-7305.1948.tb01338.x)
+1. Shannon, Claude E. (1951). *Prediction and Entropy of Printed English*. *Bell System Technical Journal, 30, 50--64*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Shannon%201951 [@shannon1951]%20Prediction%20and%20Entropy%20of%20Printed%20English)
+2. Shannon, Claude E. (1948). *A Mathematical Theory of Communication*. *Bell System Technical Journal, 27, 379--423*. [doi:10.1002/j.1538-7305.1948.tb01338.x](https://doi.org/10.1002/j.1538-7305.1948 [@shannon1948].tb01338.x)
 3. Jelinek, Frederick (1976). *Continuous Speech Recognition by Statistical Methods*. *Proceedings of the IEEE, 64, 532--557*. [↗ 搜索原文](https://scholar.google.com/scholar?q=Jelinek%201976%20Continuous%20Speech%20Recognition%20by%20Statistical%20Methods)
 
 
