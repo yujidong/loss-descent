@@ -119,8 +119,22 @@ class BookServer(SimpleHTTPRequestHandler):
 
 def main():
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8123
-    server = HTTPServer(("localhost", port), BookServer)
-    print(f"书已启动: http://localhost:{port}/")
+
+    # 尝试绑定端口，被占则自动换
+    for try_port in range(port, port + 10):
+        try:
+            server = HTTPServer(("localhost", try_port), BookServer)
+            break
+        except PermissionError:
+            print(f"端口 {try_port} 被占用，尝试 {try_port + 1}...")
+            continue
+    else:
+        print("错误：8123-8132 都被占用，请用 python scripts/serve.py <端口号> 指定")
+        sys.exit(1)
+
+    if try_port != port:
+        print(f"（原端口 {port} 被占，已自动切换到 {try_port}）")
+    print(f"书已启动: http://localhost:{try_port}/")
     print(f"批注自动保存到: {REVIEWS_DIR}/")
     print(f"按 Ctrl+C 停止")
     try:
