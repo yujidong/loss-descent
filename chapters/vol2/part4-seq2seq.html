@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1158,7 +1146,7 @@ window.Quarto = {
 <p><strong>弯路一：短语统计翻译的对齐噩梦</strong>。统计派的短语表要维护”哪段对哪段”的离散对应，长句的组合管理复杂而脆弱。seq2seq 用一个连续向量替代整张对齐表。放弃可解释性，换取端到端的可训练性。1.2 的母题再次上场：离散知识工程 vs 连续可学习表示。</p>
 <p><strong>弯路二：COD 的滑窗生成</strong>。早期神经翻译试图滑动窗口逐段翻译再拼接。上下文被窗口切断。seq2seq 的贡献正是把整句的全局决策交给编码器终态。</p>
 <p><strong>输入倒序的启示</strong>：作者们发现把源句倒过来喂，BLEU 显著上升。因为解码器先要输出的词，在倒序输入里恰好离编码器终态最近（梯度衰减的补偿）。这个 trick 在 2017 年被注意力彻底作废。结构缺陷的补丁永远不如修结构本身。</p>
-<p><strong>teacher forcing</strong>：训练时解码器每一步都喂真实的上一个词而非自己的预测。并行高效，但训练与推理（吃自己的预测）之间存在暴露偏差。这个偏差在今天的 LLM 时代仍有回响（7.x 的训练-推理不一致讨论）。</p>
+<p><strong>teacher forcing</strong>：训练时解码器每一步都喂真实的上一个词而非自己的预测。并行高效，但是，训练与推理（吃自己的预测）之间存在暴露偏差。这个偏差在今天的 LLM 时代仍有回响（7.x 的训练-推理不一致讨论）。</p>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>先做两个思想实验（写下来再运行）：</p>
@@ -1181,7 +1169,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">21.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.Seq2Seq</code>：编码/解码各一台 LSTM，解码器初态 = 编码器终态（梯度沿 <code>backward</code> 的初始状态接口回传到编码器）。任务：数字序列反转。</p>
-<div id="27620556" class="cell" data-execution_count="1">
+<div id="a023a58a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1211,7 +1199,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="2dc53c6f" class="cell" data-execution_count="2">
+<div id="df3c29fc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exact_acc(model, pairs):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ok <span class="op">/</span> <span class="bu">len</span>(pairs)</span>
@@ -1225,7 +1213,7 @@ window.Quarto = {
 </div>
 <p>25 个 epoch、几秒钟：loss 2.17 → 0.00x，<strong>整句精确匹配约 98%</strong>。编码器学会了把”哪几个数字、什么顺序”压进 64 维，解码器再逆序释放。玩具尺度上，“向量即意思”近乎魔法。</p>
 <p><strong>主实验：长度外推（固定向量的账单）。</strong> 在训练分布（长度 ≤5）之外逐级测试：</p>
-<div id="e478bbf6" class="cell" data-execution_count="3">
+<div id="02a1ea9d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pairs_of_length(L, n<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">9</span>):</span>
@@ -1269,7 +1257,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="21.5">
 <h2 data-number="21.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">21.5</span> 消融实验</h2>
 <p><strong>倒序输入 trick 复刻。</strong> Sutskever 的补丁：把编码器输入倒过来喂（<code>inputs[i][::-1]</code>），对反转任务这相当于……先想清楚再运行（对”反转”这个任务，倒序输入让解码器的第一个输出对应编码器最后读入的词。梯度最短路径）。复刻并与正序对照，看两者在长度外推上的差异。补丁能续命，但救不了结构：</p>
-<div id="82fa804b" class="cell" data-execution_count="4">
+<div id="72ba39a4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_rev <span class="op">=</span> Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>
@@ -1381,7 +1369,7 @@ window.Quarto = {
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：断崖几乎不动。容量够用时瓶颈在训练分布而非向量维度。若你观察到轻微改善，那是容量边际效应；主结论（断崖位置由训练长度决定）稳健。这正是”数据分布决定能力边界”的直接证据。</p>
-<p><strong>练习 3</strong>：训练显著变慢（无法利用 teacher forcing 的并行展开）且早期不稳定；最终成绩可能接近但更难训。暴露偏差减小了，但代价不成比例。工程上的赢家是 teacher forcing + 后期纠偏（RLHF 在某种程度上正是终极版的”后期纠偏”）。</p>
+<p><strong>练习 3</strong>：训练显著变慢（无法利用 teacher forcing 的并行展开）且早期不稳定；最终成绩可能接近但是，更难训。暴露偏差减小了，但是，代价不成比例。工程上的赢家是 teacher forcing + 后期纠偏（RLHF 在某种程度上正是终极版的”后期纠偏”）。</p>
 <p><strong>练习 5 提示</strong>：权重 <span class="math inline">\(\alpha_{t,s} \propto \exp(\mathbf{q}_t \cdot \mathbf{h}_s)\)</span>，<span class="math inline">\(\mathbf{q}_t\)</span> 取当前解码状态；加权和 <span class="math inline">\(\sum_s \alpha_{t,s}\mathbf{h}_s\)</span> 进输出层。跑反转任务，重点看长度外推是否被治好。若改善明显，你已经预演了 5.1 的结论。</p>
 </div>
 </div>

@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1124,7 +1112,7 @@ window.Quarto = {
 </header>
 
 
-<p>上一章的尸检报告写着：60 步的 BPTT，梯度衰减 56 个数量级。本章讲 1997 年的手术。Hochreiter 与 Schmidhuber 的长短期记忆网络（LSTM）。手术的核心只有一句话：<strong>在循环单元里修一条恒等传送带</strong>（细胞状态 <span class="math inline">\(c\)</span>），让信息与梯度可以近乎无损地穿越时间；再装三扇门（读、写、忘）控制上下传送带的时机。这个设计统治了序列建模二十年。从 2015 年谷歌翻译上线到 2016 年的 WaveNet 之前，你用过的每一句机器翻译背后都是它。但本章也会诚实记录：门控买到的是梯度通道，不是免费的训练顺利。LSTM 的真实战功同样依赖一整套工程配方。</p>
+<p>上一章的尸检报告写着：60 步的 BPTT，梯度衰减 56 个数量级。本章讲 1997 年的手术。Hochreiter 与 Schmidhuber 的长短期记忆网络（LSTM）。手术的核心只有一句话：<strong>在循环单元里修一条恒等传送带</strong>（细胞状态 <span class="math inline">\(c\)</span>），让信息与梯度可以近乎无损地穿越时间；再装三扇门（读、写、忘）控制上下传送带的时机。这个设计统治了序列建模二十年。从 2015 年谷歌翻译上线到 2016 年的 WaveNet 之前，你用过的每一句机器翻译背后都是它。但是，本章也会诚实记录：门控买到的是梯度通道，不是免费的训练顺利。LSTM 的真实战功同样依赖一整套工程配方。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1165,7 +1153,7 @@ window.Quarto = {
 <ol type="1">
 <li>3.2 章的残差连接给前馈网修了”不经过连乘的恒等路”。时间维的对应物应该长什么样？（写出 <span class="math inline">\(c_t = ?\)</span> 的递推，使 <span class="math inline">\(\partial c_t / \partial c_{t-1}\)</span> 尽量接近 1）；</li>
 <li>恒等传送带的危险是什么。垃圾信息也永远删不掉。你需要什么机构来<strong>删除</strong>记忆？（这就是遗忘门。注意 1997 年原版恰恰漏了它）；</li>
-<li>传送带上放着记忆，但单元对外输出的是 <span class="math inline">\(h_t\)</span>。还需要一扇什么门？</li>
+<li>传送带上放着记忆，但是，单元对外输出的是 <span class="math inline">\(h_t\)</span>。还需要一扇什么门？</li>
 </ol>
 <p>三问答完，你设计出的结构应当与 LSTM 相差无几。<strong>好的架构是可以被问题重新发明出来的</strong>，这也是「停一停」栏目的终极含义。</p>
 </div>
@@ -1191,7 +1179,7 @@ h_t &amp;= o_t \odot \tanh(c_t) &amp; \text{对外输出}
 <section id="从零实现" class="level2" data-number="19.4">
 <h2 data-number="19.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">19.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.RNNLM</code>（cell=“lstm”）内置了完整门控（<code>dlbook.rnn.core.LSTM</code>，含遗忘门偏置初始化）。先看机制的兑现。<strong>同一条 60 步序列的梯度剖面</strong>，RNN 换成 LSTM：</p>
-<div id="3fa001ec" class="cell" data-execution_count="1">
+<div id="0c2a75a8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus</span>
@@ -1219,7 +1207,7 @@ h_t &amp;= o_t \odot \tanh(c_t) &amp; \text{对外输出}
 lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 </div>
 </div>
-<div id="e8805f34" class="cell" data-execution_count="2">
+<div id="b671f724" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.8</span>))</span>
@@ -1238,9 +1226,9 @@ lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 </div>
 </div>
 </div>
-<p>典型读数：RNN 起点 <span class="math inline">\(10^{-56}\)</span>；LSTM 起点 <span class="math inline">\(10^{-9}\)</span>。<strong>同样 60 步，学习信号的存活率相差 47 个数量级</strong>。传送带兑现了承诺（<span class="math inline">\(10^{-9}\)</span> 仍小。门控 sigmoid 的导数与输出门路径还在衰减，但已从”死亡”变为”微弱可闻”）。</p>
+<p>典型读数：RNN 起点 <span class="math inline">\(10^{-56}\)</span>；LSTM 起点 <span class="math inline">\(10^{-9}\)</span>。<strong>同样 60 步，学习信号的存活率相差 47 个数量级</strong>。传送带兑现了承诺（<span class="math inline">\(10^{-9}\)</span> 仍小。门控 sigmoid 的导数与输出门路径还在衰减，但是，已从”死亡”变为”微弱可闻”）。</p>
 <p><strong>遗忘门 = 记忆水龙头</strong>。保持率的账可以直接算：<span class="math inline">\(f=\sigma(b_f)\)</span> 恒定时，<span class="math inline">\(T\)</span> 步后记忆剩 <span class="math inline">\(f^T\)</span>。这解释了门偏置初始化为什么重要：</p>
-<div id="8c30028c" class="cell" data-execution_count="3">
+<div id="63fe8e85" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'遗忘门偏置'</span><span class="sc">:&gt;10}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'σ(b_f)'</span><span class="sc">:&gt;8}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'60 步后剩余'</span><span class="sc">:&gt;12}</span><span class="ss">"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> b_f <span class="kw">in</span> (<span class="op">-</span><span class="fl">2.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">4.0</span>):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> np.exp(<span class="op">-</span>b_f))</span>
@@ -1260,7 +1248,7 @@ lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 <section id="消融实验" class="level2" data-number="19.5">
 <h2 data-number="19.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">19.5</span> 消融实验</h2>
 <p><strong>诚实实验：梯度通道 ≠ 训练顺利。</strong> 把 LSTM 放回上一章的字符语言模型，同预算训练：</p>
-<div id="5d08663b" class="cell" data-execution_count="4">
+<div id="da36a103" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lstm_lm <span class="op">=</span> RNNLM(V, <span class="dv">48</span>, cell<span class="op">=</span><span class="st">"lstm"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hist_lstm <span class="op">=</span> []</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">120</span>):</span>
@@ -1271,7 +1259,7 @@ lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 <pre><code>LSTM char-LM: 3.296 -&gt; 2.8263（上一章 RNN 同预算：2.23）</code></pre>
 </div>
 </div>
-<p>典型结果：LSTM 停在 <strong>2.8</strong> 附近。不升反降于朴素 RNN。四倍的参数（四门）、更慢的优化动力学、而本任务的高频规律（字符局部统计）恰恰是 RNN 饱和技巧的舒适区。再加一个更刺眼的：远距回声任务（记住 20 步前的第一个比特）上，我们的朴素训练协议把 LSTM 喂到 300 个 epoch 也只爬到 60% 出头的训练准确率（梯度通道在、但信号微弱、门要慢慢学会开合）。门控修好了路，车还是要人开。</p>
+<p>典型结果：LSTM 停在 <strong>2.8</strong> 附近。不升反降于朴素 RNN。四倍的参数（四门）、更慢的优化动力学、而本任务的高频规律（字符局部统计）恰恰是 RNN 饱和技巧的舒适区。再加一个更刺眼的：远距回声任务（记住 20 步前的第一个比特）上，我们的朴素训练协议把 LSTM 喂到 300 个 epoch 也只爬到 60% 出头的训练准确率（梯度通道在、但是，信号微弱、门要慢慢学会开合）。门控修好了路，车还是要人开。</p>
 <p>这份诚实账与历史相符：LSTM 的实战胜利（语音、翻译）全部来自<strong>结构 + 配方</strong>的合体。截断 BPTT、梯度裁剪、门偏置初始化、学习率日程，一样不能少。教科书叙事”LSTM 一举解决长程依赖”省略的正是这些脚手架。把脚手架写回历史，是本书的一贯纪律。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
@@ -1364,7 +1352,7 @@ lstm: 末端 6.93e+00 -&gt; 起点 7.31e-09</code></pre>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：大概率变差。字符预测的有效上下文只有几步，过长的保持把无关旧信息拖进状态。遗忘门偏置的”最优值”依赖任务的时间尺度。这张对照表就是”记忆长度是超参数”的最小证据。</p>
-<p><strong>练习 3</strong>：钉死 <span class="math inline">\(f \equiv 1\)</span> 剖面最”存活”（传送带全开）但记忆无法清除；钉死 <span class="math inline">\(i\)</span> 或 <span class="math inline">\(o\)</span> 损害写入/读出路径。存活靠 <span class="math inline">\(f\)</span>，可控靠 <span class="math inline">\(i/o\)</span>。与正文”文件系统”比喻一一对应。</p>
+<p><strong>练习 3</strong>：钉死 <span class="math inline">\(f \equiv 1\)</span> 剖面最”存活”（传送带全开）但是，记忆无法清除；钉死 <span class="math inline">\(i\)</span> 或 <span class="math inline">\(o\)</span> 损害写入/读出路径。存活靠 <span class="math inline">\(f\)</span>，可控靠 <span class="math inline">\(i/o\)</span>。与正文”文件系统”比喻一一对应。</p>
 <p><strong>练习 5 参考</strong>：可以到 95% 以上（各文献报告不一）；裁剪与 <span class="math inline">\(b_f\)</span> 各贡献一截，学习率日程在后期贡献另一截。单件拿走的降幅都不大、合体显著。2.5 配方交互的又一例。</p>
 </div>
 </div>

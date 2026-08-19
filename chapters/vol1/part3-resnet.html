@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1148,7 +1136,7 @@ window.Quarto = {
 </div>
 <section id="本章问题" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">14.1</span> 本章问题</h2>
-<p>2.2 章埋的伏笔在此回收：BN 解决了深网的训练稳定性，但<strong>退化（degradation）</strong>问题浮出水面。</p>
+<p>2.2 章埋的伏笔在此回收：BN 解决了深网的训练稳定性，但是，<strong>退化（degradation）</strong>问题浮出水面。</p>
 <ol type="1">
 <li>“加深反而更差”到底是什么病？（既然不是过拟合、也不是梯度消失。BN 之后梯度健康了）；</li>
 <li>一条恒等跳线为什么能治它？</li>
@@ -1156,7 +1144,7 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">14.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路：把退化当病来治。</strong> 2014–2015 年的主流反应是”更深需要更精心的初始化与训练术”。沿 2.1 的思路加码。方向没错但量级不够：退化不是调参问题。</p>
+<p><strong>弯路：把退化当病来治。</strong> 2014–2015 年的主流反应是”更深需要更精心的初始化与训练术”。沿 2.1 的思路加码。方向没错但是，量级不够：退化不是调参问题。</p>
 <p><strong>诊断（ResNet 论文的第一张图）</strong>：He 等人在论文开头放出了那张著名的图。56 层普通网络的训练误差高于 20 层。他们排除了过拟合（训练误差也差）与梯度消失（BN 保证了梯度健康），剩下的假设石破天惊：让一堆非线性层去拟合恒等映射，本身竟然是困难的。深层普通网络在优化上”绕路”。它有能力表示解，却不容易走到那里。</p>
 <p><strong>药方</strong>：既然”什么都不做”很难学，那就把”什么都不做”设计成默认。让每几个层去学残差 <span class="math inline">\(F(x) = H(x) - x\)</span>，输出 <span class="math inline">\(y = F(x) + x\)</span>。要学恒等映射，只需把 <span class="math inline">\(F\)</span> 推向零（权重衰减天然偏爱小权重。）。把”难以学习的默认”变成”容易被正则偏爱”的默认。</p>
 <p><strong>后续的理解</strong>：Veit et al.&nbsp;(2016) 提出残差网络的”隐式集成”观。<span class="math inline">\(L\)</span> 个残差块的组合展开后是 <span class="math inline">\(2^L\)</span> 条路径的集合，删除单个块对网络的伤害远小于预期。无论哪种解释更对，“给梯度修一条不经过连乘的恒等高速路”（2.2 的原话）都是最硬核的那一条：<span class="math inline">\(\partial y/\partial x = 1 + \partial F/\partial x\)</span>，那个 +1 让梯度永远有一条不衰减的回家路。</p>
@@ -1183,7 +1171,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="14.4">
 <h2 data-number="14.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">14.4</span> 从零实现</h2>
 <p><code>MLPNumpy</code> 的 <code>residual=True</code> 开关即残差版（宽度相同的隐藏层之间加恒等跳线）。数据仍是那条 1.75 圈的螺旋。它已见证过 2.2 的卡死与 2.3 的 BN 复活，现在见证第三次判决：</p>
-<div id="4e07b07e" class="cell" data-execution_count="1">
+<div id="90e4cabc" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1196,7 +1184,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>深度扫描：普通 vs 残差。</strong></p>
-<div id="87893541" class="cell" data-execution_count="2">
+<div id="62942046" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, residual<span class="op">=</span><span class="va">False</span>)</span>
@@ -1216,7 +1204,7 @@ residual depth=10: acc=0.978</code></pre>
 </div>
 </div>
 <p>典型读数：普通网络 0.97 / 0.97 / <strong>0.50</strong>。深度 10 崩溃，训练彻底失败（退化病的复刻）；残差版在同样深度爬到 0.97+。把两者的训练曲线放在一起看发病过程：</p>
-<div id="b5ff2bfa" class="cell" data-execution_count="3">
+<div id="18929b60" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tag, res <span class="kw">in</span> ((<span class="st">"plain-10 (degraded)"</span>, <span class="va">False</span>), (<span class="st">"residual-10"</span>, <span class="va">True</span>)):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">10</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, residual<span class="op">=</span>res)</span>
@@ -1237,7 +1225,7 @@ residual depth=10: acc=0.978</code></pre>
 <section id="消融实验" class="level2" data-number="14.5">
 <h2 data-number="14.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">14.5</span> 消融实验</h2>
 <p><strong>跳线放到多深才划算？</strong> 浅网加残差几乎无差别（2 层时 <span class="math inline">\(F(x)+x\)</span> 与 <span class="math inline">\(F(x)\)</span> 的差距微乎其微）：</p>
-<div id="c7d394c1" class="cell" data-execution_count="4">
+<div id="c6dc5610" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">5</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> res <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, residual<span class="op">=</span>res)</span>
@@ -1340,7 +1328,7 @@ residual depth=5: acc=0.973</code></pre>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 1</strong>：缩放把 <span class="math inline">\(F\)</span> 路径的初始贡献压小，网络起步接近恒等（“生而保守”），梯度积累导致的发散被抑制；深度 20 大概率可训。这正是”零初始化残差分支”思想的量级版。</p>
-<p><strong>练习 3</strong>：我们用的是”激活后相加”（<span class="math inline">\(y = \mathrm{act}(F)+x\)</span> 的变体）。标准 ResNet 是先加后激活；后者的恒等路也要过 relu，“纯恒等”被破坏（Pre-Act ResNet 因此改为全程 pre-activation）。差别在深网络中显著，浅网络中难辨。</p>
+<p><strong>练习 3</strong>：我们用的是”激活后相加”（<span class="math inline">\(y = \mathrm{act}(F)+x\)</span> 的变体）。标准 ResNet 是先加后激活；后者的恒等路也要过 relu，“纯恒等”被破坏（Pre-Act ResNet 因此，改为全程 pre-activation）。差别在深网络中显著，浅网络中难辨。</p>
 <p><strong>练习 5 提示</strong>：残差网删除单块只损失一两条路径（准确率微降）；普通网删除单层等于切断唯一的信号路（瘫痪）。这个不对称就是”隐式集成”观最直观的证据形态。</p>
 </div>
 </div>

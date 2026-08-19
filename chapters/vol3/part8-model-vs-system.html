@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1129,7 +1117,7 @@ main table {
 <h2 data-number="36.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">36.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>弯路一：万物微调（2020–2022）</strong>。预训练模型出来后，惯性是”每个任务微调一次”。T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT <span class="citation" data-cites="radford2018">(<a href="#ref-radford2018" role="doc-biblioref">Radford et al. 2018</a>)</span>-3 的 few-shot、2021 前后的 prompt tuning）证明许多任务不必动权重。方向摆向系统层。</p>
 <p><strong>弯路二：万物提示（2023–2024）</strong>。摆过头：记忆靠 prompt 塞、工具靠 prompt 描述、格式靠 prompt 祈祷。上下文越来越长、越来越贵、越来越脆。回调的标志是各家的 instruction tuning 与 distillation 回潮：行为一旦定型且高频，就该固化（8.2 的训练账 vs 推理账）。</p>
-<p><strong>RAG 的启示</strong>：知识放哪一层的最佳案例研究。外挂检索（系统层）赢了”时效性与可更新性”，权重（模型层）赢了”整合与推理”。现实的答案是混合，但混合的配方由框架决定，不是拍脑袋。</p>
+<p><strong>RAG 的启示</strong>：知识放哪一层的最佳案例研究。外挂检索（系统层）赢了”时效性与可更新性”，权重（模型层）赢了”整合与推理”。现实的答案是混合，但是，混合的配方由框架决定，不是拍脑袋。</p>
 <p><strong>Context engineering 的兴起（2025）</strong>：把上下文当作一种稀缺资源来设计。什么进窗口、以什么格式、何时压缩（7.1 的”上下文价值曲线”是这个工种的理论起点）。窗口是新的显存：贵、有限、需要调度。</p>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
@@ -1163,7 +1151,7 @@ main table {
 <section id="从零实现" class="level2" data-number="36.4">
 <h2 data-number="36.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">36.4</span> 从零实现</h2>
 <p>三条件对照（基座复训 + few-shot + SFT 复用 7.2 流程）：</p>
-<div id="198d39e6" class="cell" data-execution_count="1">
+<div id="4f6bad37" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus, make_qa_corpus</span>
@@ -1244,7 +1232,7 @@ SFT zero-shot: 0.33</code></pre>
 </section>
 <section id="消融实验" class="level2" data-number="36.5">
 <h2 data-number="36.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">36.5</span> 消融实验</h2>
-<p><strong>通道的对照</strong>：few-shot 失效但 SFT 有效。两条通道（输入 vs 梯度）的要求差异，可以再用一个对照钉死：把 few-shot 的示例逐条放进 SFT 数据（等价于把输入通道的内容搬到梯度通道），同样的 12 个问答、同样的信息量。<code>SFT</code> 从 0.00 涨到 0.33（这正是 7.2 已做的实验）。信息相同、通道不同、结果不同。通道本身的健全性是独立变量，这是本框架区别于流行讨论的关键洞见。</p>
+<p><strong>通道的对照</strong>：few-shot 失效但是， SFT 有效。两条通道（输入 vs 梯度）的要求差异，可以再用一个对照钉死：把 few-shot 的示例逐条放进 SFT 数据（等价于把输入通道的内容搬到梯度通道），同样的 12 个问答、同样的信息量。<code>SFT</code> 从 0.00 涨到 0.33（这正是 7.2 已做的实验）。信息相同、通道不同、结果不同。通道本身的健全性是独立变量，这是本框架区别于流行讨论的关键洞见。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="36.6">

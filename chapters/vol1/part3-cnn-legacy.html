@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1151,7 +1139,7 @@ main table {
 </section>
 <section id="从零实现" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">15.4</span> 从零实现</h2>
-<div id="2f18f8fb" class="cell" data-execution_count="1">
+<div id="67345837" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_shifted_pattern</span>
@@ -1183,7 +1171,7 @@ main table {
 </div>
 </div>
 <p><strong>阶段二：10 个脏样本上的两种消费方式。</strong></p>
-<div id="a841bd81" class="cell" data-execution_count="2">
+<div id="417388c5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Xb, yb <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">10</span>, noise<span class="op">=</span><span class="fl">0.3</span>, seed<span class="op">=</span><span class="dv">5</span>)    <span class="co"># 小样本 + 域偏移</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xe, ye <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.3</span>, seed<span class="op">=</span><span class="dv">9</span>)   <span class="co"># 同域测试集</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1218,7 +1206,7 @@ main table {
 <section id="消融实验" class="level2" data-number="15.5">
 <h2 data-number="15.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">15.5</span> 消融实验</h2>
 <p><strong>域偏移有多伤？</strong> 把测试域的噪声从 0.3 调回 0.15（与预训练同域），再看探针成绩。分离”特征迁移”与”域适应”两笔贡献：</p>
-<div id="0937b43d" class="cell" data-execution_count="3">
+<div id="732be19e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Xe2, ye2 <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.15</span>, seed<span class="op">=</span><span class="dv">9</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>acc_same_domain <span class="op">=</span> <span class="bu">float</span>(np.mean([probe(f) <span class="op">==</span> t <span class="cf">for</span> f, t <span class="kw">in</span> <span class="bu">zip</span>(features(Xe2), ye2)]))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"探针在干净域测试: </span><span class="sc">{</span>acc_same_domain<span class="sc">:.3f}</span><span class="ss">（脏域是 </span><span class="sc">{</span>acc_probe<span class="sc">:.3f}</span><span class="ss">）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1226,7 +1214,7 @@ main table {
 <pre><code>探针在干净域测试: 0.785（脏域是 0.853）</code></pre>
 </div>
 </div>
-<p>同域测试接近满分。特征本身是好的，脏域上丢掉的那十几个点全是<strong>域偏移的代价</strong>（分布变了、特征还在工作但信噪比下降）。预训练不是万能险：它搬的是特征，不是对新分布的适应（分布偏移问题将贯穿到卷三的对齐与评测）。</p>
+<p>同域测试接近满分。特征本身是好的，脏域上丢掉的那十几个点全是<strong>域偏移的代价</strong>（分布变了、特征还在工作但是，信噪比下降）。预训练不是万能险：它搬的是特征，不是对新分布的适应（分布偏移问题将贯穿到卷三的对齐与评测）。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="15.6">
@@ -1316,7 +1304,7 @@ main table {
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：差距随下游数据量收窄。50 样本时从零训练已能到 0.8+，300 时两者趋同甚至反超（预训练特征未必是本任务最优）。这条”迁移收益 vs 数据量”的递减曲线，就是后来 BERT 时代各类”数据预算-微调策略”图表的玩具版；LoRA（7.2）的一切讨论都发生在曲线的左端。</p>
-<p><strong>练习 3</strong>：大概率不如跨界净版。脏域预训练的特征信噪比天然更低，而”见过干净图案”的抽象恰好扛得住脏域的输入。但也有例外种子（小样本噪声大），值得多跑几个种子看方差。预训练实验的方差管理本身就是真实工程痛点。</p>
+<p><strong>练习 3</strong>：大概率不如跨界净版。脏域预训练的特征信噪比天然更低，而”见过干净图案”的抽象恰好扛得住脏域的输入。但是，也有例外种子（小样本噪声大），值得多跑几个种子看方差。预训练实验的方差管理本身就是真实工程痛点。</p>
 <p><strong>练习 5 提示</strong>：最优点通常在”靠近输入的层冻结”。通用性从底到顶递减。这就是微调时代”要不要解冻 backbone”的标准决策树的玩具版。</p>
 </div>
 </div>

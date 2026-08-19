@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1173,12 +1161,12 @@ window.Quarto = {
 <h2 data-number="30.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">30.3</span> 核心思想</h2>
 <p><strong>Base model 是条件分布 <span class="math inline">\(P(x_t \mid x_{&lt;t})\)</span> 的纯拟合体</strong>。它没有任何”回答问题”的目标。prompt 是问题还是诗的开头，对它只是”上文”。“怪癖”的全部来源：它的行为由训练分布决定，而训练分布是”互联网文本的续写关系”，不是”问答关系”。问句后面跟着另一个问句的网页，比跟着答案的多。它就学到了前者。</p>
 <p><strong>上下文学习 = 条件概率的条件化</strong>。本书 4.1 就说过：语言模型的一切能力都是条件分布的性质。few-shot 提示之所以有效，是因为”示例→按示例模式续写”本身就是互联网文本中存在的模式（表格、词典、教程）。ICL 不是魔法，是”从上下文中识别模式并外推”被预训练买下的免费赠品。</p>
-<p><strong>理解与被理解之间的鸿沟</strong>：base model 知道答案的概率可能很高（下一章的 margin 实验会亲眼看到 +3.68 nat），但输出的取样路径未必走向它。解码（贪心/采样）与知识（概率质量）是两回事。对齐时代的很多工作，本质是在不重学世界知识的前提下，重塑取样行为。</p>
+<p><strong>理解与被理解之间的鸿沟</strong>：base model 知道答案的概率可能很高（下一章的 margin 实验会亲眼看到 +3.68 nat），但是，输出的取样路径未必走向它。解码（贪心/采样）与知识（概率质量）是两回事。对齐时代的很多工作，本质是在不重学世界知识的前提下，重塑取样行为。</p>
 <p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="30.4">
 <h2 data-number="30.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">30.4</span> 从零实现</h2>
-<div id="f34818ff" class="cell" data-execution_count="1">
+<div id="476d17ca" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1204,7 +1192,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：续写不等于回答（行为学）。</strong></p>
-<div id="0d8a2cd9" class="cell" data-execution_count="2">
+<div id="d77da9a3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> prompt <span class="kw">in</span> [<span class="st">"the cat "</span>, <span class="st">"question: who is pip ? answer:"</span>]:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab.get(c, vocab[<span class="st">" "</span>]) <span class="cf">for</span> c <span class="kw">in</span> prompt]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> base.generate(ids_p, n_new<span class="op">=</span><span class="dv">60</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, seed<span class="op">=</span><span class="dv">3</span>)</span>
@@ -1220,7 +1208,7 @@ prompt: 'question: who is pip ? answer:'
 </div>
 <p>两个 prompt 的续写都是”语料风格”的文本。第二个（问句格式）在训练分布里<strong>从未出现</strong>，模型的应对是把未知符号当噪声、回到它熟悉的词形统计。真实互联网基座的对应行为是：问句后接更多问句（论坛网页）、或跑题续写。怪癖不是缺陷，是分布的忠实。</p>
 <p><strong>实验二：上下文的价值（条件化定量）。</strong> 逐位置测 loss。同一个模型，看第 1 个字符与第 40 个字符时的困惑度：</p>
-<div id="16aada05" class="cell" data-execution_count="3">
+<div id="5d7df47f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>windows <span class="op">=</span> np.stack([arr[s : s <span class="op">+</span> <span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> np.random.default_rng(<span class="dv">7</span>).integers(<span class="dv">0</span>, <span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">65</span>, size<span class="op">=</span><span class="dv">64</span>)])</span>

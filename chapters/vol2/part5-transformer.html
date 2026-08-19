@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1187,7 +1175,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="23.4">
 <h2 data-number="23.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">23.4</span> 从零实现</h2>
 <p><code>dlbook.transformer</code> 提供全部零件（约三百行，<code>layers.py</code> 的反向传播值得逐行对读。1.3 的三条递推穿过了 softmax、多头变形与残差）。我们的 <code>MiniGPT</code>：2 个块、32 维、2 头、正弦位置编码。上老战场：</p>
-<div id="24a8716a" class="cell" data-execution_count="1">
+<div id="f51c9bf8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1221,7 +1209,7 @@ MiniGPT 参数量: 27163
 1000 步用时 9s；最终 loss 1.7903</code></pre>
 </div>
 </div>
-<div id="253dca77" class="cell" data-execution_count="2">
+<div id="ffe01a2b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"MiniGPT char-LM"</span>: history}, title<span class="op">=</span><span class="st">"Attention is all you need (for 2.4KB of text)"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1232,7 +1220,7 @@ MiniGPT 参数量: 27163
 </div>
 </div>
 <p><strong>1.79</strong>。同一语料的总冠军（超过 3-gram 的 1.95 与 RNN 的 2.23，且收敛快得多）。看它写出的文本：</p>
-<div id="0c06a0e0" class="cell" data-execution_count="3">
+<div id="0c6d4418" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> model.generate([vocab[c] <span class="cf">for</span> c <span class="kw">in</span> <span class="st">"the cat "</span>], n_new<span class="op">=</span><span class="dv">140</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, seed<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1241,7 +1229,7 @@ MiniGPT 参数量: 27163
 </div>
 <p>典型样貌：比 RNN 的采样更像”英语”。词的边界干净、常见搭配成串（the/sat/and）、偶尔冒出语料的词组。<strong>同预算下表示质量的差距是肉眼可见的</strong>。</p>
 <p><strong>注意力图：模型在看什么？</strong> 取第一块的平均注意力（一次前向后自动缓存）：</p>
-<div id="f540eb3f" class="cell" data-execution_count="4">
+<div id="44407288" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> np.array(arr[<span class="dv">100</span>:<span class="dv">132</span>])[<span class="va">None</span>, :]</span>
@@ -1269,7 +1257,7 @@ MiniGPT 参数量: 27163
 <section id="消融实验" class="level2" data-number="23.5">
 <h2 data-number="23.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">23.5</span> 消融实验</h2>
 <p><strong>位置编码：注意力的隐形地基。</strong> 把位置编码置零，同预算重训：</p>
-<div id="d2726e8d" class="cell" data-execution_count="5">
+<div id="bb732580" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model_nopos <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>model_nopos.pos <span class="op">=</span> np.zeros_like(model_nopos.pos)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
@@ -1332,7 +1320,7 @@ MiniGPT 参数量: 27163
 <p><strong>Vaswani, A. et al.&nbsp;(2017).</strong> <em>Attention is all you need.</em> NeurIPS 2017.</p>
 <ul>
 <li><strong>读什么</strong>：表 1（架构超参。注意 d_model=512、8 头、6 层，以及”为什么这样配”只给了半页直觉）；图 2（多头与缩放点积注意力的原图。本章实现的对照版）；</li>
-<li>跳过：label smoothing 等训练细节（但记得它们存在。本章我们的 <code>clip=1.0</code> 就是向这些细节致敬）；</li>
+<li>跳过：label smoothing 等训练细节（但是，记得它们存在。本章我们的 <code>clip=1.0</code> 就是向这些细节致敬）；</li>
 <li>历史注：作者们事后回忆，标题是组内争论后的挑衅式定稿。配套读 Kaplan et al.&nbsp;(2020)。三年后同一架构在 1750 亿参数上的续集：架构论文与规模论文是同一部戏剧的两幕。</li>
 </ul>
 </div>

@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1156,7 +1144,7 @@ window.Quarto = {
 <section id="历史中的尝试包括弯路" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">20.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>分布假说（Harris 1954）</strong>： linguistic 的老直觉。“看一个词的同伴，就知道它的意义”（You shall know a word by the company it keeps, Firth 1957）。四十年来它是语言学格言，缺的是把它变成可计算几何的机器。</p>
-<p><strong>弯路一：词-文档共现矩阵</strong>。LSA（1990）对”词 × 文档”矩阵做 SVD。语义有了，但维度巨大、无法增量更新、且”文档”这个上下文单位太粗。</p>
+<p><strong>弯路一：词-文档共现矩阵</strong>。LSA（1990）对”词 × 文档”矩阵做 SVD。语义有了，但是，维度巨大、无法增量更新、且”文档”这个上下文单位太粗。</p>
 <p><strong>弯路二：概率模型的重装备</strong>。在 word2vec 之前，学界主流是复杂的概率主题模型（LDA 一族）。精确、优雅、慢。Mikolov 的反叛是把任务简到荒谬：一个词预测它的邻居（skip-gram），配上负采样，两行公式。审稿人一度觉得太简单，论文先以技术报告面世。</p>
 <p><strong>类比现象的发现本身是意外</strong>：作者们在调参时发现向量算术成立，才补了专门的评估（有名的 analogical reasoning 测试集）。重大能力常常在系统跑通后才被”发现”而非被设计。这个模式将在 6.1（GPT-3 的 in-context learning）重演。</p>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
@@ -1182,7 +1170,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="20.4">
 <h2 data-number="20.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">20.4</span> 从零实现</h2>
 <p>语料用 <code>make_analogy_corpus</code>：四个成体-幼崽词对（cat/kitten、dog/puppy、bird/chick、cow/calf）在共享模板里出现。<strong>模板保证”成体→幼崽”的分布差恒定</strong>（停一停第 1 问的实现）：</p>
-<div id="fd938d9b" class="cell" data-execution_count="1">
+<div id="f4ab991e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_analogy_corpus</span>
@@ -1200,7 +1188,7 @@ loss: 1.758 -&gt; 1.631</code></pre>
 </div>
 </div>
 <p><strong>实验一：类比。</strong> 向量算术最近邻：</p>
-<div id="80ebb458" class="cell" data-execution_count="2">
+<div id="2f34843d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, b, c, gold <span class="kw">in</span> [</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"cat"</span>, <span class="st">"kitten"</span>, <span class="st">"dog"</span>, <span class="st">"puppy"</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"dog"</span>, <span class="st">"puppy"</span>, <span class="st">"bird"</span>, <span class="st">"chick"</span>),</span>
@@ -1215,7 +1203,7 @@ loss: 1.758 -&gt; 1.631</code></pre>
 </div>
 </div>
 <p>三条全中（余弦 0.97+）。<strong>实验二：相似结构。</strong></p>
-<div id="121766bf" class="cell" data-execution_count="3">
+<div id="4dbce38a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"kitten 的近邻:"</span>, [w <span class="cf">for</span> w, _ <span class="kw">in</span> sg.most_similar(<span class="st">"kitten"</span>, vocab)])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"cat   的近邻:"</span>, [w <span class="cf">for</span> w, _ <span class="kw">in</span> sg.most_similar(<span class="st">"cat"</span>, vocab)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1225,7 +1213,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 </div>
 <p>幼崽们互为近邻、成体们互为近邻。<strong>两个语义簇在空间里自然分开</strong>，没有任何监督信号要求过这一点。把两簇画出来（取前两维投影）：</p>
 <p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
-<div id="98f88725" class="cell" data-execution_count="4">
+<div id="6814ace5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>adults, babies <span class="op">=</span> [<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"bird"</span>, <span class="st">"cow"</span>], [<span class="st">"kitten"</span>, <span class="st">"puppy"</span>, <span class="st">"chick"</span>, <span class="st">"calf"</span>]</span>
@@ -1253,7 +1241,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 <section id="消融实验" class="level2" data-number="20.5">
 <h2 data-number="20.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">20.5</span> 消融实验</h2>
 <p><strong>类比的水分检测</strong>：换一组没有平行结构的词做算术。例如 <code>garden - cat + dog</code>（两个名词的普通位移）：</p>
-<div id="9f7e2ad1" class="cell" data-execution_count="5">
+<div id="a29fcab0" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, b, c <span class="kw">in</span> [(<span class="st">"cat"</span>, <span class="st">"garden"</span>, <span class="st">"dog"</span>), (<span class="st">"runs"</span>, <span class="st">"garden"</span>, <span class="st">"sleeps"</span>), (<span class="st">"warm"</span>, <span class="st">"day"</span>, <span class="st">"sunny"</span>)]:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    w, s <span class="op">=</span> sg.analogy(a, b, c, vocab)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>b<span class="sc">:&gt;7}</span><span class="ss"> - </span><span class="sc">{</span>a<span class="sc">:&lt;7}</span><span class="ss"> + </span><span class="sc">{</span>c<span class="sc">:&lt;7}</span><span class="ss"> = </span><span class="sc">{</span>w<span class="sc">:&lt;7}</span><span class="ss"> (cos=</span><span class="sc">{</span>s<span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1263,7 +1251,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
     day - warm    + sunny   = quiet   (cos=0.651)</code></pre>
 </div>
 </div>
-<p>结果一样”自信”地给出高余弦答案。但<strong>没有任何语义解释</strong>。这就是 2016 年前后学界对词向量类比的著名批评（Linzen 2016 等）：算术最近邻这个操作天然偏爱高余弦，它对无意义的题目也照答不误。评估方法本身可以制造能力的幻象。这堂课在 LLM 时代将以”基准污染”“答案泄漏”的形式放大一万倍（9.2 的伏笔）。</p>
+<p>结果一样”自信”地给出高余弦答案。但是，<strong>没有任何语义解释</strong>。这就是 2016 年前后学界对词向量类比的著名批评（Linzen 2016 等）：算术最近邻这个操作天然偏爱高余弦，它对无意义的题目也照答不误。评估方法本身可以制造能力的幻象。这堂课在 LLM 时代将以”基准污染”“答案泄漏”的形式放大一万倍（9.2 的伏笔）。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="20.6">
@@ -1354,7 +1342,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：<span class="math inline">\(K=0\)</span> 时所有向量被拉向同一点（退化，聚类消失）；<span class="math inline">\(K\)</span> 过大则训练慢且低频词被过度推远。<span class="math inline">\(K\approx 5{-}20\)</span> 是历史经验的甜点。负样本是几何的”斥力”来源，斥力过小则塌缩、过大则稀疏。</p>
 <p><strong>练习 3</strong>：类比大概率失效或大幅退化。“大/小”模板正是提供恒定分布差的成分。这个消融是”类比 = 结构化分布差”论断的最小验证。</p>
-<p><strong>练习 5 提示</strong>：真类比的余弦分布应显著高于伪类比（可分性），但重叠尾部一定存在。置信门槛把”何时可信”变成可操作的统计问题。这把尺子的思想就是后来 LLM 评测的校准与 abstention。</p>
+<p><strong>练习 5 提示</strong>：真类比的余弦分布应显著高于伪类比（可分性），但是，重叠尾部一定存在。置信门槛把”何时可信”变成可操作的统计问题。这把尺子的思想就是后来 LLM 评测的校准与 abstention。</p>
 </div>
 </div>
 </div>

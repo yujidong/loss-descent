@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1124,7 +1112,7 @@ window.Quarto = {
 </header>
 
 
-<p>上一章我们看到 Transformer 在精度上赢了（1.79 对 2.23）。但如果胜利只归功于精度，历史就会难以解释。因为在很多任务上，调好的 LSTM 与 Transformer 的差距并没有想象中大。本章论证一个更冷静的命题：<strong>Transformer 的决定性胜利在经济学，不在精度</strong>。它把序列建模从”串行的、按时间步付账”变成了”批量的、按矩阵乘付账”。而硬件的半条命脉（GPU）恰好是矩阵乘机器。我们将用自己的两台引擎实测这笔账，并复盘 RNN 阵营最后的反抗。</p>
+<p>上一章我们看到 Transformer 在精度上赢了（1.79 对 2.23）。但是，如果胜利只归功于精度，历史就会难以解释。因为在很多任务上，调好的 LSTM 与 Transformer 的差距并没有想象中大。本章论证一个更冷静的命题：<strong>Transformer 的决定性胜利在经济学，不在精度</strong>。它把序列建模从”串行的、按时间步付账”变成了”批量的、按矩阵乘付账”。而硬件的半条命脉（GPU）恰好是矩阵乘机器。我们将用自己的两台引擎实测这笔账，并复盘 RNN 阵营最后的反抗。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1157,7 +1145,7 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="24.2">
 <h2 data-number="24.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">24.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>RNN 阵营的反抗（2016–2019）</strong>：SimpleRNN → LSTM → GRU（2014，减参数）→ layered/stacked（多层并行）→ SRU 与 QRNN <span class="citation" data-cites="bradbury2017">(<a href="#ref-bradbury2017" role="doc-biblioref">Bradbury et al. 2017</a>)</span>（2016–2017，去掉跨时间的隐藏依赖，换取并行）。QRNN/SRU 已经是”为了并行而阉割循环”，承认了病根在串行。最后的理论牌是 IndRNN 与线性循环（把 <span class="math inline">\(W_h\)</span> 约束为可对角化/正定的良性谱。4.2 练习 5 的 IRNN 一族），长程能力回升但表达力受限。这些工作质量不低，但方向本身被 2017 年的宣言釜底抽薪：既然注意力已够，为什么还要为循环的存活付出工程税？</p>
+<p><strong>RNN 阵营的反抗（2016–2019）</strong>：SimpleRNN → LSTM → GRU（2014，减参数）→ layered/stacked（多层并行）→ SRU 与 QRNN <span class="citation" data-cites="bradbury2017">(<a href="#ref-bradbury2017" role="doc-biblioref">Bradbury et al. 2017</a>)</span>（2016–2017，去掉跨时间的隐藏依赖，换取并行）。QRNN/SRU 已经是”为了并行而阉割循环”，承认了病根在串行。最后的理论牌是 IndRNN 与线性循环（把 <span class="math inline">\(W_h\)</span> 约束为可对角化/正定的良性谱。4.2 练习 5 的 IRNN 一族），长程能力回升但是，表达力受限。这些工作质量不低，但方向本身被 2017 年的宣言釜底抽薪：既然注意力已够，为什么还要为循环的存活付出工程税？</p>
 <p><strong>Transformer 阵营的持续输血</strong>：Memory-efficient attention、FlashAttention（2022，重排显存访问让 GPU 不空转）、稀疏与线性注意力。架构赢了之后，工程接力让它赢更多。注意这个模式：GPU 的收益不是架构自动兑现的，是十年编译器与 kernel 工程喂出来的（2.4 算子经济学的续集）。</p>
 <p><strong>弯路：把并行当银弹</strong>。也有一批工作为并行牺牲了因果性或顺序敏感（如无序的集合模型），在生成任务上翻车。并行的前提是保住序列的语义；因果掩码与位置编码正是 Transformer 付出的”并行税”。</p>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
@@ -1174,14 +1162,14 @@ window.Quarto = {
 <section id="核心思想" class="level2" data-number="24.3">
 <h2 data-number="24.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">24.3</span> 核心思想</h2>
 <p><strong>串行深度 vs 并行宽度</strong>。RNN 的计算图深度正比于序列长度（每步等上一步），任何硬件都救不了等待；Transformer 的计算图深度等于层数（与长度无关），长度的代价全部转化为更多的并行工作量（T×T 矩阵）。而并行工作量恰恰是 GPU 最擅长消化的形态。用账本语言：两者都在付 O(T) 的总计算，但 RNN 付的是串行时间、Transformer 付的是并行算力。硬件的汇率决定了谁划算。</p>
-<p><strong>训练经济学改写研究议程</strong>。同样的预算，能训更多步、更大模型的一方就能先探索规模曲线（Part 6）。架构的选择暗中决定了你能做的实验的档位。2018–2020 年的 GPT 系列之所以敢一路加倍参数，前提是 Transformer 的训练成本可承受且可预测。RNN 没有等到它的规模时代。</p>
+<p><strong>训练经济学改写研究议程</strong>。同样的预算，能训更多步、更大模型的一方就能先探索规模曲线（Part 6）。架构的选择暗中决定了你能做的实验的档位。2018–2020 年的 GPT 系列之所以，敢一路加倍参数，前提是 Transformer 的训练成本可承受且可预测。RNN 没有等到它的规模时代。</p>
 <p><strong>复杂度不是命运</strong>。O(T²) 的账单在 T&lt;10³ 时完全付得起（且常数极小）；在 T&gt;10⁵ 时才有切肤之痛（长上下文时代的核心矛盾，8.x）。渐进复杂度与工程现实之间隔着常数与硬件。读论文时把”大 O”换算成”我的 T 下每小时几美元”，是比直觉更诚实的评估方式。</p>
 <p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="24.4">
 <h2 data-number="24.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">24.4</span> 从零实现</h2>
 <p><code>dlbook.transformer.MiniGPT</code> 与 <code>dlbook.rnn.RNNLM</code> 已经同台过精度；本章给它们上计时器。<strong>实验一：批量吞吐。</strong></p>
-<div id="1ed78d1a" class="cell" data-execution_count="1">
+<div id="62540032" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1210,14 +1198,14 @@ window.Quarto = {
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>B<span class="sc">:&gt;4}</span><span class="ss"> </span><span class="sc">{</span>dt<span class="op">*</span><span class="dv">1000</span><span class="sc">:&gt;8.1f}</span><span class="ss"> ms </span><span class="sc">{</span>B <span class="op">*</span> <span class="dv">64</span> <span class="op">/</span> dt<span class="sc">:&gt;14,.0f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  批量       每步墙钟    吞吐 (tokens/s)
-   1      1.4 ms         46,698
-   8      8.9 ms         57,385
-  64    146.9 ms         27,886</code></pre>
+   1      1.4 ms         46,547
+   8      9.0 ms         56,740
+  64    149.9 ms         27,331</code></pre>
 </div>
 </div>
 <p>典型读数：批量从 1 到 8，每步时间几乎线性增长、<strong>吞吐不变</strong>；到 64 时吞吐仍与 1 相当（numpy 的 CPU 并行度有限，GPU 上这里会上升数倍）。要点不在具体数字，而在形状：Transformer 的吞吐随批量平坦或上升。对照 RNN：批量的每个样本各自走 64 步串行（我们的实现逐样本训练），墙钟随样本数线性增长，吞吐恒定。它在批量维度上没有任何硬件红利可吃。</p>
 <p><strong>实验二：长度的代价。</strong> 用一个 block_size 更大的模型扫序列长度（RNN 用 4.2 的引擎）：</p>
-<div id="520ea1f0" class="cell" data-execution_count="2">
+<div id="bfcb8e71" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.rnn <span class="im">import</span> RNNLM</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>big_model <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">256</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1240,18 +1228,18 @@ window.Quarto = {
 <pre><code>   T  transformer        rnn
   16       1.2 ms     0.2 ms
   32       2.4 ms     0.3 ms
-  64       4.4 ms     0.7 ms
- 128      16.0 ms     1.3 ms
- 256      54.1 ms     2.5 ms</code></pre>
+  64       4.5 ms     0.7 ms
+ 128      16.3 ms     1.3 ms
+ 256      54.8 ms     2.5 ms</code></pre>
 </div>
 </div>
-<p>典型读数（numpy/CPU）：T 翻倍，Transformer 时间约 ×3.5–4（平方律现身），RNN 约 ×2（线性律。但每步是 Python 循环，常数很高）。在 CPU 上两者尚可比；<strong>在 GPU 上 Transformer 的常数会缩小两三个数量级（大矩阵乘吃满流处理器），而 RNN 的每步小矩阵乘与串行依赖让 GPU 大部分核心闲置</strong>。同一份代码，硬件把胜负放大成悬殊。这就把故事交给历史数据：GNMT（2016，8 层 LSTM）训练一次数周；同任务的 Transformer（2017）训练时间以显著优势缩短。工程团队用脚投票的，从来是每小时美元。</p>
+<p>典型读数（numpy/CPU）：T 翻倍，Transformer 时间约 ×3.5–4（平方律现身），RNN 约 ×2（线性律。但是，每步是 Python 循环，常数很高）。在 CPU 上两者尚可比；<strong>在 GPU 上 Transformer 的常数会缩小两三个数量级（大矩阵乘吃满流处理器），而 RNN 的每步小矩阵乘与串行依赖让 GPU 大部分核心闲置</strong>。同一份代码，硬件把胜负放大成悬殊。这就把故事交给历史数据：GNMT（2016，8 层 LSTM）训练一次数周；同任务的 Transformer（2017）训练时间以显著优势缩短。工程团队用脚投票的，从来是每小时美元。</p>
 <p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="24.5">
 <h2 data-number="24.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">24.5</span> 消融实验</h2>
 <p><strong>把因果掩罩撤掉测”理解”任务</strong>是下一章的正题，本章的消融换成一个经济学问题：注意力矩阵的稀疏化。把因果掩罩进一步收紧。每个位置只允许看最近 k=16 个位置（带状掩罩，其余 <span class="math inline">\(-\infty\)</span>）：</p>
-<div id="af82961d" class="cell" data-execution_count="3">
+<div id="2237d012" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sparse_model <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1363,7 +1351,7 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：同预算下 6 块通常略差或持平（欠训练）。模型大 ≠ 好，模型要在预算内长大；这个观察就是 Chinchilla（6.2）要正式回答的问题的雏形。</p>
 <p><strong>练习 3 提示</strong>：利用率随 T 下降（小矩阵的开销占比高）。GPU 编程的全部艺术就是抬这条曲线（算子融合、FlashAttention 的本质）。</p>
-<p><strong>练习 5 参考数字</strong>：千 token 生成的瓶颈在每步读取 KV 缓存的显存带宽（T 越 long 越贵）；RNN 生成是串行小算。CPU/GPU 都不讨好，但 KV 缓存只占固定几 MB。训练看算力、推理看带宽。这个不对称是部署经济学的基本盘。</p>
+<p><strong>练习 5 参考数字</strong>：千 token 生成的瓶颈在每步读取 KV 缓存的显存带宽（T 越 long 越贵）；RNN 生成是串行小算。CPU/GPU 都不讨好，但是， KV 缓存只占固定几 MB。训练看算力、推理看带宽。这个不对称是部署经济学的基本盘。</p>
 </div>
 </div>
 </div>

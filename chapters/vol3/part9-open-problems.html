@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1147,10 +1135,10 @@ window.Quarto = {
 </div>
 <section id="问题一数据墙数据的尽头是什么" class="level2" data-number="38.1">
 <h2 data-number="38.1" class="anchored" data-anchor-id="问题一数据墙数据的尽头是什么"><span class="header-section-number">38.1</span> 问题一：数据墙。数据的尽头是什么</h2>
-<p><strong>问题</strong>：预训练吃的是”人类产生的文本”，它不是无限的。去重后的高质量文本有估计的上限；多轮训练与数据复用能推迟、但不能凭空创造信息。</p>
+<p><strong>问题</strong>：预训练吃的是”人类产生的文本”，它不是无限的。去重后的高质量文本有估计的上限；多轮训练与数据复用能推迟、但是，不能凭空创造信息。</p>
 <p><strong>Loss 视角的陈述</strong>：数据决定 <span class="math inline">\(L_\infty\)</span>（6.1 的地板项）。语料的熵就是模型一族的天花板。字节可以复制，信息不能。</p>
 <p><strong>本书尺度的锚点实验</strong>。数据复制 vs 真新增：</p>
-<div id="bbed1693" class="cell" data-execution_count="1">
+<div id="30d821d8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1201,7 +1189,7 @@ window.Quarto = {
 <li>7.4 的饱和：采 10 次也够不着的题，自举救不了（除非探索扩大支撑。温度消融里看到的”探索是燃料”）；</li>
 <li>8.2 练习 2 的隐患：自采数据混入”侥幸成功”，学进权重的是错误的路径。<strong>飞轮也会放大错误</strong>（与 7.3 的 reward hacking 同构：闭环的错误比开环的更持久，因为它写进了权重）。</li>
 </ul>
-<p><strong>未解的部分</strong>：多轮自举后的多样性坍缩速度、飞轮与外部信息（检索、环境）的最优混合比、以及一个哲学级的问句：没有任何外部信息注入的纯自举，是不是注定收敛到初始分布的最优采样器？（我们猜是。这几乎是个数学问题，但没人证完。）</p>
+<p><strong>未解的部分</strong>：多轮自举后的多样性坍缩速度、飞轮与外部信息（检索、环境）的最优混合比、以及一个哲学级的问句：没有任何外部信息注入的纯自举，是不是注定收敛到初始分布的最优采样器？（我们猜是。这几乎是个数学问题，但是，没人证完。）</p>
 <p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：问题二：自我改进的边界。飞轮的止点。</p>
 </section>
 <section id="问题三评测危机我们在测什么" class="level2" data-number="38.3">
@@ -1221,7 +1209,7 @@ window.Quarto = {
 <section id="问题四样本效率为什么模型比人费数据" class="level2" data-number="38.4">
 <h2 data-number="38.4" class="anchored" data-anchor-id="问题四样本效率为什么模型比人费数据"><span class="header-section-number">38.4</span> 问题四：样本效率。为什么模型比人费数据</h2>
 <p><strong>问题</strong>：一个孩子听千万词就能说话；一个基座要读万亿 token。差了三四个数量级的样本效率，是缺陷还是另一种智能的代价？</p>
-<p><strong>Loss 视角的陈述</strong>：梯度下降 + 下一词预测是一个低偏置的学习机。它几乎不带先验，所以几乎什么都能学，代价是什么都要从头见很多遍（3.1 的归纳偏置账：先验是小数据的朋友、大数据的枷锁）。人类自带数十亿年演化的先验（感知结构、因果直觉、社会常识）。样本效率的差距，本质是先验的差距。Bitter Lesson 在这里给出它最尖锐的版本：我们赌的是”算力比先验便宜”。至今赌赢，但赌注在涨。</p>
+<p><strong>Loss 视角的陈述</strong>：梯度下降 + 下一词预测是一个低偏置的学习机。它几乎不带先验，所以几乎什么都能学，代价是什么都要从头见很多遍（3.1 的归纳偏置账：先验是小数据的朋友、大数据的枷锁）。人类自带数十亿年演化的先验（感知结构、因果直觉、社会常识）。样本效率的差距，本质是先验的差距。Bitter Lesson 在这里给出它最尖锐的版本：我们赌的是”算力比先验便宜”。至今赌赢，但是，赌注在涨。</p>
 <p><strong>未解的部分</strong>：先验的注入（架构、数据课程、多模态 grounding）能否追回数量级而不损失通用性？婴儿式的主动学习（提问、干预）在机器上的等价物是什么？。这两个方向各有一整代研究的空间。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：问题四：样本效率。为什么模型比人费数据。</p>
 </section>

@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1180,13 +1168,13 @@ window.Quarto = {
 <li>阶梯度量（精确匹配、阈值通过、多项选择全对）：<span class="math inline">\(M(c) = \mathbb{1}[c^n &gt; \theta]\)</span> 一类。<span class="math inline">\(n\)</span> 越大（串越长、要求越苛刻），<strong>同样的 <span class="math inline">\(c\)</span> 改善被放大成越陡的跳变</strong>。</li>
 </ul>
 <p>这<strong>度量的选择先于结论</strong>：先定度量再看图，跳变与平滑都唾手可得。科学的纪律是：能力声明必须经受度量替换的稳健性检验。换两三种度量，结论仍在，才叫现象；只在一种度量下存在，那可能只是度量的影子。</p>
-<p><strong>对”风险叙事”的校正</strong>：度量假象论让”不可预测的相变”失去了一部分证据，但没有证明”一切皆平滑”。真正的突变若存在，其机制研究（而非图表）才是正途。审慎的立场是双门的：既不拿阶梯曲线贩卖神秘，也不拿平滑曲线否认质变。</p>
+<p><strong>对”风险叙事”的校正</strong>：度量假象论让”不可预测的相变”失去了一部分证据，但是，没有证明”一切皆平滑”。真正的突变若存在，其机制研究（而非图表）才是正途。审慎的立场是双门的：既不拿阶梯曲线贩卖神秘，也不拿平滑曲线否认质变。</p>
 <p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="28.4">
 <h2 data-number="28.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">28.4</span> 从零实现</h2>
 <p>复用 6.1 的四尺寸扫描（同数据、同配方），每个模型测<strong>两种度量</strong>：</p>
-<div id="cd4b3d08" class="cell" data-execution_count="1">
+<div id="7eacf593" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1233,7 +1221,7 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 </div>
 </div>
 <p>把三种度量放在一起看（注意第二列到第三列的<strong>换算</strong>）：</p>
-<div id="ebee3c47" class="cell" data-execution_count="2">
+<div id="6c76d79a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(report)</span>
@@ -1296,7 +1284,7 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 <section id="消融实验" class="level2" data-number="28.5">
 <h2 data-number="28.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">28.5</span> 消融实验</h2>
 <p><strong>放大器的旋钮</strong>：把阶梯度量的窗口从 4 调到 2 和 8，跳变的”锐度”怎么变？（窗口越长，<span class="math inline">\(n\)</span> 次方放大越猛，悬崖越陡。同一种能力可以被量出任意陡峭的觉醒。）</p>
-<div id="4a0530eb" class="cell" data-execution_count="3">
+<div id="dc213410" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exactk(pred, tgt, k):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> <span class="bu">sum</span>((pred[i, j : j <span class="op">+</span> k] <span class="op">==</span> tgt[i, j : j <span class="op">+</span> k]).<span class="bu">all</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(pred.shape[<span class="dv">0</span>]) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, pred.shape[<span class="dv">1</span>] <span class="op">-</span> k <span class="op">+</span> <span class="dv">1</span>, k))</span>

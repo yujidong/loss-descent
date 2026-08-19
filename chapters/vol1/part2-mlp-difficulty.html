@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1148,7 +1136,7 @@ window.Quarto = {
 </div>
 <section id="本章问题" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">8.1</span> 本章问题</h2>
-<p>反向传播给了我们<strong>一个</strong>下降方向，但没人保证这条路通向哪里。具体拆成四问：</p>
+<p>反向传播给了我们<strong>一个</strong>下降方向，但是，没人保证这条路通向哪里。具体拆成四问：</p>
 <ol type="1">
 <li><strong>地形</strong>：loss 的参数空间长什么样？我们是在什么样的山谷里走路？</li>
 <li>落点：同样的数据、同样的网络、不同的随机初始化，结局差多少？</li>
@@ -1183,7 +1171,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">8.4</span> 从零实现</h2>
-<div id="a4df5308" class="cell" data-execution_count="1">
+<div id="ed3625cb" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1198,7 +1186,7 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Xv, yv <span class="op">=</span> make_moons(n_per_class<span class="op">=</span><span class="dv">100</span>, seed<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：学习率扫描。</strong> 固定一切，只动步长：</p>
-<div id="1b4130b9" class="cell" data-execution_count="2">
+<div id="3e4fede1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">16</span>, <span class="dv">1</span>], seed<span class="op">=</span><span class="dv">42</span>)</span>
@@ -1214,9 +1202,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>0.001 爬行（300 epoch 后仍停在 0.34），0.01 到位，0.05 更快。那再大呢？把 <code>lr=0.5</code> 加入扫描。loss 直接<strong>溢出为 NaN</strong>（数值发散）。注意上一章的教训在这里同样成立：步子太大的死法常常饱和，但足够大的步子连饱和区都待不住，干脆溢出。</p>
+<p>0.001 爬行（300 epoch 后仍停在 0.34），0.01 到位，0.05 更快。那再大呢？把 <code>lr=0.5</code> 加入扫描。loss 直接<strong>溢出为 NaN</strong>（数值发散）。注意上一章的教训在这里同样成立：步子太大的死法常常饱和，但是，足够大的步子连饱和区都待不住，干脆溢出。</p>
 <p><strong>实验二：种子彩票。</strong> 同一配置，只换初始化种子：</p>
-<div id="9b749a96" class="cell" data-execution_count="3">
+<div id="7f3b13b2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>finals <span class="op">=</span> []</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">16</span>, <span class="dv">1</span>], seed<span class="op">=</span>seed)</span>
@@ -1233,7 +1221,7 @@ window.Quarto = {
 </div>
 <p>典型的结果是一张”彩票”：有的种子落到 0.05，有的卡在 0.37。近一个数量级的差距，纯粹来自落点。1990 年代每一个调参的下午都在抽这张签。</p>
 <p><strong>实验三：看一眼地形。</strong> 训练一个收敛的模型，然后在其参数空间里取两个随机方向张成的平面，扫描 loss：</p>
-<div id="6b0c0cd0" class="cell" data-execution_count="4">
+<div id="faf0469e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flat(model):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.concatenate([W.ravel() <span class="cf">for</span> W <span class="kw">in</span> model.Ws] <span class="op">+</span> [b.ravel() <span class="cf">for</span> b <span class="kw">in</span> model.bs])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1282,7 +1270,7 @@ window.Quarto = {
 </div>
 <p>这就是 Goodfellow 等人 2015 年让全场吃惊的那张图：收敛点附近**一片缓慢起伏的开阔地。训练终点更像”到达了一片高原的某处”，而非”落进了谷底”。这也解释了种子彩票：不同的落点走到同一片高原的不同位置。</p>
 <p><strong>实验四：初始化的生死。</strong> 八层 tanh 网络，朴素 vs 扇入缩放初始化。先做确定性体检。数一数每层有多少激活值已经饱和（<span class="math inline">\(|\tanh| &gt; 0.99\)</span>）：</p>
-<div id="83b952b8" class="cell" data-execution_count="5">
+<div id="b516fc41" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Xs</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
@@ -1300,7 +1288,7 @@ window.Quarto = {
 </div>
 </div>
 <p>朴素初始化下饱和率逐层攀升至三分之一以上。<strong>网络还没开始训练，三分之一的梯度通道已经关死</strong>；缩放初始化下饱和率为零。训练结局随之分流：</p>
-<div id="49e80a7b" class="cell" data-execution_count="6">
+<div id="09916646" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>, init<span class="op">=</span>init)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">600</span>)</span>
@@ -1316,7 +1304,7 @@ init= uniform: loss=1.6161  acc=0.50</code></pre>
 <section id="消融实验" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">8.5</span> 消融实验</h2>
 <p><strong>饱和率是中介变量。</strong> 上一个实验其实是一条因果链：初始化尺度 → 前向饱和率 → 反向梯度存活 → 训练成败。验证中介环节。把网络改浅（2 层），朴素初始化还致命吗？</p>
-<div id="f64bb056" class="cell" data-execution_count="7">
+<div id="c4fe9825" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">8</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>, init<span class="op">=</span>init)</span>
@@ -1420,7 +1408,7 @@ depth=8, init= uniform: acc=0.50</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：分布收紧（小批噪声是随机性的放大器），但不会消失。初始化落点仍是抽签。若你观察到某些种子仍然失败，恭喜你看到了”两种随机源”的可分离性。</p>
+<p><strong>练习 2</strong>：分布收紧（小批噪声是随机性的放大器），但是，不会消失。初始化落点仍是抽签。若你观察到某些种子仍然失败，恭喜你看到了”两种随机源”的可分离性。</p>
 <p><strong>练习 3</strong>：sigmoid 的饱和率用阈值 <span class="math inline">\(|\sigma-0.5|&gt;0.49\)</span> 度量会更高，八层训练更早躺平；与 1.4 表中 sigmoid 首层梯度 <span class="math inline">\(2.5\times10^{-1} \to 8.4\times10^{-8}\)</span> 的定量关系是 <span class="math inline">\(\le 0.25\)</span> 的连乘。</p>
 <p><strong>练习 5 提示</strong>：反向时梯度经过 <span class="math inline">\(W^\top\)</span>，每层乘的是 fan-out 方向的权重和。两个约束不能同时严格满足，除非每层方 fan-in=fan-out；Xavier 的调和是让两侧都不爆炸。</p>
 </div>

@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1186,7 +1174,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="29.4">
 <h2 data-number="29.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">29.4</span> 从零实现</h2>
 <p><strong>MoE 对照实验</strong>：dense d=32（第二块 MLP 隐层 4d=128）vs 同模型第二块换成 <code>MoEMLP</code>（2 位专家、各 2d=64 隐层）。总参数相近、每 token 活跃算力减半：</p>
-<div id="590b4dde" class="cell" data-execution_count="1">
+<div id="ff03e09b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1242,7 +1230,7 @@ MoE:   val loss = 1.938
 <h2 data-number="29.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">29.5</span> 消融实验</h2>
 <p><strong>专家数扫描</strong>：把专家从 2 位加到 4 位（每位隐层 d=32，保持总活跃算力近似）。失衡会缓解还是恶化？（预测：专家越多，无约束的均衡越难自发形成。负载均衡损失从”可选”变”必需”的临界点。）</p>
 <p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：消融实验。</p>
-<div id="78a43222" class="cell" data-execution_count="2">
+<div id="600478a2" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>moe4 <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>moe4.blocks[<span class="dv">1</span>].mlp <span class="op">=</span> MoEMLP(<span class="dv">32</span>, n_experts<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">77</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train(moe4)</span>
@@ -1341,7 +1329,7 @@ MoE:   val loss = 1.938
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 1</strong>：使用率趋向均衡（如 0.55/0.45），loss 或微升或微降。均衡与质量是两本账，辅助损失买的是前者的保险；真实系统里没有它，MoE 会退化成”单专家 + 死权重”。</p>
-<p><strong>练习 2</strong>：top-2 更稳（梯度更密）但每 token 算力翻倍。稀疏性的收益被稀释；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。</p>
+<p><strong>练习 2</strong>：top-2 更稳（梯度更密）但是，每 token 算力翻倍。稀疏性的收益被稀释；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。</p>
 <p><strong>练习 5 提示</strong>：典型样本里”完整词”过半但”重复片段”显著（循环复读是循环网络时代的老病，在弱 base 模型上仍可见）。7.1 会把这类观察系统化为”分布的怪癖”，并论证为什么需要后训练。</p>
 </div>
 </div>

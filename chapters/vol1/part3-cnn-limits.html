@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1143,7 +1131,7 @@ window.Quarto = {
 <li><strong>算力</strong>：序列模型（即将登场的 RNN）在 GPU 上的并行度天生不如卷积。算力的偏好开始悄悄影响架构演化（5.3 的主题埋线）；</li>
 <li>数据：互联网文本成为下一个金矿，词级依赖动辄跨越数十词；</li>
 <li>认知：NLP 的主流是词向量 + 特征工程（4.4 的 word2vec 刚出现）；把”阅读”当作序列建模的想法正在成形；</li>
-<li>关键事实：卷积并未死于序列。WaveNet <span class="citation" data-cites="oord2016">(<a href="#ref-oord2016" role="doc-biblioref">Oord et al. 2016</a>)</span>（2016）用空洞卷积把窗口指数式撑大，证明”固定窗口”还有最后一滴油水可榨；但真正的王座要等循环与注意力（Part 4 与 5）。</li>
+<li>关键事实：卷积并未死于序列。WaveNet <span class="citation" data-cites="oord2016">(<a href="#ref-oord2016" role="doc-biblioref">Oord et al. 2016</a>)</span>（2016）用空洞卷积把窗口指数式撑大，证明”固定窗口”还有最后一滴油水可榨；但是，真正的王座要等循环与注意力（Part 4 与 5）。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="16.1">
@@ -1159,7 +1147,7 @@ window.Quarto = {
 <h2 data-number="16.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">16.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>把图像方案硬搬到文本（弯路）</strong>。早期尝试把句子当”一维图像”做卷积（text-CNN，Kim 2014）。在短文本分类上意外好用（n-gram 检测器），但生成与翻译这类需要逐位置输出、看任意远上下文的任务上，固定窗口捉襟见肘。分类可以只看局部特征袋，生成必须照顾全局。这个差别定义了序列建模的真正难度。</p>
 <p><strong>空洞卷积的最后一搏（WaveNet, 2016）</strong>。窗口不再紧挨着滑动：第 <span class="math inline">\(l\)</span> 层的卷积每隔 <span class="math inline">\(d_l\)</span> 个位置取一个输入，<span class="math inline">\(d_l\)</span> 逐层翻倍。<span class="math inline">\(L\)</span> 层的等效感受野随 <span class="math inline">\(2^L\)</span> 指数增长，10 层即可覆盖上千个时间步。它撑起了 2016–2018 的语音合成（说出了谷歌助手的声音），却仍有一个软肋：感受野再大也是预设的。依赖在感受野之外照样抓瞎，且所有位置共享同一套”看哪里”的模式。</p>
-<p><strong>命运的伏笔</strong>：解决”不定距离依赖”的正确答案其实已经发表（注意力，Bahdanau 2014。5.1 的主角），但世界要先在循环结构上绕一个大圈。答案常常早于问题被需要。研究史的又一常态。</p>
+<p><strong>命运的伏笔</strong>：解决”不定距离依赖”的正确答案其实已经发表（注意力，Bahdanau 2014。5.1 的主角），但是，世界要先在循环结构上绕一个大圈。答案常常早于问题被需要。研究史的又一常态。</p>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>任务：16 比特序列，<span class="math inline">\(y = x_{16-8}\)</span>（回看 8 步）。两个候选模型，都只读序列末段：</p>
@@ -1192,7 +1180,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">16.4</span> 从零实现</h2>
 <p><code>dlbook.nn.Conv1D</code> 已就位。模型 = 一维卷积 + relu + <strong>只取末位输出</strong>（因果式的最小演示）+ 线性头：</p>
-<div id="e0e14d27" class="cell" data-execution_count="1">
+<div id="a60695cf" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_seq_task</span>
@@ -1216,19 +1204,22 @@ window.Quarto = {
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(Xtr), <span class="dv">50</span>):</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            i <span class="op">=</span> order[s : s <span class="op">+</span> <span class="dv">50</span>]</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            Z <span class="op">=</span> conv.forward(Xtr[i])[:, :, <span class="op">-</span><span class="dv">1</span>]  <span class="co"># 只取末位（因果式输出）</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            Hr <span class="op">=</span> np.maximum(Z, <span class="fl">0.0</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> head.forward(Hr)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            dA <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> (pred <span class="op">-</span> ytr[i].reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="op">/</span> <span class="bu">len</span>(i)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            dHr <span class="op">=</span> head.backward_from(Hr, dA)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            conv.backward(dHr[:, :, <span class="va">None</span>] <span class="op">*</span> (Z <span class="op">&gt;</span> <span class="fl">0.0</span>)[:, :, <span class="va">None</span>])</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            conv.step(lr)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            head.step(lr, momentum<span class="op">=</span><span class="fl">0.9</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    Zte <span class="op">=</span> np.maximum(conv.forward(Xte)[:, :, <span class="op">-</span><span class="dv">1</span>], <span class="fl">0.0</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.mean((head.forward(Zte).ravel() <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">==</span> (yte <span class="op">&gt;</span> <span class="dv">0</span>)))</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">3</span>, <span class="dv">10</span>):</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"窗口 k=</span><span class="sc">{</span>k<span class="sc">:2d}</span><span class="ss">: test_acc = </span><span class="sc">{</span>train_window_net(k)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            Hr <span class="op">=</span> np.maximum(Z, <span class="fl">0.0</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> head.forward(Hr)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            dA <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> (pred <span class="op">-</span> ytr[i].reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="op">/</span> <span class="bu">len</span>(i)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            dHr <span class="op">=</span> head.backward_from(Hr, dA)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            conv.backward(dHr[:, :, <span class="va">None</span>] <span class="op">*</span> (Z <span class="op">&gt;</span> <span class="fl">0.0</span>)[:, :, <span class="va">None</span>])</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            conv.step(lr)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            head.step(lr, momentum<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    Zte <span class="op">=</span> np.maximum(conv.forward(Xte)[:, :, <span class="op">-</span><span class="dv">1</span>], <span class="fl">0.0</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.mean((head.forward(Zte).ravel() <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">==</span> (yte <span class="op">&gt;</span> <span class="dv">0</span>)))</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">3</span>, <span class="dv">10</span>):</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"窗口 k=</span><span class="sc">{</span>k<span class="sc">:2d}</span><span class="ss">: test_acc = </span><span class="sc">{</span>train_window_net(k)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>任务: y = 序列倒数第 8 个比特（视野内还是外，取决于窗口宽度）
 窗口 k= 3: test_acc = 0.486
@@ -1241,7 +1232,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">16.5</span> 消融实验</h2>
 <p><strong>势力范围图</strong>：固定 <span class="math inline">\(k=10\)</span>，扫回看距离。</p>
-<div id="93810280" class="cell" data-execution_count="2">
+<div id="0cbf9fb1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">12</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Xtr_d, ytr_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Xte_d, yte_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1362,7 +1353,7 @@ window.Quarto = {
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：不会改善。目标比特与窗口内输入统计独立，贝叶斯最优就是边缘分布 0.5。数据买不到视野外的信息；这个事实在 LLM 时代的版本叫”上下文外幻觉”（模型对窗口外的问题只能编），9.2 再会。</p>
 <p><strong>练习 3</strong>：全局平均后，末位与首位信息的区别被抹平。<span class="math inline">\(k=10\)</span> 的优势消失，成绩跌回 0.5 附近。需要位置信息时要用”保留位置维度的头”（我们的末位头）或位置编码（5.2 的正式解法）。</p>
-<p><strong>练习 5 提示</strong>：单一窗口 <span class="math inline">\(k\)</span> 覆盖 <span class="math inline">\([-k, -1]\)</span>；两个候选位置 -3 与 -12 至少有一个在任意 <span class="math inline">\(k&lt;12\)</span> 的窗口外。双分支（不同 <span class="math inline">\(k\)</span>）+ 门控可以硬解，但门控信号本身也要看全局。你已经在重新发明”动态选择看哪里”，即注意力的雏形。</p>
+<p><strong>练习 5 提示</strong>：单一窗口 <span class="math inline">\(k\)</span> 覆盖 <span class="math inline">\([-k, -1]\)</span>；两个候选位置 -3 与 -12 至少有一个在任意 <span class="math inline">\(k&lt;12\)</span> 的窗口外。双分支（不同 <span class="math inline">\(k\)</span>）+ 门控可以硬解，但是，门控信号本身也要看全局。你已经在重新发明”动态选择看哪里”，即注意力的雏形。</p>
 </div>
 </div>
 </div>

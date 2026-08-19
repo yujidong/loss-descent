@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -187,23 +187,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1135,7 +1123,7 @@ main table {
 <p>两个实验预告，先写下预测：</p>
 <ol type="1">
 <li><strong>计算器拦截</strong>：让故事模型续写含算式的文本（如 <code>"pip counted 3+4="</code>）。模型会算对吗？（你已知道它的水平。）现在外挂一个工具：正则匹配到 <code>a+b=</code> 就把正确答案写回上下文再让模型继续。整体正确率会到多少？ 模型与工具的分工你怎么描述？</li>
-<li>验证器重排：7.2 的 SFT 模型贪心命中只有 0.17–0.33，但正确答案的似然 margin 是 +3.68 nat。如果系统层枚举全部 12 个候选答案、按 teacher-forced 似然重排取最优，命中率会到多少？（提示：margin 是均值。每道题的正确答案都排第一吗？）</li>
+<li>验证器重排：7.2 的 SFT 模型贪心命中只有 0.17–0.33，但是，正确答案的似然 margin 是 +3.68 nat。如果系统层枚举全部 12 个候选答案、按 teacher-forced 似然重排取最优，命中率会到多少？（提示：margin 是均值。每道题的正确答案都排第一吗？）</li>
 </ol>
 <p>写完再运行。第 2 问的答案不如很多人猜的那么高，原因值得写进你的笔记。</p>
 </div>
@@ -1148,14 +1136,14 @@ main table {
 <li>后训练的接口对齐：函数调用格式、指令遵循。SFT/RLHF 把”偶尔会的行为”变成”稳定可靠的行为”（7.2 的格式满分正是这一层）；</li>
 <li>系统层的循环与工具：真正的执行、验证、重试发生在模型之外。模型提供行为分布，环境提供因果。</li>
 </ol>
-<p><strong>工具的本质：把模型的短板外包给确定性系统</strong>。模型不擅长精确算术（7.4 我们领教过），但擅长决定”什么时候该算、算什么”。决策与执行分离，agent 的全部架构秘密就这一句。它与 3.1 卷积的”归纳偏置”形成有趣的镜像：卷积把结构写进权重，agent 把结构写进环境。先验的两种住所。</p>
+<p><strong>工具的本质：把模型的短板外包给确定性系统</strong>。模型不擅长精确算术（7.4 我们领教过），但是，擅长决定”什么时候该算、算什么”。决策与执行分离，agent 的全部架构秘密就这一句。它与 3.1 卷积的”归纳偏置”形成有趣的镜像：卷积把结构写进权重，agent 把结构写进环境。先验的两种住所。</p>
 <p><strong>“知道”与”说出”之间，工具是桥</strong>：7.2 发现知识在概率里、行为在路径上。重排类工具（验证器、best-of-n）不改权重，直接读概率。它们是”把知道变成说出”的系统层方案（与 RLHF 的模型层方案对照）。</p>
 <p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="34.4">
 <h2 data-number="34.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">34.4</span> 从零实现</h2>
 <p><strong>实验一：计算器拦截。</strong> 基座模型续写含算式的文本，工具在算式处接管：</p>
-<div id="a02218e2" class="cell" data-execution_count="1">
+<div id="1fd54dde" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1224,7 +1212,7 @@ main table {
 </div>
 <p>典型读数：<strong>无工具 ≈ 0.05–0.15</strong>（模型对算术只有字符级的模糊直觉）→ 带工具 = 1.00。注意工具只做了一件小事：识别模式、算对、写回。决策权（在哪里停、写什么算式）仍在模型。这就是 agent 的分工：模型出意图，环境出因果。</p>
 <p><strong>实验二：验证器重排。把 margin 变成命中率。</strong> 复用 7.2 的 SFT 流程（代码相同，快速重训）：</p>
-<div id="a6ca8dff" class="cell" data-execution_count="2">
+<div id="e68dc19e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_qa_corpus</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.transformer.layers <span class="im">import</span> softmax_lastdim</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1363,7 +1351,7 @@ main table {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：命中率下降。干扰项越多，“逐题第一”越难（平均 margin 不变但排序噪声累积）；真实 RAG 的重排器要对抗的正是候选集膨胀。重排质量随候选规模衰减是部署里的经典曲线。</p>
+<p><strong>练习 2</strong>：命中率下降。干扰项越多，“逐题第一”越难（平均 margin 不变但是，排序噪声累积）；真实 RAG 的重排器要对抗的正是候选集膨胀。重排质量随候选规模衰减是部署里的经典曲线。</p>
 <p><strong>练习 3</strong>：事后纠正版的最终答案对、但后续文本已围绕错误答案展开（“pip counted 3+4=9 . nine apples .” → 改成 7 后 nine 还在）。因果污染不可逆，这是多步 agent 要”边走边验”的根源。</p>
 <p><strong>练习 5 提示</strong>：数字多出现在价格、数量、日期上下文。模型在这些前缀后生成算式的频率，就是它在模仿语料里”人类何时动笔算”的分布；工具调用的”时机感”是模仿来的，不是推理来的。</p>
 </div>

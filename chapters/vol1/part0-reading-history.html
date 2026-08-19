@@ -137,7 +137,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
+/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -152,23 +152,11 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
-@media (min-width: 992px) {
-  #quarto-content {
-    max-width: none !important;
-  }
-  .page-columns {
-    max-width: none !important;
-  }
-  .page-columns .page {
-    max-width: min(88vw, 68rem);
-    margin-right: auto;
-    margin-left: auto;
-  }
-}
-@media (min-width: 1400px) {
-  .page-columns .page {
-    max-width: min(82vw, 72rem);
+/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
+@media (min-width: 1200px) {
+  main > .quarto-title-block, main > section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 </style>
@@ -1057,7 +1045,7 @@ main table {
 </header>
 
 
-<p>同一张深度学习地图有两种画法。一种是年表：1958 感知机、1986 反向传播、2012 AlexNet、2017 Transformer……另一种是问题链：<strong>每个技术都是上一个技术遗留问题的答案</strong>。两种地图都”正确”，但只有第二种能用来预测未来。因为驱动研究的从来不是年份，是问题。本章是全书的方法论预习：教你把历史当成一串问题来读。</p>
+<p>同一张深度学习地图有两种画法。一种是年表：1958 感知机、1986 反向传播、2012 AlexNet、2017 Transformer……另一种是问题链：<strong>每个技术都是上一个技术遗留问题的答案</strong>。两种地图都”正确”，但是，只有第二种能用来预测未来。因为驱动研究的从来不是年份，是问题。本章是全书的方法论预习：教你把历史当成一串问题来读。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1076,7 +1064,7 @@ main table {
 </div>
 <section id="本章问题" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">3.1</span> 本章问题</h2>
-<p>人的理解需要 context，但 context 不等于信息量。你可以背下一百个年份和一百个名词，理解却分毫未增。真正的问题只有一个：</p>
+<p>人的理解需要 context，但是， context 不等于信息量。你可以背下一百个年份和一百个名词，理解却分毫未增。真正的问题只有一个：</p>
 <p><strong>历史的正确读数单位是什么？</strong> 以人为单位？以论文为单位？以年份为单位？还是以别的什么为单位？</p>
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="3.2">
