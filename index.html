@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="yujid">
+<meta name="author" content="Yuji Dong">
 
 <title>降 Loss 之路</title>
 <style>
@@ -1019,7 +1019,7 @@ main table {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>yujid </p>
+             <p>Yuji Dong </p>
           </div>
   </div>
     
@@ -1034,11 +1034,11 @@ main table {
 
 <section id="欢迎来到降-loss-之路" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> 欢迎来到《降 Loss 之路》</h1>
-<p>这是一本<strong>用实验重走深度学习研究史</strong>的交互书。它不从「Transformer 是什么」讲起，而从 1958 年的感知机讲起——因为研究思路没法被讲述，只能被重演。读者只有先被 RNN 的梯度消失折磨过，才能真正理解「Attention is All You Need」标题里那个 <em>All You Need</em> 的分量。</p>
+<p>这是一本<strong>用实验重走深度学习研究史</strong>的交互书。它不从「Transformer 是什么」讲起，而从 1958 年的感知机讲起。因为研究思路没法被讲述，只能被重演。读者只有先被 RNN 的梯度消失折磨过，才能真正理解「Attention is All You Need」标题里那个 <em>All You Need</em> 的分量。</p>
 <section id="两条主线" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="两条主线"><span class="header-section-number">1.1</span> 两条主线</h2>
-<p><strong>历史主线（骨架）</strong>：每一章都是历史上的一次真实解题。上一代架构留下的问题，就是下一章的起点。读完你走过的不是知识点清单，而是从感知机到智能体这条路上每一次「发现问题 → 提出假设 → 实验验证 → 暴露新问题」的完整循环。</p>
-<p><strong>Loss 主线（分析工具）</strong>：每个架构改进，统一用一个度量来审视——它让什么 loss、在什么数据上、降得更便宜？架构史因此不是名词罗列，而是一部「降 loss 效率的进化史」。这个视角一直延伸到当下：SFT 是指令数据上的监督 loss，RLHF 是奖励变形后的 loss，推理模型是可验证奖励上的 loss——看懂了 loss，就看懂了模型的本质，也更容易判断未来的方向。</p>
+<p><strong>历史主线（骨架）</strong>：每一章都是历史上的一次真实解题。上一代架构留下的问题，就是下一章的起点。读完你走过的从感知机到智能体这条路上每一次「发现问题 → 提出假设 → 实验验证 → 暴露新问题」的完整循环。</p>
+<p><strong>Loss 主线（分析工具）</strong>：每个架构改进，统一用一个度量来审视。它让什么 loss、在什么数据上、降得更便宜？架构史因此一部「降 loss 效率的进化史」。这个视角一直延伸到当下：SFT 是指令数据上的监督 loss，RLHF 是奖励变形后的 loss，推理模型是可验证奖励上的 loss。看懂了 loss，就看懂了模型的本质，也更容易判断未来的方向。</p>
 </section>
 <section id="全书的弧线" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="全书的弧线"><span class="header-section-number">1.2</span> 全书的弧线</h2>
@@ -1101,17 +1101,17 @@ main table {
 </section>
 <section id="给谁读" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="给谁读"><span class="header-section-number">1.3</span> 给谁读</h2>
-<p>会 Python、了解一点线性代数和微积分、没系统学过深度学习的人可以直接从头读；有 ML 基础的读者可以跳过 Part 0–1 的推导细节，但建议不要跳过各章的「停一停」练习——那才是这本书真正的核心体验。</p>
+<p>会 Python、了解一点线性代数和微积分、没系统学过深度学习的人可以直接从头读；有 ML 基础的读者可以跳过 Part 0–1 的推导细节，但建议不要跳过各章的「停一停」练习。那才是这本书真正的核心体验。</p>
 </section>
 <section id="实验与算力" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="实验与算力"><span class="header-section-number">1.4</span> 实验与算力</h2>
 <p>每章都有可运行的从零实现实验，按算力需求分三级标注：</p>
 <ul>
-<li><strong>A 级</strong>：笔记本 CPU，分钟级。卷一全部、卷二大部分实验在此级别——这段历史本来就发生在小算力上，今天恰好可以完整复现。</li>
+<li><strong>A 级</strong>：笔记本 CPU，分钟级。卷一全部、卷二大部分实验在此级别。这段历史本来就发生在小算力上，今天恰好可以完整复现。</li>
 <li><strong>B 级</strong>：免费 Colab T4，几十分钟。卷二中后期的语言模型实验。</li>
 <li><strong>C 级</strong>：提供预训练 checkpoint，读者只做加载与分析。</li>
 </ul>
-<p>代码不散落在 notebook 里，而是随书生长成一个包 <code>dlbook</code>：每章把新实现的模型合入其中，后续章节直接 <code>import</code> 复用。读完这本书，你拥有的不是一堆笔记，而是一座自己一层层盖起来的微型深度学习史图书馆。</p>
+<p>代码不散落在 notebook 里，而是随书生长成一个包 <code>dlbook</code>：每章把新实现的模型合入其中，后续章节直接 <code>import</code> 复用。读完这本书，你拥有的一座自己一层层盖起来的微型深度学习史图书馆。</p>
 </section>
 <section id="三卷出版计划" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="三卷出版计划"><span class="header-section-number">1.5</span> 三卷出版计划</h2>
@@ -1129,11 +1129,11 @@ main table {
 <li><a href="https://course.fast.ai">fast.ai</a>：自顶向下教学设计的范本；</li>
 <li><a href="https://karpathy.ai/zero-to-hero.html">Karpathy · Neural Networks: Zero to Hero</a>：从零造 LLM 的范本。</li>
 </ul>
-<p>本书的差异点：<strong>用研究史做骨架、用 loss 视角做解剖刀，一路贯穿到智能体与前沿</strong>——目前没有一本书这样做。</p>
+<p>本书的差异点：<strong>用研究史做骨架、用 loss 视角做解剖刀，一路贯穿到智能体与前沿</strong>。目前没有一本书这样做。</p>
 </section>
 <section id="反馈" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="反馈"><span class="header-section-number">1.7</span> 反馈</h2>
-<p>发现错误、参与讨论，请到 <a href="https://github.com/yujidong/loss-descent/issues">GitHub 仓库</a> 提 issue。在线阅读请访问 <a href="https://yujidong.github.io/loss-descent/">yujidong.github.io/loss-descent</a>——页面上可以直接划选文字添加批注（右下角工具栏），导出后交回作者。这是一本写作中的书，它自己也应该像研究一样迭代。</p>
+<p>发现错误、参与讨论，请到 <a href="https://github.com/yujidong/loss-descent/issues">GitHub 仓库</a> 提 issue。在线阅读请访问 <a href="https://yujidong.github.io/loss-descent/">yujidong.github.io/loss-descent</a>。页面上可以直接划选文字添加批注（右下角工具栏），导出后交回作者。这是一本写作中的书，它自己也应该像研究一样迭代。</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">

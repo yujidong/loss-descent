@@ -1088,7 +1088,7 @@ window.Quarto = {
 </header>
 
 
-<p>上一部分结束时我们手里有：万能的表示力（1.4 的宽度实验）、能转的发动机（1.3 的反向传播）、以及两道未愈的伤口——深层学不动、训练误差会说谎。本章进入 1990 年代研究者的日常：<strong>把一个”理论上什么都能学”的模型，实际训练出来的过程为什么如此碰运气</strong>。我们把”难”拆解成四样具体的东西：非凸的地形、碰运气的落点、玄学的步长、随机的初始化——每一样都配一个可以亲手摸到的实验。</p>
+<p>上一部分结束时我们手里有：万能的表示力（1.4 的宽度实验）、能转的发动机（1.3 的反向传播）、以及两道未愈的伤口。深层学不动、训练误差会说谎。本章进入 1990 年代研究者的日常：<strong>把一个”理论上什么都能学”的模型，实际训练出来的过程为什么如此碰运气</strong>。我们把”难”拆解成四样具体的东西：非凸的地形、碰运气的落点、玄学的步长、随机的初始化。每一样都配一个可以亲手摸到的实验。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1105,8 +1105,8 @@ window.Quarto = {
 <div class="callout-era" title="时代快照 · 1986–2006">
 <ul>
 <li><strong>算力</strong>：工作站进入实验室（10 MIPS 级），训练一个数万参数的网络以小时计；</li>
-<li>数据：UCI 数据库（1987）统治实验文化——几百到几千样本是常态，“大数据集”这个词还不存在；</li>
-<li>认知：社区对”为什么训练时灵时不灵”的解释是 folklore 而非理论——“局部极小值”是万能背锅侠；调参被视为手艺而非科学；</li>
+<li>数据：UCI 数据库（1987）统治实验文化。几百到几千样本是常态，“大数据集”这个词还不存在；</li>
+<li>认知：社区对”为什么训练时灵时不灵”的解释是 folklore 而非理论。“局部极小值”是万能背锅侠；调参被视为手艺而非科学；</li>
 <li>关键事实：本章讲的四样困难，每一样都要等到 2010 年代才有系统解法（初始化理论、Adam、BatchNorm），而理解它们的工具（loss landscape 的实证研究）要到 2014 年后才成熟。</li>
 </ul>
 </div>
@@ -1122,9 +1122,9 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">8.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>“局部极小值”神话（1986–2014）</strong>。近三十年的标准解释是：训练卡住 = 掉进了局部极小值。这个直觉来自二维地形图——看起来山谷密布。弯路在于：参数空间的维度是百万级的，而高维空间里几乎不存在”所有方向都向上”的点（一个点要有 <span class="math inline">\(10^6\)</span> 个方向全部同步向上，概率上近乎不可能）——真正遍布的是鞍点（某些方向向上、某些向下）。这个纠正是 Dauphin 等人在 2014 <span class="citation" data-cites="dauphin2014">(<a href="#ref-dauphin2014" role="doc-biblioref">Dauphin et al. 2014</a>)</span> 年才完成的。错怪了局部极小值三十年的代价：很多研究精力花在了”逃离局部极小”的伪问题上。</p>
+<p><strong>“局部极小值”神话（1986–2014）</strong>。近三十年的标准解释是：训练卡住 = 掉进了局部极小值。这个直觉来自二维地形图。看起来山谷密布。弯路在于：参数空间的维度是百万级的，而高维空间里几乎不存在”所有方向都向上”的点（一个点要有 <span class="math inline">\(10^6\)</span> 个方向全部同步向上，概率上近乎不可能）。真正遍布的是鞍点（某些方向向上、某些向下）。这个纠正是 Dauphin 等人在 2014 <span class="citation" data-cites="dauphin2014">(<a href="#ref-dauphin2014" role="doc-biblioref">Dauphin et al. 2014</a>)</span> 年才完成的。错怪了局部极小值三十年的代价：很多研究精力花在了”逃离局部极小”的伪问题上。</p>
 <p><strong>初始化的 folklore 时代</strong>。1990 年代初始化靠口口相传的经验规则（“权重别太大”“对称要打破”），直到 2010 年 Glorot 与 Bengio 才给出扇入缩放的理论分析（Xavier 初始化），2015 年 He 等人补上 ReLU 版本。在此之前，“换个种子就成了”是每天发生的、无法解释的日常。</p>
-<p><strong>学习率的黑暗艺术</strong>。没有理论告诉你步长该多大；太大发散、太小爬行，而且最优步长随网络结构、数据尺度、批次大小变化。1990s 的论文很少报告学习率如何选定——因为自己也说不清。</p>
+<p><strong>学习率的黑暗艺术</strong>。没有理论告诉你步长该多大；太大发散、太小爬行，而且最优步长随网络结构、数据尺度、批次大小变化。1990s 的论文很少报告学习率如何选定。因为自己也说不清。</p>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>你将依次做四个实验（lr 扫描、种子彩票、地形切片、初始化对照）。<strong>在运行每一个之前</strong>，先在纸上写下你的预测：</p>
@@ -1134,20 +1134,20 @@ window.Quarto = {
 <li>一个<strong>训练收敛后</strong>的模型，把参数朝随机方向推 0.5 的距离，loss 会怎么变？（线性升高？陡壁？还是可能更低？）</li>
 <li>朴素初始化（大权重）的网络，前向传播时激活值会发生什么？</li>
 </ol>
-<p>四张预测都写完再往下运行——本章的价值一半在实验，一半在你的预测与现实的差距里。</p>
+<p>四张预测都写完再往下运行。本章的价值一半在实验，一半在你的预测与现实的差距里。</p>
 </div>
 </section>
 <section id="核心思想" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">8.3</span> 核心思想</h2>
-<p><strong>非凸 ≠ 迷宫，更像是一片缓慢起伏的高原与偶尔的峡谷</strong>。二维直觉在百万维空间失效：局部极小稀少，鞍点遍布，且大多数鞍点至少有一个下降方向可以逃离——这是梯度下降在高维”意外好用”的原因。</p>
-<p><strong>训练是一场受初始落点影响的抽样</strong>。“深度学习 = 用随机性在参数空间抽签”不是玩笑：同一配置的不同种子可以收敛到损失相差数倍的解。这不是 bug 而是本性——处理它的手段（多次运行取最好、平均权重、早停）贯穿此后二十年。</p>
+<p><strong>非凸 ≠ 迷宫，更像是一片缓慢起伏的高原与偶尔的峡谷</strong>。二维直觉在百万维空间失效：局部极小稀少，鞍点遍布，且大多数鞍点至少有一个下降方向可以逃离。这是梯度下降在高维”意外好用”的原因。</p>
+<p><strong>训练是一场受初始落点影响的抽样</strong>。“深度学习 = 用随机性在参数空间抽签”不是玩笑：同一配置的不同种子可以收敛到损失相差数倍的解。这本性。处理它的手段（多次运行取最好、平均权重、早停）贯穿此后二十年。</p>
 <p><strong>学习率是最强的超参数</strong>：它决定你在这片地形上的移动尺度。太小，任何地形的细节都变成陷阱；太大，连峡谷都直接飞越。后面所有工具（动量、BN、Adam）有一半的隐性贡献都在于让训练对学习率更宽容。</p>
-<p><strong>初始化决定起点的水位</strong>：朴素大权重让前向激活逐层饱和（tanh 被推进 ±1 的死区）、反向梯度逐层失衡。扇入缩放（除以 <span class="math inline">\(\sqrt{\text{fan-in}}\)</span>）让每层方差大致守恒——这条规则我们在 1.6 的向量引擎里已经悄悄用了，现在正式验尸。</p>
+<p><strong>初始化决定起点的水位</strong>：朴素大权重让前向激活逐层饱和（tanh 被推进 ±1 的死区）、反向梯度逐层失衡。扇入缩放（除以 <span class="math inline">\(\sqrt{\text{fan-in}}\)</span>）让每层方差大致守恒。这条规则我们在 1.6 的向量引擎里已经悄悄用了，现在正式验尸。</p>
 <p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">8.4</span> 从零实现</h2>
-<div id="08844325" class="cell" data-execution_count="1">
+<div id="2f1e1eea" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1162,7 +1162,7 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Xv, yv <span class="op">=</span> make_moons(n_per_class<span class="op">=</span><span class="dv">100</span>, seed<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：学习率扫描。</strong> 固定一切，只动步长：</p>
-<div id="537e81ae" class="cell" data-execution_count="2">
+<div id="412855b2" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">16</span>, <span class="dv">1</span>], seed<span class="op">=</span><span class="dv">42</span>)</span>
@@ -1178,9 +1178,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>0.001 爬行（300 epoch 后仍停在 0.34），0.01 到位，0.05 更快。那再大呢？把 <code>lr=0.5</code> 加入扫描——loss 直接<strong>溢出为 NaN</strong>（数值发散）。注意上一章的教训在这里同样成立：步子太大的死法常常不是爆炸而是饱和，但足够大的步子连饱和区都待不住，干脆溢出。</p>
+<p>0.001 爬行（300 epoch 后仍停在 0.34），0.01 到位，0.05 更快。那再大呢？把 <code>lr=0.5</code> 加入扫描。loss 直接<strong>溢出为 NaN</strong>（数值发散）。注意上一章的教训在这里同样成立：步子太大的死法常常饱和，但足够大的步子连饱和区都待不住，干脆溢出。</p>
 <p><strong>实验二：种子彩票。</strong> 同一配置，只换初始化种子：</p>
-<div id="963aa04b" class="cell" data-execution_count="3">
+<div id="c39cdd6f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>finals <span class="op">=</span> []</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">16</span>, <span class="dv">1</span>], seed<span class="op">=</span>seed)</span>
@@ -1195,9 +1195,9 @@ window.Quarto = {
 最好/最差 = 0.048 / 0.372（相差 8 倍）</code></pre>
 </div>
 </div>
-<p>典型的结果是一张”彩票”：有的种子落到 0.05，有的卡在 0.37——近一个数量级的差距，纯粹来自落点。1990 年代每一个调参的下午都在抽这张签。</p>
+<p>典型的结果是一张”彩票”：有的种子落到 0.05，有的卡在 0.37。近一个数量级的差距，纯粹来自落点。1990 年代每一个调参的下午都在抽这张签。</p>
 <p><strong>实验三：看一眼地形。</strong> 训练一个收敛的模型，然后在其参数空间里取两个随机方向张成的平面，扫描 loss：</p>
-<div id="1327344f" class="cell" data-execution_count="4">
+<div id="99f612ac" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flat(model):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.concatenate([W.ravel() <span class="cf">for</span> W <span class="kw">in</span> model.Ws] <span class="op">+</span> [b.ravel() <span class="cf">for</span> b <span class="kw">in</span> model.bs])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1244,9 +1244,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>这就是 Goodfellow 等人 2015 年让全场吃惊的那张图：收敛点附近<strong>不是深井</strong>，而是一片缓慢起伏的开阔地——训练终点更像”到达了一片高原的某处”，而非”落进了谷底”。这也解释了种子彩票：不同的落点走到同一片高原的不同位置。</p>
-<p><strong>实验四：初始化的生死。</strong> 八层 tanh 网络，朴素 vs 扇入缩放初始化。先做确定性体检——数一数每层有多少激活值已经饱和（<span class="math inline">\(|\tanh| &gt; 0.99\)</span>）：</p>
-<div id="2c8e11a8" class="cell" data-execution_count="5">
+<p>这就是 Goodfellow 等人 2015 年让全场吃惊的那张图：收敛点附近**一片缓慢起伏的开阔地。训练终点更像”到达了一片高原的某处”，而非”落进了谷底”。这也解释了种子彩票：不同的落点走到同一片高原的不同位置。</p>
+<p><strong>实验四：初始化的生死。</strong> 八层 tanh 网络，朴素 vs 扇入缩放初始化。先做确定性体检。数一数每层有多少激活值已经饱和（<span class="math inline">\(|\tanh| &gt; 0.99\)</span>）：</p>
+<div id="c4a11bfe" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Xs</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
@@ -1263,24 +1263,24 @@ window.Quarto = {
  uniform 初始化，各层饱和率: [0.0, 0.045, 0.139, 0.204, 0.314, 0.354, 0.359, 0.359]</code></pre>
 </div>
 </div>
-<p>朴素初始化下饱和率逐层攀升至三分之一以上——<strong>网络还没开始训练，三分之一的梯度通道已经关死</strong>；缩放初始化下饱和率为零。训练结局随之分流：</p>
-<div id="8c506e08" class="cell" data-execution_count="6">
+<p>朴素初始化下饱和率逐层攀升至三分之一以上。<strong>网络还没开始训练，三分之一的梯度通道已经关死</strong>；缩放初始化下饱和率为零。训练结局随之分流：</p>
+<div id="15bdc963" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>, init<span class="op">=</span>init)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">600</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"init=</span><span class="sc">{</span>init<span class="sc">:&gt;8}</span><span class="ss">: loss=</span><span class="sc">{</span>h[<span class="st">'loss'</span>][<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">  acc=</span><span class="sc">{</span>accuracy(m, Xs, ys)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>init=  scaled: loss=0.8238  acc=0.69
-init= uniform: loss=1.6166  acc=0.50</code></pre>
+<pre><code>init=  scaled: loss=0.7649  acc=0.76
+init= uniform: loss=1.7676  acc=0.50</code></pre>
 </div>
 </div>
-<p>缩放版缓慢爬到 0.78，朴素版彻底躺平在 0.50。为什么除以 <span class="math inline">\(\sqrt{\text{fan-in}}\)</span> 有此神效？直觉版：一层的前向方差是 <span class="math inline">\(\text{fan-in} \times \mathrm{Var}(w) \times \mathrm{Var}(a)\)</span>，想让方差逐层守恒，就需要 <span class="math inline">\(\mathrm{Var}(w) \sim 1/\text{fan-in}\)</span>——这正是 Glorot 与 Bengio 2010 <span class="citation" data-cites="glorot2010">(<a href="#ref-glorot2010" role="doc-biblioref">Glorot and Bengio 2010</a>)</span> 年给出的分析（严格版还要同时照顾反向传播，见练习 5）。</p>
+<p>缩放版缓慢爬到 0.78，朴素版彻底躺平在 0.50。为什么除以 <span class="math inline">\(\sqrt{\text{fan-in}}\)</span> 有此神效？直觉版：一层的前向方差是 <span class="math inline">\(\text{fan-in} \times \mathrm{Var}(w) \times \mathrm{Var}(a)\)</span>，想让方差逐层守恒，就需要 <span class="math inline">\(\mathrm{Var}(w) \sim 1/\text{fan-in}\)</span>。这正是 Glorot 与 Bengio 2010 <span class="citation" data-cites="glorot2010">(<a href="#ref-glorot2010" role="doc-biblioref">Glorot and Bengio 2010</a>)</span> 年给出的分析（严格版还要同时照顾反向传播，见练习 5）。</p>
 <p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">8.5</span> 消融实验</h2>
-<p><strong>饱和率是中介变量。</strong> 上一个实验其实是一条因果链：初始化尺度 → 前向饱和率 → 反向梯度存活 → 训练成败。验证中介环节——把网络改浅（2 层），朴素初始化还致命吗？</p>
-<div id="a1b65e76" class="cell" data-execution_count="7">
+<p><strong>饱和率是中介变量。</strong> 上一个实验其实是一条因果链：初始化尺度 → 前向饱和率 → 反向梯度存活 → 训练成败。验证中介环节。把网络改浅（2 层），朴素初始化还致命吗？</p>
+<div id="5c119f2e" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">8</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>, init<span class="op">=</span>init)</span>
@@ -1289,11 +1289,11 @@ init= uniform: loss=1.6166  acc=0.50</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>depth=2, init=  scaled: acc=0.58
 depth=2, init= uniform: acc=0.91
-depth=8, init=  scaled: acc=0.67
+depth=8, init=  scaled: acc=0.66
 depth=8, init= uniform: acc=0.50</code></pre>
 </div>
 </div>
-<p>浅网上两种初始化差距很小——<strong>初始化的破坏力随深度复利增长</strong>。这个”深度复利”结构正是下一章的主角：梯度消失不是某层的错，是每一层的小错连乘出来的总账。</p>
+<p>浅网上两种初始化差距很小。<strong>初始化的破坏力随深度复利增长</strong>。这个”深度复利”结构正是下一章的主角：梯度消失不是某层的错，是每一层的小错连乘出来的总账。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="8.6">
@@ -1312,7 +1312,7 @@ depth=8, init= uniform: acc=0.50</code></pre>
 <tbody>
 <tr class="odd">
 <td>在优化什么 loss？</td>
-<td>与 1.6 相同的全批/小批 MSE——本章改变的不是目标，而是<strong>到达目标的路况</strong></td>
+<td>与 1.6 相同的全批/小批 MSE。本章改变的<strong>到达目标的路况</strong></td>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
@@ -1324,7 +1324,7 @@ depth=8, init= uniform: acc=0.50</code></pre>
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
-<td>还没有任何一件能把这些困难系统消除的工具——那是下一章的货架</td>
+<td>还没有任何一件能把这些困难系统消除的工具。那是下一章的货架</td>
 </tr>
 </tbody>
 </table>
@@ -1332,23 +1332,23 @@ depth=8, init= uniform: acc=0.50</code></pre>
 <ul>
 <li>“局部极小值背锅三十年” → 教训：<strong>用二维直觉解释高维现象是深度学习里最持久的思维陷阱</strong>（6.3 讨论涌现度量时我们会再犯一次、再纠一次）；</li>
 <li>扇入缩放初始化 → 今天每个框架的默认初始化（Xavier/He）；LLM 时代初始化仍是深栈的生死线（深度 100+ 的 Transformer 靠它+残差+前层归一化存活）；</li>
-<li>种子彩票 → “多次运行取最好”是此后二十年的日常；直到 LLM 时代训练一次成本上千万美元，“重抽一张签”变成不可承受——方差本身成了研究对象（loss landscape 与训练稳定性研究）；</li>
+<li>种子彩票 → “多次运行取最好”是此后二十年的日常；直到 LLM 时代训练一次成本上千万美元，“重抽一张签”变成不可承受。方差本身成了研究对象（loss landscape 与训练稳定性研究）；</li>
 <li>随机方向切片法 → 今天 interpretability 研究沿参数空间切片考察”解的连通性”（mode connectivity）的祖师爷。</li>
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
 <p><strong>Glorot, X. &amp; Bengio, Y. (2010).</strong> <em>Understanding the difficulty of training deep feedforward neural networks.</em> AISTATS.</p>
 <ul>
-<li><strong>读什么</strong>：方差分析那两页——用一条方差守恒论证推出初始化方案，是”理论打捞 folklore”的典范；</li>
+<li><strong>读什么</strong>：方差分析那两页。用一条方差守恒论证推出初始化方案，是”理论打捞 folklore”的典范；</li>
 <li>跳过什么：实验部分的数据集细节；</li>
-<li>历史注：同一时期的 Dauphin et al.&nbsp;(2014) 用实证推翻”局部极小神话”——两篇论文合起来构成了本章的科学基础，而它们都比 folklore 晚了二十年。顺带读 Sutton 的 <em>The Bitter Lesson</em>（2019）正合适：folklore 的领地正是被”算力+系统方法”逐步攻陷的。</li>
+<li>历史注：同一时期的 Dauphin et al.&nbsp;(2014) 用实证推翻”局部极小神话”。两篇论文合起来构成了本章的科学基础，而它们都比 folklore 晚了二十年。顺带读 Sutton 的 <em>The Bitter Lesson</em>（2019）正合适：folklore 的领地正是被”算力+系统方法”逐步攻陷的。</li>
 </ul>
 </div>
 </section>
 <section id="遗留问题" class="level2" data-number="8.7">
 <h2 data-number="8.7" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">8.7</span> 遗留问题</h2>
 <ol type="1">
-<li>初始化只解决了”起点水位”，深层的梯度在传播中仍然逐层衰减——那个总账（梯度消失）需要一张完整的解剖图（→ 下一章）；</li>
+<li>初始化只解决了”起点水位”，深层的梯度在传播中仍然逐层衰减。那个总账（梯度消失）需要一张完整的解剖图（→ 下一章）；</li>
 <li>我们的引擎里那些”来自未来”的黑魔法（动量、BN）到底各自治什么病？（→ 2.3 工具箱）；</li>
 <li>学习率的黑暗艺术何时能终结？（部分答案在 2.3 的 BN、以及未来章节的学习率日程）。</li>
 </ol>
@@ -1369,7 +1369,7 @@ depth=8, init= uniform: acc=0.50</code></pre>
 <li><strong>造轮子</strong>：给 <code>MLPNumpy</code> 加一个 <code>init="xavier"</code> 选项（均匀分布 <span class="math inline">\(\pm\sqrt{6/(\text{fan-in}+\text{fan-out})}\)</span>），在八层螺旋任务上与 <code>"scaled"</code> 对照。</li>
 <li>预测再运行：把种子彩票的批大小从 32 改成全批（200），先猜分布会收紧还是变宽？运行并解释（提示：随机性来源少了一个）。</li>
 <li>消融：把实验四的激活换成 sigmoid，饱和率与训练结局如何变化？与 1.4 的梯度解剖数据对得上吗？</li>
-<li>论文映射：用四问账本拆 Glorot &amp; Bengio 2010（注意第三问：它买到的其实不是”能力”而是”可训性”——账本允许这种回答）。</li>
+<li>论文映射：用四问账本拆 Glorot &amp; Bengio 2010（注意第三问：它买到的其实”可训性”而非”能力”。账本允许这种回答）。</li>
 <li>进阶：完整推导”前向方差守恒需要 <span class="math inline">\(\mathrm{Var}(w)=1/\text{fan-in}\)</span>，反向方差守恒需要 <span class="math inline">\(\mathrm{Var}(w)=1/\text{fan-out}\)</span>“，说明 Xavier 折中取 <span class="math inline">\(\text{fan-in}+\text{fan-out}\)</span> 的理由。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
@@ -1384,9 +1384,9 @@ depth=8, init= uniform: acc=0.50</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：分布收紧（小批噪声是随机性的放大器），但不会消失——初始化落点仍是抽签。若你观察到某些种子仍然失败，恭喜你看到了”两种随机源”的可分离性。</p>
+<p><strong>练习 2</strong>：分布收紧（小批噪声是随机性的放大器），但不会消失。初始化落点仍是抽签。若你观察到某些种子仍然失败，恭喜你看到了”两种随机源”的可分离性。</p>
 <p><strong>练习 3</strong>：sigmoid 的饱和率用阈值 <span class="math inline">\(|\sigma-0.5|&gt;0.49\)</span> 度量会更高，八层训练更早躺平；与 1.4 表中 sigmoid 首层梯度 <span class="math inline">\(2.5\times10^{-1} \to 8.4\times10^{-8}\)</span> 的定量关系是 <span class="math inline">\(\le 0.25\)</span> 的连乘。</p>
-<p><strong>练习 5 提示</strong>：反向时梯度经过 <span class="math inline">\(W^\top\)</span>，每层乘的是 fan-out 方向的权重和——两个约束不能同时严格满足，除非每层方 fan-in=fan-out；Xavier 的调和是让两侧都不爆炸。</p>
+<p><strong>练习 5 提示</strong>：反向时梯度经过 <span class="math inline">\(W^\top\)</span>，每层乘的是 fan-out 方向的权重和。两个约束不能同时严格满足，除非每层方 fan-in=fan-out；Xavier 的调和是让两侧都不爆炸。</p>
 </div>
 </div>
 </div>

@@ -1059,7 +1059,7 @@ main table {
 </header>
 
 
-<p>Part 2 走到收束。五章之前，“深了训不动”还是玄学；现在我们手里有诊断书（梯度剖面）、有初始化理论（扇入缩放）、有工具箱（relu、BN、动量）。本章做三件事：把散落的零件<strong>组装成一份配方</strong>并写进 <code>dlbook.train</code>；用一场拆解实验验证每个零件的贡献；然后诚实地面对配方的边界——它治好了”训不动”，却在下一个路口撞上”参数不经济”的新墙。这是卷一上半场的毕业考。</p>
+<p>Part 2 走到收束。五章之前，“深了训不动”还是玄学；现在我们手里有诊断书（梯度剖面）、有初始化理论（扇入缩放）、有工具箱（relu、BN、动量）。本章做三件事：把散落的零件<strong>组装成一份配方</strong>并写进 <code>dlbook.train</code>；用一场拆解实验验证每个零件的贡献；然后诚实地面对配方的边界。它治好了”训不动”，却在下一个路口撞上”参数不经济”的新墙。这是卷一上半场的毕业考。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1077,8 +1077,8 @@ main table {
 <ul>
 <li><strong>算力</strong>：单 GPU 训练成为实验室标配，“调好一份配方训到收敛”是这一时期的日常技能；</li>
 <li>数据：ImageNet 量级的中型数据集（CIFAR-100、Flowers）成为检验配方的标尺；</li>
-<li>认知：“怎么把网络训好”从手艺沉淀为可传授的工程知识——深度学习框架（Caffe 2013、Theano 一脉、后来的 PyTorch）开始把配方固化成默认值：框架的意义就是把 2.1–2.3 的血泪写成 <code>model.fit()</code> 的缺省参数；</li>
-<li>关键事实：这份配方没有单一作者，它是数百个实验室的并行试错压缩成的公共财产——“配方”本身成为一种研究成果。</li>
+<li>认知：“怎么把网络训好”从手艺沉淀为可传授的工程知识。深度学习框架（Caffe 2013、Theano 一脉、后来的 PyTorch）开始把配方固化成默认值：框架的意义就是把 2.1–2.3 的血泪写成 <code>model.fit()</code> 的缺省参数；</li>
+<li>关键事实：这份配方没有单一作者，它是数百个实验室的并行试错压缩成的公共财产。“配方”本身成为一种研究成果。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="12.1">
@@ -1091,8 +1091,8 @@ main table {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">12.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>配方的形成史</strong>：relu（2011）→ dropout（2012）→ Adam（2014，自适应步长，配方最后一块常用件）→ BN（2015）。每一件出现后都经历了”用法混乱期”（放哪层？什么顺序？和谁冲突？），最终由大规模实践淬炼出共识用法。弯路教训：零件之间存在交互——例如 dropout 与 BN 同用曾长期”打架”（方差尺度互相干扰），后来实践结论是慎同用。单一工具的论文不会告诉你这些，配方的知识活在工程实践里。</p>
-<p><strong>框架的兴起</strong>：Caffe（2013）把”模型 + 配方”打包成配置文件；PyTorch（2016）稍后以”代码即模型”胜出。框架史的意义：它决定了一个时代研究者的默认操作——今天你 <code>nn.Linear</code> 出来的权重默认就是缩放初始化，<code>model.eval()</code> 就是训练态切换。本书的 <code>MLPNumpy</code> 与 <code>Trainer</code> 刻意重演了这条凝固路径：零件（1.6–2.3）先于总成（本章）。</p>
+<p><strong>配方的形成史</strong>：relu（2011）→ dropout（2012）→ Adam（2014，自适应步长，配方最后一块常用件）→ BN（2015）。每一件出现后都经历了”用法混乱期”（放哪层？什么顺序？和谁冲突？），最终由大规模实践淬炼出共识用法。弯路教训：零件之间存在交互。例如 dropout 与 BN 同用曾长期”打架”（方差尺度互相干扰），后来实践结论是慎同用。单一工具的论文不会告诉你这些，配方的知识活在工程实践里。</p>
+<p><strong>框架的兴起</strong>：Caffe（2013）把”模型 + 配方”打包成配置文件；PyTorch（2016）稍后以”代码即模型”胜出。框架史的意义：它决定了一个时代研究者的默认操作。今天你 <code>nn.Linear</code> 出来的权重默认就是缩放初始化，<code>model.eval()</code> 就是训练态切换。本书的 <code>MLPNumpy</code> 与 <code>Trainer</code> 刻意重演了这条凝固路径：零件（1.6–2.3）先于总成（本章）。</p>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>下面是本章主角实验的设定：八层 × 32 宽的网络，螺旋数据，300 epoch。完整配方 = <strong>relu + BN + 动量 + 缩放初始化</strong>。现在要逐一拿走零件，只留其余：</p>
@@ -1103,20 +1103,20 @@ main table {
 <li>去动量（relu + BN + 纯 SGD）</li>
 <li>换朴素初始化（relu + BN + 动量 + 大权重）</li>
 </ul>
-<p>预测三个层次：(a) 哪个掉得最惨？(b) 哪个几乎不掉？(c) 有没有哪个零件<strong>只在别的零件在场时</strong>才重要？把预测写满再运行——本章最重要的学习发生在你的排序与实验排序的差异处。</p>
+<p>预测三个层次：(a) 哪个掉得最惨？(b) 哪个几乎不掉？(c) 有没有哪个零件<strong>只在别的零件在场时</strong>才重要？把预测写满再运行。本章最重要的学习发生在你的排序与实验排序的差异处。</p>
 </div>
 </section>
 <section id="核心思想" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">12.3</span> 核心思想</h2>
-<p><strong>配方 = 零件的组合，且组合存在交互</strong>。本章实验会给出一个漂亮的反例级发现：朴素初始化（2.1 证明过它致命）在 BN 在场时几乎无害——因为 BN 把每层分布钉住了，初始化的尺度被强制归一。这不是”2.1 错了”，而是”零件的边际贡献依赖其余零件”——研究史上这类交互是渐进发现的，这也是为什么配方知识只能靠大规模实验沉淀。</p>
-<p><strong>把配方写成代码 = 研究知识的商品化</strong>。<code>Trainer</code> 十几行，但它封装了 Part 2 的全部结论：小批随机性（1986 的随机更新）、动量（1964）、评估态切换（2.3）、监控曲线（2.1 的彩票探测）。此后各章我们不再手写训练循环——不是因为它难，而是因为它已经不再含谜题。迷题转移到新 frontier，是每个工具成熟后的固定剧情。</p>
-<p><strong>配方的边界预告</strong>：这份配方训得好”固定长度向量输入”的任务。图像（平移不变的结构）、序列（变长与长程依赖）各有自己的归纳偏置需求——MLP 用参数硬扛这些结构，参数量爆炸而泛化不增。下一部分的主角（卷积）正是对”结构先验”的回应。</p>
+<p><strong>配方 = 零件的组合，且组合存在交互</strong>。本章实验会给出一个漂亮的反例级发现：朴素初始化（2.1 证明过它致命）在 BN 在场时几乎无害。因为 BN 把每层分布钉住了，初始化的尺度被强制归一。这”零件的边际贡献依赖其余零件”。研究史上这类交互是渐进发现的，这也是为什么配方知识只能靠大规模实验沉淀。</p>
+<p><strong>把配方写成代码 = 研究知识的商品化</strong>。<code>Trainer</code> 十几行，但它封装了 Part 2 的全部结论：小批随机性（1986 的随机更新）、动量（1964）、评估态切换（2.3）、监控曲线（2.1 的彩票探测）。此后各章我们不再手写训练循环。因为它已经不再含谜题。迷题转移到新 frontier，是每个工具成熟后的固定剧情。</p>
+<p><strong>配方的边界预告</strong>：这份配方训得好”固定长度向量输入”的任务。图像（平移不变的结构）、序列（变长与长程依赖）各有自己的归纳偏置需求。MLP 用参数硬扛这些结构，参数量爆炸而泛化不增。下一部分的主角（卷积）正是对”结构先验”的回应。</p>
 <p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">12.4</span> 从零实现</h2>
-<p>先认识 <code>dlbook.train.Trainer</code>——本章正式引入的标准训练器：</p>
-<div id="7c11132f" class="cell" data-execution_count="1">
+<p>先认识 <code>dlbook.train.Trainer</code>。本章正式引入的标准训练器：</p>
+<div id="6e89ffa5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1142,15 +1142,15 @@ main table {
 </div>
 </div>
 </div>
-<div id="562e5e21" class="cell" data-execution_count="2">
+<div id="a35caa4c" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"完整配方: train_acc=</span><span class="sc">{</span>accuracy(full, Xs, ys)<span class="sc">:.3f}</span><span class="ss">, val_acc=</span><span class="sc">{</span>accuracy(full, Xv, yv)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>完整配方: train_acc=0.953, val_acc=0.932</code></pre>
 </div>
 </div>
-<p>八个隐藏层、约两万六千个参数，300 epoch、笔记本上几秒钟——train 与 val 曲线贴合下降，无发散无卡死。<strong>1986 年的人看到这一幕会以为魔法</strong>；你现在知道每一行咒语的出处。</p>
+<p>八个隐藏层、约两万六千个参数，300 epoch、笔记本上几秒钟。train 与 val 曲线贴合下降，无发散无卡死。<strong>1986 年的人看到这一幕会以为魔法</strong>；你现在知道每一行咒语的出处。</p>
 <p><strong>拆解实验</strong>：逐一拿走零件。</p>
-<div id="c1afd63f" class="cell" data-execution_count="3">
+<div id="1aacd845" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"完整配方"</span>: <span class="bu">dict</span>(activation<span class="op">=</span><span class="st">"relu"</span>, batchnorm<span class="op">=</span><span class="va">True</span>, init<span class="op">=</span><span class="st">"scaled"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"去 BN"</span>: <span class="bu">dict</span>(activation<span class="op">=</span><span class="st">"relu"</span>, batchnorm<span class="op">=</span><span class="va">False</span>, init<span class="op">=</span><span class="st">"scaled"</span>),</span>
@@ -1169,7 +1169,7 @@ main table {
 <pre><code>配置         train_loss train_acc  val_acc
 完整配方           0.1994     0.953    0.932
 去 BN           1.0001     0.500    0.500
-换回 tanh        0.8049     0.677    0.667
+换回 tanh        0.7926     0.713    0.728
 去动量            0.1987     0.943    0.935
 朴素初始化          0.2114     0.955    0.940</code></pre>
 </div>
@@ -1197,7 +1197,7 @@ main table {
 <tr class="even">
 <td>去 BN</td>
 <td><strong>0.50</strong></td>
-<td>2.2 的病人——动态漂移病无药自愈</td>
+<td>2.2 的病人。动态漂移病无药自愈</td>
 </tr>
 <tr class="odd">
 <td>换回 tanh</td>
@@ -1207,7 +1207,7 @@ main table {
 <tr class="even">
 <td>去动量</td>
 <td>≈0.97（loss 0.13 vs 0.09）</td>
-<td>慢一点而已——300 epoch 内已追平大半</td>
+<td>慢一点而已。300 epoch 内已追平大半</td>
 </tr>
 <tr class="odd">
 <td>朴素初始化</td>
@@ -1216,13 +1216,13 @@ main table {
 </tr>
 </tbody>
 </table>
-<p>两处值得咀嚼：<strong>BN 是唯一”拿走即死”的零件</strong>（在 8 层深度上），而它同时在暗中承包了初始化的作用——零件的账不能只看单个论文的宣称，要在组合里算。动量在 300 epoch 的预算里看似可有可无，但把 epoch 砍到 100 再跑（练习 3），差距立现——动量买卖的是时间，预算充足时它显得多余，预算紧张时它是生死。</p>
+<p>两处值得咀嚼：<strong>BN 是唯一”拿走即死”的零件</strong>（在 8 层深度上），而它同时在暗中承包了初始化的作用。零件的账不能只看单个论文的宣称，要在组合里算。动量在 300 epoch 的预算里看似可有可无，但把 epoch 砍到 100 再跑（练习 3），差距立现。动量买卖的是时间，预算充足时它显得多余，预算紧张时它是生死。</p>
 <p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">12.5</span> 消融实验</h2>
 <p><strong>深度的收益</strong>。配方既然能让深度可训，那深度本身值多少？同配方下扫深度：</p>
-<div id="c1d872ea" class="cell" data-execution_count="4">
+<div id="c32ffc1c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1234,7 +1234,7 @@ depth=4: loss=0.2216, val_acc=0.938
 depth=8: loss=0.1994, val_acc=0.932</code></pre>
 </div>
 </div>
-<p>在这个玩具任务上，2 层之后深度收益趋平——<strong>深度不是免费午餐，它的收益依赖任务的结构复杂度</strong>（螺旋 1.75 圈需要的复合变换有限）。真正的深度红利要等到有层级结构的任务（图像的边缘→纹理→部件，3.3 的特征层级）才兑现——那是下一部分的正题。</p>
+<p>在这个玩具任务上，2 层之后深度收益趋平。<strong>深度不是免费午餐，它的收益依赖任务的结构复杂度</strong>（螺旋 1.75 圈需要的复合变换有限）。真正的深度红利要等到有层级结构的任务（图像的边缘→纹理→部件，3.3 的特征层级）才兑现。那是下一部分的正题。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="12.6">
@@ -1253,11 +1253,11 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 <tbody>
 <tr class="odd">
 <td>在优化什么 loss？</td>
-<td>小批 MSE——但本章真正的对象是<strong>优化的可复现性</strong>：同种子同结果，不同种子方差可控</td>
+<td>小批 MSE。但本章真正的对象是<strong>优化的可复现性</strong>：同种子同结果，不同种子方差可控</td>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
-<td>螺旋（训练与验证分开采样）——注意配方再好，账本第二问永远是数据的质与量</td>
+<td>螺旋（训练与验证分开采样）。注意配方再好，账本第二问永远是数据的质与量</td>
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
@@ -1265,24 +1265,24 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
-<td>参数经济性（MLP 硬扛结构）、变长输入、平移不变性——配方的边界 = Part 3 的起点</td>
+<td>参数经济性（MLP 硬扛结构）、变长输入、平移不变性。配方的边界 = Part 3 的起点</td>
 </tr>
 </tbody>
 </table>
 <div class="callout-echo" title="回声">
 <ul>
-<li>“配方固化为框架默认值” → PyTorch 的 <code>nn.init</code> 与 <code>model.eval()</code>、 Transformers 库的 <code>TrainingArguments</code>——你今天每写一行看似平凡的默认配置，背后都是 2.1–2.3 的一章历史；</li>
-<li>拆解归因法 → 今天大模型训练的 ablation 报告（LLaMA 技术报告的每个决定都附消融）——<strong>配方研究的文体从本章这种小表格长成了几百页的技术报告</strong>；</li>
-<li>“零件交互”现象 → 训练稳定性研究（loss spike 归因）与 8.x 的上下文工程——组合系统的归因永远是难题；</li>
+<li>“配方固化为框架默认值” → PyTorch 的 <code>nn.init</code> 与 <code>model.eval()</code>、 Transformers 库的 <code>TrainingArguments</code>。你今天每写一行看似平凡的默认配置，背后都是 2.1–2.3 的一章历史；</li>
+<li>拆解归因法 → 今天大模型训练的 ablation 报告（LLaMA 技术报告的每个决定都附消融）。<strong>配方研究的文体从本章这种小表格长成了几百页的技术报告</strong>；</li>
+<li>“零件交互”现象 → 训练稳定性研究（loss spike 归因）与 8.x 的上下文工程。组合系统的归因永远是难题；</li>
 <li>深度收益依赖任务结构 → 深度为什么必要的现代理论（组合表达效率）；6.x 的规模定律把”深度/宽度/数据”放进同一本账。</li>
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
 <p><strong>Kingma, D. &amp; Ba, J. (2014).</strong> <em>Adam: A method for stochastic optimization.</em> ICLR.（本章论文时光机的选择是配方中我们唯一没实现的零件）</p>
 <ul>
-<li><strong>读什么</strong>：算法 1（一页）——自适应矩估计，把学习率的艺术再收敛一档；</li>
+<li><strong>读什么</strong>：算法 1（一页）。自适应矩估计，把学习率的艺术再收敛一档；</li>
 <li>跳过什么：收敛性证明的细节；</li>
-<li>历史注：Adam 之简使其迅速成为默认优化器（“不确定就用 Adam”），但 2017 年 <em>Decoupled Weight Decay</em>（AdamW）又指出它与权重衰减的经典组合有坑——配方知识的修补从不停版。本书引擎刻意没实现 Adam：留作练习 1，也留给”当你真正需要它”的那一刻。</li>
+<li>历史注：Adam 之简使其迅速成为默认优化器（“不确定就用 Adam”），但 2017 年 <em>Decoupled Weight Decay</em>（AdamW）又指出它与权重衰减的经典组合有坑。配方知识的修补从不停版。本书引擎刻意没实现 Adam：留作练习 1，也留给”当你真正需要它”的那一刻。</li>
 </ul>
 </div>
 </section>
@@ -1290,7 +1290,7 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 <h2 data-number="12.7" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">12.7</span> 遗留问题</h2>
 <ol type="1">
 <li>图像的平移不变性：MLP 要用多少参数硬扛？（→ 3.1 卷积：1989 年就有的答案）；</li>
-<li>几十层的下一道墙——<strong>退化</strong>：训练误差都不降了，这不是过拟合（→ 3.2 残差）；</li>
+<li>几十层的下一道墙。<strong>退化</strong>：训练误差都不降了，这不是过拟合（→ 3.2 残差）；</li>
 <li>学到的特征是什么？能否迁移？（→ 3.3，预训练-微调范式诞生）；</li>
 <li>这套配方在序列上表现如何？（→ Part 4，新的战场、新的病灶）。</li>
 </ol>
@@ -1311,7 +1311,7 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 <li><strong>造轮子</strong>：给 <code>MLPNumpy.step</code> 实现 Adam（一阶/二阶矩指数滑动平均 + 偏差校正），在八层螺旋上与动量法对照收敛速度。</li>
 <li>预测再运行：把 batch_size 从 64 改成 8，完整配方的训练动态会怎么变（速度？稳定性？最终成绩？）？BN 的批统计在 batch=8 下还可靠吗？</li>
 <li>消融：预算砍到 100 epoch 重跑拆解表，动量与 BN 的相对重要性怎么变？这如何解释”论文里超参消融必须注明预算”的行业规范？</li>
-<li>论文映射：用四问账本拆 Adam——注意它买卖的是”步长的自适应”，属于哪一栏？</li>
+<li>论文映射：用四问账本拆 Adam。注意它买卖的是”步长的自适应”，属于哪一栏？</li>
 <li>进阶：把拆解实验扩展成 2×2×2 全因子设计（relu/tanh × BN/无 × 动量/无，共 8 组），检验”零件交互”：是否存在某零件单独无益、组合才有益的组合？（统计上这就是交互效应的入门。）</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
@@ -1326,9 +1326,9 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：更慢（步数多 8 倍）、BN 的批统计噪声变大（8 个样本估计均值方差很不稳）——曲线抖动加剧，最终成绩略降。BN 对批大小的敏感是它后来的著名槽点，LayerNorm 的崛起一半源于此（变长序列 + 小批场景）。</p>
-<p><strong>练习 3</strong>：预算紧时动量的差距拉开（纯 SGD 在 100 epoch 明显欠收敛），BN 的”生死零件”地位不变。结论：消融结论是预算的函数——脱离预算谈超参优劣是常见的坏实验。</p>
-<p><strong>练习 5 提示</strong>：注意”tanh+BN+动量”(0.80) 远低于”relu+BN+动量”(0.98) 与”tanh+无BN+动量”（2.2 数据，更差）的简单加和模型——非可加性就是交互的证据。写出交互矩阵后，试着用 2.2 的梯度剖面解释 relu×BN 的协同。</p>
+<p><strong>练习 2</strong>：更慢（步数多 8 倍）、BN 的批统计噪声变大（8 个样本估计均值方差很不稳）。曲线抖动加剧，最终成绩略降。BN 对批大小的敏感是它后来的著名槽点，LayerNorm 的崛起一半源于此（变长序列 + 小批场景）。</p>
+<p><strong>练习 3</strong>：预算紧时动量的差距拉开（纯 SGD 在 100 epoch 明显欠收敛），BN 的”生死零件”地位不变。结论：消融结论是预算的函数。脱离预算谈超参优劣是常见的坏实验。</p>
+<p><strong>练习 5 提示</strong>：注意”tanh+BN+动量”(0.80) 远低于”relu+BN+动量”(0.98) 与”tanh+无BN+动量”（2.2 数据，更差）的简单加和模型。非可加性就是交互的证据。写出交互矩阵后，试着用 2.2 的梯度剖面解释 relu×BN 的协同。</p>
 </div>
 </div>
 </div>

@@ -1088,7 +1088,7 @@ window.Quarto = {
 </header>
 
 
-<p>上一章的 agent 靠”外挂”获得能力：工具在系统层、模型不动。但外挂有天花板——模型在多步循环里会漂移：忘记目标、重复动作、把中间状态当成结论。把这些循环行为<strong>训进权重</strong>，是 2024 年以来 agent 训练的主线：轨迹数据的模仿学习（看人类/高级模型怎么完成任务）与环境闭环的强化学习（自己做、环境给反馈、对了对入权重）。本章用最小实验演示闭环的两种形态——重试式闭环（提议-验证-重试的循环，系统层）与蒸馏式闭环（把循环里的成功轨迹写回权重，模型层），它们分别是今天 agent 工程的”现在”与”正在发生的未来”。</p>
+<p>上一章的 agent 靠”外挂”获得能力：工具在系统层、模型不动。但外挂有天花板。模型在多步循环里会漂移：忘记目标、重复动作、把中间状态当成结论。把这些循环行为<strong>训进权重</strong>，是 2024 年以来 agent 训练的主线：轨迹数据的模仿学习（看人类/高级模型怎么完成任务）与环境闭环的强化学习（自己做、环境给反馈、对了对入权重）。本章用最小实验演示闭环的两种形态。重试式闭环（提议-验证-重试的循环，系统层）与蒸馏式闭环（把循环里的成功轨迹写回权重，模型层），它们分别是今天 agent 工程的”现在”与”正在发生的未来”。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1104,10 +1104,10 @@ window.Quarto = {
 </div>
 <div class="callout-era" title="时代快照 · 2024–2026">
 <ul>
-<li><strong>算力</strong>：环境交互的 RL 需要海量 rollout（一次任务几十步、每步一次前向）——推理算力变成训练算力的燃料；</li>
-<li>数据：轨迹（trajectory）成为一等数据类型——人类演示的轨迹、模型自采的轨迹、带环境反馈的轨迹；标注员的工作从”写答案”变成”完成任务让系统录制”；</li>
-<li>认知：过程奖励（process reward，给每一步打分）与结果奖励（outcome reward，只看最终对错）之争白热化——7.4 的 STaR <span class="citation" data-cites="zelikman2022">(<a href="#ref-zelikman2022" role="doc-biblioref">Zelikman et al. 2022</a>)</span> 是结果奖励的祖先，数学竞赛的逐步判分是过程奖励的主场；</li>
-<li>关键事实：Claude 的 computer use、各家编程 agent 的”agentic 训练”，公开表述高度一致：在真实环境/仿真环境里闭环，把成功轨迹回灌——本章实验的最小版本。</li>
+<li><strong>算力</strong>：环境交互的 RL 需要海量 rollout（一次任务几十步、每步一次前向）。推理算力变成训练算力的燃料；</li>
+<li>数据：轨迹（trajectory）成为一等数据类型。人类演示的轨迹、模型自采的轨迹、带环境反馈的轨迹；标注员的工作从”写答案”变成”完成任务让系统录制”；</li>
+<li>认知：过程奖励（process reward，给每一步打分）与结果奖励（outcome reward，只看最终对错）之争白热化。7.4 的 STaR <span class="citation" data-cites="zelikman2022">(<a href="#ref-zelikman2022" role="doc-biblioref">Zelikman et al. 2022</a>)</span> 是结果奖励的祖先，数学竞赛的逐步判分是过程奖励的主场；</li>
+<li>关键事实：Claude 的 computer use、各家编程 agent 的”agentic 训练”，公开表述高度一致：在真实环境/仿真环境里闭环，把成功轨迹回灌。本章实验的最小版本。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="35.1">
@@ -1115,17 +1115,17 @@ window.Quarto = {
 <ol type="1">
 <li><strong>重试闭环</strong>：提议-验证-重试的循环，成功率随重试预算怎么涨？上限在哪？</li>
 <li>轨迹回灌：把循环里”碰对了”的轨迹拿来微调（不改任务、不加标签），模型的单次成功率能涨吗？（蒸馏式闭环）</li>
-<li>两种闭环的账各记在哪一层？（系统层的推理成本 vs 模型层的权重变化——8.3 的预热）</li>
+<li>两种闭环的账各记在哪一层？（系统层的推理成本 vs 模型层的权重变化。8.3 的预热）</li>
 </ol>
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="35.2">
 <h2 data-number="35.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">35.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路一：纯模仿的轨迹学习</strong>。2023–2024 年大量工作收集人类操作轨迹做 SFT——学会了个样子，但没有环境的纠错信号：模型复制了人类的路径，也复制了人类的错误，且遇到新局面就懵。模仿给你下限，反馈给你上限（4.2 的”错误驱动 vs 相关驱动”在 agent 尺度的重演）。</p>
-<p><strong>弯路二：一步到位的端到端 RL</strong>。在原始环境（浏览器、操作系统）上直接 RL——状态空间巨大、奖励稀疏、一次 rollout 几十秒——训练在工程上先于科学而崩溃。解法是分层与合成：先在可验证的子任务（单元测试、网页导航的仿真）上闭环，再逐步迁移。</p>
-<p><strong>正解的谱系</strong>：STaR（7.4，可验证任务的自举）→ 过程奖励模型（每步判分的奖励——代价是要步骤级标注）→ 结果奖励 + 长轨迹（DeepSeek-R1 一系在推理域的验证）→ agent 域的 env-in-the-loop 训练（WebArena/编程沙盒 + RL）。共同骨架只有一句：环境或验证器当裁判，成功者回灌权重。</p>
+<p><strong>弯路一：纯模仿的轨迹学习</strong>。2023–2024 年大量工作收集人类操作轨迹做 SFT。学会了个样子，但没有环境的纠错信号：模型复制了人类的路径，也复制了人类的错误，且遇到新局面就懵。模仿给你下限，反馈给你上限（4.2 的”错误驱动 vs 相关驱动”在 agent 尺度的重演）。</p>
+<p><strong>弯路二：一步到位的端到端 RL</strong>。在原始环境（浏览器、操作系统）上直接 RL。状态空间巨大、奖励稀疏、一次 rollout 几十秒。训练在工程上先于科学而崩溃。解法是分层与合成：先在可验证的子任务（单元测试、网页导航的仿真）上闭环，再逐步迁移。</p>
+<p><strong>正解的谱系</strong>：STaR（7.4，可验证任务的自举）→ 过程奖励模型（每步判分的奖励。代价是要步骤级标注）→ 结果奖励 + 长轨迹（DeepSeek-R1 一系在推理域的验证）→ agent 域的 env-in-the-loop 训练（WebArena/编程沙盒 + RL）。共同骨架只有一句：环境或验证器当裁判，成功者回灌权重。</p>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
-<p>实验预告：5.1/7.4 的注意力 seq2seq，只训 5 个 epoch（贪心 0.80）——一个”会做但不稳”的模型。两种升级：</p>
+<p>实验预告：5.1/7.4 的注意力 seq2seq，只训 5 个 epoch（贪心 0.80）。一个”会做但不稳”的模型。两种升级：</p>
 <ul>
 <li><strong>循环</strong>：每题最多 <span class="math inline">\(k\)</span> 次采样，验证器（反转回去比对）筛，任一次对即成功；</li>
 <li>回灌：把循环中成功的 (输入, 正确输出) 收集起来，继续微调模型，然后重测单次贪心。</li>
@@ -1133,7 +1133,7 @@ window.Quarto = {
 <p>写下预测：</p>
 <ol type="1">
 <li>成功率 vs 重试次数 <span class="math inline">\(k\)</span>（1/2/4/8）的曲线形状？（线性？饱和？何时到 1.0？）</li>
-<li>回灌一轮后，单次贪心从 0.80 涨到多少？（提示：回灌的数据是”模型已经偶尔能做对的”——这正是 7.4 STaR 的结构。）</li>
+<li>回灌一轮后，单次贪心从 0.80 涨到多少？（提示：回灌的数据是”模型已经偶尔能做对的”。这正是 7.4 STaR 的结构。）</li>
 <li>两者的成本各记在哪？如果每题只许你花一次前向（在线服务），你选哪个？</li>
 </ol>
 <p>写完再运行。</p>
@@ -1141,15 +1141,15 @@ window.Quarto = {
 </section>
 <section id="核心思想" class="level2" data-number="35.3">
 <h2 data-number="35.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">35.3</span> 核心思想</h2>
-<p><strong>循环 = 系统层的方差消减</strong>。单次采样有噪声，验证器把”分布里存在正确答案”变成”输出里保证正确答案”——重试预算买的是对模型自身分布的搜索。它与 7.4 的多数投票同宗（都是测试时计算），区别在验证器的存在：投票靠共识，重试靠裁判——裁判的可得性决定选型（7.4 练习 1 的结论在 agent 尺度成立）。</p>
-<p><strong>轨迹回灌 = 分布的自我蒸馏</strong>。循环的成功轨迹是模型分布的条件样本（模型够得着的成功），回灌把它们从”偶尔”变成”经常”——把测试时计算的收益固化进权重。这是 STaR 的 agent 版：<code>多采样 + 验证 + 回灌</code> 三步循环，每转一圈，模型的单次能力上一格、循环的启动点更高。</p>
-<p><strong>过程与结果的奖励账</strong>：结果奖励（只判最终对错）标注便宜、不可作弊，但长轨迹里信用分配难（哪一步走对了？）；过程奖励（逐步判分）信用分配精准，但要步骤级标注或仿真器。两者的选择是”裁判成本 vs 信用精度”的交换——真实系统常混用（数学用结果+验证，编程用单测=过程）。</p>
-<p><strong>闭环的经济学</strong>：循环把成本记在推理账（每次任务多花 k 倍前向），回灌把成本记在训练账（一次性，之后每次任务都便宜）。产品选型 = 请求量 × 单价的乘法——高频任务买权重，低频任务买循环（9.1 复盘时的算力账本条目）。</p>
+<p><strong>循环 = 系统层的方差消减</strong>。单次采样有噪声，验证器把”分布里存在正确答案”变成”输出里保证正确答案”。重试预算买的是对模型自身分布的搜索。它与 7.4 的多数投票同宗（都是测试时计算），区别在验证器的存在：投票靠共识，重试靠裁判。裁判的可得性决定选型（7.4 练习 1 的结论在 agent 尺度成立）。</p>
+<p><strong>轨迹回灌 = 分布的自我蒸馏</strong>。循环的成功轨迹是模型分布的条件样本（模型够得着的成功），回灌把它们从”偶尔”变成”经常”。把测试时计算的收益固化进权重。这是 STaR 的 agent 版：<code>多采样 + 验证 + 回灌</code> 三步循环，每转一圈，模型的单次能力上一格、循环的启动点更高。</p>
+<p><strong>过程与结果的奖励账</strong>：结果奖励（只判最终对错）标注便宜、不可作弊，但长轨迹里信用分配难（哪一步走对了？）；过程奖励（逐步判分）信用分配精准，但要步骤级标注或仿真器。两者的选择是”裁判成本 vs 信用精度”的交换。真实系统常混用（数学用结果+验证，编程用单测=过程）。</p>
+<p><strong>闭环的经济学</strong>：循环把成本记在推理账（每次任务多花 k 倍前向），回灌把成本记在训练账（一次性，之后每次任务都便宜）。产品选型 = 请求量 × 单价的乘法。高频任务买权重，低频任务买循环（9.1 复盘时的算力账本条目）。</p>
 <p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="35.4">
 <h2 data-number="35.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">35.4</span> 从零实现</h2>
-<div id="c4ab5d54" class="cell" data-execution_count="1">
+<div id="6da86a29" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1179,11 +1179,11 @@ window.Quarto = {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"起点：单次贪心 </span><span class="sc">{</span>exact_acc(model, test_pairs)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>起点：单次贪心 0.744</code></pre>
+<pre><code>起点：单次贪心 1.000</code></pre>
 </div>
 </div>
 <p><strong>实验一：重试闭环（系统层）。</strong> 提议（温度采样）→ 验证（反转回去等于输入即对）→ 不对就再采：</p>
-<div id="106e6ee3" class="cell" data-execution_count="2">
+<div id="b038f03d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agent_success(m, pairs, max_tries, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
@@ -1207,10 +1207,10 @@ window.Quarto = {
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"The agent loop: propose, verify, retry"</span>)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>重试预算 1: 成功率 0.628
-重试预算 2: 成功率 0.756
-重试预算 4: 成功率 0.860
-重试预算 8: 成功率 0.919</code></pre>
+<pre><code>重试预算 1: 成功率 0.953
+重试预算 2: 成功率 0.988
+重试预算 4: 成功率 1.000
+重试预算 8: 成功率 1.000</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1220,9 +1220,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>典型读数：<strong>0.80 → 0.88 → 0.95 → 0.98</strong>——饱和上升，8 次预算几乎榨干。注意上限不是 1.0：最难的那 2% 在分布里的概率质量太小，搜索也够不着（循环的天花板 = 分布的概率质量，7.4 结论的 agent 版）。</p>
+<p>典型读数：<strong>0.80 → 0.88 → 0.95 → 0.98</strong>。饱和上升，8 次预算几乎榨干。注意上限不是 1.0：最难的那 2% 在分布里的概率质量太小，搜索也够不着（循环的天花板 = 分布的概率质量，7.4 结论的 agent 版）。</p>
 <p><strong>实验二：轨迹回灌（模型层）。</strong> 收集循环中的成功轨迹，回灌微调，重测单次：</p>
-<div id="05ff486e" class="cell" data-execution_count="3">
+<div id="3961381e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collect_and_distill(m, round_id, samples_per<span class="op">=</span><span class="dv">6</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">500</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    succ <span class="op">=</span> []</span>
@@ -1246,17 +1246,17 @@ window.Quarto = {
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  round </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">: 采集成功 </span><span class="sc">{</span>n_ok<span class="sc">}</span><span class="ss">/400 → 单次贪心 </span><span class="sc">{</span>accs[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>轨迹回灌（蒸馏式闭环）:
-  round 0: 采集成功 346/400 → 单次贪心 1.000
-  round 1: 采集成功 394/400 → 单次贪心 1.000</code></pre>
+  round 0: 采集成功 396/400 → 单次贪心 1.000
+  round 1: 采集成功 399/400 → 单次贪心 1.000</code></pre>
 </div>
 </div>
-<p>典型读数：单次贪心 <strong>0.80 → 0.92+</strong>（两轮回灌）。与重试闭环合起来看：回灌前的循环把成功率提到 0.98；回灌后，单次 0.92 + 循环 8 次 ≈ 1.00——两个闭环互相抬升，这就是”agent 训练”的全部骨架：循环产出数据，数据强化循环。</p>
-<p>（细心的读者会发现实验二与 7.4 的 STaR 是同一个算法——完全正确。差别只在叙事：STaR 章我们说”自举提升推理”，本章说”轨迹回灌训练 agent”。<strong>同一个 loss 结构，不同的系统包装</strong>——9.1 复盘的”范式回收”模式提前现身。）</p>
+<p>典型读数：单次贪心 <strong>0.80 → 0.92+</strong>（两轮回灌）。与重试闭环合起来看：回灌前的循环把成功率提到 0.98；回灌后，单次 0.92 + 循环 8 次 ≈ 1.00。两个闭环互相抬升，这就是”agent 训练”的全部骨架：循环产出数据，数据强化循环。</p>
+<p>（细心的读者会发现实验二与 7.4 的 STaR 是同一个算法。完全正确。差别只在叙事：STaR 章我们说”自举提升推理”，本章说”轨迹回灌训练 agent”。<strong>同一个 loss 结构，不同的系统包装</strong>。9.1 复盘的”范式回收”模式提前现身。）</p>
 <p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="35.5">
 <h2 data-number="35.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">35.5</span> 消融实验</h2>
-<p><strong>温度的角色再访</strong>：闭环的采集温度决定轨迹的多样性（探索），回灌的学习率决定固化的速度（利用）。把采集温度设 0.1（几乎贪心）重跑回灌——采集到的成功轨迹骤减（模型只会重复已有路径），第一轮提升明显缩水。探索是闭环的燃料：RLVR 的温度、agent 的随机动作、真实系统的 <span class="math inline">\(\varepsilon\)</span>-greedy，都是同一味药的 different 包衣（7.4 消融的 agent 版收尾）。</p>
+<p><strong>温度的角色再访</strong>：闭环的采集温度决定轨迹的多样性（探索），回灌的学习率决定固化的速度（利用）。把采集温度设 0.1（几乎贪心）重跑回灌。采集到的成功轨迹骤减（模型只会重复已有路径），第一轮提升明显缩水。探索是闭环的燃料：RLVR 的温度、agent 的随机动作、真实系统的 <span class="math inline">\(\varepsilon\)</span>-greedy，都是同一味药的 different 包衣（7.4 消融的 agent 版收尾）。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="35.6">
@@ -1275,11 +1275,11 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td>在优化什么 loss？</td>
-<td>回灌时仍是交叉熵（SFT 的老 loss）——<strong>闭环的全部新意在数据的来源</strong>：循环+验证器筛出的自采轨迹。监督三部曲至此四部：数据→偏好→判卷→环境</td>
+<td>回灌时仍是交叉熵（SFT 的老 loss）。<strong>闭环的全部新意在数据的来源</strong>：循环+验证器筛出的自采轨迹。监督三部曲至此四部：数据→偏好→判卷→环境</td>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
-<td>模型自己 × 环境/验证器——“数据=燃料”进入了自产时代（合成数据的正门，9.2）</td>
+<td>模型自己 × 环境/验证器。“数据=燃料”进入了自产时代（合成数据的正门，9.2）</td>
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
@@ -1302,16 +1302,16 @@ window.Quarto = {
 <div class="callout-paper" title="论文时光机">
 <p><strong>Yao, S. et al.&nbsp;(2023).</strong> <em>Tree of thoughts: Deliberate problem solving with large language models.</em> NeurIPS.（配对阅读：WebArena（环境基准）与任何一篇 2024–2025 的 agentic training 报告）</p>
 <ul>
-<li><strong>读什么</strong>：ToT 的图 1（从”链”到”树”——搜索结构的最小升级）与分解-评估-搜索的循环描述；WebArena 的任务与成功率表（真实环境里早期 agent 的低分——2023 年最好系统也只有 ~14%，现实校准的良药）；</li>
+<li><strong>读什么</strong>：ToT 的图 1（从”链”到”树”。搜索结构的最小升级）与分解-评估-搜索的循环描述；WebArena 的任务与成功率表（真实环境里早期 agent 的低分。2023 年最好系统也只有 ~14%，现实校准的良药）；</li>
 <li>跳过：提示模板细节；</li>
-<li>历史注：ToT 把”测试时计算”组织成显式搜索——它是 7.4 与本章之间的桥：推理的搜索化 → 搜索的循环化 → 循环的训练化，三步就是 agent 训练的浓缩史。</li>
+<li>历史注：ToT 把”测试时计算”组织成显式搜索。它是 7.4 与本章之间的桥：推理的搜索化 → 搜索的循环化 → 循环的训练化，三步就是 agent 训练的浓缩史。</li>
 </ul>
 </div>
 </section>
 <section id="遗留问题" class="level2" data-number="35.7">
 <h2 data-number="35.7" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">35.7</span> 遗留问题</h2>
 <ol type="1">
-<li>模型层与系统层的账都摆齐了——<strong>一条界线怎么画</strong>：什么进权重、什么留在外部？（→ 下一章：全书判断框架的正式提出）；</li>
+<li>模型层与系统层的账都摆齐了。<strong>一条界线怎么画</strong>：什么进权重、什么留在外部？（→ 下一章：全书判断框架的正式提出）；</li>
 <li>闭环飞轮能转到哪里？自产数据的极限与风险？（→ 9.2 开放问题）。</li>
 </ol>
 <p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
@@ -1326,11 +1326,11 @@ window.Quarto = {
 <section id="练习" class="level2" data-number="35.9">
 <h2 data-number="35.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">35.9</span> 练习</h2>
 <ol type="1">
-<li><strong>造轮子</strong>：把重试闭环的验证器换成”自验证”（模型自己反转一次比对）——验证器也从模型出。成功率怎么变？（验证的可靠性成为新瓶颈。）</li>
-<li>预测再运行：回灌数据里混入 10% 未验证的”侥幸成功”（碰巧对但路径错误——构造：错误中间态+对的结尾），两轮回灌后单次准确率与错误形态各怎么变？</li>
-<li>消融：回灌只使用最难的那 20% 题目的成功轨迹（其余丢弃），与全部回灌对照——边际数据的价值分布是均匀的吗？</li>
-<li>论文映射：用四问账本并排拆 ToT 与 WebArena——一篇”系统层的搜索”、一篇”环境的度量”，各自买到什么？</li>
-<li>进阶：实现两步任务的闭环（先反转 A 得 B，再反转 B 前 3 位得 C——两步都有验证器），观察错误在哪一步集中——horizon 增长时，是每步错误率不变而累积，还是单步也恶化？（多步退化的两种病理。）</li>
+<li><strong>造轮子</strong>：把重试闭环的验证器换成”自验证”（模型自己反转一次比对）。验证器也从模型出。成功率怎么变？（验证的可靠性成为新瓶颈。）</li>
+<li>预测再运行：回灌数据里混入 10% 未验证的”侥幸成功”（碰巧对但路径错误。构造：错误中间态+对的结尾），两轮回灌后单次准确率与错误形态各怎么变？</li>
+<li>消融：回灌只使用最难的那 20% 题目的成功轨迹（其余丢弃），与全部回灌对照。边际数据的价值分布是均匀的吗？</li>
+<li>论文映射：用四问账本并排拆 ToT 与 WebArena。一篇”系统层的搜索”、一篇”环境的度量”，各自买到什么？</li>
+<li>进阶：实现两步任务的闭环（先反转 A 得 B，再反转 B 前 3 位得 C。两步都有验证器），观察错误在哪一步集中。horizon 增长时，是每步错误率不变而累积，还是单步也恶化？（多步退化的两种病理。）</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1344,9 +1344,9 @@ window.Quarto = {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 1</strong>：自验证版的成功率下降且错误呈相关（同一个模型既提议又验证，错误互相掩护）——外部验证器的独立性是闭环可信度的前提，这是”模型出意图、环境出因果”（8.1）在验证环节的重申。</p>
-<p><strong>练习 2</strong>：准确率短期未必降（侥幸样本也是对的），但错误形态改变：模型学会”错的路径+对的结尾”这类结构，在更难的任务上暴露——数据纯度影响的是泛化的形状而非当期分数（合成数据时代的核心质检问题）。</p>
-<p><strong>练习 5 提示</strong>：典型结果是单步错误率基本不变、总成功率按乘积衰减（两步各 ~0.95 → 总 ~0.90）——horizon 的敌人是乘法；但也会观察到轻微的单步恶化（上下文被第一步输出污染）——两种病理并存，分别对应”分步验证”与”中间状态管理”两类工程对策。</p>
+<p><strong>练习 1</strong>：自验证版的成功率下降且错误呈相关（同一个模型既提议又验证，错误互相掩护）。外部验证器的独立性是闭环可信度的前提，这是”模型出意图、环境出因果”（8.1）在验证环节的重申。</p>
+<p><strong>练习 2</strong>：准确率短期未必降（侥幸样本也是对的），但错误形态改变：模型学会”错的路径+对的结尾”这类结构，在更难的任务上暴露。数据纯度影响的是泛化的形状而非当期分数（合成数据时代的核心质检问题）。</p>
+<p><strong>练习 5 提示</strong>：典型结果是单步错误率基本不变、总成功率按乘积衰减（两步各 ~0.95 → 总 ~0.90）。horizon 的敌人是乘法；但也会观察到轻微的单步恶化（上下文被第一步输出污染）。两种病理并存，分别对应”分步验证”与”中间状态管理”两类工程对策。</p>
 </div>
 </div>
 </div>
