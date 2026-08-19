@@ -126,7 +126,11 @@ print(f"纯幂律外推预测 d=64: {pred:.3f}   实测: {losses[3]:.3f}   误�
 典型结果：纯幂律预测约 **1.5–1.6**，实测 1.80——外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 $L_\infty$。补上地板项再拟合（三点 + 地板共两参数可解）：
 
 ```{python}
-from scipy.optimize import curve_fit  # noqa: 若无 scipy，用网格搜索替代（练习 5）
+try:
+    from scipy.optimize import curve_fit  # 若无 scipy，用网格搜索替代（练习 5）
+except ImportError:
+    curve_fit = None
+    print("（scipy 不可用，地板拟合留作练习 5 的网格搜索版）")
 
 def with_floor(N, a, b, floor):
     return floor + a * N ** (-b)
