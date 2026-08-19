@@ -5,7 +5,7 @@ project:
 book:
   title: "降 Loss 之路"
   subtitle: "深度学习思想史：从感知机到智能体"
-  author: "yujid"
+  author: "Yuji Dong"
   # TODO: 建仓后取消注释并替换为真实地址
   # repo-url: https://github.com/yujid/loss-descent
   # repo-actions: [edit, source, issue]
