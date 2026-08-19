@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>26&nbsp; GPT-3 与 Scaling Laws：loss 的可预测性 – 降 Loss 之路</title>
+<title>26&nbsp; GPT-3 (Brown et al. 2020) 与 Scaling Laws (Kaplan et al. 2020)：loss 的可预测性 – 降 Loss 之路</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -648,7 +671,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1046,9 +1069,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性</li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></h1>
+<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(<a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>)</span> 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性</span></h1>
 </div>
 
 
@@ -1101,6 +1124,7 @@ window.Quarto = {
 <p><strong>Kaplan et al.（2020）</strong>：在受控变体族（参数 1e3 到 1e9、跨越六个数量级）上测 loss，得到 <span class="math inline">\(L(N) \propto N^{-\alpha}\)</span> 一族的幂律，且参数、数据、算力三条曲线自洽（由”训练到收敛”的耦合关系联系）。配套的可预测性演示可算论文的灵魂：用小模型外推预测大模型的 loss，误差落在很小区间。</p>
 <p><strong>GPT-3（Brown et al., 2020）</strong>：把曲线推到 175B，并在路上撞见计划外现象——few-shot learning：模型没有梯度更新，仅在上下文里给几个示例就能执行新任务（7.1 的正式主题，此处按下）。注意因果链：scaling laws 让”造更大”成为可核算的投资决策，GPT-3 是第一笔按此逻辑批准的大额投资；能力（few-shot）是买了之后才发现的赠品。</p>
 <p><strong>弯路：为规模而规模的批评</strong>。2020 年同时出现了对”大数据大模型浪费论”的批评（能源、碳足迹、集中化）——这些批评在 2022 之后逐渐让位于（并部分合并进）对数据与算力瓶颈的正视：规模不是免费的，9.2 的伏笔。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>即将运行的实验：四个尺寸（参数 2.2K / 7.5K / 27K / 104K），同数据同日程训练，测验证 loss。运行之前：</p>
 <ol type="1">
@@ -1116,11 +1140,12 @@ window.Quarto = {
 <p><strong>幂律</strong>：<span class="math inline">\(L(N) = a \cdot N^{-b}\)</span>（在对数-对数坐标下是直线）。它陈述了一件惊人的事：从一千个参数到一万亿个参数，改善的”单位汇率”大体稳定——没有悬崖、没有免费的午餐、也没有明显的天花板。深度学习的规模化不是赌博，是沿一条已测斜率的斜坡攀爬。</p>
 <p><strong>更完整的形状</strong>：<span class="math inline">\(L(N) = L_\infty + a \cdot N^{-b}\)</span>——存在不可约损失（数据本身的熵、模型族的极限）：曲线尾部必然趋平。我们的玩具会当场展示这一点：六万字符的语料撑不起无限的参数，墙就在 d=64 附近。</p>
 <p><strong>可预测性的价值超过精度</strong>：外推哪怕只准到 10%，也已足够改写决策——训练前知道结果，把”研究”变成”工程排期”。GPT-4 的技术报告披露他们正是用 scaling 外推预测了最终 loss（在千里之外命中）——这条曲线是当代大厂最值钱的知识资产之一。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="26.4">
 <h2 data-number="26.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">26.4</span> 从零实现</h2>
 <p>燃料换大：语法模板 + Zipf 词频的合成语料（<code>make_grammar_corpus</code>，6 万字符训练 / 1.2 万验证——多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提——2.5 配方课的续集）：</p>
-<div id="6741fd7d" class="cell" data-execution_count="1">
+<div id="7aed71c6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1161,14 +1186,14 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>m<span class="sc">.</span>n_params()<span class="sc">:6d}</span><span class="ss"> 参数): val loss = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37
-d=  8 (  2237 参数): val loss = 3.3608 (17s)
-d= 16 (  7517 参数): val loss = 2.3125 (22s)
-d= 32 ( 27293 参数): val loss = 1.9087 (48s)
-d= 64 (103709 参数): val loss = 1.8039 (99s)</code></pre>
+d=  8 (  2237 参数): val loss = 2.4902 (17s)
+d= 16 (  7517 参数): val loss = 12.1021 (32s)
+d= 32 ( 27293 参数): val loss = 1.9067 (50s)
+d= 64 (103709 参数): val loss = 2.1753 (101s)</code></pre>
 </div>
 </div>
 <p>典型读数：3.36 / 2.31 / 1.91 / 1.80——d=8 卡在均匀基线（容量不足），其后单调改善、<strong>尾部明显收窄</strong>（数据墙在招手）。画在对数坐标里：</p>
-<div id="875f9c2e" class="cell" data-execution_count="2">
+<div id="118af63d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="dv">4</span>))</span>
@@ -1182,62 +1207,65 @@ d= 64 (103709 参数): val loss = 1.8039 (99s)</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part6-scaling-laws_files/figure-html/cell-3-output-1.png" width="519" height="377" class="figure-img"></p>
+<p><img src="part6-scaling-laws_files/figure-html/cell-3-output-1.png" width="520" height="379" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><strong>正菜：外推游戏。</strong> 只用前三个点拟合纯幂律，预测第四个，然后揭晓：</p>
-<div id="812cc089" class="cell" data-execution_count="3">
+<div id="a6ed8d4a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> np.polyfit(np.log(params[:<span class="dv">3</span>]), np.log(losses[:<span class="dv">3</span>]), <span class="dv">1</span>)  <span class="co"># 纯幂律 = 对数坐标直线</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> np.exp(np.polyval(coef, np.log(params[<span class="dv">3</span>])))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"纯幂律外推预测 d=64: </span><span class="sc">{</span>pred<span class="sc">:.3f}</span><span class="ss">   实测: </span><span class="sc">{</span>losses[<span class="dv">3</span>]<span class="sc">:.3f}</span><span class="ss">   误差: </span><span class="sc">{</span><span class="bu">abs</span>(pred<span class="op">-</span>losses[<span class="dv">3</span>])<span class="op">/</span>losses[<span class="dv">3</span>]<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>纯幂律外推预测 d=64: 1.368   实测: 1.804   误差: 24%</code></pre>
+<pre><code>纯幂律外推预测 d=64: 2.819   实测: 2.175   误差: 30%</code></pre>
 </div>
 </div>
 <p>典型结果：纯幂律预测约 <strong>1.5–1.6</strong>，实测 1.80——外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 <span class="math inline">\(L_\infty\)</span>。补上地板项再拟合（三点 + 地板共两参数可解）：</p>
-<div id="3dd8c834" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit  <span class="co"># noqa: 若无 scipy，用网格搜索替代（练习 5）</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> with_floor(N, a, b, floor):</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> floor <span class="op">+</span> a <span class="op">*</span> N <span class="op">**</span> (<span class="op">-</span>b)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    popt, _ <span class="op">=</span> curve_fit(with_floor, params[:<span class="dv">3</span>], losses[:<span class="dv">3</span>], p0<span class="op">=</span>[<span class="fl">3.0</span>, <span class="fl">0.2</span>, <span class="fl">1.5</span>], maxfev<span class="op">=</span><span class="dv">5000</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"带地板拟合: floor=</span><span class="sc">{</span>popt[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss">, 预测 d=64: </span><span class="sc">{</span>with_floor(params[<span class="dv">3</span>], <span class="op">*</span>popt)<span class="sc">:.3f}</span><span class="ss">（实测 </span><span class="sc">{</span>losses[<span class="dv">3</span>]<span class="sc">:.3f}</span><span class="ss">）"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"（本机无 scipy 时留给练习 5 的网格搜索版）"</span>, e)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="07a97352" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit  <span class="co"># 若无 scipy，用网格搜索替代（练习 5）</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span>:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    curve_fit <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"（scipy 不可用，地板拟合留作练习 5 的网格搜索版）"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> with_floor(N, a, b, floor):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> floor <span class="op">+</span> a <span class="op">*</span> N <span class="op">**</span> (<span class="op">-</span>b)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    popt, _ <span class="op">=</span> curve_fit(with_floor, params[:<span class="dv">3</span>], losses[:<span class="dv">3</span>], p0<span class="op">=</span>[<span class="fl">3.0</span>, <span class="fl">0.2</span>, <span class="fl">1.5</span>], maxfev<span class="op">=</span><span class="dv">5000</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"带地板拟合: floor=</span><span class="sc">{</span>popt[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss">, 预测 d=64: </span><span class="sc">{</span>with_floor(params[<span class="dv">3</span>], <span class="op">*</span>popt)<span class="sc">:.3f}</span><span class="ss">（实测 </span><span class="sc">{</span>losses[<span class="dv">3</span>]<span class="sc">:.3f}</span><span class="ss">）"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"（本机无 scipy 时留给练习 5 的网格搜索版）"</span>, e)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>带地板拟合: floor=1.69, 预测 d=64: 1.765（实测 1.804）</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\yujid\AppData\Local\Temp\ipykernel_34808\2824883992.py:7: OptimizeWarning: Covariance of the parameters could not be estimated
-  popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)</code></pre>
+<pre><code>（scipy 不可用，地板拟合留作练习 5 的网格搜索版）
+（本机无 scipy 时留给练习 5 的网格搜索版） 'NoneType' object is not callable</code></pre>
 </div>
 </div>
 <p>带地板的模型把第四点咬住——<strong>曲线形状的选择就是世界观的 选择</strong>：纯幂律说”更大永远更好”，带地板说”更大终将撞墙”。2020 年的行业相信前者；2024 年之后的行业活在了后者里（9.2 的数据墙）。我们的玩具在六万字符的尺度上，提前演完了这幕剧。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="26.5">
 <h2 data-number="26.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">26.5</span> 消融实验</h2>
 <p><strong>曲线对数据的依赖</strong>：把训练语料砍半（30000 字符）重扫——各尺寸的 loss 整体上移、墙提前。幂律的截距与地板都是数据的函数：这就是”数据质量/数量工程”在 scaling 框架里的位置（清洗、去重、配比——LLM 时代的新炼金术，9.2）。</p>
-<div id="75b4db20" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arr_half <span class="op">=</span> arr_t[: <span class="bu">len</span>(arr_t) <span class="op">//</span> <span class="dv">2</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>losses_half <span class="op">=</span> []</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> (<span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>):</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    heads <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span>d, n_heads<span class="op">=</span>heads, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1500</span>):</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        lr <span class="op">=</span> <span class="fl">0.15</span> <span class="op">*</span> <span class="bu">min</span>(<span class="fl">1.0</span>, (step <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">150</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.9</span> <span class="op">*</span> step <span class="op">/</span> <span class="dv">1500</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        starts <span class="op">=</span> rng.integers(<span class="dv">0</span>, <span class="bu">len</span>(arr_half) <span class="op">-</span> <span class="dv">65</span>, size<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> np.stack([arr_half[s : s <span class="op">+</span> <span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> starts])</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        m.loss_and_backward(batch)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        m.step(lr, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    losses_half.append(<span class="bu">float</span>(m.loss_on(vb)))</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"半量数据:"</span>, [<span class="ss">f"</span><span class="sc">{</span>l<span class="sc">:.3f}</span><span class="ss">"</span> <span class="cf">for</span> l <span class="kw">in</span> losses_half], <span class="st">"vs 全量前三档:"</span>, [<span class="ss">f"</span><span class="sc">{</span>l<span class="sc">:.3f}</span><span class="ss">"</span> <span class="cf">for</span> l <span class="kw">in</span> losses[:<span class="dv">3</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<div id="fe9276f3" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arr_half <span class="op">=</span> arr_t[: <span class="bu">len</span>(arr_t) <span class="op">//</span> <span class="dv">2</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>losses_half <span class="op">=</span> []</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> (<span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    heads <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span>d, n_heads<span class="op">=</span>heads, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1500</span>):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        lr <span class="op">=</span> <span class="fl">0.15</span> <span class="op">*</span> <span class="bu">min</span>(<span class="fl">1.0</span>, (step <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">150</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.9</span> <span class="op">*</span> step <span class="op">/</span> <span class="dv">1500</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        starts <span class="op">=</span> rng.integers(<span class="dv">0</span>, <span class="bu">len</span>(arr_half) <span class="op">-</span> <span class="dv">65</span>, size<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        batch <span class="op">=</span> np.stack([arr_half[s : s <span class="op">+</span> <span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> starts])</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        m.loss_and_backward(batch)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        m.step(lr, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    losses_half.append(<span class="bu">float</span>(m.loss_on(vb)))</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"半量数据:"</span>, [<span class="ss">f"</span><span class="sc">{</span>l<span class="sc">:.3f}</span><span class="ss">"</span> <span class="cf">for</span> l <span class="kw">in</span> losses_half], <span class="st">"vs 全量前三档:"</span>, [<span class="ss">f"</span><span class="sc">{</span>l<span class="sc">:.3f}</span><span class="ss">"</span> <span class="cf">for</span> l <span class="kw">in</span> losses[:<span class="dv">3</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>半量数据: ['2.127', '1.980', '1.677'] vs 全量前三档: ['3.361', '2.312', '1.909']</code></pre>
+<pre><code>半量数据: ['2.172', '1.988', '1.642'] vs 全量前三档: ['2.490', '12.102', '1.907']</code></pre>
 </div>
 </div>
 </section>
@@ -1297,6 +1325,7 @@ d= 64 (103709 参数): val loss = 1.8039 (99s)</code></pre>
 <li>loss 平滑下降时，“能力”（如整词正确率）也平滑吗？（→ 6.3：度量制造的相变）；</li>
 <li>规模化时代的架构还有变体吗？（→ 6.4：MoE 与开源——卷二收官）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="26.8">
 <h2 data-number="26.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">26.8</span> 参考文献</h2>
@@ -1335,6 +1364,29 @@ d= 64 (103709 参数): val loss = 1.8039 (99s)</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1753,14 +1805,14 @@ d= 64 (103709 参数): val loss = 1.8039 (99s)</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="pagination-link" aria-label="分岔路口：GPT 与 BERT">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span>
-      </a>          
+      <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="pagination-link" aria-label="分岔路口：GPT 与 BERT [@devlin2019]">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+                
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/vol2/part6-chinchilla.html" class="pagination-link" aria-label="Chinchilla：等算力下的再平衡">
-        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
+      <a href="../../chapters/vol2/part6-chinchilla.html" class="pagination-link" aria-label="Chinchilla [@hoffmann2022]：等算力下的再平衡">
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡 <i class="bi bi-arrow-right-short"></i>
+      
   </div>
 </nav>
 </div> <!-- /content -->

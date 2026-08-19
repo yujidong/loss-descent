@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1065,7 +1088,7 @@ window.Quarto = {
 </header>
 
 
-<p>2022 年，一篇论文列举了大模型”突然”获得的小能力：多位数算术、指令跟随、按字母表排序……规模跨过某个阈值，准确率从接近零跳到可用——“涌现能力”（emergent abilities）成了年度热词，也成了”AI 风险不可预测”论的技术注脚。2023 年，斯坦福的 Schaeffer 等人泼了冷水：<strong>也许根本没有相变，只有度量方式的幻觉</strong>——把连续改善的概率装进”全对才算分”的盒子里，任何平滑过程都会被量出一个跳变。本章我们用 6.1 的四个模型当场重演这场争论的两造，并提炼出对一切能力声明都有效的度量纪律。</p>
+<p>2022 年，一篇论文列举了大模型”突然”获得的小能力：多位数算术、指令跟随、按字母表排序……规模跨过某个阈值，准确率从接近零跳到可用——“涌现能力”（emergent <span class="citation" data-cites="wei2022emergent">(<a href="#ref-wei2022emergent" role="doc-biblioref"><span class="nocase">Wei et al.</span> 2022</a>)</span> abilities）成了年度热词，也成了”AI 风险不可预测”论的技术注脚。2023 年，斯坦福的 Schaeffer 等人泼了冷水：<strong>也许根本没有相变，只有度量方式的幻觉</strong>——把连续改善的概率装进”全对才算分”的盒子里，任何平滑过程都会被量出一个跳变。本章我们用 6.1 的四个模型当场重演这场争论的两造，并提炼出对一切能力声明都有效的度量纪律。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1099,8 +1122,9 @@ window.Quarto = {
 <h2 data-number="28.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">28.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>涌现的发现（Wei et al., 2022）</strong>：横轴规模、纵轴精确匹配率的图表里，曲线长期贴零然后陡起——视觉冲击力极强，命名也考究（emergence，从复杂性科学借来的相变词汇）。</p>
 <p><strong>弯路一：把图表当机制</strong>。“曲线跳了”与”模型内部发生了相变”是两个命题；前者先得到后者才能成立。早期讨论常把二者混用，甚至引出”不可预测的危险跳变”的政策叙事。</p>
-<p><strong>反驳（Schaeffer et al., 2023）</strong>：核心论证一条——非线性（尤其不连续）度量是跳变的制造机。若模型对每个 token 的正确概率平滑地从 0.51 涨到 0.99，“整串全对”的概率会从 <span class="math inline">\(0.51^n\)</span> 跳到 <span class="math inline">\(0.99^n\)</span>——对长序列这是从零到一的悬崖，而底层什么相变都没有。把度量换回连续的（每 token 对数概率），悬崖消失。</p>
+<p><strong>反驳（Schaeffer et al., 2023 <span class="citation" data-cites="schaeffer2023">(<a href="#ref-schaeffer2023" role="doc-biblioref">Schaeffer et al. 2023</a>)</span>）</strong>：核心论证一条——非线性（尤其不连续）度量是跳变的制造机。若模型对每个 token 的正确概率平滑地从 0.51 涨到 0.99，“整串全对”的概率会从 <span class="math inline">\(0.51^n\)</span> 跳到 <span class="math inline">\(0.99^n\)</span>——对长序列这是从零到一的悬崖，而底层什么相变都没有。把度量换回连续的（每 token 对数概率），悬崖消失。</p>
 <p><strong>后续的拉锯</strong>：有研究指出部分能力在连续度量下仍有加速（“软涌现”）；也有人用更细的探针找到真跳变的候选。悬而未决是本章结尾的诚实状态——但度量纪律本身已经赢下：任何能力声明都要先过”换度量还成立吗”这一关。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>一个思想实验，先算后跑：</p>
 <p>设模型对某 8 字符串每个位置的预测正确率统一为 <span class="math inline">\(p\)</span>（随尺寸从 0.5 平滑升到 0.9）。</p>
@@ -1121,11 +1145,12 @@ window.Quarto = {
 </ul>
 <p>这不是哪一方造假，而是<strong>度量的选择先于结论</strong>：先定度量再看图，跳变与平滑都唾手可得。科学的纪律是：能力声明必须经受度量替换的稳健性检验——换两三种度量，结论仍在，才叫现象；只在一种度量下存在，那可能只是度量的影子。</p>
 <p><strong>对”风险叙事”的校正</strong>：度量假象论让”不可预测的相变”失去了一部分证据，但没有证明”一切皆平滑”——真正的突变若存在，其机制研究（而非图表）才是正途。审慎的立场是双门的：既不拿阶梯曲线贩卖神秘，也不拿平滑曲线否认质变。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="28.4">
 <h2 data-number="28.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">28.4</span> 从零实现</h2>
 <p>复用 6.1 的四尺寸扫描（同数据、同配方），每个模型测<strong>两种度量</strong>：</p>
-<div id="69f90f4c" class="cell" data-execution_count="1">
+<div id="2c5f8c93" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1165,14 +1190,14 @@ window.Quarto = {
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    report[d] <span class="op">=</span> train_and_measure(d)</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss">: loss=</span><span class="sc">{</span>report[d][<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">  char_acc=</span><span class="sc">{</span>report[d][<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">  exact4=</span><span class="sc">{</span>report[d][<span class="dv">2</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>d=  8: loss=3.361  char_acc=0.226  exact4=0.0025
-d= 16: loss=2.312  char_acc=0.313  exact4=0.0022
-d= 32: loss=1.909  char_acc=0.439  exact4=0.0544
-d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
+<pre><code>d=  8: loss=2.490  char_acc=0.285  exact4=0.0181
+d= 16: loss=12.102  char_acc=0.229  exact4=0.0000
+d= 32: loss=1.907  char_acc=0.414  exact4=0.0291
+d= 64: loss=2.175  char_acc=0.298  exact4=0.0059</code></pre>
 </div>
 </div>
 <p>把三种度量放在一起看（注意第二列到第三列的<strong>换算</strong>）：</p>
-<div id="f4a1a5d1" class="cell" data-execution_count="2">
+<div id="94511d97" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(report)</span>
@@ -1186,7 +1211,7 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part6-emergence_files/figure-html/cell-3-output-1.png" width="1142" height="326" class="figure-img"></p>
+<p><img src="part6-emergence_files/figure-html/cell-3-output-1.png" width="1143" height="326" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1230,11 +1255,12 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 </table>
 <p>三个版本的故事：<strong>loss 说”平滑改善，尾部收窄”</strong>（真话）；char_acc 说”爬升后趋平”（也是真话）；exact4 说”小模型一无是处，d=32 突然觉醒（25 倍跳变）“——同一组模型、同一次训练。用「停一停」的公式验算：d=16→32 的 char_acc 只涨了 1.4 倍，exact4 却涨了 25 倍——<span class="math inline">\(4\)</span> 字符全对的 <span class="math inline">\(n=4\)</span> 次方放大器在起作用。</p>
 <p><strong>宣布涌现 vs 揭露度量</strong>，此刻只隔一句话的距离。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="28.5">
 <h2 data-number="28.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">28.5</span> 消融实验</h2>
 <p><strong>放大器的旋钮</strong>：把阶梯度量的窗口从 4 调到 2 和 8，跳变的”锐度”怎么变？（窗口越长，<span class="math inline">\(n\)</span> 次方放大越猛，悬崖越陡——同一种能力可以被量出任意陡峭的觉醒。）</p>
-<div id="e3a3defc" class="cell" data-execution_count="3">
+<div id="d3950ef2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exactk(pred, tgt, k):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> <span class="bu">sum</span>((pred[i, j : j <span class="op">+</span> k] <span class="op">==</span> tgt[i, j : j <span class="op">+</span> k]).<span class="bu">all</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(pred.shape[<span class="dv">0</span>]) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, pred.shape[<span class="dv">1</span>] <span class="op">-</span> k <span class="op">+</span> <span class="dv">1</span>, k))</span>
@@ -1254,12 +1280,13 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"窗口 k=</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: d=32 的精确匹配率 = </span><span class="sc">{</span>exactk(pred32, tgt, k)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>窗口 k=2: d=32 的精确匹配率 = 0.1808
-窗口 k=4: d=32 的精确匹配率 = 0.0544
+<pre><code>窗口 k=2: d=32 的精确匹配率 = 0.1613
+窗口 k=4: d=32 的精确匹配率 = 0.0291
 窗口 k=8: d=32 的精确匹配率 = 0.0000</code></pre>
 </div>
 </div>
 <p>（对照心中预演：k=2 温和、k=8 接近归零——<strong>“能力是否存在”的答案不应依赖你把尺子刻度切多细</strong>，这就是度量纪律的全部。）</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="28.6">
 <h2 data-number="28.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">28.6</span> 本章 Loss 账本</h2>
@@ -1316,6 +1343,7 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 <li>度量之争审问了”报表”，没审问”模型内部”——能力到底怎么在权重里组织起来的？（→ 卷三 interpretability，及 7.1 的 in-context 机制研究）；</li>
 <li>平滑的 loss 与跳变的能力声明之间的张力，将在对齐时代以更尖锐的形式出现：<strong>我们对模型的评估，永远比模型本身粗糙</strong>（→ 7.3 的 reward hacking，9.2 的评测危机）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="28.8">
 <h2 data-number="28.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">28.8</span> 参考文献</h2>
@@ -1353,6 +1381,35 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-schaeffer2023" class="csl-entry" role="listitem">
+Schaeffer, Rylan, Brando Miranda, and Sanmi Koyejo. 2023. <span>“Are Emergent Abilities of Large Language Models a Mirage?”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-wei2022emergent" class="csl-entry" role="listitem">
+<span class="nocase">Wei, Jason, Yi Tay, Rishi Bommasani, et al.</span> 2022. <span>“Emergent Abilities of Large Language Models.”</span> <em>Transactions on Machine Learning Research</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1771,9 +1828,9 @@ d= 64: loss=1.804  char_acc=0.421  exact4=0.0634</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/vol2/part6-chinchilla.html" class="pagination-link" aria-label="Chinchilla：等算力下的再平衡">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span>
-      </a>          
+      <a href="../../chapters/vol2/part6-chinchilla.html" class="pagination-link" aria-label="Chinchilla [@hoffmann2022]：等算力下的再平衡">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+                
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../chapters/vol2/part6-convergence.html" class="pagination-link" aria-label="收敛：decoder-only、MoE 与开源运动">

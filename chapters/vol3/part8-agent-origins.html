@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -741,7 +764,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -770,7 +793,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -858,7 +881,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -875,13 +898,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -922,7 +945,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1071,6 +1094,7 @@ main table {
 <p><strong>弯路一：把 agent 当规划系统做</strong>。2023 年的框架热（LangChain 生态、AutoGPT）试图用代码写死规划：任务分解模板、反思提示、记忆管理——把智能放在脚手架里。结果：脆弱、昂贵、一步错步步错。教训与 1.2 的专家系统惊人地同构——知识在代码里就遇到代码的扩展墙；Bitter Lesson 的 agent 版。</p>
 <p><strong>弯路二：宣布”模型即全部”</strong>。反向极端：只要模型够强，无需脚手架。现实打脸：没有工具的模型算不准大数、没有循环的模型改不了自己的错。脚手架与模型是共生关系——分界线在哪，正是 8.3 的主题。</p>
 <p><strong>正解的演化</strong>：函数调用（格式对齐让”调用工具”变成一种可靠的语言行为）→ 代码执行作为工具（写代码比心算算术更接近模型的训练分布——代码数据是预训练里最完整的”人类用工具轨迹”）→ 计算机使用/浏览器操作（轨迹采集 → 模仿学习 → 环境闭环 RL，8.2 的主题）。每一步都是”找到数据里已有的行为，再把接口对齐”。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>两个实验预告，先写下预测：</p>
 <ol type="1">
@@ -1090,11 +1114,12 @@ main table {
 </ol>
 <p><strong>工具的本质：把模型的短板外包给确定性系统</strong>。模型不擅长精确算术（7.4 我们领教过），但擅长决定”什么时候该算、算什么”——决策与执行分离，agent 的全部架构秘密就这一句。它与 3.1 卷积的”归纳偏置”形成有趣的镜像：卷积把结构写进权重，agent 把结构写进环境——先验的两种住所。</p>
 <p><strong>“知道”与”说出”之间，工具是桥</strong>：7.2 发现知识在概率里、行为在路径上。重排类工具（验证器、best-of-n）不改权重，直接读概率——它们是”把知道变成说出”的系统层方案（与 RLHF 的模型层方案对照）。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="34.4">
 <h2 data-number="34.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">34.4</span> 从零实现</h2>
 <p><strong>实验一：计算器拦截。</strong> 基座模型续写含算式的文本，工具在算式处接管：</p>
-<div id="459526f0" class="cell" data-execution_count="1">
+<div id="5a24f5ce" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1163,7 +1188,7 @@ main table {
 </div>
 <p>典型读数：<strong>无工具 ≈ 0.05–0.15</strong>（模型对算术只有字符级的模糊直觉）→ 带工具 = 1.00。注意工具只做了一件小事：识别模式、算对、写回——决策权（在哪里停、写什么算式）仍在模型。这就是 agent 的分工：模型出意图，环境出因果。</p>
 <p><strong>实验二：验证器重排——把 margin 变成命中率。</strong> 复用 7.2 的 SFT 流程（代码相同，快速重训）：</p>
-<div id="265610b6" class="cell" data-execution_count="2">
+<div id="deb8b64d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_qa_corpus</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.transformer.layers <span class="im">import</span> softmax_lastdim</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1206,14 +1231,16 @@ main table {
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    rerank <span class="op">+=</span> <span class="bu">int</span>(best <span class="op">==</span> a)</span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"QA 命中: 贪心 </span><span class="sc">{</span>greedy<span class="op">/</span><span class="dv">12</span><span class="sc">:.2f}</span><span class="ss"> -&gt; 枚举重排 </span><span class="sc">{</span>rerank<span class="op">/</span><span class="dv">12</span><span class="sc">:.2f}</span><span class="ss">（margin 均值 +3.68 nat）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>QA 命中: 贪心 0.00 -&gt; 枚举重排 0.08（margin 均值 +3.68 nat）</code></pre>
+<pre><code>QA 命中: 贪心 0.08 -&gt; 枚举重排 0.08（margin 均值 +3.68 nat）</code></pre>
 </div>
 </div>
 <p>典型读数：贪心 0.33 → 重排 <strong>0.42</strong>。提升真实但有限——这里藏着本章最诚实的一课：margin 是均值，重排要的是每题都第一。平均偏好正确 ≠ 逐题排序正确——6.3 的”度量与平均”之课在工具语境下重演。真实系统里的 RAG 重排器、验证器组合拳，本质上都在攻这个”逐题排序”的缺口。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="34.5">
 <h2 data-number="34.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">34.5</span> 消融实验</h2>
 <p><strong>工具的时机</strong>：把计算器从”生成中拦截”改成”生成后纠正”（等模型全写完再改答案）——对吗？不对：模型的后续生成建立在错误答案的上下文上，纠正一个字符救不回已被污染的推理链。改一下拦截时机重测（练习 3）——工具要接在因果链上，而不是贴在结果上：这就是为什么真实的 function calling 是”停下生成→等工具→再继续”，而不是事后修补。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="34.6">
 <h2 data-number="34.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">34.6</span> 本章 Loss 账本</h2>
@@ -1258,7 +1285,7 @@ main table {
 <div class="callout-paper" title="论文时光机">
 <p><strong>Schick, T. et al.&nbsp;(2023).</strong> <em>Toolformer: Language models can teach themselves to use tools.</em> NeurIPS.（配对阅读 OpenAI 的函数调用文档与 Gorilla/WebArena 一系的工作）</p>
 <ul>
-<li><strong>读什么</strong>：Toolformer 的自标注流程（模型在哪些位置插入 API 调用能降 loss——用 loss 定义”什么时候需要工具”，这是全书主线在 agent 领域的直接延伸）；数据构造的表 1；</li>
+<li><strong>读什么</strong>：Toolformer <span class="citation" data-cites="schick2023">(<a href="#ref-schick2023" role="doc-biblioref">Schick et al. 2023</a>)</span> 的自标注流程（模型在哪些位置插入 API 调用能降 loss——用 loss 定义”什么时候需要工具”，这是全书主线在 agent 领域的直接延伸）；数据构造的表 1；</li>
 <li>跳过：API 细节；</li>
 <li>历史注：Toolformer 的”让模型自己标注工具使用”与 STaR 的”让模型自己标注推理”是同一个思想在不同维度的投影——自举家族的又一成员（7.4 的回声）。</li>
 </ul>
@@ -1270,6 +1297,7 @@ main table {
 <li>单次工具调用有了——<strong>多步循环</strong>（调用→观察→再决策）的行为如何训练与稳定？（→ 下一章：轨迹与环境闭环）；</li>
 <li>模型层与系统层的边界怎么画——一个问题该改 prompt、改工具、还是改权重？（→ 8.3：判断框架）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="34.8">
 <h2 data-number="34.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">34.8</span> 参考文献</h2>
@@ -1307,6 +1335,32 @@ main table {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-schick2023" class="csl-entry" role="listitem">
+Schick, Timo, Jane Dwivedi-Yu, Roberto Dessì, et al. 2023. <span>“Toolformer: Language Models Can Teach Themselves to Use Tools.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

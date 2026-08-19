@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1065,7 +1088,7 @@ window.Quarto = {
 </header>
 
 
-<p>2017 年 6 月，八位 Google 的研究者发表了论文，标题只有一个句子：<em>Attention Is All You Need</em>（注意力就是你所需要的一切）。宣言的内容是把 5.1 的补丁逻辑推到尽头：<strong>既然注意力已经承担了全部的”看哪里”工作，把循环扔掉</strong>。序列的位置信息用位置编码补上，层与层之间用残差与归一化缝合——剩下的全是矩阵乘法。这个架构后来叫 Transformer，它是 GPT 的 T、BERT 的 T、也是今天一切大模型的骨架。本章我们把它从零搭起来——全书代码量的最高点——并看着它在同一条 2.4K 字符的语料上，把此前所有模型甩在身后。</p>
+<p>2017 年 6 月，八位 Google 的研究者发表了论文，标题只有一个句子：<em>Attention Is All You Need <span class="citation" data-cites="vaswani2017">(<a href="#ref-vaswani2017" role="doc-biblioref">Vaswani et al. 2017</a>)</span></em>（注意力就是你所需要的一切）。宣言的内容是把 5.1 的补丁逻辑推到尽头：<strong>既然注意力已经承担了全部的”看哪里”工作，把循环扔掉</strong>。序列的位置信息用位置编码补上，层与层之间用残差与归一化缝合——剩下的全是矩阵乘法。这个架构后来叫 Transformer，它是 GPT 的 T、BERT 的 T、也是今天一切大模型的骨架。本章我们把它从零搭起来——全书代码量的最高点——并看着它在同一条 2.4K 字符的语料上，把此前所有模型甩在身后。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1101,6 +1124,7 @@ window.Quarto = {
 <p><strong>弯路：并行 RNN 的努力</strong>。另一条路线试图保住循环但并行化（stacked、dilated、bidirectional 的各种组合）——串行依赖始终是硬伤，每一步都要等上一步。有些约束是数学的，不是工程的——认识到这一点的标志，就是放弃在这条路上继续投入。</p>
 <p><strong>多头的设计</strong>：一组注意力只能学一种”看的方式”；八组并行（多头），每组在自己的子空间里自由分工——有的看相邻词、有的看句法依存、有的只看分隔符。并行复用同一输入的多个视图，这个思想此后出现在一切多分支设计里。</p>
 <p><strong>训练配方的隐性贡献</strong>：warmup 学习率、梯度裁剪、残差上的 LayerNorm（pre-LN）——原论文的这些”工程细节”后来被证明关乎生死（post-LN 在深层会训崩）。架构的光环下永远藏着配方的汗水——2.5 的教训第三次上演。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>拼图时间。你已经拥有全部零件：点积注意力（5.1）、残差连接（3.2）、LayerNorm（2.3 的 BN 之亲）、MLP（1.3）、词嵌入（4.4）。在阅读下面的架构图之前，自己拼一次：</p>
 <ol type="1">
@@ -1122,11 +1146,12 @@ window.Quarto = {
 <p><strong>块的结构</strong>（GPT-2 风格的 pre-LN）：</p>
 <p><span class="math display">\[x = x + \mathrm{MHA}(\mathrm{LN}(x)); \qquad x = x + \mathrm{MLP}(\mathrm{LN}(x))\]</span></p>
 <p>每一件都似曾相识：残差是 3.2 的（给梯度修高速路）、LN 是 2.3 的（钉住分布）、MLP 是逐位置的非线性。<strong>Transformer 没有发明任何一个新零件——它是一个用注意力做粘合剂的重组装</strong>。研究史在此展现了另一种创新模式：不是发明新积木，而是发现旧积木的正确组合。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="23.4">
 <h2 data-number="23.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">23.4</span> 从零实现</h2>
 <p><code>dlbook.transformer</code> 提供全部零件（约三百行，<code>layers.py</code> 的反向传播值得逐行对读——1.3 的三条递推穿过了 softmax、多头变形与残差）。我们的 <code>MiniGPT</code>：2 个块、32 维、2 头、正弦位置编码。上老战场：</p>
-<div id="9c96838d" class="cell" data-execution_count="1">
+<div id="1a95de7a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1157,10 +1182,10 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83
 MiniGPT 参数量: 27163
-1000 步用时 9s；最终 loss 1.7903</code></pre>
+1000 步用时 18s；最终 loss 1.7715</code></pre>
 </div>
 </div>
-<div id="1dbfd9c8" class="cell" data-execution_count="2">
+<div id="dcccc469" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"MiniGPT char-LM"</span>: history}, title<span class="op">=</span><span class="st">"Attention is all you need (for 2.4KB of text)"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1171,16 +1196,16 @@ MiniGPT 参数量: 27163
 </div>
 </div>
 <p><strong>1.79</strong>——同一语料的总冠军（超过 3-gram 的 1.95 与 RNN 的 2.23，且收敛快得多）。看它写出的文本：</p>
-<div id="0d31004a" class="cell" data-execution_count="3">
+<div id="ed41a6d8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> model.generate([vocab[c] <span class="cf">for</span> c <span class="kw">in</span> <span class="st">"the cat "</span>], n_new<span class="op">=</span><span class="dv">140</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, seed<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>the cat cat bip the pips sma wand smat caverermat smats the s the s frky. thin. the billd sky d the seree s s. s s thetheas smelllllle m s s bonigar</code></pre>
+<pre><code>the cat bipld pip forens pin wand sobr. the frolle this the thillin d thollay tout p f t ngowe thed theat the t as thethe s sthirouthe mat t care fo</code></pre>
 </div>
 </div>
 <p>典型样貌：比 RNN 的采样更像”英语”——词的边界干净、常见搭配成串（the/sat/and）、偶尔冒出语料的词组。<strong>同预算下表示质量的差距是肉眼可见的</strong>。</p>
 <p><strong>注意力图：模型在看什么？</strong> 取第一块的平均注意力（一次前向后自动缓存）：</p>
-<div id="d83eff32" class="cell" data-execution_count="4">
+<div id="45781ff3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> np.array(arr[<span class="dv">100</span>:<span class="dv">132</span>])[<span class="va">None</span>, :]</span>
@@ -1197,17 +1222,18 @@ MiniGPT 参数量: 27163
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part5-transformer_files/figure-html/cell-5-output-1.png" width="454" height="348" class="figure-img"></p>
+<p><img src="part5-transformer_files/figure-html/cell-5-output-1.png" width="457" height="349" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>典型的图案：<strong>强对角线（看自己与邻居）+ 零星的长程亮点</strong>。因果掩罩使上三角全黑；对角带是字符 LM 的局部统计；远处亮点是它学到的选择性回看——5.1 对齐热图的直系亲戚。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="23.5">
 <h2 data-number="23.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">23.5</span> 消融实验</h2>
 <p><strong>位置编码：注意力的隐形地基。</strong> 把位置编码置零，同预算重训：</p>
-<div id="bf6a8b42" class="cell" data-execution_count="5">
+<div id="6d04fa3e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model_nopos <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>model_nopos.pos <span class="op">=</span> np.zeros_like(model_nopos.pos)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
@@ -1219,10 +1245,11 @@ MiniGPT 参数量: 27163
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    model_nopos.step(<span class="fl">0.15</span>, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"有位置: </span><span class="sc">{</span>history[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss"> | 无位置: </span><span class="sc">{</span>l_nopos<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>有位置: 1.7903 | 无位置: 4.4949</code></pre>
+<pre><code>有位置: 1.7715 | 无位置: 3.6771</code></pre>
 </div>
 </div>
 <p><strong>1.79 → 4.49</strong>——没有位置信息，模型甚至差于均匀基线（3.30）：字符袋的歧义比没有信息更糟（“有 t、h、e、空格……下一个字符是啥？”）。这个戏剧性的消融说明：注意力的全部序列能力都骑在位置编码上——一个加法注入的、看似不起眼的组件。它也是今天长上下文研究的核心战场（RoPE 的缩放定律、8.x）。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="23.6">
 <h2 data-number="23.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">23.6</span> 本章 Loss 账本</h2>
@@ -1281,6 +1308,7 @@ MiniGPT 参数量: 27163
 <li>因果掩罩去掉会怎样？生成与理解的两条路线如何分野？（→ 5.4 GPT vs BERT）；</li>
 <li>这个架构吞下更多数据与参数时会发生什么？（→ Part 6：scaling laws——loss 的可预测时代）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="23.8">
 <h2 data-number="23.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">23.8</span> 参考文献</h2>
@@ -1318,6 +1346,32 @@ MiniGPT 参数量: 27163
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-vaswani2017" class="csl-entry" role="listitem">
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, et al. 2017. <span>“Attention Is All You Need.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

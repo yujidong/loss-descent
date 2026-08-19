@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1084,7 +1107,7 @@ window.Quarto = {
 <li><strong>算力</strong>：序列模型（即将登场的 RNN）在 GPU 上的并行度天生不如卷积——算力的偏好开始悄悄影响架构演化（5.3 的主题埋线）；</li>
 <li>数据：互联网文本成为下一个金矿，词级依赖动辄跨越数十词；</li>
 <li>认知：NLP 的主流是词向量 + 特征工程（4.4 的 word2vec 刚出现）；把”阅读”当作序列建模的想法正在成形；</li>
-<li>关键事实：卷积并未死于序列——WaveNet（2016）用空洞卷积把窗口指数式撑大，证明”固定窗口”还有最后一滴油水可榨；但真正的王座要等循环与注意力（Part 4 与 5）。</li>
+<li>关键事实：卷积并未死于序列——WaveNet <span class="citation" data-cites="oord2016">(<a href="#ref-oord2016" role="doc-biblioref">Oord et al. 2016</a>)</span>（2016）用空洞卷积把窗口指数式撑大，证明”固定窗口”还有最后一滴油水可榨；但真正的王座要等循环与注意力（Part 4 与 5）。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="16.1">
@@ -1101,6 +1124,7 @@ window.Quarto = {
 <p><strong>把图像方案硬搬到文本（弯路）</strong>。早期尝试把句子当”一维图像”做卷积（text-CNN，Kim 2014）——在短文本分类上意外好用（n-gram 检测器），但生成与翻译这类需要逐位置输出、看任意远上下文的任务上，固定窗口捉襟见肘。分类可以只看局部特征袋，生成必须照顾全局——这个差别定义了序列建模的真正难度。</p>
 <p><strong>空洞卷积的最后一搏（WaveNet, 2016）</strong>。窗口不再紧挨着滑动：第 <span class="math inline">\(l\)</span> 层的卷积每隔 <span class="math inline">\(d_l\)</span> 个位置取一个输入，<span class="math inline">\(d_l\)</span> 逐层翻倍——<span class="math inline">\(L\)</span> 层的等效感受野随 <span class="math inline">\(2^L\)</span> 指数增长，10 层即可覆盖上千个时间步。它撑起了 2016–2018 的语音合成（说出了谷歌助手的声音），却仍有一个软肋：感受野再大也是预设的——依赖在感受野之外照样抓瞎，且所有位置共享同一套”看哪里”的模式。</p>
 <p><strong>命运的伏笔</strong>：解决”不定距离依赖”的正确答案其实已经发表（注意力，Bahdanau 2014——5.1 的主角），但世界要先在循环结构上绕一个大圈。答案常常早于问题被需要——研究史的又一常态。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>任务：16 比特序列，<span class="math inline">\(y = x_{16-8}\)</span>（回看 8 步）。两个候选模型，都只读序列末段：</p>
 <ul>
@@ -1127,11 +1151,12 @@ window.Quarto = {
 </ol>
 <p>卷积对 1 有补丁（自适应池化）、对 3 有补丁（因果卷积），唯独对 2——<strong>不定距</strong>——是原理性的短板。突破口有二：让网络带状态（循环，RNN——把”读过的东西”压缩进一个可携带的隐藏向量）或让每个位置动态选择看哪里（注意力）。前者是卷二前半的主角，后者是终局答案。</p>
 <p><strong>一条重要的对称性</strong>：n-gram 语言模型（下一个 Part 的开场）与末位卷积在信息结构上同构——都是”固定窗口看历史”。所以本章的边界实验同时也是 4.1 的预告片：n-gram 的病与 text-CNN 的病是同一个病。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">16.4</span> 从零实现</h2>
 <p><code>dlbook.nn.Conv1D</code> 已就位。模型 = 一维卷积 + relu + <strong>只取末位输出</strong>（因果式的最小演示）+ 线性头：</p>
-<div id="bf711e3e" class="cell" data-execution_count="1">
+<div id="64334931" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_seq_task</span>
@@ -1175,11 +1200,12 @@ window.Quarto = {
 </div>
 </div>
 <p>典型读数：<span class="math inline">\(k=3\)</span> 拿到 <strong>0.51</strong>（概率地板）；<span class="math inline">\(k=10\)</span> 到 1.00。与你在「停一停」的推算对照：目标比特在位置 <span class="math inline">\(16-8=8\)</span>（0 起数），<span class="math inline">\(k=3\)</span> 的窗口只覆盖最后三个位置——目标在视野外，任何学习算法都只能输出边缘分布；<span class="math inline">\(k=10\)</span> 把它框进来后，问题退化为一层线性可读的映射。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">16.5</span> 消融实验</h2>
 <p><strong>势力范围图</strong>：固定 <span class="math inline">\(k=10\)</span>，扫回看距离——</p>
-<div id="9d15c973" class="cell" data-execution_count="2">
+<div id="45bad071" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">12</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Xtr_d, ytr_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Xte_d, yte_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1210,6 +1236,7 @@ window.Quarto = {
 </div>
 </div>
 <p>前三个距离（2、4、8）都在窗口内——全对；距离 12 越出窗口——跌回地板。<strong>一条由 <span class="math inline">\(k\)</span> 画死的硬边界</strong>，这就是势力范围图。真实语言里”有用的上下文距离”没有上限——固定窗口的死刑判决书由这张小图签署。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="16.6">
 <h2 data-number="16.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">16.6</span> 本章 Loss 账本</h2>
@@ -1267,6 +1294,7 @@ window.Quarto = {
 <li>语言建模的原始形态——n-gram 与信息论的血缘（→ 4.1：Shannon 的熵）；</li>
 <li>“不定距离依赖”的终极解药（→ 5.1：注意力——让每个位置自己学着看哪里）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= 卷二的入场券）。</p>
 </section>
 <section id="参考文献" class="level2" data-number="16.8">
 <h2 data-number="16.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">16.8</span> 参考文献</h2>
@@ -1304,6 +1332,32 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-oord2016" class="csl-entry" role="listitem">
+Oord, Aäron van den, Sander Dieleman, Heiga Zen, et al. 2016. <span>“<span>WaveNet</span>: A Generative Model for Raw Audio.”</span> <em>arXiv Preprint arXiv:1609.03499</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

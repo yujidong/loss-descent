@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>27&nbsp; Chinchilla：等算力下的再平衡 – 降 Loss 之路</title>
+<title>27&nbsp; Chinchilla (Hoffmann et al. 2022)：等算力下的再平衡 – 降 Loss 之路</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -648,7 +671,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-chinchilla.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-chinchilla.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1046,9 +1069,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-chinchilla.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-scaling-laws.html">卷二 · Part 6 · 规模时代（2019–2024）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol2/part6-chinchilla.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡</li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></h1>
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(<a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)</span>：等算力下的再平衡</span></h1>
 </div>
 
 
@@ -1065,7 +1088,7 @@ window.Quarto = {
 </header>
 
 
-<p>上一章的曲线回答了”更大更好吗”，却没有回答一个更贵的问题：<strong>给我一笔固定的算力，该怎么花？</strong> 2020 年的实践答案是”买参数”——Kaplan 的曲线读起来像”大模型优先”。2022 年，DeepMind 的 Hoffmann 等人（论文代号 Chinchilla）用四百多次受控实验重算了这本账，结论掀了桌子：同等算力下，参数与训练数据应当大致等比例增长（约每参数 20 个 token）。按此配方，700 亿参数的 Chinchilla 打败了它四倍大的 Gopher。行业随即转向”更小的模型、更多的数据”——LLaMA 一族由此而生。本章在玩具上重演这本账的算法：等算力扫描。</p>
+<p>上一章的曲线回答了”更大更好吗”，却没有回答一个更贵的问题：<strong>给我一笔固定的算力，该怎么花？</strong> 2020 年的实践答案是”买参数”——Kaplan 的曲线读起来像”大模型优先”。2022 年，DeepMind 的 Hoffmann 等人（论文代号 Chinchilla）用四百多次受控实验重算了这本账，结论掀了桌子：同等算力下，参数与训练数据应当大致等比例增长（约每参数 20 个 token）。按此配方，700 亿参数的 Chinchilla 打败了它四倍大的 Gopher。行业随即转向”更小的模型、更多的数据”——LLaMA <span class="citation" data-cites="touvron2023">(<a href="#ref-touvron2023" role="doc-biblioref"><span class="nocase">Touvron et al.</span> 2023</a>)</span> 一族由此而生。本章在玩具上重演这本账的算法：等算力扫描。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1097,10 +1120,11 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="27.2">
 <h2 data-number="27.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">27.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>Kaplan 的读法与偏差</strong>：2020 年的定律说”大模型在相同算力下更优”——但那些测量里的模型大多没有训到收敛，且固定了一批训练细节（学习率日程的长度、临界批次）。在欠训练的世界里比较大模型，会系统性高估”大”的边际收益——Chinchilla 的第一刀就砍在这里：统一配方、训到位、再比较。</p>
+<p><strong>Kaplan 的读法与偏差</strong>：2020 <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span> 年的定律说”大模型在相同算力下更优”——但那些测量里的模型大多没有训到收敛，且固定了一批训练细节（学习率日程的长度、临界批次）。在欠训练的世界里比较大模型，会系统性高估”大”的边际收益——Chinchilla 的第一刀就砍在这里：统一配方、训到位、再比较。</p>
 <p><strong>三族方法，一个结论</strong>：Hoffmann 等人用三种独立方法（固定模型扫数据、固定数据扫模型、等算力参数化拟合）交叉验证，收敛到同一个配比（每参数约 20 token）。多方法的一致性比单一方法的精度更有说服力——研究方法论的一堂公开课。</p>
 <p><strong>回响</strong>：Gopher（2800 亿参数）被 Chinchilla（700 亿）以相同算力击败；Meta 的 LLaMA（2023）按新配方用”小”模型追平大模型，并把权重开源——配比的修正直接催生了开源时代的可行路线（6.4 的剧情）。此外它还改写了推理经济学：训练一次省下的钱之外，小模型的每一次推理都更便宜——部署时代的隐藏红利。</p>
 <p><strong>弯路：把 20 token/参数当物理常数</strong>。后续研究（如对多轮训练、数据复用的再核算）表明这个比率依赖设定；把它当铁律的做法很快被打破。研究结论的适用域与结论本身同样重要——账本栏目的老教导。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>设定：预算 <span class="math inline">\(C\)</span> = 27293 × 1200（param-steps，参数量 × 训练步数）。四个候选：</p>
 <table class="caption-top table">
@@ -1149,11 +1173,12 @@ window.Quarto = {
 <p><strong>直觉版</strong>：训练像烧砖——参数是窑的容积、数据是柴火。窑太大柴不够，烧出半熟的砖；窑太小柴太多，烧完还剩火。约束不是窑也不是柴，是总热量。</p>
 <p><strong>为什么它推翻了 Kaplan</strong>：两者并不真的矛盾——差别在”训练到什么程度算数”。Kaplan 族的比较隐含”欠训练也算”，Chinchilla 族要求”算力花完即止”。同样的数据、不同的实验协议、不同的结论——读到任何 scaling 主张时，先问它的协议。</p>
 <p><strong>对本书主线的意义</strong>：这是 loss 账本最辉煌的一页——不是降 loss 的新技术，而是”如何最便宜地降 loss”的会计学。研究从”找到更好的方法”扩展到”找到更优的资源配置”，这门手艺此后统治了工业界的模型训练。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="27.4">
 <h2 data-number="27.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">27.4</span> 从零实现</h2>
 <p>复用上一章的全部装备，只把扫描协议换成等算力：</p>
-<div id="fb15ef3d" class="cell" data-execution_count="1">
+<div id="39e56e7a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1194,13 +1219,13 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    results[d] <span class="op">=</span> vl</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>n<span class="sc">:6d}</span><span class="ss"> 参数, </span><span class="sc">{</span>steps<span class="sc">:5d}</span><span class="ss"> 步): val = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.7329 (162s)
-d= 16 (  7517 参数,  4357 步): val = 1.5540 (63s)
-d= 32 ( 27293 参数,  1200 步): val = 1.8942 (39s)
-d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
+<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.6812 (168s)
+d= 16 (  7517 参数,  4357 步): val = 1.9562 (93s)
+d= 32 ( 27293 参数,  1200 步): val = 1.9120 (41s)
+d= 64 (103709 参数,   315 步): val = 2.1518 (22s)</code></pre>
 </div>
 </div>
-<div id="d4bf83ce" class="cell" data-execution_count="2">
+<div id="e4080e82" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(results)</span>
@@ -1217,7 +1242,7 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part6-chinchilla_files/figure-html/cell-3-output-1.png" width="544" height="377" class="figure-img"></p>
+<p><img src="part6-chinchilla_files/figure-html/cell-3-output-1.png" width="547" height="379" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1229,11 +1254,12 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
 <li>有趣的细节：d=8（步数超多）拿到 1.73，好于 d=32/64——小模型充分训练的顽强，正是 LLaMA 路线的玩具版。</li>
 </ul>
 <p><strong>玩具与现实的换算</strong>：真实 Chinchilla 配比约 20 token/参数。我们的谷底 d=16：训练 4357 步 × 每步 1024 token ≈ 4.5M token 对 7.5K 参数——比率约 600，远大于 20。原因正是上一章的那堵墙：六万字符的语料让大模型无利可图，把最优点狠狠推向小模型。最优配比是（算力、数据供给）的函数——数据稀缺的世界里，“小而精”永远正确；数据充沛的世界里，配比才由算力单方面决定。我们的玩具恰好站在”数据稀缺世界”，与 2024 年后的人类殊途同归（9.2 的伏笔，以想不到的方式提前）。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="27.5">
 <h2 data-number="27.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">27.5</span> 消融实验</h2>
 <p><strong>预算加倍，谷底去哪？</strong> 把 BUDGET ×2，重扫（每档步数加倍）——观察谷底是否右移、以及右移多少：</p>
-<div id="7d810c00" class="cell" data-execution_count="3">
+<div id="8ca38dfd" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>BUDGET2 <span class="op">=</span> BUDGET <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>results2 <span class="op">=</span> {}</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, n <span class="kw">in</span> configs:</span>
@@ -1242,13 +1268,14 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    results2[d] <span class="op">=</span> vl</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"预算x2 d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>steps<span class="sc">:5d}</span><span class="ss"> 步): val = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>预算x2 d=  8 (29281 步): val = 4.2507
-预算x2 d= 16 ( 8714 步): val = 0.9220
-预算x2 d= 32 ( 2400 步): val = 1.6907
-预算x2 d= 64 (  631 步): val = 2.3347</code></pre>
+<pre><code>预算x2 d=  8 (29281 步): val = 16.9001
+预算x2 d= 16 ( 8714 步): val = 1.0490
+预算x2 d= 32 ( 2400 步): val = 1.6456
+预算x2 d= 64 (  631 步): val = 2.7854</code></pre>
 </div>
 </div>
 <p>典型结果：谷底向右移动一档（更多算力买得起更大的”充分训练”模型），但受数据墙牵引，移动幅度有限。<strong><span class="math inline">\(N^*(C)\)</span> 的轨迹 = 算力推着走、数据墙拦着走</strong>——两股力的合力方向，就是 6.4 与 9.2 要继续展开的产业剧情。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="27.6">
 <h2 data-number="27.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">27.6</span> 本章 Loss 账本</h2>
@@ -1305,6 +1332,7 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
 <li>等算力的谷底给了”最好的平均 loss”——但 loss 平滑改善时，下游能力也平滑吗？（→ 下一章：涌现之争）；</li>
 <li>“参数太多浪费、数据太多也浪费”——有没有办法<strong>解耦参数与算力</strong>？（→ 6.4：MoE，以及更远的稀疏化家族）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="27.8">
 <h2 data-number="27.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">27.8</span> 参考文献</h2>
@@ -1343,6 +1371,32 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-touvron2023" class="csl-entry" role="listitem">
+<span class="nocase">Touvron, Hugo, Thibaut Lavril, Gautier Izacard, et al.</span> 2023. <span>“<span>LLaMA</span>: Open and Efficient Foundation Language Models.”</span> <em>arXiv Preprint arXiv:2302.13971</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1761,9 +1815,9 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/vol2/part6-scaling-laws.html" class="pagination-link" aria-label="GPT-3 与 Scaling Laws：loss 的可预测性">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span>
-      </a>          
+      <a href="../../chapters/vol2/part6-scaling-laws.html" class="pagination-link" aria-label="GPT-3 [@brown2020] 与 Scaling Laws [@kaplan2020]：loss 的可预测性">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+                
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../chapters/vol2/part6-emergence.html" class="pagination-link" aria-label="涌现之争：相变还是度量假象">

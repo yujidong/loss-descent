@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1065,7 +1088,7 @@ window.Quarto = {
 </header>
 
 
-<p>对齐时代的前三章都在回答”怎么让模型听话”；2024 年起，前沿转向一个更硬的问题：“怎么让模型<strong>想对</strong>”。两个新主角登场：RLVR（可验证奖励的强化学习——把裁判从人类偏好换成程序判卷：答案对就是对，错就是错）与测试时计算（test-time compute——答案不变，多花推理时的算力去采样、比对、筛选）。o1 与 DeepSeek-R1 把这两件事推上顶点：后者展示了一个模型在纯 RLVR 下自发长出”反思、回溯、自我验证”的推理痕迹。本章用两个实验触摸这对新主角：多数投票与STaR 式自举——后者的思想（采样、用可验证奖励筛选、把对的当新训练数据）正是 RLVR 家族最古老的祖先。</p>
+<p>对齐时代的前三章都在回答”怎么让模型听话”；2024 年起，前沿转向一个更硬的问题：“怎么让模型<strong>想对</strong>”。两个新主角登场：RLVR（可验证奖励的强化学习——把裁判从人类偏好换成程序判卷：答案对就是对，错就是错）与测试时计算（test-time compute——答案不变，多花推理时的算力去采样、比对、筛选）。o1 与 DeepSeek-R1 把这两件事推上顶点：后者展示了一个模型在纯 RLVR 下自发长出”反思、回溯、自我验证”的推理痕迹。本章用两个实验触摸这对新主角：多数投票与STaR <span class="citation" data-cites="zelikman2022">(<a href="#ref-zelikman2022" role="doc-biblioref">Zelikman et al. 2022</a>)</span> 式自举——后者的思想（采样、用可验证奖励筛选、把对的当新训练数据）正是 RLVR 家族最古老的祖先。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1101,6 +1124,7 @@ window.Quarto = {
 <p><strong>STaR（Zelikman et al., 2022）</strong>：自举式自我改进——模型采样解题，只用答对的（可验证。）当训练数据再训自己；答不出的难题，用”给提示后的正确解”回填（rationalization）。反复几轮，纯监督的机器愣是把解题率滚了上去。RLVR 的直系祖先，也是本章的主实验。</p>
 <p><strong>弯路：用 RLHF 的配方硬上数学</strong>。早期尝试用偏好模型给推理打分——奖励模型分不清”推理对但算错”与”推理错但蒙对”，策略学会了流畅地胡说。可验证领域的正确裁判是执行与比对，不是打分——RLVR 的全部立论。</p>
 <p><strong>o1 与 R1（2024–2025）</strong>：程序判卷（单测、答案比对）+ 大规模 RL + 允许长思考痕迹。R1 的纯 RLVR 版本（R1-Zero）展示自发涌现的反思行为；其公开训练配方（GRPO 算法、规则奖励、模板约束）引发全行业复现潮。推理能力的规模化，第一次有了”loss 只写对错”的版本。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>设定预告：反转翻译模型（5.1 的注意力 seq2seq）只训 5 个 epoch（贪心准确率约 0.88）。两种升级方式，都不增加新标签：</p>
 <ul>
@@ -1157,11 +1181,12 @@ window.Quarto = {
 </tbody>
 </table>
 <p><strong>“思考 = 计算”的经济账</strong>：CoT 让每道题的前向层数变成可变预算。RLVR 的奖励压力天然偏爱”多算一步再答”——因为多算降低错误率、提高奖励——于是长思考是被 loss 选出来的，不是被设计出来的。测试时计算与 RLVR 在此处汇流：前者提供旋钮，后者提供拧旋钮的动力。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="33.4">
 <h2 data-number="33.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">33.4</span> 从零实现</h2>
 <p>老演员：反转翻译（输入数字序列、输出其倒序）+ 注意力 seq2seq。这次只训 5 个 epoch，留一个”有缺陷的好学生”：</p>
-<div id="a2c1eaff" class="cell" data-execution_count="1">
+<div id="d6dc1b07" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1193,11 +1218,11 @@ window.Quarto = {
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"半程模型（5 epochs）贪心准确率: </span><span class="sc">{</span>exact_acc(model, test_pairs)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>半程模型（5 epochs）贪心准确率: 0.884</code></pre>
+<pre><code>半程模型（5 epochs）贪心准确率: 0.726</code></pre>
 </div>
 </div>
 <p><strong>实验一：测试时计算——多数投票。</strong> 同一输入温度采样 k 次，取众数（self-consistency 的最小版）：</p>
-<div id="db4130d2" class="cell" data-execution_count="2">
+<div id="2659e8f4" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vote_acc(m, pairs, k, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, (i, t) <span class="kw">in</span> <span class="bu">enumerate</span>(pairs):</span>
@@ -1219,22 +1244,22 @@ window.Quarto = {
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Test-time compute: majority vote buys accuracy"</span>)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>k= 1: 0.842
-k= 3: 0.853
-k= 7: 0.884
-k=15: 0.874</code></pre>
+<pre><code>k= 1: 0.663
+k= 3: 0.747
+k= 7: 0.726
+k=15: 0.726</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part7-reasoning_files/figure-html/cell-3-output-2.png" width="456" height="361" class="figure-img"></p>
+<p><img src="part7-reasoning_files/figure-html/cell-3-output-2.png" width="459" height="362" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：0.84 → 0.89（k=7）——<strong>几个点的净赚，不花一个新标签、不动一个权重</strong>。涨幅有限的原因值得一课：投票修复的是采样方差（正确答案在分布里但单次贪心错过）；当某类输入的 <span class="math inline">\(P(\text{正确})\)</span> 本身很低（系统性短板），再多票也投不出来——测试时计算的边界就是概率质量的边界。</p>
 <p><strong>实验二：STaR 式自举——可验证奖励当老师。</strong> 采样→判卷（输出等于反转即”对”）→只学好答案→三轮：</p>
-<div id="49e0e03e" class="cell" data-execution_count="3">
+<div id="f1c106a4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> star_round(m, round_id, samples_per<span class="op">=</span><span class="dv">10</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">100</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    correct <span class="op">=</span> []</span>
@@ -1266,14 +1291,14 @@ k=15: 0.874</code></pre>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>STaR 自举（无任何新标签）:
-  round 0: 自采正确 358/400 → 贪心 acc 0.979
-  round 1: 自采正确 381/400 → 贪心 acc 0.989
-  round 2: 自采正确 391/400 → 贪心 acc 0.989</code></pre>
+  round 0: 自采正确 367/400 → 贪心 acc 1.000
+  round 1: 自采正确 398/400 → 贪心 acc 1.000
+  round 2: 自采正确 400/400 → 贪心 acc 1.000</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part7-reasoning_files/figure-html/cell-4-output-2.png" width="449" height="361" class="figure-img"></p>
+<p><img src="part7-reasoning_files/figure-html/cell-4-output-2.png" width="450" height="362" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1285,11 +1310,12 @@ k=15: 0.874</code></pre>
 <li>迅速饱和：剩下的是采样 10 次也够不着的硬骨头（RLVR 需要更强的探索或更长的思考——真实 R1 用的是持续大规模 RL 与长 CoT，我们的玩具用三轮就到顶）。</li>
 </ul>
 <p><strong>两个实验的分工</strong>（对应「停一停」第 3 问）：投票改的是决策规则（同一权重、更好的读出），STaR 改的是权重本身（下一次采样的分布更好）。真实推理模型两者都用：RLVR 塑权重，多数投票/验证器塑读出。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="33.5">
 <h2 data-number="33.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">33.5</span> 消融实验</h2>
 <p><strong>温度的辩证法</strong>：STaR 靠采样找成功——温度太低采不出新解、太高全是垃圾。扫 temp ∈ {0.5, 0.9, 1.5} 各跑一轮自举：</p>
-<div id="489abbec" class="cell" data-execution_count="4">
+<div id="29bdd853" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> temp <span class="kw">in</span> (<span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">1.5</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    m2 <span class="op">=</span> AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    rng4 <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
@@ -1306,12 +1332,13 @@ k=15: 0.874</code></pre>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"temp=</span><span class="sc">{</span>temp<span class="sc">}</span><span class="ss">: 一轮自举可发现的正确样本 </span><span class="sc">{</span>found<span class="sc">}</span><span class="ss">/400"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>temp=0.5: 一轮自举可发现的正确样本 352/400
-temp=0.9: 一轮自举可发现的正确样本 358/400
-temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
+<pre><code>temp=0.5: 一轮自举可发现的正确样本 357/400
+temp=0.9: 一轮自举可发现的正确样本 367/400
+temp=1.5: 一轮自举可发现的正确样本 340/400</code></pre>
 </div>
 </div>
 <p><strong>探索-利用的温度曲线</strong>在玩具上显形：RLVR 的采样温度与 RLHF 的 β 一样，是”离当前策略多远去找奖励”的旋钮——探索本身就是超参数（9.1 复盘时的一个模式）。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="33.6">
 <h2 data-number="33.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">33.6</span> 本章 Loss 账本</h2>
@@ -1369,6 +1396,7 @@ temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
 <li>推理预算与上下文窗口的关系——“多想”与”多记”如何兑换？（8.x 长上下文的经济学）；</li>
 <li>当模型在判卷任务上无限自举——它能越过验证器，碰到开放问题吗？（9.2 的边界讨论）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= Part 8 的入场券）。</p>
 </section>
 <section id="参考文献" class="level2" data-number="33.8">
 <h2 data-number="33.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">33.8</span> 参考文献</h2>
@@ -1406,6 +1434,32 @@ temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-zelikman2022" class="csl-entry" role="listitem">
+Zelikman, Eric, Yuhuai Wu, Jesse Mu, and Noah Goodman. 2022. <span>“<span>STaR</span>: Bootstrapping Reasoning with Reasoning.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1824,9 +1878,9 @@ temp=1.5: 一轮自举可发现的正确样本 342/400</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/vol3/part7-rlhf.html" class="pagination-link" aria-label="RLHF 与 DPO：奖励作为变形的 loss">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span>
-      </a>          
+      <a href="../../chapters/vol3/part7-rlhf.html" class="pagination-link" aria-label="RLHF 与 DPO [@rafailov2023]：奖励作为变形的 loss">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
+                
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../chapters/vol3/part8-agent-origins.html" class="pagination-link" aria-label="Agent 能力从哪来：数据里的轨迹">

@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -741,7 +764,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -770,7 +793,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -858,7 +881,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -875,13 +898,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -922,7 +945,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1054,7 +1077,7 @@ main table {
 <ul>
 <li><strong>算力</strong>：预训练一个大网络成为”一次性投资”，微调成为”廉价消费”——算力经济学第一次把研究切分成”基础模型层”与”应用层”；</li>
 <li>数据：ImageNet 的通用特征被证明对宠物、家具、医学影像都有用——“数据的知识以权重形式沉淀”这个观念开始成立；</li>
-<li>认知：Zeiler &amp; Fergus（2013）用反卷积可视化打开了黑箱一角：底层是边缘与色块，中层是纹理与部件，顶层是物体——特征层级从假设变成了照片；</li>
+<li>认知：Zeiler &amp; Fergus（2013 <span class="citation" data-cites="zeiler2013">(<a href="#ref-zeiler2013" role="doc-biblioref">Zeiler and Fergus 2014</a>)</span>）用反卷积可视化打开了黑箱一角：底层是边缘与色块，中层是纹理与部件，顶层是物体——特征层级从假设变成了照片；</li>
 <li>产业：Caffe 的 Model Zoo（模型动物园）出现——预训练权重的下载与复用成为日常操作；“fine-tuning”进入每个工程师的词汇表。</li>
 </ul>
 </div>
@@ -1067,9 +1090,10 @@ main table {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">15.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路：为每个任务从零训练。</strong> AlexNet 之后的 2013 年，多数团队仍为每个新任务从零训练——昂贵、缓慢、且小数据任务上效果差。打破惯性的是三个”off-the-shelf”式的演示：Donahue et al.&nbsp;与 Razavian et al.（均 2014）直接拿 ImageNet 预训练特征 + 线性 SVM，横扫十几个小数据任务；OverFeat（2014）把同一网络同时用于分类、定位、检测。迁移不是新想法（1.2 的符号主义也在”复用知识”），新的是知识的载体变成了权重。</p>
+<p><strong>弯路：为每个任务从零训练。</strong> AlexNet 之后的 2013 年，多数团队仍为每个新任务从零训练——昂贵、缓慢、且小数据任务上效果差。打破惯性的是三个”off-the-shelf”式的演示：Donahue et al.&nbsp;与 Razavian et al.（均 2014）直接拿 ImageNet 预训练特征 + 线性 SVM，横扫十几个小数据任务；OverFeat（2014 <span class="citation" data-cites="razavian2014">(<a href="#ref-razavian2014" role="doc-biblioref">Razavian et al. 2014</a>)</span>）把同一网络同时用于分类、定位、检测。迁移不是新想法（1.2 的符号主义也在”复用知识”），新的是知识的载体变成了权重。</p>
 <p><strong>可视化的助攻</strong>：Zeiler &amp; Fergus（2013）的反卷积可视化让”层级特征”从传说变成照片——第一层的 Gabor 边缘、第三层的纹理组合、第五层的物体部件。人们第一次可以指着一张图说：这就是它学到的知识。可解释性作为”研究说服力工具”的第一次大胜（这场戏在 LLM 时代将重演，卷三）。</p>
 <p><strong>范式定型</strong>：fast R-CNN（2015）等检测框架把”ImageNet 预训练主干 + 任务头微调”固化成标准工作流。到 2018–2019，同一个模板将原样搬到 NLP（ELMo、BERT）——注意这个时间差：视觉的范式转型比 NLP 早了整整四年，等的东西叫 Transformer（5.2）。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>实验设计题（先写方案再看书中的方案）：</p>
 <p><strong>设定</strong>：你有一个在”干净域”（噪声 0.15）、300 个样本上训练好的卷积特征提取器。现在来了一批只有 10 个样本的新数据，且来自更脏的域（噪声 0.3）。任务相同（图案分类）。</p>
@@ -1087,10 +1111,11 @@ main table {
 <p><strong>特征层级 = 知识的权重形态</strong>。卷积网络的中下层学到的是边缘、纹理、部件这类跨任务通用的中间构件；任务特异的信息集中在顶层。这个”通用底座 + 专用顶盖”的结构是迁移可行的物质基础——也是”知识”第一次以可搬运的权重而非不可搬运的规则（1.2 的专家系统）或不可复用的标注（数据本身）的形态存在。</p>
 <p><strong>预训练 + 微调 = 算力与知识的再定价</strong>。预训练把”从数据中学通用知识”变成一次性重投资；下游任务用小样本廉价消费它。这个分工一旦成立，研究社区的经济学随之改写：谁预训练了最好的底座，谁就定义了下游的天花板——这句话将在 6.1（GPT-3）与 7.x（对齐）逐字兑现，并最终引发”基础模型”（foundation model）这个词的诞生。</p>
 <p><strong>冻结 + 线性探针 = 特质分离术</strong>。冻结特征只训线性分类器（linear probe），测量的是”表征里线性可读出多少任务信息”；放开设微调，测量的是”表征可适配多远”。这两种测量今天仍是 LLM 可解释性与能力评估的标准工具（卷三将反复使用）——它们全部诞生于本章这个时代。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">15.4</span> 从零实现</h2>
-<div id="73753542" class="cell" data-execution_count="1">
+<div id="70c0caf8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_shifted_pattern</span>
@@ -1122,7 +1147,7 @@ main table {
 </div>
 </div>
 <p><strong>阶段二：10 个脏样本上的两种消费方式。</strong></p>
-<div id="a8ddc9ec" class="cell" data-execution_count="2">
+<div id="9c683f06" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Xb, yb <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">10</span>, noise<span class="op">=</span><span class="fl">0.3</span>, seed<span class="op">=</span><span class="dv">5</span>)    <span class="co"># 小样本 + 域偏移</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xe, ye <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.3</span>, seed<span class="op">=</span><span class="dv">9</span>)   <span class="co"># 同域测试集</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1152,11 +1177,12 @@ main table {
 <li><strong>参数账</strong>：探针只训 9 个参数（感知机），从零要训 241 个——10 个样本对 9 个参数勉强够用，对 241 个是杯水车薪（样本/参数比 1:24）；</li>
 <li>感知机的复活：第 1 章被 XOR 判死刑的感知机，在这里干得漂亮——不是它变强了，是特征变好了。1969 年的判决书写的是”单层线性分类器学不出非线性特征”；而特征工程/学习把这个前提抽掉了。老工具在新语境里的复活，是研究史反复出现的省钱戏法。</li>
 </ol>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="15.5">
 <h2 data-number="15.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">15.5</span> 消融实验</h2>
 <p><strong>域偏移有多伤？</strong> 把测试域的噪声从 0.3 调回 0.15（与预训练同域），再看探针成绩——分离”特征迁移”与”域适应”两笔贡献：</p>
-<div id="d5c7c473" class="cell" data-execution_count="3">
+<div id="a8ce3a25" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Xe2, ye2 <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.15</span>, seed<span class="op">=</span><span class="dv">9</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>acc_same_domain <span class="op">=</span> <span class="bu">float</span>(np.mean([probe(f) <span class="op">==</span> t <span class="cf">for</span> f, t <span class="kw">in</span> <span class="bu">zip</span>(features(Xe2), ye2)]))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"探针在干净域测试: </span><span class="sc">{</span>acc_same_domain<span class="sc">:.3f}</span><span class="ss">（脏域是 </span><span class="sc">{</span>acc_probe<span class="sc">:.3f}</span><span class="ss">）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1165,6 +1191,7 @@ main table {
 </div>
 </div>
 <p>同域测试接近满分——特征本身是好的，脏域上丢掉的那十几个点全是<strong>域偏移的代价</strong>（分布变了、特征还在工作但信噪比下降）。预训练不是万能险：它搬的是特征，不是对新分布的适应（分布偏移问题将贯穿到卷三的对齐与评测）。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="15.6">
 <h2 data-number="15.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">15.6</span> 本章 Loss 账本</h2>
@@ -1221,6 +1248,7 @@ main table {
 <li>卷积的窗口是固定的——序列变长、依赖变远时，这套架构还转得动吗？（→ 下一章：CNN 的边界，Part 4 的门）；</li>
 <li>预训练底座越来越大、下游越来越小——底座的极限由什么决定？（→ 6.1 规模定律，卷二）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="15.8">
 <h2 data-number="15.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">15.8</span> 参考文献</h2>
@@ -1259,6 +1287,35 @@ main table {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-razavian2014" class="csl-entry" role="listitem">
+Razavian, Ali Sharifi, Hossein Azizpour, Josephine Sullivan, and Stefan Carlsson. 2014. <span>“<span>CNN</span> Features Off-the-Shelf: An Astounding Baseline for Recognition.”</span> <em>CVPR Workshops</em>.
+</div>
+<div id="ref-zeiler2013" class="csl-entry" role="listitem">
+Zeiler, Matthew D., and Rob Fergus. 2014. <span>“Visualizing and Understanding Convolutional Networks.”</span> <em>ECCV</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1677,9 +1734,9 @@ main table {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/vol1/part3-resnet.html" class="pagination-link" aria-label="军备竞赛：从 AlexNet 到 ResNet">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span>
-      </a>          
+      <a href="../../chapters/vol1/part3-resnet.html" class="pagination-link" aria-label="军备竞赛：从 AlexNet 到 ResNet [@he2015resnet]">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
+                
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../chapters/vol1/part3-cnn-limits.html" class="pagination-link" aria-label="CNN 的边界：序列问题为何难">

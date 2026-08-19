@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1065,7 +1088,7 @@ window.Quarto = {
 </header>
 
 
-<p>AlexNet 的故事容易让人以为卷积网络诞生于 2012。真相是：当 2012 年的雪崩发生时，卷积网络已经<strong>等了二十三年</strong>。1980 年 Fukushima 的 Neocognitron 画出了层级结构的蓝图，1989 年 LeCun 把反向传播装进卷积网络识别邮编，1998 年的 LeNet-5 已经在被银行用来读取支票上的手写数字。它缺的从来不是正确，是 2.4 章那两块基石——数据与算力。本章我们亲手实现这个”早到的答案”，并用一个实验看清它到底聪明在哪里。</p>
+<p>AlexNet 的故事容易让人以为卷积网络诞生于 2012。真相是：当 2012 年的雪崩发生时，卷积网络已经<strong>等了二十三年</strong>。1980 年 Fukushima 的 Neocognitron <span class="citation" data-cites="fukushima1980">(<a href="#ref-fukushima1980" role="doc-biblioref">Fukushima 1980</a>)</span> 画出了层级结构的蓝图，1989 年 LeCun 把反向传播装进卷积网络识别邮编，1998 <span class="citation" data-cites="lecun1998">(<a href="#ref-lecun1998" role="doc-biblioref">LeCun et al. 1998</a>)</span> 年的 LeNet-5 已经在被银行用来读取支票上的手写数字。它缺的从来不是正确，是 2.4 章那两块基石——数据与算力。本章我们亲手实现这个”早到的答案”，并用一个实验看清它到底聪明在哪里。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1100,7 +1123,8 @@ window.Quarto = {
 <h2 data-number="13.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">13.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>全连接的视觉（弯路）</strong>。把图像展平成向量交给 MLP——1980s 的默认做法。问题不在算力在结构：同一个十字出现在左上或右下，在全连接看来是两个毫无关系的输入向量；网络只能为每个位置分别学习一套”十字检测器”。参数随图像尺寸平方增长，而每个位置的样本被摊薄。</p>
 <p><strong>Fukushima 的 Neocognitron（1980）</strong>。受视觉皮层启发：S 细胞（简单特征检测）与 C 细胞（位置容忍）交替堆叠，形成层级。它甚至是自组织的（无监督学习）——但缺少反向传播这样的全局训练信号，效果受限。思想正确，发动机缺位。</p>
-<p><strong>LeCun 的 LeNet（1989–1998）</strong>。关键的综合：局部感受野 + 权共享 + 反向传播（1986 年刚发明）+ 下采样。1989 年的邮编识别论文标题朴素得刺眼——<em>Backpropagation applied to handwritten zip code recognition</em>——这是历史上第一次反向传播训练卷积网络。到 LeNet-5（1998），NCR 公司的支票读取系统读取了全美相当比例的支票。在深度学习的史前黑暗时代，LeNet 一直是活着并且赚钱的证据——只是规模上不去，世界便假装它不重要。</p>
+<p><strong>LeCun 的 LeNet（1989–1998）</strong>。关键的综合：局部感受野 + 权共享 + 反向传播（1986 年刚发明）+ 下采样。1989 <span class="citation" data-cites="lecun1989">(<a href="#ref-lecun1989" role="doc-biblioref">LeCun et al. 1989</a>)</span> 年的邮编识别论文标题朴素得刺眼——<em>Backpropagation applied to handwritten zip code recognition</em>——这是历史上第一次反向传播训练卷积网络。到 LeNet-5（1998），NCR 公司的支票读取系统读取了全美相当比例的支票。在深度学习的史前黑暗时代，LeNet 一直是活着并且赚钱的证据——只是规模上不去，世界便假装它不重要。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>任务如上（12×12 图案、随机位置、二分类）。在写任何代码之前，回答三问：</p>
 <ol type="1">
@@ -1122,10 +1146,11 @@ window.Quarto = {
 <p>数学上，卷积层的前向是 <span class="math inline">\(Z_{o,i,j} = b_o + \sum_{u,v} W_{o,u,v}\, X_{i+u, j+v}\)</span>——而它的反向传播依然是 1.3 的三条递推，只是 <span class="math inline">\(W\)</span> 的梯度要按共享位置<strong>累加</strong>。我们把它实现为 <code>dlbook.nn.Conv2D</code>（im2col 展开成矩阵乘——这也正是 GPU 上真实的做法，2.4 的算子经济学伏笔）。</p>
 <p><strong>全局平均池化</strong>：把每个滤波器在全图的响应取平均，作为该滤波器的特征——位置信息在这一步被主动丢弃，分类只看”图里有什么”，不看”在哪里”。</p>
 <p><strong>归纳偏置（inductive bias）</strong>：这个本章正式引入的词，指架构预先注入的结构假设。卷积的归纳偏置（局部 + 平移）恰好匹配图像的统计结构，所以样本效率高——先验是小数据时代的朋友；而当数据趋于无限，先验的限制性也可能变成天花板（这个张力将在 6.x 卷积与注意力的对决中总爆发——先按下不表）。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">13.4</span> 从零实现</h2>
-<div id="6cbcccc9" class="cell" data-execution_count="1">
+<div id="7b2d2e91" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1140,7 +1165,7 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Xte, yte <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.15</span>, seed<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>先看数据长什么样：</p>
-<div id="c845097f" class="cell" data-execution_count="2">
+<div id="2ffb80cd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">4.5</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, img, label <span class="kw">in</span> <span class="bu">zip</span>(axes.ravel(), Xtr[:<span class="dv">10</span>], ytr[:<span class="dv">10</span>]):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    ax.imshow(img[<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">"gray"</span>, vmin<span class="op">=-</span><span class="fl">0.5</span>, vmax<span class="op">=</span><span class="fl">1.5</span>)</span>
@@ -1157,7 +1182,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>选手一：MLP。</strong> 展平成 144 维向量，标准配方（relu + 动量 + 缩放初始化）：</p>
-<div id="fee22e14" class="cell" data-execution_count="3">
+<div id="b1fc4eb7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mlp <span class="op">=</span> MLPNumpy(<span class="dv">144</span>, [<span class="dv">64</span>, <span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n_mlp <span class="op">=</span> <span class="bu">sum</span>(W.size <span class="op">+</span> b.size <span class="cf">for</span> W, b <span class="kw">in</span> <span class="bu">zip</span>(mlp.Ws, mlp.bs))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> Trainer(mlp, lr<span class="op">=</span><span class="fl">0.01</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">32</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(</span>
@@ -1170,7 +1195,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>选手二：卷积 + 全局平均池化</strong>（<code>SimpleConvNet</code>，8 个 3×3 滤波器）：</p>
-<div id="e002021b" class="cell" data-execution_count="4">
+<div id="27b9380c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>conv <span class="op">=</span> SimpleConvNet((<span class="dv">12</span>, <span class="dv">12</span>), out_ch<span class="op">=</span><span class="dv">8</span>, kernel<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>, hidden<span class="op">=</span><span class="dv">16</span>, seed<span class="op">=</span><span class="dv">0</span>, pool<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_conv <span class="op">=</span> conv.conv.n_params <span class="op">+</span> <span class="bu">sum</span>(W.size <span class="op">+</span> b.size <span class="cf">for</span> W, b <span class="kw">in</span> <span class="bu">zip</span>(conv.head.Ws, conv.head.bs))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
@@ -1190,7 +1215,7 @@ window.Quarto = {
 </div>
 </div>
 <p>典型读数：MLP 9345 个参数、测试 0.87 左右——训练集能拟合（它有足够的参数为每个位置背一份检测器），测试集上位置一换就露馅；卷积网 <strong>241 个参数</strong>、测试 1.00——约 39 倍的参数效率差距，外加 13 个百分点的准确率差距。把学到的滤波器画出来：</p>
-<div id="af593889" class="cell" data-execution_count="5">
+<div id="9d002d74" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, w <span class="kw">in</span> <span class="bu">zip</span>(axes.ravel(), conv.conv.W):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ax.imshow(w.reshape(<span class="dv">3</span>, <span class="dv">3</span>), cmap<span class="op">=</span><span class="st">"RdBu"</span>)</span>
@@ -1206,11 +1231,12 @@ window.Quarto = {
 </div>
 </div>
 <p>九个格子的小模板——它们自动分化成不同朝向的边缘、角点、亮斑检测器（在真实图像上，这套滤波器会演化出著名的 Gabor 类边缘检测器——3.3 的特征层级正是由此长出）。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="13.5">
 <h2 data-number="13.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">13.5</span> 消融实验</h2>
 <p><strong>拆掉池化，位置记忆立刻回来。</strong> 全局平均池化是”位置无关”的架构保证；没有它，全连接头照样能背位置：</p>
-<div id="ec6f5314" class="cell" data-execution_count="6">
+<div id="ac020674" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>conv_nopool <span class="op">=</span> SimpleConvNet((<span class="dv">12</span>, <span class="dv">12</span>), out_ch<span class="op">=</span><span class="dv">8</span>, kernel<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>, hidden<span class="op">=</span><span class="dv">16</span>, seed<span class="op">=</span><span class="dv">0</span>, pool<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ep <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40</span>):</span>
@@ -1226,6 +1252,7 @@ window.Quarto = {
 </div>
 </div>
 <p>loss 降到接近 0、训练准确率 100%，测试却跌回 0.7 附近——卷积层提特征、全连接头<strong>背位置</strong>，先验被架空的典型样态。归纳偏置必须在架构里兑现，不能指望数据替你学出来（数据无限时或许可以——那正是 Bitter Lesson 的立场，留待 6.x 裁决）。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">13.6</span> 本章 Loss 账本</h2>
@@ -1283,6 +1310,7 @@ window.Quarto = {
 <li>学到的特征层级到底长什么样？能借给别的任务用吗？（→ 3.3 预训练-微调范式）；</li>
 <li>图像之外：变长序列、远距离依赖，卷积的窗口够不着怎么办？（→ 3.4 边界）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="13.8">
 <h2 data-number="13.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">13.8</span> 参考文献</h2>
@@ -1321,6 +1349,38 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-fukushima1980" class="csl-entry" role="listitem">
+Fukushima, Kunihiko. 1980. <span>“Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position.”</span> <em>Biological Cybernetics</em> 36: 193–202.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-lecun1989" class="csl-entry" role="listitem">
+LeCun, Yann, Bernhard Boser, John S. Denker, et al. 1989. <span>“Backpropagation Applied to Handwritten Zip Code Recognition.”</span> <em>Neural Computation</em> 1 (4): 541–51.
+</div>
+<div id="ref-lecun1998" class="csl-entry" role="listitem">
+LeCun, Yann, Léon Bottou, Yoshua Bengio, and Patrick Haffner. 1998. <span>“Gradient-Based Learning Applied to Document Recognition.”</span> <em>Proceedings of the IEEE</em> 86 (11): 2278–324.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1744,9 +1804,9 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/vol1/part3-resnet.html" class="pagination-link" aria-label="军备竞赛：从 AlexNet 到 ResNet">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
+      <a href="../../chapters/vol1/part3-resnet.html" class="pagination-link" aria-label="军备竞赛：从 AlexNet 到 ResNet [@he2015resnet]">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>) <i class="bi bi-arrow-right-short"></i>
+      
   </div>
 </nav>
 </div> <!-- /content -->

@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1065,7 +1088,7 @@ window.Quarto = {
 </header>
 
 
-<p>上一章的断崖图（长度 8 只剩 0.64）把病灶钉在了固定向量上：解码器隔着 64 维的瓶颈望眼欲穿，而它真正需要的信息——“第 3 个源词是什么”——躺在编码器的中间状态里出不来。2014 年，Bahdanau、Cho 与 Bengio 的论文用一个简单的动作解决了这个问题：<strong>别只给终态，把编码器每一步的状态都摆上桌，让解码器每走一步自己回头挑着看</strong>。这个”回头看”的机制后来有了自己的名字——注意力（attention）——并在三年后吞并整个架构。本章先看它作为补丁的诞生。</p>
+<p>上一章的断崖图（长度 8 只剩 0.64）把病灶钉在了固定向量上：解码器隔着 64 维的瓶颈望眼欲穿，而它真正需要的信息——“第 3 个源词是什么”——躺在编码器的中间状态里出不来。2014 年，Bahdanau、Cho 与 Bengio <span class="citation" data-cites="bahdanau2015">(<a href="#ref-bahdanau2015" role="doc-biblioref">Bahdanau et al. 2015</a>)</span> 的论文用一个简单的动作解决了这个问题：<strong>别只给终态，把编码器每一步的状态都摆上桌，让解码器每走一步自己回头挑着看</strong>。这个”回头看”的机制后来有了自己的名字——注意力（attention）——并在三年后吞并整个架构。本章先看它作为补丁的诞生。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1102,6 +1125,7 @@ window.Quarto = {
 <p><strong>正解：软对齐</strong>。解码器第 <span class="math inline">\(t\)</span> 步对所有编码器状态打分（相关度），softmax 归一化成权重，加权求和得到该步的上下文向量 <span class="math inline">\(\mathbf{c}_t\)</span>——</p>
 <p><span class="math display">\[\alpha_{t,s} = \frac{\exp(\mathbf{q}_t \cdot \mathbf{h}_s / \sqrt{d})}{\sum_{s'} \exp(\mathbf{q}_t \cdot \mathbf{h}_{s'} / \sqrt{d})}, \qquad \mathbf{c}_t = \sum_s \alpha_{t,s}\, \mathbf{h}_s\]</span></p>
 <p>查询 <span class="math inline">\(\mathbf{q}_t\)</span>（当前解码状态）与每个键 <span class="math inline">\(\mathbf{h}_s\)</span> 的内积决定”看哪里”——<strong>选择是软的、可微的、数据学出来的</strong>。Q/K/V 的 vocabulary 在此已经全齐（下一章的伏笔）。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>带着上章断崖的病历，先做三件事：</p>
 <ol type="1">
@@ -1117,11 +1141,12 @@ window.Quarto = {
 <p><strong>注意力 = 可微的寻址</strong>。给定查询 <span class="math inline">\(\mathbf{q}\)</span>、一组键值对 <span class="math inline">\(\{(\mathbf{k}_s, \mathbf{v}_s)\}\)</span>，返回按相关度加权的值的混合。它是三个老朋友的新组合：内积（相似度）、softmax（软选择）、加权平均（读取）。整个机制没有任何新数学，新的是”把离散的寻址决策变成连续可微的运算”——从此”看哪里”可以被梯度训练。</p>
 <p><strong>瓶颈的解药是通路而非容量</strong>：信息与梯度不再需要穿过整条编码链抵达终态——每个源位置都有一条直达解码器的边。上一章”损失发生在压缩一步”的病理，被”每步动态压缩”取代：<span class="math inline">\(\mathbf{c}_t\)</span> 是为当前这一步定制的上下文。</p>
 <p><strong>代价的伏笔</strong>：<span class="math inline">\(T \times S\)</span> 的打分矩阵。短句无感，长文致命——这个 O(长度²) 的账单将在长上下文时代（8.x）再次寄达。每个解药都在签发一张未来的账单——这是本书账本栏目的第一次明示。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="22.4">
 <h2 data-number="22.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">22.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.AttentionSeq2Seq</code>：在 <code>Seq2Seq</code> 上加约二十行——解码每步的注意力与拼接输出。任务与上一章相同的反转”翻译”，但<strong>训练集这次含长度 3–8</strong>（分层评测才公平——原论文正是按句长分层报告 BLEU 的）：</p>
-<div id="00b7e77d" class="cell" data-execution_count="1">
+<div id="200535ed" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1140,7 +1165,7 @@ window.Quarto = {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs_of_length(L)) <span class="op">/</span> <span class="bu">len</span>(pairs_of_length(L)) <span class="cf">for</span> L <span class="kw">in</span> Ls]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>对照实验：普通 vs 注意力。</strong> 同预算训练两个模型：</p>
-<div id="60618e23" class="cell" data-execution_count="2">
+<div id="5334f510" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, make <span class="kw">in</span> ((<span class="st">"plain"</span>, <span class="kw">lambda</span>: Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   (<span class="st">"attention"</span>, <span class="kw">lambda</span>: AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>))):</span>
@@ -1153,11 +1178,11 @@ window.Quarto = {
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    results[name] <span class="op">=</span> eval_by_length(model)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:&gt;9}</span><span class="ss">: "</span> <span class="op">+</span> <span class="st">"  "</span>.join(<span class="ss">f"L</span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">=</span><span class="sc">{</span>a<span class="sc">:.2f}</span><span class="ss">"</span> <span class="cf">for</span> L, a <span class="kw">in</span> <span class="bu">zip</span>((<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>), results[name])))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    plain: L3=1.00  L4=1.00  L5=1.00  L6=0.99  L7=0.88  L8=0.64
-attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
+<pre><code>    plain: L3=1.00  L4=1.00  L5=1.00  L6=0.98  L7=0.83  L8=0.58
+attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=0.98</code></pre>
 </div>
 </div>
-<div id="37a833c1" class="cell" data-execution_count="3">
+<div id="98dcbb83" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Ls <span class="op">=</span> (<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
@@ -1172,14 +1197,14 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part5-bahdanau_files/figure-html/cell-4-output-1.png" width="486" height="361" class="figure-img"></p>
+<p><img src="part5-bahdanau_files/figure-html/cell-4-output-1.png" width="478" height="362" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：<strong>普通版随长度衰减（长度 7 掉到 0.88、长度 8 只剩 0.64），注意力版全线 1.00</strong>。这正是原论文图 6 的形状——蓝线（baseline）随句长下坠，红线（attention）平坦。二十年翻译直觉（长句难）的一个主要病因，被一个加权求和治掉了大半。</p>
 <p><strong>对齐热图：模型在看哪里？</strong> 取一条训练好的注意力模型，画出它解码时每步的 <span class="math inline">\(\alpha_{t,s}\)</span>：</p>
-<div id="29c5b1c1" class="cell" data-execution_count="4">
+<div id="fec6b5a6" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>attn_model <span class="op">=</span> AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>
@@ -1201,7 +1226,7 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part5-bahdanau_files/figure-html/cell-5-output-1.png" width="385" height="322" class="figure-img"></p>
+<p><img src="part5-bahdanau_files/figure-html/cell-5-output-1.png" width="386" height="324" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1211,11 +1236,13 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 </div>
 </div>
 <p>典型的图像是一条干净的<strong>反对角线</strong>：输出第 0 个词时看输入末位，输出第 1 个词看倒数第二位……模型自己发明了”从后往前抄”的算法。没有人教过它对齐——它是从”降 loss”里长出来的。这种”无师自通的中间结构”，是本书此后反复庆祝的时刻（从词向量聚类到 induction head，同一现象的不同尺度）。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="22.5">
 <h2 data-number="22.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">22.5</span> 消融实验</h2>
 <p><strong>注意力的软硬之别。</strong> 把 softmax 换成硬选择（argmax 只看一个位置，梯度只走那条路——用直通估计近似），训练还能收敛吗？本章把它留作练习 3，但可以预答：硬选择会丢失”两个源词共同决定一个译词”的混合能力，短句可用、组合词崩坏——软性本身就是注意力的一部分药性。</p>
 <p>另一个值得当场记录的账：注意力的显存与计算随 <span class="math inline">\(T \times S\)</span> 增长。本章的序列最长 10 步无感；把 <code>make_reversal_task</code> 的 <code>max_len</code> 设到 64 重跑，注意训练时间的变化——<span class="math inline">\(O(L^2)\)</span> 的斜率会在墙钟上现形（下一章主角的账单，提前感受）。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="22.6">
 <h2 data-number="22.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">22.6</span> 本章 Loss 账本</h2>
@@ -1258,7 +1285,7 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
-<p><strong>Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).</strong> <em>Neural machine translation by jointly learning to align and translate.</em> ICLR 2015（2014 年 9 月首发 arXiv）。</p>
+<p><strong>Bahdanau, D., Cho, K. &amp; Bengio, Y. (2015).</strong> <em>Neural machine translation by jointly learning to align and translate.</em> ICLR 2015（2014 <span class="citation" data-cites="cho2014">(<a href="#ref-cho2014" role="doc-biblioref">Cho et al. 2014</a>)</span> 年 9 月首发 arXiv）。</p>
 <ul>
 <li><strong>读什么</strong>：第 3.1 节的对齐机制（Equation 5–7 附近）与图 2（注意力的原始示意图——注意图里画的是”annotator”与”aligner”的对偶）；第 4 节按句长分层的 BLEU 图（本章图的前身）；</li>
 <li>跳过：GRU 细节与词表处理；</li>
@@ -1273,6 +1300,7 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 <li>查询、键、值如果全部来自同一个序列会怎样？（自注意力——2017 年的答案）；</li>
 <li>O(长度²) 的账单什么时候到期？（长文档时代——8.x 的主题，此处记账）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="22.8">
 <h2 data-number="22.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">22.8</span> 参考文献</h2>
@@ -1310,6 +1338,35 @@ attention: L3=1.00  L4=1.00  L5=1.00  L6=1.00  L7=1.00  L8=1.00</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bahdanau2015" class="csl-entry" role="listitem">
+Bahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. <span>“Neural Machine Translation by Jointly Learning to Align and Translate.”</span> <em>ICLR</em>.
+</div>
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-cho2014" class="csl-entry" role="listitem">
+Cho, Kyunghyun, Bart van Merriënboer, Caglar Gulcehre, et al. 2014. <span>“Learning Phrase Representations Using <span>RNN</span> Encoder-Decoder for Statistical Machine Translation.”</span> <em>EMNLP</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

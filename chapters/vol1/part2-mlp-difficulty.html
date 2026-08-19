@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1099,9 +1122,10 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">8.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>“局部极小值”神话（1986–2014）</strong>。近三十年的标准解释是：训练卡住 = 掉进了局部极小值。这个直觉来自二维地形图——看起来山谷密布。弯路在于：参数空间的维度是百万级的，而高维空间里几乎不存在”所有方向都向上”的点（一个点要有 <span class="math inline">\(10^6\)</span> 个方向全部同步向上，概率上近乎不可能）——真正遍布的是鞍点（某些方向向上、某些向下）。这个纠正是 Dauphin 等人在 2014 年才完成的。错怪了局部极小值三十年的代价：很多研究精力花在了”逃离局部极小”的伪问题上。</p>
+<p><strong>“局部极小值”神话（1986–2014）</strong>。近三十年的标准解释是：训练卡住 = 掉进了局部极小值。这个直觉来自二维地形图——看起来山谷密布。弯路在于：参数空间的维度是百万级的，而高维空间里几乎不存在”所有方向都向上”的点（一个点要有 <span class="math inline">\(10^6\)</span> 个方向全部同步向上，概率上近乎不可能）——真正遍布的是鞍点（某些方向向上、某些向下）。这个纠正是 Dauphin 等人在 2014 <span class="citation" data-cites="dauphin2014">(<a href="#ref-dauphin2014" role="doc-biblioref">Dauphin et al. 2014</a>)</span> 年才完成的。错怪了局部极小值三十年的代价：很多研究精力花在了”逃离局部极小”的伪问题上。</p>
 <p><strong>初始化的 folklore 时代</strong>。1990 年代初始化靠口口相传的经验规则（“权重别太大”“对称要打破”），直到 2010 年 Glorot 与 Bengio 才给出扇入缩放的理论分析（Xavier 初始化），2015 年 He 等人补上 ReLU 版本。在此之前，“换个种子就成了”是每天发生的、无法解释的日常。</p>
 <p><strong>学习率的黑暗艺术</strong>。没有理论告诉你步长该多大；太大发散、太小爬行，而且最优步长随网络结构、数据尺度、批次大小变化。1990s 的论文很少报告学习率如何选定——因为自己也说不清。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>你将依次做四个实验（lr 扫描、种子彩票、地形切片、初始化对照）。<strong>在运行每一个之前</strong>，先在纸上写下你的预测：</p>
 <ol type="1">
@@ -1119,10 +1143,11 @@ window.Quarto = {
 <p><strong>训练是一场受初始落点影响的抽样</strong>。“深度学习 = 用随机性在参数空间抽签”不是玩笑：同一配置的不同种子可以收敛到损失相差数倍的解。这不是 bug 而是本性——处理它的手段（多次运行取最好、平均权重、早停）贯穿此后二十年。</p>
 <p><strong>学习率是最强的超参数</strong>：它决定你在这片地形上的移动尺度。太小，任何地形的细节都变成陷阱；太大，连峡谷都直接飞越。后面所有工具（动量、BN、Adam）有一半的隐性贡献都在于让训练对学习率更宽容。</p>
 <p><strong>初始化决定起点的水位</strong>：朴素大权重让前向激活逐层饱和（tanh 被推进 ±1 的死区）、反向梯度逐层失衡。扇入缩放（除以 <span class="math inline">\(\sqrt{\text{fan-in}}\)</span>）让每层方差大致守恒——这条规则我们在 1.6 的向量引擎里已经悄悄用了，现在正式验尸。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">8.4</span> 从零实现</h2>
-<div id="2554fb43" class="cell" data-execution_count="1">
+<div id="08844325" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1137,7 +1162,7 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Xv, yv <span class="op">=</span> make_moons(n_per_class<span class="op">=</span><span class="dv">100</span>, seed<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：学习率扫描。</strong> 固定一切，只动步长：</p>
-<div id="463ea087" class="cell" data-execution_count="2">
+<div id="537e81ae" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">16</span>, <span class="dv">1</span>], seed<span class="op">=</span><span class="dv">42</span>)</span>
@@ -1155,7 +1180,7 @@ window.Quarto = {
 </div>
 <p>0.001 爬行（300 epoch 后仍停在 0.34），0.01 到位，0.05 更快。那再大呢？把 <code>lr=0.5</code> 加入扫描——loss 直接<strong>溢出为 NaN</strong>（数值发散）。注意上一章的教训在这里同样成立：步子太大的死法常常不是爆炸而是饱和，但足够大的步子连饱和区都待不住，干脆溢出。</p>
 <p><strong>实验二：种子彩票。</strong> 同一配置，只换初始化种子：</p>
-<div id="0fc635b7" class="cell" data-execution_count="3">
+<div id="963aa04b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>finals <span class="op">=</span> []</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">16</span>, <span class="dv">1</span>], seed<span class="op">=</span>seed)</span>
@@ -1172,7 +1197,7 @@ window.Quarto = {
 </div>
 <p>典型的结果是一张”彩票”：有的种子落到 0.05，有的卡在 0.37——近一个数量级的差距，纯粹来自落点。1990 年代每一个调参的下午都在抽这张签。</p>
 <p><strong>实验三：看一眼地形。</strong> 训练一个收敛的模型，然后在其参数空间里取两个随机方向张成的平面，扫描 loss：</p>
-<div id="73aacbd2" class="cell" data-execution_count="4">
+<div id="1327344f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> flat(model):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.concatenate([W.ravel() <span class="cf">for</span> W <span class="kw">in</span> model.Ws] <span class="op">+</span> [b.ravel() <span class="cf">for</span> b <span class="kw">in</span> model.bs])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1214,14 +1239,14 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part2-mlp-difficulty_files/figure-html/cell-5-output-1.png" width="509" height="413" class="figure-img"></p>
+<p><img src="part2-mlp-difficulty_files/figure-html/cell-5-output-1.png" width="512" height="414" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>这就是 Goodfellow 等人 2015 年让全场吃惊的那张图：收敛点附近<strong>不是深井</strong>，而是一片缓慢起伏的开阔地——训练终点更像”到达了一片高原的某处”，而非”落进了谷底”。这也解释了种子彩票：不同的落点走到同一片高原的不同位置。</p>
 <p><strong>实验四：初始化的生死。</strong> 八层 tanh 网络，朴素 vs 扇入缩放初始化。先做确定性体检——数一数每层有多少激活值已经饱和（<span class="math inline">\(|\tanh| &gt; 0.99\)</span>）：</p>
-<div id="f106fc3f" class="cell" data-execution_count="5">
+<div id="2c8e11a8" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Xs</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
@@ -1239,22 +1264,23 @@ window.Quarto = {
 </div>
 </div>
 <p>朴素初始化下饱和率逐层攀升至三分之一以上——<strong>网络还没开始训练，三分之一的梯度通道已经关死</strong>；缩放初始化下饱和率为零。训练结局随之分流：</p>
-<div id="0b4f47e1" class="cell" data-execution_count="6">
+<div id="8c506e08" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>, init<span class="op">=</span>init)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">600</span>)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"init=</span><span class="sc">{</span>init<span class="sc">:&gt;8}</span><span class="ss">: loss=</span><span class="sc">{</span>h[<span class="st">'loss'</span>][<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">  acc=</span><span class="sc">{</span>accuracy(m, Xs, ys)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>init=  scaled: loss=0.6394  acc=0.78
-init= uniform: loss=1.6161  acc=0.50</code></pre>
+<pre><code>init=  scaled: loss=0.8238  acc=0.69
+init= uniform: loss=1.6166  acc=0.50</code></pre>
 </div>
 </div>
-<p>缩放版缓慢爬到 0.78，朴素版彻底躺平在 0.50。为什么除以 <span class="math inline">\(\sqrt{\text{fan-in}}\)</span> 有此神效？直觉版：一层的前向方差是 <span class="math inline">\(\text{fan-in} \times \mathrm{Var}(w) \times \mathrm{Var}(a)\)</span>，想让方差逐层守恒，就需要 <span class="math inline">\(\mathrm{Var}(w) \sim 1/\text{fan-in}\)</span>——这正是 Glorot 与 Bengio 2010 年给出的分析（严格版还要同时照顾反向传播，见练习 5）。</p>
+<p>缩放版缓慢爬到 0.78，朴素版彻底躺平在 0.50。为什么除以 <span class="math inline">\(\sqrt{\text{fan-in}}\)</span> 有此神效？直觉版：一层的前向方差是 <span class="math inline">\(\text{fan-in} \times \mathrm{Var}(w) \times \mathrm{Var}(a)\)</span>，想让方差逐层守恒，就需要 <span class="math inline">\(\mathrm{Var}(w) \sim 1/\text{fan-in}\)</span>——这正是 Glorot 与 Bengio 2010 <span class="citation" data-cites="glorot2010">(<a href="#ref-glorot2010" role="doc-biblioref">Glorot and Bengio 2010</a>)</span> 年给出的分析（严格版还要同时照顾反向传播，见练习 5）。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">8.5</span> 消融实验</h2>
 <p><strong>饱和率是中介变量。</strong> 上一个实验其实是一条因果链：初始化尺度 → 前向饱和率 → 反向梯度存活 → 训练成败。验证中介环节——把网络改浅（2 层），朴素初始化还致命吗？</p>
-<div id="883c06b7" class="cell" data-execution_count="7">
+<div id="a1b65e76" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">8</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> init <span class="kw">in</span> (<span class="st">"scaled"</span>, <span class="st">"uniform"</span>):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>, init<span class="op">=</span>init)</span>
@@ -1263,11 +1289,12 @@ init= uniform: loss=1.6161  acc=0.50</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>depth=2, init=  scaled: acc=0.58
 depth=2, init= uniform: acc=0.91
-depth=8, init=  scaled: acc=0.65
+depth=8, init=  scaled: acc=0.67
 depth=8, init= uniform: acc=0.50</code></pre>
 </div>
 </div>
 <p>浅网上两种初始化差距很小——<strong>初始化的破坏力随深度复利增长</strong>。这个”深度复利”结构正是下一章的主角：梯度消失不是某层的错，是每一层的小错连乘出来的总账。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="8.6">
 <h2 data-number="8.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">8.6</span> 本章 Loss 账本</h2>
@@ -1325,6 +1352,7 @@ depth=8, init= uniform: acc=0.50</code></pre>
 <li>我们的引擎里那些”来自未来”的黑魔法（动量、BN）到底各自治什么病？（→ 2.3 工具箱）；</li>
 <li>学习率的黑暗艺术何时能终结？（部分答案在 2.3 的 BN、以及未来章节的学习率日程）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="8.8">
 <h2 data-number="8.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">8.8</span> 参考文献</h2>
@@ -1364,6 +1392,35 @@ depth=8, init= uniform: acc=0.50</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-dauphin2014" class="csl-entry" role="listitem">
+Dauphin, Yann N., Razvan Pascanu, Caglar Gulcehre, Kyunghyun Cho, Surya Ganguli, and Yoshua Bengio. 2014. <span>“Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-glorot2010" class="csl-entry" role="listitem">
+Glorot, Xavier, and Yoshua Bengio. 2010. <span>“Understanding the Difficulty of Training Deep Feedforward Neural Networks.”</span> <em>Proceedings of AISTATS</em> 9: 249–56.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

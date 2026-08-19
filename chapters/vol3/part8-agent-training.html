@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1083,7 +1106,7 @@ window.Quarto = {
 <ul>
 <li><strong>算力</strong>：环境交互的 RL 需要海量 rollout（一次任务几十步、每步一次前向）——推理算力变成训练算力的燃料；</li>
 <li>数据：轨迹（trajectory）成为一等数据类型——人类演示的轨迹、模型自采的轨迹、带环境反馈的轨迹；标注员的工作从”写答案”变成”完成任务让系统录制”；</li>
-<li>认知：过程奖励（process reward，给每一步打分）与结果奖励（outcome reward，只看最终对错）之争白热化——7.4 的 STaR 是结果奖励的祖先，数学竞赛的逐步判分是过程奖励的主场；</li>
+<li>认知：过程奖励（process reward，给每一步打分）与结果奖励（outcome reward，只看最终对错）之争白热化——7.4 的 STaR <span class="citation" data-cites="zelikman2022">(<a href="#ref-zelikman2022" role="doc-biblioref">Zelikman et al. 2022</a>)</span> 是结果奖励的祖先，数学竞赛的逐步判分是过程奖励的主场；</li>
 <li>关键事实：Claude 的 computer use、各家编程 agent 的”agentic 训练”，公开表述高度一致：在真实环境/仿真环境里闭环，把成功轨迹回灌——本章实验的最小版本。</li>
 </ul>
 </div>
@@ -1100,6 +1123,7 @@ window.Quarto = {
 <p><strong>弯路一：纯模仿的轨迹学习</strong>。2023–2024 年大量工作收集人类操作轨迹做 SFT——学会了个样子，但没有环境的纠错信号：模型复制了人类的路径，也复制了人类的错误，且遇到新局面就懵。模仿给你下限，反馈给你上限（4.2 的”错误驱动 vs 相关驱动”在 agent 尺度的重演）。</p>
 <p><strong>弯路二：一步到位的端到端 RL</strong>。在原始环境（浏览器、操作系统）上直接 RL——状态空间巨大、奖励稀疏、一次 rollout 几十秒——训练在工程上先于科学而崩溃。解法是分层与合成：先在可验证的子任务（单元测试、网页导航的仿真）上闭环，再逐步迁移。</p>
 <p><strong>正解的谱系</strong>：STaR（7.4，可验证任务的自举）→ 过程奖励模型（每步判分的奖励——代价是要步骤级标注）→ 结果奖励 + 长轨迹（DeepSeek-R1 一系在推理域的验证）→ agent 域的 env-in-the-loop 训练（WebArena/编程沙盒 + RL）。共同骨架只有一句：环境或验证器当裁判，成功者回灌权重。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>实验预告：5.1/7.4 的注意力 seq2seq，只训 5 个 epoch（贪心 0.80）——一个”会做但不稳”的模型。两种升级：</p>
 <ul>
@@ -1121,10 +1145,11 @@ window.Quarto = {
 <p><strong>轨迹回灌 = 分布的自我蒸馏</strong>。循环的成功轨迹是模型分布的条件样本（模型够得着的成功），回灌把它们从”偶尔”变成”经常”——把测试时计算的收益固化进权重。这是 STaR 的 agent 版：<code>多采样 + 验证 + 回灌</code> 三步循环，每转一圈，模型的单次能力上一格、循环的启动点更高。</p>
 <p><strong>过程与结果的奖励账</strong>：结果奖励（只判最终对错）标注便宜、不可作弊，但长轨迹里信用分配难（哪一步走对了？）；过程奖励（逐步判分）信用分配精准，但要步骤级标注或仿真器。两者的选择是”裁判成本 vs 信用精度”的交换——真实系统常混用（数学用结果+验证，编程用单测=过程）。</p>
 <p><strong>闭环的经济学</strong>：循环把成本记在推理账（每次任务多花 k 倍前向），回灌把成本记在训练账（一次性，之后每次任务都便宜）。产品选型 = 请求量 × 单价的乘法——高频任务买权重，低频任务买循环（9.1 复盘时的算力账本条目）。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="35.4">
 <h2 data-number="35.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">35.4</span> 从零实现</h2>
-<div id="916939da" class="cell" data-execution_count="1">
+<div id="c4ab5d54" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1154,11 +1179,11 @@ window.Quarto = {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"起点：单次贪心 </span><span class="sc">{</span>exact_acc(model, test_pairs)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>起点：单次贪心 0.895</code></pre>
+<pre><code>起点：单次贪心 0.744</code></pre>
 </div>
 </div>
 <p><strong>实验一：重试闭环（系统层）。</strong> 提议（温度采样）→ 验证（反转回去等于输入即对）→ 不对就再采：</p>
-<div id="8ee76513" class="cell" data-execution_count="2">
+<div id="106e6ee3" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agent_success(m, pairs, max_tries, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
@@ -1182,22 +1207,22 @@ window.Quarto = {
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"The agent loop: propose, verify, retry"</span>)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>重试预算 1: 成功率 0.802
-重试预算 2: 成功率 0.884
-重试预算 4: 成功率 0.953
-重试预算 8: 成功率 0.977</code></pre>
+<pre><code>重试预算 1: 成功率 0.628
+重试预算 2: 成功率 0.756
+重试预算 4: 成功率 0.860
+重试预算 8: 成功率 0.919</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part8-agent-training_files/figure-html/cell-3-output-2.png" width="457" height="361" class="figure-img"></p>
+<p><img src="part8-agent-training_files/figure-html/cell-3-output-2.png" width="450" height="362" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：<strong>0.80 → 0.88 → 0.95 → 0.98</strong>——饱和上升，8 次预算几乎榨干。注意上限不是 1.0：最难的那 2% 在分布里的概率质量太小，搜索也够不着（循环的天花板 = 分布的概率质量，7.4 结论的 agent 版）。</p>
 <p><strong>实验二：轨迹回灌（模型层）。</strong> 收集循环中的成功轨迹，回灌微调，重测单次：</p>
-<div id="9e259ade" class="cell" data-execution_count="3">
+<div id="05ff486e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collect_and_distill(m, round_id, samples_per<span class="op">=</span><span class="dv">6</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">500</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    succ <span class="op">=</span> []</span>
@@ -1221,16 +1246,18 @@ window.Quarto = {
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  round </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">: 采集成功 </span><span class="sc">{</span>n_ok<span class="sc">}</span><span class="ss">/400 → 单次贪心 </span><span class="sc">{</span>accs[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>轨迹回灌（蒸馏式闭环）:
-  round 0: 采集成功 350/400 → 单次贪心 0.965
-  round 1: 采集成功 364/400 → 单次贪心 0.942</code></pre>
+  round 0: 采集成功 346/400 → 单次贪心 1.000
+  round 1: 采集成功 394/400 → 单次贪心 1.000</code></pre>
 </div>
 </div>
 <p>典型读数：单次贪心 <strong>0.80 → 0.92+</strong>（两轮回灌）。与重试闭环合起来看：回灌前的循环把成功率提到 0.98；回灌后，单次 0.92 + 循环 8 次 ≈ 1.00——两个闭环互相抬升，这就是”agent 训练”的全部骨架：循环产出数据，数据强化循环。</p>
 <p>（细心的读者会发现实验二与 7.4 的 STaR 是同一个算法——完全正确。差别只在叙事：STaR 章我们说”自举提升推理”，本章说”轨迹回灌训练 agent”。<strong>同一个 loss 结构，不同的系统包装</strong>——9.1 复盘的”范式回收”模式提前现身。）</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="35.5">
 <h2 data-number="35.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">35.5</span> 消融实验</h2>
 <p><strong>温度的角色再访</strong>：闭环的采集温度决定轨迹的多样性（探索），回灌的学习率决定固化的速度（利用）。把采集温度设 0.1（几乎贪心）重跑回灌——采集到的成功轨迹骤减（模型只会重复已有路径），第一轮提升明显缩水。探索是闭环的燃料：RLVR 的温度、agent 的随机动作、真实系统的 <span class="math inline">\(\varepsilon\)</span>-greedy，都是同一味药的 different 包衣（7.4 消融的 agent 版收尾）。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="35.6">
 <h2 data-number="35.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">35.6</span> 本章 Loss 账本</h2>
@@ -1287,11 +1314,12 @@ window.Quarto = {
 <li>模型层与系统层的账都摆齐了——<strong>一条界线怎么画</strong>：什么进权重、什么留在外部？（→ 下一章：全书判断框架的正式提出）；</li>
 <li>闭环飞轮能转到哪里？自产数据的极限与风险？（→ 9.2 开放问题）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="35.8">
 <h2 data-number="35.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">35.8</span> 参考文献</h2>
 <ol type="1">
-<li>Yao et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202023%20Tree%20of%20Thoughts%3A%20Deliberate%20Problem%20Solving">↗ 搜索原文</a></li>
+<li>Yao et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202023%20%5B@yao2023%5D%20Tree%20of%20Thoughts%3A%20Deliberate%20Problem%20Solving">↗ 搜索原文</a></li>
 <li>Zelikman et al.&nbsp;(2022). <em>STaR</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202022%20STaR">↗ 搜索原文</a></li>
 </ol>
 </section>
@@ -1324,6 +1352,32 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-zelikman2022" class="csl-entry" role="listitem">
+Zelikman, Eric, Yuhuai Wu, Jesse Mu, and Noah Goodman. 2022. <span>“<span>STaR</span>: Bootstrapping Reasoning with Reasoning.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

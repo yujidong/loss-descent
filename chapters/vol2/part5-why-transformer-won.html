@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1098,9 +1121,10 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="24.2">
 <h2 data-number="24.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">24.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>RNN 阵营的反抗（2016–2019）</strong>：SimpleRNN → LSTM → GRU（2014，减参数）→ layered/stacked（多层并行）→ SRU 与 QRNN（2016–2017，去掉跨时间的隐藏依赖，换取并行）——QRNN/SRU 已经是”为了并行而阉割循环”，承认了病根在串行。最后的理论牌是 IndRNN 与线性循环（把 <span class="math inline">\(W_h\)</span> 约束为可对角化/正定的良性谱——4.2 练习 5 的 IRNN 一族），长程能力回升但表达力受限。这些工作质量不低，但方向本身被 2017 年的宣言釜底抽薪：既然注意力已够，为什么还要为循环的存活付出工程税？</p>
+<p><strong>RNN 阵营的反抗（2016–2019）</strong>：SimpleRNN → LSTM → GRU（2014，减参数）→ layered/stacked（多层并行）→ SRU 与 QRNN <span class="citation" data-cites="bradbury2017">(<a href="#ref-bradbury2017" role="doc-biblioref">Bradbury et al. 2017</a>)</span>（2016–2017，去掉跨时间的隐藏依赖，换取并行）——QRNN/SRU 已经是”为了并行而阉割循环”，承认了病根在串行。最后的理论牌是 IndRNN 与线性循环（把 <span class="math inline">\(W_h\)</span> 约束为可对角化/正定的良性谱——4.2 练习 5 的 IRNN 一族），长程能力回升但表达力受限。这些工作质量不低，但方向本身被 2017 年的宣言釜底抽薪：既然注意力已够，为什么还要为循环的存活付出工程税？</p>
 <p><strong>Transformer 阵营的持续输血</strong>：Memory-efficient attention、FlashAttention（2022，重排显存访问让 GPU 不空转）、稀疏与线性注意力——架构赢了之后，工程接力让它赢更多。注意这个模式：GPU 的收益不是架构自动兑现的，是十年编译器与 kernel 工程喂出来的（2.4 算子经济学的续集）。</p>
 <p><strong>弯路：把并行当银弹</strong>。也有一批工作为并行牺牲了因果性或顺序敏感（如无序的集合模型），在生成任务上翻车——并行的前提是保住序列的语义；因果掩码与位置编码正是 Transformer 付出的”并行税”。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>动手前先做三笔心算（写下来）：</p>
 <ol type="1">
@@ -1116,11 +1140,12 @@ window.Quarto = {
 <p><strong>串行深度 vs 并行宽度</strong>。RNN 的计算图深度正比于序列长度（每步等上一步），任何硬件都救不了等待；Transformer 的计算图深度等于层数（与长度无关），长度的代价全部转化为更多的并行工作量（T×T 矩阵）——而并行工作量恰恰是 GPU 最擅长消化的形态。用账本语言：两者都在付 O(T) 的总计算，但 RNN 付的是串行时间、Transformer 付的是并行算力——硬件的汇率决定了谁划算。</p>
 <p><strong>训练经济学改写研究议程</strong>。同样的预算，能训更多步、更大模型的一方就能先探索规模曲线（Part 6）——架构的选择暗中决定了你能做的实验的档位。2018–2020 年的 GPT 系列之所以敢一路加倍参数，前提是 Transformer 的训练成本可承受且可预测。RNN 没有等到它的规模时代。</p>
 <p><strong>复杂度不是命运</strong>。O(T²) 的账单在 T&lt;10³ 时完全付得起（且常数极小）；在 T&gt;10⁵ 时才有切肤之痛（长上下文时代的核心矛盾，8.x）。渐进复杂度与工程现实之间隔着常数与硬件——读论文时把”大 O”换算成”我的 T 下每小时几美元”，是比直觉更诚实的评估方式。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="24.4">
 <h2 data-number="24.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">24.4</span> 从零实现</h2>
 <p><code>dlbook.transformer.MiniGPT</code> 与 <code>dlbook.rnn.RNNLM</code> 已经同台过精度；本章给它们上计时器。<strong>实验一：批量吞吐。</strong></p>
-<div id="2a6a3cdb" class="cell" data-execution_count="1">
+<div id="a2a8432f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1149,14 +1174,14 @@ window.Quarto = {
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>B<span class="sc">:&gt;4}</span><span class="ss"> </span><span class="sc">{</span>dt<span class="op">*</span><span class="dv">1000</span><span class="sc">:&gt;8.1f}</span><span class="ss"> ms </span><span class="sc">{</span>B <span class="op">*</span> <span class="dv">64</span> <span class="op">/</span> dt<span class="sc">:&gt;14,.0f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  批量       每步墙钟    吞吐 (tokens/s)
-   1      1.3 ms         47,857
-   8      8.9 ms         57,522
-  64    143.6 ms         28,532</code></pre>
+   1      2.2 ms         28,770
+   8     17.8 ms         28,826
+  64    140.4 ms         29,167</code></pre>
 </div>
 </div>
 <p>典型读数：批量从 1 到 8，每步时间几乎线性增长、<strong>吞吐不变</strong>；到 64 时吞吐仍与 1 相当（numpy 的 CPU 并行度有限，GPU 上这里会上升数倍）。要点不在具体数字，而在形状：Transformer 的吞吐随批量平坦或上升。对照 RNN：批量的每个样本各自走 64 步串行（我们的实现逐样本训练），墙钟随样本数线性增长，吞吐恒定——它在批量维度上没有任何硬件红利可吃。</p>
 <p><strong>实验二：长度的代价。</strong> 用一个 block_size 更大的模型扫序列长度（RNN 用 4.2 的引擎）：</p>
-<div id="5a75161d" class="cell" data-execution_count="2">
+<div id="0fb43554" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.rnn <span class="im">import</span> RNNLM</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>big_model <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">256</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1177,19 +1202,20 @@ window.Quarto = {
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>T<span class="sc">:&gt;4}</span><span class="ss"> </span><span class="sc">{</span>dt_tf<span class="op">*</span><span class="dv">1000</span><span class="sc">:&gt;9.1f}</span><span class="ss"> ms </span><span class="sc">{</span>dt_rnn<span class="op">*</span><span class="dv">1000</span><span class="sc">:&gt;7.1f}</span><span class="ss"> ms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   T  transformer        rnn
-  16       1.2 ms     0.2 ms
-  32       2.3 ms     0.3 ms
-  64       4.4 ms     0.7 ms
- 128      15.8 ms     1.3 ms
- 256      53.4 ms     2.5 ms</code></pre>
+  16       2.7 ms     0.5 ms
+  32       4.6 ms     0.8 ms
+  64       9.0 ms     1.8 ms
+ 128      20.8 ms     3.2 ms
+ 256      51.2 ms     6.4 ms</code></pre>
 </div>
 </div>
 <p>典型读数（numpy/CPU）：T 翻倍，Transformer 时间约 ×3.5–4（平方律现身），RNN 约 ×2（线性律——但每步是 Python 循环，常数很高）。在 CPU 上两者尚可比；<strong>在 GPU 上 Transformer 的常数会缩小两三个数量级（大矩阵乘吃满流处理器），而 RNN 的每步小矩阵乘与串行依赖让 GPU 大部分核心闲置</strong>——同一份代码，硬件把胜负放大成悬殊。这就把故事交给历史数据：GNMT（2016，8 层 LSTM）训练一次数周；同任务的 Transformer（2017）训练时间以显著优势缩短——工程团队用脚投票的，从来是每小时美元。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="24.5">
 <h2 data-number="24.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">24.5</span> 消融实验</h2>
 <p><strong>把因果掩罩撤掉测”理解”任务</strong>是下一章的正题，本章的消融换成一个经济学问题：注意力矩阵的稀疏化。把因果掩罩进一步收紧——每个位置只允许看最近 k=16 个位置（带状掩罩，其余 <span class="math inline">\(-\infty\)</span>）：</p>
-<div id="1a557e7f" class="cell" data-execution_count="3">
+<div id="df267e4f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sparse_model <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1208,10 +1234,11 @@ window.Quarto = {
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    model.loss_and_backward(idx)</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"全注意力单步: </span><span class="sc">{</span>(time.time()<span class="op">-</span>t0)<span class="op">/</span><span class="dv">10</span><span class="op">*</span><span class="dv">1000</span><span class="sc">:.1f}</span><span class="ss"> ms —— T² 账单的主体就在这里"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>全注意力单步: 4.6 ms —— T² 账单的主体就在这里</code></pre>
+<pre><code>全注意力单步: 9.1 ms —— T² 账单的主体就在这里</code></pre>
 </div>
 </div>
 <p>带状/稀疏注意力（Longformer、Sparse Transformer 一族）正是”在长序列上把 O(T²) 砍回 O(T·k)“的家族——<strong>账单催生的整个研究方向</strong>。精度换算力的交换比，是 8.x 长上下文时代的核心汇率。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="24.6">
 <h2 data-number="24.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">24.6</span> 本章 Loss 账本</h2>
@@ -1268,12 +1295,13 @@ window.Quarto = {
 <li>并行化的架构 + 吞得下的数据 = ？——当两者都上一个数量级，loss 会怎样？（→ Part 6 开卷：scaling laws，loss 的可预测时代）；</li>
 <li>同一个 Transformer，因果掩罩去留之间分出了两条路线（→ 下一章 GPT vs BERT—— decoder-only 时代的前夜）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="24.8">
 <h2 data-number="24.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">24.8</span> 参考文献</h2>
 <ol type="1">
 <li>Bradbury et al.&nbsp;(2017). <em>Quasi-Recurrent Neural Networks</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202017%20Quasi-Recurrent%20Neural%20Networks">↗ 搜索原文</a></li>
-<li>Vaswani et al.&nbsp;(2017). <em>Attention Is All You Need</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202017%20Attention%20Is%20All%20You%20Need">↗ 搜索原文</a></li>
+<li>Vaswani et al.&nbsp;(2017). <em>Attention Is All You Need</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202017%20%5B@vaswani2017%5D%20Attention%20Is%20All%20You%20Need">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="24.9">
@@ -1305,6 +1333,32 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bradbury2017" class="csl-entry" role="listitem">
+Bradbury, James, Stephen Merity, Caiming Xiong, and Richard Socher. 2017. <span>“Quasi-Recurrent Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1728,9 +1782,9 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="pagination-link" aria-label="分岔路口：GPT 与 BERT">
-        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
+      <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="pagination-link" aria-label="分岔路口：GPT 与 BERT [@devlin2019]">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>) <i class="bi bi-arrow-right-short"></i>
+      
   </div>
 </nav>
 </div> <!-- /content -->

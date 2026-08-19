@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; AlexNet 时刻：历史为什么发生在 2012 – 降 Loss 之路</title>
+<title>11&nbsp; AlexNet (Krizhevsky et al. 2012) 时刻：历史为什么发生在 2012 – 降 Loss 之路</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -648,7 +671,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-alexnet.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-alexnet.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1046,9 +1069,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-alexnet.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-alexnet.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012</li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(<a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>)</span> 时刻：历史为什么发生在 2012</span></h1>
 </div>
 
 
@@ -1101,6 +1124,7 @@ window.Quarto = {
 <p><strong>GPU 的非显然性</strong>。用游戏显卡做通用计算（GPGPU）在 2008 年前后仍属旁门：编程痛苦（早期要伪装成图形调用）、数值稳定性差、学术圈视之为”工程杂耍”。CUDA 把门槛降下来后，第一个吃螃蟹的训练仍需要勇气与手艺——Krizhevsky 写了定制的卷积核。历史条件不只是”GPU 存在”，而是”GPU 可编程 + 有人愿意为深度学习忍受它”。</p>
 <p><strong>总装的三人组</strong>。Krizhevsky（工程与直觉）、Sutskever（信念与理论品味）、Hinton（三十年深耕连接主义的信用背书）——1.2 章地下时期的三件套（换语言、硬问题、火种）在 2012 年兑成了一次总爆发。教训：范式复活的最后一步需要一个”不可辩驳的演示”——道理 1986 年就懂，但说服世界需要一个数字：15.3%。</p>
 <p><strong>赛后的雪崩</strong>。2013 年起几乎所有参赛队伍转向深度学习；工业界（Google 收购 DNNresearch 团队）跟进；GPU 厂商 NVIDIA 转型”AI 公司”。一个演示改变资源流向，资源流向改变研究的经济学——这条因果链将在 6.1（GPT-3）与 7.3（ChatGPT）再演两次。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>给你两笔账，先手算再实测：</p>
 <ol type="1">
@@ -1119,12 +1143,13 @@ window.Quarto = {
 <p>2012 年是这条规律在视觉领域的总清算：三十年手工特征（人类知识的注入）被”大数据 + 大算力 + 通用学习”一次性超越。而 1.2 章的范式之争（专家规则 vs 学习）正是同一剧本的上一场演出——<strong>Sutton 的判决书其实 1986 年就已写好草稿</strong>。</p>
 <p><strong>历史条件 = 算力 × 数据 × 方法，三者同时就绪</strong>。抽掉任何一块：没有 GPU，训练一轮要数月，课题不可行；没有 ImageNet，百万参数网络在小数据上只会过拟合（1.6 章的账），方法不可信；没有 2010–2012 的工具箱（relu/dropout/初始化），深度网络训不动，方法不可行。三者各就各位的时间窗口恰好是 2009–2012——历史为什么发生在 2012？因为再早一步，任何一块都缺位。</p>
 <p><strong>演示的杠杆</strong>。研究史不只有论文与证明，还有”改变资源流向的数字”。15.3% 之于深度学习，等于后来 175B 参数之于 GPT-3（6.1）、对话流畅度之于 ChatGPT（7.3）——范式战争的裁决从来靠演示，不靠论证。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">11.4</span> 从零实现</h2>
 <p>我们的两个”账本实验”——不重演 AlexNet，而是实测它的两块基石。</p>
 <p><strong>实验一：算力账本。</strong> 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：</p>
-<div id="0412fb59" class="cell" data-execution_count="1">
+<div id="5ff9eea3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1137,9 +1162,9 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;4}</span><span class="ss">x</span><span class="sc">{</span>n<span class="sc">:&lt;4}</span><span class="ss"> 矩阵乘: </span><span class="sc">{</span>dt<span class="op">*</span><span class="dv">1000</span><span class="sc">:6.1f}</span><span class="ss"> ms = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>n<span class="op">**</span><span class="dv">3</span><span class="op">/</span>dt<span class="op">/</span><span class="fl">1e9</span><span class="sc">:6.1f}</span><span class="ss"> GFLOP/s"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> 256x256  矩阵乘:    1.5 ms =   21.8 GFLOP/s
- 512x512  矩阵乘:    1.7 ms =  156.5 GFLOP/s
-1024x1024 矩阵乘:    6.2 ms =  344.8 GFLOP/s</code></pre>
+<pre><code> 256x256  矩阵乘:    1.2 ms =   28.7 GFLOP/s
+ 512x512  矩阵乘:    1.5 ms =  175.9 GFLOP/s
+1024x1024 矩阵乘:    6.3 ms =  341.4 GFLOP/s</code></pre>
 </div>
 </div>
 <p>三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：</p>
@@ -1149,7 +1174,7 @@ window.Quarto = {
 <li>你的笔记本（约 <span class="math inline">\(10^{11}\)</span> FLOP/s）比 1986 年的 VAX（约 <span class="math inline">\(10^6}\)</span> FLOP/s）快五个数量级——本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。</li>
 </ul>
 <p><strong>实验二：数据账本。</strong> 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：</p>
-<div id="cf827b45" class="cell" data-execution_count="2">
+<div id="004d1e44" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: np.sin(<span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>x <span class="op">-</span> <span class="fl">0.3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xd <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Yd <span class="op">=</span> f(Xd)</span>
@@ -1176,11 +1201,13 @@ n=40: 训练误差=0.0332  真实误差=0.0438</code></pre>
 </div>
 </div>
 <p>读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 <strong>2.8</strong>——网络完美背下了六个点，对函数本身一无所知（1.6 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04——真实误差随数据近一个数量级地下降。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上有账可算。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">11.5</span> 消融实验</h2>
 <p><strong>数据的”饱和点”探针</strong>。AlexNet 之后”堆数据”成为信仰，但数据账本有没有饱和点？把实验二延伸：n=40 → 100 → 400（网络与步数不变），观察真实误差的边际递减。当曲线趋平时，瓶颈从数据转移到容量（网络太小学不动更多结构）——“数据-容量-算力”三角的移动平衡，这个平衡在 2022 年被 Chinchilla 重新计算（6.2 的伏笔），在数据墙时代再次成为主角（9.2）。</p>
-<div id="8d88e6de" class="cell" data-execution_count="3">
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<div id="bd346edd" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">400</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.sort(rng.uniform(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, n)).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -1233,7 +1260,7 @@ n=400: 真实误差=0.0234</code></pre>
 <div class="callout-echo" title="回声">
 <ul>
 <li>“三基石同时就绪”的框架 → GPT-3（2020）的三基石：Transformer + 互联网文本 + 万卡集群；GPT-4/RLHF（2022–23）的三基石：预训练模型 + 人类反馈标注 + 训练基础设施——<strong>每次范式跳变都可以做同样的三要素解剖</strong>（9.1 的复盘工具）；</li>
-<li>Bitter Lesson → 6.1 规模定律是它的定量化版本；9.1 将第三次、也是完整地引用它；</li>
+<li>Bitter Lesson <span class="citation" data-cites="sutton2019">(<a href="#ref-sutton2019" role="doc-biblioref">Sutton 2019</a>)</span> → 6.1 规模定律是它的定量化版本；9.1 将第三次、也是完整地引用它；</li>
 <li>数据工程 → 从 ImageNet 的众包标注到 LLM 时代的数据配比、清洗、合成（9.2 的数据墙）——“数据从哪来”是账本四问里最长情的一问；</li>
 <li>算子的经济学（矩阵乘吞吐） → 5.3 “Transformer 为什么赢”的答案之一、今天 GPU/TPU 架构设计的出发点。</li>
 </ul>
@@ -1254,12 +1281,13 @@ n=400: 真实误差=0.0234</code></pre>
 <li>深度推进的下一道墙：几十层网络的”退化”怪病（→ 3.2 残差）；</li>
 <li>学到的”通用特征”到底是什么？能借给别人用吗？（→ 3.3 预训练-微调范式的诞生）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="11.8">
 <h2 data-number="11.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">11.8</span> 参考文献</h2>
 <ol type="1">
 <li>Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). <em>ImageNet Classification with Deep Convolutional Neural Networks</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Krizhevsky%202012%20ImageNet%20Classification%20with%20Deep%20Convolutional%20Neural">↗ 搜索原文</a></li>
-<li>Glorot, Xavier and Bengio, Yoshua (2010). <em>Understanding the Difficulty of Training Deep Feedforward Neural Networks</em>. <em>Proceedings of AISTATS, 9, 249–256</em>. <a href="https://scholar.google.com/scholar?q=Glorot%202010%20Understanding%20the%20Difficulty%20of%20Training%20Deep">↗ 搜索原文</a></li>
+<li>Glorot, Xavier and Bengio, Yoshua (2010). <em>Understanding the Difficulty of Training Deep Feedforward Neural Networks</em>. <em>Proceedings of AISTATS, 9, 249–256</em>. <a href="https://scholar.google.com/scholar?q=Glorot%202010%20%5B@glorot2010%5D%20Understanding%20the%20Difficulty%20of%20Training%20Deep">↗ 搜索原文</a></li>
 <li>Nair, Vinod and Hinton, Geoffrey E. (2010). <em>Rectified Linear Units Improve Restricted Boltzmann Machines</em>. <em>Proceedings of ICML, 807–814</em>. <a href="https://scholar.google.com/scholar?q=Nair%202010%20Rectified%20Linear%20Units%20Improve%20Restricted%20Boltzmann">↗ 搜索原文</a></li>
 <li>Srivastava et al.&nbsp;(2014). <em>Dropout: A Simple Way to Prevent Neural Networks from Overfitting</em>. <em>Journal of Machine Learning Research, 15, 1929–1958</em>. <a href="https://scholar.google.com/scholar?q=al.%202014%20Dropout%3A%20A%20Simple%20Way%20to%20Prevent">↗ 搜索原文</a></li>
 <li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
@@ -1295,6 +1323,32 @@ n=400: 真实误差=0.0234</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-sutton2019" class="csl-entry" role="listitem">
+Sutton, Richard. 2019. <span>“The Bitter Lesson.”</span> <em>Incomplete Ideas (Blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">http://www.incompleteideas.net/IncIdeas/BitterLesson.html</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

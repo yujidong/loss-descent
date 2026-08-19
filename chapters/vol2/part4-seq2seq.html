@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1100,6 +1123,7 @@ window.Quarto = {
 <p><strong>弯路二：COD 的滑窗生成</strong>。早期神经翻译试图滑动窗口逐段翻译再拼接——上下文被窗口切断。seq2seq 的贡献正是把整句的全局决策交给编码器终态。</p>
 <p><strong>输入倒序的启示</strong>：作者们发现把源句倒过来喂，BLEU 显著上升——因为解码器先要输出的词，在倒序输入里恰好离编码器终态最近（梯度衰减的补偿）。这个 trick 在 2017 年被注意力彻底作废——结构缺陷的补丁永远不如修结构本身。</p>
 <p><strong>teacher forcing</strong>：训练时解码器每一步都喂真实的上一个词而非自己的预测——并行高效，但训练与推理（吃自己的预测）之间存在暴露偏差。这个偏差在今天的 LLM 时代仍有回响（7.x 的训练-推理不一致讨论）。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>先做两个思想实验（写下来再运行）：</p>
 <ol type="1">
@@ -1116,11 +1140,12 @@ window.Quarto = {
 <p>编码器 LSTM 把源句读成终态 <span class="math inline">\(\mathbf{c}\)</span>（本章语境下就是细胞状态与隐藏状态），解码器以 <span class="math inline">\(\mathbf{c}\)</span> 为初态做 4.2 的自回归生成。<strong>翻译被拆成”压缩”与”条件展开”两半</strong>——后半是语言建模（4.1/4.2 的全部装备），前半是本章的新事物。</p>
 <p><strong>瓶颈定理（非正式）</strong>：解码的每一步都只通过 <span class="math inline">\(\mathbf{c}\)</span> 看见源句。若源句含 <span class="math inline">\(I\)</span> 比特信息而 <span class="math inline">\(\mathbf{c}\)</span> 的有效容量不足（或编码器没学好压缩），解码器无法事后补救——损失在压缩一步就永久发生了。长度外推实验就是这个定理的实验版本。</p>
 <p><strong>与 3.3 的范式同构</strong>：预训练-微调（3.3）是”通用特征 + 专用头”；编码-解码是”通用压缩 + 专用生成”。两者共享同一个深层结构：把难题拆成一个重的表示学习 + 一个轻的任务适配——这个模式将统治到 GPT 时代（预训练 + 下游微调/对齐，7.x）。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">21.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.Seq2Seq</code>：编码/解码各一台 LSTM，解码器初态 = 编码器终态（梯度沿 <code>backward</code> 的初始状态接口回传到编码器）。任务：数字序列反转。</p>
-<div id="88720d7e" class="cell" data-execution_count="1">
+<div id="b61dbae0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1145,12 +1170,12 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part4-seq2seq_files/figure-html/cell-2-output-1.png" width="565" height="374" class="figure-img"></p>
+<p><img src="part4-seq2seq_files/figure-html/cell-2-output-1.png" width="566" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="1ad61efa" class="cell" data-execution_count="2">
+<div id="a4403356" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exact_acc(model, pairs):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ok <span class="op">/</span> <span class="bu">len</span>(pairs)</span>
@@ -1158,13 +1183,13 @@ window.Quarto = {
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"验证集（长度 3–5）精确匹配: </span><span class="sc">{</span>exact_acc(model, <span class="bu">list</span>(<span class="bu">zip</span>(val_in, val_tg)))<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"示例:"</span>, model.greedy_decode(val_in[<span class="dv">0</span>]), <span class="st">"目标:"</span>, val_tg[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>验证集（长度 3–5）精确匹配: 0.985
+<pre><code>验证集（长度 3–5）精确匹配: 1.000
 示例: [0, 2, 11, 9, 7, 1] 目标: [0, 2, 11, 9, 7, 1]</code></pre>
 </div>
 </div>
 <p>25 个 epoch、几秒钟：loss 2.17 → 0.00x，<strong>整句精确匹配约 98%</strong>。编码器学会了把”哪几个数字、什么顺序”压进 64 维，解码器再逆序释放——玩具尺度上，“向量即意思”近乎魔法。</p>
 <p><strong>主实验：长度外推（固定向量的账单）。</strong> 在训练分布（长度 ≤5）之外逐级测试：</p>
-<div id="d10641db" class="cell" data-execution_count="3">
+<div id="052bd905" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pairs_of_length(L, n<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">9</span>):</span>
@@ -1190,24 +1215,25 @@ window.Quarto = {
 <pre><code>长度 3: 精确匹配 1.000
 长度 4: 精确匹配 0.990
 长度 5: 精确匹配 0.913
-长度 6: 精确匹配 0.585
-长度 7: 精确匹配 0.205
-长度 8: 精确匹配 0.108</code></pre>
+长度 6: 精确匹配 0.604
+长度 7: 精确匹配 0.114
+长度 8: 精确匹配 0.054</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part4-seq2seq_files/figure-html/cell-4-output-2.png" width="477" height="361" class="figure-img"></p>
+<p><img src="part4-seq2seq_files/figure-html/cell-4-output-2.png" width="478" height="362" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：长度 3–5 全在 0.9 以上；长度 6 掉到 0.6 附近；长度 7–8 跌到 0.2/0.1 以下——<strong>训练边界之外，性能断崖</strong>。对照你在「停一停」画的预测曲线：崩塌形态对了吗？注意崩塌不是因为信息论容量不够（64 维装 8 个 4 bit 的数字绰绰有余），而是编码器从未学过长句的压缩方式——它背过的是”如何压 5 个”，不是”如何压任意个”。分布外，能力来自分布内——这句话将在 6.3（涌现的边界）与 9.2（评测外推）反复回响。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="21.5">
 <h2 data-number="21.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">21.5</span> 消融实验</h2>
 <p><strong>倒序输入 trick 复刻。</strong> Sutskever 的补丁：把编码器输入倒过来喂（<code>inputs[i][::-1]</code>），对反转任务这相当于……先想清楚再运行（对”反转”这个任务，倒序输入让解码器的第一个输出对应编码器最后读入的词——梯度最短路径）。复刻并与正序对照，看两者在长度外推上的差异——补丁能续命，但救不了结构：</p>
-<div id="c21085e6" class="cell" data-execution_count="4">
+<div id="9b50f68f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_rev <span class="op">=</span> Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>
@@ -1222,13 +1248,14 @@ window.Quarto = {
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  长度 </span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>exact_acc(model_rev, pairs)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>倒序输入版的外推曲线:
-  长度 5: 0.797
-  长度 6: 0.340
-  长度 7: 0.000
+  长度 5: 0.696
+  长度 6: 0.226
+  长度 7: 0.023
   长度 8: 0.000</code></pre>
 </div>
 </div>
 <p>典型结果：倒序版在边界内相当、外推略好或相当——补丁的收益被玩具任务的短句吃掉了。<strong>真正的解药需要解码器在每一步都能回头看任意源词</strong>——这个”回头看”的正式名字，就是下一部分的主角。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="21.6">
 <h2 data-number="21.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">21.6</span> 本章 Loss 账本</h2>
@@ -1286,13 +1313,14 @@ window.Quarto = {
 <li>“回头看”能不能彻底替代循环本身？（→ 5.2 Transformer：注意力即全部）；</li>
 <li>串行解码的速度问题？（→ 5.3 并行性的经济学）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= Part 5 的入场券）。</p>
 </section>
 <section id="参考文献" class="level2" data-number="21.8">
 <h2 data-number="21.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">21.8</span> 参考文献</h2>
 <ol type="1">
-<li>Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). <em>Sequence to Sequence Learning with Neural Networks</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Sutskever%202014%20Sequence%20to%20Sequence%20Learning%20with%20Neural">↗ 搜索原文</a></li>
-<li>Cho, Kyunghyun and van Merri"e (2014). <em>Learning Phrase Representations Using RNN</em>. <em>EMNLP</em>. <a href="https://scholar.google.com/scholar?q=Cho%202014%20Learning%20Phrase%20Representations%20Using%20RNN">↗ 搜索原文</a></li>
-<li>Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). <em>Neural Machine Translation by Jointly Learning to Align and Translate</em>. <em>ICLR</em>. <a href="https://scholar.google.com/scholar?q=Bahdanau%202015%20Neural%20Machine%20Translation%20by%20Jointly%20Learning">↗ 搜索原文</a></li>
+<li>Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). <em>Sequence to Sequence Learning with Neural Networks</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Sutskever%202014%20%5B@sutskever2014%5D%20Sequence%20to%20Sequence%20Learning%20with%20Neural">↗ 搜索原文</a></li>
+<li>Cho, Kyunghyun and van Merri"e (2014). <em>Learning Phrase Representations Using RNN</em>. <em>EMNLP</em>. <a href="https://scholar.google.com/scholar?q=Cho%202014%20%5B@cho2014%5D%20Learning%20Phrase%20Representations%20Using%20RNN">↗ 搜索原文</a></li>
+<li>Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). <em>Neural Machine Translation by Jointly Learning to Align and Translate</em>. <em>ICLR</em>. <a href="https://scholar.google.com/scholar?q=Bahdanau%202015%20%5B@bahdanau2015%5D%20Neural%20Machine%20Translation%20by%20Jointly%20Learning">↗ 搜索原文</a></li>
 </ol>
 </section>
 <section id="练习" class="level2" data-number="21.9">
@@ -1324,6 +1352,29 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

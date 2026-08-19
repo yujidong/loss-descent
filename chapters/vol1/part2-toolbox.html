@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1098,9 +1121,10 @@ window.Quarto = {
 <section id="历史中的尝试包括弯路" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">10.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>ReLU（2010 前后被认真采用）</strong>。Nair &amp; Hinton (2010) 在受限玻尔兹曼机里用了整流单元，Glorot, Bordes &amp; Bengio (2011) 在监督网络里系统评估并惊呼其简单有效。此前 sigmoid/tanh 是”默认神圣”——人们以为模拟生物发放率需要平滑饱和函数。弯路在于：“像神经元”不等于”训练友好”，导数恒为 1 的死区函数反而完胜。新病也随之而来（神经元死亡、稀疏路径），He 初始化 (2015) 补了第一刀。</p>
-<p><strong>Dropout（Hinton et al.&nbsp;2012；Srivastava et al.&nbsp;2014）</strong>。训练时随机丢弃一半神经元，测试时全部启用并缩放。直觉：阻止神经元”合谋”，逼出冗余表征；等价于隐式集成天文数字个子网络。它是 AlexNet 的功臣之一，在 2012–2017 的视觉模型里几乎必开——但后来被 BatchNorm 部分取代、被大模型时代的显存压力边缘化，这段兴衰本身就是”工具也有寿命”的注脚。</p>
-<p><strong>BatchNorm（Ioffe &amp; Szegedy, 2015）</strong>。把每一层的输入在 mini-batch 内标准化（减均值除方差，再仿射还原），训练出奇地稳定、步长容忍度大增。原论文把它解释为消除”内部协变量偏移”——这个解释后来被证伪（2018 年的研究表明它的真实作用更多在让 loss 地形更平滑），但药效无损。有效的药和正确的药理解释可以脱钩，这是科学史上反复上演的剧目。</p>
-<p><strong>残差连接（He et al., 2015）</strong>。<span class="math inline">\(y = F(x) + x\)</span>——给梯度修一条不经过连乘的恒等高速路。它是下一部分的主角（3.2），本章只在工具箱清单里挂个号。</p>
+<p><strong>Dropout（Hinton et al.&nbsp;2012；Srivastava et al.&nbsp;2014）</strong>。训练时随机丢弃一半神经元，测试时全部启用并缩放。直觉：阻止神经元”合谋”，逼出冗余表征；等价于隐式集成天文数字个子网络。它是 AlexNet 的功臣之一，在 2012 <span class="citation" data-cites="srivastava2014">(<a href="#ref-srivastava2014" role="doc-biblioref">Srivastava et al. 2014</a>)</span>–2017 的视觉模型里几乎必开——但后来被 BatchNorm 部分取代、被大模型时代的显存压力边缘化，这段兴衰本身就是”工具也有寿命”的注脚。</p>
+<p><strong>BatchNorm（Ioffe &amp; Szegedy, 2015 <span class="citation" data-cites="ioffe2015">(<a href="#ref-ioffe2015" role="doc-biblioref">Ioffe and Szegedy 2015</a>)</span>）</strong>。把每一层的输入在 mini-batch 内标准化（减均值除方差，再仿射还原），训练出奇地稳定、步长容忍度大增。原论文把它解释为消除”内部协变量偏移”——这个解释后来被证伪（2018 年的研究表明它的真实作用更多在让 loss 地形更平滑），但药效无损。有效的药和正确的药理解释可以脱钩，这是科学史上反复上演的剧目。</p>
+<p><strong>残差连接（He et al., 2015 <span class="citation" data-cites="he2015resnet">(<a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)</span>）</strong>。<span class="math inline">\(y = F(x) + x\)</span>——给梯度修一条不经过连乘的恒等高速路。它是下一部分的主角（3.2），本章只在工具箱清单里挂个号。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>带着上一章的悬念做题：八层 relu 网络，训练中卡死在 loss≈1.0。你有三张牌——</p>
 <ul>
@@ -1159,11 +1183,12 @@ window.Quarto = {
 </tbody>
 </table>
 <p>注意一个贯穿的模式：<strong>每件工具都在”消除一个让 loss 降不下去的障碍”，而不是”直接让 loss 更低”</strong>——loss 账本视角下，它们买卖的是”可训练性”，不是”表达能力”。这也是为什么它们全部属于”训练技巧”而非”模型能力”：一个八层 relu+BN 网络的函数空间并不比八层 sigmoid 网络大，但前者能真正走到那个空间的好解附近。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">10.4</span> 从零实现</h2>
 <p>四件工具都已在 <code>MLPNumpy</code> 里就位（<code>activation="relu"</code>、<code>dropout=p</code>、<code>batchnorm=True</code>、<code>residual=True</code>），本章按发明顺序逐一开闸。先复现病灶——上一章的卡死病人：</p>
-<div id="fda89e42" class="cell" data-execution_count="1">
+<div id="7dce3f5d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1176,7 +1201,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：BatchNorm 的奇效。</strong> 同一个八层 relu 网络，只拨动一个开关：</p>
-<div id="06fccb37" class="cell" data-execution_count="2">
+<div id="2d169819" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bn <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span>bn)</span>
@@ -1186,35 +1211,25 @@ window.Quarto = {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    )[<span class="st">"loss"</span>]</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(histories, title<span class="op">=</span><span class="st">"The effect of one switch: BatchNorm"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\yujid\projects\DeepLearning\src\dlbook\utils\viz.py:38: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
+<pre><code>/home/runner/work/loss-descent/loss-descent/src/dlbook/utils/viz.py:38: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
   fig.tight_layout()
-C:\Users\yujid\projects\DeepLearning\src\dlbook\utils\viz.py:38: UserWarning: Glyph 31456 (\N{CJK UNIFIED IDEOGRAPH-7AE0}) missing from font(s) DejaVu Sans.
+/home/runner/work/loss-descent/loss-descent/src/dlbook/utils/viz.py:38: UserWarning: Glyph 31456 (\N{CJK UNIFIED IDEOGRAPH-7AE0}) missing from font(s) DejaVu Sans.
   fig.tight_layout()
-C:\Users\yujid\projects\DeepLearning\src\dlbook\utils\viz.py:38: UserWarning: Glyph 30340 (\N{CJK UNIFIED IDEOGRAPH-7684}) missing from font(s) DejaVu Sans.
+/home/runner/work/loss-descent/loss-descent/src/dlbook/utils/viz.py:38: UserWarning: Glyph 30340 (\N{CJK UNIFIED IDEOGRAPH-7684}) missing from font(s) DejaVu Sans.
   fig.tight_layout()
-C:\Users\yujid\projects\DeepLearning\src\dlbook\utils\viz.py:38: UserWarning: Glyph 30149 (\N{CJK UNIFIED IDEOGRAPH-75C5}) missing from font(s) DejaVu Sans.
+/home/runner/work/loss-descent/loss-descent/src/dlbook/utils/viz.py:38: UserWarning: Glyph 30149 (\N{CJK UNIFIED IDEOGRAPH-75C5}) missing from font(s) DejaVu Sans.
   fig.tight_layout()
-C:\Users\yujid\projects\DeepLearning\src\dlbook\utils\viz.py:38: UserWarning: Glyph 20154 (\N{CJK UNIFIED IDEOGRAPH-4EBA}) missing from font(s) DejaVu Sans.
+/home/runner/work/loss-descent/loss-descent/src/dlbook/utils/viz.py:38: UserWarning: Glyph 20154 (\N{CJK UNIFIED IDEOGRAPH-4EBA}) missing from font(s) DejaVu Sans.
   fig.tight_layout()
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\events.py:101: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
-  func(*args, **kwargs)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\events.py:101: UserWarning: Glyph 31456 (\N{CJK UNIFIED IDEOGRAPH-7AE0}) missing from font(s) DejaVu Sans.
-  func(*args, **kwargs)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\events.py:101: UserWarning: Glyph 30340 (\N{CJK UNIFIED IDEOGRAPH-7684}) missing from font(s) DejaVu Sans.
-  func(*args, **kwargs)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\events.py:101: UserWarning: Glyph 30149 (\N{CJK UNIFIED IDEOGRAPH-75C5}) missing from font(s) DejaVu Sans.
-  func(*args, **kwargs)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\events.py:101: UserWarning: Glyph 20154 (\N{CJK UNIFIED IDEOGRAPH-4EBA}) missing from font(s) DejaVu Sans.
-  func(*args, **kwargs)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylabtools.py:158: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
   fig.canvas.print_figure(bytes_io, **kw)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylabtools.py:158: UserWarning: Glyph 31456 (\N{CJK UNIFIED IDEOGRAPH-7AE0}) missing from font(s) DejaVu Sans.
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 31456 (\N{CJK UNIFIED IDEOGRAPH-7AE0}) missing from font(s) DejaVu Sans.
   fig.canvas.print_figure(bytes_io, **kw)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylabtools.py:158: UserWarning: Glyph 30340 (\N{CJK UNIFIED IDEOGRAPH-7684}) missing from font(s) DejaVu Sans.
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 30340 (\N{CJK UNIFIED IDEOGRAPH-7684}) missing from font(s) DejaVu Sans.
   fig.canvas.print_figure(bytes_io, **kw)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylabtools.py:158: UserWarning: Glyph 30149 (\N{CJK UNIFIED IDEOGRAPH-75C5}) missing from font(s) DejaVu Sans.
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 30149 (\N{CJK UNIFIED IDEOGRAPH-75C5}) missing from font(s) DejaVu Sans.
   fig.canvas.print_figure(bytes_io, **kw)
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylabtools.py:158: UserWarning: Glyph 20154 (\N{CJK UNIFIED IDEOGRAPH-4EBA}) missing from font(s) DejaVu Sans.
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 20154 (\N{CJK UNIFIED IDEOGRAPH-4EBA}) missing from font(s) DejaVu Sans.
   fig.canvas.print_figure(bytes_io, **kw)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1225,7 +1240,7 @@ C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylab
 </div>
 </div>
 </div>
-<div id="c4fa5002" class="cell" data-execution_count="3">
+<div id="b808fe82" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bn <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span>bn)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1237,7 +1252,7 @@ BN=True: acc=0.953</code></pre>
 </div>
 <p>300 个 epoch：无 BN 卡死在 0.50，加 BN 直上 <strong>0.97</strong>。上一章的悬案在这里告破——relu 深网死于训练动态中的分布漂移，BN 把每层输入的分布钉住，漂移病除。</p>
 <p><strong>实验二：BN 的第二重礼物——步长容忍。</strong> BN 之所以流行，一半因为它让学习率从”黑暗艺术”变成”粗调旋钮”：</p>
-<div id="532e99e7" class="cell" data-execution_count="4">
+<div id="efc8e5c1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.005</span>, <span class="fl">0.05</span>, <span class="fl">0.5</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span>lr, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1247,23 +1262,23 @@ BN=True: acc=0.953</code></pre>
 BN + lr=0.05: loss=0.1994, acc=0.95</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\yujid\projects\DeepLearning\src\dlbook\train.py:25: RuntimeWarning: overflow encountered in square
+<pre><code>/home/runner/work/loss-descent/loss-descent/src/dlbook/train.py:25: RuntimeWarning: overflow encountered in square
   return float(np.mean((self.model.forward(X) - np.asarray(Y)) ** 2))
-C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\numpy\_core\_methods.py:193: RuntimeWarning: overflow encountered in multiply
-  x = um.multiply(x, x, out=x)
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:126: RuntimeWarning: overflow encountered in square
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/numpy/_core/_methods.py:190: RuntimeWarning: overflow encountered in square
+  x = um.square(x, out=x)
+/home/runner/work/loss-descent/loss-descent/src/dlbook/nn/mlp_numpy.py:126: RuntimeWarning: overflow encountered in square
   loss = float(np.mean((pred - Y) ** 2))
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:159: RuntimeWarning: overflow encountered in matmul
+/home/runner/work/loss-descent/loss-descent/src/dlbook/nn/mlp_numpy.py:159: RuntimeWarning: overflow encountered in matmul
   self.grad_Ws[i] = dZ.T @ A
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:161: RuntimeWarning: overflow encountered in matmul
+/home/runner/work/loss-descent/loss-descent/src/dlbook/nn/mlp_numpy.py:161: RuntimeWarning: overflow encountered in matmul
   dA = dZ @ self.Ws[i]
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:149: RuntimeWarning: invalid value encountered in multiply
+/home/runner/work/loss-descent/loss-descent/src/dlbook/nn/mlp_numpy.py:149: RuntimeWarning: invalid value encountered in multiply
   dpre = dH * fprime(preact, H)  # 先过激活的局部导数
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:151: RuntimeWarning: invalid value encountered in multiply
+/home/runner/work/loss-descent/loss-descent/src/dlbook/nn/mlp_numpy.py:151: RuntimeWarning: invalid value encountered in multiply
   self.grad_gamma[i] = (dpre * xhat).sum(axis=0)
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarning: invalid value encountered in subtract
+/home/runner/work/loss-descent/loss-descent/src/dlbook/nn/mlp_numpy.py:154: RuntimeWarning: invalid value encountered in subtract
   dpre - dpre.mean(axis=0) - xhat * (dpre * xhat).mean(axis=0)
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarning: invalid value encountered in multiply
+/home/runner/work/loss-descent/loss-descent/src/dlbook/nn/mlp_numpy.py:154: RuntimeWarning: invalid value encountered in multiply
   dpre - dpre.mean(axis=0) - xhat * (dpre * xhat).mean(axis=0)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -1272,7 +1287,7 @@ C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarn
 </div>
 <p>带 BN 的网络横跨两个数量级的学习率都能训练（无 BN 的网络做同样扫描会怎么做？留作练习 2——先猜再跑）。机制直觉：BN 把各层激活的尺度钉在标准区间，loss 地形对参数整体缩放的敏感度大幅下降——2018 年的后续研究把这个好处归结为<strong>地形平滑化</strong>，而不是原论文宣称的”协变量偏移”。</p>
 <p><strong>实验三：Dropout 的机制演示。</strong> 在我们的玩具尺度上 dropout 的收益并不稳定（它的主场是百万参数的视觉模型——那里过拟合是主要矛盾）。这里只做一个机制性演示：训练态的 dropout 是噪声，评估态是确定的：</p>
-<div id="30e7be8a" class="cell" data-execution_count="5">
+<div id="c196db05" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, dropout<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>])</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>])</span>
@@ -1283,11 +1298,12 @@ C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarn
 </div>
 </div>
 <p><code>forward</code> 默认是评估态（确定输出）；<code>backward</code> 内部自动切训练态（dropout 生效、BN 用批统计）。<strong>这个”训练态/评估态”的二分是 dropout 与 BN 共同引入的新概念</strong>——在它们之前，一个网络只有一种状态；从此每个框架都有了 <code>model.train()</code> / <code>model.eval()</code>。我们引擎里最朴素的对应就是 <code>forward(X)</code> vs <code>backward(X, Y)</code> 的隐式切换。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">10.5</span> 消融实验</h2>
 <p><strong>四件工具的联合体检</strong>留给下一章的 capstone（完整配方拆解）。这里先做一件本章特有的消融：BN 到底是救了 relu 还是救了所有激活？</p>
-<div id="21bc9ea2" class="cell" data-execution_count="6">
+<div id="52a89fe9" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> act <span class="kw">in</span> (<span class="st">"relu"</span>, <span class="st">"tanh"</span>):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span>act, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1295,10 +1311,11 @@ C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarn
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>          <span class="cf">else</span> <span class="ss">f"relu+BN: loss=</span><span class="sc">{</span>h[<span class="st">'loss'</span>][<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">, acc=</span><span class="sc">{</span>accuracy(m, Xs, ys)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>relu+BN: loss=0.1994, acc=0.95
-tanh+BN: loss=0.8966, acc=0.64</code></pre>
+tanh+BN: loss=0.8049, acc=0.68</code></pre>
 </div>
 </div>
 <p>tanh+BN 也能爬到 0.8 左右——BN 的疗效不挑激活，但 relu+BN 仍是最优组合。<strong>工具之间存在协同</strong>：这为下一章”配方”的提法（组合优于单件）埋下伏笔。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">10.6</span> 本章 Loss 账本</h2>
@@ -1357,15 +1374,16 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 <li>深度的天花板在哪里？BN 之后，几十层网络的下一个瓶颈是什么？（→ 3.2 残差：优化之病好了，<strong>退化之病</strong>才露头）；</li>
 <li>工具箱能搬到序列与语言任务吗？（→ Part 4，那里有自己的特殊困难）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="10.8">
 <h2 data-number="10.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">10.8</span> 参考文献</h2>
 <ol type="1">
-<li>Nair, Vinod and Hinton, Geoffrey E. (2010). <em>Rectified Linear Units Improve Restricted Boltzmann Machines</em>. <em>Proceedings of ICML, 807–814</em>. <a href="https://scholar.google.com/scholar?q=Nair%202010%20Rectified%20Linear%20Units%20Improve%20Restricted%20Boltzmann">↗ 搜索原文</a></li>
+<li>Nair, Vinod and Hinton, Geoffrey E. (2010). <em>Rectified Linear Units Improve Restricted Boltzmann Machines</em>. <em>Proceedings of ICML, 807–814</em>. <a href="https://scholar.google.com/scholar?q=Nair%202010%20%5B@nair2010%5D%20Rectified%20Linear%20Units%20Improve%20Restricted%20Boltzmann">↗ 搜索原文</a></li>
 <li>Srivastava et al.&nbsp;(2014). <em>Dropout: A Simple Way to Prevent Neural Networks from Overfitting</em>. <em>Journal of Machine Learning Research, 15, 1929–1958</em>. <a href="https://scholar.google.com/scholar?q=al.%202014%20Dropout%3A%20A%20Simple%20Way%20to%20Prevent">↗ 搜索原文</a></li>
 <li>Ioffe, Sergey and Szegedy, Christian (2015). <em>Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</em>. <em>Proceedings of ICML, 448–456</em>. <a href="https://scholar.google.com/scholar?q=Ioffe%202015%20Batch%20Normalization%3A%20Accelerating%20Deep%20Network%20Training">↗ 搜索原文</a></li>
 <li>He et al.&nbsp;(2015). <em>Deep Residual Learning for Image Recognition</em>. <em>arXiv preprint arXiv:1512.03385</em>. <a href="https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition">↗ 搜索原文</a></li>
-<li>Santurkar et al.&nbsp;(2018). <em>How Does Batch Normalization Help Optimization?</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202018%20How%20Does%20Batch%20Normalization%20Help%20Optimization%3F">↗ 搜索原文</a></li>
+<li>Santurkar et al.&nbsp;(2018). <em>How Does Batch Normalization Help Optimization?</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202018%20%5B@santurkar2018%5D%20How%20Does%20Batch%20Normalization%20Help%20Optimization%3F">↗ 搜索原文</a></li>
 <li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
 </ol>
 </section>
@@ -1398,6 +1416,35 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-ioffe2015" class="csl-entry" role="listitem">
+Ioffe, Sergey, and Christian Szegedy. 2015. <span>“Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.”</span> <em>Proceedings of ICML</em>, 448–56.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-srivastava2014" class="csl-entry" role="listitem">
+Srivastava, Nitish, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdinov. 2014. <span>“Dropout: A Simple Way to Prevent Neural Networks from Overfitting.”</span> <em>Journal of Machine Learning Research</em> 15: 1929–58.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -1821,9 +1868,9 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/vol1/part2-alexnet.html" class="pagination-link" aria-label="AlexNet 时刻：历史为什么发生在 2012">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
+      <a href="../../chapters/vol1/part2-alexnet.html" class="pagination-link" aria-label="AlexNet [@krizhevsky2012] 时刻：历史为什么发生在 2012">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012 <i class="bi bi-arrow-right-short"></i>
+      
   </div>
 </nav>
 </div> <!-- /content -->

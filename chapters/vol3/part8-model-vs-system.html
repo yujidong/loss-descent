@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -741,7 +764,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -770,7 +793,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -858,7 +881,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -875,13 +898,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -922,7 +945,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1055,7 +1078,7 @@ main table {
 <li><strong>算力</strong>：推理成本超过训练成本成为许多部署的主要账单——系统层的每次调用都在花钱，权重层的一次训练一劳永逸——经济学把这条界线越描越粗；</li>
 <li>数据：上下文（prompt）本身成了”数据”：示例、工具说明、检索结果——context engineering 作为新工种出现（提示工程的系统化后代）；</li>
 <li>认知：“改 prompt 还是改模型”是每个团队的日常议题；框架/中间件层（记忆、规划、工具编排）与模型能力的地盘之争是 2025 年的主旋律之一；</li>
-<li>关键事实：同一能力在两层之间的迁移从未停止——早期靠 few-shot 的事情（翻译）被训练进模型；早期靠模型的事情（长记忆）被外挂（RAG）。界线是移动的，这正是本框架的时效性声明。</li>
+<li>关键事实：同一能力在两层之间的迁移从未停止——早期靠 few-shot 的事情（翻译）被训练进模型；早期靠模型的事情（长记忆）被外挂（RAG <span class="citation" data-cites="lewis2020">(<a href="#ref-lewis2020" role="doc-biblioref"><span class="nocase">Lewis et al.</span> 2020</a>)</span>）。界线是移动的，这正是本框架的时效性声明。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="36.1">
@@ -1068,10 +1091,11 @@ main table {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="36.2">
 <h2 data-number="36.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">36.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路一：万物微调（2020–2022）</strong>。预训练模型出来后，惯性是”每个任务微调一次”——T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT-3 的 few-shot、2021 前后的 prompt tuning）证明许多任务不必动权重——方向摆向系统层。</p>
+<p><strong>弯路一：万物微调（2020–2022）</strong>。预训练模型出来后，惯性是”每个任务微调一次”——T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT <span class="citation" data-cites="radford2018">(<a href="#ref-radford2018" role="doc-biblioref">Radford et al. 2018</a>)</span>-3 的 few-shot、2021 前后的 prompt tuning）证明许多任务不必动权重——方向摆向系统层。</p>
 <p><strong>弯路二：万物提示（2023–2024）</strong>。摆过头：记忆靠 prompt 塞、工具靠 prompt 描述、格式靠 prompt 祈祷——上下文越来越长、越来越贵、越来越脆。回调的标志是各家的 instruction tuning 与 distillation 回潮：行为一旦定型且高频，就该固化（8.2 的训练账 vs 推理账）。</p>
 <p><strong>RAG 的启示</strong>：知识放哪一层的最佳案例研究——外挂检索（系统层）赢了”时效性与可更新性”，权重（模型层）赢了”整合与推理”。现实的答案是混合，但混合的配方由框架决定，不是拍脑袋。</p>
 <p><strong>Context engineering 的兴起（2025）</strong>：把上下文当作一种稀缺资源来设计——什么进窗口、以什么格式、何时压缩（7.1 的”上下文价值曲线”是这个工种的理论起点）。窗口是新的显存：贵、有限、需要调度。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>三条件实验预告：同一个 QA 任务，三种配置——(a) 基座 zero-shot；(b) 基座 few-shot（上下文里放 3 个”问题→回答”示例）；(c) SFT（7.2 的流程）。</p>
 <p><strong>先写下你的预测</strong>（本书的玩具基座，你还记得 7.1 的诱导头失败与 7.2 的绑定 margin）：</p>
@@ -1098,11 +1122,12 @@ main table {
 <p>一句话版：<strong>潜质在权重、变化在系统、可靠性按代价分账</strong>。</p>
 <p><strong>两层的数学同构</strong>：few-shot 的上下文与 SFT 的微调，都是在条件化模型的行为——前者把示例放进输入，后者把示例放进梯度。信息同源（都是”示例”），通道不同。这解释了为什么大模型上两者常常殊途同归（ICL ≈ 隐式贝叶斯推断/隐式微调的争论两边都有证据），也解释了我们的玩具为何分家——输入通道要靠注意力绑定（7.1 失败），梯度通道靠密集监督（7.2 成功）：两条通道对底座的要求不同，这是框架第一问的实验基础。</p>
 <p><strong>界线是移动的</strong>：算力价格、模型能力、任务频率都在变——今天值得外挂的，明天可能该固化（反之亦然）。框架给出的不是答案，是可以重复演算的判断程序——这与 0.1 章对”账本”的承诺一致。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="36.4">
 <h2 data-number="36.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">36.4</span> 从零实现</h2>
 <p>三条件对照（基座复训 + few-shot + SFT 复用 7.2 流程）：</p>
-<div id="79f7fe2b" class="cell" data-execution_count="1">
+<div id="b3b5745a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus, make_qa_corpus</span>
@@ -1170,7 +1195,7 @@ main table {
 <div class="cell-output cell-output-stdout">
 <pre><code>基座 zero-shot: 0.00
 基座 few-shot (k=3): 0.00
-SFT zero-shot: 0.33</code></pre>
+SFT zero-shot: 0.08</code></pre>
 </div>
 </div>
 <p>典型读数：<strong>0.00 / 0.00 / 0.33</strong>。few-shot 完全失效——示例进了上下文，基座却无法把它们与当前问题绑定（7.1 的诱导头之墙再次立在那儿：输入通道的条件化需要注意力回路，我们的玩具没有）。这个三连数是框架第一问的实验证词：</p>
@@ -1179,10 +1204,12 @@ SFT zero-shot: 0.33</code></pre>
 <li>真实 GPT-3 尺度上结论反转：few-shot 大幅起效（诱导回路存在），于是 2020–2023 年系统层（提示工程）繁荣；</li>
 <li>框架的应用要带上底座的体检报告——同一个”问题”，在不同底座上答案不同。这也是读一切”prompt vs 微调”论文的第一检查项：他们的底座多大、哪条通道健全。</li>
 </ul>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="36.5">
 <h2 data-number="36.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">36.5</span> 消融实验</h2>
 <p><strong>通道的对照</strong>：few-shot 失效但 SFT 有效——两条通道（输入 vs 梯度）的要求差异，可以再用一个对照钉死：把 few-shot 的示例逐条放进 SFT 数据（等价于把输入通道的内容搬到梯度通道），同样的 12 个问答、同样的信息量——<code>SFT</code> 从 0.00 涨到 0.33（这正是 7.2 已做的实验）。信息相同、通道不同、结果不同——通道本身的健全性是独立变量，这是本框架区别于流行讨论的关键洞见。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="36.6">
 <h2 data-number="36.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">36.6</span> 本章 Loss 账本</h2>
@@ -1240,6 +1267,7 @@ SFT zero-shot: 0.33</code></pre>
 <li>框架依赖的世界在变：数据墙、算力格局、能力前沿——开放问题清单（→ 9.2）；</li>
 <li>最后：用它预测未来——全书的毕业考试（→ 9.3）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= Part 9 的入场券）。</p>
 </section>
 <section id="参考文献" class="level2" data-number="36.8">
 <h2 data-number="36.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">36.8</span> 参考文献</h2>
@@ -1277,6 +1305,35 @@ SFT zero-shot: 0.33</code></pre>
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-lewis2020" class="csl-entry" role="listitem">
+<span class="nocase">Lewis, Patrick, Ethan Perez, Aleksandra Piktus, et al.</span> 2020. <span>“Retrieval-Augmented Generation for Knowledge-Intensive <span>NLP</span> Tasks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-radford2018" class="csl-entry" role="listitem">
+Radford, Alec, Karthik Narasimhan, Tim Salimans, and Ilya Sutskever. 2018. <span>“Improving Language Understanding by Generative Pre-Training.”</span> <em>OpenAI Technical Report</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

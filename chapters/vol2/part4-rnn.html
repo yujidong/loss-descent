@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -153,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 布局微调：不破坏 Quarto book 的网格（侧栏+正文），只调字号/行高/间距 */
+/* 布局：字号/行高/间距微调 + 响应式宽度（跟随屏幕自适应） */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -168,22 +187,26 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 加宽 Quarto 的内容列（通过调 CSS 变量，不覆盖定位） */
+/* 响应式加宽：不锁死固定宽度，让内容列用满可用空间（侧栏之外） */
 @media (min-width: 992px) {
-  :root {
-    --quarto-body-width: 72rem;
-    --quarto-content-width: 52rem;
-  }
   #quarto-content {
-    max-width: 72rem !important;
+    max-width: none !important;
+  }
+  .page-columns {
+    max-width: none !important;
   }
   .page-columns .page {
-    max-width: 52rem;
+    max-width: min(88vw, 68rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+@media (min-width: 1400px) {
+  .page-columns .page {
+    max-width: min(82vw, 72rem);
   }
 }
 </style>
-
-
 <script>
 (function () {
   if (window.__dlbookReviewLoaded) return;
@@ -770,7 +793,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
   </div>
 </li>
           <li class="sidebar-item">
@@ -799,7 +822,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part3-resnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">军备竞赛：从 AlexNet 到 ResNet <span class="citation" data-cites="he2015resnet">(</span></span></span></a><a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)
   </div>
 </li>
           <li class="sidebar-item">
@@ -887,7 +910,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
   </div>
 </li>
       </ul>
@@ -904,13 +927,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
   </div>
 </li>
           <li class="sidebar-item">
@@ -951,7 +974,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol3/part7-rlhf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO：奖励作为变形的 loss</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">RLHF 与 DPO <span class="citation" data-cites="rafailov2023">(</span></span></span></a><a href="#ref-rafailov2023" role="doc-biblioref">Rafailov et al. 2023</a>)：奖励作为变形的 loss
   </div>
 </li>
           <li class="sidebar-item">
@@ -1098,9 +1121,10 @@ window.Quarto = {
 <section id="历史中的尝试包括弯路" class="level2" data-number="18.2">
 <h2 data-number="18.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">18.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>弯路一：窗口加宽</strong>。最直接的思路是把 n-gram 的 n 加大、或给 MLP 接更长的输入窗口——Bengio et al.&nbsp;(2003) 的神经概率语言模型正是这样（嵌入 + 前馈，窗口 5）——有效，但参数与窗口长度线性增长，且窗口仍是硬墙。它缺席了本章主线却值得记住：第一个现代神经语言模型，2010 年代一切工作的直系祖先（GPT 的 G 就是它一脉）。</p>
-<p><strong>Elman 的 SRN（1990）</strong>：<span class="math inline">\(h_t = \tanh(W_x x_t + W_h h_{t-1} + b)\)</span>——“时序信息保持在隐藏层的激活里”。Elman 用它学出了元音/辅音的类别结构（无监督地把语言学统计压进了状态）。</p>
+<p><strong>Elman 的 SRN（1990 <span class="citation" data-cites="elman1990">(<a href="#ref-elman1990" role="doc-biblioref">Elman 1990</a>)</span>）</strong>：<span class="math inline">\(h_t = \tanh(W_x x_t + W_h h_{t-1} + b)\)</span>——“时序信息保持在隐藏层的激活里”。Elman 用它学出了元音/辅音的类别结构（无监督地把语言学统计压进了状态）。</p>
 <p><strong>BPTT 的尴尬</strong>：训练要把循环沿时间展开——句子长 60，网络就深 60 层。梯度消失的病因此处加倍严重：前馈网的深度是设计者定的（可以停在 8 层），循环网的深度由数据的长短决定（句子有多长病就有多深）。</p>
 <p><strong>训练术的时代</strong>：截断 BPTT（只回传 k 步——又一次”截断历史”，与 n-gram 同构。）、梯度裁剪（抑制爆炸）、小心初始化。RNN 能训但难训，2010 年前后被认为”只有少数实验室会调”。</p>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>纸上展开一个 <span class="math inline">\(T=3\)</span> 的 Elman 网络：<span class="math inline">\(h_1, h_2, h_3\)</span> 与输出 <span class="math inline">\(y_3\)</span>（预测 <span class="math inline">\(x_4\)</span>）。完成三件事：</p>
 <ol type="1">
@@ -1120,11 +1144,12 @@ window.Quarto = {
 <li>时间维的梯度递推 <span class="math inline">\(\delta_t = (W_h^\top \delta_{t+1}) \odot (1 - h_t^2)\)</span>——每一个时间步乘一次 <span class="math inline">\(W_h\)</span> 与一次 <span class="math inline">\(\tanh'\)</span>，连乘的病根与 2.2 逐字相同。</li>
 </ul>
 <p><strong>采样即生成</strong>：训练好的语言模型可以自回归地生成——把上一步的采样喂回输入。这是本书第一次遇到”生成”，此后从 seq2seq 到 GPT，一切生成系统都是这个循环的不同装甲。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
 </section>
 <section id="从零实现" class="level2" data-number="18.4">
 <h2 data-number="18.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">18.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.RNNLM</code>（cell=“rnn”）实现了以上全部。训练用整段语料（约 2400 字符）做一条长序列：</p>
-<div id="53e289a6" class="cell" data-execution_count="1">
+<div id="3bed2f4d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1150,22 +1175,22 @@ window.Quarto = {
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"loss: </span><span class="sc">{</span>history[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> -&gt; </span><span class="sc">{</span>history[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss"> nat/字符"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>均匀基线 3.296；上一章 3-gram 计数法达到 1.95 nat/字符
-120 epochs 用时 6s
+120 epochs 用时 8s
 loss: 3.296 -&gt; 2.2320 nat/字符</code></pre>
 </div>
 </div>
-<div id="45417522" class="cell" data-execution_count="2">
+<div id="6962739f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"rnn char-LM"</span>: history}, title<span class="op">=</span><span class="st">"Elman RNN learns to predict characters"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part4-rnn_files/figure-html/cell-3-output-1.png" width="565" height="374" class="figure-img"></p>
+<p><img src="part4-rnn_files/figure-html/cell-3-output-1.png" width="566" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>3.30 → <strong>2.23</strong>。诚实的第一份对比：同一语料上，3-gram 计数法（1.95）仍然更强。这不是 RNN 的失败，是规模的下限——神经方法的价值在于参数随词表指数增长时依然平滑（n-gram 在大词表上爆炸，神经网络的参数只随词表线性增长）与表示共享（字符 c 在”cat”和”cot”里是同一组权重）。这两张牌要到大语料才兑现（Bengio 2003 的实验、乃至 GPT）——又一次 Bitter Lesson 式的等待。但采样已经能看出状态装了比 3-gram 更多的东西：</p>
-<div id="e8d5f58d" class="cell" data-execution_count="3">
+<p>3.30 → <strong>2.23</strong>。诚实的第一份对比：同一语料上，3-gram 计数法（1.95）仍然更强。这不是 RNN 的失败，是规模的下限——神经方法的价值在于参数随词表指数增长时依然平滑（n-gram 在大词表上爆炸，神经网络的参数只随词表线性增长）与表示共享（字符 c 在”cat”和”cot”里是同一组权重）。这两张牌要到大语料才兑现（Bengio 2003 <span class="citation" data-cites="bengio2003">(<a href="#ref-bengio2003" role="doc-biblioref">Bengio et al. 2003</a>)</span> 的实验、乃至 GPT）——又一次 Bitter Lesson 式的等待。但采样已经能看出状态装了比 3-gram 更多的东西：</p>
+<div id="dc8c0069" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> <span class="st">"the cat "</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> model.sample(prompt, n_new<span class="op">=</span><span class="dv">160</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, seed<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1174,11 +1199,12 @@ loss: 3.296 -&gt; 2.2320 nat/字符</code></pre>
 </div>
 </div>
 <p>典型样貌：能拼出 the/sat/and 这类高频词的形状，偶有”the cat sat”级别的两词搭配，但长句无意义。与 3-gram 采样对比：词形更整齐（嵌入共享的功劳），语法幻觉相当——<strong>状态里装的历史，远没有理论允许的那么多</strong>。为什么？验尸开始。</p>
+<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
 </section>
 <section id="消融实验" class="level2" data-number="18.5">
 <h2 data-number="18.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">18.5</span> 消融实验</h2>
 <p><strong>梯度沿时间的剖面。</strong> 在一条 60 步的序列末端施加损失，测量每个时间步的梯度范数（<code>rnn_grad_flow_norms</code>——2.2 的剖面实验在时间轴上的复刻）：</p>
-<div id="1070c7b0" class="cell" data-execution_count="4">
+<div id="fc28098e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.rnn.core <span class="im">import</span> rnn_grad_flow_norms</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>seq <span class="op">=</span> tokens[:<span class="dv">61</span>]</span>
@@ -1196,7 +1222,7 @@ t=0 (起点): ||grad|| = 2.38e-15
 60 步总衰减: 6.93e+00 -&gt; 2.38e-15（15 个数量级）</code></pre>
 </div>
 </div>
-<div id="72087929" class="cell" data-execution_count="5">
+<div id="8bb0f903" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="fl">3.8</span>))</span>
@@ -1208,12 +1234,13 @@ t=0 (起点): ||grad|| = 2.38e-15
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part4-rnn_files/figure-html/cell-6-output-1.png" width="531" height="361" class="figure-img"></p>
+<p><img src="part4-rnn_files/figure-html/cell-6-output-1.png" width="531" height="362" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：末端 6.9 → 起点 <strong>1e-56</strong>——五十六个数量级，数值意义上的精确死亡。远超前馈网的病（那里 16 层才掉 7 个数量级）：因为这里每个时间步要连乘 <span class="math inline">\(W_h\)</span>（谱半径可大于 1 也可小于 1，但步数由句子长度决定）。训练信号根本没有能力告诉开头的字符”你做错了什么”——采样文本里缺失的长程结构，尸检报告在此。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="18.6">
 <h2 data-number="18.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">18.6</span> 本章 Loss 账本</h2>
@@ -1260,7 +1287,7 @@ t=0 (起点): ||grad|| = 2.38e-15
 <ul>
 <li><strong>读什么</strong>：SRN 的定义（第一节的公式几乎就是本章的模型）与语言结构自发涌现的实验（网络的隐藏状态无监督聚出了词类）；</li>
 <li>跳过：心理语言学论证；</li>
-<li>历史注：Elman 不是工程师而是一位关心”时间中的认知”的学者——RNN 诞生于认知科学而非机器学习，这个出身解释了它对”序列”的执着。配套重读 Bengio et al.&nbsp;1994（2.2 的论文时光机）：他们诊断的正是本章剖面里那条坠崖曲线。</li>
+<li>历史注：Elman 不是工程师而是一位关心”时间中的认知”的学者——RNN 诞生于认知科学而非机器学习，这个出身解释了它对”序列”的执着。配套重读 Bengio et al.&nbsp;1994 <span class="citation" data-cites="bengio1994">(<a href="#ref-bengio1994" role="doc-biblioref">Bengio et al. 1994</a>)</span>（2.2 的论文时光机）：他们诊断的正是本章剖面里那条坠崖曲线。</li>
 </ul>
 </div>
 </section>
@@ -1271,6 +1298,7 @@ t=0 (起点): ||grad|| = 2.38e-15
 <li>词级的语义能像字符级一样被学进权重吗？（→ 4.4 word2vec：不靠任务、纯靠共现就把语义压进向量）；</li>
 <li>两个 RNN 串起来——一个读、一个写——能做翻译吗？（→ 4.5 seq2seq）。</li>
 </ol>
+<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
 </section>
 <section id="参考文献" class="level2" data-number="18.8">
 <h2 data-number="18.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">18.8</span> 参考文献</h2>
@@ -1310,6 +1338,38 @@ t=0 (起点): ||grad|| = 2.38e-15
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bengio2003" class="csl-entry" role="listitem">
+Bengio, Yoshua, Réjean Ducharme, Pascal Vincent, and Christian Jauvin. 2003. <span>“A Neural Probabilistic Language Model.”</span> <em>Journal of Machine Learning Research</em> 3: 1137–55.
+</div>
+<div id="ref-bengio1994" class="csl-entry" role="listitem">
+Bengio, Yoshua, Patrice Simard, and Paolo Frasconi. 1994. <span>“Learning Long-Term Dependencies with Gradient Descent Is Difficult.”</span> <em>IEEE Transactions on Neural Networks</em> 5 (2): 157–66. <a href="https://doi.org/10.1109/72.279181">https://doi.org/10.1109/72.279181</a>.
+</div>
+<div id="ref-brown2020" class="csl-entry" role="listitem">
+<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-devlin2019" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+</div>
+<div id="ref-elman1990" class="csl-entry" role="listitem">
+Elman, Jeffrey L. 1990. <span>“Finding Structure in Time.”</span> <em>Cognitive Science</em> 14 (2): 179–211.
+</div>
+<div id="ref-he2015resnet" class="csl-entry" role="listitem">
+He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
+</div>
+<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
+<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+</div>
+<div id="ref-kaplan2020" class="csl-entry" role="listitem">
+Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
+</div>
+<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-rafailov2023" class="csl-entry" role="listitem">
+Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
