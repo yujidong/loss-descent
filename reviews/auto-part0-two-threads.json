@@ -1,0 +1,50 @@
+{
+  "chapter": "part0-two-threads",
+  "comments": [
+    {
+      "id": "cmszrhlqq7y0z",
+      "chapter": "part0-two-threads",
+      "section": "2.3.1 主线一：Loss 是解剖刀",
+      "quote": "预测即压缩。Shannon 在 1948 年 (Shannon 1948) 就告诉我们：对数据压缩得越好，就是对它的分布预测得越好。今天的语言模型本质上是一台互联网文本的压缩机——降 loss 与”学到了知识”是同一件事的两面；",
+      "note": "需要更多解释，当你给出一个结论的时候，你需要有详细的解释说明这个结论是怎么来的，为什么。",
+      "type": "问题",
+      "createdAt": "2026-08-19T07:20:02.642Z"
+    },
+    {
+      "id": "cmszrkd4yl02o",
+      "chapter": "part0-two-threads",
+      "section": "2.3.3 两线如何咬合",
+      "quote": "每章 = 一次历史解题（context）+ 一份 loss 账本（competence）+ 一组可运行实验（重演）。历史告诉你为什么，loss 告诉你代价与收益，实验让你亲手摸到。三者的关系不是并列，是同一件事的三个投影。 「四问账本」本身也有一份账本：它在优化你的”判断力 loss”——输入是新技术（新的架构、RL 配方、agent 框架），输出是快速定位它的数据来源、目标函数与边界。读完本书，面对任何新论文，你的第一反应应当是拿账本过一遍——这正是很多人面对 AI 狂潮时",
+      "note": "表述的形式化太强，我希望叙述感更多",
+      "type": "文风",
+      "createdAt": "2026-08-19T07:22:11.459Z"
+    },
+    {
+      "id": "cmszrlfv6ortk",
+      "chapter": "part0-two-threads",
+      "section": "2.3.3 两线如何咬合",
+      "quote": "本章的两篇奠基文献，也是全书唯二”非技术”的指定阅读：",
+      "note": "没有提供什么信息，可以简单客观介绍一下两本书。",
+      "type": "文风",
+      "createdAt": "2026-08-19T07:23:01.651Z"
+    },
+    {
+      "id": "cmszrly15pvhn",
+      "chapter": "part0-two-threads",
+      "section": "2.4 遗留问题",
+      "quote": "如何在二手叙述里辨认一手问题",
+      "note": "什么意思？",
+      "type": "文风",
+      "createdAt": "2026-08-19T07:23:25.194Z"
+    },
+    {
+      "id": "cmszrmm2atcoc",
+      "chapter": "part0-two-threads",
+      "section": "2.4 遗留问题",
+      "quote": "如何避免用今天的后见之明嘲笑前人？（他们不知道结局，而你不知道他们不知道什么——这才是重演的难点。）",
+      "note": "换成客观的表达，这个表述太绕",
+      "type": "文风",
+      "createdAt": "2026-08-19T07:23:56.338Z"
+    }
+  ]
+}

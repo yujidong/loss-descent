@@ -59,7 +59,7 @@ $$\alpha_{t,s} = \frac{\exp(\mathbf{q}_t \cdot \mathbf{h}_s / \sqrt{d})}{\sum_{s
 
 ## 从零实现
 
-`dlbook.rnn.AttentionSeq2Seq`：在 `Seq2Seq` 上加约二十行。解码每步的注意力与拼接输出。任务与上一章相同的反转"翻译"，但**训练集这次含长度 3–8**（分层评测才公平。原论文正是按句长分层报告 BLEU 的）：
+`dlbook.rnn.AttentionSeq2Seq`：在 `Seq2Seq` 上加约二十行。解码每步的注意力与拼接输出。任务与上一章相同的反转"翻译"，但是，**训练集这次含长度 3–8**（分层评测才公平。原论文正是按句长分层报告 BLEU 的）：
 
 ```{python}
 import numpy as np
