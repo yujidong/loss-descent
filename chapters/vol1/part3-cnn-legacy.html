@@ -1151,7 +1151,7 @@ main table {
 </section>
 <section id="从零实现" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">15.4</span> 从零实现</h2>
-<div id="a23ee18a" class="cell" data-execution_count="1">
+<div id="2f18f8fb" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_shifted_pattern</span>
@@ -1183,7 +1183,7 @@ main table {
 </div>
 </div>
 <p><strong>阶段二：10 个脏样本上的两种消费方式。</strong></p>
-<div id="de36392f" class="cell" data-execution_count="2">
+<div id="a841bd81" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Xb, yb <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">10</span>, noise<span class="op">=</span><span class="fl">0.3</span>, seed<span class="op">=</span><span class="dv">5</span>)    <span class="co"># 小样本 + 域偏移</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xe, ye <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.3</span>, seed<span class="op">=</span><span class="dv">9</span>)   <span class="co"># 同域测试集</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1218,7 +1218,7 @@ main table {
 <section id="消融实验" class="level2" data-number="15.5">
 <h2 data-number="15.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">15.5</span> 消融实验</h2>
 <p><strong>域偏移有多伤？</strong> 把测试域的噪声从 0.3 调回 0.15（与预训练同域），再看探针成绩。分离”特征迁移”与”域适应”两笔贡献：</p>
-<div id="0a1789fc" class="cell" data-execution_count="3">
+<div id="0937b43d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Xe2, ye2 <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.15</span>, seed<span class="op">=</span><span class="dv">9</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>acc_same_domain <span class="op">=</span> <span class="bu">float</span>(np.mean([probe(f) <span class="op">==</span> t <span class="cf">for</span> f, t <span class="kw">in</span> <span class="bu">zip</span>(features(Xe2), ye2)]))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"探针在干净域测试: </span><span class="sc">{</span>acc_same_domain<span class="sc">:.3f}</span><span class="ss">（脏域是 </span><span class="sc">{</span>acc_probe<span class="sc">:.3f}</span><span class="ss">）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

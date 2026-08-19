@@ -1189,7 +1189,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="32.4">
 <h2 data-number="32.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">32.4</span> 从零实现</h2>
-<div id="ac11ce75" class="cell" data-execution_count="1">
+<div id="a226c9f0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1257,7 +1257,7 @@ window.Quarto = {
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>偏好数据</strong>：代理规则 = 更长更好。chosen 是 20–40 字符的重复长串，rejected 是基座自己生成的短续写：</p>
-<div id="cbf77ba5" class="cell" data-execution_count="2">
+<div id="307aac6e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>story_words <span class="op">=</span> <span class="bu">set</span>(story.split())</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quality(text):</span>
@@ -1281,7 +1281,7 @@ window.Quarto = {
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    dpo_step(p_ids, yw, yr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>双尺评测</strong>。代理尺看形态，真实尺看质量：</p>
-<div id="8e59dc13" class="cell" data-execution_count="3">
+<div id="daff7069" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gen_stats(model, n<span class="op">=</span><span class="dv">40</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    quals, samples <span class="op">=</span> [], []</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -1300,10 +1300,10 @@ window.Quarto = {
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"基座样例: "</span>, sb[<span class="dv">0</span>][:<span class="dv">40</span>])</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DPO 样例: "</span>, sp[<span class="dv">0</span>][:<span class="dv">40</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>基座:   故事词命中率 0.328
+<pre><code>基座:   故事词命中率 0.332
 DPO 后: 故事词命中率 0.000
-基座样例:  the sin and at allll ftot the 
-DPO 样例:  rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</code></pre>
+基座样例:  the sip and at bingr cave sas 
+DPO 样例:  eeeeeeeeeeeeeeeeeeeeeeeeeeeeee</code></pre>
 </div>
 </div>
 <p>典型读数：基座词命中率 ≈ 0.33（三分之一的”词”是真故事词。玩具模型的本分）；<strong>DPO 后 ≈ 0.00，生成退化为单字符重复</strong>（<code>'qqqqq..'</code> 一类）。代理（长）被优化到病态的极致。Goodhart 第三幕当场出演：优化器没有违反规则（确实更”长”了），违反的是规则制定者的意图。</p>
@@ -1313,7 +1313,7 @@ DPO 样例:  rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</code></pre>
 <section id="消融实验" class="level2" data-number="32.5">
 <h2 data-number="32.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">32.5</span> 消融实验</h2>
 <p><strong>好偏好的对照</strong>：把偏好规则换成”故事词命中率高的更好”（用真实质量当裁判。一次”对齐了的 DPO”），同预算重训：</p>
-<div id="d5246e81" class="cell" data-execution_count="4">
+<div id="b04ad921" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>policy_good <span class="op">=</span> clone_with_lora(base)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rng3 <span class="op">=</span> np.random.default_rng(<span class="dv">5</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1337,8 +1337,8 @@ DPO 样例:  rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</code></pre>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"质量偏好版: 故事词命中率 </span><span class="sc">{</span>qg<span class="sc">:.3f}</span><span class="ss">（基座 </span><span class="sc">{</span>qb<span class="sc">:.3f}</span><span class="ss">，长度偏好版 </span><span class="sc">{</span>qp<span class="sc">:.3f}</span><span class="ss">）"</span>)</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"质量偏好样例:"</span>, sg[<span class="dv">0</span>][:<span class="dv">40</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>质量偏好版: 故事词命中率 0.000（基座 0.328，长度偏好版 0.000）
-质量偏好样例: ibibibibibibiibibibibiifibibib</code></pre>
+<pre><code>质量偏好版: 故事词命中率 0.000（基座 0.332，长度偏好版 0.000）
+质量偏好样例: rrillllllllligrdgrdsgropllllll</code></pre>
 </div>
 </div>
 <p>典型读数出乎预料：<strong>质量偏好版也塌到了 0.00</strong>。但塌法不同。长度版的退化和偏好同向（就是要长，长成了垃圾）；质量版的退化是过拟合：策略把训练时那几百条”高分样本”的对数概率推到极高，生成时翻来覆去吐同几个碎片。这是一个比”偏好要对”更深的教训：</p>

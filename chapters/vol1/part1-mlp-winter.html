@@ -1186,7 +1186,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">7.4</span> 从零实现</h2>
 <p>工欲善其事：1.3 章的标量引擎负责讲原理，本章的实验规模需要向量引擎。1.3 的练习 5 让你把 <code>Value</code> 升级成 numpy 向量版。现在揭晓官方答案：<code>dlbook.nn.MLPNumpy</code>，反向传播不再建图，直接按那三条递推手写（<code>forward</code>/<code>backward</code>/<code>step</code> 三十余行，值得打开对照）。它还悄悄做了两件”来自未来”的事：权重按扇入缩放初始化、支持动量法（Polyak 1964，够古老）。<strong>为什么这两件事必不可少，分别是 2.1 与 2.3 的正式内容</strong>，此处先当黑魔法用。</p>
-<div id="d7525825" class="cell" data-execution_count="1">
+<div id="0bc60942" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1200,7 +1200,7 @@ window.Quarto = {
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> f(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：宽度买表示力。</strong> 同一个网络结构、同一份数据、同样的训练步数，只改隐藏层宽度：</p>
-<div id="25d54f55" class="cell" data-execution_count="2">
+<div id="f55d2a28" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit(width, X, Y, steps<span class="op">=</span><span class="dv">8000</span>, lr<span class="op">=</span><span class="fl">0.05</span>, seed<span class="op">=</span><span class="dv">42</span>):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">1</span>, [width, <span class="dv">1</span>], seed<span class="op">=</span>seed)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
@@ -1221,7 +1221,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 </div>
 </div>
 <p>典型结果：宽度 3 卡在 <span class="math inline">\(\approx 0.020\)</span>（RMSE 约为函数幅度的七分之一。<strong>表示力不足</strong>，3 个 tanh 神经元拼不出足够的台阶）；宽度 10 降到 <span class="math inline">\(\approx 0.006\)</span>；宽度 30 与 10 几乎持平。眼睛验证一下：</p>
-<div id="8966d95b" class="cell" data-execution_count="3">
+<div id="7ebbe380" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="dv">4</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">300</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ax.plot(xs, f(xs), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"target"</span>)</span>
@@ -1235,14 +1235,14 @@ width=30: 最终 loss = 0.006175</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part1-mlp-winter_files/figure-html/cell-4-output-1.png" width="564" height="376" class="figure-img"></p>
+<p><img src="part1-mlp-winter_files/figure-html/cell-4-output-1.png" width="563" height="376" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>宽度 3 的曲线肉眼可见地”跟不上”目标的高频起伏。这就是定理里”足够多”三个字的分量。而 10 与 30 的贴合难分伯仲，提前预告了一个现代命题：<strong>超过够用之后，堆宽度收益递减</strong>（深度才是更划算的方向。3.2 的伏笔）。</p>
 <p><strong>实验二：训练误差是会说谎的。</strong> 现在只给模型 12 个带噪声的采样点（噪声 <span class="math inline">\(\pm 0.15\)</span>，噪声方差 <span class="math inline">\(\approx 0.0075\)</span>），用宽网络去拟合：</p>
-<div id="e8f03037" class="cell" data-execution_count="4">
+<div id="72a5dae0" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Xn <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">12</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Yn <span class="op">=</span> f(Xn) <span class="op">+</span> rng.uniform(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">0.15</span>, (<span class="dv">12</span>, <span class="dv">1</span>))</span>
@@ -1253,12 +1253,12 @@ width=30: 最终 loss = 0.006175</code></pre>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"训练误差（12 个噪声点）: </span><span class="sc">{</span>train_loss<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"真实误差（60 个干净点）: </span><span class="sc">{</span>dense_loss<span class="sc">:.6f}</span><span class="ss">  （噪声方差 0.0075）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>训练误差（12 个噪声点）: 0.008171
-真实误差（60 个干净点）: 0.039401  （噪声方差 0.0075）</code></pre>
+<pre><code>训练误差（12 个噪声点）: 0.008179
+真实误差（60 个干净点）: 0.039366  （噪声方差 0.0075）</code></pre>
 </div>
 </div>
 <p>训练误差被压到噪声方差附近。模型几乎<strong>背下了每一个噪声</strong>；而它对真实函数的误差是训练误差的数倍。画出来看它的”学习成果”：</p>
-<div id="558c5c41" class="cell" data-execution_count="5">
+<div id="59efebd7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="dv">4</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ax.plot(xs, f(xs), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"true function"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(Xn, Yn, c<span class="op">=</span><span class="st">"tab:red"</span>, s<span class="op">=</span><span class="dv">40</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"noisy data (12 pts)"</span>)</span>
@@ -1270,7 +1270,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part1-mlp-winter_files/figure-html/cell-6-output-1.png" width="545" height="376" class="figure-img"></p>
+<p><img src="part1-mlp-winter_files/figure-html/cell-6-output-1.png" width="544" height="376" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1281,7 +1281,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 <section id="消融实验" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">7.5</span> 消融实验</h2>
 <p><strong>消融一：把数据换成纯噪声，模型还学得动吗？</strong> 若上一节的网络只是在”拟合函数”，给它无结构的目标应当失灵；若它其实是个”万能记忆器”。</p>
-<div id="5444d99d" class="cell" data-execution_count="6">
+<div id="f8bcfe7d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">3</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Xr <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">10</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Yr <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, (<span class="dv">10</span>, <span class="dv">1</span>))  <span class="co"># 纯随机标签，与 x 无任何关系</span></span>
@@ -1296,7 +1296,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 <pre><code>随机标签上的训练误差: 0.333 → 2.58e-06</code></pre>
 </div>
 </div>
-<div id="501a284d" class="cell" data-execution_count="7">
+<div id="a2b92a24" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"train on random labels"</span>: history}, title<span class="op">=</span><span class="st">"Memorization"</span>, logy<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1308,7 +1308,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 </div>
 <p>训练误差一路压到 <span class="math inline">\(10^{-6}\)</span> 量级。<strong>宽网络连纯噪声都能记住</strong>。容量足以背下任何东西，“降到 0”不能证明学到规律。这个观察在 1990 年代是警钟，三十年后将以”双下降”与”grokking”的面目重新成为前沿（6.3 的伏笔）。</p>
 <p><strong>消融二：把网络做深，梯度还传得动吗？</strong> 换回 1.3 的标量引擎（要看清每一层的账），保持朴素的均匀初始化，只改激活函数与深度，测量第一层收到的梯度范数：</p>
-<div id="f8107285" class="cell" data-execution_count="8">
+<div id="16943006" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.autodiff <span class="im">import</span> MLP <span class="im">as</span> ScalarMLP</span>
@@ -1332,7 +1332,7 @@ width=30: 最终 loss = 0.006175</code></pre>
     relu: L=2: 3.61e-01  L=4: 3.85e-01  L=8: 6.71e-02  L=16: 3.64e-01</code></pre>
 </div>
 </div>
-<div id="316df3fe" class="cell" data-execution_count="9">
+<div id="387e1d7e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>depths <span class="op">=</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    {a: [first_layer_grad_norm(L, a) <span class="cf">for</span> L <span class="kw">in</span> depths] <span class="cf">for</span> a <span class="kw">in</span> (<span class="st">"sigmoid"</span>, <span class="st">"tanh"</span>, <span class="st">"relu"</span>)},</span>
@@ -1343,7 +1343,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part1-mlp-winter_files/figure-html/cell-10-output-1.png" width="565" height="374" class="figure-img"></p>
+<p><img src="part1-mlp-winter_files/figure-html/cell-10-output-1.png" width="566" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>

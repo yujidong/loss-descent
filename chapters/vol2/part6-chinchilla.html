@@ -1214,7 +1214,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="27.4">
 <h2 data-number="27.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">27.4</span> 从零实现</h2>
 <p>复用上一章的全部装备，只把扫描协议换成等算力：</p>
-<div id="e920857c" class="cell" data-execution_count="1">
+<div id="8ba5c622" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1255,13 +1255,13 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    results[d] <span class="op">=</span> vl</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>n<span class="sc">:6d}</span><span class="ss"> 参数, </span><span class="sc">{</span>steps<span class="sc">:5d}</span><span class="ss"> 步): val = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.6812 (163s)
-d= 16 (  7517 参数,  4357 步): val = 1.9562 (84s)
-d= 32 ( 27293 参数,  1200 步): val = 1.9120 (37s)
-d= 64 (103709 参数,   315 步): val = 2.1518 (20s)</code></pre>
+<pre><code>d=  8 (  2237 参数, 14640 步): val = 1.7329 (165s)
+d= 16 (  7517 参数,  4357 步): val = 1.5540 (65s)
+d= 32 ( 27293 参数,  1200 步): val = 1.8942 (41s)
+d= 64 (103709 参数,   315 步): val = 2.1518 (23s)</code></pre>
 </div>
 </div>
-<div id="6d1dbfac" class="cell" data-execution_count="2">
+<div id="81e8143b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(results)</span>
@@ -1278,7 +1278,7 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (20s)</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part6-chinchilla_files/figure-html/cell-3-output-1.png" width="547" height="379" class="figure-img"></p>
+<p><img src="part6-chinchilla_files/figure-html/cell-3-output-1.png" width="544" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1295,7 +1295,7 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (20s)</code></pre>
 <section id="消融实验" class="level2" data-number="27.5">
 <h2 data-number="27.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">27.5</span> 消融实验</h2>
 <p><strong>预算加倍，谷底去哪？</strong> 把 BUDGET ×2，重扫（每档步数加倍）。观察谷底是否右移、以及右移多少：</p>
-<div id="86615cd2" class="cell" data-execution_count="3">
+<div id="184dfc46" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>BUDGET2 <span class="op">=</span> BUDGET <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>results2 <span class="op">=</span> {}</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, n <span class="kw">in</span> configs:</span>
@@ -1304,10 +1304,10 @@ d= 64 (103709 参数,   315 步): val = 2.1518 (20s)</code></pre>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    results2[d] <span class="op">=</span> vl</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"预算x2 d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>steps<span class="sc">:5d}</span><span class="ss"> 步): val = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>预算x2 d=  8 (29281 步): val = 16.9001
-预算x2 d= 16 ( 8714 步): val = 1.0490
-预算x2 d= 32 ( 2400 步): val = 1.6456
-预算x2 d= 64 (  631 步): val = 2.7854</code></pre>
+<pre><code>预算x2 d=  8 (29281 步): val = 4.2507
+预算x2 d= 16 ( 8714 步): val = 0.9220
+预算x2 d= 32 ( 2400 步): val = 1.6907
+预算x2 d= 64 (  631 步): val = 2.3347</code></pre>
 </div>
 </div>
 <p>典型结果：谷底向右移动一档（更多算力买得起更大的”充分训练”模型），但受数据墙牵引，移动幅度有限。<strong><span class="math inline">\(N^*(C)\)</span> 的轨迹 = 算力推着走、数据墙拦着走</strong>。两股力的合力方向，就是 6.4 与 9.2 要继续展开的产业剧情。</p>

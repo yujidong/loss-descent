@@ -1185,7 +1185,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="35.4">
 <h2 data-number="35.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">35.4</span> 从零实现</h2>
-<div id="02948d0d" class="cell" data-execution_count="1">
+<div id="c3f0f124" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1215,11 +1215,11 @@ window.Quarto = {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"起点：单次贪心 </span><span class="sc">{</span>exact_acc(model, test_pairs)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>起点：单次贪心 0.744</code></pre>
+<pre><code>起点：单次贪心 0.895</code></pre>
 </div>
 </div>
 <p><strong>实验一：重试闭环（系统层）。</strong> 提议（温度采样）→ 验证（反转回去等于输入即对）→ 不对就再采：</p>
-<div id="27b66348" class="cell" data-execution_count="2">
+<div id="1e60d58f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agent_success(m, pairs, max_tries, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
@@ -1243,22 +1243,22 @@ window.Quarto = {
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"The agent loop: propose, verify, retry"</span>)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>重试预算 1: 成功率 0.628
-重试预算 2: 成功率 0.756
-重试预算 4: 成功率 0.860
-重试预算 8: 成功率 0.919</code></pre>
+<pre><code>重试预算 1: 成功率 0.802
+重试预算 2: 成功率 0.884
+重试预算 4: 成功率 0.953
+重试预算 8: 成功率 0.977</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part8-agent-training_files/figure-html/cell-3-output-2.png" width="450" height="362" class="figure-img"></p>
+<p><img src="part8-agent-training_files/figure-html/cell-3-output-2.png" width="457" height="361" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：<strong>0.80 → 0.88 → 0.95 → 0.98</strong>。饱和上升，8 次预算几乎榨干。注意上限不是 1.0：最难的那 2% 在分布里的概率质量太小，搜索也够不着（循环的天花板 = 分布的概率质量，7.4 结论的 agent 版）。</p>
 <p><strong>实验二：轨迹回灌（模型层）。</strong> 收集循环中的成功轨迹，回灌微调，重测单次：</p>
-<div id="f9f937ef" class="cell" data-execution_count="3">
+<div id="6bfcd3a1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collect_and_distill(m, round_id, samples_per<span class="op">=</span><span class="dv">6</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">500</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    succ <span class="op">=</span> []</span>
@@ -1282,8 +1282,8 @@ window.Quarto = {
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  round </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">: 采集成功 </span><span class="sc">{</span>n_ok<span class="sc">}</span><span class="ss">/400 → 单次贪心 </span><span class="sc">{</span>accs[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>轨迹回灌（蒸馏式闭环）:
-  round 0: 采集成功 346/400 → 单次贪心 1.000
-  round 1: 采集成功 394/400 → 单次贪心 1.000</code></pre>
+  round 0: 采集成功 350/400 → 单次贪心 0.965
+  round 1: 采集成功 364/400 → 单次贪心 0.942</code></pre>
 </div>
 </div>
 <p>典型读数：单次贪心 <strong>0.80 → 0.92+</strong>（两轮回灌）。与重试闭环合起来看：回灌前的循环把成功率提到 0.98；回灌后，单次 0.92 + 循环 8 次 ≈ 1.00。两个闭环互相抬升，这就是”agent 训练”的全部骨架：循环产出数据，数据强化循环。</p>

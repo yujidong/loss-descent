@@ -1163,7 +1163,7 @@ main table {
 <section id="从零实现" class="level2" data-number="36.4">
 <h2 data-number="36.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">36.4</span> 从零实现</h2>
 <p>三条件对照（基座复训 + few-shot + SFT 复用 7.2 流程）：</p>
-<div id="121e0201" class="cell" data-execution_count="1">
+<div id="198d39e6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus, make_qa_corpus</span>
@@ -1231,7 +1231,7 @@ main table {
 <div class="cell-output cell-output-stdout">
 <pre><code>基座 zero-shot: 0.00
 基座 few-shot (k=3): 0.00
-SFT zero-shot: 0.08</code></pre>
+SFT zero-shot: 0.33</code></pre>
 </div>
 </div>
 <p>典型读数：<strong>0.00 / 0.00 / 0.33</strong>。few-shot 完全失效。示例进了上下文，基座却无法把它们与当前问题绑定（7.1 的诱导头之墙再次立在那儿：输入通道的条件化需要注意力回路，我们的玩具没有）。这个三连数是框架第一问的实验证词：</p>

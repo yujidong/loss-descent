@@ -1186,7 +1186,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="29.4">
 <h2 data-number="29.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">29.4</span> 从零实现</h2>
 <p><strong>MoE 对照实验</strong>：dense d=32（第二块 MLP 隐层 4d=128）vs 同模型第二块换成 <code>MoEMLP</code>（2 位专家、各 2d=64 隐层）。总参数相近、每 token 活跃算力减半：</p>
-<div id="e148eb37" class="cell" data-execution_count="1">
+<div id="590b4dde" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1224,9 +1224,9 @@ window.Quarto = {
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MoE:   val loss = </span><span class="sc">{</span>moe<span class="sc">.</span>loss_on(vb)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"专家使用率: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(moe.blocks[<span class="dv">1</span>].mlp.usage, <span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>dense: val loss = 1.907
-MoE:   val loss = 1.973
-专家使用率: [0.399 0.601]</code></pre>
+<pre><code>dense: val loss = 1.909
+MoE:   val loss = 1.938
+专家使用率: [0.741 0.259]</code></pre>
 </div>
 </div>
 <p>典型的诚实结果：<strong>MoE 1.94 对 dense 1.91。打平或略输</strong>，且使用率失衡（约 0.74/0.26，没有负载均衡辅助损失的约束）。这不是 MoE 的失败，是尺度与配方的证词：</p>
@@ -1242,13 +1242,13 @@ MoE:   val loss = 1.973
 <h2 data-number="29.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">29.5</span> 消融实验</h2>
 <p><strong>专家数扫描</strong>：把专家从 2 位加到 4 位（每位隐层 d=32，保持总活跃算力近似）。失衡会缓解还是恶化？（预测：专家越多，无约束的均衡越难自发形成。负载均衡损失从”可选”变”必需”的临界点。）</p>
 <p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：消融实验。</p>
-<div id="ddaa6c94" class="cell" data-execution_count="2">
+<div id="78a43222" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>moe4 <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>moe4.blocks[<span class="dv">1</span>].mlp <span class="op">=</span> MoEMLP(<span class="dv">32</span>, n_experts<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">77</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train(moe4)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"4 专家: val loss = </span><span class="sc">{</span>moe4<span class="sc">.</span>loss_on(vb)<span class="sc">:.3f}</span><span class="ss">, 使用率 = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">round</span>(moe4.blocks[<span class="dv">1</span>].mlp.usage, <span class="dv">3</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>4 专家: val loss = 2.050, 使用率 = [0.001 0.993 0.006 0.   ]</code></pre>
+<pre><code>4 专家: val loss = 2.013, 使用率 = [0.645 0.337 0.017 0.   ]</code></pre>
 </div>
 </div>
 </section>

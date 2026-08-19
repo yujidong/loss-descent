@@ -1186,7 +1186,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">4.4</span> 从零实现</h2>
 <p><code>dlbook.nn.Perceptron</code> 实现了上面的一切（约 30 行），数据来自 <code>dlbook.data</code>。先看辉煌面：线性可分数据上的收敛。</p>
-<div id="fe5ae52d" class="cell" data-execution_count="1">
+<div id="cc1dcd78" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> XOR, XOR_LABELS, make_blobs, make_slab</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.nn <span class="im">import</span> Perceptron</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.utils <span class="im">import</span> plot_linear_boundary, plot_loss_curves, set_seed</span>
@@ -1201,28 +1201,28 @@ window.Quarto = {
 <pre><code>epochs: 3, 总更新次数: 2, 每轮错分: [1, 1, 0]</code></pre>
 </div>
 </div>
-<div id="6f6d3bc0" class="cell" data-execution_count="2">
+<div id="1b11006b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"mistakes per epoch"</span>: mistakes}, title<span class="op">=</span><span class="st">"Separable blobs"</span>, ylabel<span class="op">=</span><span class="st">"mistakes"</span>, logy<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part1-perceptron_files/figure-html/cell-3-output-1.png" width="567" height="374" class="figure-img"></p>
+<p><img src="part1-perceptron_files/figure-html/cell-3-output-1.png" width="566" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="078af469" class="cell" data-execution_count="3">
+<div id="d6efbed0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_linear_boundary(p.w, p.b, X, y, title<span class="op">=</span><span class="st">"Learned boundary (separable case)"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part1-perceptron_files/figure-html/cell-4-output-1.png" width="471" height="374" class="figure-img"></p>
+<p><img src="part1-perceptron_files/figure-html/cell-4-output-1.png" width="470" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>可分数据上，规则兑现了定理的承诺：几个 epoch 内错分归零、提前停机，边界干干净净。现在，把同一台机器放到 XOR 上。你在「停一停」里没能画出的那条直线，让它自己试试：</p>
-<div id="50a86a49" class="cell" data-execution_count="4">
+<div id="520523eb" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p_xor <span class="op">=</span> Perceptron(<span class="dv">2</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mx <span class="op">=</span> p_xor.train(XOR, XOR_LABELS, epochs<span class="op">=</span><span class="dv">50</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"50 轮从未收敛；累计徒劳更新 </span><span class="sc">{</span><span class="bu">sum</span>(mx)<span class="sc">}</span><span class="ss"> 次；稳态每轮错分 </span><span class="sc">{</span>mx[<span class="op">-</span><span class="dv">1</span>]<span class="sc">}</span><span class="ss"> 次"</span>)</span>
@@ -1232,23 +1232,23 @@ window.Quarto = {
 最终 w = [-1.  0.], b = 1.000</code></pre>
 </div>
 </div>
-<div id="2ce7a2a5" class="cell" data-execution_count="5">
+<div id="c2bc5242" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"mistakes per epoch"</span>: mx}, title<span class="op">=</span><span class="st">"XOR: never converges"</span>, ylabel<span class="op">=</span><span class="st">"mistakes"</span>, logy<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part1-perceptron_files/figure-html/cell-6-output-1.png" width="568" height="374" class="figure-img"></p>
+<p><img src="part1-perceptron_files/figure-html/cell-6-output-1.png" width="566" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>错分数没有发散、没有归零，而是<strong>稳定在每轮 4 次</strong>。机器在四个点之间跳着一支永不停歇的舞。它最终停在 <span class="math inline">\(w = (-1, 0)\)</span>、<span class="math inline">\(b = 1\)</span>：一条 <span class="math inline">\(x_1 = 1\)</span> 的竖线，等价于把预测规则学成了”非 <span class="math inline">\(x_1\)</span>“。画出这条边界，看看它错在哪：</p>
-<div id="6ff4a7a1" class="cell" data-execution_count="6">
+<div id="cae85187" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_linear_boundary(p_xor.w, p_xor.b, XOR, XOR_LABELS, title<span class="op">=</span><span class="st">"Where it got stuck (XOR)"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part1-perceptron_files/figure-html/cell-7-output-1.png" width="472" height="374" class="figure-img"></p>
+<p><img src="part1-perceptron_files/figure-html/cell-7-output-1.png" width="470" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1259,7 +1259,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">4.5</span> 消融实验</h2>
 <p><strong>margin 的平方律</strong>。收敛定理说错误次数 <span class="math inline">\(\sim (R/\gamma)^2\)</span>。间隔每减半，错分应当涨到约四倍。<code>make_slab</code> 生成的两条平行板可以显式控制几何间隔 <span class="math inline">\(\gamma\)</span>：</p>
-<div id="7b069d70" class="cell" data-execution_count="7">
+<div id="87c76322" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'margin γ'</span><span class="sc">:&gt;10}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'总错分'</span><span class="sc">:&gt;8}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'上界 (R/γ)²'</span><span class="sc">:&gt;12}</span><span class="ss">"</span>)</span>

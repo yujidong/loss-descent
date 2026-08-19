@@ -1155,7 +1155,7 @@ main table {
 <section id="从零实现" class="level2" data-number="34.4">
 <h2 data-number="34.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">34.4</span> 从零实现</h2>
 <p><strong>实验一：计算器拦截。</strong> 基座模型续写含算式的文本，工具在算式处接管：</p>
-<div id="a97927c1" class="cell" data-execution_count="1">
+<div id="a02218e2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1224,7 +1224,7 @@ main table {
 </div>
 <p>典型读数：<strong>无工具 ≈ 0.05–0.15</strong>（模型对算术只有字符级的模糊直觉）→ 带工具 = 1.00。注意工具只做了一件小事：识别模式、算对、写回。决策权（在哪里停、写什么算式）仍在模型。这就是 agent 的分工：模型出意图，环境出因果。</p>
 <p><strong>实验二：验证器重排。把 margin 变成命中率。</strong> 复用 7.2 的 SFT 流程（代码相同，快速重训）：</p>
-<div id="2de2a39b" class="cell" data-execution_count="2">
+<div id="a6ca8dff" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_qa_corpus</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.transformer.layers <span class="im">import</span> softmax_lastdim</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1267,7 +1267,7 @@ main table {
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    rerank <span class="op">+=</span> <span class="bu">int</span>(best <span class="op">==</span> a)</span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"QA 命中: 贪心 </span><span class="sc">{</span>greedy<span class="op">/</span><span class="dv">12</span><span class="sc">:.2f}</span><span class="ss"> -&gt; 枚举重排 </span><span class="sc">{</span>rerank<span class="op">/</span><span class="dv">12</span><span class="sc">:.2f}</span><span class="ss">（margin 均值 +3.68 nat）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>QA 命中: 贪心 0.08 -&gt; 枚举重排 0.08（margin 均值 +3.68 nat）</code></pre>
+<pre><code>QA 命中: 贪心 0.00 -&gt; 枚举重排 0.08（margin 均值 +3.68 nat）</code></pre>
 </div>
 </div>
 <p>典型读数：贪心 0.33 → 重排 <strong>0.42</strong>。提升真实但有限。这里藏着本章最诚实的一课：margin 是均值，重排要的是每题都第一。平均偏好正确 ≠ 逐题排序正确。6.3 的”度量与平均”之课在工具语境下重演。真实系统里的 RAG 重排器、验证器组合拳，本质上都在攻这个”逐题排序”的缺口。</p>
