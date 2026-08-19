@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1114,7 +1150,7 @@ window.Quarto = {
 <p><strong>问题</strong>：预训练吃的是”人类产生的文本”，它不是无限的。去重后的高质量文本有估计的上限；多轮训练与数据复用能推迟、但不能凭空创造信息。</p>
 <p><strong>Loss 视角的陈述</strong>：数据决定 <span class="math inline">\(L_\infty\)</span>（6.1 的地板项）。语料的熵就是模型一族的天花板。字节可以复制，信息不能。</p>
 <p><strong>本书尺度的锚点实验</strong>。数据复制 vs 真新增：</p>
-<div id="be9600ec" class="cell" data-execution_count="1">
+<div id="7960f13d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1147,9 +1183,9 @@ window.Quarto = {
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"复制两遍（字节 ×2）:      val loss </span><span class="sc">{</span>l_dup<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"真新增到 6 万（信息 ×2）: val loss </span><span class="sc">{</span>l_new<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>原始 3 万字符:            val loss 2.129
-复制两遍（字节 ×2）:      val loss 3.894
-真新增到 6 万（信息 ×2）: val loss 2.013</code></pre>
+<pre><code>原始 3 万字符:            val loss 1.549
+复制两遍（字节 ×2）:      val loss 4.132
+真新增到 6 万（信息 ×2）: val loss 2.082</code></pre>
 </div>
 </div>
 <p>典型读数：<strong>2.33 / 3.34 / 2.08</strong>。复制两遍不仅无益，反而有害（同预算下模型把重复文本背了下来，验证损失恶化）；真新增信息则正常改善。这就是数据墙的微观机制：墙的材质是信息，不是字节。推论也直接：合成数据的全部希望在于”新信息”从哪来。环境交互（8.2）与推理轨迹（7.4）是目前仅有的两个不依赖”人类已写下的文本”的源头，它们恰好都是 agent 时代的主角。数据墙把领域推向了闭环，这是 2024 年以来叙事合流的深层原因。</p>

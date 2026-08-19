@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1151,7 +1187,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="23.4">
 <h2 data-number="23.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">23.4</span> 从零实现</h2>
 <p><code>dlbook.transformer</code> 提供全部零件（约三百行，<code>layers.py</code> 的反向传播值得逐行对读。1.3 的三条递推穿过了 softmax、多头变形与残差）。我们的 <code>MiniGPT</code>：2 个块、32 维、2 头、正弦位置编码。上老战场：</p>
-<div id="d9ca5e2c" class="cell" data-execution_count="1">
+<div id="5143fb9f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1182,10 +1218,10 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>战绩回顾：均匀 3.30 | 3-gram 计数 1.95 | RNN 2.23 | LSTM 2.83
 MiniGPT 参数量: 27163
-1000 步用时 22s；最终 loss 1.7773</code></pre>
+1000 步用时 17s；最终 loss 1.7715</code></pre>
 </div>
 </div>
-<div id="0acb7964" class="cell" data-execution_count="2">
+<div id="66ed6093" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"MiniGPT char-LM"</span>: history}, title<span class="op">=</span><span class="st">"Attention is all you need (for 2.4KB of text)"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1196,16 +1232,16 @@ MiniGPT 参数量: 27163
 </div>
 </div>
 <p><strong>1.79</strong>。同一语料的总冠军（超过 3-gram 的 1.95 与 RNN 的 2.23，且收敛快得多）。看它写出的文本：</p>
-<div id="545baa6d" class="cell" data-execution_count="3">
+<div id="fb3621a1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> model.generate([vocab[c] <span class="cf">for</span> c <span class="kw">in</span> <span class="st">"the cat "</span>], n_new<span class="op">=</span><span class="dv">140</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, seed<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>the cat bip. reas frerky pin wand sobre tof pip the sow the the s the thill wasme an d the toulll the the s sere s therdand snd wedouililld t p t d </code></pre>
+<pre><code>the cat bipld pip forens pin wand sobr. the frolle this the thillin d thollay tout p f t ngowe thed theat the t as thethe s sthirouthe mat t care fo</code></pre>
 </div>
 </div>
 <p>典型样貌：比 RNN 的采样更像”英语”。词的边界干净、常见搭配成串（the/sat/and）、偶尔冒出语料的词组。<strong>同预算下表示质量的差距是肉眼可见的</strong>。</p>
 <p><strong>注意力图：模型在看什么？</strong> 取第一块的平均注意力（一次前向后自动缓存）：</p>
-<div id="f8223c03" class="cell" data-execution_count="4">
+<div id="c450bb39" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> np.array(arr[<span class="dv">100</span>:<span class="dv">132</span>])[<span class="va">None</span>, :]</span>
@@ -1233,7 +1269,7 @@ MiniGPT 参数量: 27163
 <section id="消融实验" class="level2" data-number="23.5">
 <h2 data-number="23.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">23.5</span> 消融实验</h2>
 <p><strong>位置编码：注意力的隐形地基。</strong> 把位置编码置零，同预算重训：</p>
-<div id="b420a165" class="cell" data-execution_count="5">
+<div id="5c8437d5" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model_nopos <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>model_nopos.pos <span class="op">=</span> np.zeros_like(model_nopos.pos)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
@@ -1245,7 +1281,7 @@ MiniGPT 参数量: 27163
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    model_nopos.step(<span class="fl">0.15</span>, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"有位置: </span><span class="sc">{</span>history[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss"> | 无位置: </span><span class="sc">{</span>l_nopos<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>有位置: 1.7773 | 无位置: 4.1941</code></pre>
+<pre><code>有位置: 1.7715 | 无位置: 3.6771</code></pre>
 </div>
 </div>
 <p><strong>1.79 → 4.49</strong>。没有位置信息，模型甚至差于均匀基线（3.30）：字符袋的歧义比没有信息更糟（“有 t、h、e、空格……下一个字符是啥？”）。这个戏剧性的消融说明：注意力的全部序列能力都骑在位置编码上。一个加法注入的、看似不起眼的组件。它也是今天长上下文研究的核心战场（RoPE 的缩放定律、8.x）。</p>

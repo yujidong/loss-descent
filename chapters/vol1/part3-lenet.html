@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1150,7 +1186,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">13.4</span> 从零实现</h2>
-<div id="a62179e1" class="cell" data-execution_count="1">
+<div id="1b8f1c0a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1165,7 +1201,7 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Xte, yte <span class="op">=</span> make_shifted_pattern(n<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.15</span>, seed<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>先看数据长什么样：</p>
-<div id="ee56f2fd" class="cell" data-execution_count="2">
+<div id="543b05be" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="fl">4.5</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, img, label <span class="kw">in</span> <span class="bu">zip</span>(axes.ravel(), Xtr[:<span class="dv">10</span>], ytr[:<span class="dv">10</span>]):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    ax.imshow(img[<span class="dv">0</span>], cmap<span class="op">=</span><span class="st">"gray"</span>, vmin<span class="op">=-</span><span class="fl">0.5</span>, vmax<span class="op">=</span><span class="fl">1.5</span>)</span>
@@ -1182,7 +1218,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>选手一：MLP。</strong> 展平成 144 维向量，标准配方（relu + 动量 + 缩放初始化）：</p>
-<div id="c1a0ce56" class="cell" data-execution_count="3">
+<div id="0a5e1493" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mlp <span class="op">=</span> MLPNumpy(<span class="dv">144</span>, [<span class="dv">64</span>, <span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n_mlp <span class="op">=</span> <span class="bu">sum</span>(W.size <span class="op">+</span> b.size <span class="cf">for</span> W, b <span class="kw">in</span> <span class="bu">zip</span>(mlp.Ws, mlp.bs))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> Trainer(mlp, lr<span class="op">=</span><span class="fl">0.01</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">32</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(</span>
@@ -1195,7 +1231,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>选手二：卷积 + 全局平均池化</strong>（<code>SimpleConvNet</code>，8 个 3×3 滤波器）：</p>
-<div id="f8a79d1e" class="cell" data-execution_count="4">
+<div id="f48fb23e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>conv <span class="op">=</span> SimpleConvNet((<span class="dv">12</span>, <span class="dv">12</span>), out_ch<span class="op">=</span><span class="dv">8</span>, kernel<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>, hidden<span class="op">=</span><span class="dv">16</span>, seed<span class="op">=</span><span class="dv">0</span>, pool<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_conv <span class="op">=</span> conv.conv.n_params <span class="op">+</span> <span class="bu">sum</span>(W.size <span class="op">+</span> b.size <span class="cf">for</span> W, b <span class="kw">in</span> <span class="bu">zip</span>(conv.head.Ws, conv.head.bs))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
@@ -1215,7 +1251,7 @@ window.Quarto = {
 </div>
 </div>
 <p>典型读数：MLP 9345 个参数、测试 0.87 左右。训练集能拟合（它有足够的参数为每个位置背一份检测器），测试集上位置一换就露馅；卷积网 <strong>241 个参数</strong>、测试 1.00。约 39 倍的参数效率差距，外加 13 个百分点的准确率差距。把学到的滤波器画出来：</p>
-<div id="cdfc73e9" class="cell" data-execution_count="5">
+<div id="cbb25350" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, w <span class="kw">in</span> <span class="bu">zip</span>(axes.ravel(), conv.conv.W):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ax.imshow(w.reshape(<span class="dv">3</span>, <span class="dv">3</span>), cmap<span class="op">=</span><span class="st">"RdBu"</span>)</span>
@@ -1236,7 +1272,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="13.5">
 <h2 data-number="13.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">13.5</span> 消融实验</h2>
 <p><strong>拆掉池化，位置记忆立刻回来。</strong> 全局平均池化是”位置无关”的架构保证；没有它，全连接头照样能背位置：</p>
-<div id="f9a2e62e" class="cell" data-execution_count="6">
+<div id="369d7f6d" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>conv_nopool <span class="op">=</span> SimpleConvNet((<span class="dv">12</span>, <span class="dv">12</span>), out_ch<span class="op">=</span><span class="dv">8</span>, kernel<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>, hidden<span class="op">=</span><span class="dv">16</span>, seed<span class="op">=</span><span class="dv">0</span>, pool<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ep <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40</span>):</span>

@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1149,7 +1185,7 @@ window.Quarto = {
 <h2 data-number="11.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">11.4</span> 从零实现</h2>
 <p>我们的两个”账本实验”。不重演 AlexNet，而是实测它的两块基石。</p>
 <p><strong>实验一：算力账本。</strong> 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：</p>
-<div id="dea909b2" class="cell" data-execution_count="1">
+<div id="9a48e1ae" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1162,9 +1198,9 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;4}</span><span class="ss">x</span><span class="sc">{</span>n<span class="sc">:&lt;4}</span><span class="ss"> 矩阵乘: </span><span class="sc">{</span>dt<span class="op">*</span><span class="dv">1000</span><span class="sc">:6.1f}</span><span class="ss"> ms = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>n<span class="op">**</span><span class="dv">3</span><span class="op">/</span>dt<span class="op">/</span><span class="fl">1e9</span><span class="sc">:6.1f}</span><span class="ss"> GFLOP/s"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> 256x256  矩阵乘:    0.7 ms =   45.4 GFLOP/s
- 512x512  矩阵乘:    3.1 ms =   86.5 GFLOP/s
-1024x1024 矩阵乘:   19.6 ms =  109.6 GFLOP/s</code></pre>
+<pre><code> 256x256  矩阵乘:    0.9 ms =   37.2 GFLOP/s
+ 512x512  矩阵乘:    4.0 ms =   67.0 GFLOP/s
+1024x1024 矩阵乘:   27.5 ms =   78.0 GFLOP/s</code></pre>
 </div>
 </div>
 <p>三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：</p>
@@ -1174,7 +1210,7 @@ window.Quarto = {
 <li>你的笔记本（约 <span class="math inline">\(10^{11}\)</span> FLOP/s）比 1986 年的 VAX（约 <span class="math inline">\(10^6}\)</span> FLOP/s）快五个数量级。本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。</li>
 </ul>
 <p><strong>实验二：数据账本。</strong> 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：</p>
-<div id="861ba008" class="cell" data-execution_count="2">
+<div id="d1b26d01" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: np.sin(<span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>x <span class="op">-</span> <span class="fl">0.3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xd <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Yd <span class="op">=</span> f(Xd)</span>
@@ -1207,7 +1243,7 @@ n=40: 训练误差=0.0332  真实误差=0.0438</code></pre>
 <h2 data-number="11.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">11.5</span> 消融实验</h2>
 <p><strong>数据的”饱和点”探针</strong>。AlexNet 之后”堆数据”成为信仰，但数据账本有没有饱和点？把实验二延伸：n=40 → 100 → 400（网络与步数不变），观察真实误差的边际递减。当曲线趋平时，瓶颈从数据转移到容量（网络太小学不动更多结构）。“数据-容量-算力”三角的移动平衡，这个平衡在 2022 年被 Chinchilla 重新计算（6.2 的伏笔），在数据墙时代再次成为主角（9.2）。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
-<div id="ebf0157c" class="cell" data-execution_count="3">
+<div id="b2645237" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">400</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.sort(rng.uniform(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, n)).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>

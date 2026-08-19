@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1156,7 +1192,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">16.4</span> 从零实现</h2>
 <p><code>dlbook.nn.Conv1D</code> 已就位。模型 = 一维卷积 + relu + <strong>只取末位输出</strong>（因果式的最小演示）+ 线性头：</p>
-<div id="61bf8090" class="cell" data-execution_count="1">
+<div id="02b680c6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_seq_task</span>
@@ -1205,7 +1241,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">16.5</span> 消融实验</h2>
 <p><strong>势力范围图</strong>：固定 <span class="math inline">\(k=10\)</span>，扫回看距离。</p>
-<div id="1d3e95a1" class="cell" data-execution_count="2">
+<div id="743caa6c" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">12</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Xtr_d, ytr_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Xte_d, yte_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">1</span>)</span>

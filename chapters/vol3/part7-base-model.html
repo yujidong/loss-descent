@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1142,7 +1178,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="30.4">
 <h2 data-number="30.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">30.4</span> 从零实现</h2>
-<div id="bd929e70" class="cell" data-execution_count="1">
+<div id="59439d24" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1164,11 +1200,11 @@ window.Quarto = {
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    base.step(<span class="fl">0.15</span>, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"基座就绪（val loss ≈ </span><span class="sc">{</span>base<span class="sc">.</span>loss_on(np.stack([arr[s:s<span class="op">+</span><span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> np.random.default_rng(<span class="dv">7</span>).integers(<span class="dv">0</span>, <span class="bu">len</span>(arr)<span class="op">-</span><span class="dv">65</span>, size<span class="op">=</span><span class="dv">50</span>)]))<span class="sc">:.2f}</span><span class="ss">）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>基座就绪（val loss ≈ 1.78）</code></pre>
+<pre><code>基座就绪（val loss ≈ 1.81）</code></pre>
 </div>
 </div>
 <p><strong>实验一：续写不等于回答（行为学）。</strong></p>
-<div id="289b8861" class="cell" data-execution_count="2">
+<div id="becaa051" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> prompt <span class="kw">in</span> [<span class="st">"the cat "</span>, <span class="st">"question: who is pip ? answer:"</span>]:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab.get(c, vocab[<span class="st">" "</span>]) <span class="cf">for</span> c <span class="kw">in</span> prompt]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> base.generate(ids_p, n_new<span class="op">=</span><span class="dv">60</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, seed<span class="op">=</span><span class="dv">3</span>)</span>
@@ -1177,14 +1213,14 @@ window.Quarto = {
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  续写: </span><span class="sc">{</span>gen<span class="sc">!r}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>prompt: 'the cat '
-  续写: 'bip. reas frerky pin wand sobre tof pip the sow the the s th'
+  续写: 'bipld pip forens pin wand sobr. the frolle this the thillin '
 prompt: 'question: who is pip ? answer:'
-  续写: 'and bon the onet the wand sm the was there thed the thearas '</code></pre>
+  续写: 'amed llfr loootolip ay lot the buthe thed therk. re thilllld'</code></pre>
 </div>
 </div>
 <p>两个 prompt 的续写都是”语料风格”的文本。第二个（问句格式）在训练分布里<strong>从未出现</strong>，模型的应对是把未知符号当噪声、回到它熟悉的词形统计。真实互联网基座的对应行为是：问句后接更多问句（论坛网页）、或跑题续写。怪癖不是缺陷，是分布的忠实。</p>
 <p><strong>实验二：上下文的价值（条件化定量）。</strong> 逐位置测 loss。同一个模型，看第 1 个字符与第 40 个字符时的困惑度：</p>
-<div id="96def34f" class="cell" data-execution_count="3">
+<div id="41498cb2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>windows <span class="op">=</span> np.stack([arr[s : s <span class="op">+</span> <span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> np.random.default_rng(<span class="dv">7</span>).integers(<span class="dv">0</span>, <span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">65</span>, size<span class="op">=</span><span class="dv">64</span>)])</span>
@@ -1212,7 +1248,7 @@ prompt: 'question: who is pip ? answer:'
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>无上下文(第1字符): 2.33 → 深上下文(第48+字符均值): 1.91</code></pre>
+<pre><code>无上下文(第1字符): 2.46 → 深上下文(第48+字符均值): 1.92</code></pre>
 </div>
 </div>
 <p>典型读数：第 1 个字符 ≈ 3.1（只有字符频率可用，接近均匀基线 3.30）；随着上下文积累，loss 一路降到 ≈ 1.4–1.6。<strong>这条曲线就是”上下文学习”在本书语言里的原始形态</strong>。模型的一切”看着上文办事”，都是这条曲线在更长尺度、更抽象模式上的延伸。</p>

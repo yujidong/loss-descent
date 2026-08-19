@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1145,7 +1181,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="26.4">
 <h2 data-number="26.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">26.4</span> 从零实现</h2>
 <p>燃料换大：语法模板 + Zipf 词频的合成语料（<code>make_grammar_corpus</code>，6 万字符训练 / 1.2 万验证。多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提。2.5 配方课的续集）：</p>
-<div id="005f4fda" class="cell" data-execution_count="1">
+<div id="c95b06c0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1186,14 +1222,14 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>m<span class="sc">.</span>n_params()<span class="sc">:6d}</span><span class="ss"> 参数): val loss = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37
-d=  8 (  2237 参数): val loss = 3.8586 (19s)
-d= 16 (  7517 参数): val loss = 17.8740 (27s)
-d= 32 ( 27293 参数): val loss = 1.9314 (44s)
-d= 64 (103709 参数): val loss = 1.8166 (103s)</code></pre>
+d=  8 (  2237 参数): val loss = 2.4902 (17s)
+d= 16 (  7517 参数): val loss = 12.1021 (29s)
+d= 32 ( 27293 参数): val loss = 1.9067 (47s)
+d= 64 (103709 参数): val loss = 2.1753 (93s)</code></pre>
 </div>
 </div>
 <p>典型读数：3.36 / 2.31 / 1.91 / 1.80。d=8 卡在均匀基线（容量不足），其后单调改善、<strong>尾部明显收窄</strong>（数据墙在招手）。画在对数坐标里：</p>
-<div id="fa5a2330" class="cell" data-execution_count="2">
+<div id="7ac9ccc9" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="dv">4</span>))</span>
@@ -1213,16 +1249,16 @@ d= 64 (103709 参数): val loss = 1.8166 (103s)</code></pre>
 </div>
 </div>
 <p><strong>正菜：外推游戏。</strong> 只用前三个点拟合纯幂律，预测第四个，然后揭晓：</p>
-<div id="a2559896" class="cell" data-execution_count="3">
+<div id="0764a924" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> np.polyfit(np.log(params[:<span class="dv">3</span>]), np.log(losses[:<span class="dv">3</span>]), <span class="dv">1</span>)  <span class="co"># 纯幂律 = 对数坐标直线</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> np.exp(np.polyval(coef, np.log(params[<span class="dv">3</span>])))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"纯幂律外推预测 d=64: </span><span class="sc">{</span>pred<span class="sc">:.3f}</span><span class="ss">   实测: </span><span class="sc">{</span>losses[<span class="dv">3</span>]<span class="sc">:.3f}</span><span class="ss">   误差: </span><span class="sc">{</span><span class="bu">abs</span>(pred<span class="op">-</span>losses[<span class="dv">3</span>])<span class="op">/</span>losses[<span class="dv">3</span>]<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>纯幂律外推预测 d=64: 2.391   实测: 1.817   误差: 32%</code></pre>
+<pre><code>纯幂律外推预测 d=64: 2.819   实测: 2.175   误差: 30%</code></pre>
 </div>
 </div>
 <p>典型结果：纯幂律预测约 <strong>1.5–1.6</strong>，实测 1.80。外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 <span class="math inline">\(L_\infty\)</span>。补上地板项再拟合（三点 + 地板共两参数可解）：</p>
-<div id="edbfaa4d" class="cell" data-execution_count="4">
+<div id="561c7e53" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit  <span class="co"># 若无 scipy，用网格搜索替代（练习 5）</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span>:</span>
@@ -1249,7 +1285,7 @@ d= 64 (103709 参数): val loss = 1.8166 (103s)</code></pre>
 <h2 data-number="26.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">26.5</span> 消融实验</h2>
 <p><strong>曲线对数据的依赖</strong>：把训练语料砍半（30000 字符）重扫。各尺寸的 loss 整体上移、墙提前。幂律的截距与地板都是数据的函数：这就是”数据质量/数量工程”在 scaling 框架里的位置（清洗、去重、配比。LLM 时代的新炼金术，9.2）。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
-<div id="281cce0a" class="cell" data-execution_count="5">
+<div id="c08ddae5" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arr_half <span class="op">=</span> arr_t[: <span class="bu">len</span>(arr_t) <span class="op">//</span> <span class="dv">2</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>losses_half <span class="op">=</span> []</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> (<span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>):</span>
@@ -1265,7 +1301,7 @@ d= 64 (103709 参数): val loss = 1.8166 (103s)</code></pre>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    losses_half.append(<span class="bu">float</span>(m.loss_on(vb)))</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"半量数据:"</span>, [<span class="ss">f"</span><span class="sc">{</span>l<span class="sc">:.3f}</span><span class="ss">"</span> <span class="cf">for</span> l <span class="kw">in</span> losses_half], <span class="st">"vs 全量前三档:"</span>, [<span class="ss">f"</span><span class="sc">{</span>l<span class="sc">:.3f}</span><span class="ss">"</span> <span class="cf">for</span> l <span class="kw">in</span> losses[:<span class="dv">3</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>半量数据: ['2.096', '1.960', '1.669'] vs 全量前三档: ['3.859', '17.874', '1.931']</code></pre>
+<pre><code>半量数据: ['2.172', '1.988', '1.642'] vs 全量前三档: ['2.490', '12.102', '1.907']</code></pre>
 </div>
 </div>
 </section>

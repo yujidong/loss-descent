@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1150,7 +1186,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="28.4">
 <h2 data-number="28.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">28.4</span> 从零实现</h2>
 <p>复用 6.1 的四尺寸扫描（同数据、同配方），每个模型测<strong>两种度量</strong>：</p>
-<div id="2d4a13c7" class="cell" data-execution_count="1">
+<div id="3406184e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1190,14 +1226,14 @@ window.Quarto = {
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    report[d] <span class="op">=</span> train_and_measure(d)</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss">: loss=</span><span class="sc">{</span>report[d][<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">  char_acc=</span><span class="sc">{</span>report[d][<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">  exact4=</span><span class="sc">{</span>report[d][<span class="dv">2</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>d=  8: loss=3.859  char_acc=0.220  exact4=0.0000
-d= 16: loss=17.874  char_acc=0.253  exact4=0.0000
-d= 32: loss=1.931  char_acc=0.415  exact4=0.0769
-d= 64: loss=1.817  char_acc=0.427  exact4=0.0900</code></pre>
+<pre><code>d=  8: loss=2.490  char_acc=0.285  exact4=0.0181
+d= 16: loss=12.102  char_acc=0.229  exact4=0.0000
+d= 32: loss=1.907  char_acc=0.414  exact4=0.0291
+d= 64: loss=2.175  char_acc=0.298  exact4=0.0059</code></pre>
 </div>
 </div>
 <p>把三种度量放在一起看（注意第二列到第三列的<strong>换算</strong>）：</p>
-<div id="12827f08" class="cell" data-execution_count="2">
+<div id="95dc35c5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> <span class="bu">list</span>(report)</span>
@@ -1260,7 +1296,7 @@ d= 64: loss=1.817  char_acc=0.427  exact4=0.0900</code></pre>
 <section id="消融实验" class="level2" data-number="28.5">
 <h2 data-number="28.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">28.5</span> 消融实验</h2>
 <p><strong>放大器的旋钮</strong>：把阶梯度量的窗口从 4 调到 2 和 8，跳变的”锐度”怎么变？（窗口越长，<span class="math inline">\(n\)</span> 次方放大越猛，悬崖越陡。同一种能力可以被量出任意陡峭的觉醒。）</p>
-<div id="76ef0cbf" class="cell" data-execution_count="3">
+<div id="a7147803" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exactk(pred, tgt, k):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    hits <span class="op">=</span> <span class="bu">sum</span>((pred[i, j : j <span class="op">+</span> k] <span class="op">==</span> tgt[i, j : j <span class="op">+</span> k]).<span class="bu">all</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(pred.shape[<span class="dv">0</span>]) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, pred.shape[<span class="dv">1</span>] <span class="op">-</span> k <span class="op">+</span> <span class="dv">1</span>, k))</span>
@@ -1280,8 +1316,8 @@ d= 64: loss=1.817  char_acc=0.427  exact4=0.0900</code></pre>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"窗口 k=</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">: d=32 的精确匹配率 = </span><span class="sc">{</span>exactk(pred32, tgt, k)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>窗口 k=2: d=32 的精确匹配率 = 0.2097
-窗口 k=4: d=32 的精确匹配率 = 0.0769
+<pre><code>窗口 k=2: d=32 的精确匹配率 = 0.1613
+窗口 k=4: d=32 的精确匹配率 = 0.0291
 窗口 k=8: d=32 的精确匹配率 = 0.0000</code></pre>
 </div>
 </div>

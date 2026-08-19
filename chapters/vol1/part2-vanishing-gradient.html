@@ -241,6 +241,35 @@ main table {
       setTimeout(function () { tip.remove(); }, 2600);
     }
 
+    /* ---------- 自动同步到本地服务器 ---------- */
+    function isLocal() {
+      return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    }
+    function autoSync(item) {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/annotations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+    function autoSyncAll() {
+      if (!isLocal()) return;
+      try {
+        fetch("/api/sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chapter: CHAPTER, comments: load() })
+        }).then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.ok) flash("已自动同步 " + d.total + " 条批注到本地");
+          })
+          .catch(function() {});
+      } catch (e) {}
+    }
+
     /* ---------- 首次访问提示 ---------- */
     if (!localStorage.getItem("dlbook-review-hint-shown")) {
       var hint = document.createElement("div");
@@ -353,6 +382,7 @@ main table {
         pendingCtx.block.dataset.rcCid = item.id;
       }
       var list = load(); list.push(item); save(list); refreshCount(); renderPanel();
+      autoSync(item);
       flash("已保存 1 条批注");
       closeDialog();
     };
@@ -388,7 +418,8 @@ main table {
         }).join("");
       panel.querySelectorAll("button[data-del]").forEach(function (b) {
         b.onclick = function () {
-          save(load().filter(function (c) { return c.id !== b.dataset.del; }));
+          var updated = load().filter(function (c) { return c.id !== b.dataset.del; });
+          save(updated);
           var m = document.querySelector('[data-rc-cid="' + b.dataset.del + '"]');
           if (m) { m.classList.remove("rc-mark", "rc-block-flag"); }
           refreshCount(); renderPanel();
@@ -456,6 +487,11 @@ main table {
     };
 
     rehighlight();
+
+    /* 页面加载时自动同步一次（确保本地文件是最新的） */
+    if (isLocal() && load().length > 0) {
+      setTimeout(autoSyncAll, 1000);
+    }
   }
 
   /* 关键：本脚本注入在 <head>，此时 <body> 尚未解析——
@@ -1148,7 +1184,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">9.4</span> 从零实现</h2>
-<div id="daff1289" class="cell" data-execution_count="1">
+<div id="a2cf17f8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1161,7 +1197,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xb, yb <span class="op">=</span> Xs[:<span class="dv">64</span>], ys[:<span class="dv">64</span>].reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：梯度全景剖面。</strong> 八层 × 32 宽的网络，初始化后立刻做一次反向传播，记录每一层的梯度范数：</p>
-<div id="14b0f34f" class="cell" data-execution_count="2">
+<div id="4a33ec79" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> act <span class="kw">in</span> (<span class="st">"sigmoid"</span>, <span class="st">"tanh"</span>, <span class="st">"relu"</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span>act, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1174,7 +1210,7 @@ window.Quarto = {
     relu: 3e-04 1e-03 3e-03 1e-02 3e-02 8e-02 2e-01 8e-01 2e+00</code></pre>
 </div>
 </div>
-<div id="b068a2f3" class="cell" data-execution_count="3">
+<div id="bd8c0481" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    profiles,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Gradient norm by layer (8-layer net at init)"</span>,</span>
@@ -1196,7 +1232,7 @@ window.Quarto = {
 <li>relu：整体健康，但第一层仍然比末层小三个数量级左右。幅度问题缓解了，没有消失（死区造成的路径稀疏 + 缩放初始化在 relu 下的次优，He 初始化会更合适，见练习 4）。</li>
 </ul>
 <p><strong>实验二：剖面预测训练结局。</strong> 梯度健康度应该在训练成绩上兑现。relu 剖面最健康。那八层 relu 在螺旋任务上应该畅通无阻了吧？</p>
-<div id="c0561c7b" class="cell" data-execution_count="4">
+<div id="01357f64" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.train <span class="im">import</span> Trainer, accuracy</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1212,7 +1248,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">9.5</span> 消融实验</h2>
 <p><strong>深度的边际恶化。</strong> 剖面是静态的，我们让深度动起来。各深度下训练 300 epoch 的成绩：</p>
-<div id="288f0f66" class="cell" data-execution_count="5">
+<div id="7e7d5137" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1220,7 +1256,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>tanh depth=2: loss=0.9263, acc=0.58
 tanh depth=4: loss=0.9181, acc=0.59
-tanh depth=8: loss=0.8963, acc=0.66</code></pre>
+tanh depth=8: loss=0.8766, acc=0.67</code></pre>
 </div>
 </div>
 <p>深度每翻一倍，成绩单调恶化。与剖面斜率随深度加陡完全同步。<strong>深度是用梯度健康度换来的</strong>，这个汇率直到 2015 年才被残差连接改写。</p>
