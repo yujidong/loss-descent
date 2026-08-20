@@ -151,11 +151,43 @@ main table {
   width: 100%;
   table-layout: auto;
 }
-/* 宽屏时减小默认边距，让内容列稍宽（不改变布局结构） */
-@media (min-width: 1200px) {
-  main > .quarto-title-block, main > section {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+
+/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
+@media (min-width: 992px) {
+  /* 右侧 TOC 确保在自己的列内 */
+  #quarto-content > .toc-active,
+  .toc-active {
+    position: sticky !important;
+    top: 2rem;
+    z-index: 10;
+    max-width: 16rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 4rem);
+  }
+
+  /* 主内容确保不溢出到 TOC 列 */
+  main {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* 表格不超出容器 */
+  main .table-responsive,
+  main table {
+    max-width: 100% !important;
+    overflow-x: auto;
+  }
+
+  /* 代码块不超出容器 */
+  main pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* callout 不溢出 */
+  main .callout {
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 }
 </style>
