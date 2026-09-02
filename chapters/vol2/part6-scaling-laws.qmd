@@ -107,6 +107,8 @@ for d in (8, 16, 32, 64):
 典型读数：3.36 / 2.31 / 1.91 / 1.80。d=8 卡在均匀基线（容量不足），其后单调改善、**尾部明显收窄**（数据墙在招手）。画在对数坐标里：
 
 ```{python}
+#| label: fig-v2-scaling-laws-1
+#| fig-cap: "玩具 scaling law：参数从 2.2K 扫到 104K，验证 loss 沿幂律从 3.36 降到 1.80，尾部明显收窄——数据墙的第一次露头（灰线为均匀基线）"
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(5.5, 4))

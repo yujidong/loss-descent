@@ -96,6 +96,8 @@ for cell, flow in (("rnn", rnn_grad_flow_norms), ("lstm", lstm_grad_flow_norms))
 ```
 
 ```{python}
+#| label: fig-v2-lstm-1
+#| fig-cap: "同一 60 步序列的梯度存活对比：RNN 起点跌至 10⁻⁵⁷，LSTM 靠细胞状态传送带停在 10⁻⁹——学习信号存活率相差约 48 个数量级，传送带兑现了承诺"
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(6, 3.8))

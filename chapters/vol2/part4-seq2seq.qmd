@@ -62,6 +62,8 @@ $$P(y_1..y_T \mid x_1..x_S) = \prod_t P(y_t \mid y_{<t},\ \mathbf{c}), \qquad \m
 `dlbook.rnn.Seq2Seq`：编码/解码各一台 LSTM，解码器初态 = 编码器终态（梯度沿 `backward` 的初始状态接口回传到编码器）。任务：数字序列反转（词表 0=BOS、1=EOS，2–11 为数字）。
 
 ```{python}
+#| label: fig-v2-seq2seq-1
+#| fig-cap: "seq2seq 学序列反转的训练曲线：25 个 epoch 内 loss 从 2.18 降到 0.001，验证集整句精确匹配约 97%——“向量即意思”在玩具尺度近乎魔法"
 import numpy as np
 
 from dlbook.data.corpus import make_reversal_task
@@ -99,6 +101,8 @@ print("示例:", model.greedy_decode(val_in[0]), "目标:", val_tg[0])
 **主实验：长度外推（固定向量的账单）。** 在训练分布（长度 ≤5）之外逐级测试：
 
 ```{python}
+#| label: fig-v2-seq2seq-2
+#| fig-cap: "长度外推的断崖：训练只见过长度 ≤5，边界内精确匹配 0.92 以上，长度 6 掉到 0.51、长度 8 接近 0——固定向量瓶颈的账单到期"
 import matplotlib.pyplot as plt
 
 def pairs_of_length(L, n=600, seed=9):

@@ -108,6 +108,8 @@ for d in (8, 16, 32, 64):
 把三种度量放在一起看（注意第二列到第三列的**换算**）：
 
 ```{python}
+#| label: fig-v2-emergence-1
+#| fig-cap: "同一组模型的三个故事：loss 平滑收窄（3.36→1.80）、char_acc 平滑爬升，exact4 却量出 d=16→32 的 27 倍“觉醒”（0.002→0.054）——跳变是阶梯度量制造的"
 import matplotlib.pyplot as plt
 
 ds = list(report)

@@ -101,6 +101,8 @@ print(f"1000 步用时 {time.time()-t0:.0f}s；最终 loss {history[-1]:.4f}")
 ```
 
 ```{python}
+#| label: fig-v2-transformer-1
+#| fig-cap: "MiniGPT 训练曲线：同一条 2.4K 语料上 loss 降到 1.79，同时越过 3-gram（1.95）、RNN（2.19）与 LSTM（2.83）——两万七千参数的小模型甩开此前所有架构"
 plot_loss_curves({"MiniGPT char-LM": history}, title="Attention is all you need (for 2.4KB of text)");
 ```
 
@@ -116,6 +118,8 @@ print("".join(inv[i] for i in out))
 **注意力图：模型在看什么？** 取第一块的平均注意力（一次前向后自动缓存）：
 
 ```{python}
+#| label: fig-v2-transformer-2
+#| fig-cap: "第一块的平均注意力图：对角带是字符级局部统计，零星远点是学到的选择性回看；上三角全黑正是因果掩码“只许回头看”的签名"
 import matplotlib.pyplot as plt
 
 window = np.array(arr[100:132])[None, :]

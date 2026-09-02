@@ -107,6 +107,9 @@ print(f"半程模型（5 epochs）贪心准确率: {exact_acc(model, test_pairs)
 **实验一：测试时计算。多数投票。** 同一输入温度采样 k 次，取众数（self-consistency 的最小版）：
 
 ```{python}
+#| label: fig-v3-reasoning-1
+#| fig-cap: "测试时计算：多数投票把准确率从 k=1 的 0.31 提到 k=7 的 0.38（k=15 持平）——投票用算力换方差，把采样噪声平均掉，却救不了概率质量里的系统性短板。"
+
 def vote_acc(m, pairs, k, temp=0.7):
     ok = 0
     for j, (i, t) in enumerate(pairs):
@@ -134,6 +137,9 @@ plt.show()
 **实验二：STaR 式自举。可验证奖励当老师。** 采样→判卷（输出等于反转即"对"）→只学好答案→三轮：
 
 ```{python}
+#| label: fig-v3-reasoning-2
+#| fig-cap: "STaR 自举曲线：仅凭可验证奖励筛选自采样数据、零新标签，贪心准确率三轮内从 0.37 升至 0.74（0.37→0.64→0.74→0.72），第三轮的小幅回摆显出自举的饱和与过拟合。"
+
 def star_round(m, round_id, samples_per=10, temp=0.9):
     rng2 = np.random.default_rng(100 + round_id)
     correct = []

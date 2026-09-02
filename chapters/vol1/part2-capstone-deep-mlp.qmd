@@ -59,6 +59,8 @@ Part 2 走到收束。五章之前，"深了训不动"还是玄学；现在我�
 先认识 `dlbook.train.Trainer`。本章正式引入的标准训练器：
 
 ```{python}
+#| label: fig-v1-capstone-1
+#| fig-cap: "完整配方的成绩单：train 与 val 曲线贴合下降，八层螺旋网络 300 epoch 稳定到 0.93，无发散无卡死"
 import numpy as np
 
 from dlbook.data import make_spiral

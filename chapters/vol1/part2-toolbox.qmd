@@ -85,6 +85,8 @@ Xs, ys = make_spiral(n_per_class=200, seed=0)
 **实验一：BatchNorm 的奇效。** 同一个八层 relu 网络，只拨动一个开关：
 
 ```{python}
+#| label: fig-v1-toolbox-1
+#| fig-cap: "一个开关定生死：同一八层 relu 网络，无 BN 的 loss 卡死不动，加 BN 后一路下行——训练准确率从 0.50 拉到 0.95"
 histories = {}
 for bn in (False, True):
     m = MLPNumpy(2, [32] * 8 + [1], activation="relu", seed=0, batchnorm=bn)

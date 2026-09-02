@@ -96,6 +96,8 @@ print(f"residual depth=10: acc={results['residual depth=10']:.3f}")
 典型读数：普通网络 0.97 / 0.97 / **0.50**。深度 10 崩溃，训练彻底失败——这不是退化病：这批网络没有 BN，它死于 2.3 章确诊的漂移病；残差版在同样深度、同样没有 BN 的条件下爬到 0.97+。也就是说，残差恒等路把这条漂移病也治了。把两者的训练曲线放在一起看发病过程：
 
 ```{python}
+#| label: fig-v1-resnet-1
+#| fig-cap: "深度 10 的生死之别：无 BN 普通网的 loss 贴着初值爬行、卡在 1.0 附近，残差版靠一条恒等跳线畅通下降"
 histories = {}
 for tag, res in (("plain-10 (no BN)", False), ("residual-10", True)):
     m = MLPNumpy(2, [32] * 10 + [1], activation="relu", seed=0, residual=res)

@@ -89,6 +89,8 @@ print(f"loss: {history[0]:.3f} -> {history[-1]:.4f} nat/字符")
 ```
 
 ```{python}
+#| label: fig-v2-rnn-1
+#| fig-cap: "Elman RNN 训练曲线：loss 从 3.30 降到 2.19 nat/字符，同一语料上仍输给 3-gram 计数法的 1.95——这是规模的下限，不是循环方法的失败"
 plot_loss_curves({"rnn char-LM": history}, title="Elman RNN learns to predict characters");
 ```
 
@@ -123,6 +125,8 @@ print(f"60 步总衰减: {norms[-1]:.2e} -> {norms[0]:.2e}（{np.log10(norms[-1]
 ```
 
 ```{python}
+#| label: fig-v2-rnn-2
+#| fig-cap: "BPTT 梯度剖面：60 步回传中梯度范数从末端 6.9 塌到起点 10⁻²⁶ 量级，整整 27 个数量级——训练信号到不了序列开头，长程结构学不动由此有了尸检结论"
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(6, 3.8))

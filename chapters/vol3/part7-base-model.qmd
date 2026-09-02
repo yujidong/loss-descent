@@ -93,6 +93,9 @@ for prompt in ["the cat ", "question: who is pip ? answer:"]:
 **实验二：上下文的价值（条件化定量）。** 逐位置测 loss。同一个模型，看第 1 个字符与第 40 个字符时的困惑度：
 
 ```{python}
+#| label: fig-v3-base-model-1
+#| fig-cap: "上下文的价值：逐位置 loss 从第 1 字符的约 2.5 一路降到深上下文的约 1.9（远低于 3.30 的均匀基线），条件化就是上下文学习在本书语言里的原始形态。"
+
 import matplotlib.pyplot as plt
 
 windows = np.stack([arr[s : s + 65] for s in np.random.default_rng(7).integers(0, len(arr) - 65, size=64)])

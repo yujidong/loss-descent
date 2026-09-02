@@ -84,10 +84,14 @@ print(f"epochs: {len(mistakes)}, 总更新次数: {sum(mistakes)}, 每轮错分:
 ```
 
 ```{python}
+#| label: fig-v1-perceptron-1
+#| fig-cap: "可分数据上的收敛：错分次数在三个 epoch 内归零，Novikoff 定理的承诺当场兑现"
 plot_loss_curves({"mistakes per epoch": mistakes}, title="Separable blobs", ylabel="mistakes", logy=False);
 ```
 
 ```{python}
+#| label: fig-v1-perceptron-2
+#| fig-cap: "学到的决策边界把两团数据干净分开：线性可分问题上，感知机交出零误差的划分"
 plot_linear_boundary(p.w, p.b, X, y, title="Learned boundary (separable case)");
 ```
 
@@ -101,12 +105,16 @@ print(f"最终 w = {p_xor.w}, b = {p_xor.b:.3f}")
 ```
 
 ```{python}
+#| label: fig-v1-perceptron-3
+#| fig-cap: "XOR 上永不收敛：每轮错分数稳定在 4 次，不发散也不归零——四个点之间一支永不停歇的舞"
 plot_loss_curves({"mistakes per epoch": mx}, title="XOR: never converges", ylabel="mistakes", logy=False);
 ```
 
 错分数没有发散、没有归零，而是**稳定在每轮 4 次**。机器在四个点之间跳着一支永不停歇的舞。它最终停在 $w = (-1, 0)$、$b = 1$：一条 $x_1 = 1$ 的竖线，等价于把预测规则学成了"非 $x_1$"。画出这条边界，看看它错在哪：
 
 ```{python}
+#| label: fig-v1-perceptron-4
+#| fig-cap: "卡死时的边界是一条只看 x1 的竖线：两个 +1 点之一被永远切在外面，机器锁死在错一半的局部挣扎里"
 plot_linear_boundary(p_xor.w, p_xor.b, XOR, XOR_LABELS, title="Where it got stuck (XOR)");
 ```
 

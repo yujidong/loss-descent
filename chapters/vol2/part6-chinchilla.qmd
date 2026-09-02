@@ -113,6 +113,8 @@ for d, n in configs:
 ```
 
 ```{python}
+#| label: fig-v2-chinchilla-1
+#| fig-cap: "等算力 U 型曲线：谷底在 d=16（1.55），上一章的冠军 d=64 垫底（2.15）——“更大更好”只是步数富余世界里的结论"
 import matplotlib.pyplot as plt
 
 ds = list(results)

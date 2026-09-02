@@ -98,6 +98,8 @@ for name, make in (("plain", lambda: Seq2Seq(12, hidden=64, seed=0)),
 ```
 
 ```{python}
+#| label: fig-v2-bahdanau-1
+#| fig-cap: "普通 seq2seq 与注意力版按长度对照：3–5 都近满分，7–8 同时衰减（plain 0.87/0.80，attention 0.86/0.57）——玩具尺度上瓶颈不紧，注意力没有显出精度红利"
 import matplotlib.pyplot as plt
 
 Ls = (3, 4, 5, 6, 7, 8)
@@ -116,6 +118,8 @@ plt.show()
 **对齐热图：模型在看哪里？** 取上面训练好的注意力模型，画出它解码时每步的 $\alpha_{t,s}$：
 
 ```{python}
+#| label: fig-v2-bahdanau-2
+#| fig-cap: "对齐热图：解码第 0 步看输入末位、第 1 步看倒数第二位——反对角线上的亮带说明模型无师自通了“从后往前抄”的算法"
 attn_model = trained["attention"]  # 复用已训好的模型
 
 sample_in, sample_out = pairs_of_length(5, n=1, seed=3)[0]

@@ -91,6 +91,8 @@ for act in ("sigmoid", "tanh", "relu"):
 ```
 
 ```{python}
+#| label: fig-v1-vanishing-1
+#| fig-cap: "八层网络初始化时的逐层梯度剖面：sigmoid 首末层相差七个数量级（5×10⁻⁷ 对 8×10⁰），tanh 温和、relu 整体健康但仍有近四个数量级落差"
 plot_loss_curves(
     profiles,
     title="Gradient norm by layer (8-layer net at init)",

@@ -118,6 +118,8 @@ print(f"mlm（掩码重建，15% 位置）: {h_bert[-1]:.3f}")
 **验货一：信息流。** 两幅注意力图：
 
 ```{python}
+#| label: fig-v2-gpt-vs-bert-1
+#| fig-cap: "同一个身体、两种信息流：GPT 路线的注意力上三角全黑（因果掩码），BERT 路线全域有值（双向）——生成器不许偷看、理解器两边都看，掩码的去留写在图上"
 import matplotlib.pyplot as plt
 
 window = np.array(arr[100:132])[None, :]

@@ -101,6 +101,8 @@ print("cat   的近邻:", [w for w, _ in sg.most_similar("cat", vocab)])
 
 
 ```{python}
+#| label: fig-v2-word2vec-1
+#| fig-cap: "无监督长出的语义几何：前两维投影中成体词（红）与幼崽词（蓝）各自成簇、自动分开——共现统计被压进了几何，没有任何监督信号要求过这一点"
 import matplotlib.pyplot as plt
 
 adults, babies = ["cat", "dog", "bird", "cow"], ["kitten", "puppy", "chick", "calf"]

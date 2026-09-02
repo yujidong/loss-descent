@@ -79,6 +79,8 @@ Xv, yv = make_moons(n_per_class=100, seed=1)
 **实验一：学习率扫描。** 固定一切，只动步长：
 
 ```{python}
+#| label: fig-v1-mlp-difficulty-1
+#| fig-cap: "学习率扫描：0.001 爬行（300 epoch 仍停在 0.34）、0.01 到位、0.05 更快——步长决定在地形上移动的尺度"
 histories = {}
 for lr in (0.001, 0.01, 0.05):
     m = MLPNumpy(2, [16, 1], seed=42)
@@ -108,6 +110,8 @@ print(f"最好/最差 = {min(finals):.3f} / {max(finals):.3f}（相差 {max(fina
 **实验三：看一眼地形。** 训练一个收敛的模型，然后在其参数空间里取两个随机方向张成的平面，扫描 loss：
 
 ```{python}
+#| label: fig-v1-mlp-difficulty-2
+#| fig-cap: "65 维 loss 地形的二维随机切片：训练收敛点（红星）落在一片缓慢起伏的高原上而非谷底——不同种子的落点走到同一片高原的不同位置"
 def flat(model):
     return np.concatenate([W.ravel() for W in model.Ws] + [b.ravel() for b in model.bs])
 

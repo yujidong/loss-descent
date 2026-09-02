@@ -180,6 +180,8 @@ print(f"loss: {history['train'][0]:.4f} → {history['train'][-1]:.6f}")
 从 1.0 出发，三百步后降到 0.019 附近。看曲线的形状：
 
 ```{python}
+#| label: fig-v1-backprop-1
+#| fig-cap: "XOR 上的训练曲线：loss 从 1.0 出发、300 步降到 0.019 附近，多层网络的信用分配就此解决"
 plot_loss_curves(history, title="XOR: MLP + backprop (lr=0.1)")
 ```
 
@@ -194,6 +196,8 @@ for xs, t in xor:
 四个点全部判对。最后把学到的决策边界画出来。做法是在输入平面上密密地取格点，让训练好的网络对每个格点输出一个值，再按值的大小上色。如果边界是一条直线，说明网络没有超过感知机；如果是弯曲的，说明四个隐藏单元真的拼出了非线性的划分。
 
 ```{python}
+#| label: fig-v1-backprop-2
+#| fig-cap: "2-4-1 网络学到的决策边界：两种颜色各占两个对角区域、边界弯折成曲线——隐藏单元自发分工学出的非线性表征"
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -262,6 +266,8 @@ for seed in (0, 1, 2, 3, 42):
 第二个"为什么"问学习率。第 2 章会系统地讨论这个超参数，这里先直观感受一下：固定网络结构，只改步长，扫 0.001 到 1.0 四档。
 
 ```{python}
+#| label: fig-v1-backprop-3
+#| fig-cap: "学习率的四档行为：0.001 几乎水平走不动，0.01 只下探一小段，0.1 又快又稳，1.0 冲高震荡后落回"
 plot_loss_curves(
     {f"lr={lr}": train_xor(4, steps=200, lr=lr)[1] for lr in (0.001, 0.01, 0.1, 1.0)},
     title="Learning-rate sweep (2-4-1 on XOR)",

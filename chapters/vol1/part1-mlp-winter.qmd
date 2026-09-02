@@ -102,6 +102,8 @@ for width in (3, 10, 30):
 典型结果：宽度 3 卡在 $\approx 0.020$（RMSE 约为函数幅度的十分之一，**表示力不足**，3 个 tanh 神经元拼不出足够的台阶）；宽度 10 降到 $\approx 0.006$；宽度 30 与 10 几乎持平。眼睛验证一下：
 
 ```{python}
+#| label: fig-v1-mlp-winter-1
+#| fig-cap: "宽度买表示力：3 个隐藏单元跟不上目标的高频起伏，10 与 30 几乎贴合——超过够用之后，堆宽度收益递减"
 fig, ax = plt.subplots(figsize=(6.5, 4))
 xs = np.linspace(-3, 3, 300).reshape(-1, 1)
 ax.plot(xs, f(xs), "k-", lw=2, label="target")
@@ -133,6 +135,8 @@ print(f"真实误差（60 个干净点）: {dense_loss:.6f}  （噪声方差 0.0
 训练误差被压到噪声方差附近。模型几乎**背下了每一个噪声**；而它对真实函数的误差是训练误差的数倍。画出来看它的"学习成果"：
 
 ```{python}
+#| label: fig-v1-mlp-winter-2
+#| fig-cap: "过拟合的形状：宽 60 的网络逐个穿过 12 个噪声点，两点之间插出的是噪声而非规律——训练误差会说谎"
 fig, ax = plt.subplots(figsize=(6.5, 4))
 ax.plot(xs, f(xs), "k-", lw=2, label="true function")
 ax.scatter(Xn, Yn, c="tab:red", s=40, zorder=3, label="noisy data (12 pts)")
@@ -166,6 +170,8 @@ print(f"随机标签上的训练误差: {history[0]:.3f} → {history[-1]:.2e}")
 ```
 
 ```{python}
+#| label: fig-v1-mlp-winter-3
+#| fig-cap: "纯随机标签也能背：训练误差一路压到 10⁻⁶ 量级——『降到 0』证明不了学到规律，只证明容量够大"
 plot_loss_curves({"train on random labels": history}, title="Memorization", logy=True);
 ```
 
@@ -194,7 +200,9 @@ for activation in ("sigmoid", "tanh", "relu"):
 ```
 
 ```{python}
-depths = (2, 4, 8, 16)
+#| label: fig-v1-mlp-winter-4
+#| fig-cap: "首层梯度范数随深度的变化：sigmoid 从 2 层到 16 层跌约七个数量级，relu 在四个深度下数量级稳定"
+depths = (2, 4, 8)
 plot_loss_curves(
     {a: [first_layer_grad_norm(L, a) for L in depths] for a in ("sigmoid", "tanh", "relu")},
     title="First-layer gradient norm vs depth (naive init)",

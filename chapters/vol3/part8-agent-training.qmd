@@ -96,6 +96,9 @@ print(f"起点：单次贪心 {exact_acc(model, test_pairs):.3f}")
 **实验一：重试闭环（系统层）。** 提议（温度采样）→ 验证（反转回去等于输入即对）→ 不对就再采：
 
 ```{python}
+#| label: fig-v3-agent-training-1
+#| fig-cap: "重试闭环：任务成功率随重试预算从单次的 0.26 升到 8 次的 0.56（0.26→0.36→0.41→0.56），提议-验证-重试循环用推理算力换方差，天花板是分布的概率质量。"
+
 import matplotlib.pyplot as plt
 
 def agent_success(m, pairs, max_tries, temp=0.7):
