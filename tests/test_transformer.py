@@ -108,4 +108,5 @@ def test_lora_adapts_frozen_base():
         l = lora.loss_and_backward(idx)
         lora.step(0.02, clip=1.0)
     assert first > l  # 适配器可训
-    assert 0 < lora.n_trainable_params() < base.n_params() * 0.2
+    # 诚实计数：可训练 = 适配器 + 全部 LayerNorm + 输出头（step() 实际更新的全集）
+    assert 0 < lora.n_trainable_params() < base.n_params() * 0.5

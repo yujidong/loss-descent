@@ -11,6 +11,11 @@ def set_seed(seed: int) -> None:
 
     每章可执行笔记本的第一格固定调用 ``set_seed(42)``，
     保证读者运行结果与书中图表一致。
+
+    注意：这里设置的是 legacy 全局 RNG（np.random.*）。dlbook 内部
+    各模块统一走 ``np.random.default_rng(seed)`` 并以显式 seed 参数
+    传入，不受本函数影响——读者自己用 default_rng() 做的实验，
+    请自行固定种子。
     """
     random.seed(seed)
     np.random.seed(seed)

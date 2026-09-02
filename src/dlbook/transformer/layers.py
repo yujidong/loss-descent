@@ -25,7 +25,11 @@ def gelu_tanh(x):
 
 
 class Linear:
-    """线性层，可选 LoRA 适配器（7.2 章）：冻结 W，只训低秩增量 A@B。"""
+    """线性层，可选 LoRA 适配器（7.2 章）：冻结 W，只训低秩增量 A@B。
+
+    教学版简化：无标准 LoRA 的 α/r 缩放因子（ΔW = A@B 直接相加），
+    B 零初始化保证训练从恒等出发。对照论文实现时请留意这一差异。
+    """
 
     def __init__(self, d_in, d_out, seed=0, lora_r: int = 0):
         rng = np.random.default_rng(seed)
@@ -135,7 +139,7 @@ class MultiHeadAttention:
         A = softmax_lastdim(S)
         heads = A @ V
         out = self.Wo.forward(self._merge(heads))
-        self._cache = (X, Q, K, V, S if causal else S, A)
+        self._cache = (X, Q, K, V, S, A)
         return out
 
     def backward(self, d_out):
@@ -220,6 +224,10 @@ class MoEMLP:
     只经得分最高的那位——活跃 FLOPs 与 dense(4d) 相当，参数加倍。
     门梯度用"软混合的直通近似"：dL/ds 经由 softmax 雅可比回传
     <dY, 专家输出> 的对齐度。
+
+    教学版简化：无 Switch Transformer 那样的负载均衡辅助 loss
+    （章内练习 3 引导读者自行加）；专家可能因此失衡，usage 字段
+    记录了每次前向的实际专家占用率。
     """
 
     def __init__(self, d_model, n_experts=2, seed=0):

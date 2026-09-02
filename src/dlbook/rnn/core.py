@@ -52,7 +52,8 @@ class SimpleRNN:
             gWxh[tokens[t]] += dz
             gWhh += np.outer(dz, hs[t - 1] if t > 0 else np.zeros(self.hidden))
             gbh += dz
-            dh_next = self.Whh @ dz
+            # 前向是 Whh @ h，链式法则回传 h_{t-1} 要用 Whh 的转置
+            dh_next = self.Whh.T @ dz
         self.grads = {"Wxh": gWxh, "Whh": gWhh, "bh": gbh}
         return dh_next
 
@@ -85,6 +86,7 @@ class LSTM:
     def forward(self, tokens, state=None):
         h = np.zeros(self.hidden) if state is None else state[0]
         c = np.zeros(self.hidden) if state is None else state[1]
+        h_start, c_start = h, c
         H = self.hidden
         hs = np.zeros((len(tokens), H))
         cs = np.zeros((len(tokens), H))
@@ -95,11 +97,11 @@ class LSTM:
             c = f * c + i * g
             h = o * np.tanh(c)
             hs[t], cs[t], gates[t] = h, c, np.concatenate([i, f, g, o])
-        self._cache = (tokens, hs, cs, gates)
+        self._cache = (tokens, hs, cs, gates, h_start, c_start)
         return hs, cs
 
     def backward(self, dhs, dh_init=None, dc_init=None):
-        tokens, hs, cs, gates = self._cache
+        tokens, hs, cs, gates, h_start, c_start = self._cache
         T, H = len(tokens), self.hidden
         gWx = np.zeros_like(self.Wx)
         gWh = np.zeros_like(self.Wh)
@@ -108,7 +110,7 @@ class LSTM:
         dc_next = np.zeros(H) if dc_init is None else dc_init
         for t in reversed(range(T)):
             i, f, g, o = gates[t, :H], gates[t, H : 2 * H], gates[t, 2 * H : 3 * H], gates[t, 3 * H :]
-            c_prev = cs[t - 1] if t > 0 else np.zeros(H)
+            c_prev = cs[t - 1] if t > 0 else c_start
             tanh_c = np.tanh(cs[t])
             dh = dhs[t] + dh_next
             do = dh * tanh_c * o * (1 - o)
@@ -118,9 +120,10 @@ class LSTM:
             dg = dc * i * (1 - g**2)
             dz = np.concatenate([di, df, dg, do])
             gWx[tokens[t]] += dz
-            gWh += np.outer(hs[t - 1] if t > 0 else np.zeros(H), dz)
+            gWh += np.outer(hs[t - 1] if t > 0 else h_start, dz)
             gb += dz
             dc_next = dc * f
+            # 前向是 h @ Wh，回传 h_{t-1} 用 Wh（不转置）
             dh_next = self.Wh @ dz
         self.grads = {"Wx": gWx, "Wh": gWh, "b": gb}
         return dh_next, dc_next
@@ -144,12 +147,12 @@ def rnn_grad_flow_norms(cell, dhs):
         dh = dhs[t] + dh_next
         norms[t] = float(np.linalg.norm(dh))
         dz = dh * (1.0 - hs[t] ** 2)
-        dh_next = cell.Whh @ dz
+        dh_next = cell.Whh.T @ dz
     return norms
 
 
 def lstm_grad_flow_norms(cell, dhs):
-    tokens, hs, cs, gates = cell._cache
+    tokens, hs, cs, gates, _, _ = cell._cache
     T, H = len(tokens), cell.hidden
     norms = np.zeros(T)
     dh_next = np.zeros(H)

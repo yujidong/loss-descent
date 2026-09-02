@@ -36,6 +36,8 @@ class SkipGram:
                         if j == i:
                             continue
                         context = sent[j]
+                        # 教学版负采样：均匀分布且不排除与正样本碰撞
+                        # （原论文用 unigram^0.75 并过滤碰撞；小词表上差异有限）
                         negs = self._rng.integers(0, self.vocab, size=n_neg)
                         loss = self._sgd_step(center, context, negs, lr)
                         total += loss

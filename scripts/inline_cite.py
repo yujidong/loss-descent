@@ -171,6 +171,9 @@ def add_inline_citations(path: Path, cite_list: list) -> int:
     text = path.read_text(encoding="utf-8")
     added = 0
 
+    # 参考文献区起点：其后的任何插入都是破坏（v1.2 事故教训）
+    ref_start = text.find("## 参考文献")
+
     for pattern, key in cite_list:
         # 检查是否已有这个 key 的引用
         if f"[@{key}]" in text:
@@ -188,10 +191,25 @@ def add_inline_citations(path: Path, cite_list: list) -> int:
             context_before = text[max(0, insert_pos - 200):insert_pos]
             context_after = text[insert_pos:insert_pos + 50]
 
+            # 跳过参考文献区与其后的一切
+            if ref_start != -1 and insert_pos > ref_start:
+                continue
             # 跳过不安全位置
             if any(x in context_before[-100:] for x in ['```', ':::', 'title=', '####']):
                 continue
             if context_after.startswith(']') or context_after.startswith(')'):
+                continue
+            # 跳过 URL 行（DOI / scholar 链接内插引用会弄坏链接）
+            line_start = text.rfind("\n", 0, m.start()) + 1
+            line_end = text.find("\n", m.start())
+            line = text[line_start:line_end if line_end != -1 else len(text)]
+            if "http" in line or "doi.org" in line:
+                continue
+            # 跳过英文词中间：插入点后紧跟 ASCII 字母/连字符（如 induction|heads、GPT|-3）
+            # 或匹配起点本身就在一个 ASCII 词的中间
+            if insert_pos < len(text) and (text[insert_pos].isascii() and (text[insert_pos].isalnum() or text[insert_pos] in "-_")):
+                continue
+            if m.start() > 0 and text[m.start() - 1].isascii() and text[m.start() - 1].isalnum():
                 continue
 
             # 确保不在已有的引用标记内

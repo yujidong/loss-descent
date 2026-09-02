@@ -6,9 +6,8 @@ book:
   title: "降 Loss 之路"
   subtitle: "深度学习思想史：从感知机到智能体"
   author: "Yuji Dong"
-  # TODO: 建仓后取消注释并替换为真实地址
-  # repo-url: https://github.com/yujid/loss-descent
-  # repo-actions: [edit, source, issue]
+  repo-url: https://github.com/yujidong/loss-descent
+  repo-actions: [edit, source, issue]
   page-footer: |
     《降 Loss 之路》 · 用实验重走深度学习研究史
   chapters:
@@ -92,6 +91,10 @@ format:
     include-in-header: theme/review-header.html
     bibliography: references.bib
     link-citations: true
+    # 正文列加宽：Quarto 默认 body 约 50em，中文长句和代码块偏挤。
+    # 必须走 grid 配置（会同步调整网格轨道），不要用 CSS 覆盖 main 宽度。
+    grid:
+      body-width: 1100px
 
 execute:
   freeze: auto

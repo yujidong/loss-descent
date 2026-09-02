@@ -43,16 +43,16 @@ main div.cell {
   margin-right: auto;
 }
 
-/* 宽屏时用满空间 */
+/* 宽屏时的呼吸空间。
+   注意：不要给 main 设置 margin:auto / max-width——main 是 Quarto 网格的
+   grid item，auto margin 会让它脱离轨道拉伸、按内容收缩，溢出到右侧目录列。
+   加宽正文请用 _quarto.yml 里的 grid.content-width。 */
 @media (min-width: 992px) {
   #quarto-content {
     padding: 0 2rem;
   }
 
   main {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: $content-width;
     padding-left:  1rem;
     padding-right: 1rem;
   }
@@ -62,5 +62,18 @@ main div.cell {
 main table {
   width: 100%;
   table-layout: auto;
+}
+
+/* 长行内公式不越过正文列（窄屏时会压到右侧目录） */
+mjx-container {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 参考文献里的长 URL 可断行（只在链接本身放不下一行时才断） */
+main a,
+.csl-entry a {
+  overflow-wrap: anywhere;
 }
 

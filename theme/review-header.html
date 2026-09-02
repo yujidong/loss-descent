@@ -37,7 +37,7 @@
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -47,49 +47,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>

@@ -12,11 +12,12 @@ from dlbook.transformer.layers import Block, Linear, softmax_lastdim
 
 
 def sinusoidal_pos(T: int, D: int) -> np.ndarray:
+    assert D % 2 == 0, "正弦位置编码要求 d_model 为偶数"
     pe = np.zeros((T, D))
     pos = np.arange(T)[:, None]
     div = np.exp(np.arange(0, D, 2) * -(np.log(10000.0) / D))
     pe[:, 0::2] = np.sin(pos * div)
-    pe[:, 1::2] = np.cos(pos * div[: (D + 1) // 2])
+    pe[:, 1::2] = np.cos(pos * div)
     return pe
 
 
@@ -36,11 +37,14 @@ class MiniGPT:
         self._vel = {}
 
     def n_trainable_params(self) -> int:
-        """LoRA 模式下只计适配器；否则计全部。"""
+        """LoRA 模式下计适配器 + 全部 LayerNorm + 输出头（step() 实际更新的全集）；
+        非 LoRA 模式即全部参数。"""
         if self.lora_r == 0:
             return self.n_params()
         total = 0
         for blk in self.blocks:
+            for ln in (blk.ln1, blk.ln2):
+                total += ln.g.size + ln.b.size
             for lin in (blk.attn.Wq, blk.attn.Wk, blk.attn.Wv, blk.attn.Wo,
                         blk.mlp.fc1, blk.mlp.fc2):
                 if hasattr(lin, "lora_A"):
@@ -51,16 +55,30 @@ class MiniGPT:
                     for lin in (e.fc1, e.fc2):
                         if hasattr(lin, "lora_A"):
                             total += lin.lora_A.size + lin.lora_B.size
+        total += self.head.W.size + self.head.b.size
         return total
 
     def n_params(self) -> int:
-        n = self.tok_emb.size + sum(
-            b.attn.Wq.W.size * 4 + b.attn.Wq.b.size * 4
-            + b.ln1.g.size * 2 + b.mlp.fc1.W.size + b.mlp.fc1.b.size
-            + b.mlp.fc2.W.size + b.mlp.fc2.b.size + b.ln2.g.size * 2
-            for b in self.blocks
-        ) + self.head.W.size + self.head.b.size
-        return n
+        def _lin_params(lin):
+            n = lin.W.size + lin.b.size
+            if hasattr(lin, "lora_A"):  # LoRA 底座仍在，适配器叠加计入
+                n += lin.lora_A.size + lin.lora_B.size
+            return n
+
+        n = self.tok_emb.size
+        for b in self.blocks:
+            n += sum(_lin_params(l) for l in
+                     (b.attn.Wq, b.attn.Wk, b.attn.Wv, b.attn.Wo))
+            n += b.ln1.g.size + b.ln1.b.size
+            mlp = b.mlp
+            if hasattr(mlp, "experts"):  # MoEMLP：专家 + 门
+                n += mlp.gate_w.size
+                n += sum(_lin_params(l) for e in mlp.experts
+                         for l in (e.fc1, e.fc2))
+            else:
+                n += _lin_params(mlp.fc1) + _lin_params(mlp.fc2)
+            n += b.ln2.g.size + b.ln2.b.size
+        return n + self.head.W.size + self.head.b.size
 
     def forward(self, idx, training_mask=None):
         """idx: (B, T) 词 id。training_mask: (B, T) 布尔，MLM 模式下标记被掩码位。"""
@@ -95,10 +113,10 @@ class MiniGPT:
         dX = self.head.backward(dlogits)
         for blk in reversed(self.blocks):
             dX = blk.backward(dX)
-        # 嵌入梯度（散射累加）
-        if self.mode == "causal":
-            self.grad_tok = np.zeros_like(self.tok_emb)
-            np.add.at(self.grad_tok, inputs.reshape(-1), dX.reshape(-1, self.d_model))
+        # 嵌入梯度（散射累加）。mlm 分支同样要训练嵌入，
+        # 否则 BERT 式实验会在随机冻结的嵌入上跑。
+        self.grad_tok = np.zeros_like(self.tok_emb)
+        np.add.at(self.grad_tok, inputs.reshape(-1), dX.reshape(-1, self.d_model))
         return loss
 
     def loss_on(self, idx, targets=None) -> float:

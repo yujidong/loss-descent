@@ -7,7 +7,7 @@
 - dlbook.autodiff  手写 autograd 引擎（1.3 反向传播）
 - dlbook.nn      各时代的层与模型（Perceptron → MLP → CNN → RNN → Transformer）
 - dlbook.data    随书实验数据集工具
-- dlbook.train   训练循环（SGD → Adam → …）
+- dlbook.train   训练循环（小批量动量 SGD；学习率调度由各章按需手写）
 """
 __version__ = "0.1.0"
 

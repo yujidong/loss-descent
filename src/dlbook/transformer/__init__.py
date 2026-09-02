@@ -1,5 +1,5 @@
 """dlbook.transformer：Part 5 的注意力家族（MiniGPT 一系）。"""
-from dlbook.transformer.layers import Block, LayerNorm, MLP, Linear, MultiHeadAttention
+from dlbook.transformer.layers import Block, LayerNorm, MLP, Linear, MoEMLP, MultiHeadAttention
 from dlbook.transformer.model import MiniGPT, sinusoidal_pos
 
 __all__ = [
@@ -7,6 +7,7 @@ __all__ = [
     "LayerNorm",
     "Linear",
     "MLP",
+    "MoEMLP",
     "Block",
     "MiniGPT",
     "sinusoidal_pos",

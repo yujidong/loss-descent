@@ -172,7 +172,8 @@ class AttentionSeq2Seq:
         dctx = dconcat[:, self.hidden :]
 
         dalpha = dctx @ hs_e.T
-        dscores = alpha * (dalpha - (dalpha * alpha).sum(axis=-1, keepdims=True))
+        # 前向 scores 乘过 1/sqrt(hidden)，反向要乘回同一系数
+        dscores = alpha * (dalpha - (dalpha * alpha).sum(axis=-1, keepdims=True)) / np.sqrt(self.hidden)
         dhs_d += dscores @ hs_e
         dhs_e = alpha.T @ dctx + dscores.T @ hs_d
 

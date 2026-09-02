@@ -23,7 +23,7 @@ Part 8 收官，也是全书方法论的最后一块拼图。前面两章我们�
 
 ## 历史中的尝试（包括弯路）
 
-**弯路一：万物微调（2020–2022）**。预训练模型出来后，惯性是"每个任务微调一次"。T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT [@radford2018]-3 的 few-shot、2021 前后的 prompt tuning）证明许多任务不必动权重。方向摆向系统层。
+**弯路一：万物微调（2020–2022）**。预训练模型出来后，惯性是"每个任务微调一次"。T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT-3 [@radford2018] 的 few-shot、2021 前后的 prompt tuning）证明许多任务不必动权重。方向摆向系统层。
 
 **弯路二：万物提示（2023–2024）**。摆过头：记忆靠 prompt 塞、工具靠 prompt 描述、格式靠 prompt 祈祷。上下文越来越长、越来越贵、越来越脆。回调的标志是各家的 instruction tuning 与 distillation 回潮：行为一旦定型且高频，就该固化（8.2 的训练账 vs 推理账）。
 
@@ -31,7 +31,7 @@ Part 8 收官，也是全书方法论的最后一块拼图。前面两章我们�
 
 **Context engineering 的兴起（2025）**：把上下文当作一种稀缺资源来设计。什么进窗口、以什么格式、何时压缩（7.1 的"上下文价值曲线"是这个工种的理论起点）。窗口是新的显存：贵、有限、需要调度。
 
-*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。
+*缓一缓。*四段历史摆在一起看：万物微调撞上版本爆炸，万物提示撞上又长又贵的上下文，RAG 给出混合的第一份配方，context engineering 把窗口当作稀缺资源来经营。钟摆在两层之间荡了三个来回，"界线是移动的"不是修辞，是趋势线。
 
 
 ::: {.callout-research title="停一停，你来当研究者"}
@@ -40,8 +40,8 @@ Part 8 收官，也是全书方法论的最后一块拼图。前面两章我们�
 **先写下你的预测**（本书的玩具基座，你还记得 7.1 的诱导头失败与 7.2 的绑定 margin）：
 
 1. (b) few-shot 会让基座照着示例的格式输出答案吗？命中率多少？
-2. (c) SFT 我们量过：格式 1.00、贪心 0.17–0.33。**few-shot 能逼近这个数吗？**
-3. 你的直觉里，真实 GPT-3 尺度的模型上，(b) 与 (c) 的差距会如何变化？。这一问决定框架第一问的答案方向。
+2. (c) SFT 我们量过：格式 1.00、贪心 0.33。**few-shot 能逼近这个数吗？**
+3. 你的直觉里，真实 GPT-3 尺度的模型上，(b) 与 (c) 的差距会如何变化？这一问决定框架第一问的答案方向。
 
 写完再运行。提示：如果 (b) 在玩具上失败，先别急着下"系统层不行"的结论。想想它依赖底座的什么。
 :::
@@ -60,7 +60,7 @@ Part 8 收官，也是全书方法论的最后一块拼图。前面两章我们�
 
 **界线是移动的**：算力价格、模型能力、任务频率都在变。今天值得外挂的，明天可能该固化（反之亦然）。框架给出的不是答案，是可以重复演算的判断程序。这与 0.1 章对"账本"的承诺一致。
 
-*缓一缓。*把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。
+*缓一缓。*三问定层：先体检潜质（在权重里吗），再看变化频率（频繁变走系统层、稳定高频固化进模型），最后按错误代价分账可靠性。再加一句"界线是移动的"，框架的全部就在这里。下面的三条件实验负责第一问。
 
 
 ## 从零实现
@@ -125,6 +125,8 @@ def few_shot(model, k=3, n=12):
                        f"answer: {qa_pairs[(qi + 1 + j) % len(qa_pairs)][1]}. " for j in range(k))
         prompt = demo + f"question: {q} answer: "
         ids_p = [vocab[c] for c in prompt][-95:]  # 受窗口所限取尾部
+        if qi == 0:
+            print(f"[截断后的 prompt 之一] ...{prompt[-95:]!r}（原长 {len(prompt)} 字符）")
         gen = "".join(inv[i] for i in model.generate(ids_p, n_new=len(a) + 4, temperature=0.01, seed=0)[len(ids_p):])
         hits += int(gen.startswith(a))
     return hits / n
@@ -134,20 +136,36 @@ print(f"基座 few-shot (k=3): {few_shot(base):.2f}")
 print(f"SFT zero-shot: {zero_shot(sft):.2f}")
 ```
 
-典型读数：**0.00 / 0.00 / 0.33**。few-shot 完全失效。示例进了上下文，基座却无法把它们与当前问题绑定（7.1 的诱导头之墙再次立在那儿：输入通道的条件化需要注意力回路，我们的玩具没有）。这个三连数是框架第一问的实验证词：
+**混杂对照**：压缩示例规模，保证完整示例落在 95 字符窗内（排除"示例被截掉"这一干扰解释）：
+
+```{python}
+demo = "question: who found a cat ? answer: pip. "   # 41 字符的同格式短示例
+short = [(q, a) for q, a in qa_pairs
+         if len(demo) + len(f"question: {q} answer: ") <= 95]
+hit = fmt = 0
+for q, a in short:
+    prompt = demo + f"question: {q} answer: "
+    ids_p = [vocab[c] for c in prompt][-95:]
+    gen = "".join(inv[i] for i in base.generate(ids_p, n_new=len(a) + 4, temperature=0.01, seed=0)[len(ids_p):])
+    hit += int(gen.startswith(a))
+    fmt += int(". question:" in gen or gen.rstrip().endswith("."))
+print(f"短示例对照（{len(short)} 道可评题，完整示例在窗内）: 答案命中 {hit}/{len(short)}，格式遵循 {fmt}/{len(short)}")
+```
+
+典型读数：**0.00 / 0.00 / 0.33**。few-shot 完全失效——但先排除一个混杂因素：窗口只有 95 字符，三个示例加问题约 259 字符，截断后的 prompt 里连一个完整示例都放不下（上面打印的截断样本可见，示例被拦腰截去）。于是压缩示例规模做了个小对照：41 字符的同格式短示例完整落窗，在放得下的 5 道题上重测——答案命中 0/5，格式遵循 0/5，生成退化为"t t t t"式的碎语。**混杂排除后结论不变：示例进了上下文，基座却无法把它们与当前问题绑定**（7.1 的诱导头之墙再次立在那儿：输入通道的条件化需要注意力回路，我们的玩具没有）。这个三连数是框架第一问的实验证词：
 
 - **系统层不是免费的**。它依赖底座的输入通道条件化能力（ICL）。玩具上这条通道断了，所以 few-shot 为零、SFT 起效（梯度通道健全）；
 - 真实 GPT-3 尺度上结论反转：few-shot 大幅起效（诱导回路存在），于是 2020–2023 年系统层（提示工程）繁荣；
 - 框架的应用要带上底座的体检报告。同一个"问题"，在不同底座上答案不同。这也是读一切"prompt vs 微调"论文的第一检查项：他们的底座多大、哪条通道健全。
 
-*缓一缓。*回顾一下这一节讲了什么。这一节的核心是：从零实现。
+*缓一缓。*三连数 0.00 / 0.00 / 0.33：few-shot 与 SFT 拿到同一批示例，一个走输入通道（断），一个走梯度通道（通）。通道健全性是独立变量——读一切"prompt vs 微调"论文的第一检查项。
 
 
 ## 消融实验
 
 **通道的对照**：few-shot 失效但是， SFT 有效。两条通道（输入 vs 梯度）的要求差异，可以再用一个对照钉死：把 few-shot 的示例逐条放进 SFT 数据（等价于把输入通道的内容搬到梯度通道），同样的 12 个问答、同样的信息量。`SFT` 从 0.00 涨到 0.33（这正是 7.2 已做的实验）。信息相同、通道不同、结果不同。通道本身的健全性是独立变量，这是本框架区别于流行讨论的关键洞见。
 
-*缓一缓。*到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。
+*缓一缓。*通道对照再钉一次：信息相同（同样 12 个问答）、通道不同（输入对梯度）、结果不同（0.00 对 0.33）。本框架区别于流行讨论的关键，就在这一格。
 
 
 ## 本章 Loss 账本
@@ -167,7 +185,7 @@ print(f"SFT zero-shot: {zero_shot(sft):.2f}")
 :::
 
 ::: {.callout-paper title="论文时光机"}
-**Liu, P. et al. (2021).** *Pre-train, prompt, and predict: A systematic survey of prompting methods in NLP.* ACM Computing Surveys.（配对阅读：Lewis et al. (2020) 的 RAG 论文）
+**Liu, P. et al. (2023).** *Pre-train, prompt, and predict: A systematic survey of prompting methods in NLP.* ACM Computing Surveys.（配对阅读：Lewis et al. (2020) 的 RAG 论文）
 
 - **读什么**：综述的图 1（预训练-微调与预训练-提示两范式的对照图。本章的"两条通道"的文献版）；RAG 的混合知识安置设计；
 - 跳过：提示技巧目录；
@@ -180,20 +198,14 @@ print(f"SFT zero-shot: {zero_shot(sft):.2f}")
 2. 框架依赖的世界在变：数据墙、算力格局、能力前沿。开放问题清单（→ 9.2）；
 3. 最后：用它预测未来。全书的毕业考试（→ 9.3）。
 
-*缓一缓。*让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= Part 9 的入场券）。
-
-
-## 参考文献
-
-1. Lewis et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP*. *NeurIPS*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202020%20Retrieval-Augmented%20Generation%20for%20Knowledge-Intensive%20NLP)
-2. Radford et al. (2018). *Improving Language Understanding by Generative Pre-Training*. *OpenAI Technical Report*. [↗ 搜索原文](https://scholar.google.com/scholar?q=al.%202018%20Improving%20Language%20Understanding%20by%20Generative%20Pre-Training)
+*缓一缓。*全书工具至此集齐：三问框架、loss 账本、双镜头、研究循环。Part 9 的三步——复盘模式、清点开放问题、落子预测——就是把它们拼成一套完整的判断系统。
 
 
 ## 练习
 
 1. **造轮子**：把三问框架写成一张决策表（底座体检 × 变化频率 × 错误代价 → 建议层），并给自己的一个实际项目过一遍。记录框架给出的建议与你的直觉的分歧点。
 2. 预测再运行：few-shot 的 k 从 3 加到 8（示例更多），玩具基座上会有任何变化吗？真实模型上呢？（区分"示例不足"与"通道不通"两种失败。）
-3. 消融：把 few-shot 的示例换成乱序（答案与问题不匹配），生成会怎么变？。通道不通时，示例的正确性还重要吗？（这测的是输入通道的哪一段？）
+3. 消融：把 few-shot 的示例换成乱序（答案与问题不匹配），生成会怎么变？通道不通时，示例的正确性还重要吗？（这测的是输入通道的哪一段？）
 4. 论文映射：用四问账本拆 RAG。注意它的"买到"栏同时记着两层（系统的时效 + 权重的整合）：跨层设计在账本上怎么记账？
 5. 进阶：设计一个"通道体检"小工具：对任一底座，自动测 (a) few-shot 格式遵循率（输入通道）与 (b) 50 步微调后的格式遵循率（梯度通道），输出体检报告。把它跑在本书的三个模型（story 基座、SFT、MiniGPT-64）上。
 

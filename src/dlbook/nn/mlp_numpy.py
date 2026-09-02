@@ -119,12 +119,13 @@ class MLPNumpy:
     # ---- 反向 ----
 
     def backward(self, X, Y) -> float:
-        """全批 MSE 的反向传播：填充梯度，返回 loss。"""
+        """全批 MSE 的反向传播：填充梯度，返回 loss。
+        loss 与梯度都按 (batch × 输出维) 平均，多输出时二者口径一致。"""
         X = np.atleast_2d(np.asarray(X, dtype=float))
         Y = np.atleast_2d(np.asarray(Y, dtype=float))
         pred = self.forward(X, training=True)
         loss = float(np.mean((pred - Y) ** 2))
-        self.backward_from(X, 2.0 * (pred - Y) / len(X))
+        self.backward_from(X, 2.0 * (pred - Y) / pred.shape[0] / pred.shape[1])
         return loss
 
     def backward_from(self, X, dA) -> np.ndarray:
