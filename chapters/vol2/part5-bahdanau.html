@@ -1159,7 +1159,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="22.4">
 <h2 data-number="22.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">22.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.AttentionSeq2Seq</code>：在 <code>Seq2Seq</code> 上加约二十行。解码每步的注意力与拼接输出。任务与上一章相同的反转”翻译”，但训练集这次含长度 3–8（按句长分层评测才公平——原论文正是按句长分层报告 BLEU 的）：</p>
-<div id="b2b7f385" class="cell" data-execution_count="1">
+<div id="842d09e4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1178,7 +1178,7 @@ window.Quarto = {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs_of_length(L)) <span class="op">/</span> <span class="bu">len</span>(pairs_of_length(L)) <span class="cf">for</span> L <span class="kw">in</span> Ls]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>对照实验：普通 vs 注意力。</strong> 同预算训练两个模型：</p>
-<div id="9efc9939" class="cell" data-execution_count="2">
+<div id="f01838ce" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results, trained <span class="op">=</span> {}, {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, make <span class="kw">in</span> ((<span class="st">"plain"</span>, <span class="kw">lambda</span>: Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   (<span class="st">"attention"</span>, <span class="kw">lambda</span>: AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>))):</span>
@@ -1196,7 +1196,7 @@ window.Quarto = {
 attention: L3=1.00  L4=1.00  L5=0.99  L6=0.93  L7=0.86  L8=0.57</code></pre>
 </div>
 </div>
-<div id="cf69523d" class="cell" data-execution_count="3">
+<div id="cell-fig-v2-bahdanau-1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Ls <span class="op">=</span> (<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
@@ -1209,16 +1209,21 @@ attention: L3=1.00  L4=1.00  L5=0.99  L6=0.93  L7=0.86  L8=0.57</code></pre>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part5-bahdanau_files/figure-html/cell-4-output-1.png" width="477" height="361" class="figure-img"></p>
+<div id="fig-v2-bahdanau-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v2-bahdanau-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part5-bahdanau_files/figure-html/fig-v2-bahdanau-1-output-1.png" width="477" height="361" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v2-bahdanau-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22.1: 普通 seq2seq 与注意力版按长度对照：3–5 都近满分，7–8 同时衰减（plain 0.87/0.80，attention 0.86/0.57）——玩具尺度上瓶颈不紧，注意力没有显出精度红利
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：<strong>两版在长度 3–5 都近满分；长度 7–8 同时衰减（plain 0.87/0.80，attention 0.86/0.57）</strong>。这份读数与原论文图 6 的印象相反，值得诚实记录：在”训练含 3–8、隐藏 64 维”的玩具尺度上，普通版并不塌到断崖，注意力版也没有占优（换三个随机种子重跑，长度 8 上 attention 0.53–0.59、plain 0.67–0.80，结论不变）。原因在瓶颈的松紧：十来个字符压进 64 维向量，对本任务算不上紧约束；原论文的分层 BLEU 曲线是在真实翻译的长度与语法复杂度上量出来的。机制的收益依赖任务把瓶颈逼到多紧——这个主题在 6.4（MoE 在玩具上打平）还会再考一遍。玩具上注意力”确实在看对的地方”的直接证据，是下面的对齐热图。</p>
 <p><strong>对齐热图：模型在看哪里？</strong> 取上面训练好的注意力模型，画出它解码时每步的 <span class="math inline">\(\alpha_{t,s}\)</span>：</p>
-<div id="a8d85de7" class="cell" data-execution_count="4">
+<div id="cell-fig-v2-bahdanau-2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>attn_model <span class="op">=</span> trained[<span class="st">"attention"</span>]  <span class="co"># 复用已训好的模型</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sample_in, sample_out <span class="op">=</span> pairs_of_length(<span class="dv">5</span>, n<span class="op">=</span><span class="dv">1</span>, seed<span class="op">=</span><span class="dv">3</span>)[<span class="dv">0</span>]</span>
@@ -1233,9 +1238,14 @@ attention: L3=1.00  L4=1.00  L5=0.99  L6=0.93  L7=0.86  L8=0.57</code></pre>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"输入序列:"</span>, sample_in)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"输出序列:"</span>, sample_out)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part5-bahdanau_files/figure-html/cell-5-output-1.png" width="394" height="322" class="figure-img"></p>
+<div id="fig-v2-bahdanau-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v2-bahdanau-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part5-bahdanau_files/figure-html/fig-v2-bahdanau-2-output-1.png" width="394" height="322" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v2-bahdanau-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22.2: 对齐热图：解码第 0 步看输入末位、第 1 步看倒数第二位——反对角线上的亮带说明模型无师自通了“从后往前抄”的算法
+</figcaption>
 </figure>
 </div>
 </div>

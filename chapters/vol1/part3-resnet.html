@@ -1160,7 +1160,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="14.4">
 <h2 data-number="14.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">14.4</span> 从零实现</h2>
 <p><code>MLPNumpy</code> 的 <code>residual=True</code> 开关即残差版（宽度相同的隐藏层之间加恒等跳线）。数据仍是那条 1.75 圈的螺旋。它已见证过 2.2 的卡死与 2.3 的 BN 复活，现在见证第三次判决：</p>
-<div id="cfb67515" class="cell" data-execution_count="1">
+<div id="774163f5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1173,7 +1173,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>深度扫描：普通 vs 残差。</strong></p>
-<div id="126e35e5" class="cell" data-execution_count="2">
+<div id="bcbc6a23" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, residual<span class="op">=</span><span class="va">False</span>)</span>
@@ -1193,16 +1193,21 @@ residual depth=10: acc=0.978</code></pre>
 </div>
 </div>
 <p>典型读数：普通网络 0.97 / 0.97 / <strong>0.50</strong>。深度 10 崩溃，训练彻底失败——这不是退化病：这批网络没有 BN，它死于 2.3 章确诊的漂移病；残差版在同样深度、同样没有 BN 的条件下爬到 0.97+。也就是说，残差恒等路把这条漂移病也治了。把两者的训练曲线放在一起看发病过程：</p>
-<div id="df182565" class="cell" data-execution_count="3">
+<div id="cell-fig-v1-resnet-1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tag, res <span class="kw">in</span> ((<span class="st">"plain-10 (no BN)"</span>, <span class="va">False</span>), (<span class="st">"residual-10"</span>, <span class="va">True</span>)):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">10</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, residual<span class="op">=</span>res)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    histories[tag] <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.01</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">800</span>)[<span class="st">"loss"</span>]</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(histories, title<span class="op">=</span><span class="st">"Depth 10 on spiral: plain vs residual"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part3-resnet_files/figure-html/cell-4-output-1.png" width="565" height="374" class="figure-img"></p>
+<div id="fig-v1-resnet-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v1-resnet-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part3-resnet_files/figure-html/fig-v1-resnet-1-output-1.png" width="565" height="374" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v1-resnet-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: 深度 10 的生死之别：无 BN 普通网的 loss 贴着初值爬行、卡在 1.0 附近，残差版靠一条恒等跳线畅通下降
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1214,7 +1219,7 @@ residual depth=10: acc=0.978</code></pre>
 <section id="消融实验" class="level2" data-number="14.5">
 <h2 data-number="14.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">14.5</span> 消融实验</h2>
 <p><strong>跳线放到多深才划算？</strong> 浅网加残差几乎无差别（2 层时 <span class="math inline">\(F(x)+x\)</span> 与 <span class="math inline">\(F(x)\)</span> 的差距微乎其微）：</p>
-<div id="b930c03b" class="cell" data-execution_count="4">
+<div id="da7799fa" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">5</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> res <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, residual<span class="op">=</span>res)</span>

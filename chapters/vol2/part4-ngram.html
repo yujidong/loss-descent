@@ -1160,7 +1160,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">17.4</span> 从零实现</h2>
 <p>语料是内置的教学小故事（<code>dlbook.data.TINY_STORY</code>，约 2500 字符，刻意重复的句式与小词表）：</p>
-<div id="802b5693" class="cell" data-execution_count="1">
+<div id="4932f707" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1177,7 +1177,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>计数即模型</strong>。完整的 n-gram 语言模型只要几行：</p>
-<div id="61bdb224" class="cell" data-execution_count="2">
+<div id="f71f86ba" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ngram_model(n, train):</span>
@@ -1191,7 +1191,7 @@ window.Quarto = {
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (c <span class="op">+</span> alpha) <span class="op">/</span> (denom <span class="op">+</span> alpha <span class="op">*</span> V)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：熵曲线。</strong> 扫 <span class="math inline">\(n\)</span>：</p>
-<div id="ece9b014" class="cell" data-execution_count="3">
+<div id="b06de934" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ces, unseen <span class="op">=</span> [], []</span>
@@ -1214,7 +1214,7 @@ window.Quarto = {
 </div>
 </div>
 <p>典型读数（对照你的预测）：均匀基线 3.30 → 1-gram <strong>2.83</strong>（字母频率本身就值 0.47 nat）→ 2-gram 2.17 → 3-gram 1.95 → 4-gram 2.12。在 4-gram 反弹。原因就在第二列：未见比例从 2% 涨到 30%，平滑在硬撑一个越来越空洞的统计表。这就是维度灾难的现场：上下文种类数按 <span class="math inline">\(27^3\)</span> 增长，训练文本只有两千字符。数据与上下文长度的赛跑，计数法输在起跑线上。（香农用人类实验测得英语的熵约 1.0–1.5 bit/字符 ≈ 0.7–1.0 nat。我们的 3-gram 离这个下界还有距离，而人类就在下界附近。）</p>
-<div id="52a38d99" class="cell" data-execution_count="4">
+<div id="cell-fig-v2-ngram-1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">3.8</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], ces, <span class="st">"o-"</span>, label<span class="op">=</span><span class="st">"cross-entropy"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.axhline(np.log(V), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="st">"uniform baseline"</span>)</span>
@@ -1224,15 +1224,20 @@ window.Quarto = {
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part4-ngram_files/figure-html/cell-5-output-1.png" width="477" height="361" class="figure-img"></p>
+<div id="fig-v2-ngram-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v2-ngram-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part4-ngram_files/figure-html/fig-v2-ngram-1-output-1.png" width="477" height="361" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v2-ngram-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.1: n-gram 熵曲线：交叉熵从 1-gram 的 2.83 降到 3-gram 的 1.95，4-gram 反弹到 2.12——未见比例涨到 30%，维度灾难的现场（灰线为均匀基线 3.30）
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p><strong>实验二：从模型里采样。</strong> 语言模型不只是打分器，把 4-gram 的条件分布当骰子摇，就能”生成”文本：</p>
-<div id="711e9df0" class="cell" data-execution_count="5">
+<div id="fee38a42" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_ngram(n, counts, ctx, length<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> <span class="bu">list</span>(test_ids[: n <span class="op">-</span> <span class="dv">1</span>])  <span class="co"># 从测试集借个开头</span></span>
@@ -1255,7 +1260,7 @@ window.Quarto = {
 <h2 data-number="17.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">17.5</span> 消融实验</h2>
 <p><strong>平滑强度的账。</strong> 把拉普拉斯系数 <span class="math inline">\(\alpha\)</span> 从 0.5 调到 0.01 / 5.0，重测 3-gram 与 4-gram 的交叉熵。观察”留门的宽度”如何随 <span class="math inline">\(n\)</span> 变化（上下文越长、越空洞，最优的 <span class="math inline">\(\alpha\)</span> 越大，模型实际上越退化回低阶）。平滑系数是在为截断近似与数据稀缺同时买单。这份账单在 6.2 时代会以”数据配比”的新名字再来一次。</p>
 <p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。消融只动一个旋钮：平滑系数 <span class="math inline">\(\alpha\)</span>。要观察的是”留门的宽度”如何随上下文长度变化——上下文越长、计数表越空洞，最优的 <span class="math inline">\(\alpha\)</span> 越大，模型实际上越退回低阶。下面的代码把 0.01 / 0.5 / 5.0 三档各跑一遍，可以对着这句话看数字。</p>
-<div id="648764d5" class="cell" data-execution_count="6">
+<div id="ef0c7a6f" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> alpha <span class="kw">in</span> (<span class="fl">0.01</span>, <span class="fl">0.5</span>, <span class="fl">5.0</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">3</span>, <span class="dv">4</span>):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        counts, ctx <span class="op">=</span> ngram_model(n, train_ids)</span>

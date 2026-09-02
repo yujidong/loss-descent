@@ -1161,7 +1161,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">9.4</span> 从零实现</h2>
-<div id="1575b621" class="cell" data-execution_count="1">
+<div id="bbbe0652" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1174,7 +1174,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xb, yb <span class="op">=</span> Xs[:<span class="dv">64</span>], ys[:<span class="dv">64</span>].reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：梯度全景剖面。</strong> 八层 × 32 宽的网络，初始化后立刻做一次反向传播，记录每一层的梯度范数：</p>
-<div id="b07e8165" class="cell" data-execution_count="2">
+<div id="77a7fc50" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> act <span class="kw">in</span> (<span class="st">"sigmoid"</span>, <span class="st">"tanh"</span>, <span class="st">"relu"</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span>act, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1187,7 +1187,7 @@ window.Quarto = {
     relu: 3e-04 1e-03 3e-03 1e-02 3e-02 8e-02 2e-01 8e-01 2e+00</code></pre>
 </div>
 </div>
-<div id="1d293839" class="cell" data-execution_count="3">
+<div id="cell-fig-v1-vanishing-1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    profiles,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Gradient norm by layer (8-layer net at init)"</span>,</span>
@@ -1195,9 +1195,14 @@ window.Quarto = {
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"||grad|| (log scale)"</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part2-vanishing-gradient_files/figure-html/cell-4-output-1.png" width="566" height="374" class="figure-img"></p>
+<div id="fig-v1-vanishing-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v1-vanishing-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part2-vanishing-gradient_files/figure-html/fig-v1-vanishing-1-output-1.png" width="566" height="374" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v1-vanishing-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: 八层网络初始化时的逐层梯度剖面：sigmoid 首末层相差七个数量级（5×10⁻⁷ 对 8×10⁰），tanh 温和、relu 整体健康但仍有近四个数量级落差
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1209,7 +1214,7 @@ window.Quarto = {
 <li>relu：整体健康，但是，第一层仍然比末层小近四个数量级。幅度问题缓解了，没有消失（死区造成的路径稀疏 + 缩放初始化在 relu 下的次优，He 初始化会更合适，见练习 4）。</li>
 </ul>
 <p><strong>实验二：剖面预测训练结局。</strong> 梯度健康度应该在训练成绩上兑现。relu 剖面最健康。那八层 relu 在螺旋任务上应该畅通无阻了吧？</p>
-<div id="a6feb464" class="cell" data-execution_count="4">
+<div id="93d74477" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.train <span class="im">import</span> Trainer, accuracy</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1225,7 +1230,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">9.5</span> 消融实验</h2>
 <p><strong>深度的边际恶化。</strong> 剖面是静态的，我们让深度动起来。各深度下训练 300 epoch 的成绩：</p>
-<div id="c6ae5375" class="cell" data-execution_count="5">
+<div id="4c33198d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>

@@ -1171,7 +1171,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="26.4">
 <h2 data-number="26.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">26.4</span> 从零实现</h2>
 <p>燃料换大：语法模板 + Zipf 词频的合成语料（<code>make_grammar_corpus</code>，6 万字符训练 / 1.2 万验证。多尺度结构是幂律的温床）。训练日程带 warmup 与衰减（跨尺寸稳定的前提。2.5 配方课的续集）：</p>
-<div id="e4c70420" class="cell" data-execution_count="1">
+<div id="5d1e989f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1212,14 +1212,14 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">:3d}</span><span class="ss"> (</span><span class="sc">{</span>m<span class="sc">.</span>n_params()<span class="sc">:6d}</span><span class="ss"> 参数): val loss = </span><span class="sc">{</span>vl<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>t0<span class="sc">:.0f}</span><span class="ss">s)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>训练 60016 / 验证 12048 字符，词表 29，均匀基线 3.37
-d=  8 (  2237 参数): val loss = 3.3608 (30s)
-d= 16 (  7517 参数): val loss = 2.3125 (31s)
-d= 32 ( 27293 参数): val loss = 1.9087 (44s)
-d= 64 (103709 参数): val loss = 1.8039 (93s)</code></pre>
+d=  8 (  2237 参数): val loss = 3.3608 (16s)
+d= 16 (  7517 参数): val loss = 2.3125 (21s)
+d= 32 ( 27293 参数): val loss = 1.9087 (46s)
+d= 64 (103709 参数): val loss = 1.8039 (92s)</code></pre>
 </div>
 </div>
 <p>典型读数：3.36 / 2.31 / 1.91 / 1.80。d=8 卡在均匀基线（容量不足），其后单调改善、<strong>尾部明显收窄</strong>（数据墙在招手）。画在对数坐标里：</p>
-<div id="f11fa60a" class="cell" data-execution_count="2">
+<div id="cell-fig-v2-scaling-laws-1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="dv">4</span>))</span>
@@ -1231,15 +1231,20 @@ d= 64 (103709 参数): val loss = 1.8039 (93s)</code></pre>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part6-scaling-laws_files/figure-html/cell-3-output-1.png" width="519" height="377" class="figure-img"></p>
+<div id="fig-v2-scaling-laws-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v2-scaling-laws-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part6-scaling-laws_files/figure-html/fig-v2-scaling-laws-1-output-1.png" width="519" height="377" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v2-scaling-laws-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;26.1: 玩具 scaling law：参数从 2.2K 扫到 104K，验证 loss 沿幂律从 3.36 降到 1.80，尾部明显收窄——数据墙的第一次露头（灰线为均匀基线）
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p><strong>正菜：外推游戏。</strong> 只用前三个点拟合纯幂律，预测第四个，然后揭晓：</p>
-<div id="0b18d340" class="cell" data-execution_count="3">
+<div id="7a13185d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> np.polyfit(np.log(params[:<span class="dv">3</span>]), np.log(losses[:<span class="dv">3</span>]), <span class="dv">1</span>)  <span class="co"># 纯幂律 = 对数坐标直线</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> np.exp(np.polyval(coef, np.log(params[<span class="dv">3</span>])))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"纯幂律外推预测 d=64: </span><span class="sc">{</span>pred<span class="sc">:.3f}</span><span class="ss">   实测: </span><span class="sc">{</span>losses[<span class="dv">3</span>]<span class="sc">:.3f}</span><span class="ss">   误差: </span><span class="sc">{</span><span class="bu">abs</span>(pred<span class="op">-</span>losses[<span class="dv">3</span>])<span class="op">/</span>losses[<span class="dv">3</span>]<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1248,7 +1253,7 @@ d= 64 (103709 参数): val loss = 1.8039 (93s)</code></pre>
 </div>
 </div>
 <p>典型结果：纯幂律预测约 <strong>1.5–1.6</strong>，实测 1.80。外推高估了改善约 15%。误差来自我们预告过的那堵墙：三点的直线里没有 <span class="math inline">\(L_\infty\)</span>。补上地板项再拟合（三点 + 地板共两参数可解）：</p>
-<div id="a8f3392a" class="cell" data-execution_count="4">
+<div id="acc4b83f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit  <span class="co"># 若无 scipy，用网格搜索替代（练习 5）</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span>:</span>
@@ -1267,7 +1272,7 @@ d= 64 (103709 参数): val loss = 1.8039 (93s)</code></pre>
 <pre><code>带地板拟合: floor=1.69, 预测 d=64: 1.765（实测 1.804）</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\yujid\AppData\Local\Temp\ipykernel_8076\817901319.py:11: OptimizeWarning: Covariance of the parameters could not be estimated
+<pre><code>C:\Users\yujid\AppData\Local\Temp\ipykernel_27512\817901319.py:11: OptimizeWarning: Covariance of the parameters could not be estimated
   popt, _ = curve_fit(with_floor, params[:3], losses[:3], p0=[3.0, 0.2, 1.5], maxfev=5000)</code></pre>
 </div>
 </div>
@@ -1278,7 +1283,7 @@ d= 64 (103709 参数): val loss = 1.8039 (93s)</code></pre>
 <h2 data-number="26.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">26.5</span> 消融实验</h2>
 <p><strong>曲线对数据的依赖</strong>：把训练语料砍半（30000 字符）重扫。各尺寸的 loss 整体上移、墙提前。幂律的截距与地板都是数据的函数：这就是”数据质量/数量工程”在 scaling 框架里的位置（清洗、去重、配比。LLM 时代的新炼金术，9.2）。</p>
 <p><em>缓一缓。</em>消融只动一个旋钮：语料砍半，各尺寸的 loss 整体上移、墙提前。曲线的斜率与地板都是数据的函数——这就是”数据工程”在 scaling 框架里的坐标，账本第二问从这里开始成为主角。</p>
-<div id="97033925" class="cell" data-execution_count="5">
+<div id="282e76c7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>arr_half <span class="op">=</span> arr_t[: <span class="bu">len</span>(arr_t) <span class="op">//</span> <span class="dv">2</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>losses_half <span class="op">=</span> []</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> (<span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>):</span>

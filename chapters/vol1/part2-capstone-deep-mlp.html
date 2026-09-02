@@ -1129,7 +1129,7 @@ main pre code {
 <section id="从零实现" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">12.4</span> 从零实现</h2>
 <p>先认识 <code>dlbook.train.Trainer</code>。本章正式引入的标准训练器：</p>
-<div id="a27210f8" class="cell" data-execution_count="1">
+<div id="cell-fig-v1-capstone-1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1148,14 +1148,19 @@ main pre code {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(h, title<span class="op">=</span><span class="st">"Full recipe: relu + BN + momentum + scaled init"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part2-capstone-deep-mlp_files/figure-html/cell-2-output-1.png" width="565" height="374" class="figure-img"></p>
+<div id="fig-v1-capstone-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v1-capstone-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part2-capstone-deep-mlp_files/figure-html/fig-v1-capstone-1-output-1.png" width="565" height="374" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v1-capstone-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: 完整配方的成绩单：train 与 val 曲线贴合下降，八层螺旋网络 300 epoch 稳定到 0.93，无发散无卡死
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="5384d5da" class="cell" data-execution_count="2">
+<div id="896ff2ba" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"完整配方: train_acc=</span><span class="sc">{</span>accuracy(full, Xs, ys)<span class="sc">:.3f}</span><span class="ss">, val_acc=</span><span class="sc">{</span>accuracy(full, Xv, yv)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>完整配方: train_acc=0.953, val_acc=0.932</code></pre>
@@ -1163,7 +1168,7 @@ main pre code {
 </div>
 <p>八个隐藏层、约七千五百个参数，300 epoch、笔记本上几秒钟。train 与 val 曲线贴合下降，无发散无卡死。<strong>1986 年的人看到这一幕会以为魔法</strong>；你现在知道每一行咒语的出处。</p>
 <p><strong>拆解实验</strong>：逐一拿走零件。</p>
-<div id="346fc165" class="cell" data-execution_count="3">
+<div id="6181c00d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"完整配方"</span>: <span class="bu">dict</span>(activation<span class="op">=</span><span class="st">"relu"</span>, batchnorm<span class="op">=</span><span class="va">True</span>, init<span class="op">=</span><span class="st">"scaled"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"去 BN"</span>: <span class="bu">dict</span>(activation<span class="op">=</span><span class="st">"relu"</span>, batchnorm<span class="op">=</span><span class="va">False</span>, init<span class="op">=</span><span class="st">"scaled"</span>),</span>
@@ -1230,7 +1235,7 @@ main pre code {
 <section id="消融实验" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">12.5</span> 消融实验</h2>
 <p><strong>深度的收益</strong>。配方既然能让深度可训，那深度本身值多少？同配方下扫深度：</p>
-<div id="bc73c9ce" class="cell" data-execution_count="4">
+<div id="3b65e0f9" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>

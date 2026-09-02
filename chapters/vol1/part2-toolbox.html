@@ -1201,7 +1201,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">10.4</span> 从零实现</h2>
 <p>四件工具都已在 <code>MLPNumpy</code> 里就位（<code>activation="relu"</code>、<code>dropout=p</code>、<code>batchnorm=True</code>、<code>residual=True</code>），本章按发明顺序逐一开闸。先复现病灶。上一章的卡死病人：</p>
-<div id="dab82af8" class="cell" data-execution_count="1">
+<div id="4b9818d9" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1214,7 +1214,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：BatchNorm 的奇效。</strong> 同一个八层 relu 网络，只拨动一个开关：</p>
-<div id="aeb0a098" class="cell" data-execution_count="2">
+<div id="cell-fig-v1-toolbox-1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bn <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span>bn)</span>
@@ -1256,14 +1256,19 @@ C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylab
   fig.canvas.print_figure(bytes_io, **kw)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part2-toolbox_files/figure-html/cell-3-output-2.png" width="565" height="374" class="figure-img"></p>
+<div id="fig-v1-toolbox-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v1-toolbox-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part2-toolbox_files/figure-html/fig-v1-toolbox-1-output-2.png" width="565" height="374" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v1-toolbox-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: 一个开关定生死：同一八层 relu 网络，无 BN 的 loss 卡死不动，加 BN 后一路下行——训练准确率从 0.50 拉到 0.95
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="86316198" class="cell" data-execution_count="3">
+<div id="d5d87f5a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bn <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span>bn)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1275,7 +1280,7 @@ BN=True: acc=0.953</code></pre>
 </div>
 <p>300 个 epoch：无 BN 卡死在 0.50，加 BN 直上 <strong>0.95</strong>。上一章的悬案在这里告破。relu 深网死于训练动态中的分布漂移，BN 把每层输入的分布钉住，漂移病除。</p>
 <p><strong>实验二：BN 的第二重礼物。步长容忍。</strong> BN 之所以流行，一半因为它让学习率从”黑暗艺术”变成”粗调旋钮”：</p>
-<div id="f6a29aad" class="cell" data-execution_count="4">
+<div id="5a704106" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.005</span>, <span class="fl">0.05</span>, <span class="fl">0.5</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span>lr, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1310,7 +1315,7 @@ C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:155: RuntimeWarn
 </div>
 <p>带 BN 的网络在相差一个数量级的两个学习率（0.005 与 0.05）下都能训到 0.95，到 0.5 才溢出（无 BN 的网络做同样扫描会怎么做？留作练习 2。先猜再跑）。机制直觉：BN 把各层激活的尺度钉在标准区间，loss 地形对参数整体缩放的敏感度大幅下降。2018 年的后续研究把这个好处归结为<strong>地形平滑化</strong>，而不是原论文宣称的”协变量偏移”。</p>
 <p><strong>实验三：Dropout 的机制演示。</strong> 在我们的玩具尺度上 dropout 的收益并不稳定（它的主场是百万参数的视觉模型。那里过拟合是主要矛盾）。这里只做一个机制性演示：训练态的 dropout 是噪声，评估态是确定的：</p>
-<div id="a4cbad47" class="cell" data-execution_count="5">
+<div id="7ac3e5bb" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, dropout<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>], training<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>], training<span class="op">=</span><span class="va">True</span>)</span>
@@ -1330,7 +1335,7 @@ C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:155: RuntimeWarn
 <section id="消融实验" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">10.5</span> 消融实验</h2>
 <p><strong>四件工具的联合体检</strong>留给下一章的 capstone（完整配方拆解）。这里先做一件本章特有的消融：BN 到底是救了 relu 还是救了所有激活？</p>
-<div id="334977db" class="cell" data-execution_count="6">
+<div id="8a4ee6ea" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> act <span class="kw">in</span> (<span class="st">"relu"</span>, <span class="st">"tanh"</span>):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span>act, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>

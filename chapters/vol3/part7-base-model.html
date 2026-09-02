@@ -1155,7 +1155,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="30.4">
 <h2 data-number="30.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">30.4</span> 从零实现</h2>
-<div id="ad3bb29a" class="cell" data-execution_count="1">
+<div id="220713fa" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1181,7 +1181,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：续写不等于回答（行为学）。</strong></p>
-<div id="8a9dacc8" class="cell" data-execution_count="2">
+<div id="b36c5c6b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> prompt <span class="kw">in</span> [<span class="st">"the cat "</span>, <span class="st">"question: who is pip ? answer:"</span>]:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab.get(c, vocab[<span class="st">" "</span>]) <span class="cf">for</span> c <span class="kw">in</span> prompt]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> base.generate(ids_p, n_new<span class="op">=</span><span class="dv">60</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, seed<span class="op">=</span><span class="dv">3</span>)</span>
@@ -1197,7 +1197,7 @@ prompt: 'question: who is pip ? answer:'
 </div>
 <p>两个 prompt 的续写都是”语料风格”的文本。第二个（问句格式）在训练分布里<strong>从未出现</strong>，模型的应对是把未知符号当噪声、回到它熟悉的词形统计。真实互联网基座的对应行为是：问句后接更多问句（论坛网页）、或跑题续写。怪癖不是缺陷，是分布的忠实。</p>
 <p><strong>实验二：上下文的价值（条件化定量）。</strong> 逐位置测 loss。同一个模型，看第 1 个字符与第 40 个字符时的困惑度：</p>
-<div id="772fd57c" class="cell" data-execution_count="3">
+<div id="cell-fig-v3-base-model-1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>windows <span class="op">=</span> np.stack([arr[s : s <span class="op">+</span> <span class="dv">65</span>] <span class="cf">for</span> s <span class="kw">in</span> np.random.default_rng(<span class="dv">7</span>).integers(<span class="dv">0</span>, <span class="bu">len</span>(arr) <span class="op">-</span> <span class="dv">65</span>, size<span class="op">=</span><span class="dv">64</span>)])</span>
@@ -1218,9 +1218,14 @@ prompt: 'question: who is pip ? answer:'
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"无上下文(第1字符): </span><span class="sc">{</span>pos_loss[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> → 深上下文(第48+字符均值): </span><span class="sc">{</span>pos_loss[<span class="dv">48</span>:]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part7-base-model_files/figure-html/cell-4-output-1.png" width="497" height="361" class="figure-img"></p>
+<div id="fig-v3-base-model-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v3-base-model-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part7-base-model_files/figure-html/fig-v3-base-model-1-output-1.png" width="497" height="361" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v3-base-model-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;30.1: 上下文的价值：逐位置 loss 从第 1 字符的约 2.5 一路降到深上下文的约 1.9（远低于 3.30 的均匀基线），条件化就是上下文学习在本书语言里的原始形态。
+</figcaption>
 </figure>
 </div>
 </div>

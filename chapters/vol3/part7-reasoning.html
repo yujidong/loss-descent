@@ -1199,7 +1199,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="33.4">
 <h2 data-number="33.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">33.4</span> 从零实现</h2>
 <p>老演员：反转翻译（输入数字序列、输出其倒序）+ 注意力 seq2seq。这次只训 5 个 epoch，留一个”有缺陷的好学生”：</p>
-<div id="70deb3a9" class="cell" data-execution_count="1">
+<div id="2ff2e97c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1235,7 +1235,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：测试时计算。多数投票。</strong> 同一输入温度采样 k 次，取众数（self-consistency 的最小版）：</p>
-<div id="dee331b9" class="cell" data-execution_count="2">
+<div id="cell-fig-v3-reasoning-1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vote_acc(m, pairs, k, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, (i, t) <span class="kw">in</span> <span class="bu">enumerate</span>(pairs):</span>
@@ -1263,16 +1263,21 @@ k= 7: 0.379
 k=15: 0.379</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part7-reasoning_files/figure-html/cell-3-output-2.png" width="456" height="361" class="figure-img"></p>
+<div id="fig-v3-reasoning-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v3-reasoning-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part7-reasoning_files/figure-html/fig-v3-reasoning-1-output-2.png" width="456" height="361" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v3-reasoning-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;33.1: 测试时计算：多数投票把准确率从 k=1 的 0.31 提到 k=7 的 0.38（k=15 持平）——投票用算力换方差，把采样噪声平均掉，却救不了概率质量里的系统性短板。
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：0.31 → 0.38（k=7；到 k=15 持平）。先注意一个反直觉的细节：k=1 的单次采样（0.31）比贪心（0.37）还差——温度采样本身是有代价的。投票做的事是把采样噪声平均掉，勉强爬回贪心之上：几个点的净赚，不花一个新标签、不动一个权重。涨幅有限的原因值得一课：投票修复的是采样方差（正确答案在分布里但单次错过）；当某类输入的 <span class="math inline">\(P(\text{正确})\)</span> 本身很低（系统性短板），再多票也投不出来。测试时计算的边界就是概率质量的边界。</p>
 <p><strong>实验二：STaR 式自举。可验证奖励当老师。</strong> 采样→判卷（输出等于反转即”对”）→只学好答案→三轮：</p>
-<div id="ff72377b" class="cell" data-execution_count="3">
+<div id="cell-fig-v3-reasoning-2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> star_round(m, round_id, samples_per<span class="op">=</span><span class="dv">10</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">100</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    correct <span class="op">=</span> []</span>
@@ -1309,9 +1314,14 @@ k=15: 0.379</code></pre>
   round 2: 自采正确 363/400 → 贪心 acc 0.716</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part7-reasoning_files/figure-html/cell-4-output-2.png" width="449" height="361" class="figure-img"></p>
+<div id="fig-v3-reasoning-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v3-reasoning-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part7-reasoning_files/figure-html/fig-v3-reasoning-2-output-2.png" width="449" height="361" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v3-reasoning-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;33.2: STaR 自举曲线：仅凭可验证奖励筛选自采样数据、零新标签，贪心准确率三轮内从 0.37 升至 0.74（0.37→0.64→0.74→0.72），第三轮的小幅回摆显出自举的饱和与过拟合。
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1328,7 +1338,7 @@ k=15: 0.379</code></pre>
 <section id="消融实验" class="level2" data-number="33.5">
 <h2 data-number="33.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">33.5</span> 消融实验</h2>
 <p><strong>温度的辩证法</strong>：STaR 靠采样找成功。温度太低采不出新解、太高全是垃圾。扫 temp ∈ {0.5, 0.9, 1.5} 各跑一轮自举：</p>
-<div id="d293baf0" class="cell" data-execution_count="4">
+<div id="be5ef3bf" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> temp <span class="kw">in</span> (<span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">1.5</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    m2 <span class="op">=</span> AttentionSeq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    rng4 <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>

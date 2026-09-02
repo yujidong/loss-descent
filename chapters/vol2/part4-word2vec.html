@@ -1159,7 +1159,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="20.4">
 <h2 data-number="20.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">20.4</span> 从零实现</h2>
 <p>语料用 <code>make_analogy_corpus</code>：四个成体-幼崽词对（cat/kitten、dog/puppy、bird/chick、cow/calf）在共享模板里出现。<strong>模板保证”成体→幼崽”的分布差恒定</strong>（停一停第 1 问的实现）：</p>
-<div id="4d87577b" class="cell" data-execution_count="1">
+<div id="f70e20d4" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_analogy_corpus</span>
@@ -1177,7 +1177,7 @@ loss: 1.758 -&gt; 1.631</code></pre>
 </div>
 </div>
 <p><strong>实验一：类比。</strong> 向量算术最近邻：</p>
-<div id="b9aa96f4" class="cell" data-execution_count="2">
+<div id="c78ae56c" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, b, c, gold <span class="kw">in</span> [</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"cat"</span>, <span class="st">"kitten"</span>, <span class="st">"dog"</span>, <span class="st">"puppy"</span>),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"dog"</span>, <span class="st">"puppy"</span>, <span class="st">"bird"</span>, <span class="st">"chick"</span>),</span>
@@ -1192,7 +1192,7 @@ loss: 1.758 -&gt; 1.631</code></pre>
 </div>
 </div>
 <p>三条全中（余弦 0.97+）。<strong>实验二：相似结构。</strong></p>
-<div id="3d1c5d00" class="cell" data-execution_count="3">
+<div id="61d6a921" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"kitten 的近邻:"</span>, [w <span class="cf">for</span> w, _ <span class="kw">in</span> sg.most_similar(<span class="st">"kitten"</span>, vocab)])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"cat   的近邻:"</span>, [w <span class="cf">for</span> w, _ <span class="kw">in</span> sg.most_similar(<span class="st">"cat"</span>, vocab)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1202,7 +1202,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 </div>
 <p>幼崽们互为近邻、成体们互为近邻。<strong>两个语义簇在空间里自然分开</strong>，没有任何监督信号要求过这一点。把两簇画出来（取前两维投影）：</p>
 <p><em>缓一缓。</em>把本节的三步复述一遍：设计语料（模板保证”成体→幼崽”的分布差恒定，正是「停一停」第 1 问的实现）；训练（负采样 skip-gram，loss 从 1.76 收窄到 1.63）；验证（三条类比全中、余弦 0.97 以上，幼崽簇与成体簇在没有任何监督的情况下自动分开）。</p>
-<div id="a8dbf0a3" class="cell" data-execution_count="4">
+<div id="cell-fig-v2-word2vec-1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>adults, babies <span class="op">=</span> [<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"bird"</span>, <span class="st">"cow"</span>], [<span class="st">"kitten"</span>, <span class="st">"puppy"</span>, <span class="st">"chick"</span>, <span class="st">"calf"</span>]</span>
@@ -1219,9 +1219,14 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Adults (red) vs babies (blue): two semantic clusters"</span>)</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part4-word2vec_files/figure-html/cell-5-output-1.png" width="493" height="394" class="figure-img"></p>
+<div id="fig-v2-word2vec-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v2-word2vec-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part4-word2vec_files/figure-html/fig-v2-word2vec-1-output-1.png" width="493" height="394" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v2-word2vec-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.1: 无监督长出的语义几何：前两维投影中成体词（红）与幼崽词（蓝）各自成簇、自动分开——共现统计被压进了几何，没有任何监督信号要求过这一点
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1230,7 +1235,7 @@ cat   的近邻: ['cow', 'dog', 'bird', 'field']</code></pre>
 <section id="消融实验" class="level2" data-number="20.5">
 <h2 data-number="20.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">20.5</span> 消融实验</h2>
 <p><strong>类比的水分检测</strong>：换一组没有平行结构的词做算术。例如 <code>garden - cat + dog</code>（两个名词的普通位移）：</p>
-<div id="a65210f7" class="cell" data-execution_count="5">
+<div id="06752739" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a, b, c <span class="kw">in</span> [(<span class="st">"cat"</span>, <span class="st">"garden"</span>, <span class="st">"dog"</span>), (<span class="st">"runs"</span>, <span class="st">"garden"</span>, <span class="st">"sleeps"</span>), (<span class="st">"warm"</span>, <span class="st">"day"</span>, <span class="st">"sunny"</span>)]:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    w, s <span class="op">=</span> sg.analogy(a, b, c, vocab)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>b<span class="sc">:&gt;7}</span><span class="ss"> - </span><span class="sc">{</span>a<span class="sc">:&lt;7}</span><span class="ss"> + </span><span class="sc">{</span>c<span class="sc">:&lt;7}</span><span class="ss"> = </span><span class="sc">{</span>w<span class="sc">:&lt;7}</span><span class="ss"> (cos=</span><span class="sc">{</span>s<span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

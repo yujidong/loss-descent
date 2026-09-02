@@ -1200,7 +1200,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="25.4">
 <h2 data-number="25.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">25.4</span> 从零实现</h2>
 <p><code>MiniGPT</code> 的 <code>mode</code> 参数切换两条路线（<code>"causal"</code> / <code>"mlm"</code>）。<strong>同一个身体，不同的目标</strong>。MLM 版词表多一个 <code>[MASK]</code> 记号：</p>
-<div id="9e676007" class="cell" data-execution_count="1">
+<div id="70a5542d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus</span>
@@ -1233,7 +1233,7 @@ window.Quarto = {
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> history</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>对照实验：同预算、同超参，只差目标。</strong>（匹配的稳定配置：B=16、lr=0.03——MLM 只在 15% 的位置产生脉冲更大的梯度，学习率必须再压一档；lr=0.1 时训到后期会回升发散，练习 3 亲手看）</p>
-<div id="fff63949" class="cell" data-execution_count="2">
+<div id="aa8f8028" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gpt_model <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>, mode<span class="op">=</span><span class="st">"causal"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>bert_model <span class="op">=</span> MiniGPT(V <span class="op">+</span> <span class="dv">1</span>, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>, mode<span class="op">=</span><span class="st">"mlm"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1248,7 +1248,7 @@ mlm（掩码重建，15% 位置）: 2.779</code></pre>
 </div>
 <p>典型读数：<strong>causal 2.48 对 mlm 2.78</strong>。两者都比 5.2 的最优（1.79，B=8/lr=0.15 的激进配置）差，因为本实验为两版统一压低了学习率。两个 loss 不可直接比大小：causal 的 2.48 是”每个位置只看左边”的难度，MLM 的 2.78 是”15% 的位置看两边”的难度。目标的定义不同，尺子就不同。真正可对比的是三件事，逐一验货：</p>
 <p><strong>验货一：信息流。</strong> 两幅注意力图：</p>
-<div id="f3946753" class="cell" data-execution_count="3">
+<div id="cell-fig-v2-gpt-vs-bert-1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>window <span class="op">=</span> np.array(arr[<span class="dv">100</span>:<span class="dv">132</span>])[<span class="va">None</span>, :]</span>
@@ -1269,16 +1269,21 @@ mlm（掩码重建，15% 位置）: 2.779</code></pre>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"query position"</span>)</span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part5-gpt-vs-bert_files/figure-html/cell-4-output-1.png" width="725" height="376" class="figure-img"></p>
+<div id="fig-v2-gpt-vs-bert-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v2-gpt-vs-bert-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part5-gpt-vs-bert_files/figure-html/fig-v2-gpt-vs-bert-1-output-1.png" width="725" height="376" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v2-gpt-vs-bert-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;25.1: 同一个身体、两种信息流：GPT 路线的注意力上三角全黑（因果掩码），BERT 路线全域有值（双向）——生成器不许偷看、理解器两边都看，掩码的去留写在图上
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>左图上半全黑（未来被掩码），右图全域有值。<strong>信息流的差异就写在图上</strong>，这也是”生成器必须诚实（不许偷看）而理解器可以作弊（两边都看）“的几何直译。</p>
 <p><strong>验货二：能力产出。</strong> 因果模型能采样生成（5.2 已演）；MLM 模型填空：</p>
-<div id="05134e31" class="cell" data-execution_count="4">
+<div id="6cf598f6" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fill_blank(model, text, pos, n<span class="op">=</span><span class="dv">3</span>, seed<span class="op">=</span><span class="dv">5</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> text]</span>
@@ -1302,7 +1307,7 @@ mlm（掩码重建，15% 位置）: 2.779</code></pre>
 <section id="消融实验" class="level2" data-number="25.5">
 <h2 data-number="25.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">25.5</span> 消融实验</h2>
 <p><strong>掩码比例扫描</strong>是 MLM 路线的经典调参：15% 是原论文的甜点。太低（5%）信号更稀；太高（40%）上下文残缺、任务退化成猜谜：</p>
-<div id="36769e5d" class="cell" data-execution_count="5">
+<div id="33773005" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> mr <span class="kw">in</span> (<span class="fl">0.05</span>, <span class="fl">0.15</span>, <span class="fl">0.40</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MiniGPT(V <span class="op">+</span> <span class="dv">1</span>, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>, mode<span class="op">=</span><span class="st">"mlm"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>

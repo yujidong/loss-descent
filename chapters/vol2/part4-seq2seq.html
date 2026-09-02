@@ -1158,7 +1158,7 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">21.4</span> 从零实现</h2>
 <p><code>dlbook.rnn.Seq2Seq</code>：编码/解码各一台 LSTM，解码器初态 = 编码器终态（梯度沿 <code>backward</code> 的初始状态接口回传到编码器）。任务：数字序列反转（词表 0=BOS、1=EOS，2–11 为数字）。</p>
-<div id="cfce405f" class="cell" data-execution_count="1">
+<div id="cell-fig-v2-seq2seq-1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1181,14 +1181,19 @@ window.Quarto = {
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    losses.append(total <span class="op">/</span> <span class="bu">len</span>(inputs))</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"reversal loss"</span>: losses}, title<span class="op">=</span><span class="st">"seq2seq learns to reverse"</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part4-seq2seq_files/figure-html/cell-2-output-1.png" width="565" height="374" class="figure-img"></p>
+<div id="fig-v2-seq2seq-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v2-seq2seq-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part4-seq2seq_files/figure-html/fig-v2-seq2seq-1-output-1.png" width="565" height="374" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v2-seq2seq-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.1: seq2seq 学序列反转的训练曲线：25 个 epoch 内 loss 从 2.18 降到 0.001，验证集整句精确匹配约 97%——“向量即意思”在玩具尺度近乎魔法
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="44fcb14b" class="cell" data-execution_count="2">
+<div id="d2fba332" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exact_acc(model, pairs):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ok <span class="op">/</span> <span class="bu">len</span>(pairs)</span>
@@ -1202,7 +1207,7 @@ window.Quarto = {
 </div>
 <p>25 个 epoch、几秒钟：loss 2.18 → 0.001，<strong>整句精确匹配约 97%</strong>。编码器学会了把”哪几个数字、什么顺序”压进 64 维，解码器再逆序释放。玩具尺度上，“向量即意思”近乎魔法。</p>
 <p><strong>主实验：长度外推（固定向量的账单）。</strong> 在训练分布（长度 ≤5）之外逐级测试：</p>
-<div id="f53d0185" class="cell" data-execution_count="3">
+<div id="cell-fig-v2-seq2seq-2" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pairs_of_length(L, n<span class="op">=</span><span class="dv">600</span>, seed<span class="op">=</span><span class="dv">9</span>):</span>
@@ -1234,9 +1239,14 @@ window.Quarto = {
 长度 8（90 条）: 精确匹配 0.022</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part4-seq2seq_files/figure-html/cell-4-output-2.png" width="477" height="361" class="figure-img"></p>
+<div id="fig-v2-seq2seq-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v2-seq2seq-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part4-seq2seq_files/figure-html/fig-v2-seq2seq-2-output-2.png" width="477" height="361" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v2-seq2seq-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21.2: 长度外推的断崖：训练只见过长度 ≤5，边界内精确匹配 0.92 以上，长度 6 掉到 0.51、长度 8 接近 0——固定向量瓶颈的账单到期
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1247,7 +1257,7 @@ window.Quarto = {
 <section id="消融实验" class="level2" data-number="21.5">
 <h2 data-number="21.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">21.5</span> 消融实验</h2>
 <p><strong>倒序输入 trick 复刻。</strong> Sutskever 的补丁：把编码器输入倒过来喂（<code>inputs[i][::-1]</code>）。在翻译里，这使”最先要输出的词”离编码器终态最近。那么对反转任务，这个补丁该起什么作用？先想清楚再运行（提示：反转任务最先要输出的数字，本来就在输入的末尾）。复刻并与正序对照，看两者在长度外推上的差异：</p>
-<div id="6fb8be5d" class="cell" data-execution_count="4">
+<div id="8b37ddf0" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_rev <span class="op">=</span> Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>

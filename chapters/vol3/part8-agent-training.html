@@ -1162,7 +1162,7 @@ window.Quarto = {
 </section>
 <section id="从零实现" class="level2" data-number="35.4">
 <h2 data-number="35.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">35.4</span> 从零实现</h2>
-<div id="7fc91917" class="cell" data-execution_count="1">
+<div id="8cc20542" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1196,7 +1196,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验一：重试闭环（系统层）。</strong> 提议（温度采样）→ 验证（反转回去等于输入即对）→ 不对就再采：</p>
-<div id="ba49e0bc" class="cell" data-execution_count="2">
+<div id="cell-fig-v3-agent-training-1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agent_success(m, pairs, max_tries, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
@@ -1226,16 +1226,21 @@ window.Quarto = {
 重试预算 8: 成功率 0.558</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="part8-agent-training_files/figure-html/cell-3-output-2.png" width="449" height="361" class="figure-img"></p>
+<div id="fig-v3-agent-training-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-v3-agent-training-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="part8-agent-training_files/figure-html/fig-v3-agent-training-1-output-2.png" width="449" height="361" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-v3-agent-training-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;35.1: 重试闭环：任务成功率随重试预算从单次的 0.26 升到 8 次的 0.56（0.26→0.36→0.41→0.56），提议-验证-重试循环用推理算力换方差，天花板是分布的概率质量。
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>典型读数：<strong>0.26 → 0.36 → 0.41 → 0.56</strong>。单调上升，但边际递减明显。注意上限远不是 1.0：几乎一半的题目在分布里的概率质量太小，8 次搜索也够不着（循环的天花板 = 分布的概率质量，7.4 结论的 agent 版）。（与 7.4 的投票曲线同源不同测：那条曲线在同一管线的 95 对测试集上量出 0.31→0.38，本章的测试集每档长度只取 100 条中的满长者、共 86 对——起点读数的微小差异（0.37 对 0.33）全部来自测试集构成。）</p>
 <p><strong>实验二：轨迹回灌（模型层）。</strong> 收集循环中的成功轨迹，回灌微调，重测单次：</p>
-<div id="ac72da76" class="cell" data-execution_count="3">
+<div id="2bdf014d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collect_and_distill(m, round_id, samples_per<span class="op">=</span><span class="dv">6</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">500</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    succ <span class="op">=</span> []</span>
