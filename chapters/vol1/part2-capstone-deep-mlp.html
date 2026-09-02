@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -715,6 +672,7 @@ main table {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -808,7 +766,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -820,7 +778,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -937,7 +895,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -954,13 +912,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1087,10 +1045,9 @@ main table {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">12.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">12.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">12.7</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">12.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">12.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">12.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part2-capstone-deep-mlp.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part2-capstone-deep-mlp.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1115,7 +1072,7 @@ main table {
 </header>
 
 
-<p>Part 2 走到收束。五章之前，“深了训不动”还是玄学；现在我们手里有诊断书（梯度剖面）、有初始化理论（扇入缩放）、有工具箱（relu、BN、动量）。本章做三件事：把散落的零件<strong>组装成一份配方</strong>并写进 <code>dlbook.train</code>；用一场拆解实验验证每个零件的贡献；然后诚实地面对配方的边界。它治好了”训不动”，却在下一个路口撞上”参数不经济”的新墙。这是卷一上半场的毕业考。</p>
+<p>Part 2 走到收束。五章之前，“深了训不动”还是玄学；现在我们手里有诊断书（梯度剖面）、有初始化理论（扇入缩放 <span class="citation" data-cites="he2015resnet">(<a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)</span>）、有工具箱（relu、BN <span class="citation" data-cites="ioffe2015">(<a href="#ref-ioffe2015" role="doc-biblioref">Ioffe and Szegedy 2015</a>)</span>、动量）。本章做三件事：把散落的零件<strong>组装成一份配方</strong>并写进 <code>dlbook.train</code>；用一场拆解实验验证每个零件的贡献；然后诚实地面对配方的边界。它治好了”训不动”，却在下一个路口撞上”参数不经济”的新墙。这是卷一上半场的毕业考。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1148,11 +1105,11 @@ main table {
 <section id="历史中的尝试包括弯路" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">12.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>配方的形成史</strong>：relu（2011）→ dropout（2012）→ Adam（2014，自适应步长，配方最后一块常用件）→ BN（2015）。每一件出现后都经历了”用法混乱期”（放哪层？什么顺序？和谁冲突？），最终由大规模实践淬炼出共识用法。弯路教训：零件之间存在交互。例如 dropout 与 BN 同用曾长期”打架”（方差尺度互相干扰），后来实践结论是慎同用。单一工具的论文不会告诉你这些，配方的知识活在工程实践里。</p>
-<p><strong>框架的兴起</strong>：Caffe（2013）把”模型 + 配方”打包成配置文件；PyTorch（2016）稍后以”代码即模型”胜出。框架史的意义：它决定了一个时代研究者的默认操作。今天你 <code>nn.Linear</code> 出来的权重默认就是缩放初始化，<code>model.eval()</code> 就是训练态切换。本书的 <code>MLPNumpy</code> 与 <code>Trainer</code> 刻意重演了这条凝固路径：零件（1.6–2.3）先于总成（本章）。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><strong>框架的兴起</strong>：Caffe（2013）把”模型 + 配方”打包成配置文件；PyTorch（2016）稍后以”代码即模型”胜出。框架史的意义：它决定了一个时代研究者的默认操作。今天你 <code>nn.Linear</code> 出来的权重默认就是缩放初始化，<code>model.eval()</code> 就是训练态切换。本书的 <code>MLPNumpy</code> 与 <code>Trainer</code> 刻意重演了这条凝固路径：零件（1.4–2.3）先于总成（本章）。</p>
+<p><em>缓一缓。</em>这一节回顾了配方如何成型：relu、dropout、Adam、BN 各自从「用法混乱期」走进共识用法，零件之间的冲突（dropout 与 BN 同用的方差干扰）只有大规模实践能暴露。框架的兴起把这套知识固化成默认值——你今天写下的 <code>model.fit()</code>，里面藏着 2.1–2.3 的全部血泪。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>下面是本章主角实验的设定：八层 × 32 宽的网络，螺旋数据，300 epoch。完整配方 = <strong>relu + BN + 动量 + 缩放初始化</strong>。现在要逐一拿走零件，只留其余：</p>
-<p>请<strong>先预测</strong>四种残缺配方的成绩排序（完整配方约 0.98）：</p>
+<p>请<strong>先预测</strong>四种残缺配方的成绩排序（完整配方约 0.93）：</p>
 <ul>
 <li><strong>去 BN</strong>（relu + 动量 + 好初始化）</li>
 <li>换回 tanh（tanh + BN + 动量）</li>
@@ -1164,15 +1121,15 @@ main table {
 </section>
 <section id="核心思想" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">12.3</span> 核心思想</h2>
-<p><strong>配方 = 零件的组合，且组合存在交互</strong>。本章实验会给出一个漂亮的反例级发现：朴素初始化（2.1 证明过它致命）在 BN 在场时几乎无害。因为 BN 把每层分布钉住了，初始化的尺度被强制归一。这”零件的边际贡献依赖其余零件”。研究史上这类交互是渐进发现的，这也是为什么配方知识只能靠大规模实验沉淀。</p>
-<p><strong>把配方写成代码 = 研究知识的商品化</strong>。<code>Trainer</code> 十几行，但它封装了 Part 2 的全部结论：小批随机性（1986 的随机更新）、动量（1964）、评估态切换（2.3）、监控曲线（2.1 的彩票探测）。此后各章我们不再手写训练循环。因为它已经不再含谜题。迷题转移到新 frontier，是每个工具成熟后的固定剧情。</p>
+<p><strong>配方 = 零件的组合，且组合存在交互</strong>。本章实验会给出一个反例级发现：朴素初始化（2.1 证明过它致命）在 BN 在场时几乎无害。因为 BN 把每层分布钉住了，初始化的尺度被强制归一。这就是”零件的边际贡献依赖其余零件”。研究史上这类交互是渐进发现的，这也是为什么配方知识只能靠大规模实验沉淀。</p>
+<p><strong>把配方写成代码 = 研究知识的商品化</strong>。<code>Trainer</code> 十几行，但它封装了 Part 2 的全部结论：小批随机性（1986 的随机更新）、动量（1964）、评估态切换（2.3）、监控曲线（2.1 的彩票探测）。此后各章我们不再手写训练循环。因为它已经不再含谜题。谜题转移到新 frontier，是每个工具成熟后的固定剧情。</p>
 <p><strong>配方的边界预告</strong>：这份配方训得好”固定长度向量输入”的任务。图像（平移不变的结构）、序列（变长与长程依赖）各有自己的归纳偏置需求。MLP 用参数硬扛这些结构，参数量爆炸而泛化不增。下一部分的主角（卷积）正是对”结构先验”的回应。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>这一节的三句话：配方是零件的组合且组合存在交互——朴素初始化在 BN 在场时几乎无害；把配方写成 Trainer 是研究知识的商品化，此后我们不再手写训练循环；配方的边界在「固定长度向量输入」，图像与序列各有自己的归纳偏置需求，那是下一部分的正题。</p>
 </section>
 <section id="从零实现" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">12.4</span> 从零实现</h2>
 <p>先认识 <code>dlbook.train.Trainer</code>。本章正式引入的标准训练器：</p>
-<div id="3a14e2c4" class="cell" data-execution_count="1">
+<div id="a27210f8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1198,15 +1155,15 @@ main table {
 </div>
 </div>
 </div>
-<div id="1b429c52" class="cell" data-execution_count="2">
+<div id="5384d5da" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"完整配方: train_acc=</span><span class="sc">{</span>accuracy(full, Xs, ys)<span class="sc">:.3f}</span><span class="ss">, val_acc=</span><span class="sc">{</span>accuracy(full, Xv, yv)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>完整配方: train_acc=0.953, val_acc=0.932</code></pre>
 </div>
 </div>
-<p>八个隐藏层、约两万六千个参数，300 epoch、笔记本上几秒钟。train 与 val 曲线贴合下降，无发散无卡死。<strong>1986 年的人看到这一幕会以为魔法</strong>；你现在知道每一行咒语的出处。</p>
+<p>八个隐藏层、约七千五百个参数，300 epoch、笔记本上几秒钟。train 与 val 曲线贴合下降，无发散无卡死。<strong>1986 年的人看到这一幕会以为魔法</strong>；你现在知道每一行咒语的出处。</p>
 <p><strong>拆解实验</strong>：逐一拿走零件。</p>
-<div id="e2d3aefd" class="cell" data-execution_count="3">
+<div id="346fc165" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>configs <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"完整配方"</span>: <span class="bu">dict</span>(activation<span class="op">=</span><span class="st">"relu"</span>, batchnorm<span class="op">=</span><span class="va">True</span>, init<span class="op">=</span><span class="st">"scaled"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"去 BN"</span>: <span class="bu">dict</span>(activation<span class="op">=</span><span class="st">"relu"</span>, batchnorm<span class="op">=</span><span class="va">False</span>, init<span class="op">=</span><span class="st">"scaled"</span>),</span>
@@ -1232,11 +1189,6 @@ main table {
 </div>
 <p>典型读数（对照你的预测排序）：</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>配置</th>
@@ -1247,7 +1199,7 @@ main table {
 <tbody>
 <tr class="odd">
 <td>完整配方</td>
-<td>≈0.98</td>
+<td>≈0.93</td>
 <td>基准</td>
 </tr>
 <tr class="even">
@@ -1257,28 +1209,28 @@ main table {
 </tr>
 <tr class="odd">
 <td>换回 tanh</td>
-<td>≈0.80</td>
+<td>≈0.64</td>
 <td>梯度剖面的斜坡拖慢但不致死</td>
 </tr>
 <tr class="even">
 <td>去动量</td>
-<td>≈0.97（loss 0.13 vs 0.09）</td>
-<td>慢一点而已。300 epoch 内已追平大半</td>
+<td>≈0.94（loss 0.20 vs 0.20）</td>
+<td>300 epoch 内已基本追平</td>
 </tr>
 <tr class="odd">
 <td>朴素初始化</td>
-<td>≈0.98</td>
+<td>≈0.94</td>
 <td>BN 把坏初始化整个救了</td>
 </tr>
 </tbody>
 </table>
-<p>两处值得咀嚼：<strong>BN 是唯一”拿走即死”的零件</strong>（在 8 层深度上），而它同时在暗中承包了初始化的作用。零件的账不能只看单个论文的宣称，要在组合里算。动量在 300 epoch 的预算里看似可有可无，但是，把 epoch 砍到 100 再跑（练习 3），差距立现。动量买卖的是时间，预算充足时它显得多余，预算紧张时它是生死。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p>两处值得咀嚼：<strong>BN 是唯一”拿走即死”的零件</strong>（在 8 层深度上），而它同时在暗中承包了初始化的作用。零件的账不能只看单个论文的宣称，要在组合里算。动量在 300 epoch 的预算里几乎完全追平（loss 0.1987 对 0.1994），但是，把 epoch 砍到 100 再跑（练习 3），差距立现。动量买卖的是时间，预算充足时它显得多余，预算紧张时它是生死。</p>
+<p><em>缓一缓。</em>这一节先跑通完整配方（0.93），再逐一拆零件：去 BN 直接躺平在 0.50，是唯一拿走即死的零件；换回 tanh 掉到 0.64；去动量与朴素初始化几乎不掉——BN 顺便承包了初始化的活，动量买的只是时间。零件的边际贡献依赖其余零件，这是本章最重要的一课。</p>
 </section>
 <section id="消融实验" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">12.5</span> 消融实验</h2>
 <p><strong>深度的收益</strong>。配方既然能让深度可训，那深度本身值多少？同配方下扫深度：</p>
-<div id="edb44452" class="cell" data-execution_count="4">
+<div id="bc73c9ce" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1290,8 +1242,8 @@ depth=4: loss=0.2216, val_acc=0.938
 depth=8: loss=0.1994, val_acc=0.932</code></pre>
 </div>
 </div>
-<p>在这个玩具任务上，2 层之后深度收益趋平。<strong>深度不是免费午餐，它的收益依赖任务的结构复杂度</strong>（螺旋 1.75 圈需要的复合变换有限）。真正的深度红利要等到有层级结构的任务（图像的边缘→纹理→部件，3.3 的特征层级）才兑现。那是下一部分的正题。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p>在这个玩具任务上，4 层之后深度收益趋平（1 层 0.85、2 层 0.82、4 层 0.94、8 层 0.93）。<strong>深度不是免费午餐，它的收益依赖任务的结构复杂度</strong>（螺旋 1.75 圈需要的复合变换有限）。真正的深度红利要等到有层级结构的任务（图像的边缘→纹理→部件，3.3 的特征层级）才兑现。那是下一部分的正题。</p>
+<p><em>缓一缓。</em>这一节扫了深度：1 层与 2 层在 0.82–0.85 打转，4 层涨到 0.94，8 层不再变化。深度红利要等有层级结构的任务才兑现——那是卷积时代的正题。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="12.6">
 <h2 data-number="12.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">12.6</span> 本章 Loss 账本</h2>
@@ -1317,7 +1269,7 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
-<td>一份可传授、可固化、可拆解归因的训练流程；八层网络稳定到 0.98</td>
+<td>一份可传授、可固化、可拆解归因的训练流程；八层网络稳定到 0.93</td>
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
@@ -1329,12 +1281,12 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 <ul>
 <li>“配方固化为框架默认值” → PyTorch 的 <code>nn.init</code> 与 <code>model.eval()</code>、 Transformers 库的 <code>TrainingArguments</code>。你今天每写一行看似平凡的默认配置，背后都是 2.1–2.3 的一章历史；</li>
 <li>拆解归因法 → 今天大模型训练的 ablation 报告（LLaMA 技术报告的每个决定都附消融）。<strong>配方研究的文体从本章这种小表格长成了几百页的技术报告</strong>；</li>
-<li>“零件交互”现象 → 训练稳定性研究（loss spike 归因）与 8.x 的上下文工程。组合系统的归因永远是难题；</li>
-<li>深度收益依赖任务结构 → 深度为什么必要的现代理论（组合表达效率）；6.x 的规模定律把”深度/宽度/数据”放进同一本账。</li>
+<li>“零件交互”现象 → 训练稳定性研究（loss spike 归因）。组合系统的归因永远是难题；</li>
+<li>深度收益依赖任务结构 → 深度为什么必要的现代理论（组合表达效率）；6.1 的规模定律把”深度/宽度/数据”放进同一本账。</li>
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
-<p><strong>Kingma, D. &amp; Ba, J. (2014).</strong> <em>Adam: A method for stochastic optimization.</em> ICLR.（本章论文时光机的选择是配方中我们唯一没实现的零件）</p>
+<p><strong>Kingma, D. &amp; Ba, J. (2014) <span class="citation" data-cites="kingma2014">(<a href="#ref-kingma2014" role="doc-biblioref">Kingma and Ba 2014</a>)</span>.</strong> <em>Adam: A method for stochastic optimization.</em> ICLR.（本章论文时光机的选择是配方中我们唯一没实现的零件）</p>
 <ul>
 <li><strong>读什么</strong>：算法 1（一页）。自适应矩估计，把学习率的艺术再收敛一档；</li>
 <li>跳过什么：收敛性证明的细节；</li>
@@ -1350,19 +1302,10 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 <li>学到的特征是什么？能否迁移？（→ 3.3，预训练-微调范式诞生）；</li>
 <li>这套配方在序列上表现如何？（→ Part 4，新的战场、新的病灶）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>一句话复述：这一章把散落的零件组装成可复现的配方，用拆解实验确认 BN 是 8 层深度上的生死件，并预告了配方的边界。图像、序列与迁移，分别指向 Part 3 与 Part 4。</p>
 </section>
-<section id="参考文献" class="level2" data-number="12.8">
-<h2 data-number="12.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">12.8</span> 参考文献</h2>
-<ol type="1">
-<li>Kingma, Diederik P. and Ba, Jimmy (2014). <em>Adam: A Method for Stochastic Optimization</em>. <em>arXiv preprint arXiv:1412.6980</em>. <a href="https://scholar.google.com/scholar?q=Kingma%202014%20%5B@kingma2014%5D%20Adam%3A%20A%20Method%20for%20Stochastic%20Optimization">↗ 搜索原文</a></li>
-<li>Ioffe, Sergey and Szegedy, Christian (2015). <em>Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</em>. <em>Proceedings of ICML, 448–456</em>. <a href="https://scholar.google.com/scholar?q=Ioffe%202015%20%5B@ioffe2015%5D%20Batch%20Normalization%3A%20Accelerating%20Deep%20Network%20Training">↗ 搜索原文</a></li>
-<li>He et al.&nbsp;(2015). <em>Deep Residual Learning for Image Recognition</em>. <em>arXiv preprint arXiv:1512.03385</em>. <a href="https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition">↗ 搜索原文</a></li>
-<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="12.9">
-<h2 data-number="12.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">12.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">12.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>MLPNumpy.step</code> 实现 Adam（一阶/二阶矩指数滑动平均 + 偏差校正），在八层螺旋上与动量法对照收敛速度。</li>
 <li>预测再运行：把 batch_size 从 64 改成 8，完整配方的训练动态会怎么变（速度？稳定性？最终成绩？）？BN 的批统计在 batch=8 下还可靠吗？</li>
@@ -1384,30 +1327,21 @@ depth=8: loss=0.1994, val_acc=0.932</code></pre>
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：更慢（步数多 8 倍）、BN 的批统计噪声变大（8 个样本估计均值方差很不稳）。曲线抖动加剧，最终成绩略降。BN 对批大小的敏感是它后来的著名槽点，LayerNorm 的崛起一半源于此（变长序列 + 小批场景）。</p>
 <p><strong>练习 3</strong>：预算紧时动量的差距拉开（纯 SGD 在 100 epoch 明显欠收敛），BN 的”生死零件”地位不变。结论：消融结论是预算的函数。脱离预算谈超参优劣是常见的坏实验。</p>
-<p><strong>练习 5 提示</strong>：注意”tanh+BN+动量”(0.80) 远低于”relu+BN+动量”(0.98) 与”tanh+无BN+动量”（2.2 数据，更差）的简单加和模型。非可加性就是交互的证据。写出交互矩阵后，试着用 2.2 的梯度剖面解释 relu×BN 的协同。</p>
+<p><strong>练习 5 提示</strong>：注意”换回 tanh”（0.64）远低于完整配方（0.93），而它与”tanh+无 BN”（2.2 的数据，约 0.65）几乎相同——BN 治的是 relu 深网的漂移病，治不了 tanh 的剖面斜坡；“去 BN”则从 0.93 跌到 0.50。两个方向的非可加性都是交互的证据。写出交互矩阵后，试着用 2.2 的梯度剖面解释 relu×BN 的协同。</p>
 </div>
 </div>
 </div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
 </div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
+<div id="ref-ioffe2015" class="csl-entry" role="listitem">
+Ioffe, Sergey, and Christian Szegedy. 2015. <span>“Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.”</span> <em>Proceedings of ICML</em>, 448–56.
 </div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
+<div id="ref-kingma2014" class="csl-entry" role="listitem">
+Kingma, Diederik P., and Jimmy Ba. 2014. <span>“Adam: A Method for Stochastic Optimization.”</span> <em>arXiv Preprint arXiv:1412.6980</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1831,9 +1765,9 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/vol1/part2-alexnet.html" class="pagination-link" aria-label="AlexNet [@krizhevsky2012] 时刻：历史为什么发生在 2012">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
-                
+      <a href="../../chapters/vol1/part2-alexnet.html" class="pagination-link" aria-label="AlexNet 时刻：历史为什么发生在 2012">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../chapters/vol1/part3-lenet.html" class="pagination-link" aria-label="LeNet：1989 年就有的答案">
@@ -1849,7 +1783,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part2-capstone-deep-mlp.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part2-capstone-deep-mlp.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

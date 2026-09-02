@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,10 +1074,9 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">17.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">17.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">17.7</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">17.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">17.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">17.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol2/part4-ngram.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol2/part4-ngram.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1144,7 +1101,7 @@ window.Quarto = {
 </header>
 
 
-<p>卷二从最古老的问题开始：<strong>预测下一个字符</strong>。这个问题 1948 年就由香农提出。为了测量英语本身的信息量。此后五十年，语言建模的主线是计数：统计语料里哪些片段跟在哪些片段后面。计数法朴素、可解释、没有参数要训练。却定义了本书下半场的全部基本概念：交叉熵、困惑度、平滑、以及”语言模型”这个词本身。本章我们把这套古老 machinery 亲手搭一遍，并当场撞上它的天花板。</p>
+<p>卷二从最古老的问题开始：<strong>预测下一个字符</strong>。香农在 1948 年提出这个问题，本意是测量英语本身的信息量。此后五十年，语言建模的主线是计数：统计语料里哪些片段跟在哪些片段后面。计数法朴素、可解释、没有参数要训练，却定义了本书下半场的全部基本概念：交叉熵、困惑度、平滑、以及”语言模型”这个词本身。本章我们把这套古老的计数机器亲手搭一遍，并当场撞上它的天花板。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1168,7 +1125,7 @@ window.Quarto = {
 </div>
 <section id="本章问题" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">17.1</span> 本章问题</h2>
-<p>形式化”预测下一个字符”：给定历史 <span class="math inline">\(x_1.x_{t-1}\)</span>，求分布 <span class="math inline">\(P(x_t \mid x_1.x_{t-1})\)</span>。计数法的近似是<strong>马尔可夫假设</strong>。历史截断到 <span class="math inline">\(n-1\)</span> 个字符（<span class="math inline">\(n\)</span>-gram 模型）。两个问题：</p>
+<p>形式化”预测下一个字符”：给定历史 <span class="math inline">\(x_1,\ldots,x_{t-1}\)</span>，求分布 <span class="math inline">\(P(x_t \mid x_1,\ldots,x_{t-1})\)</span>。计数法的近似是<strong>马尔可夫假设</strong>。历史截断到 <span class="math inline">\(n-1\)</span> 个字符（<span class="math inline">\(n\)</span>-gram 模型）。两个问题：</p>
 <ol type="1">
 <li>这把近似刀在多小的 <span class="math inline">\(n\)</span> 下能切出多少英语的规律？（<strong>熵曲线</strong>）</li>
 <li>把 <span class="math inline">\(n\)</span> 加大，为什么反而会变差？（维度灾难的现场）</li>
@@ -1180,7 +1137,7 @@ window.Quarto = {
 <p><strong>香农（1948/1951）</strong>：把”预测下一个符号”定义为信息的度量。条件熵 <span class="math inline">\(H(X_t \mid X_{t-1}, \dots)\)</span> 就是”每字符的最小压缩长度”（0.1 章”预测即压缩”的血缘在这里正式接上）。他构造了 n-gram 生成器（手工查表），还设计了人类猜字实验。</p>
 <p><strong>IBM 学派（1970s–1990s）</strong>：Jelinek 与 Mercer 把平滑（smoothing）做成学问。未见的 n-gram 不能赋零概率，“折扣—回退”一套方法 Katz backoff、Kneser-Ney。在小数据上把每一点统计都榨干。这是”数据不够、先验来凑”的精湛手艺，2.1 初始化理论的 NLP 亲戚。</p>
 <p><strong>弯路</strong>：乔姆斯基学派宣称自然语言是递归生成的、马尔可夫近似原理性不足。数学上对，工程上被统计派的准确率碾压（又一堂”对 ≠ 赢”的课）。真正的合成（神经 + 概率）要等 Bengio 2003（4.2 章的接口）。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><em>缓一缓。</em>把这一节的线索收拢一下：马尔可夫 1913 年用同样的思路数普希金，香农在 1948/1951 年把”预测下一个符号”变成信息的度量，IBM 学派用平滑把计数法的每一点统计榨干；乔姆斯基的批评在数学上成立，工程上却输给了准确率。这条线索里已经有了全书要用的全部概念，缺的只是一台能自己学的机器。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>动手前先做三个估算（写在本子上）：</p>
 <ol type="1">
@@ -1195,15 +1152,15 @@ window.Quarto = {
 <h2 data-number="17.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">17.3</span> 核心思想</h2>
 <p><strong>语言模型 = 条件分布的机器，交叉熵 = 它的成绩单</strong>。对任意语言模型 <span class="math inline">\(q\)</span>，其在文本上的交叉熵</p>
 <p><span class="math display">\[H(q) = -\frac{1}{T}\sum_t \log q(x_t \mid x_{&lt;t})\]</span></p>
-<p>有三个身份：它是模型的<strong>平均负对数似然</strong>（训练要降的 loss）；它是每字符的压缩长度下界（算术编码按 <span class="math inline">\(q\)</span> 编码文本恰好用这么多比特）；它的指数是困惑度（perplexity，“模型每一步在多少个候选里犹豫”）。一个数字，三副面孔。从本章起，“降 loss”在语言任务上有了具体名字。</p>
+<p>有三个身份：它是模型的<strong>平均负对数似然</strong>（训练要降的 loss）；它是每字符压缩长度的代理（按 <span class="math inline">\(q\)</span> 做算术编码，<span class="math inline">\(q\)</span> 越接近真实分布，平均码长越逼近下界——真实分布的熵）；它的指数是困惑度（perplexity，“模型每一步在多少个候选里犹豫”）。一个数字，三副面孔。从本章起，“降 loss”在语言任务上有了具体名字。</p>
 <p><strong>n-gram = 计数 + 截断</strong>：<span class="math inline">\(q(x_t \mid \text{前 } n{-}1 \text{ 字符}) = \frac{\text{count}(n\text{-gram})}{\text{count}(\text{上下文})}\)</span>。参数不用学，数出来就行；代价是组合爆炸。上下文种类数是 <span class="math inline">\(|V|^{n-1}\)</span>，文本长度追不上它。</p>
 <p><strong>平滑 = 给未见世界留门</strong>：零概率是语言的死罪（一句话含一个未见 n-gram，整个句子的概率归零）。加 0.5（我们用的拉普拉斯式）是最粗的平滑；Kneser-Ney 是精致的王朝。平滑的本质是先验知识的注入。“没见过 ≠ 不可能”。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。本节立起三根柱子：语言模型输出条件分布，交叉熵给它打分（一个数字、三副面孔），n-gram 用”计数 + 截断”填上第一版参数表。参数不用学，代价明码标价：上下文种类数按 <span class="math inline">\(|V|^{n-1}\)</span> 爆炸，平滑只是给未见世界留一扇门。</p>
 </section>
 <section id="从零实现" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">17.4</span> 从零实现</h2>
 <p>语料是内置的教学小故事（<code>dlbook.data.TINY_STORY</code>，约 2500 字符，刻意重复的句式与小词表）：</p>
-<div id="bd281e92" class="cell" data-execution_count="1">
+<div id="802b5693" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus</span>
@@ -1220,7 +1177,7 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>计数即模型</strong>。完整的 n-gram 语言模型只要几行：</p>
-<div id="ca9ff5e2" class="cell" data-execution_count="2">
+<div id="61bdb224" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ngram_model(n, train):</span>
@@ -1234,7 +1191,7 @@ window.Quarto = {
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (c <span class="op">+</span> alpha) <span class="op">/</span> (denom <span class="op">+</span> alpha <span class="op">*</span> V)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：熵曲线。</strong> 扫 <span class="math inline">\(n\)</span>：</p>
-<div id="1e918cd2" class="cell" data-execution_count="3">
+<div id="ece9b014" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ces, unseen <span class="op">=</span> [], []</span>
@@ -1256,8 +1213,8 @@ window.Quarto = {
 4-gram: 交叉熵 2.119 nat/字符，测试集未见比例 0.30</code></pre>
 </div>
 </div>
-<p>典型读数（对照你的预测）：均匀基线 3.30 → 1-gram <strong>2.83</strong>（字母频率本身就值 0.47 nat）→ 2-gram 2.17 → 3-gram 1.95 → 4-gram 2.12。在 4-gram 反弹。原因就在第二列：未见比例从 2% 涨到 30%，平滑在硬撑一个越来越空洞的统计表。这就是维度灾难的现场：上下文种类数按 <span class="math inline">\(27^3\)</span> 增长，训练文本只有两千字符。数据与上下文长度的赛跑，计数法输在起跑线上。（香农用人类实验测得英语的熵约 1.0–1.5 bit/字符 ≈ 0.7–1.1 nat。我们的 3-gram 离这个下界还有距离，而人类就在下界附近。）</p>
-<div id="9c288c52" class="cell" data-execution_count="4">
+<p>典型读数（对照你的预测）：均匀基线 3.30 → 1-gram <strong>2.83</strong>（字母频率本身就值 0.47 nat）→ 2-gram 2.17 → 3-gram 1.95 → 4-gram 2.12。在 4-gram 反弹。原因就在第二列：未见比例从 2% 涨到 30%，平滑在硬撑一个越来越空洞的统计表。这就是维度灾难的现场：上下文种类数按 <span class="math inline">\(27^3\)</span> 增长，训练文本只有两千字符。数据与上下文长度的赛跑，计数法输在起跑线上。（香农用人类实验测得英语的熵约 1.0–1.5 bit/字符 ≈ 0.7–1.0 nat。我们的 3-gram 离这个下界还有距离，而人类就在下界附近。）</p>
+<div id="52a38d99" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">3.8</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], ces, <span class="st">"o-"</span>, label<span class="op">=</span><span class="st">"cross-entropy"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.axhline(np.log(V), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="st">"uniform baseline"</span>)</span>
@@ -1275,12 +1232,12 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>实验二：从模型里采样。</strong> 语言模型不只是打分器，把 4-gram 的条件分布当骰子摇，就能”生成”文本：</p>
-<div id="00616d38" class="cell" data-execution_count="5">
+<div id="711e9df0" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_ngram(n, counts, ctx, length<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> <span class="bu">list</span>(test_ids[: n <span class="op">-</span> <span class="dv">1</span>])  <span class="co"># 从测试集借个开头</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(length):</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        context <span class="op">=</span> <span class="bu">tuple</span>(out[<span class="op">-</span>(n <span class="op">-</span> <span class="dv">1</span>)]) <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="bu">tuple</span>(out[<span class="dv">1</span> <span class="op">-</span> n :])</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        context <span class="op">=</span> () <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="bu">tuple</span>(out[<span class="dv">1</span> <span class="op">-</span> n :])</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        probs <span class="op">=</span> np.array([smoothed_prob(n, counts, ctx, context, v) <span class="cf">for</span> v <span class="kw">in</span> <span class="bu">range</span>(V)])</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        out.append(<span class="bu">int</span>(rng.choice(V, p<span class="op">=</span>probs <span class="op">/</span> probs.<span class="bu">sum</span>())))</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out)</span>
@@ -1292,13 +1249,13 @@ window.Quarto = {
 </div>
 </div>
 <p>3-gram 的采样像”英语的形状”：单词大致拼得出来、the/sat 之类高频组合成串。但是，句子没有意义。<strong>局部的统计被抓住了，长程的结构没有</strong>。这个”会拼词不会造句”的水平线，就是接下来几章要抬高的一切。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p><em>缓一缓。</em>把这一节的读数排成一列：均匀基线 3.30，1-gram 2.83，3-gram 1.95，4-gram 反弹到 2.12；采样出来的文本能拼词、不成句。反弹的根源在未见比例——它从 2% 涨到 30%，统计表被稀释了。到这里，“数据与上下文长度的赛跑”输掉了第一程。</p>
 </section>
 <section id="消融实验" class="level2" data-number="17.5">
 <h2 data-number="17.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">17.5</span> 消融实验</h2>
-<p><strong>平滑强度的账。</strong> 把拉普拉斯系数 <span class="math inline">\(\alpha\)</span> 从 0.5 调到 0.01 / 5.0，重测 3-gram 与 4-gram 的交叉熵。观察”留门的宽度”如何随 <span class="math inline">\(n\)</span> 变化（上下文越长、越空洞，最优的 <span class="math inline">\(\alpha\)</span> 越大，模型实际上越退化回低阶）。平滑系数是在为截断近似与数据稀缺同时买单。这份账单在 6.x 时代会以”数据配比”的新名字再来一次。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
-<div id="64484879" class="cell" data-execution_count="6">
+<p><strong>平滑强度的账。</strong> 把拉普拉斯系数 <span class="math inline">\(\alpha\)</span> 从 0.5 调到 0.01 / 5.0，重测 3-gram 与 4-gram 的交叉熵。观察”留门的宽度”如何随 <span class="math inline">\(n\)</span> 变化（上下文越长、越空洞，最优的 <span class="math inline">\(\alpha\)</span> 越大，模型实际上越退化回低阶）。平滑系数是在为截断近似与数据稀缺同时买单。这份账单在 6.2 时代会以”数据配比”的新名字再来一次。</p>
+<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。消融只动一个旋钮：平滑系数 <span class="math inline">\(\alpha\)</span>。要观察的是”留门的宽度”如何随上下文长度变化——上下文越长、计数表越空洞，最优的 <span class="math inline">\(\alpha\)</span> 越大，模型实际上越退回低阶。下面的代码把 0.01 / 0.5 / 5.0 三档各跑一遍，可以对着这句话看数字。</p>
+<div id="648764d5" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> alpha <span class="kw">in</span> (<span class="fl">0.01</span>, <span class="fl">0.5</span>, <span class="fl">5.0</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">3</span>, <span class="dv">4</span>):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        counts, ctx <span class="op">=</span> ngram_model(n, train_ids)</span>
@@ -1353,7 +1310,7 @@ alpha=5.0, 4-gram: CE = 2.779</code></pre>
 <div class="callout-echo" title="回声">
 <ul>
 <li>交叉熵/困惑度 → 今天一切 LLM 评测的标准语言（“GPT-x 在某某基准上困惑度多少”）；<strong>训练大模型降的那个 loss，就是本章这条曲线的延伸</strong>；</li>
-<li>平滑 → 正则化、标签平滑（7.x 训练技巧）、以及 RLHF 里防止概率塌缩的熵奖赏。“给未见世界留门”是永恒工程；</li>
+<li>平滑 → 正则化、标签平滑一类训练技巧、以及 RLHF 里防止概率塌缩的熵奖赏。“给未见世界留门”是永恒工程；</li>
 <li>Jelinek 名言 → 1.2 范式之争的 NLP 续集：同一仗（规则 vs 统计）在 2012 视觉、2018 NLP 反复重打；</li>
 <li>“人类即语言模型”（香农猜字实验）→ RLHF 里”人类偏好即目标”（7.3）。用人类当测量仪器的两个时代。</li>
 </ul>
@@ -1373,18 +1330,10 @@ alpha=5.0, 4-gram: CE = 2.779</code></pre>
 <li>截断历史的刀口能移动吗。用<strong>函数逼近</strong>代替计数来表示 <span class="math inline">\(P(x_t \mid \text{历史})\)</span>？（Bengio 2003 的答案：嵌入 + MLP；我们跳过它直接看它的循环版本 → 下一章）；</li>
 <li>计数法的参数随词表爆炸。参数共享（1.3 的老朋友）能否救语言模型？（同一问题的两种历史答案：循环连接与卷积，3.4 的伏笔回收）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>两个遗留问题各指一条出路：把”数出来的分布”换成”函数算出来的分布”（Bengio 2003 的嵌入 + MLP，下一章看它的循环亲戚）；把”参数随 <span class="math inline">\(|V|^n\)</span> 爆炸”换成参数共享（1.3 的老朋友，循环与卷积两种答案）。计数法的历史使命到此完成：概念全部留下，机器光荣退休。</p>
 </section>
-<section id="参考文献" class="level2" data-number="17.8">
-<h2 data-number="17.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">17.8</span> 参考文献</h2>
-<ol type="1">
-<li>Shannon, Claude E. (1951). <em>Prediction and Entropy of Printed English</em>. <em>Bell System Technical Journal, 30, 50–64</em>. <a href="https://scholar.google.com/scholar?q=Shannon%201951%20%5B@shannon1951%5D%20Prediction%20and%20Entropy%20of%20Printed%20English">↗ 搜索原文</a></li>
-<li>Shannon, Claude E. (1948). <em>A Mathematical Theory of Communication</em>. <em>Bell System Technical Journal, 27, 379–423</em>. <a href="https://doi.org/10.1002/j.1538-7305.1948%20%5B@shannon1948%5D.tb01338.x">doi:10.1002/j.1538-7305.1948.tb01338.x</a></li>
-<li>Jelinek, Frederick (1976). <em>Continuous Speech Recognition by Statistical Methods</em>. <em>Proceedings of the IEEE, 64, 532–557</em>. <a href="https://scholar.google.com/scholar?q=Jelinek%201976%20Continuous%20Speech%20Recognition%20by%20Statistical%20Methods">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="17.9">
-<h2 data-number="17.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">17.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">17.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把 <code>smoothed_prob</code> 换成 Katz 回退（未见的高阶 n-gram 按比例回退到低阶），在 4-gram 上与拉普拉斯对照。反弹还会发生吗？</li>
 <li>预测再运行：语料扩大 10 倍（复制故事文本），熵曲线的反弹点会移到哪里？先猜（“数据与上下文的赛跑”）再运行验证。</li>
@@ -1413,26 +1362,11 @@ alpha=5.0, 4-gram: CE = 2.779</code></pre>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
 </div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
 <div id="ref-jelinek1976" class="csl-entry" role="listitem">
 Jelinek, Frederick. 1976. <span>“Continuous Speech Recognition by Statistical Methods.”</span> <em>Proceedings of the IEEE</em> 64 (4): 532–57.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1874,7 +1808,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol2/part4-ngram.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol2/part4-ngram.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

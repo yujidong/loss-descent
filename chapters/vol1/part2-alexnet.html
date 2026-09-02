@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; AlexNet (Krizhevsky et al. 2012) 时刻：历史为什么发生在 2012 – 降 Loss 之路</title>
+<title>11&nbsp; AlexNet 时刻：历史为什么发生在 2012 – 降 Loss 之路</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -727,7 +684,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-alexnet.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-alexnet.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,18 +1074,17 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">11.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">11.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">11.7</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">11.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">11.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">11.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part2-alexnet.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part2-alexnet.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-alexnet.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012</li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-alexnet.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(<a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>)</span> 时刻：历史为什么发生在 2012</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></h1>
 </div>
 
 
@@ -1144,7 +1101,7 @@ window.Quarto = {
 </header>
 
 
-<p>2012 年 9 月 30 日，ImageNet 竞赛（ILSVRC）的成绩公布：一个叫 SuperVision 的队伍把图像分类的 top-5 错误率从前一年的 25.8%、当年第二名 26.2%，直接打到 <strong>15.3%</strong>。领先不是一步，是一个时代。队伍是 Hinton 的两个学生。Alex Krizhevsky 与 Ilya Sutskever。加上 Hinton 本人；机器是他们租的，模型是我们前三章所有零件的总装：卷积结构 + relu + dropout + GPU。本章要回答的问题是本章标题：为什么是 2012？ 这个问题的答案，是理解此后十年（包括 LLM 时代）一切产业逻辑的钥匙。</p>
+<p>2012 年 9 月底，ImageNet 竞赛（ILSVRC）的成绩公布：一个叫 SuperVision 的队伍把图像分类的 top-5 错误率从前一年的 25.8%、当年第二名 26.2%，直接打到 <strong>15.3%</strong>。领先不是一步，是一个时代。队伍是 Hinton 的两个学生。Alex Krizhevsky 与 Ilya Sutskever。加上 Hinton 本人；机器是他们租的，模型是我们前三章所有零件的总装：卷积结构 + relu + dropout + GPU。本章要回答的问题是本章标题：为什么是 2012？ 这个问题的答案，是理解此后十年（包括 LLM 时代）一切产业逻辑的钥匙。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1160,10 +1117,10 @@ window.Quarto = {
 </div>
 <div class="callout-era" title="时代快照 · 2009–2012">
 <ul>
-<li><strong>算力</strong>：消费级 GPU 经 CUDA（2007）变得可编程；两张 GTX 580（合计约 3 GB 显存、约 1.5 TFLOP/s）就是 AlexNet 的全部装备。今天一台游戏本胜它十倍；</li>
+<li><strong>算力</strong>：消费级 GPU 经 CUDA（2007）变得可编程；两张 GTX 580（合计约 3 GB 显存，单卡约 1.5、合计约 3 TFLOP/s）就是 AlexNet 的全部装备。今天一台游戏本胜它十倍；</li>
 <li>数据：ImageNet（李飞飞团队，2009 年上线）提供 22000 类、1500 万张标注图片。“数据工程”第一次成为 AI 研究的一等公民，此前最大的基准（CIFAR-10）只有 6 万张；</li>
 <li>认知：2011 年的主流观点是：神经网络在 1990s 已经输给 SVM/boosting，视觉的特征还是要手工设计（SIFT、HOG）；深度学习被视为少数几个多伦多老人的执念；</li>
-<li>关键事实：AlexNet 的每一个零件都不是 2012 年发明的（卷积 1989、relu 2010、dropout 2012 年初、GPU 训练 2010 年前后已有人尝试）。2012 年发生的是总装。</li>
+<li>关键事实：AlexNet 的每一个零件都不是 2012 年发明的（卷积 1989、relu 2010、dropout 2012 年年中、GPU 训练 2010 年前后已有人尝试）。2012 年发生的是总装。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="11.1">
@@ -1180,12 +1137,12 @@ window.Quarto = {
 <p><strong>GPU 的非显然性</strong>。用游戏显卡做通用计算（GPGPU）在 2008 年前后仍属旁门：编程痛苦（早期要伪装成图形调用）、数值稳定性差、学术圈视之为”工程杂耍”。CUDA 把门槛降下来后，第一个吃螃蟹的训练仍需要勇气与手艺。Krizhevsky 写了定制的卷积核。历史条件不只是”GPU 存在”，而是”GPU 可编程 + 有人愿意为深度学习忍受它”。</p>
 <p><strong>总装的三人组</strong>。Krizhevsky（工程与直觉）、Sutskever（信念与理论品味）、Hinton（三十年深耕连接主义的信用背书）。1.2 章地下时期的三件套（换语言、硬问题、火种）在 2012 年兑成了一次总爆发。教训：范式复活的最后一步需要一个”不可辩驳的演示”。道理 1986 年就懂，但是，说服世界需要一个数字：15.3%。</p>
 <p><strong>赛后的雪崩</strong>。2013 年起几乎所有参赛队伍转向深度学习；工业界（Google 收购 DNNresearch 团队）跟进；GPU 厂商 NVIDIA 转型”AI 公司”。一个演示改变资源流向，资源流向改变研究的经济学。这条因果链将在 6.1（GPT-3）与 7.3（ChatGPT）再演两次。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><em>缓一缓。</em>这一节把 2012 年之前的世界摆了出来：手工特征路线统治视觉二十年，在海量数据面前停摆；GPU 做通用计算还是旁门，需要有人愿意为它忍受编程的痛苦；最后是一个三人小组完成总装。赛后的雪崩——队伍转向、工业收购、厂商转型——演示了「一个数字改变资源流向」。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>给你两笔账，先手算再实测：</p>
 <ol type="1">
-<li><strong>算力账</strong>：AlexNet 单次前向约 <span class="math inline">\(7\times10^8\)</span> 次乘加；训练一遍（120 万张图 × 90 epoch）约 <span class="math inline">\(10^{18}\)</span> FLOPs。用笔记本 CPU 的矩阵乘实测速度（下一节会测，先猜量级），需要多久？两张 GTX 580 实际用了 5–6 天。从这两个数推出 GPU 的加速比，再想想：如果没有这个加速比，2012 年的博士还能不能做完这个课题？</li>
-<li>数据账：一套固定的网络与训练流程，训练样本数从 6 涨到 40（小一号的同构实验），真实误差会怎么降？先在纸上画你预期的曲线（横轴 n，纵轴真实误差）。尤其预测最小数据点处会发生什么（提示：1.6 章的过拟合）。</li>
+<li><strong>算力账</strong>：AlexNet 单次前向约 <span class="math inline">\(7\times10^8\)</span> 次乘加；训练一遍（120 万张图 × 90 epoch）约 <span class="math inline">\(10^{17}\)</span>–<span class="math inline">\(10^{18}\)</span> FLOPs（只算前向约 <span class="math inline">\(10^{17}\)</span>，含反向再乘三）。用笔记本 CPU 的矩阵乘实测速度（下一节会测，先猜量级），需要多久？两张 GTX 580 实际用了 5–6 天。从这两个数推出 GPU 的加速比，再想想：如果没有这个加速比，2012 年的博士还能不能做完这个课题？</li>
+<li>数据账：一套固定的网络与训练流程，训练样本数从 6 涨到 40（小一号的同构实验），真实误差会怎么降？先在纸上画你预期的曲线（横轴 n，纵轴真实误差）。尤其预测最小数据点处会发生什么（提示：1.4 章的过拟合）。</li>
 </ol>
 <p>写完两笔账再运行。</p>
 </div>
@@ -1197,15 +1154,15 @@ window.Quarto = {
 <p>七十年来，AI 研究反复上演同一幕：依赖人类知识精巧设计的短期胜利，被”蛮力搜索 + 学习”的长期胜利碾过。后者随算力指数增长而复利。</p>
 </blockquote>
 <p>2012 年是这条规律在视觉领域的总清算：三十年手工特征（人类知识的注入）被”大数据 + 大算力 + 通用学习”一次性超越。而 1.2 章的范式之争（专家规则 vs 学习）正是同一剧本的上一场演出。<strong>Sutton 的判决书其实 1986 年就已写好草稿</strong>。</p>
-<p><strong>历史条件 = 算力 × 数据 × 方法，三者同时就绪</strong>。抽掉任何一块：没有 GPU，训练一轮要数月，课题不可行；没有 ImageNet，百万参数网络在小数据上只会过拟合（1.6 章的账），方法不可信；没有 2010–2012 的工具箱（relu/dropout/初始化），深度网络训不动，方法不可行。三者各就各位的时间窗口恰好是 2009–2012。历史为什么发生在 2012？因为再早一步，任何一块都缺位。</p>
+<p><strong>历史条件 = 算力 × 数据 × 方法，三者同时就绪</strong>。抽掉任何一块：没有 GPU，训练一轮要数月，课题不可行；没有 ImageNet，百万参数网络在小数据上只会过拟合（1.4 章的账），方法不可信；没有 2010–2012 的工具箱（relu/dropout/初始化），深度网络训不动，方法不可行。三者各就各位的时间窗口恰好是 2009–2012。历史为什么发生在 2012？因为再早一步，任何一块都缺位。</p>
 <p><strong>演示的杠杆</strong>。研究史不只有论文与证明，还有”改变资源流向的数字”。15.3% 之于深度学习，等于后来 175B 参数之于 GPT-3（6.1）、对话流畅度之于 ChatGPT（7.3）。范式战争的裁决从来靠演示，不靠论证。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>这一节请出了 The Bitter Lesson，并把 2012 写成它的第一次总清算：手工知识敌不过「大数据 + 大算力 + 通用学习」。历史条件可以拆成算力、数据、方法三块基石，三者同时就绪的窗口恰好在 2009–2012；而裁决范式战争的从来是 15.3% 这样的演示数字，不是论证。</p>
 </section>
 <section id="从零实现" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">11.4</span> 从零实现</h2>
 <p>我们的两个”账本实验”。不重演 AlexNet，而是实测它的两块基石。</p>
 <p><strong>实验一：算力账本。</strong> 测你机器上 numpy 矩阵乘法的吞吐（BLAS 加速的 numpy 已是 CPU 上限）：</p>
-<div id="5c0296f1" class="cell" data-execution_count="1">
+<div id="0dd6ab0e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1218,19 +1175,19 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    dt <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>n<span class="sc">:&gt;4}</span><span class="ss">x</span><span class="sc">{</span>n<span class="sc">:&lt;4}</span><span class="ss"> 矩阵乘: </span><span class="sc">{</span>dt<span class="op">*</span><span class="dv">1000</span><span class="sc">:6.1f}</span><span class="ss"> ms = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>n<span class="op">**</span><span class="dv">3</span><span class="op">/</span>dt<span class="op">/</span><span class="fl">1e9</span><span class="sc">:6.1f}</span><span class="ss"> GFLOP/s"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> 256x256  矩阵乘:    1.4 ms =   24.5 GFLOP/s
- 512x512  矩阵乘:    1.4 ms =  188.9 GFLOP/s
-1024x1024 矩阵乘:    6.9 ms =  310.6 GFLOP/s</code></pre>
+<pre><code> 256x256  矩阵乘:    1.0 ms =   34.2 GFLOP/s
+ 512x512  矩阵乘:    2.5 ms =  109.2 GFLOP/s
+1024x1024 矩阵乘:    6.3 ms =  341.6 GFLOP/s</code></pre>
 </div>
 </div>
 <p>三个读数（典型值：25 / 120 / 350 GFLOP/s 左右，随机器浮动）：</p>
 <ul>
 <li>规模越大，单位吞吐越高。矩阵乘的算术强度高，缓存友好，这正是它成为深度学习基本货币的原因（<strong>算子的经济学</strong>决定架构的演化，5.3 的伏笔）；</li>
-<li>取 100 GFLOP/s 估算：AlexNet 训练一遍 <span class="math inline">\(10^{18}\)</span> FLOPs ≈ <span class="math inline">\(10^7\)</span> 秒 ≈ 四个月（且是优化过的今天 CPU；2012 年的 CPU 更慢）。两张 GTX 580 合计约 3 TFLOP/s，即使按 30% 利用率也有约 1 TFLOP/s。几天。加速比两个数量级，恰好是把”不可行的课题”变成”一个学期的博士课题”的距离；</li>
-<li>你的笔记本（约 <span class="math inline">\(10^{11}\)</span> FLOP/s）比 1986 年的 VAX（约 <span class="math inline">\(10^6}\)</span> FLOP/s）快五个数量级。本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。</li>
+<li>取 100 GFLOP/s 估算：AlexNet 训练一遍 <span class="math inline">\(10^{17}\)</span>–<span class="math inline">\(10^{18}\)</span> FLOPs ≈ <span class="math inline">\(10^{6}\)</span>–<span class="math inline">\(10^{7}\)</span> 秒，即十几天到四个月（且是优化过的今天 CPU；2012 年的 CPU 更慢）。两张 GTX 580 合计约 3 TFLOP/s，即使按 30% 利用率也有约 1 TFLOP/s。几天。加速比两个数量级，恰好是把”不可行的课题”变成”一个学期的博士课题”的距离；</li>
+<li>你的笔记本（约 <span class="math inline">\(10^{11}\)</span> FLOP/s）比 1986 年的 VAX（约 <span class="math inline">\(10^{6}\)</span> FLOP/s）快五个数量级。本书卷一的每一个”分钟级”实验，在当年都是”一学期级”。</li>
 </ul>
 <p><strong>实验二：数据账本。</strong> 固定网络与训练流程，只改训练点数，看真实误差（不是训练误差）：</p>
-<div id="584df1f3" class="cell" data-execution_count="2">
+<div id="7fdeeecc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: np.sin(<span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> <span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>x <span class="op">-</span> <span class="fl">0.3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Xd <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Yd <span class="op">=</span> f(Xd)</span>
@@ -1256,14 +1213,13 @@ n=15: 训练误差=0.0221  真实误差=0.1030
 n=40: 训练误差=0.0332  真实误差=0.0438</code></pre>
 </div>
 </div>
-<p>读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 <strong>2.8</strong>。网络完美背下了六个点，对函数本身一无所知（1.6 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04。真实误差随数据近一个数量级地下降。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上有账可算。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p>读数（对照你的预测）：n=6 时训练误差近乎零、真实误差 <strong>2.8</strong>。网络完美背下了六个点，对函数本身一无所知（1.4 的过拟合在最小数据点上的复现）；n=15 时 0.10；n=40 时 0.04。真实误差随数据近一个数量级地下降。这就是 ImageNet 存在的理由：在数据贫瘠的时代，“学出特征”是无本之木；百万级标注图片让通用学习第一次在视觉上有账可算。</p>
+<p><em>缓一缓。</em>这一节实测了两块基石：算力账本上，笔记本 CPU 按一百 GFLOP/s 估算，AlexNet 一遍训练要以月计，两张 GTX 580 把它压到几天；数据账本上，训练点从 6 加到 40，真实误差从 2.8 降到 0.04。没有这两块基石，2012 不可行也不可信。</p>
 </section>
 <section id="消融实验" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">11.5</span> 消融实验</h2>
-<p><strong>数据的”饱和点”探针</strong>。AlexNet 之后”堆数据”成为信仰，但数据账本有没有饱和点？把实验二延伸：n=40 → 100 → 400（网络与步数不变），观察真实误差的边际递减。当曲线趋平时，瓶颈从数据转移到容量（网络太小学不动更多结构）。“数据-容量-算力”三角的移动平衡，这个平衡在 2022 年被 Chinchilla 重新计算（6.2 的伏笔），在数据墙时代再次成为主角（9.2）。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
-<div id="29b22d48" class="cell" data-execution_count="3">
+<p><strong>数据的”饱和点”探针</strong>。AlexNet 之后”堆数据”成为信仰，但数据账本有没有饱和点？把实验二延伸：n=40 → 100 → 400（网络与步数不变），观察真实误差的边际递减：</p>
+<div id="3e8848a3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> (<span class="dv">40</span>, <span class="dv">100</span>, <span class="dv">400</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.sort(rng.uniform(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, n)).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -1280,6 +1236,8 @@ n=100: 真实误差=0.0276
 n=400: 真实误差=0.0234</code></pre>
 </div>
 </div>
+<p>当曲线趋平时，瓶颈从数据转移到容量（网络太小学不动更多结构）。“数据-容量-算力”三角的移动平衡，这个平衡在 2022 年被 Chinchilla 重新计算（6.2 的伏笔），在数据墙时代再次成为主角（9.2）。</p>
+<p><em>缓一缓。</em>这一节把数据账本延伸成饱和探针：从 40 到 400 个训练点，真实误差从 0.04 降到 0.02，边际收益递减，曲线趋平后瓶颈移向容量。「数据-容量-算力」的三角平衡，是 Chinchilla 与数据墙时代反复重算的同一笔账。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="11.6">
 <h2 data-number="11.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">11.6</span> 本章 Loss 账本</h2>
@@ -1337,20 +1295,10 @@ n=400: 真实误差=0.0234</code></pre>
 <li>深度推进的下一道墙：几十层网络的”退化”怪病（→ 3.2 残差）；</li>
 <li>学到的”通用特征”到底是什么？能借给别人用吗？（→ 3.3 预训练-微调范式的诞生）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>一句话复述：AlexNet 的每一件零件都是旧的，2012 年发生的是三块基石同时到位后的总装。留下的三个问题——卷积为什么必要、更深的墙在哪、特征能否搬走——分别交给 3.1、3.2、3.3。</p>
 </section>
-<section id="参考文献" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">11.8</span> 参考文献</h2>
-<ol type="1">
-<li>Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E. (2012). <em>ImageNet Classification with Deep Convolutional Neural Networks</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Krizhevsky%202012%20ImageNet%20Classification%20with%20Deep%20Convolutional%20Neural">↗ 搜索原文</a></li>
-<li>Glorot, Xavier and Bengio, Yoshua (2010). <em>Understanding the Difficulty of Training Deep Feedforward Neural Networks</em>. <em>Proceedings of AISTATS, 9, 249–256</em>. <a href="https://scholar.google.com/scholar?q=Glorot%202010%20%5B@glorot2010%5D%20Understanding%20the%20Difficulty%20of%20Training%20Deep">↗ 搜索原文</a></li>
-<li>Nair, Vinod and Hinton, Geoffrey E. (2010). <em>Rectified Linear Units Improve Restricted Boltzmann Machines</em>. <em>Proceedings of ICML, 807–814</em>. <a href="https://scholar.google.com/scholar?q=Nair%202010%20Rectified%20Linear%20Units%20Improve%20Restricted%20Boltzmann">↗ 搜索原文</a></li>
-<li>Srivastava et al.&nbsp;(2014). <em>Dropout: A Simple Way to Prevent Neural Networks from Overfitting</em>. <em>Journal of Machine Learning Research, 15, 1929–1958</em>. <a href="https://scholar.google.com/scholar?q=al.%202014%20Dropout%3A%20A%20Simple%20Way%20to%20Prevent">↗ 搜索原文</a></li>
-<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="11.9">
-<h2 data-number="11.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">11.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">11.8</span> 练习</h2>
 <ol type="1">
 <li><strong>算力账本延伸</strong>：查一张今天消费级 GPU 的理论 FLOP/s，重算 AlexNet 训练时间；再估 GPT-3（约 <span class="math inline">\(3\times10^{23}\)</span> FLOPs）在单卡上需要多久。从而理解”万卡集群”必需。</li>
 <li>预测再运行：实验二里把网络从 32 宽改成 128 宽，n=6 的真实误差会怎么变？变大（记更多噪声）还是变小（拟合更好）？运行并解释。</li>
@@ -1370,8 +1318,8 @@ n=400: 真实误差=0.0234</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 1 参考数字</strong>：GPT-3 约 <span class="math inline">\(3\times10^{23}\)</span> FLOPs ÷ 单卡 <span class="math inline">\(10^{12}\)</span> FLOP/s（30% 利用率）≈ <span class="math inline">\(10^{11}\)</span> 秒 ≈ 三千年。万卡且高度并行的集群把它压到数月。“规模化”的每一分钱都花在这道除法里。</p>
-<p><strong>练习 2</strong>：n=6 时真实误差大概率变大。容量越大，背噪声背得越狠（1.6 的容量-过拟合互换）；n=40 时可能略变好。数据账本的斜率依赖容量，两者是联动的。</p>
+<p><strong>练习 1 参考数字</strong>：<span class="math inline">\(3\times10^{23} \div 10^{12} = 3\times10^{11}\)</span> 秒 ≈ 九千五百年；再按 30% 的实际利用率打折，约三万年。万卡且高度并行的集群把它压到数月。“规模化”的每一分钱都花在这道除法里。</p>
+<p><strong>练习 2</strong>：n=6 时真实误差大概率变大。容量越大，背噪声背得越狠（1.4 的容量-过拟合互换）；n=40 时可能略变好。数据账本的斜率依赖容量，两者是联动的。</p>
 <p><strong>练习 3</strong>：整条曲线整体抬高且低数据端尤其惨烈。1990s 配置下”加数据”的边际收益更小，这正是当年”数据无用论”能流行的技术土壤。工具箱不只是工具，它重新定价了数据。</p>
 <p><strong>练习 5 提示</strong>：注意因果的双向性。没有 GPU 也就训不出对 GPU 的需求，硬件-算法的共生回路会晚启动，但是，一旦启动会补涨。反事实推演的价值在于识别”哪些是必然（趋势），哪些是偶然（时点）“。</p>
 </div>
@@ -1380,23 +1328,8 @@ n=400: 真实误差=0.0234</code></pre>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1841,7 +1774,7 @@ Sutton, Richard. 2019. <span>“The Bitter Lesson.”</span> <em>Incomplete Idea
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part2-alexnet.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part2-alexnet.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

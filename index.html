@@ -68,9 +68,9 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -137,7 +137,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -147,49 +147,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -680,6 +637,7 @@ main table {
     <div class="sidebar-title mb-0 py-0">
       <a href="./">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -773,7 +731,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -785,7 +743,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -902,7 +860,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -919,13 +877,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1056,7 +1014,7 @@ main table {
   <li><a href="#反馈" id="toc-反馈" class="nav-link" data-scroll-target="#反馈"><span class="header-section-number">1.7</span> 反馈</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1093,8 +1051,8 @@ main table {
 <p>这是一本<strong>用实验重走深度学习研究史</strong>的交互书。它不从「Transformer 是什么」讲起，而从 1958 年的感知机讲起。因为研究思路没法被讲述，只能被重演。读者只有先被 RNN 的梯度消失折磨过，才能真正理解「Attention is All You Need」标题里那个 <em>All You Need</em> 的分量。</p>
 <section id="两条主线" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="两条主线"><span class="header-section-number">1.1</span> 两条主线</h2>
-<p><strong>历史主线（骨架）</strong>：每一章都是历史上的一次真实解题。上一代架构留下的问题，就是下一章的起点。读完你走过的从感知机到智能体这条路上每一次「发现问题 → 提出假设 → 实验验证 → 暴露新问题」的完整循环。</p>
-<p><strong>Loss 主线（分析工具）</strong>：每个架构改进，统一用一个度量来审视。它让什么 loss、在什么数据上、降得更便宜？架构史因此，一部「降 loss 效率的进化史」。这个视角一直延伸到当下：SFT 是指令数据上的监督 loss，RLHF 是奖励变形后的 loss，推理模型是可验证奖励上的 loss。看懂了 loss，就看懂了模型的本质，也更容易判断未来的方向。</p>
+<p><strong>历史主线（骨架）</strong>：每一章都是历史上的一次真实解题。上一代架构留下的问题，就是下一章的起点。读完本书，你会走完从感知机到智能体的这条路，亲历其中每一次「发现问题 → 提出假设 → 实验验证 → 暴露新问题」的完整循环。</p>
+<p><strong>Loss 主线（分析工具）</strong>：每个架构改进，统一用一个度量来审视。它让什么 loss、在什么数据上、降得更便宜？架构史因此成为一部「降 loss 效率的进化史」。这个视角一直延伸到当下：SFT 是指令数据上的监督 loss，RLHF 是奖励变形后的 loss，推理模型是可验证奖励上的 loss。看懂了 loss，就看懂了模型的本质，也更容易判断未来的方向。</p>
 </section>
 <section id="全书的弧线" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="全书的弧线"><span class="header-section-number">1.2</span> 全书的弧线</h2>
@@ -1165,9 +1123,9 @@ main table {
 <ul>
 <li><strong>A 级</strong>：笔记本 CPU，分钟级。卷一全部、卷二大部分实验在此级别。这段历史本来就发生在小算力上，今天恰好可以完整复现。</li>
 <li><strong>B 级</strong>：免费 Colab T4，几十分钟。卷二中后期的语言模型实验。</li>
-<li><strong>C 级</strong>：提供预训练 checkpoint，读者只做加载与分析。</li>
+<li><strong>C 级</strong>（规划中）：提供预训练 checkpoint，读者只做加载与分析，适合卷三的规模化主题。</li>
 </ul>
-<p>代码不散落在 notebook 里，而是随书生长成一个包 <code>dlbook</code>：每章把新实现的模型合入其中，后续章节直接 <code>import</code> 复用。读完这本书，你拥有的一座自己一层层盖起来的微型深度学习史图书馆。</p>
+<p>代码不散落在 notebook 里，而是随书生长成一个包 <code>dlbook</code>：每章把新实现的模型合入其中，后续章节直接 <code>import</code> 复用。读完这本书，你将拥有一座自己一层层盖起来的微型深度学习史图书馆。</p>
 </section>
 <section id="三卷出版计划" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="三卷出版计划"><span class="header-section-number">1.5</span> 三卷出版计划</h2>
@@ -1193,23 +1151,8 @@ main table {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1649,7 +1592,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

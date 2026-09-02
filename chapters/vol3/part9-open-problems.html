@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1113,12 +1071,12 @@ window.Quarto = {
   <li><a href="#问题二自我改进的边界飞轮的止点" id="toc-问题二自我改进的边界飞轮的止点" class="nav-link" data-scroll-target="#问题二自我改进的边界飞轮的止点"><span class="header-section-number">38.2</span> 问题二：自我改进的边界。飞轮的止点</a></li>
   <li><a href="#问题三评测危机我们在测什么" id="toc-问题三评测危机我们在测什么" class="nav-link" data-scroll-target="#问题三评测危机我们在测什么"><span class="header-section-number">38.3</span> 问题三：评测危机。我们在测什么</a></li>
   <li><a href="#问题四样本效率为什么模型比人费数据" id="toc-问题四样本效率为什么模型比人费数据" class="nav-link" data-scroll-target="#问题四样本效率为什么模型比人费数据"><span class="header-section-number">38.4</span> 问题四：样本效率。为什么模型比人费数据</a></li>
-  <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">38.5</span> 本章 Loss 账本</a></li>
-  <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">38.6</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">38.7</span> 参考文献</a></li>
+  <li><a href="#问题五幻觉与校准模型怎么知道自己在编" id="toc-问题五幻觉与校准模型怎么知道自己在编" class="nav-link" data-scroll-target="#问题五幻觉与校准模型怎么知道自己在编"><span class="header-section-number">38.5</span> 问题五：幻觉与校准。模型怎么知道自己在编</a></li>
+  <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">38.6</span> 本章 Loss 账本</a></li>
+  <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">38.7</span> 遗留问题</a></li>
   <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">38.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part9-open-problems.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part9-open-problems.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1143,7 +1101,7 @@ window.Quarto = {
 </header>
 
 
-<p>模式（9.1）讲的是惯性的延续；本章讲惯性的<strong>边界</strong>。那些 loss 视角照得见问题、却照不全答案的地方。我们选四个：数据墙（数据从哪来的尽头）、自我改进的边界（飞轮能转多快）、评测危机（我们到底在测什么）、样本效率（为什么模型比人费数据）。每一个都附一个本书尺度的小实验或已测数据作为锚点。开放问题不等于玄谈，它的第一步永远是把问题量出来。</p>
+<p>模式（9.1）讲的是惯性的延续；本章讲惯性的<strong>边界</strong>。那些 loss 视角照得见问题、却照不全答案的地方。我们选五个：数据墙（数据从哪来的尽头）、自我改进的边界（飞轮能转多快）、评测危机（我们到底在测什么）、样本效率（为什么模型比人费数据）、幻觉与校准（模型怎么知道自己在编）。每一个都附一个本书尺度的小实验或已测数据作为锚点。开放问题不等于玄谈，它的第一步永远是把问题量出来。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1162,7 +1120,7 @@ window.Quarto = {
 <li><strong>算力</strong>：旗舰训练的算力需求仍指数爬升，而高质量文本的供给被认为接近见顶。两条曲线的交点是本时代最大的宏观悬念；</li>
 <li>数据：合成数据占比迅速上升（代码、推理轨迹、对话）。“模型造数据训模型”从技巧变成支柱，其长期效应（多样性坍缩？自我强化？）尚无定论；</li>
 <li>认知：评测的公信力成为公开危机。污染、过拟合、度量假象（6.3）叠加；“我们在测能力还是在测题库”没有轻松答案；</li>
-<li>关键事实：以上每个问题在本书的历史线里都有祖先。数据稀缺（4.1 的 n-gram 墙）、合成自举（7.4 的 STaR）、度量假象（6.3）、样本效率（人类 vs 万亿 token）。开放问题不是新问题，是老问题换了尺度。</li>
+<li>关键事实：以上每个问题在本书的历史线里都有祖先。数据稀缺（4.1 的 n-gram 墙）、合成自举（7.4 的 STaR）、度量假象（6.3）、样本效率（人类 vs 万亿 token）、似然与对错的分离（7.2 的贪心 vs margin）。开放问题不是新问题，是老问题换了尺度。</li>
 </ul>
 </div>
 <section id="问题一数据墙数据的尽头是什么" class="level2" data-number="38.1">
@@ -1170,7 +1128,7 @@ window.Quarto = {
 <p><strong>问题</strong>：预训练吃的是”人类产生的文本”，它不是无限的。去重后的高质量文本有估计的上限；多轮训练与数据复用能推迟、但是，不能凭空创造信息。</p>
 <p><strong>Loss 视角的陈述</strong>：数据决定 <span class="math inline">\(L_\infty\)</span>（6.1 的地板项）。语料的熵就是模型一族的天花板。字节可以复制，信息不能。</p>
 <p><strong>本书尺度的锚点实验</strong>。数据复制 vs 真新增：</p>
-<div id="30d821d8" class="cell" data-execution_count="1">
+<div id="b61a48a8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1208,21 +1166,21 @@ window.Quarto = {
 真新增到 6 万（信息 ×2）: val loss 2.077</code></pre>
 </div>
 </div>
-<p>典型读数：<strong>2.33 / 3.34 / 2.08</strong>。复制两遍不仅无益，反而有害（同预算下模型把重复文本背了下来，验证损失恶化）；真新增信息则正常改善。这就是数据墙的微观机制：墙的材质是信息，不是字节。推论也直接：合成数据的全部希望在于”新信息”从哪来。环境交互（8.2）与推理轨迹（7.4）是目前仅有的两个不依赖”人类已写下的文本”的源头，它们恰好都是 agent 时代的主角。数据墙把领域推向了闭环，这是 2024 年以来叙事合流的深层原因。</p>
-<p><strong>未解的部分</strong>：合成数据的多样性坍缩（模型分布的自我回声）有没有定量预警指标？“信息”在多模态（视频、交互）里还有多少存量？。开放。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：问题一：数据墙。数据的尽头是什么。</p>
+<p>典型读数：<strong>2.33 / 3.34 / 2.08</strong>。复制两遍在同预算下非但无益，反而大害。机制值得说准：不是模型”把重复文本背了下来”，而是<strong>摊薄</strong>——同样的 1200 步预算摊到两倍长的字节上，每个独立窗口平均只被看了一半的次数，模型等于只训了半程。字节翻倍，信息没翻倍，loss 只认信息。真新增信息则正常改善。这就是数据墙的微观机制：墙的材质是信息，不是字节。推论也直接：合成数据的全部希望在于”新信息”从哪来。环境交互（8.2）与推理轨迹（7.4）是目前仅有的两个不依赖”人类已写下的文本”的源头，它们恰好都是 agent 时代的主角。数据墙把领域推向了闭环，这是 2024 年以来叙事合流的深层原因。</p>
+<p><strong>未解的部分</strong>：合成数据的多样性坍缩（模型分布的自我回声）有没有定量预警指标？“信息”在多模态（视频、交互）里还有多少存量？——开放。</p>
+<p><em>缓一缓。</em>这一节有三个数：同预算复制 3.34、真新增 2.08，中间隔着原始的 2.33。三个数合起来的意思只有一句：loss 只认信息，不认字节。</p>
 </section>
 <section id="问题二自我改进的边界飞轮的止点" class="level2" data-number="38.2">
 <h2 data-number="38.2" class="anchored" data-anchor-id="问题二自我改进的边界飞轮的止点"><span class="header-section-number">38.2</span> 问题二：自我改进的边界。飞轮的止点</h2>
 <p><strong>问题</strong>：STaR/RLVR/轨迹回灌（7.4、8.2）展示了”模型自产数据训自己”的飞轮。飞轮有止点吗？</p>
-<p><strong>Loss 视角的陈述</strong>：自举改进的本质是把分布里已有的概率质量搬到更高处。它不能创造分布外的能力（我们的 STaR 三轮就饱和了：0.88→0.99→0.99，第 2/3 轮已近零增益）。飞轮的输出上限是初始分布的支撑集。</p>
+<p><strong>Loss 视角的陈述</strong>：自举改进的本质是把分布里已有的概率质量搬到更高处。它不能创造分布外的能力（我们的 STaR 三轮：0.37→0.64→0.74→0.72，第 2/3 轮增益归零甚至小幅回落）。飞轮的输出上限是初始分布的支撑集。</p>
 <p><strong>两条已测的边界</strong>：</p>
 <ul>
 <li>7.4 的饱和：采 10 次也够不着的题，自举救不了（除非探索扩大支撑。温度消融里看到的”探索是燃料”）；</li>
 <li>8.2 练习 2 的隐患：自采数据混入”侥幸成功”，学进权重的是错误的路径。<strong>飞轮也会放大错误</strong>（与 7.3 的 reward hacking 同构：闭环的错误比开环的更持久，因为它写进了权重）。</li>
 </ul>
 <p><strong>未解的部分</strong>：多轮自举后的多样性坍缩速度、飞轮与外部信息（检索、环境）的最优混合比、以及一个哲学级的问句：没有任何外部信息注入的纯自举，是不是注定收敛到初始分布的最优采样器？（我们猜是。这几乎是个数学问题，但是，没人证完。）</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：问题二：自我改进的边界。飞轮的止点。</p>
+<p><em>缓一缓。</em>飞轮的两条已测边界：够不着的题自举救不了（7.4 的饱和），侥幸成功的错误轨迹会被写进权重（8.2 练习 2 的隐患）。未解的是它的止点在哪个分布上。</p>
 </section>
 <section id="问题三评测危机我们在测什么" class="level2" data-number="38.3">
 <h2 data-number="38.3" class="anchored" data-anchor-id="问题三评测危机我们在测什么"><span class="header-section-number">38.3</span> 问题三：评测危机。我们在测什么</h2>
@@ -1236,17 +1194,24 @@ window.Quarto = {
 <li>报告方差与预算（2.5 的教训：脱离预算谈优劣是坏实验）。</li>
 </ol>
 <p><strong>未解的部分</strong>：动态生成、不可泄漏的评测（对抗污染）；能力而非题目的度量（任务空间的覆盖度）；以及 agent 时代的特殊难题。长轨迹的成功率是乘法（8.2 练习 5），单步 99% 在五十步后只剩 60%，用什么指标描述”长程可靠性”？</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：问题三：评测危机。我们在测什么。</p>
+<p><em>缓一缓。</em>本书内部就有评测危机的完整证据链：4.4 的类比幻象、6.3 的 exact4 跳崖、7.2 的贪心对 margin。四条最小防线（多度量、分布审计、换度量、报预算）里，前三条我们都在前文用坏例子演示过一遍。</p>
 </section>
 <section id="问题四样本效率为什么模型比人费数据" class="level2" data-number="38.4">
 <h2 data-number="38.4" class="anchored" data-anchor-id="问题四样本效率为什么模型比人费数据"><span class="header-section-number">38.4</span> 问题四：样本效率。为什么模型比人费数据</h2>
 <p><strong>问题</strong>：一个孩子听千万词就能说话；一个基座要读万亿 token。差了三四个数量级的样本效率，是缺陷还是另一种智能的代价？</p>
 <p><strong>Loss 视角的陈述</strong>：梯度下降 + 下一词预测是一个低偏置的学习机。它几乎不带先验，所以几乎什么都能学，代价是什么都要从头见很多遍（3.1 的归纳偏置账：先验是小数据的朋友、大数据的枷锁）。人类自带数十亿年演化的先验（感知结构、因果直觉、社会常识）。样本效率的差距，本质是先验的差距。Bitter Lesson 在这里给出它最尖锐的版本：我们赌的是”算力比先验便宜”。至今赌赢，但是，赌注在涨。</p>
-<p><strong>未解的部分</strong>：先验的注入（架构、数据课程、多模态 grounding）能否追回数量级而不损失通用性？婴儿式的主动学习（提问、干预）在机器上的等价物是什么？。这两个方向各有一整代研究的空间。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：问题四：样本效率。为什么模型比人费数据。</p>
+<p><strong>未解的部分</strong>：先验的注入（架构、数据课程、多模态 grounding）能否追回数量级而不损失通用性？婴儿式的主动学习（提问、干预）在机器上的等价物是什么？这两个方向各有一整代研究的空间。</p>
+<p><em>缓一缓。</em>样本效率的差距说到底是先验的差距：人类带着数十亿年演化的先验进场，基座两手空空读万亿 token。Bitter Lesson 赌的是”算力比先验便宜”——至今赌赢，赌注在涨。</p>
 </section>
-<section id="本章-loss-账本" class="level2" data-number="38.5">
-<h2 data-number="38.5" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">38.5</span> 本章 Loss 账本</h2>
+<section id="问题五幻觉与校准模型怎么知道自己在编" class="level2" data-number="38.5">
+<h2 data-number="38.5" class="anchored" data-anchor-id="问题五幻觉与校准模型怎么知道自己在编"><span class="header-section-number">38.5</span> 问题五：幻觉与校准。模型怎么知道自己在编</h2>
+<p><strong>问题</strong>：模型会流利地编造事实（幻觉），并且用同样自信的语气说出真话与假话（校准差）。生成端看是行为问题，loss 视角看是测量问题：下一词交叉熵只要求”像训练分布”，从不要求”知道自己不知道”。</p>
+<p><strong>Loss 视角的陈述</strong>：7.2 已经把这份欠账记在账上——SFT 后 margin +3.68 nat（知识在概率里）、贪心命中只有 0.33（行为在路径上）。幻觉是同一枚硬币的反面：一个编造的答案，只要在分布里”像样”，似然同样可以很高；而校准要求概率与对错相关，这本账里没有这一项。偏好优化还可能加重它——“自信的语气”正是被奖励的偏好之一（7.3 的长度偏好的近亲）。</p>
+<p><strong>未解的部分</strong>：把”知道自己不知道”写进 loss（显式的校准项？拒答的奖励？）；幻觉率与编造内容在训练分布中的”像样程度”之间的定量关系。它与评测危机（问题三）互为表里：测不出校准，就拦不住幻觉。</p>
+<p><em>缓一缓。</em>幻觉与校准不是”模型品格”问题，是 loss 清单上缺了两个科目的签名：一项惩罚”自信地错”，一项奖励”承认不知道”。补上它们，是后训练研究最清楚的空白之一。</p>
+</section>
+<section id="本章-loss-账本" class="level2" data-number="38.6">
+<h2 data-number="38.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">38.6</span> 本章 Loss 账本</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1261,7 +1226,7 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td>在优化什么 loss？</td>
-<td>本章的”loss”是<strong>问题的清晰度</strong>：把四个玄谈量化成可测的陈述（信息 vs 字节、支撑集、度量错位、先验差距）</td>
+<td>本章的”loss”是<strong>问题的清晰度</strong>：把五个玄谈量化成可测的陈述（信息 vs 字节、支撑集、度量错位、先验差距、校准欠账）</td>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
@@ -1269,7 +1234,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
-<td>四张问题地图，每张带锚点与”已解/未解”的分界线</td>
+<td>五张问题地图，每张带锚点与”已解/未解”的分界线</td>
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
@@ -1282,30 +1247,23 @@ window.Quarto = {
 <li>数据墙 → 推向闭环与 agent（本卷）；推向多模态（书外）；</li>
 <li>飞轮边界 → 7.4/8.2 的饱和曲线；范式四（回收）预言”先验注入”会以新面目回归；</li>
 <li>评测危机 → 6.3/4.4/7.2 的三重伏笔在此收束；9.3 的预测要自带”怎么验证”；</li>
-<li>样本效率 → 3.1 归纳偏置的终章：全书从先验开始（LeNet），以先验的未竟之问结束。<strong>结构对称得像设计过的，其实不是</strong>。</li>
+<li>样本效率 → 3.1 归纳偏置的终章：全书从先验开始（LeNet），以先验的未竟之问结束。<strong>结构对称得像设计过的，其实不是</strong>；</li>
+<li>幻觉与校准 → 7.2 似然-解码分离的最后一层欠账，与评测危机互为表里。</li>
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
 <p><strong>Villalobos, P. et al.&nbsp;(2022/2024 修订).</strong> <em>Will we run out of data? Limits of LLM scaling based on human-generated public datasets.</em>（配读 Schaeffer et al.&nbsp;2023 <span class="citation" data-cites="schaeffer2023">(<a href="#ref-schaeffer2023" role="doc-biblioref">Schaeffer et al. 2023</a>)</span> 与任何一篇 2025 年的评测方法学综述）</p>
 <ul>
-<li><strong>读什么</strong>：数据枯结的时间线估算表（注意其置信区间的宽度。估算本身就是开放问题的注脚）；</li>
+<li><strong>读什么</strong>：数据枯竭的时间线估算表（注意其置信区间的宽度。估算本身就是开放问题的注脚）；</li>
 <li>跳过：预测的具体数字（把方法留下，把数字还给作者）；</li>
-<li>历史注：这类”<em>limits of scaling</em>”论文与 Kaplan 的幂律恰成对偶。一个说”还能涨多久”，一个说”能涨多快”。读预测文献的正确姿势：读约束的形状，不读交点的日期。</li>
+<li>历史注：这类”<em>limits of scaling</em>”论文与 Kaplan <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span> 的幂律恰成对偶。一个说”还能涨多久”，一个说”能涨多快”。读预测文献的正确姿势：读约束的形状，不读交点的日期。</li>
 </ul>
 </div>
 </section>
-<section id="遗留问题" class="level2" data-number="38.6">
-<h2 data-number="38.6" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">38.6</span> 遗留问题</h2>
+<section id="遗留问题" class="level2" data-number="38.7">
+<h2 data-number="38.7" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">38.7</span> 遗留问题</h2>
 <p>问题清点完毕。全书的最后一步：把模式（9.1）放上问题（9.2）的棋盘，<strong>落子预测</strong>。下一章，也是毕业考试。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
-</section>
-<section id="参考文献" class="level2" data-number="38.7">
-<h2 data-number="38.7" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">38.7</span> 参考文献</h2>
-<ol type="1">
-<li>Hestness et al.&nbsp;(2017). <em>Deep Learning Scaling <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span> Is Predictable, Empirically</em>. <em>arXiv preprint arXiv:1712.00409</em>. <a href="https://scholar.google.com/scholar?q=al.%202017%20Deep%20Learning%20Scaling%20Is%20Predictable%2C%20Empirically">↗ 搜索原文</a></li>
-<li>Kaplan et al.&nbsp;(2020). <em>Scaling Laws for Neural Language Models</em>. <em>arXiv preprint arXiv:2001.08361</em>. <a href="https://scholar.google.com/scholar?q=al.%202020%20Scaling%20Laws%20for%20Neural%20Language%20Models">↗ 搜索原文</a></li>
-<li>Schaeffer, Rylan and Miranda, Brando and Koyejo, Sanmi (2023). <em>Are Emergent Abilities of Large Language Models a Mirage?</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Schaeffer%202023%20Are%20Emergent%20Abilities%20of%20Large%20Language">↗ 搜索原文</a></li>
-</ol>
+<p><em>缓一缓。</em>五张问题地图各有锚点、各有”已解与未解”的分界线，共性只有一条：它们都能被量出来，也都还没被量完。下一章把模式放上棋盘，落子预测。</p>
 </section>
 <section id="练习" class="level2" data-number="38.8">
 <h2 data-number="38.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">38.8</span> 练习</h2>
@@ -1314,7 +1272,7 @@ window.Quarto = {
 <li>飞轮数学：把 7.4 的 STaR 饱和数据拟合为几何收敛（每轮增益 ×r），估计 r 与初始分布支撑的关系。你的 r 是多少？它支持”飞轮上限=初始分布”的猜想吗？</li>
 <li>评测设计：给 8.2 的 agent 设计一个”长程可靠性”指标，要求对单步错误率与轨迹长度都单调、且可从少量轨迹估计。写出定义并代入练习数据。</li>
 <li>论文映射：用四问账本拆数据墙论文。它的”买到”是问题清晰度还是结论？两者在账本上如何分别记账？</li>
-<li>进阶（终章预演）：四个问题各写一行”我认为的答案 + 最可能证伪我的观察”。下一章开始前完成，这是你带进毕业考场的草稿。</li>
+<li>进阶（终章预演）：五个问题各写一行”我认为的答案 + 最可能证伪我的观察”。下一章开始前完成，这是你带进毕业考场的草稿。</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="练习答案">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -1329,7 +1287,7 @@ window.Quarto = {
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 1 参考</strong>：边际增益 = loss(2×) − loss(1×) 随语料规模的衰减率；若衰减率本身在加速，墙近；线性衰减则还有余量。预警指标的要义是测导数而非测值（6.1 外推游戏的进阶）。</p>
-<p><strong>练习 2 参考</strong>：几何比 r ≈ 0.1–0.2（第 2/3 轮增益比）；r 越小说明初始分布的”可自举部分”越薄。把 r 与采样温度的关系加进来，你会看到探索如何暂时抬升 r。飞轮的燃料余量 ≈ 探索预算 × 分布支撑。</p>
+<p><strong>练习 2 参考</strong>：前两轮的增益比约 0.37（0.10/0.27），第三轮增益变号——比纯几何收敛触顶更早，过拟合开始掺入。r 越小说明初始分布的”可自举部分”越薄。把 r 与采样温度的关系加进来，你会看到探索如何暂时抬升 r。飞轮的燃料余量 ≈ 探索预算 × 分布支撑。</p>
 <p><strong>练习 3 提示</strong>：考虑 −log(成功率) 对轨迹长度的斜率（每步负对数成功率）：对单步错误率单调、可加、可从片段估计。它就是”长程损耗率”，agent 时代的”每字符熵”。</p>
 </div>
 </div>
@@ -1337,23 +1295,11 @@ window.Quarto = {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
 </div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
 <div id="ref-kaplan2020" class="csl-entry" role="listitem">
 Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1798,7 +1744,7 @@ Schaeffer, Rylan, Brando Miranda, and Sanmi Koyejo. 2023. <span>“Are Emergent 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part9-open-problems.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part9-open-problems.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

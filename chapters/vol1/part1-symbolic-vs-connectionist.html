@@ -68,9 +68,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -137,7 +137,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -147,49 +147,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -680,6 +637,7 @@ main table {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -773,7 +731,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -785,7 +743,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -902,7 +860,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -919,13 +877,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1050,10 +1008,9 @@ main table {
   <li><a href="#核心思想" id="toc-核心思想" class="nav-link" data-scroll-target="#核心思想"><span class="header-section-number">5.3</span> 核心思想</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">5.4</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">5.5</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">5.6</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">5.7</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">5.6</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part1-symbolic-vs-connectionist.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part1-symbolic-vs-connectionist.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1094,10 +1051,10 @@ main table {
 </div>
 <div class="callout-era" title="时代快照 · 1970–1986">
 <ul>
-<li><strong>算力</strong>：DEC 的 VAX 系列小型机与 LISP 机器（为符号 AI 定制的硬件。）是研究机构的标配；</li>
+<li><strong>算力</strong>：DEC 的 VAX 系列小型机与 LISP 机器（为符号 AI 定制的硬件）是研究机构的标配；</li>
 <li>数据：符号主义几乎不需要数据。它的”数据”是专家的头脑。这正是它的骄傲与死穴；</li>
 <li>认知：AI 的定义就是”让机器做需要智能的事”，而智能被认为是可形式化的推理。图灵奖接连颁给符号阵营（Minsky 1969、McCarthy 1971、Feigenbaum 与 Reddy 1994）；</li>
-<li>产业：1980 年代专家系统创造了数亿美元产值，日本 1982 年启动”第五代计算机”国家计划（十年、数亿美元、押注符号路线）；1986 年美国神经网络会议复苏时，第五代计划正走向默默失败的尾声。</li>
+<li>产业：1980 年代专家系统创造了数亿美元产值，日本 1982 年启动”第五代计算机”国家计划（十年、数亿美元、押注符号路线）；1986 年 Snowbird 神经网络会议（及次年的 NIPS 会议）复苏时，第五代计划正走向默默失败的尾声。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="5.1">
@@ -1113,7 +1070,7 @@ main table {
 <p><strong>符号主义的登基</strong>。DENDRAL（1965，推断分子结构）与 MYCIN（1976，血液感染诊断）证明了”知识就是力量”：几百条人工编写的 IF-THEN 规则，能让机器在狭窄领域达到专家水平，而且每一步推理都可解释。知识工程（knowledge engineering）成为职业，Feigenbaum 宣称瓶颈不在智能而在知识获取。只要雇足够的专家把知识”开采”出来，智能就会堆积而成。</p>
 <p><strong>裂缝在骄傲中扩大</strong>。三个问题在 1980 年代逐渐显形：①知识获取瓶颈。规则要人写，专家的时间是稀缺资源，且专家说不清自己怎么想的；②脆弱性。出了规则覆盖的范围就一败涂地，没有常识兜底；③组合爆炸。规则库一大就互相打架。日本的第五代计划（1982–1992）是符号路线的国家级豪赌，最终没有产出能与宣言匹配的成果。</p>
 <p><strong>地下的连接主义</strong>。寒冬里仍有火种：日本的 Fukushima 在 1980 年发表 Neocognitron <span class="citation" data-cites="fukushima1980">(<a href="#ref-fukushima1980" role="doc-biblioref">Fukushima 1980</a>)</span>（视觉皮层启发的多层结构。卷积网络的直系祖先，3.1 章的主角）；Grossberg 与 Kohonen 各自发展竞争学习理论；Amari 在数学院系坚守统计神经动力学。然后是转折性的 1982：物理学家 Hopfield <span class="citation" data-cites="hopfield1982">(<a href="#ref-hopfield1982" role="doc-biblioref">Hopfield 1982</a>)</span> 用能量函数的语言重新表述神经网络（联想记忆），发表在 PNAS 上。换一种主流听得懂的语言，荒原上的工作突然重新可敬。随后 Hinton 与 Sejnowski 的玻尔兹曼机（1985）延续物理化路线。1986 年，Rumelhart、McClelland 与 PDP 学派的两卷本 <span class="citation" data-cites="rumelhart1986pdp">(<a href="#ref-rumelhart1986pdp" role="doc-biblioref">Rumelhart et al. 1986</a>)</span>《并行分布式处理》出版。这不仅是论文集，是范式复活的宣言书。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><em>缓一缓。</em>这一节讲了同一时期的三股力量：符号主义凭专家系统登上王座，却在知识获取、脆弱性与组合爆炸三处裂缝中走向失控；连接主义在寒冬里以 Neocognitron、竞争学习与 Hopfield 的能量语言保存火种；1982 到 1986 年，换一种主流语言说话加上 PDP 两卷本，把火种重新点燃。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>你是 1980 年的国家科学基金评审，手里两份提案：</p>
 <ul>
@@ -1145,13 +1102,13 @@ main table {
 </tr>
 <tr class="odd">
 <td>2020s</td>
-<td>人类反馈对齐 vs 纯规模化预训练（7.x）</td>
+<td>人类反馈对齐 vs 纯规模化预训练（7.3）</td>
 </tr>
 </tbody>
 </table>
 <p><strong>胜负的裁决者不是哲学，是工程证据 × 经费社会学</strong>。MYCIN 的成功为符号主义挣得二十年经费；感知机的失败让连接主义丢了十五年。注意这两个案例的共同点：裁决依据都是当时最可见的演示，而非长期潜力。这对今天的启示不必多言。</p>
 <p><strong>地下存活的三个条件</strong>（Hopfield 案例的提炼）：换个主流语言说话（能量→物理）、换个小而硬的核心问题（联想记忆可严格分析）、保住最小火种（几个不放弃的实验室）。范式死亡不等于思想死亡。本书「回声」栏目的存在就是证明。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>这一节的判断可以压成一句：范式之争争的是「知识从哪来」，而胜负由工程演示与经费流向裁决，不由哲学论证裁决。MYCIN 与感知机各演示了一次裁决——依据都是当时最可见的演示，而非长期潜力；「地下存活三条件」则是从 Hopfield 身上提炼的生存术。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">5.4</span> 本章 Loss 账本</h2>
@@ -1196,7 +1153,7 @@ main table {
 <div class="callout-echo" title="回声">
 <ul>
 <li>知识获取瓶颈 → “有多少人工就有多少智能”是每个时代的魔咒；今天 RLHF 里的人类反馈采集（7.3）正是新的开采业，它会不会重演瓶颈？账本见分晓；</li>
-<li>Hopfield 能量景观 → 扩散模型的能量视角（8.x）。物理学语言第二次救场；</li>
+<li>Hopfield 能量景观 → 生成模型对能量视角的再借用。物理学语言第二次救场；</li>
 <li>“可解释”的诉求 → 从 MYCIN 的推理链到今天 LLM 的可解释性研究（7.1、9.2），四十年未决；</li>
 <li>LISP 机器的教训（为单一范式定制硬件） → 今天的 GPU/TPU 也是”为范式定制的硬件”。但这次范式押对了吗？（9.3 留给你判断）</li>
 </ul>
@@ -1213,19 +1170,10 @@ main table {
 <section id="遗留问题" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">5.5</span> 遗留问题</h2>
 <p>范式复活的宣言已经写好（PDP 两卷本），地下党重见天日。但宣言里最关键的一页还是空白的：<strong>隐藏层的权重到底该怎么学？</strong> 感知机规则的收敛定理只覆盖单层。多层网络缺少自己的发动机。下一章，我们把这台发动机亲手造出来。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>一句话复述：符号主义的王朝出现了裂缝，连接主义的复活宣言（PDP 两卷本）已经写好，但宣言里最关键的一页还空着——隐藏层的权重到底该怎么学。下一章就亲手造这台发动机。</p>
 </section>
-<section id="参考文献" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">5.6</span> 参考文献</h2>
-<ol type="1">
-<li>Hopfield, John J. (1982). <em>Neural Networks and Physical Systems with Emergent Collective Computational Abilities</em>. <em>Proceedings of the National Academy of Sciences, 79, 2554–2558</em>. <a href="https://scholar.google.com/scholar?q=Hopfield%201982%20Neural%20Networks%20and%20Physical%20Systems%20with">↗ 搜索原文</a></li>
-<li>Fukushima, Kunihiko (1980). <em>Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position</em>. <em>Biological Cybernetics, 36, 193–202</em>. <a href="https://scholar.google.com/scholar?q=Fukushima%201980%20Neocognitron%3A%20A%20Self-Organizing%20Neural%20Network%20Model">↗ 搜索原文</a></li>
-<li>Rumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). <em>Parallel Distributed Processing: Explorations in the Microstructure of Cognition</em>. <em>MIT Press, 1 and 2</em>. <a href="https://scholar.google.com/scholar?q=Rumelhart%201986%20Parallel%20Distributed%20Processing%3A%20Explorations%20in%20the">↗ 搜索原文</a></li>
-<li>Minsky, Marvin and Papert, Seymour (1969). <em>Perceptrons: An Introduction to Computational Geometry</em>. <em>MIT Press</em>. <a href="https://scholar.google.com/scholar?q=Minsky%201969%20Perceptrons%3A%20An%20Introduction%20to%20Computational%20Geometry">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="练习"><span class="header-section-number">5.7</span> 练习</h2>
+<section id="练习" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="练习"><span class="header-section-number">5.6</span> 练习</h2>
 <ol type="1">
 <li><strong>开采练习</strong>：为”判断一封邮件是否为垃圾邮件”手写 10 条规则，然后为每条规则构造一个失效反例。数一数你花了多少分钟。再乘以一个专家系统的五千条规则。</li>
 <li>翻译练习：用三段话把 Hopfield 网络讲给一个只会微积分的朋友（不许用”能量”以外的物理词汇，也不许用任何神经网络词汇超过三次）。</li>
@@ -1244,36 +1192,21 @@ main table {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>练习 1 的典型体验：写到第六条规则左右开始出现”两条规则打架”的案例（组合爆炸的手感）；练习 2 的合格线是对方能复述”为什么掉进去的坑会被记住”（能量极小值=记忆）；练习 3 若你选了”RLHF 对齐 vs 纯规模化”，注意账本第二问（数据从哪来）正是双方真正的战场；练习 4：MYCIN 活着的部分是”置信度传播”的朴素贝叶斯味道，死掉的部分是”规则够用”的信念。</p>
+<p>练习 1 的典型体验：写到第六条规则左右开始出现”两条规则打架”的案例（组合爆炸的手感）；练习 2 的合格线是对方能复述”为什么掉进去的坑会被记住”（能量极小值=记忆）；练习 3 若你选了”RLHF 对齐 vs 纯规模化”，注意账本第二问（数据从哪来）正是双方真正的战场；练习 4：MYCIN 活着的部分是 certainty factors 这种不确定性推理的雏形，死掉的部分是”规则够用”的信念。</p>
 </div>
 </div>
 </div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-fukushima1980" class="csl-entry" role="listitem">
 Fukushima, Kunihiko. 1980. <span>“Neocognitron: A Self-Organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position.”</span> <em>Biological Cybernetics</em> 36: 193–202.
 </div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
 </div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
 <div id="ref-hopfield1982" class="csl-entry" role="listitem">
 Hopfield, John J. 1982. <span>“Neural Networks and Physical Systems with Emergent Collective Computational Abilities.”</span> <em>Proceedings of the National Academy of Sciences</em> 79 (8): 2554–58.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1718,7 +1651,7 @@ Rumelhart, David E., James L. McClelland, and the PDP Research Group. 1986. <em>
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part1-symbolic-vs-connectionist.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part1-symbolic-vs-connectionist.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

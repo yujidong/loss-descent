@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -715,6 +672,7 @@ main table {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -808,7 +766,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -820,7 +778,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -937,7 +895,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -954,13 +912,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1087,10 +1045,9 @@ main table {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">34.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">34.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">34.7</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">34.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">34.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">34.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part8-agent-origins.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part8-agent-origins.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1115,7 +1072,7 @@ main table {
 </header>
 
 
-<p>Part 7 结束时我们手里有了一个会推理的模型；把它放进一个循环里。给它工具、给它记忆、让它自己决定下一步。就得到了本卷的主角：<strong>agent（智能体）</strong>。2023 年 AutoGPT 们一夜爆红又集体哑火，2024–2025 年编程与检索 agent 真正可用。喧嚣之下有一个本书主线必须回答的问题：agent 能力到底是新发明，还是旧能力的重新包装？ 本章的答案分两半：模型侧的一切（工具调用、格式遵循、按步推理）都能在预训练分布里找到祖先。代码、教程、API 文档，全是”人类用工具的轨迹”；而把这些能力稳定地释放出来，靠的是后训练与系统层的合作。我们用两个实验看清这件事。</p>
+<p>Part 7 结束时我们手里有了一个会推理的模型；把它放进一个循环里——给它工具、给它记忆、让它自己决定下一步——就得到了本卷的主角：<strong>agent（智能体）</strong>。2023 年 AutoGPT 们一夜爆红又集体哑火，2024–2025 年编程与检索 agent 真正可用。喧嚣之下有一个本书主线必须回答的问题：agent 能力到底是新发明，还是旧能力的重新包装？ 本章的答案分两半：模型侧的一切（工具调用、格式遵循、按步推理）都能在预训练分布里找到祖先。代码、教程、API 文档，全是”人类用工具的轨迹”；而把这些能力稳定地释放出来，靠的是后训练与系统层的合作。我们用两个实验看清这件事。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1134,7 +1091,7 @@ main table {
 <li><strong>算力</strong>：agent 把推理成本从”每条消息一次前向”变成”每任务几十次前向 + 工具执行”。推理经济学（5.3 的账单）第一次成为产品定价的直接输入；</li>
 <li>数据：函数调用格式的合成数据、代码执行轨迹、浏览器操作日志。“人类使用工具的轨迹”成为新的采集对象；</li>
 <li>认知：2023 年的主流预期是”agent = 新框架与新规划算法”；两年后的共识更朴素：agent = 大模型 + 工具 + 循环，且短板几乎总在模型的长程一致性而非规划算法；</li>
-<li>关键事实：ChatGPT 的函数调用（2023.6）没有发布新模型。只是输出格式的对齐与解析层的工程。agent 时代的第一课：很多”新能力”是旧能力的接口化。</li>
+<li>关键事实：ChatGPT 的函数调用（2023.6）没有发布新的能力代际——2023 年 6 月 13 日的 0613 快照是同一代模型加格式对齐与解析层的工程。agent 时代的第一课：很多”新能力”是旧能力的接口化。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="34.1">
@@ -1149,13 +1106,13 @@ main table {
 <h2 data-number="34.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">34.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>弯路一：把 agent 当规划系统做</strong>。2023 年的框架热（LangChain 生态、AutoGPT）试图用代码写死规划：任务分解模板、反思提示、记忆管理。把智能放在脚手架里。结果：脆弱、昂贵、一步错步步错。教训与 1.2 的专家系统惊人地同构。知识在代码里就遇到代码的扩展墙；Bitter Lesson 的 agent 版。</p>
 <p><strong>弯路二：宣布”模型即全部”</strong>。反向极端：只要模型够强，无需脚手架。现实打脸：没有工具的模型算不准大数、没有循环的模型改不了自己的错。脚手架与模型是共生关系。分界线在哪，正是 8.3 的主题。</p>
-<p><strong>正解的演化</strong>：函数调用（格式对齐让”调用工具”变成一种可靠的语言行为）→ 代码执行作为工具（写代码比心算算术更接近模型的训练分布。代码数据是预训练里最完整的”人类用工具轨迹”）→ 计算机使用/浏览器操作（轨迹采集 → 模仿学习 → 环境闭环 RL，8.2 的主题）。每一步都是”找到数据里已有的行为，再把接口对齐”。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><strong>正解的演化</strong>：ReAct（Yao et al.&nbsp;2023，把”推理痕迹 + 工具动作”交替写进同一份上下文——agent 行为语法的定型）→ 函数调用（格式对齐让”调用工具”变成一种可靠的语言行为）→ Toolformer（让模型自己标注在哪里插工具调用）→ 代码执行作为工具（写代码比心算算术更接近模型的训练分布。代码数据是预训练里最完整的”人类用工具轨迹”）→ 计算机使用/浏览器操作（轨迹采集 → 模仿学习 → 环境闭环 RL，8.2 的主题）。每一步都是”找到数据里已有的行为，再把接口对齐”。</p>
+<p><em>缓一缓。</em>两条弯路对照着记：把智能写死在脚手架里（2023 的框架热）撞上扩展墙，宣布”模型即全部”又算不准大数。正解的谱系是 ReAct 定行为语法、函数调用做接口对齐、Toolformer 自标注、代码执行当工具、再往环境闭环走——每一步都是”找到数据里已有的行为，再把接口对齐”。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>两个实验预告，先写下预测：</p>
 <ol type="1">
-<li><strong>计算器拦截</strong>：让故事模型续写含算式的文本（如 <code>"pip counted 3+4="</code>）。模型会算对吗？（你已知道它的水平。）现在外挂一个工具：正则匹配到 <code>a+b=</code> 就把正确答案写回上下文再让模型继续。整体正确率会到多少？ 模型与工具的分工你怎么描述？</li>
-<li>验证器重排：7.2 的 SFT 模型贪心命中只有 0.17–0.33，但是，正确答案的似然 margin 是 +3.68 nat。如果系统层枚举全部 12 个候选答案、按 teacher-forced 似然重排取最优，命中率会到多少？（提示：margin 是均值。每道题的正确答案都排第一吗？）</li>
+<li><strong>计算器拦截</strong>：让故事模型续写含算式的文本（如 <code>"pip counted 3+4="</code>）。模型会算对吗？（你已知道它的水平。）现在外挂一个工具：正则匹配到 <code>a+b=</code> 就把正确答案写回上下文再让模型继续。整体正确率会到多少？模型与工具的分工你怎么描述？</li>
+<li>验证器重排：7.2 的 SFT 模型贪心命中只有 0.33，但是，正确答案的似然 margin 是 +3.68 nat。如果系统层枚举全部 12 个候选答案、按 teacher-forced 似然重排取最优，命中率会到多少？（提示：margin 是均值。每道题的正确答案都排第一吗？）</li>
 </ol>
 <p>写完再运行。第 2 问的答案不如很多人猜的那么高，原因值得写进你的笔记。</p>
 </div>
@@ -1168,14 +1125,14 @@ main table {
 <li>后训练的接口对齐：函数调用格式、指令遵循。SFT/RLHF 把”偶尔会的行为”变成”稳定可靠的行为”（7.2 的格式满分正是这一层）；</li>
 <li>系统层的循环与工具：真正的执行、验证、重试发生在模型之外。模型提供行为分布，环境提供因果。</li>
 </ol>
-<p><strong>工具的本质：把模型的短板外包给确定性系统</strong>。模型不擅长精确算术（7.4 我们领教过），但是，擅长决定”什么时候该算、算什么”。决策与执行分离，agent 的全部架构秘密就这一句。它与 3.1 卷积的”归纳偏置”形成有趣的镜像：卷积把结构写进权重，agent 把结构写进环境。先验的两种住所。</p>
+<p><strong>工具的本质：把模型的短板外包给确定性系统</strong>。模型不擅长精确算术（7.4 我们领教过），但是，擅长决定”什么时候该算、算什么”。决策与执行分离，agent 的全部架构秘密就这一句。它与 3.1 卷积的”归纳偏置”互为镜像：卷积把结构写进权重，agent 把结构写进环境。先验的两种住所。</p>
 <p><strong>“知道”与”说出”之间，工具是桥</strong>：7.2 发现知识在概率里、行为在路径上。重排类工具（验证器、best-of-n）不改权重，直接读概率。它们是”把知道变成说出”的系统层方案（与 RLHF 的模型层方案对照）。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>本节给了三层来源：预训练分布里的轨迹、后训练的接口对齐、系统层的循环与工具；外加一句架构总纲——模型出意图，环境出因果。接下来的两个实验，分别去量这两句话。</p>
 </section>
 <section id="从零实现" class="level2" data-number="34.4">
 <h2 data-number="34.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">34.4</span> 从零实现</h2>
 <p><strong>实验一：计算器拦截。</strong> 基座模型续写含算式的文本，工具在算式处接管：</p>
-<div id="1fd54dde" class="cell" data-execution_count="1">
+<div id="2c68ca56" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1204,47 +1161,49 @@ main table {
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> with_tool(prompt_text, n_new<span class="op">=</span><span class="dv">30</span>, seed<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""生成中拦截 a+b= 模式，正确答案写回上下文。"""</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> prompt_text]</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> <span class="bu">list</span>(ids_p)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    tool_used <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_new):</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        nxt <span class="op">=</span> base.generate(out[<span class="op">-</span><span class="dv">64</span>:], n_new<span class="op">=</span><span class="dv">1</span>, temperature<span class="op">=</span><span class="fl">0.1</span>, seed<span class="op">=</span>seed <span class="op">+</span> <span class="bu">len</span>(out))[<span class="dv">0</span>]</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        out.append(nxt)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> re.search(<span class="vs">r"</span><span class="kw">(</span><span class="dv">\d</span><span class="kw">)</span><span class="ch">\+</span><span class="kw">(</span><span class="dv">\d</span><span class="kw">)</span><span class="vs">=</span><span class="dv">$</span><span class="vs">"</span>, text)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> m:</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            a, b <span class="op">=</span> <span class="bu">int</span>(m.group(<span class="dv">1</span>)), <span class="bu">int</span>(m.group(<span class="dv">2</span>))</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            out.extend(vocab[c] <span class="cf">for</span> c <span class="kw">in</span> <span class="ss">f"</span><span class="sc">{</span>a <span class="op">+</span> b<span class="sc">}</span><span class="ss"> "</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            tool_used <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> tool_used <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> np.random.default_rng(<span class="dv">5</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>no_tool_ok <span class="op">=</span> with_tool_ok <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    a, b <span class="op">=</span> <span class="bu">int</span>(r2.integers(<span class="dv">1</span>, <span class="dv">9</span>)), <span class="bu">int</span>(r2.integers(<span class="dv">1</span>, <span class="dv">9</span>))</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"pip counted </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">+</span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">="</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 无工具：直接生成 2 个字符</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> prompt]</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> base.generate(ids_p, n_new<span class="op">=</span><span class="dv">2</span>, temperature<span class="op">=</span><span class="fl">0.1</span>, seed<span class="op">=</span>trial)[<span class="bu">len</span>(ids_p):])</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    no_tool_ok <span class="op">+=</span> <span class="bu">int</span>(gen.startswith(<span class="bu">str</span>(a <span class="op">+</span> b)))</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 有工具：拦截注入</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> with_tool(prompt, n_new<span class="op">=</span><span class="dv">6</span>, seed<span class="op">=</span>trial)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> re.search(<span class="vs">r"</span><span class="kw">(</span><span class="dv">\d</span><span class="kw">)</span><span class="ch">\+</span><span class="kw">(</span><span class="dv">\d</span><span class="kw">)</span><span class="vs">=</span><span class="kw">(</span><span class="dv">\d</span><span class="op">+</span><span class="kw">)</span><span class="vs">"</span>, text)</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> m:</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        with_tool_ok <span class="op">+=</span> <span class="bu">int</span>(<span class="bu">int</span>(m.group(<span class="dv">3</span>)) <span class="op">==</span> <span class="bu">int</span>(m.group(<span class="dv">1</span>)) <span class="op">+</span> <span class="bu">int</span>(m.group(<span class="dv">2</span>)))</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"算式续写正确率: 无工具 </span><span class="sc">{</span>no_tool_ok<span class="op">/</span><span class="dv">20</span><span class="sc">:.2f}</span><span class="ss"> -&gt; 带计算器 </span><span class="sc">{</span>with_tool_ok<span class="op">/</span><span class="dv">20</span><span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""生成前拦截：上下文末尾一旦出现 a+b=，先把正确答案写回，再让模型继续。</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">    注意检查必须发生在"每步生成之前"——放在生成之后，prompt 末尾的</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">    算式永远轮不到工具（本章代码的第一版就犯过这个错，带工具 0 分）。"""</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> prompt_text]</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> <span class="bu">list</span>(ids_p)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    tool_used <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_new):</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> re.search(<span class="vs">r"</span><span class="kw">(</span><span class="dv">\d</span><span class="kw">)</span><span class="ch">\+</span><span class="kw">(</span><span class="dv">\d</span><span class="kw">)</span><span class="vs">=</span><span class="dv">$</span><span class="vs">"</span>, text)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> m:</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            a, b <span class="op">=</span> <span class="bu">int</span>(m.group(<span class="dv">1</span>)), <span class="bu">int</span>(m.group(<span class="dv">2</span>))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            out.extend(vocab[c] <span class="cf">for</span> c <span class="kw">in</span> <span class="ss">f"</span><span class="sc">{</span>a <span class="op">+</span> b<span class="sc">}</span><span class="ss"> "</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            tool_used <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> tool_used <span class="op">&gt;=</span> <span class="dv">2</span>:</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        nxt <span class="op">=</span> base.generate(out[<span class="op">-</span><span class="dv">64</span>:], n_new<span class="op">=</span><span class="dv">1</span>, temperature<span class="op">=</span><span class="fl">0.1</span>, seed<span class="op">=</span>seed <span class="op">+</span> <span class="bu">len</span>(out))[<span class="dv">0</span>]</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        out.append(nxt)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> out)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> np.random.default_rng(<span class="dv">5</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>no_tool_ok <span class="op">=</span> with_tool_ok <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trial <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    a, b <span class="op">=</span> <span class="bu">int</span>(r2.integers(<span class="dv">1</span>, <span class="dv">9</span>)), <span class="bu">int</span>(r2.integers(<span class="dv">1</span>, <span class="dv">9</span>))</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"pip counted </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">+</span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">="</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 无工具：直接生成 2 个字符</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> prompt]</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> base.generate(ids_p, n_new<span class="op">=</span><span class="dv">2</span>, temperature<span class="op">=</span><span class="fl">0.1</span>, seed<span class="op">=</span>trial)[<span class="bu">len</span>(ids_p):])</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    no_tool_ok <span class="op">+=</span> <span class="bu">int</span>(gen.startswith(<span class="bu">str</span>(a <span class="op">+</span> b)))</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 有工具：拦截注入。只对被测算式判分（取 prompt 之后的续写）</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> with_tool(prompt, n_new<span class="op">=</span><span class="dv">6</span>, seed<span class="op">=</span>trial)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    with_tool_ok <span class="op">+=</span> <span class="bu">int</span>(text[<span class="bu">len</span>(prompt):].startswith(<span class="bu">str</span>(a <span class="op">+</span> b)))</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"算式续写正确率: 无工具 </span><span class="sc">{</span>no_tool_ok<span class="op">/</span><span class="dv">20</span><span class="sc">:.2f}</span><span class="ss"> -&gt; 带计算器 </span><span class="sc">{</span>with_tool_ok<span class="op">/</span><span class="dv">20</span><span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>算式续写正确率: 无工具 0.00 -&gt; 带计算器 0.00</code></pre>
+<pre><code>算式续写正确率: 无工具 0.00 -&gt; 带计算器 1.00</code></pre>
 </div>
 </div>
-<p>典型读数：<strong>无工具 ≈ 0.05–0.15</strong>（模型对算术只有字符级的模糊直觉）→ 带工具 = 1.00。注意工具只做了一件小事：识别模式、算对、写回。决策权（在哪里停、写什么算式）仍在模型。这就是 agent 的分工：模型出意图，环境出因果。</p>
-<p><strong>实验二：验证器重排。把 margin 变成命中率。</strong> 复用 7.2 的 SFT 流程（代码相同，快速重训）：</p>
-<div id="e68dc19e" class="cell" data-execution_count="2">
+<p>典型读数：<strong>无工具 0.00（20 题全错。模型对算术连字符级的直觉都谈不上）</strong>→ 带工具 = 1.00。注意工具只做了一件小事：识别模式、算对、写回。决策权（在哪里停、写什么算式）仍在模型。这就是 agent 的分工：模型出意图，环境出因果。顺带一提，本章代码的第一版把模式检查放在了”生成一个字符之后”，结果带工具也是 0 分——prompt 末尾那个等号在第一次检查前就被顶掉了。工具调用在时间轴上的位置不是工程细节，是正确性本身。</p>
+<p><strong>实验二：验证器重排。把 margin 变成命中率。</strong> 复用 7.2 的 SFT 流程（同一套 clone + 同一串随机批次，快速重训一遍）：</p>
+<div id="489360ee" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_qa_corpus</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.transformer.layers <span class="im">import</span> softmax_lastdim</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1260,43 +1219,64 @@ main table {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>BS <span class="op">=</span> <span class="dv">96</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>sft <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span>BS, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span>BS, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    starts <span class="op">=</span> rng.integers(<span class="dv">0</span>, <span class="bu">len</span>(arr) <span class="op">-</span> BS <span class="op">-</span> <span class="dv">1</span>, size<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    sft.loss_and_backward(np.stack([arr[s : s <span class="op">+</span> BS <span class="op">+</span> <span class="dv">1</span>] <span class="cf">for</span> s <span class="kw">in</span> starts]))</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    sft.step(<span class="fl">0.15</span>, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1500</span>):</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    starts <span class="op">=</span> rng.integers(<span class="dv">0</span>, <span class="bu">len</span>(qa_arr) <span class="op">-</span> BS <span class="op">-</span> <span class="dv">1</span>, size<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    sft.loss_and_backward(np.stack([qa_arr[s : s <span class="op">+</span> BS <span class="op">+</span> <span class="dv">1</span>] <span class="cf">for</span> s <span class="kw">in</span> starts]))</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    sft.step(<span class="fl">0.1</span>, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seq_logp(model, prompt_ids, cont_ids):</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.array(<span class="bu">list</span>(prompt_ids) <span class="op">+</span> <span class="bu">list</span>(cont_ids))[<span class="va">None</span>, :]</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> softmax_lastdim(model.forward(x[:, :<span class="op">-</span><span class="dv">1</span>])[<span class="dv">0</span>])</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    s, e <span class="op">=</span> <span class="bu">len</span>(prompt_ids) <span class="op">-</span> <span class="dv">1</span>, <span class="bu">len</span>(prompt_ids) <span class="op">+</span> <span class="bu">len</span>(cont_ids) <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(np.log(p[np.arange(s, e), <span class="bu">list</span>(cont_ids)] <span class="op">+</span> <span class="fl">1e-12</span>)))</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>greedy <span class="op">=</span> rerank <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> q, a <span class="kw">in</span> qa_pairs[:<span class="dv">12</span>]:</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    p_ids <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> <span class="ss">f"question: </span><span class="sc">{</span>q<span class="sc">}</span><span class="ss"> answer: "</span>]</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> sft.generate(p_ids, n_new<span class="op">=</span><span class="bu">len</span>(a) <span class="op">+</span> <span class="dv">4</span>, temperature<span class="op">=</span><span class="fl">0.01</span>, seed<span class="op">=</span><span class="dv">0</span>)[<span class="bu">len</span>(p_ids):])</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    greedy <span class="op">+=</span> <span class="bu">int</span>(gen.startswith(a))</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    cands <span class="op">=</span> [qa_pairs[j][<span class="dv">1</span>] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(qa_pairs))]</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>((seq_logp(sft, p_ids, [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> c]), c) <span class="cf">for</span> c <span class="kw">in</span> cands)[<span class="dv">1</span>]</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    rerank <span class="op">+=</span> <span class="bu">int</span>(best <span class="op">==</span> a)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"QA 命中: 贪心 </span><span class="sc">{</span>greedy<span class="op">/</span><span class="dv">12</span><span class="sc">:.2f}</span><span class="ss"> -&gt; 枚举重排 </span><span class="sc">{</span>rerank<span class="op">/</span><span class="dv">12</span><span class="sc">:.2f}</span><span class="ss">（margin 均值 +3.68 nat）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    base.loss_and_backward(np.stack([arr[s : s <span class="op">+</span> BS <span class="op">+</span> <span class="dv">1</span>] <span class="cf">for</span> s <span class="kw">in</span> starts]))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    base.step(<span class="fl">0.15</span>, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clone(model):</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span>BS, seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    c.tok_emb <span class="op">=</span> model.tok_emb.copy()</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> lb, bb <span class="kw">in</span> <span class="bu">zip</span>(c.blocks, model.blocks):</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> la, ba <span class="kw">in</span> ((lb.attn.Wq, bb.attn.Wq), (lb.attn.Wk, bb.attn.Wk),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                       (lb.attn.Wv, bb.attn.Wv), (lb.attn.Wo, bb.attn.Wo)):</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            la.W, la.b <span class="op">=</span> ba.W.copy(), ba.b.copy()</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        lb.mlp.fc1.W, lb.mlp.fc1.b <span class="op">=</span> bb.mlp.fc1.W.copy(), bb.mlp.fc1.b.copy()</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        lb.mlp.fc2.W, lb.mlp.fc2.b <span class="op">=</span> bb.mlp.fc2.W.copy(), bb.mlp.fc2.b.copy()</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    c.head.W, c.head.b <span class="op">=</span> model.head.W.copy(), model.head.b.copy()</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>sft <span class="op">=</span> clone(base)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1500</span>):</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    starts <span class="op">=</span> rng.integers(<span class="dv">0</span>, <span class="bu">len</span>(qa_arr) <span class="op">-</span> BS <span class="op">-</span> <span class="dv">1</span>, size<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    sft.loss_and_backward(np.stack([qa_arr[s : s <span class="op">+</span> BS <span class="op">+</span> <span class="dv">1</span>] <span class="cf">for</span> s <span class="kw">in</span> starts]))</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    sft.step(<span class="fl">0.1</span>, clip<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> seq_logp(model, prompt_ids, cont_ids):</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.array(<span class="bu">list</span>(prompt_ids) <span class="op">+</span> <span class="bu">list</span>(cont_ids))[<span class="va">None</span>, :]</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> softmax_lastdim(model.forward(x[:, :<span class="op">-</span><span class="dv">1</span>])[<span class="dv">0</span>])</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    s, e <span class="op">=</span> <span class="bu">len</span>(prompt_ids) <span class="op">-</span> <span class="dv">1</span>, <span class="bu">len</span>(prompt_ids) <span class="op">+</span> <span class="bu">len</span>(cont_ids) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(np.log(p[np.arange(s, e), <span class="bu">list</span>(cont_ids)] <span class="op">+</span> <span class="fl">1e-12</span>)))</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>greedy <span class="op">=</span> rerank <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>margin_sum <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> qi, (q, a) <span class="kw">in</span> <span class="bu">enumerate</span>(qa_pairs[:<span class="dv">12</span>]):</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    p_ids <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> <span class="ss">f"question: </span><span class="sc">{</span>q<span class="sc">}</span><span class="ss"> answer: "</span>]</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">""</span>.join(inv[j] <span class="cf">for</span> j <span class="kw">in</span> sft.generate(p_ids, n_new<span class="op">=</span><span class="bu">len</span>(a) <span class="op">+</span> <span class="dv">4</span>, temperature<span class="op">=</span><span class="fl">0.01</span>, seed<span class="op">=</span><span class="dv">0</span>)[<span class="bu">len</span>(p_ids):])</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    greedy <span class="op">+=</span> <span class="bu">int</span>(gen.startswith(a))</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    cands <span class="op">=</span> [qa_pairs[j][<span class="dv">1</span>] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(qa_pairs))]</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> <span class="bu">max</span>((seq_logp(sft, p_ids, [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> c]), c) <span class="cf">for</span> c <span class="kw">in</span> cands)[<span class="dv">1</span>]</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    rerank <span class="op">+=</span> <span class="bu">int</span>(best <span class="op">==</span> a)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    lp_c <span class="op">=</span> seq_logp(sft, p_ids, [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> a])</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    lp_w <span class="op">=</span> np.mean([seq_logp(sft, p_ids, [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> qa_pairs[j][<span class="dv">1</span>]])</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(qa_pairs)) <span class="cf">if</span> j <span class="op">!=</span> qi])</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    margin_sum <span class="op">+=</span> lp_c <span class="op">-</span> lp_w</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"QA 命中: 贪心 </span><span class="sc">{</span>greedy<span class="op">/</span><span class="dv">12</span><span class="sc">:.2f}</span><span class="ss"> -&gt; 枚举重排 </span><span class="sc">{</span>rerank<span class="op">/</span><span class="dv">12</span><span class="sc">:.2f}</span><span class="ss">（margin 均值 </span><span class="sc">{</span>margin_sum<span class="op">/</span><span class="dv">12</span><span class="sc">:+.2f}</span><span class="ss"> nat）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>QA 命中: 贪心 0.00 -&gt; 枚举重排 0.08（margin 均值 +3.68 nat）</code></pre>
+<pre><code>QA 命中: 贪心 0.33 -&gt; 枚举重排 0.42（margin 均值 +3.68 nat）</code></pre>
 </div>
 </div>
 <p>典型读数：贪心 0.33 → 重排 <strong>0.42</strong>。提升真实但有限。这里藏着本章最诚实的一课：margin 是均值，重排要的是每题都第一。平均偏好正确 ≠ 逐题排序正确。6.3 的”度量与平均”之课在工具语境下重演。真实系统里的 RAG 重排器、验证器组合拳，本质上都在攻这个”逐题排序”的缺口。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p><em>缓一缓。</em>两个读数值得记住：算术 0.00→1.00（工具把短板外包给确定性系统），重排 0.33→0.42（“读概率而不改概率”的工具也有天花板——平均 margin 高不等于逐题排第一）。</p>
 </section>
 <section id="消融实验" class="level2" data-number="34.5">
 <h2 data-number="34.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">34.5</span> 消融实验</h2>
 <p><strong>工具的时机</strong>：把计算器从”生成中拦截”改成”生成后纠正”（等模型全写完再改答案）。对吗？不对：模型的后续生成建立在错误答案的上下文上，纠正一个字符救不回已被污染的推理链。改一下拦截时机重测（练习 3）。工具要接在因果链上，而不是贴在结果上：这就是为什么真实的 function calling 是”停下生成→等工具→再继续”，而不是事后修补。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p><em>缓一缓。</em>这一小节没有新代码，只有一条纪律：工具要接在因果链上，不要贴在结果上——本章计算器的第一版就因为检查晚了一步而全军覆没。真实 function calling 的”停下生成→等工具→再继续”，就是这条原则的产品化。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="34.6">
 <h2 data-number="34.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">34.6</span> 本章 Loss 账本</h2>
@@ -1322,7 +1302,7 @@ main table {
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
-<td>短板外包（算术 0.1→1.0）；知道→说出的系统层桥梁（0.33→0.42，及其边界）</td>
+<td>短板外包（算术 0.00→1.00）；知道→说出的系统层桥梁（0.33→0.42，及其边界）</td>
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
@@ -1353,17 +1333,10 @@ main table {
 <li>单次工具调用有了。<strong>多步循环</strong>（调用→观察→再决策）的行为如何训练与稳定？（→ 下一章：轨迹与环境闭环）；</li>
 <li>模型层与系统层的边界怎么画。一个问题该改 prompt、改工具、还是改权重？（→ 8.3：判断框架）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>单次工具调用已经配齐，遗留两问：多步循环（调用→观察→再决策）的行为如何训练与稳定（下一章），一个问题该改 prompt、改工具、还是改权重（8.3 的判断框架）。</p>
 </section>
-<section id="参考文献" class="level2" data-number="34.8">
-<h2 data-number="34.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">34.8</span> 参考文献</h2>
-<ol type="1">
-<li>Schick, Timo and Dwivedi-Yu, Jane and Dess`i (2023). <em>Toolformer: Language Models Can Teach Themselves to Use Tools</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Schick%202023%20Toolformer%3A%20Language%20Models%20Can%20Teach%20Themselves">↗ 搜索原文</a></li>
-<li>Radford et al.&nbsp;(2019). <em>Language Models Are Unsupervised Multitask Learners</em>. <em>OpenAI Technical Report</em>. <a href="https://scholar.google.com/scholar?q=al.%202019%20Language%20Models%20Are%20Unsupervised%20Multitask%20Learners">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="34.9">
-<h2 data-number="34.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">34.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="34.8">
+<h2 data-number="34.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">34.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>with_tool</code> 加第二种工具（词典查询：模式 <code>word?</code> → 注入故事词表里的定义），组合两个工具。观察模型会不会在算式后误触发词典（工具选择的混淆从两件工具开始）。</li>
 <li>预测再运行：重排的候选集从 12 个答案扩到 24 个（编造 12 个干扰项），命中率怎么变？（6.3 的度量课在重排里的重演。）</li>
@@ -1392,23 +1365,8 @@ main table {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1853,7 +1811,7 @@ Schick, Timo, Jane Dwivedi-Yu, Roberto Dessì, et al. 2023. <span>“Toolformer:
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part8-agent-origins.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part8-agent-origins.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

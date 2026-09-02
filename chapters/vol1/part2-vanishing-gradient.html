@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; 梯度消失：被忽视十五年的诊断书 – 降 Loss 之路</title>
+<title>9&nbsp; 梯度消失：被忽视二十年的诊断书 – 降 Loss 之路</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -727,7 +684,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-vanishing-gradient.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-vanishing-gradient.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,18 +1074,17 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">9.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">9.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">9.7</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">9.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">9.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">9.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part2-vanishing-gradient.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part2-vanishing-gradient.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-vanishing-gradient.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-mlp-difficulty.html">卷一 · Part 2 · 深度学习的黎明（1986–2015）</a></li><li class="breadcrumb-item"><a href="../../chapters/vol1/part2-vanishing-gradient.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></h1>
 </div>
 
 
@@ -1144,7 +1101,7 @@ window.Quarto = {
 </header>
 
 
-<p>1991 年，塞巴斯蒂安·霍克赖特（Sepp Hochreiter）在慕尼黑工大的硕士论文里写下了深度学习史上最重要的诊断之一：反向传播的误差信号在多层网络中会指数性衰减，深层的早期权重几乎学不到东西。这篇德语论文发表后<strong>被冷落了大约十年</strong>。引用寥寥，无人接续。直到 2001 年前后它才被重新发现，并直接催生了 LSTM。本章我们重做这份诊断，然后体会一个更深的教训：在研究史上，正确的诊断与被听见的诊断之间，可以隔着十五年。</p>
+<p>1991 年，塞普·霍赫赖特（Sepp Hochreiter）在慕尼黑工大的硕士论文里写下了深度学习史上最重要的诊断之一：反向传播的误差信号在多层网络中会指数式衰减，深层的早期权重几乎学不到东西。这篇德语论文的直接后果是 1997 年的 LSTM（作者正是 Hochreiter 本人）；但作为对「深」的通用诊断，它要到 2010 年代深网复兴才被广泛听见——前后约二十年。本章我们重做这份诊断，然后体会一个更深的教训：在研究史上，正确的诊断与被听见的诊断之间，可以隔着二十年。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1163,12 +1120,12 @@ window.Quarto = {
 <li><strong>算力</strong>：训练深度超过四五层的网络仍然奢侈，多数实践停留在两三层。这本身正是梯度消失的后果而非原因：不是没人想加深，是加深了也训不动；</li>
 <li>数据：序列学习（语音、文本）开始进入视野。序列恰恰是长程依赖的重灾区，梯度消失在那里的杀伤力十倍于前馈网络；</li>
 <li>认知：社区把”深了训不动”归因于上一章的那些 folklore（局部极小、步长玄学）；“梯度信号本身在传播中衰减”这个解释反而不流行，因为它意味着病在算法的数学结构里，而不是在调参的手艺里；</li>
-<li>关键事实：Hochreiter 的导师就是 Schmidhuber。这个后来以优先权之争闻名的实验室，在 1991 <span class="citation" data-cites="hochreiter1991">(<a href="#ref-hochreiter1991" role="doc-biblioref">Hochreiter 1991</a>)</span> 年拿出的这份诊断，比领域整体准备好接受它早了十年。</li>
+<li>关键事实：Hochreiter 的导师就是 Schmidhuber。这个后来以优先权之争闻名的实验室，在 1991 年拿出的这份诊断 <span class="citation" data-cites="hochreiter1991">(<a href="#ref-hochreiter1991" role="doc-biblioref">Hochreiter 1991</a>)</span>，比领域整体准备好接受它早了约二十年。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">9.1</span> 本章问题</h2>
-<p>1.4 章我们拍过一张快照：sigmoid 深网的第一层梯度比末层小七个数量级。现在把它拍成<strong>全景片</strong>：梯度范数沿层分布的完整剖面，以及它与激活函数选择的关系。两个问题：</p>
+<p>1.4 章我们拍过一张快照：16 层网络的首层梯度比浅网络小约七个数量级。现在把它拍成<strong>全景片</strong>：梯度范数沿层分布的完整剖面，以及它与激活函数选择的关系。两个问题：</p>
 <ol type="1">
 <li>梯度消失的<strong>数学机制</strong>到底是什么？（为什么是指数的？指数底数由什么决定？）</li>
 <li>为什么这个诊断被听见了也难以根治？（换激活函数能治好吗？）</li>
@@ -1179,8 +1136,8 @@ window.Quarto = {
 <p><strong>弯路一：归因于优化器的手艺。</strong> 1990s 主流的解释框架是上一章的 folklore。调好学习率、选好初始化就能解决。这些手段确实缓解了浅层的症状，于是”病已经治了”的错觉流行。直到人们把网络做到八层以上，才发现初始化只救了起点，救不了传播。</p>
 <p><strong>弯路二：归因于数据与任务。</strong> “深层只在某些任务上有意义”。这个方向的研究把深度问题误判为应用问题，错过了普适的数学结构。</p>
 <p><strong>正解的诞生</strong>：Hochreiter (1991) 与随后的 Bengio et al.&nbsp;(1994 <span class="citation" data-cites="bengio1994">(<a href="#ref-bengio1994" role="doc-biblioref">Bengio et al. 1994</a>)</span>, <em>Learning long-term dependencies is difficult</em>) 给出了定量诊断。误差信号穿过第 <span class="math inline">\(l\)</span> 层要乘上该层激活函数的导数与权重矩阵，若各因子的乘积普遍小于 1，梯度就指数衰减；大于 1 则指数爆炸。消失与爆炸是同一枚硬币的两面，而 sigmoid 的导数上界 0.25 让它天然站在”消失”一侧。</p>
-<p><strong>诊断之后的十五年</strong>：真正被广泛接受的解药要分三路抵达。门控（LSTM 1997，绕开而非治愈）、更好的初始化与激活（2010–2011，缓解）、以及改变梯度通路的架构（残差 2015，治愈）。本章先做诊断，解药在后续章节逐一登场。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><strong>诊断之后的二十多年</strong>：真正被广泛接受的解药要分三路抵达。门控（LSTM 1997，绕开而非治愈）、更好的初始化与激活（2010–2011，缓解）、以及改变梯度通路的架构（残差 2015，治愈）。本章先做诊断，解药在后续章节逐一登场。</p>
+<p><em>缓一缓。</em>这一节先清了两条弯路——把「深了训不动」归给调参手艺、或归给任务选择——然后给出正解：Hochreiter 1991 与 Bengio 1994 的定量诊断。误差信号逐层连乘，因子普遍小于 1 就指数衰减，大于 1 则指数爆炸。解药分三路（门控、初始化与激活、残差），要在后面章节才陆续抵达。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>给你三个候选激活函数：<span class="math inline">\(\sigma\)</span>（导数上界 0.25）、<span class="math inline">\(\tanh\)</span>（导数上界 1.0，仅在 0 附近接近 1）、<span class="math inline">\(\mathrm{relu}\)</span>（导数恒为 1，但是，为 0 的概率约一半）。</p>
 <p><strong>任务</strong>：不写代码，先在纸上推演。八层网络、随机小权重、输入一批样本，三种激活下”第一层梯度 / 末层梯度”的比值各是多少量级？把你的三个数写下来（10 的幂次即可）。</p>
@@ -1191,7 +1148,7 @@ window.Quarto = {
 <section id="核心思想" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">9.3</span> 核心思想</h2>
 <p>把反向传播第 <span class="math inline">\(l\)</span> 层的误差信号展开（对照 1.3 的递推）：</p>
-<p><span class="math display">\[\delta_1 = \underbrace{\left(\prod_{l=2}^{L} W_l^\top \odot f'(z_l)\right)}_{\text{逐层连乘}} \delta_L\]</span></p>
+<p><span class="math display">\[\delta_1 = \underbrace{\Big(\prod_{l=1}^{L-1} \mathrm{diag}(f'(z_l))\, W_{l+1}^\top\Big)}_{\text{逐层连乘}} \delta_L\]</span></p>
 <p>梯度是<strong>一长串因子的连乘积</strong>。概率论的基本事实：若每个因子的典型幅度是 <span class="math inline">\(c\)</span>，<span class="math inline">\(L\)</span> 层连乘后幅度就是 <span class="math inline">\(c^L\)</span>。</p>
 <ul>
 <li><span class="math inline">\(c &lt; 1\)</span>（sigmoid：<span class="math inline">\(c \le 0.25\)</span>）：<strong>指数消失</strong>，16 层即 <span class="math inline">\(10^{-10}\)</span>；</li>
@@ -1200,11 +1157,11 @@ window.Quarto = {
 </ul>
 <p>三种激活的病情：sigmoid 病入膏肓（连 0.25 都不到的常态）；tanh 病情中等（小区间导数接近 1，输入稍大就衰减）；relu 看似健康（活跃区导数恰为 1）。但它的死区（导数为 0）会造成<strong>路径稀疏化</strong>：连乘里混进零因子，梯度干脆断流。它缓解了幅度问题，没有解决结构问题。</p>
 <p><strong>为什么这病难根治</strong>：病根不在某个部件，而在”深度 = 连乘”这个结构本身。所有的解药都只能改写连乘的因子（初始化控制 <span class="math inline">\(W\)</span> 的幅度、激活控制 <span class="math inline">\(f'\)</span> 的幅度），或者干脆给梯度修一条不经过连乘的高速路（残差连接的恒等路径。3.2 章的主角，此处埋线）。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>这一节把病根写成了一个公式：梯度是连乘积，每层因子的典型幅度 <span class="math inline">\(c\)</span> 决定命运——<span class="math inline">\(c&lt;1\)</span> 指数消失，<span class="math inline">\(c&gt;1\)</span> 指数爆炸，<span class="math inline">\(c\approx 1\)</span> 是唯一能活却要求层层协作的窄带。sigmoid 天生站在消失一侧，relu 缓解了幅度却带来路径稀疏；病根不在某个部件，在「深度 = 连乘」这个结构本身。</p>
 </section>
 <section id="从零实现" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">9.4</span> 从零实现</h2>
-<div id="4ac66f31" class="cell" data-execution_count="1">
+<div id="1575b621" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1217,7 +1174,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xb, yb <span class="op">=</span> Xs[:<span class="dv">64</span>], ys[:<span class="dv">64</span>].reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：梯度全景剖面。</strong> 八层 × 32 宽的网络，初始化后立刻做一次反向传播，记录每一层的梯度范数：</p>
-<div id="06a2fba9" class="cell" data-execution_count="2">
+<div id="b07e8165" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>profiles <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> act <span class="kw">in</span> (<span class="st">"sigmoid"</span>, <span class="st">"tanh"</span>, <span class="st">"relu"</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span>act, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1230,7 +1187,7 @@ window.Quarto = {
     relu: 3e-04 1e-03 3e-03 1e-02 3e-02 8e-02 2e-01 8e-01 2e+00</code></pre>
 </div>
 </div>
-<div id="0b97a536" class="cell" data-execution_count="3">
+<div id="1d293839" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    profiles,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Gradient norm by layer (8-layer net at init)"</span>,</span>
@@ -1249,10 +1206,10 @@ window.Quarto = {
 <ul>
 <li><strong>sigmoid</strong>：从第一层 <span class="math inline">\(5\times10^{-7}\)</span> 到末层 <span class="math inline">\(8\times10^{0}\)</span>。跨越七个数量级的单调斜坡。第一层的权重收到的学习信号比末层弱一千万倍；在任何合理的学习率下，要么末层正常学、第一层纹丝不动，要么第一层刚动一点、末层已经爆炸。八层 sigmoid 网络实际上是一个”只有末端几层在工作”的浅网络；</li>
 <li>tanh：斜率温和得多（<span class="math inline">\(10^{-2}\)</span> 到 <span class="math inline">\(10^{0}\)</span>），但是，同样左低右高。tanh 能撑得更深，撑不到很深；</li>
-<li>relu：整体健康，但是，第一层仍然比末层小三个数量级左右。幅度问题缓解了，没有消失（死区造成的路径稀疏 + 缩放初始化在 relu 下的次优，He 初始化会更合适，见练习 4）。</li>
+<li>relu：整体健康，但是，第一层仍然比末层小近四个数量级。幅度问题缓解了，没有消失（死区造成的路径稀疏 + 缩放初始化在 relu 下的次优，He 初始化会更合适，见练习 4）。</li>
 </ul>
 <p><strong>实验二：剖面预测训练结局。</strong> 梯度健康度应该在训练成绩上兑现。relu 剖面最健康。那八层 relu 在螺旋任务上应该畅通无阻了吧？</p>
-<div id="0793067b" class="cell" data-execution_count="4">
+<div id="a6feb464" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.train <span class="im">import</span> Trainer, accuracy</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1263,12 +1220,12 @@ window.Quarto = {
 </div>
 </div>
 <p>loss 在 1.0 附近纹丝不动，准确率 0.50。<strong>剖面看起来健康的 relu 深网依然没有学会</strong>。这就是本章留下的悬念：梯度幅度只是必要条件。深网里还有别的病。训练中每层输入的分布随前面层的更新而漂移（后来被称为内部协变量偏移的直觉）、稀疏路径的协同问题。它们不在”初始化时刻的剖面”里，而在训练的动态过程中。诊断没有结束，手术台已经备好：下一章的工具箱将逐件取出器械，其中一件（BatchNorm）恰好对这个病例有奇效。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p><em>缓一缓。</em>这一节把诊断拍成了全景剖面：八层 sigmoid 网络的首末层梯度相差七个数量级，末层正常学时首层纹丝不动；tanh 斜坡温和但同样左低右高；relu 整体健康却仍有近四个数量级的落差。而剖面最健康的 relu 深网在训练中照样卡死在 0.50——静态剖面之外还有动态的病，下一章开刀。</p>
 </section>
 <section id="消融实验" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">9.5</span> 消融实验</h2>
 <p><strong>深度的边际恶化。</strong> 剖面是静态的，我们让深度动起来。各深度下训练 300 epoch 的成绩：</p>
-<div id="46ca0a4e" class="cell" data-execution_count="5">
+<div id="c6ae5375" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> depth <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"tanh"</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1279,8 +1236,8 @@ tanh depth=4: loss=0.9181, acc=0.59
 tanh depth=8: loss=0.9077, acc=0.65</code></pre>
 </div>
 </div>
-<p>深度每翻一倍，成绩单调恶化。与剖面斜率随深度加陡完全同步。<strong>深度是用梯度健康度换来的</strong>，这个汇率直到 2015 年才被残差连接改写。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p>三个深度的成绩全部卡在 0.6 上下（2 层 0.58、4 层 0.59、8 层 0.65）：没有一层学得像样，加深也买不到质变——tanh 的剖面斜坡让每个深度都陷在泥地里。对照 2.5 章完整配方的 0.93，差距全在优化信号的健康度上。<strong>深度是用梯度健康度换来的</strong>，这个汇率直到 2015 年才被残差连接改写。</p>
+<p><em>缓一缓。</em>这一节让深度动了起来：tanh 网络在 2、4、8 层上都卡在 0.6 上下，加深买不到任何质变。深度的收益要用梯度健康度来换，这个汇率直到残差连接出现才被改写。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">9.6</span> 本章 Loss 账本</h2>
@@ -1316,7 +1273,7 @@ tanh depth=8: loss=0.9077, acc=0.65</code></pre>
 </table>
 <div class="callout-echo" title="回声">
 <ul>
-<li>“指数连乘”结构 → Transformer 的注意力在长序列上的衰减问题（4.x 的 RNN、8.x 的长上下文）是同一病的新马甲；</li>
+<li>“指数连乘”结构 → Transformer 的注意力在长序列上的衰减问题（4.2 的 RNN、9.2 的长上下文）是同一病的新马甲；</li>
 <li>梯度剖面诊断法 → 今天训练大模型时的梯度监控（per-layer grad norm 是标准 dashboard 指标）；LLM 训练的”loss spike”排查用的还是这套解剖逻辑；</li>
 <li>relu 的”缓解但未治愈” → 残差连接修的”不经过连乘的高速路”（3.2）→ Transformer 的 skip connection（5.2）→ 今天百层深栈的标配；</li>
 <li>被埋没的诊断 → Hochreiter 的遭遇将在后续历史中反复上演（值得思考：什么样的制度/文化能让正确的诊断更快被听见？）。</li>
@@ -1338,21 +1295,12 @@ tanh depth=8: loss=0.9077, acc=0.65</code></pre>
 <li>能不能给梯度修一条绕开连乘的路？（→ 3.2 残差连接）；</li>
 <li>序列上的长程依赖是梯度消失的十倍重灾区。那里的解药是什么？（→ 4.3 LSTM 的门控）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>一句话复述：本章是纯诊断章——病是「深度等于连乘」，症状是首末层梯度的数量级落差，relu 深网的卡死证明病不止一种。三路解药（初始化与激活、BatchNorm、残差与门控）分别在 2.1、下一章、3.2 与 4.3 登场。</p>
 </section>
-<section id="参考文献" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">9.8</span> 参考文献</h2>
+<section id="练习" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">9.8</span> 练习</h2>
 <ol type="1">
-<li>Hochreiter, Sepp (1991). <em>Untersuchungen zu dynamischen neuronalen Netzen</em>. <em>Diploma Thesis (in German), Technische Universit"a</em>. <a href="https://scholar.google.com/scholar?q=Hochreiter%201991%20Untersuchungen%20zu%20dynamischen%20neuronalen%20Netzen">↗ 搜索原文</a></li>
-<li>Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). <em>Learning Long-Term Dependencies with Gradient Descent is Difficult</em>. <em>IEEE Transactions on Neural Networks, 5, 157–166</em>. <a href="https://doi.org/10.1109/72.279181">doi:10.1109/72.279181</a></li>
-<li>Glorot, Xavier and Bengio, Yoshua (2010). <em>Understanding the Difficulty of Training Deep Feedforward Neural Networks</em>. <em>Proceedings of AISTATS, 9, 249–256</em>. <a href="https://scholar.google.com/scholar?q=Glorot%202010%20%5B@glorot2010%5D%20Understanding%20the%20Difficulty%20of%20Training%20Deep">↗ 搜索原文</a></li>
-<li>Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). <em>Multilayer Feedforward Networks Are Universal Approximators</em>. <em>Neural Networks, 2, 359–366</em>. <a href="https://doi.org/10.1016/0893-6080(89)90020-8">doi:10.1016/0893-6080(89)90020-8</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">9.9</span> 练习</h2>
-<ol type="1">
-<li><strong>造轮子</strong>：写一个函数 <code>layerwise_ratio(model, X, y)</code> 返回”首层梯度范数/末层梯度范数”，对 sigmoid/tanh/relu 各跑 5 个种子取中位数，把 2.2a 的单种子结论变成稳健结论。</li>
+<li><strong>造轮子</strong>：写一个函数 <code>layerwise_ratio(model, X, y)</code> 返回”首层梯度范数/末层梯度范数”，对 sigmoid/tanh/relu 各跑 5 个种子取中位数，把本节实验一的单种子结论变成稳健结论。</li>
 <li>预测再运行：把网络宽度从 32 改成 128，梯度剖面会怎么变？（先猜斜率变陡还是变缓。注意缩放初始化下宽度对 <span class="math inline">\(W\)</span> 范数的影响。）</li>
 <li>消融：给 sigmoid 网络配上 2.1 的缩放初始化，剖面斜率会改善多少？距离”健康”还差几个数量级？</li>
 <li>进阶：推导 He 初始化（<span class="math inline">\(\mathrm{Var}(w)=2/\text{fan-in}\)</span>）为什么是 relu 的正确搭配（提示：一半路径死亡，活跃路径需要两倍方差补偿）。</li>
@@ -1382,26 +1330,11 @@ tanh depth=8: loss=0.9077, acc=0.65</code></pre>
 <div id="ref-bengio1994" class="csl-entry" role="listitem">
 Bengio, Yoshua, Patrice Simard, and Paolo Frasconi. 1994. <span>“Learning Long-Term Dependencies with Gradient Descent Is Difficult.”</span> <em>IEEE Transactions on Neural Networks</em> 5 (2): 157–66. <a href="https://doi.org/10.1109/72.279181">https://doi.org/10.1109/72.279181</a>.
 </div>
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
 </div>
 <div id="ref-hochreiter1991" class="csl-entry" role="listitem">
 Hochreiter, Sepp. 1991. <span>“Untersuchungen Zu Dynamischen Neuronalen Netzen.”</span> <em>Diploma Thesis (in German), Technische Universit<span>ä</span>t M<span>ü</span>nchen</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1843,7 +1776,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part2-vanishing-gradient.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part2-vanishing-gradient.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

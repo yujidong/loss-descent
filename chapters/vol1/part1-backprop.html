@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1126,10 +1084,9 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">6.6</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">6.7</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">6.8</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">6.9</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">6.10</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">6.9</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part1-backprop.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part1-backprop.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1158,9 +1115,9 @@ window.Quarto = {
 <h2 data-number="6.1" class="anchored" data-anchor-id="年的一篇论文"><span class="header-section-number">6.1</span> 1986 年的一篇论文</h2>
 <p>要讲清楚反向传播，得先回到 1986 年，看看当时的人工智能是什么样子。</p>
 <p>那一年，AI 的主流是符号主义。教科书里讲的是专家系统，实验室里跑的是 LISP 程序，经费大部分流向了规则与逻辑的方向。神经网络在这个版图上几乎没有什么位置。它在 1969 年被 Minsky 和 Papert 的那本专著 <span class="citation" data-cites="minsky1969">(<a href="#ref-minsky1969" role="doc-biblioref">Minsky and Papert 1969</a>)</span> 批评过之后，已经边缘化了十几年。全世界还在坚持做这件事的人不多，分散在几个实验室里，彼此认识。</p>
-<p>David Rumelhart 是其中一位。他加州大学圣迭戈分校的认知科学家，关心的问题是”人脑是怎么加工信息的”。1980 年前后，他和心理学家 James McClelland 组织了一个松散的研究小组，后来人们叫它 PDP 学派。PDP 是”并行分布式处理”（Parallel Distributed Processing）的缩写，这个名字本身就在申明立场：他们认为智能应该由许多简单单元的并行协作产生，而不是由一条条人工规则堆出来。</p>
-<p>小组的成员之一 Geoffrey Hinton 那时还年轻。他后来回忆过当时的处境：整个方向被认为已经过时，他们更像是一群在地下活动的爱好者。1985 年夏天，小组在圣地亚哥办了一次为期两周的工作坊，来自不同学校的人聚在一起，把各自的手稿摊在桌上互相评论。这次工作坊的材料后来结集成书，就是两大卷的《并行分布式处理》 <span class="citation" data-cites="rumelhart1986pdp">(<a href="#ref-rumelhart1986pdp" role="doc-biblioref">Rumelhart, McClelland, et al. 1986</a>)</span>，1986 年出版。</p>
-<p>就在这本书出版前几个月，1986 年 10 月，Rumelhart、Hinton 和一位研究生 Ronald Williams 在《自然》上发表了一篇四页的论文 <span class="citation" data-cites="rumelhart1986">(<a href="#ref-rumelhart1986" role="doc-biblioref">Rumelhart, Hinton, et al. 1986</a>)</span>，题目是”通过反向传播误差来学习表征”。这篇论文讲的方法本身并不长。把输出端的误差逐层往回传，用传回来的误差决定每个权重该怎么改。但它的演示很扎实：一个两层的神经网络，没有人手工设计中间层，自己学出了有用的内部表征。</p>
+<p>David Rumelhart 是其中一位。他是加州大学圣迭戈分校的认知科学家，关心的问题是”人脑是怎么加工信息的”。1980 年前后，他和心理学家 James McClelland 组织了一个松散的研究小组，后来人们叫它 PDP 学派。PDP 是”并行分布式处理”（Parallel Distributed Processing）的缩写，这个名字本身就在申明立场：他们认为智能应该由许多简单单元的并行协作产生，而不是由一条条人工规则堆出来。</p>
+<p>小组的成员之一 Geoffrey Hinton 那时还年轻。他后来回忆过当时的处境：整个方向被认为已经过时，他们更像是一群在地下活动的爱好者。1985 年夏天，小组在圣地亚哥办了一次工作坊，来自不同学校的人聚在一起，把各自的手稿摊在桌上互相评论。这次工作坊的材料后来结集成书，就是两大卷的《并行分布式处理》 <span class="citation" data-cites="rumelhart1986pdp">(<a href="#ref-rumelhart1986pdp" role="doc-biblioref">Rumelhart, McClelland, et al. 1986</a>)</span>，1986 年出版。</p>
+<p>就在这本书出版前几个月，1986 年 10 月，Rumelhart、Hinton 和东北大学的 Ronald Williams 在《自然》上发表了一篇四页的论文 <span class="citation" data-cites="rumelhart1986">(<a href="#ref-rumelhart1986" role="doc-biblioref">Rumelhart, Hinton, et al. 1986</a>)</span>，题目是”通过反向传播误差来学习表征”。这篇论文讲的方法本身并不长。把输出端的误差逐层往回传，用传回来的误差决定每个权重该怎么改。但它的演示很扎实：一个两层的神经网络，没有人手工设计中间层，自己学出了有用的内部表征。</p>
 <p>本章要做的，就是把这四页纸里的方法亲手实现出来。我们会先弄清它要解决的问题，再看它的来历，然后写代码，最后让它在我们已经熟悉的 XOR 问题上工作。在那之前，先把我们自己的位置摆正。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
@@ -1186,11 +1143,11 @@ window.Quarto = {
 </section>
 <section id="本章问题" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">6.2</span> 本章问题</h2>
-<p>第 1 章结束时我们留下了一个悬案。感知机的学习规则之所以，能工作，靠的是一个很具体的条件：输出单元的正确答案 <span class="math inline">\(y\)</span> 是已知的。预测错了，误差 <span class="math inline">\(y - \hat{y}\)</span> 可以直接算出来，更新规则 <span class="math inline">\(\Delta w = \eta\,(y - \hat{y})\,x\)</span> 便顺理成章。</p>
+<p>1.1 章结束时我们留下了一个悬案。感知机的学习规则之所以能工作，靠的是一个很具体的条件：输出单元的正确答案 <span class="math inline">\(y\)</span> 是已知的。但它的误差信号粗糙得很——预测只分对错，单点的误差只能取 0 或 <span class="math inline">\(\pm 2\)</span>；真正的连续误差信号，要等 ADALINE 才登场。而且无论粗糙还是连续，这些规则都有一个共同前提：正确答案就摆在输出端，误差可以直接算出来。</p>
 <p>现在给网络加一层隐藏单元，条件就变了。隐藏单元没有”正确答案”。谁也不会告诉第一个隐藏单元它应该输出什么。它的输出对不对，只能从最终结果的误差里间接推断。这个困难在后来的文献里有了正式的名字，叫<strong>信用分配问题</strong>（credit assignment）：当最终结果出错时，功劳和过错该怎么在层层叠叠的单元之间分摊？</p>
 <p>可以打个比方。一家公司季度亏损了，董事会知道总数，但要决定哪个部门该削减预算、哪个员工该调整方向，就必须把总亏损一层层分解下去：这个部门贡献了多少，那个环节又拖累了多少。感知机是一家只有一个部门的公司，账目一目了然；多层网络是一家有中间管理层级的公司，而 1986 年之前，没有人知道该怎么做这份报表。</p>
 <p>数学上其实没有原则性的障碍。一个两层网络配上平方误差，就是一个普通的复合函数，对任何一个权重求偏导，链式法则都给得干干净净。真正的障碍在别处。最直接的办法是对每个参数独立地从头推一遍导数。算一算这个代价：每求一个参数的梯度，都要把整个网络完整地过一遍；参数有一百万个，就要过一百万遍。1986 年的机器跑不动这种算法，2026 年的机器同样跑不动。当参数从十几个变成几千亿个，“每个权重单独推一遍”在任何时代都是死刑。</p>
-<p>所以，需要的东西一种让中间结果被复用的计算顺序。这正是本章的主角。</p>
+<p>所以，需要的东西是一种让中间结果被复用的计算顺序。这正是本章的主角。</p>
 </section>
 <section id="历史中的尝试" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="历史中的尝试"><span class="header-section-number">6.3</span> 历史中的尝试</h2>
@@ -1201,14 +1158,14 @@ window.Quarto = {
 </section>
 <section id="一本书的杀伤力" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="一本书的杀伤力"><span class="header-section-number">6.3.2</span> 一本书的杀伤力</h3>
-<p>1969 年，Minsky 和 Papert 出版了《感知机》。这本书用严格的数学分析了单层感知机的能力边界，证明了一大类问题。以奇偶性（XOR 属于这类）为代表。是它原理上学不了的。数学上这本书是对的，而且写得漂亮。问题出在结尾：作者在书末用相当悲观的语气讨论了多层网络的前景，大意是没有理由期待谁能找到多层网络的有效训练方法。</p>
+<p>1969 年，Minsky 和 Papert 出版了《感知机》。这本书用严格的数学分析了单层感知机的能力边界，证明了一大类问题——以奇偶性（XOR 属于这类）为代表——是它原理上学不了的。数学上这本书是对的，而且写得漂亮。问题出在结尾：作者在书末用相当悲观的语气讨论了多层网络的前景，大意是没有理由期待谁能找到多层网络的有效训练方法。</p>
 <p>这本书的影响很难被今天的读者体会。它出自 MIT 教授、领域权威之手，出版之后，这个方向的经费和年轻人在几年之内就散了。历史学家后来常引用这件事，作为”权威的悲观比权威的乐观更危险”的例证。公平地说，Minsky 和 Papert 严格证明的是单层的情况，对多层的判断只是书末几页的推测。但是，读这本书的经费官员和研究生不会去区分哪些是定理、哪些是猜测。</p>
 </section>
 <section id="在错误的房间里沉默了十二年" class="level3" data-number="6.3.3">
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="在错误的房间里沉默了十二年"><span class="header-section-number">6.3.3</span> 在错误的房间里沉默了十二年</h3>
 <p>现在把镜头切到 Paul Werbos。1974 年，他在哈佛大学完成博士论文 <span class="citation" data-cites="werbos1974">(<a href="#ref-werbos1974" role="doc-biblioref">Werbos 1974</a>)</span>，方向是预测与控制，不是神经网络。神经网络只是他顺手使用的工具。在论文的一章里，他把链式法则系统地用到了多层网络的训练上：误差如何逐层回传、每层的权重如何由回传的误差决定。后来回头看，这正是反向传播的完整雏形。</p>
 <p>但是，这份工作发表在与预测控制相关的渠道里，读的人很少。Werbos 后来回忆，他当时曾把这套方法讲给不同领域的人听，没有人觉得它重要。一个正确的想法，在一个错误的房间里沉默了。</p>
-<p>类似的故事不止一例。芬兰的 Seppo Linnainmaa 在 1970 年的硕士论文 <span class="citation" data-cites="linnainmaa1970">(<a href="#ref-linnainmaa1970" role="doc-biblioref">Linnainmaa 1970</a>)</span> 里研究的是数值计算问题。复合函数求导时舍入误差如何累积。他给出的”反向模式”微分，本质上就是后来反向传播的求导框架。1985 年，MIT 的 David Parker 又独立地得出了同样的结果 <span class="citation" data-cites="parker1985">(<a href="#ref-parker1985" role="doc-biblioref">Parker 1985</a>)</span>，写成了技术报告。同一个想法，至少三次各自独立地出现，又各自无声地沉没。</p>
+<p>类似的故事不止一例。芬兰的 Seppo Linnainmaa 在 1970 年的硕士论文 <span class="citation" data-cites="linnainmaa1970">(<a href="#ref-linnainmaa1970" role="doc-biblioref">Linnainmaa 1970</a>)</span> 里研究的是数值计算问题：复合函数求导时舍入误差如何累积。他给出的”反向模式”微分，本质上就是后来反向传播的求导框架。1985 年，MIT 的 David Parker 又独立地得出了同样的结果 <span class="citation" data-cites="parker1985">(<a href="#ref-parker1985" role="doc-biblioref">Parker 1985</a>)</span>，写成了技术报告。同一个想法，至少三次各自独立地出现，又各自无声地沉没。</p>
 <p>为什么 1986 年就不一样了？对比这些案例，差别不在数学，而在三件事的同时到位：一份马上可以复现的演示（Rumelhart 等人的论文里附了完整的算法和实验）、一个能承载它的硬件环境（工作站刚好够跑小网络）、一个传播的渠道（《自然》加 PDP 两卷本）。想法早就成熟了，1986 年提供的是点燃条件。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>现在你是 1985 年的研究者。你已掌握：链式法则、一个 2-3-1 的两层网络（9 个权重）、纸和笔。</p>
@@ -1250,11 +1207,11 @@ window.Quarto = {
 <section id="一般化的三条递推" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="一般化的三条递推"><span class="header-section-number">6.4.2</span> 一般化的三条递推</h3>
 <p>把手推的过程写成一般形式。设一个 <span class="math inline">\(L\)</span> 层的全连接网络，前向计算为：</p>
-<p><span class="math display">\[z_l = W_l a_{l-1} + b_l, \qquad a_l = \sigma(z_l), \qquad a_0 = x, \qquad L = \lVert a_L - y \rVert^2\]</span></p>
+<p><span class="math display">\[z_l = W_l a_{l-1} + b_l, \qquad a_l = \sigma(z_l), \qquad a_0 = x, \qquad \mathcal{L} = \lVert a_L - y \rVert^2\]</span></p>
 <p>对每一层定义一个记号：<span class="math inline">\(\delta_l\)</span> 表示第 <span class="math inline">\(l\)</span> 层的”责任”，也就是损失对这一层加权和的偏导。于是链式法则折叠成三条式子：</p>
 <p><span class="math display">\[\delta_L = 2\,(a_L - y) \odot \sigma'(z_L)\]</span></p>
 <p><span class="math display">\[\delta_l = \left(W_{l+1}^{\top} \delta_{l+1}\right) \odot \sigma'(z_l)\]</span></p>
-<p><span class="math display">\[\frac{\partial L}{\partial W_l} = \delta_l\, a_{l-1}^{\top}\]</span></p>
+<p><span class="math display">\[\frac{\partial \mathcal{L}}{\partial W_l} = \delta_l\, a_{l-1}^{\top}\]</span></p>
 <p>三条式子各说一件很朴素的事。第一条说，输出层的责任就是”错了多少”，再按本地斜率折算。第二条说，中间层的责任来自下一层：下一层把它的责任按连接权重分摊上来，再乘上本地的斜率。这一条就是 Widrow 和 Hoff 差的那一步，也是整份”公司报表”的核心。第三条说，每个权重收到的梯度等于”分到的责任乘以本地的输入”，也就是 Hebb 规则缺的那两样东西：方向和份额。</p>
 <p>最后算一笔复杂度的账，这笔账是反向传播真正的分量所在。前向传播一遍，计算量正比于参数总量；按上面的顺序反向传播一遍，计算量仍然正比于参数总量。也就是说，<strong>一次反向传播就能同时得到全部参数的梯度</strong>。这与”每个参数单独推一遍”之间的差距，在 1986 年是从几小时到几个月的差距，在今天是从几天到几个世纪的差距。四十年后训练万亿参数的语言模型，核心循环仍然是这三条式子。</p>
 <p><em>缓一缓。</em> 这一节讲了三件事：反向传播的推导不发明新数学，它只是链式法则的一种省算的排列方式；<span class="math inline">\(\delta_l\)</span> 这个量的含义是”误差流到这一层时的强度”，它是被复用的中间结果；以及，一次反向传播和一次前向传播的计算量同阶，这个性质使它配得上”发动机”这个词。</p>
@@ -1263,14 +1220,14 @@ window.Quarto = {
 <section id="从零实现" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">6.5</span> 从零实现</h2>
 <p>讲完原理，动手实现。思路沿 Karpathy 的 micrograd：把每个数包成一个 <code>Value</code> 对象，它记住自己是从哪些数、经过什么运算得来的；调用 <code>backward()</code> 时，从最终结果出发，按依赖关系逆序走一遍，把梯度累加到沿途每个对象上。整个实现放在 <code>src/dlbook/autodiff/</code>，大约一百来行，本节只调用、不抄录。建议读完本节后打开源码对照一遍。它比看上去短。</p>
-<div id="dedf1987" class="cell" data-execution_count="1">
+<div id="f20bb8b2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.autodiff <span class="im">import</span> MLP, Value, sgd_step, zero_grad</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.utils <span class="im">import</span> plot_loss_curves, set_seed</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>set_seed(<span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>先用一个手算过的例子检查发动机。取二元函数 <span class="math inline">\(f(x, y) = (xy + \tanh x)\,y\)</span>，在 <span class="math inline">\((1.7, -0.8)\)</span> 处求两个偏导：</p>
-<div id="a04e7921" class="cell" data-execution_count="2">
+<div id="8c1e09f2" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># f(x, y) = (x·y + tanh(x))·y，在 (1.7, -0.8) 处求梯度</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> Value(<span class="fl">1.7</span>), Value(<span class="op">-</span><span class="fl">0.8</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> (x <span class="op">*</span> y <span class="op">+</span> x.tanh()) <span class="op">*</span> y</span>
@@ -1281,8 +1238,8 @@ window.Quarto = {
 </div>
 </div>
 <p>可以拿微积分手算核对这两个数（练习 1 会教你用数值差分自动核对的方法，<code>tests/test_autodiff.py</code> 里有一个现成的裁判）。发动机本身没问题之后，来处理正题。</p>
-<p>还记得第 1 章的 XOR 吗。四个点，感知机在有生之年没能分开它们。现在用 MLP 类搭一个 2-4-1 的网络。两个输入，四个隐藏单元，一个输出。标签取 <span class="math inline">\(\pm 1\)</span>，与 tanh 的输出范围一致。</p>
-<div id="3f1a3c9c" class="cell" data-execution_count="3">
+<p>还记得 1.1 章的 XOR 吗。四个点，感知机在有生之年没能分开它们。现在用 MLP 类搭一个 2-4-1 的网络。两个输入，四个隐藏单元，一个输出。标签取 <span class="math inline">\(\pm 1\)</span>，与 tanh 的输出范围一致。</p>
+<div id="60c46fc8" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MLP(<span class="dv">2</span>, [<span class="dv">4</span>, <span class="dv">1</span>])  <span class="co"># 2-4-1：两个输入、4 个隐藏单元、1 个输出</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"参数量：</span><span class="sc">{</span><span class="bu">len</span>(model.parameters())<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1295,8 +1252,8 @@ window.Quarto = {
 <pre><code>参数量：17</code></pre>
 </div>
 </div>
-<p>训练循环还是感知机那四拍：前向、算损失、反向、更新。与第 1 章唯一的区别是多了一行 <code>backward()</code>。而这一行，就是 1969 年到 1986 年之间空着的那一步。</p>
-<div id="7954e629" class="cell" data-execution_count="4">
+<p>训练循环还是感知机那四拍：前向、算损失、反向、更新。与 1.1 章唯一的区别是多了一行 <code>backward()</code>。而这一行，就是 1969 年到 1986 年之间空着的那一步。</p>
+<div id="3d8ea555" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> {<span class="st">"train"</span>: []}</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">300</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(model, xor)</span>
@@ -1311,7 +1268,7 @@ window.Quarto = {
 </div>
 </div>
 <p>从 1.0 出发，三百步后降到 0.019 附近。看曲线的形状：</p>
-<div id="e8b71a35" class="cell" data-execution_count="5">
+<div id="086480a1" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(history, title<span class="op">=</span><span class="st">"XOR: MLP + backprop (lr=0.1)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>(&lt;Figure size 576x384 with 1 Axes&gt;,
@@ -1326,7 +1283,7 @@ window.Quarto = {
 </div>
 </div>
 <p>再看四个点各自预测成什么样。判对的标准是预测值与目标同号：</p>
-<div id="887ea187" class="cell" data-execution_count="6">
+<div id="e6dd27b8" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xs, t <span class="kw">in</span> xor:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> model(<span class="bu">list</span>(xs)).data</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"输入 </span><span class="sc">{</span>xs<span class="sc">}</span><span class="ss">  目标 </span><span class="sc">{</span>t<span class="sc">:+.0f}</span><span class="ss">  预测 </span><span class="sc">{</span>pred<span class="sc">:+.3f}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'对'</span> <span class="cf">if</span> pred <span class="op">*</span> t <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'错'</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1337,8 +1294,8 @@ window.Quarto = {
 输入 (1.0, 1.0)  目标 -1  预测 -0.838  对</code></pre>
 </div>
 </div>
-<p>四个点全部判对。最后把学到的决策边界画出来。做法是在输入平面上密密地取格点，让训练好的网络对每个格点输出一个值，再按值的大小上色。如果边界是一条直线，说明网络没有超过感知机；如果是弯曲的，说明四个隐藏单元真的拼出了非线形的划分。</p>
-<div id="06f02a55" class="cell" data-execution_count="7">
+<p>四个点全部判对。最后把学到的决策边界画出来。做法是在输入平面上密密地取格点，让训练好的网络对每个格点输出一个值，再按值的大小上色。如果边界是一条直线，说明网络没有超过感知机；如果是弯曲的，说明四个隐藏单元真的拼出了非线性的划分。</p>
+<div id="195e73fe" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1368,13 +1325,13 @@ window.Quarto = {
 </div>
 </div>
 <p>图上两种颜色各占两个对角区域，边界是一条折起来的曲线。没有人为隐藏单元规定任何职责。四个隐藏单元自己分好了工。Rumelhart 那篇论文标题里的”学习表征”，说的就是这件事：中间层学到的东西不是设计出来的，是训练压出来的。</p>
-<p><em>缓一缓。</em> 本节做了三件事：用一个手算例子验证了实现的正确性；在 XOR 上训练了一个 2-4-1 的网络并看到四个点全部判对；用决策边界图看到隐藏单元自发形成了非线形划分。感知机时代留下的悬案，到这里结案。</p>
+<p><em>缓一缓。</em> 本节做了三件事：用一个手算例子验证了实现的正确性；在 XOR 上训练了一个 2-4-1 的网络并看到四个点全部判对；用决策边界图看到隐藏单元自发形成了非线性划分。感知机时代留下的悬案，到这里结案。</p>
 </section>
 <section id="消融实验" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">6.6</span> 消融实验</h2>
 <p>实验跑通了，接下来问两个”为什么”。第一个：四个隐藏单元是必需的吗，还是随便几个都行？</p>
 <p>下面的函数把训练过程打包，方便换配置重跑。先扫隐藏单元的数量，从 1 到 8，其余设置不变：</p>
-<div id="7d357a74" class="cell" data-execution_count="8">
+<div id="f3f3c11d" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_xor(n_hidden, steps<span class="op">=</span><span class="dv">400</span>, lr<span class="op">=</span><span class="fl">0.1</span>, seed<span class="op">=</span><span class="dv">42</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    set_seed(seed)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLP(<span class="dv">2</span>, [n_hidden, <span class="dv">1</span>])</span>
@@ -1400,9 +1357,9 @@ window.Quarto = {
 </div>
 </div>
 <p>典型结果是这样的：1 个隐藏单元卡在 0.8 附近；2 个在多数种子下能学会，但当前这个种子卡在 0.5 附近；3 个、4 个、8 个都能降到 0.01 左右。</p>
-<p>1 个的失败有几何解释。单个隐藏单元的输出是 <span class="math inline">\(\tanh(w^\top x + b)\)</span>，它的正负分界永远是输入平面上的一条直线。第 1 章已经证明 XOR 的四个点不存在直线划分，所以，无论怎么训练都分不开。这与梯度下降无关，是表达能力的问题。</p>
+<p>1 个的失败有几何解释。单个隐藏单元的输出是 <span class="math inline">\(\tanh(w^\top x + b)\)</span>，它的正负分界永远是输入平面上的一条直线。1.1 章已经证明 XOR 的四个点不存在直线划分，所以，无论怎么训练都分不开。这与梯度下降无关，是表达能力的问题。</p>
 <p>2 个隐藏单元的情况更有意思。理论上两个单元、两条直线，围出一个非线性区域，是够用的。但是，当前种子失败了。换个种子再试：</p>
-<div id="62e07c70" class="cell" data-execution_count="9">
+<div id="ede74178" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> (<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">42</span>):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    _, losses <span class="op">=</span> train_xor(<span class="dv">2</span>, seed<span class="op">=</span>seed)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"seed=</span><span class="sc">{</span>seed<span class="sc">}</span><span class="ss">: 最终 loss = </span><span class="sc">{</span>losses[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1416,7 +1373,7 @@ seed=42: 最终 loss = 0.5314</code></pre>
 </div>
 <p>五个种子里四个收敛到 0.02 附近，一个卡住。也就是说，容量够用不等于一定学得会。梯度下降最终走到哪里，和出发的位置有关。这个现象叫初始化敏感性，在本章只是脚注，到卷二会变成主要角色。</p>
 <p>第二个”为什么”问学习率。第 2 章会系统地讨论这个超参数，这里先直观感受一下：固定网络结构，只改步长，扫 0.001 到 1.0 四档。</p>
-<div id="a02a208b" class="cell" data-execution_count="10">
+<div id="4af1a929" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    {<span class="ss">f"lr=</span><span class="sc">{</span>lr<span class="sc">}</span><span class="ss">"</span>: train_xor(<span class="dv">4</span>, steps<span class="op">=</span><span class="dv">200</span>, lr<span class="op">=</span>lr)[<span class="dv">1</span>] <span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">1.0</span>)},</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Learning-rate sweep (2-4-1 on XOR)"</span>,</span>
@@ -1433,8 +1390,8 @@ seed=42: 最终 loss = 0.5314</code></pre>
 </div>
 </div>
 </div>
-<p>从图上能读到三档行为：0.001 的曲线几乎水平（步子太小，走不动）；1.0 的曲线在高位震荡后停在坏值（步子太大，越过谷底来回跳）；中间的两档都能收敛，0.1 收得又快又稳。</p>
-<p>那再大一点会怎样。把 <code>lr=2.0</code> 单独跑一下：loss 冲到 2 附近后不再动了。注意它不是数值爆炸。大步长把 tanh 直接推进了饱和区，<span class="math inline">\(\sigma'\)</span> 趋于零，梯度跟着消失，模型躺在一个全错的解上。步子过大的死法常常哑。</p>
+<p>从图上能读到四档行为：0.001 的曲线几乎水平（步子太小，走不动）；0.01 的曲线两百步只下探了一小段；0.1 收得又快又稳；1.0 的曲线先冲高震荡、最后也落回低值，但一路颠簸。</p>
+<p>那再大一点会怎样。把 <code>lr=2.0</code> 单独跑一下：loss 冲到 2 附近后不再动了。注意它不是数值爆炸。大步长把 tanh 直接推进了饱和区，<span class="math inline">\(\sigma'\)</span> 趋于零，梯度跟着消失，模型躺在一个全错的解上。步子过大的死法常常哑，真正的大步长死得比震荡更安静。</p>
 <p><em>缓一缓。</em> 消融部分做了两件事：扫隐藏单元数，看到 1 个是几何上的必败、2 个是容量够但看运气、3 个起稳定；扫学习率，看到过小走不动、过大震荡或饱和。两个现象。初始化敏感和学习率敏感。在 1990 年代是每个调参者的日常，第 2 章会把它们当作正式的研究对象。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="6.7">
@@ -1469,7 +1426,7 @@ seed=42: 最终 loss = 0.5314</code></pre>
 </tr>
 </tbody>
 </table>
-<p>这张表是全书第一份正式的账本，其中”目标函数”一栏值得多说一句。本章与前一章的感知机有一个容易忽略的差别：感知机时代的学习规则不是在优化任何显式目标，而本章的网络每一步都在降低一个写得出来的函数。从”没有目标的规则”到”有目标的优化”，这个转变在后面的章节里会反复兑现价值。</p>
+<p>这张表是全书第一份「目标函数」一栏有内容的账本，这一栏值得多说一句。本章与前一章的感知机有一个容易忽略的差别：感知机时代的学习规则不是在优化任何显式目标，而本章的网络每一步都在降低一个写得出来的函数。从”没有目标的规则”到”有目标的优化”，这个转变在后面的章节里会反复兑现价值。</p>
 <div class="callout-echo" title="回声">
 <ul>
 <li><code>Value</code> 类的六十行 → <code>torch.Tensor.backward()</code>：仍是”建图 → 拓扑排序 → 逆序累加”，差别只在向量化与 GPU。四十年间接口思想未变。</li>
@@ -1496,26 +1453,11 @@ seed=42: 最终 loss = 0.5314</code></pre>
 <li>loss 降到 0 就一定是好模型吗？（→ 下一章：过拟合与第二次寒冬的种子）</li>
 </ol>
 </section>
-<section id="参考文献" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">6.9</span> 参考文献</h2>
-<ol type="1">
-<li>Rumelhart, David E. and Hinton, Geoffrey E. and Williams, Ronald J. (1986). <em>Learning Representations by Back-Propagating Errors</em>. <em>Nature, 323, 533–536</em>. <a href="https://doi.org/10.1038/323533a0">doi:10.1038/323533a0</a></li>
-<li>Werbos, Paul J. (1974). <em>Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences</em>. <a href="https://scholar.google.com/scholar?q=Werbos%201974%20Beyond%20Regression%3A%20New%20Tools%20for%20Prediction">↗ 搜索原文</a></li>
-<li>Linnainmaa, Seppo (1970). <em>The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor</em>. <em>Master’s Thesis (in Finnish), University of Helsinki</em>. <a href="https://scholar.google.com/scholar?q=Linnainmaa%201970%20The%20Representation%20of%20the%20Cumulative%20Rounding">↗ 搜索原文</a></li>
-<li>Parker, David B. (1985). <em>Learning Logic</em>. <em>MIT Center for Computational Research in Economics and Management Science</em>. <a href="https://scholar.google.com/scholar?q=Parker%201985%20Learning%20Logic">↗ 搜索原文</a></li>
-<li>Minsky, Marvin and Papert, Seymour (1969). <em>Perceptrons: An Introduction to Computational Geometry</em>. <em>MIT Press</em>. <a href="https://scholar.google.com/scholar?q=Minsky%201969%20Perceptrons%3A%20An%20Introduction%20to%20Computational%20Geometry">↗ 搜索原文</a></li>
-<li>Widrow, Bernard and Hoff, Marcian E. (1960). <em>Adaptive Switching Circuits</em>. <em>IRE WESCON Convention Record, 4, 96–104</em>. <a href="https://scholar.google.com/scholar?q=Widrow%201960%20Adaptive%20Switching%20Circuits">↗ 搜索原文</a></li>
-<li>Rumelhart, David E. and McClelland, James L. and the PDP Research Group (1986). <em>Parallel Distributed Processing: Explorations in the Microstructure of Cognition</em>. <em>MIT Press, 1 and 2</em>. <a href="https://scholar.google.com/scholar?q=Rumelhart%201986%20Parallel%20Distributed%20Processing%3A%20Explorations%20in%20the">↗ 搜索原文</a></li>
-<li>Cybenko, George (1989). <em>Approximation by Superpositions of a Sigmoidal Function</em>. <em>Mathematics of Control, Signals and Systems, 2, 303–314</em>. <a href="https://doi.org/10.1007/BF02551274">doi:10.1007/BF02551274</a></li>
-<li>Hebb, Donald O. (1949). <em>The Organization of Behavior: A Neuropsychological Theory</em>. <em>Wiley</em>. <a href="https://scholar.google.com/scholar?q=Hebb%201949%20The%20Organization%20of%20Behavior%3A%20A%20Neuropsychological">↗ 搜索原文</a></li>
-<li>Rosenblatt, Frank (1958). <em>The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain</em>. <em>Psychological Review, 65, 386–408</em>. <a href="https://doi.org/10.1037/h0042519">doi:10.1037/h0042519</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="练习"><span class="header-section-number">6.10</span> 练习</h2>
+<section id="练习" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">6.9</span> 练习</h2>
 <ol type="1">
 <li><p><strong>造轮子</strong>：合上书，只凭本节的 <span class="math inline">\(\delta\)</span> 三条递推，在空白 notebook 里重写一个能跑 XOR 的 <code>Value</code>（加、乘、tanh 三个算子就够）。写完用下面的裁判验货：</p>
-<div id="b9b45c46" class="cell" data-execution_count="11">
+<div id="f49ff2e2" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> numeric_grad(f, xs, h<span class="op">=</span><span class="fl">1e-6</span>):</span>
@@ -1524,6 +1466,14 @@ seed=42: 最终 loss = 0.5314</code></pre>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>         f(<span class="op">*</span>(xs[:i] <span class="op">+</span> [xs[i] <span class="op">-</span> h] <span class="op">+</span> xs[i <span class="op">+</span> <span class="dv">1</span>:]))) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> h)</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(xs))</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>裁判怎么用？拿正文那个手算过的例子对拍一遍：</p>
+<div id="ad8d4c6c" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>grads <span class="op">=</span> numeric_grad(<span class="kw">lambda</span> a, b: (a <span class="op">*</span> b <span class="op">+</span> math.tanh(a)) <span class="op">*</span> b, [<span class="fl">1.7</span>, <span class="op">-</span><span class="fl">0.8</span>])</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"数值差分: df/dx = </span><span class="sc">{</span>grads[<span class="dv">0</span>]<span class="sc">:.6f}</span><span class="ss">, df/dy = </span><span class="sc">{</span>grads[<span class="dv">1</span>]<span class="sc">:.6f}</span><span class="ss">（对照正文手算例的输出）"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>数值差分: df/dx = 0.539992, df/dy = -1.784591（对照正文手算例的输出）</code></pre>
+</div>
 </div></li>
 <li><p><strong>预测再运行</strong>：先把 lr=0.0001 和 lr=3.0 的 loss 曲线形状画在你脑子里，再运行。与预测不符的地方，写出你的修正假设并再验证一次。</p></li>
 <li><p>消融：<code>train_xor(1)</code> 得到的模型，画出它的决策边界；解释为什么它必然是一条带状直线。</p></li>
@@ -1543,32 +1493,16 @@ seed=42: 最终 loss = 0.5314</code></pre>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：0.0001 是正文 0.001 曲线的”爬行版”，200 步内 loss 基本钉在初值；3.0 与正文的 2.0 同理。冲高后卡在饱和平台，不是爆炸。若你预测的是发散到 inf，修正假设：tanh 的饱和会先掐灭梯度。</p>
-<p><strong>练习 3</strong>：单神经元输出 <span class="math inline">\(\tanh(w_1 x_1 + w_2 x_2 + b)\)</span>，输出的正负分界是 <span class="math inline">\(w_1 x_1 + w_2 x_2 + b = 0\)</span>。输入平面上的一条直线；tanh 只决定过渡带的宽窄。XOR 的四个点不存在任何直线二分方案（第 1 章结论）。</p>
+<p><strong>练习 3</strong>：单神经元输出 <span class="math inline">\(\tanh(w_1 x_1 + w_2 x_2 + b)\)</span>，输出的正负分界是 <span class="math inline">\(w_1 x_1 + w_2 x_2 + b = 0\)</span>。输入平面上的一条直线；tanh 只决定过渡带的宽窄。XOR 的四个点不存在任何直线二分方案（1.1 章结论）。</p>
 <p><strong>练习 5 提示</strong>：矩阵乘 <span class="math inline">\(z = W a\)</span> 的 backward 是 <span class="math inline">\(\partial L/\partial W = \delta\, a^{\top}\)</span>、<span class="math inline">\(\partial L/\partial a = W^{\top} \delta\)</span>。正是正文递推的第二、三条。用练习 1 的数值裁判对拍即可确认正确性。</p>
 </div>
 </div>
 </div>
-<p><em>缓一缓。</em>让我们把这一节的内容用一句话再说一遍：1986 年的一篇论文。</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-linnainmaa1970" class="csl-entry" role="listitem">
 Linnainmaa, Seppo. 1970. <span>“The Representation of the Cumulative Rounding Error of an Algorithm as a <span>Taylor</span> Expansion of the Local Rounding Errors.”</span> <em>Master’s Thesis (in Finnish), University of Helsinki</em>.
@@ -2031,7 +1965,7 @@ Widrow, Bernard, and Marcian E. Hoff. 1960. <span>“Adaptive Switching Circuits
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part1-backprop.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part1-backprop.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

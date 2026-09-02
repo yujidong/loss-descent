@@ -68,9 +68,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -137,7 +137,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -147,49 +147,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -680,6 +637,7 @@ main table {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -773,7 +731,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -785,7 +743,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -902,7 +860,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -919,13 +877,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1049,10 +1007,9 @@ main table {
   <li><a href="#历史中的尝试包括弯路" id="toc-历史中的尝试包括弯路" class="nav-link" data-scroll-target="#历史中的尝试包括弯路"><span class="header-section-number">3.2</span> 历史中的尝试（包括弯路）</a></li>
   <li><a href="#核心思想" id="toc-核心思想" class="nav-link" data-scroll-target="#核心思想"><span class="header-section-number">3.3</span> 核心思想</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">3.4</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">3.5</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">3.6</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">3.5</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part0-reading-history.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part0-reading-history.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1096,7 +1053,7 @@ main table {
 </div>
 <section id="本章问题" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="本章问题"><span class="header-section-number">3.1</span> 本章问题</h2>
-<p>人的理解需要 context，但是， context 不等于信息量。你可以背下一百个年份和一百个名词，理解却分毫未增。真正的问题只有一个：</p>
+<p>人的理解需要 context，但是，context 不等于信息量。你可以背下一百个年份和一百个名词，理解却分毫未增。真正的问题只有一个：</p>
 <p><strong>历史的正确读数单位是什么？</strong> 以人为单位？以论文为单位？以年份为单位？还是以别的什么为单位？</p>
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="3.2">
@@ -1105,7 +1062,7 @@ main table {
 <p><strong>传记式读法</strong>：把历史读成天才的故事。问题在于：它暗示突破来自个人灵光一现，而你会看到，本书里几乎每个”灵光”都有被埋没的前身（反向传播之前有 Werbos，注意力之前有二十年对齐研究）。灵光是分布的，点火是社会的。</p>
 <p><strong>博物馆式读法</strong>：满足于”古人居然也想到了”的惊奇的。惊奇是娱乐，不是理解。看完展览你还是不会造。</p>
 <p>三种读法的共同病灶：<strong>都在消费答案，没有重演问题</strong>。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><em>缓一缓。</em>这一节过了三种常见的读法：年表式给你知识点清单，传记式把突破归给个人灵光，博物馆式停留在惊奇。三种的病根相同——都在消费答案，没有重演问题。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>下面是一段真实历史的浓缩。</p>
 <blockquote class="blockquote">
@@ -1131,8 +1088,8 @@ main table {
 <p>单用任何一个镜头都会中毒：只用”当时”会滑向相对主义（一切皆可原谅），只用”现在”会滑向马后炮（一切皆可嘲笑）。</p>
 <p><strong>三、识别循环的拍子。</strong> 上一章介绍的研究循环。瓶颈 → 假设 → 实验 → 新瓶颈。在读任何文献时问：它在第几拍？注意：营销材料通常一拍都认不出来，这是个实用的过滤器。</p>
 <p><strong>四、区分结果的寿命与方法的寿命。</strong> 具体结果（某个网络在某个数据集上的准确率）五年就凉；方法（“把误差信号逐层回传”“用残差让深层可训”“在偏好数据上优化”）可以活几十年。读史时在结果上快走，在方法上慢走。本书的「回声」栏目就是干这个的。</p>
-<p>另附两条解毒剂：<strong>优先权之争通常是伪问题</strong>（重要的思想几乎总有多重独立发现，“谁先想到”远不如”为什么在那个时刻点燃”有趣）；警惕胜利者叙事（包括本书的叙事。欢迎随时用你自己的双镜头检验本书对历史的裁剪）。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：核心思想。</p>
+<p>另附两条解毒剂：<strong>优先权之争通常是伪问题</strong>（重要的思想几乎总有多重独立发现，“谁先想到”远不如”为什么在那个时刻点燃”有趣）；警惕胜利者叙事（包括本书的叙事——欢迎随时用你自己的双镜头检验本书对历史的裁剪）。</p>
+<p><em>缓一缓。</em>这一节给出四个可操作的读史技术：以问题为单位、双镜头阅读、辨认循环的拍子、区分结果与方法的寿命；外加两条解毒剂——别纠缠优先权之争，警惕包括本书在内的胜利者叙事。后面每一章都会用到它们。</p>
 <div class="callout-echo" title="回声">
 <p>这套读法本身最大的回声在你手里：当下每周都有新的 AI 论文与新闻，它们同样可以被”读问题、辨拍子、验账本”处理。本书教的历史读法，实质是<strong>面向未来的实时分析工具</strong>。9.3 章的毕业考试用的就是它。</p>
 </div>
@@ -1148,18 +1105,10 @@ main table {
 <section id="遗留问题" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">3.4</span> 遗留问题</h2>
 <p>方法备齐了：四问账本（上一章）、双镜头与问题链（本章）、以及一套从零实现的手艺（即将开始）。从下一章起，我们正式进入 1943 年。请戴上”当时镜头”。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>一句话复述：把历史读成一串问题，而不是一串年份。工具备齐了，下一章起我们回到 1943 年，请戴上「当时镜头」。</p>
 </section>
-<section id="参考文献" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">3.5</span> 参考文献</h2>
-<ol type="1">
-<li>Kuhn, Thomas S. (1962). <em>The Structure of Scientific Revolutions</em>. <em>University of Chicago Press</em>. <a href="https://scholar.google.com/scholar?q=Kuhn%201962%20The%20Structure%20of%20Scientific%20Revolutions">↗ 搜索原文</a></li>
-<li>Hochreiter, Sepp (1991). <em>Untersuchungen zu dynamischen neuronalen Netzen</em>. <em>Diploma Thesis (in German), Technische Universit"a</em>. <a href="https://scholar.google.com/scholar?q=Hochreiter%201991%20Untersuchungen%20zu%20dynamischen%20neuronalen%20Netzen">↗ 搜索原文</a></li>
-<li>Dauphin et al.&nbsp;(2014). <em>Identifying and Attacking the Saddle Point Problem in High-Dimensional Non-Convex Optimization</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202014%20Identifying%20and%20Attacking%20the%20Saddle%20Point">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="练习"><span class="header-section-number">3.6</span> 练习</h2>
+<section id="练习" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="练习"><span class="header-section-number">3.5</span> 练习</h2>
 <ol type="1">
 <li><strong>双镜头练习</strong>：只看 <em>Attention Is All You Need</em> 这个标题（2017），用当时镜头写三行预测（2016 年的序列建模瓶颈是什么？这个标题在回应谁？），再用现在镜头写三行评价。</li>
 <li>问题链练习：任选本书目录中相邻的两章，写出连接它们的遗留问题各一句。</li>
@@ -1178,30 +1127,15 @@ main table {
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>没有标准答案，给出自检锚点。练习 1：当时镜头若写不出”RNN 难并行、LSTM 训练慢”，说明还没进入历史 context，重读 Part 1 后再试；练习 3：若你的答案只依赖”算力快了”，不完整。AlexNet 时刻需要算力 + 数据 + 三件套三者同时成熟，这正是 2.4 的主题；练习 4：一拍都认不出的新闻占多数，这不是你的问题，是它的。</p>
+<p>没有标准答案，给出自检锚点。练习 1：当时镜头若写不出”RNN 难并行、LSTM 训练慢”，说明还没进入历史 context，重读 Part 1 后再试；练习 3：若你的答案只依赖”算力快了”，不完整。AlexNet 时刻需要算力、数据、方法三件套同时成熟，这正是 2.4 的主题；练习 4：一拍都认不出的新闻占多数，这不是你的问题，是它的。</p>
 </div>
 </div>
 </div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-kuhn1962" class="csl-entry" role="listitem">
 Kuhn, Thomas S. 1962. <em>The Structure of Scientific Revolutions</em>. (Chicago).
@@ -1646,7 +1580,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part0-reading-history.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part0-reading-history.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

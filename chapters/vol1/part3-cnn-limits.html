@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,10 +1074,9 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">16.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">16.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题-卷二的入场券" id="toc-遗留问题-卷二的入场券" class="nav-link" data-scroll-target="#遗留问题-卷二的入场券"><span class="header-section-number">16.7</span> 遗留问题（= 卷二的入场券）</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">16.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">16.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">16.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part3-cnn-limits.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part3-cnn-limits.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1172,15 +1129,15 @@ window.Quarto = {
 <p>序列是 16 个比特，任务只看其中一个特定位置（距末尾 8 步）的值。一个只看<strong>末尾 k 个输入</strong>的模型。</p>
 <ol type="1">
 <li><span class="math inline">\(k=3\)</span>：能学到多好？（这是数学问题还是训练问题？）</li>
-<li><span class="math inline">\(k=10\)</span>：呢？</li>
+<li><span class="math inline">\(k=10\)</span>：又能学到多好？</li>
 </ol>
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">16.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>把图像方案硬搬到文本（弯路）</strong>。早期尝试把句子当”一维图像”做卷积（text-CNN，Kim 2014）。在短文本分类上意外好用（n-gram 检测器），但生成与翻译这类需要逐位置输出、看任意远上下文的任务上，固定窗口捉襟见肘。分类可以只看局部特征袋，生成必须照顾全局。这个差别定义了序列建模的真正难度。</p>
 <p><strong>空洞卷积的最后一搏（WaveNet, 2016）</strong>。窗口不再紧挨着滑动：第 <span class="math inline">\(l\)</span> 层的卷积每隔 <span class="math inline">\(d_l\)</span> 个位置取一个输入，<span class="math inline">\(d_l\)</span> 逐层翻倍。<span class="math inline">\(L\)</span> 层的等效感受野随 <span class="math inline">\(2^L\)</span> 指数增长，10 层即可覆盖上千个时间步。它撑起了 2016–2018 的语音合成（说出了谷歌助手的声音），却仍有一个软肋：感受野再大也是预设的。依赖在感受野之外照样抓瞎，且所有位置共享同一套”看哪里”的模式。</p>
-<p><strong>命运的伏笔</strong>：解决”不定距离依赖”的正确答案其实已经发表（注意力，Bahdanau 2014。5.1 的主角），但是，世界要先在循环结构上绕一个大圈。答案常常早于问题被需要。研究史的又一常态。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><strong>命运的伏笔</strong>：解决”不定距离依赖”的正确答案其实已经发表（注意力，Bahdanau 2014，5.1 的主角），但是，世界要先在循环结构上绕一个大圈。答案常常早于问题被需要。研究史的又一常态。</p>
+<p><em>缓一缓。</em>这一节给了卷积时代三条边界注记：text-CNN 在短文本分类上意外好用，但生成任务上固定窗口捉襟见肘；WaveNet 用空洞卷积把感受野指数撑大，撑起了两年的语音合成，可「看哪里」仍是预设的；而正确答案——注意力——其实 2014 年已经发表，世界还要在循环结构上绕一个大圈。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>任务：16 比特序列，<span class="math inline">\(y = x_{16-8}\)</span>（回看 8 步）。两个候选模型，都只读序列末段：</p>
 <ul>
@@ -1189,9 +1146,9 @@ window.Quarto = {
 </ul>
 <p><strong>先写下你的预测</strong>：</p>
 <ol type="1">
-<li>甲的测试准确率是多少？。注意这不是”大概”的问题：<strong>信息论规定了它的上限</strong>，请精确推算（提示：目标比特在它的视野里吗？视野外的比特与目标独立吗？）；</li>
+<li>甲的测试准确率是多少？注意这不是”大概”的问题：<strong>信息论规定了它的上限</strong>，请精确推算（提示：目标比特在它的视野里吗？视野外的比特与目标独立吗？）；</li>
 <li>乙需要多少训练才能到 1.0？</li>
-<li>设计追问：把回看距离从 8 改成 12，乙还能撑住吗？。“撑得住的依赖距离”就是这个架构的势力范围图。</li>
+<li>设计追问：把回看距离从 8 改成 12，乙还能撑住吗？“撑得住的依赖距离”就是这个架构的势力范围图。</li>
 </ol>
 <p>写完再运行。</p>
 </div>
@@ -1205,14 +1162,14 @@ window.Quarto = {
 <li>不定距依赖：决定下一个词的信息可能在任何距离上。固定感受野与”任意距离”结构性地不匹配；</li>
 <li>因果性：生成时只能看过去不能看未来。架构要内建时间的方向。</li>
 </ol>
-<p>卷积对 1 有补丁（自适应池化）、对 3 有补丁（因果卷积），唯独对 2。<strong>不定距</strong>。是原理性的短板。突破口有二：让网络带状态（循环，RNN。把”读过的东西”压缩进一个可携带的隐藏向量）或让每个位置动态选择看哪里（注意力）。前者是卷二前半的主角，后者是终局答案。</p>
+<p>卷积对 1 有补丁（自适应池化）、对 3 有补丁（因果卷积），唯独对 2——<strong>不定距</strong>是原理性的短板。突破口有二：让网络带状态（循环，RNN，把”读过的东西”压缩进一个可携带的隐藏向量）或让每个位置动态选择看哪里（注意力）。前者是卷二前半的主角，后者是终局答案。</p>
 <p><strong>一条重要的对称性</strong>：n-gram 语言模型（下一个 Part 的开场）与末位卷积在信息结构上同构。都是”固定窗口看历史”。所以本章的边界实验同时也是 4.1 的预告片：n-gram 的病与 text-CNN 的病是同一个病。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>这一节把边界写成一条信息论的事实：窗口外的输入与输出统计独立，任何只看窗口的模型最优也就是输出边缘分布，准确率被钉在概率地板上——这不是训练问题。序列相对图像的三重难点是变长、不定距依赖与因果性，卷积唯独对第二条是原理性短板。</p>
 </section>
 <section id="从零实现" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">16.4</span> 从零实现</h2>
 <p><code>dlbook.nn.Conv1D</code> 已就位。模型 = 一维卷积 + relu + <strong>只取末位输出</strong>（因果式的最小演示）+ 线性头：</p>
-<div id="a60695cf" class="cell" data-execution_count="1">
+<div id="263b27e1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_seq_task</span>
@@ -1238,33 +1195,32 @@ window.Quarto = {
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            Z <span class="op">=</span> conv.forward(Xtr[i])[:, :, <span class="op">-</span><span class="dv">1</span>]  <span class="co"># 只取末位（因果式输出）</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            Hr <span class="op">=</span> np.maximum(Z, <span class="fl">0.0</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> head.forward(Hr)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            dA <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> (pred <span class="op">-</span> ytr[i].reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="op">/</span> <span class="bu">len</span>(i)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            dHr <span class="op">=</span> head.backward_from(Hr, dA)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            conv.backward(dHr[:, :, <span class="va">None</span>] <span class="op">*</span> (Z <span class="op">&gt;</span> <span class="fl">0.0</span>)[:, :, <span class="va">None</span>])</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            conv.step(lr)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            head.step(lr, momentum<span class="op">=</span><span class="fl">0.9</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    Zte <span class="op">=</span> np.maximum(conv.forward(Xte)[:, :, <span class="op">-</span><span class="dv">1</span>], <span class="fl">0.0</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.mean((head.forward(Zte).ravel() <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">==</span> (yte <span class="op">&gt;</span> <span class="dv">0</span>)))</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            Hr <span class="op">=</span> np.maximum(Z, <span class="fl">0.0</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> head.forward(Hr)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            dA <span class="op">=</span> <span class="fl">2.0</span> <span class="op">*</span> (pred <span class="op">-</span> ytr[i].reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="op">/</span> <span class="bu">len</span>(i)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            dHr <span class="op">=</span> head.backward_from(Hr, dA)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            conv.backward(dHr[:, :, <span class="va">None</span>] <span class="op">*</span> (Z <span class="op">&gt;</span> <span class="fl">0.0</span>)[:, :, <span class="va">None</span>])</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            conv.step(lr)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            head.step(lr, momentum<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    Zte <span class="op">=</span> np.maximum(conv.forward(Xte)[:, :, <span class="op">-</span><span class="dv">1</span>], <span class="fl">0.0</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.mean((head.forward(Zte).ravel() <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">==</span> (yte <span class="op">&gt;</span> <span class="dv">0</span>)))</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">3</span>, <span class="dv">10</span>):</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"窗口 k=</span><span class="sc">{</span>k<span class="sc">:2d}</span><span class="ss">: test_acc = </span><span class="sc">{</span>train_window_net(k)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">3</span>, <span class="dv">10</span>):</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"窗口 k=</span><span class="sc">{</span>k<span class="sc">:2d}</span><span class="ss">: test_acc = </span><span class="sc">{</span>train_window_net(k)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>任务: y = 序列倒数第 8 个比特（视野内还是外，取决于窗口宽度）
 窗口 k= 3: test_acc = 0.486
 窗口 k=10: test_acc = 1.000</code></pre>
 </div>
 </div>
-<p>典型读数：<span class="math inline">\(k=3\)</span> 拿到 <strong>0.51</strong>（概率地板）；<span class="math inline">\(k=10\)</span> 到 1.00。与你在「停一停」的推算对照：目标比特在位置 <span class="math inline">\(16-8=8\)</span>（0 起数），<span class="math inline">\(k=3\)</span> 的窗口只覆盖最后三个位置。目标在视野外，任何学习算法都只能输出边缘分布；<span class="math inline">\(k=10\)</span> 把它框进来后，问题退化为一层线性可读的映射。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p>典型读数：<span class="math inline">\(k=3\)</span> 拿到 <strong>0.49</strong>（概率地板）；<span class="math inline">\(k=10\)</span> 到 1.00。与你在「停一停」的推算对照：目标比特在位置 <span class="math inline">\(16-8=8\)</span>（0 起数），<span class="math inline">\(k=3\)</span> 的窗口只覆盖最后三个位置。目标在视野外，任何学习算法都只能输出边缘分布；<span class="math inline">\(k=10\)</span> 把它框进来后，问题退化为一层线性可读的映射。</p>
+<p><em>缓一缓。</em>这一节的回声实验分出了两种失败：<span class="math inline">\(k=3\)</span> 的窗口看不见目标比特，测试准确率 0.49，正好是概率地板——信息论层面的不可解；<span class="math inline">\(k=10\)</span> 把目标框进视野，问题退化成一层线性可读的映射，直接到 1.00。出窗即死，与训练好坏无关。</p>
 </section>
 <section id="消融实验" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">16.5</span> 消融实验</h2>
 <p><strong>势力范围图</strong>：固定 <span class="math inline">\(k=10\)</span>，扫回看距离。</p>
-<div id="0cbf9fb1" class="cell" data-execution_count="2">
+<div id="d20c091d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dist <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">12</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    Xtr_d, ytr_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Xte_d, yte_d <span class="op">=</span> make_seq_task(n<span class="op">=</span><span class="dv">500</span>, length<span class="op">=</span><span class="dv">20</span>, dist<span class="op">=</span>dist, seed<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1294,8 +1250,8 @@ window.Quarto = {
 回看距离 12 (窗口 k=10): test_acc = 0.504</code></pre>
 </div>
 </div>
-<p>前三个距离（2、4、8）都在窗口内。全对；距离 12 越出窗口。跌回地板。<strong>一条由 <span class="math inline">\(k\)</span> 画死的硬边界</strong>，这就是势力范围图。真实语言里”有用的上下文距离”没有上限。固定窗口的死刑判决书由这张小图签署。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p>四个距离的读数是 0.80、1.00、0.52、0.50。距离 12 在 <span class="math inline">\(k=10\)</span> 的窗口之外，稳稳钉在概率地板——出窗必死；窗内的三个距离也没有免费的午餐：目标靠近窗口中部的距离 4 学到满分，贴近窗口边缘的距离 2 与 8 分别停在 0.80 与 0.52。<strong>一条由 <span class="math inline">\(k\)</span> 画死的硬边界</strong>，这就是势力范围图。真实语言里”有用的上下文距离”没有上限。固定窗口的死刑判决书由这张小图签署。</p>
+<p><em>缓一缓。</em>这一节扫出了势力范围图：距离 12 越出 <span class="math inline">\(k=10\)</span> 的窗口，钉死在地板；窗内的距离也参差，目标越贴近窗口边缘越难学。真实语言里「有用的上下文距离」没有上限，这张小图签下了固定窗口的死刑判决书。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="16.6">
 <h2 data-number="16.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">16.6</span> 本章 Loss 账本</h2>
@@ -1333,7 +1289,7 @@ window.Quarto = {
 <ul>
 <li>固定窗口 ↔︎ n-gram（4.1 开场即与本章汇合：语言模型的最古老形态就是窗口模型）；</li>
 <li>空洞卷积 → 音频合成（WaveNet）与某些高效的序列混合层。卷积在 LLM 时代仍有驻军（部分架构的局部混合用卷积做，注意力的”邻居折扣”思想与之同源）；</li>
-<li>“视野外的信息” → LLM 的上下文窗口（8.x）：<strong>今天的大模型仍然活在某种窗口里</strong>，长上下文研究是本章主题在 2020s 的直系续集；</li>
+<li>“视野外的信息” → LLM 的上下文窗口（9.2）：<strong>今天的大模型仍然活在某种窗口里</strong>，长上下文研究是本章主题在 2020s 的直系续集；</li>
 <li>因果式末位输出 → 自回归语言模型的输出头（4.1 的正式登场：每个位置预测下一个 token）。</li>
 </ul>
 </div>
@@ -1342,28 +1298,21 @@ window.Quarto = {
 <ul>
 <li><strong>读什么</strong>：图 2（空洞卷积的感受野示意图。那张著名的”越来越稀疏的滑动窗口”）；</li>
 <li>跳过：音频工程细节；</li>
-<li>历史注：WaveNet 是”卷积在序列上的最后高光”。一年后 Transformer 出局它成为语音合成的默认项。配套读 Kim (2014) 的 text-CNN（卷积进 NLP 的先声）：一个范式在其边界内侧的最后两次漂亮仗，往往打得比全盛期更精彩。</li>
+<li>历史注：WaveNet 是”卷积在序列上的最后高光”，此后约两年它一直是语音合成的主流，直到注意力架构接管这个位置。配套读 Kim (2014) 的 text-CNN（卷积进 NLP 的先声）：一个范式在边界内侧打的仗，往往比全盛期更能暴露它的真实边界。</li>
 </ul>
 </div>
 </section>
 <section id="遗留问题-卷二的入场券" class="level2" data-number="16.7">
 <h2 data-number="16.7" class="anchored" data-anchor-id="遗留问题-卷二的入场券"><span class="header-section-number">16.7</span> 遗留问题（= 卷二的入场券）</h2>
 <ol type="1">
-<li>如何让网络<strong>带着状态走</strong>。把任意长的历史压缩进固定维度的向量？（→ 4.2 RNN：展开即深网，2.2 的病魔随之复活）；</li>
-<li>语言建模的原始形态。n-gram 与信息论的血缘（→ 4.1：Shannon 的熵）；</li>
+<li>如何让网络<strong>带着状态走</strong>：把任意长的历史压缩进固定维度的向量？（→ 4.2 RNN：展开即深网，2.2 的病魔随之复活）；</li>
+<li>语言建模的原始形态：n-gram 与信息论的血缘（→ 4.1：Shannon 的熵）；</li>
 <li>“不定距离依赖”的终极解药（→ 5.1：注意力。让每个位置自己学着看哪里）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= 卷二的入场券）。</p>
+<p><em>缓一缓。</em>一句话复述：卷积的力量来自局部与平移两个先验，在序列上恰恰卡死在不定距依赖上。卷二的三张入场券——带状态的网络、n-gram 与信息论、不定距依赖的解药——分别在 4.2、4.1 与 5.1 兑现。</p>
 </section>
-<section id="参考文献" class="level2" data-number="16.8">
-<h2 data-number="16.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">16.8</span> 参考文献</h2>
-<ol type="1">
-<li>van den Oord, A"a (2016). <em>WaveNet</em>. <em>arXiv preprint arXiv:1609.03499</em>. <a href="https://scholar.google.com/scholar?q=2016%20WaveNet">↗ 搜索原文</a></li>
-<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="16.9">
-<h2 data-number="16.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">16.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">16.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>Conv1D</code> 加 <code>dilation</code> 参数（窗口每隔 d 取一个输入），用两层 dilation=1,2 的空洞卷积在 dist=12 上复得满血。亲手重演 WaveNet 的感受野指数增长。</li>
 <li>预测再运行：把 <span class="math inline">\(k=3\)</span> 的训练样本加到一亿个，<span class="math inline">\(k=3\)</span> 的测试准确率会改善吗？为什么”加数据”在这个病例上无效？（这是全书第一次遇到”数据治不了的病”。）</li>
@@ -1392,23 +1341,8 @@ window.Quarto = {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-oord2016" class="csl-entry" role="listitem">
 Oord, Aäron van den, Sander Dieleman, Heiga Zen, et al. 2016. <span>“<span>WaveNet</span>: A Generative Model for Raw Audio.”</span> <em>arXiv Preprint arXiv:1609.03499</em>.
@@ -1853,7 +1787,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part3-cnn-limits.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part3-cnn-limits.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

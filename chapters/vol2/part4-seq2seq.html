@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,10 +1074,9 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">21.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">21.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题-part-5-的入场券" id="toc-遗留问题-part-5-的入场券" class="nav-link" data-scroll-target="#遗留问题-part-5-的入场券"><span class="header-section-number">21.7</span> 遗留问题（= Part 5 的入场券）</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">21.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">21.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">21.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol2/part4-seq2seq.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol2/part4-seq2seq.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1144,7 +1101,7 @@ window.Quarto = {
 </header>
 
 
-<p>2014 年，Sutskever、Vinyals 与 Le 发表了深度学习史上最优雅的工程直觉之一：<strong>读句子的 RNN 最后的隐藏状态，就是这句话的”意思”</strong>。把这一个向量交给另一台 RNN，让它生成另一种语言的句子，翻译就完成了。编码器-解码器（encoder-decoder）从此成为一切”输入序列→输出序列”任务的标准骨架：翻译、对话、摘要、语音识别，直到今天大模型的 prompt → 回答本质上仍是它的变体。本章我们搭出这个骨架，训练它做”序列反转”的玩具翻译，然后亲手撞上它的著名软肋。固定维度向量装不下任意长的句子。这个软肋催生了注意力（下一部分的主角）。</p>
+<p>2014 年，Sutskever、Vinyals 与 Le <span class="citation" data-cites="sutskever2014">(<a href="#ref-sutskever2014" role="doc-biblioref">Sutskever et al. 2014</a>)</span> 发表了一个影响深远的工程直觉：<strong>读句子的 RNN 最后的隐藏状态，就是这句话的”意思”</strong>。把这一个向量交给另一台 RNN，让它生成另一种语言的句子，翻译就完成了。编码器-解码器（encoder-decoder）从此成为一切”输入序列→输出序列”任务的标准骨架：翻译、对话、摘要、语音识别，直到今天大模型的 prompt → 回答本质上仍是它的变体。本章我们搭出这个骨架，训练它做”序列反转”的玩具翻译，然后亲手撞上它的著名软肋：固定维度的向量装不下任意长的句子。这个软肋催生了注意力（下一部分的主角）。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1178,8 +1135,8 @@ window.Quarto = {
 <p><strong>弯路一：短语统计翻译的对齐噩梦</strong>。统计派的短语表要维护”哪段对哪段”的离散对应，长句的组合管理复杂而脆弱。seq2seq 用一个连续向量替代整张对齐表。放弃可解释性，换取端到端的可训练性。1.2 的母题再次上场：离散知识工程 vs 连续可学习表示。</p>
 <p><strong>弯路二：COD 的滑窗生成</strong>。早期神经翻译试图滑动窗口逐段翻译再拼接。上下文被窗口切断。seq2seq 的贡献正是把整句的全局决策交给编码器终态。</p>
 <p><strong>输入倒序的启示</strong>：作者们发现把源句倒过来喂，BLEU 显著上升。因为解码器先要输出的词，在倒序输入里恰好离编码器终态最近（梯度衰减的补偿）。这个 trick 在 2017 年被注意力彻底作废。结构缺陷的补丁永远不如修结构本身。</p>
-<p><strong>teacher forcing</strong>：训练时解码器每一步都喂真实的上一个词而非自己的预测。并行高效，但是，训练与推理（吃自己的预测）之间存在暴露偏差。这个偏差在今天的 LLM 时代仍有回响（7.x 的训练-推理不一致讨论）。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><strong>teacher forcing</strong>：训练时解码器每一步都喂真实的上一个词而非自己的预测。并行高效，但训练与推理（吃自己的预测）之间存在暴露偏差。这个偏差在今天的 LLM 时代仍有回响（7.2 的训练-解码不一致讨论）。</p>
+<p><em>缓一缓。</em>这一节的四个条目连成一条线：短语统计的对齐表笨重，滑窗生成切断上下文，seq2seq 用一个连续向量取代两者；输入倒序与 teacher forcing 是两件工程补丁——前者治梯度可达性，后者换来训练效率、埋下暴露偏差。骨架与补丁的分工，在后面的章节里反复出现。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>先做两个思想实验（写下来再运行）：</p>
 <ol type="1">
@@ -1195,13 +1152,13 @@ window.Quarto = {
 <p><span class="math display">\[P(y_1..y_T \mid x_1..x_S) = \prod_t P(y_t \mid y_{&lt;t},\ \mathbf{c}), \qquad \mathbf{c} = h_S^{enc}\]</span></p>
 <p>编码器 LSTM 把源句读成终态 <span class="math inline">\(\mathbf{c}\)</span>（本章语境下就是细胞状态与隐藏状态），解码器以 <span class="math inline">\(\mathbf{c}\)</span> 为初态做 4.2 的自回归生成。<strong>翻译被拆成”压缩”与”条件展开”两半</strong>。后半是语言建模（4.1/4.2 的全部装备），前半是本章的新事物。</p>
 <p><strong>瓶颈定理（非正式）</strong>：解码的每一步都只通过 <span class="math inline">\(\mathbf{c}\)</span> 看见源句。若源句含 <span class="math inline">\(I\)</span> 比特信息而 <span class="math inline">\(\mathbf{c}\)</span> 的有效容量不足（或编码器没学好压缩），解码器无法事后补救。损失在压缩一步就永久发生了。长度外推实验就是这个定理的实验版本。</p>
-<p><strong>与 3.3 的范式同构</strong>：预训练-微调（3.3）是”通用特征 + 专用头”；编码-解码是”通用压缩 + 专用生成”。两者共享同一个深层结构：把难题拆成一个重的表示学习 + 一个轻的任务适配。这个模式将统治到 GPT 时代（预训练 + 下游微调/对齐，7.x）。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><strong>与 3.3 的范式同构</strong>：预训练-微调（3.3）是”通用特征 + 专用头”；编码-解码是”通用压缩 + 专用生成”。两者共享同一个深层结构：把难题拆成一个重的表示学习 + 一个轻的任务适配。这个模式将统治到 GPT 时代（预训练 + 下游微调/对齐，7.2）。</p>
+<p><em>缓一缓。</em>本节立了一个非正式的”瓶颈定理”：解码的每一步都只通过向量 <span class="math inline">\(\mathbf{c}\)</span> 看见源句，若压缩一步没保住信息，解码器无法事后补救——长度外推实验就是它的实验版本。而”重表示学习 + 轻任务适配”的拆分，与 3.3 的预训练-微调同构。</p>
 </section>
 <section id="从零实现" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">21.4</span> 从零实现</h2>
-<p><code>dlbook.rnn.Seq2Seq</code>：编码/解码各一台 LSTM，解码器初态 = 编码器终态（梯度沿 <code>backward</code> 的初始状态接口回传到编码器）。任务：数字序列反转。</p>
-<div id="a023a58a" class="cell" data-execution_count="1">
+<p><code>dlbook.rnn.Seq2Seq</code>：编码/解码各一台 LSTM，解码器初态 = 编码器终态（梯度沿 <code>backward</code> 的初始状态接口回传到编码器）。任务：数字序列反转（词表 0=BOS、1=EOS，2–11 为数字）。</p>
+<div id="cfce405f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1231,7 +1188,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="df3c29fc" class="cell" data-execution_count="2">
+<div id="44fcb14b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> exact_acc(model, pairs):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> <span class="bu">sum</span>(model.greedy_decode(i) <span class="op">==</span> t <span class="cf">for</span> i, t <span class="kw">in</span> pairs)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ok <span class="op">/</span> <span class="bu">len</span>(pairs)</span>
@@ -1239,41 +1196,42 @@ window.Quarto = {
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"验证集（长度 3–5）精确匹配: </span><span class="sc">{</span>exact_acc(model, <span class="bu">list</span>(<span class="bu">zip</span>(val_in, val_tg)))<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"示例:"</span>, model.greedy_decode(val_in[<span class="dv">0</span>]), <span class="st">"目标:"</span>, val_tg[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>验证集（长度 3–5）精确匹配: 0.985
+<pre><code>验证集（长度 3–5）精确匹配: 0.965
 示例: [0, 2, 11, 9, 7, 1] 目标: [0, 2, 11, 9, 7, 1]</code></pre>
 </div>
 </div>
-<p>25 个 epoch、几秒钟：loss 2.17 → 0.00x，<strong>整句精确匹配约 98%</strong>。编码器学会了把”哪几个数字、什么顺序”压进 64 维，解码器再逆序释放。玩具尺度上，“向量即意思”近乎魔法。</p>
+<p>25 个 epoch、几秒钟：loss 2.18 → 0.001，<strong>整句精确匹配约 97%</strong>。编码器学会了把”哪几个数字、什么顺序”压进 64 维，解码器再逆序释放。玩具尺度上，“向量即意思”近乎魔法。</p>
 <p><strong>主实验：长度外推（固定向量的账单）。</strong> 在训练分布（长度 ≤5）之外逐级测试：</p>
-<div id="02a1ea9d" class="cell" data-execution_count="3">
+<div id="f53d0185" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pairs_of_length(L, n<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">9</span>):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pairs_of_length(L, n<span class="op">=</span><span class="dv">600</span>, seed<span class="op">=</span><span class="dv">9</span>):</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    ins, tgs <span class="op">=</span> make_reversal_task(n<span class="op">=</span>n, max_len<span class="op">=</span>L, seed<span class="op">=</span>seed)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [(i, t) <span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">zip</span>(ins, tgs) <span class="cf">if</span> <span class="bu">len</span>(i) <span class="op">==</span> L <span class="op">+</span> <span class="dv">2</span>]</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>accs <span class="op">=</span> []</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>lengths <span class="op">=</span> (<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> L <span class="kw">in</span> lengths:</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    acc <span class="op">=</span> exact_acc(model, pairs_of_length(L))</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    accs.append(acc)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"长度 </span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">: 精确匹配 </span><span class="sc">{</span>acc<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">3.8</span>))</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.plot(lengths, accs, <span class="st">"o-"</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="fl">5.5</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="st">"max length seen in training"</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"sequence length"</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"exact match"</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"The fixed-vector bill comes due"</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    pairs <span class="op">=</span> pairs_of_length(L)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    acc <span class="op">=</span> exact_acc(model, pairs)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    accs.append(acc)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"长度 </span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span><span class="bu">len</span>(pairs)<span class="sc">}</span><span class="ss"> 条）: 精确匹配 </span><span class="sc">{</span>acc<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="fl">5.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.plot(lengths, accs, <span class="st">"o-"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="fl">5.5</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="st">"max length seen in training"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"sequence length"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"exact match"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"The fixed-vector bill comes due"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>长度 3: 精确匹配 1.000
-长度 4: 精确匹配 0.990
-长度 5: 精确匹配 0.913
-长度 6: 精确匹配 0.585
-长度 7: 精确匹配 0.205
-长度 8: 精确匹配 0.108</code></pre>
+<pre><code>长度 3（600 条）: 精确匹配 1.000
+长度 4（280 条）: 精确匹配 0.996
+长度 5（196 条）: 精确匹配 0.923
+长度 6（162 条）: 精确匹配 0.512
+长度 7（108 条）: 精确匹配 0.250
+长度 8（90 条）: 精确匹配 0.022</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1283,13 +1241,13 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>典型读数：长度 3–5 全在 0.9 以上；长度 6 掉到 0.6 附近；长度 7–8 跌到 0.2/0.1 以下。<strong>训练边界之外，性能断崖</strong>。对照你在「停一停」画的预测曲线：崩塌形态对了吗？注意崩塌编码器从未学过长句的压缩方式。它背过的是”如何压 5 个”，不是”如何压任意个”。分布外，能力来自分布内。这句话将在 6.3（涌现的边界）与 9.2（评测外推）反复回响。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p>典型读数：长度 3–5 在 0.92 以上；长度 6 掉到 0.51；长度 7 剩 0.25、长度 8 接近 0。<strong>训练边界之外，性能断崖</strong>。对照你在「停一停」画的预测曲线：崩塌形态对了吗？注意：崩塌的编码器从未学过长句的压缩方式。它背过的是”如何压 5 个”，不是”如何压任意个”。分布外，能力来自分布内。这句话将在 6.3（涌现的边界）与 9.2（评测外推）反复回响。</p>
+<p><em>缓一缓。</em>把读数对齐：边界内（长度 3–5）精确匹配 0.92 以上，长度 6 掉到 0.51，长度 8 接近 0——训练边界之外是断崖，不是缓坡。断崖的原因不在向量容量不够，在编码器从未学过长句的压缩方式：它背过的是”如何压 5 个”，不是”如何压任意个”。</p>
 </section>
 <section id="消融实验" class="level2" data-number="21.5">
 <h2 data-number="21.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">21.5</span> 消融实验</h2>
-<p><strong>倒序输入 trick 复刻。</strong> Sutskever 的补丁：把编码器输入倒过来喂（<code>inputs[i][::-1]</code>），对反转任务这相当于……先想清楚再运行（对”反转”这个任务，倒序输入让解码器的第一个输出对应编码器最后读入的词。梯度最短路径）。复刻并与正序对照，看两者在长度外推上的差异。补丁能续命，但救不了结构：</p>
-<div id="72ba39a4" class="cell" data-execution_count="4">
+<p><strong>倒序输入 trick 复刻。</strong> Sutskever 的补丁：把编码器输入倒过来喂（<code>inputs[i][::-1]</code>）。在翻译里，这使”最先要输出的词”离编码器终态最近。那么对反转任务，这个补丁该起什么作用？先想清楚再运行（提示：反转任务最先要输出的数字，本来就在输入的末尾）。复刻并与正序对照，看两者在长度外推上的差异：</p>
+<div id="6fb8be5d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model_rev <span class="op">=</span> Seq2Seq(<span class="dv">12</span>, hidden<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> np.random.default_rng(epoch).permutation(<span class="bu">len</span>(inputs))</span>
@@ -1304,14 +1262,14 @@ window.Quarto = {
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  长度 </span><span class="sc">{</span>L<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>exact_acc(model_rev, pairs)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>倒序输入版的外推曲线:
-  长度 5: 0.797
-  长度 6: 0.340
-  长度 7: 0.000
+  长度 5: 0.888
+  长度 6: 0.414
+  长度 7: 0.037
   长度 8: 0.000</code></pre>
 </div>
 </div>
-<p>典型结果：倒序版在边界内相当、外推略好或相当。补丁的收益被玩具任务的短句吃掉了。<strong>真正的解药需要解码器在每一步都能回头看任意源词</strong>。这个”回头看”的正式名字，就是下一部分的主角。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p>典型结果：倒序版在边界内相当（长度 5：0.89 对 0.92），外推全面更差（长度 7：0.04 对 0.25）。原因正是提示里的那一点：反转任务要先输出的数字本来就离终态最近，倒序反而把它推到最远。补丁的方向依赖任务的前提；同样的补丁在翻译里有效，在这个玩具里为负。<strong>真正的解药需要解码器在每一步都能回头看任意源词</strong>。这个”回头看”的正式名字，就是下一部分的主角。</p>
+<p><em>缓一缓。</em>消融的教训：同一个补丁在两个任务里方向相反，因为”最需要的词离终态最近”这个前提只在翻译里成立。补丁依赖前提，结构不依赖——这正是把”回头看”升级为机制的动机。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="21.6">
 <h2 data-number="21.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">21.6</span> 本章 Loss 账本</h2>
@@ -1348,7 +1306,7 @@ window.Quarto = {
 <div class="callout-echo" title="回声">
 <ul>
 <li>编码器-解码器 → Transformer 的标准两段式（5.2：encoder-decoder Transformer）、今天的 chat 模型本质仍是”prompt 编码 + 回复解码”的变体（虽然统一成了单个自回归栈）；</li>
-<li>固定向量瓶颈 → KV 缓存与上下文窗口的容量经济学（8.x）。<strong>“历史装在哪、装多少”从本章起成为永恒话题</strong>；</li>
+<li>固定向量瓶颈 → KV 缓存与上下文窗口的容量经济学（9.2）。<strong>“历史装在哪、装多少”从本章起成为永恒话题</strong>；</li>
 <li>teacher forcing / 暴露偏差 → RLHF 阶段”训练在人类偏好分布上、推理在自身分布上”的同构问题（7.3）；</li>
 <li>“能力来自分布内” → 6.3 涌现之谜与 9.2 评测外推的原理性约束。</li>
 </ul>
@@ -1358,7 +1316,7 @@ window.Quarto = {
 <ul>
 <li><strong>读什么</strong>：第 2 节（模型，半页）与第 3 节的输入倒序 trick 及其解释。全文最深刻的两段话藏在 trick 的动机里（梯度与源句词的”可达性”）；</li>
 <li>跳过：BLEU 细节；</li>
-<li>历史注：配套读 Cho et al.&nbsp;(2014)（同期编码-解码 + GRU，从机器翻译的需求出发）。两篇同期同构，是”想法的空气中到期”的典型案例；以及 Bahdanau et al.&nbsp;(2015)。它是对本章瓶颈的直接回应，也就是下一章的开场论文。</li>
+<li>历史注：配套读 Cho et al.&nbsp;(2014) <span class="citation" data-cites="cho2014">(<a href="#ref-cho2014" role="doc-biblioref">Cho et al. 2014</a>)</span>（同期编码-解码 + GRU，从机器翻译的需求出发）。两篇同期同构，是”想法的空气中到期”的典型案例；以及 Bahdanau et al.&nbsp;(2015) <span class="citation" data-cites="bahdanau2015">(<a href="#ref-bahdanau2015" role="doc-biblioref">Bahdanau et al. 2015</a>)</span>。它是对本章瓶颈的直接回应，也就是下一章的开场论文。</li>
 </ul>
 </div>
 </section>
@@ -1369,18 +1327,10 @@ window.Quarto = {
 <li>“回头看”能不能彻底替代循环本身？（→ 5.2 Transformer：注意力即全部）；</li>
 <li>串行解码的速度问题？（→ 5.3 并行性的经济学）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= Part 5 的入场券）。</p>
+<p><em>缓一缓。</em>三个问题递进：第一步让解码器每步能回头看任意源词（下一章的注意力）；第二步问循环本身还要不要（自注意力的答案：不要）；第三步算串行的账（5.3 的经济学）。固定向量瓶颈的病历，到这里移交给注意力。</p>
 </section>
-<section id="参考文献" class="level2" data-number="21.8">
-<h2 data-number="21.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">21.8</span> 参考文献</h2>
-<ol type="1">
-<li>Sutskever, Ilya and Vinyals, Oriol and Le, Quoc V. (2014). <em>Sequence to Sequence Learning with Neural Networks</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=Sutskever%202014%20%5B@sutskever2014%5D%20Sequence%20to%20Sequence%20Learning%20with%20Neural">↗ 搜索原文</a></li>
-<li>Cho, Kyunghyun and van Merri"e (2014). <em>Learning Phrase Representations Using RNN</em>. <em>EMNLP</em>. <a href="https://scholar.google.com/scholar?q=Cho%202014%20%5B@cho2014%5D%20Learning%20Phrase%20Representations%20Using%20RNN">↗ 搜索原文</a></li>
-<li>Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua (2015). <em>Neural Machine Translation by Jointly Learning to Align and Translate</em>. <em>ICLR</em>. <a href="https://scholar.google.com/scholar?q=Bahdanau%202015%20%5B@bahdanau2015%5D%20Neural%20Machine%20Translation%20by%20Jointly%20Learning">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="21.9">
-<h2 data-number="21.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">21.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="21.8">
+<h2 data-number="21.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">21.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把解码器初态从”编码器终态”换成”零状态 + 源句拼在目标句前面”（prefix 式），在反转任务上对照。你造出了今天 decoder-only 模型（GPT 式）的雏形，写出两种设计的账本差异。</li>
 <li>预测再运行：把隐藏维度从 64 加到 256，长度外推的断崖会移动吗？先猜（提示：瓶颈是”学过的压缩方式”还是”向量容量”？）再验证。</li>
@@ -1401,7 +1351,7 @@ window.Quarto = {
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 2</strong>：断崖几乎不动。容量够用时瓶颈在训练分布而非向量维度。若你观察到轻微改善，那是容量边际效应；主结论（断崖位置由训练长度决定）稳健。这正是”数据分布决定能力边界”的直接证据。</p>
-<p><strong>练习 3</strong>：训练显著变慢（无法利用 teacher forcing 的并行展开）且早期不稳定；最终成绩可能接近但是，更难训。暴露偏差减小了，但是，代价不成比例。工程上的赢家是 teacher forcing + 后期纠偏（RLHF 在某种程度上正是终极版的”后期纠偏”）。</p>
+<p><strong>练习 3</strong>：训练显著变慢（无法利用 teacher forcing 的并行展开）且早期不稳定；最终成绩可能接近，但更难训。暴露偏差减小了，但代价不成比例。工程上的赢家是 teacher forcing + 后期纠偏（RLHF 在某种程度上正是终极版的”后期纠偏”）。</p>
 <p><strong>练习 5 提示</strong>：权重 <span class="math inline">\(\alpha_{t,s} \propto \exp(\mathbf{q}_t \cdot \mathbf{h}_s)\)</span>，<span class="math inline">\(\mathbf{q}_t\)</span> 取当前解码状态；加权和 <span class="math inline">\(\sum_s \alpha_{t,s}\mathbf{h}_s\)</span> 进输出层。跑反转任务，重点看长度外推是否被治好。若改善明显，你已经预演了 5.1 的结论。</p>
 </div>
 </div>
@@ -1409,26 +1359,20 @@ window.Quarto = {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
+<div id="ref-bahdanau2015" class="csl-entry" role="listitem">
+Bahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. <span>“Neural Machine Translation by Jointly Learning to Align and Translate.”</span> <em>ICLR</em>.
 </div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
+<div id="ref-cho2014" class="csl-entry" role="listitem">
+Cho, Kyunghyun, Bart van Merriënboer, Caglar Gulcehre, et al. 2014. <span>“Learning Phrase Representations Using <span>RNN</span> Encoder-Decoder for Statistical Machine Translation.”</span> <em>EMNLP</em>.
 </div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
 </div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
-</div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-sutskever2014" class="csl-entry" role="listitem">
+Sutskever, Ilya, Oriol Vinyals, and Quoc V. Le. 2014. <span>“Sequence to Sequence Learning with Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 </div>
 </section>
@@ -1867,7 +1811,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol2/part4-seq2seq.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol2/part4-seq2seq.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

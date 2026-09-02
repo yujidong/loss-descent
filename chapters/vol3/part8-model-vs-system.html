@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -715,6 +672,7 @@ main table {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -808,7 +766,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -820,7 +778,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -937,7 +895,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -954,13 +912,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1087,10 +1045,9 @@ main table {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">36.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">36.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题-part-9-的入场券" id="toc-遗留问题-part-9-的入场券" class="nav-link" data-scroll-target="#遗留问题-part-9-的入场券"><span class="header-section-number">36.7</span> 遗留问题（= Part 9 的入场券）</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">36.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">36.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">36.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part8-model-vs-system.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part8-model-vs-system.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1147,11 +1104,11 @@ main table {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="36.2">
 <h2 data-number="36.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">36.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>弯路一：万物微调（2020–2022）</strong>。预训练模型出来后，惯性是”每个任务微调一次”。T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT <span class="citation" data-cites="radford2018">(<a href="#ref-radford2018" role="doc-biblioref">Radford et al. 2018</a>)</span>-3 的 few-shot、2021 前后的 prompt tuning）证明许多任务不必动权重。方向摆向系统层。</p>
+<p><strong>弯路一：万物微调（2020–2022）</strong>。预训练模型出来后，惯性是”每个任务微调一次”。T5 时代的默认。代价：权重版本爆炸、更新迟缓、每个任务一份存储。随后 prompt 方法学（GPT-3 <span class="citation" data-cites="radford2018">(<a href="#ref-radford2018" role="doc-biblioref">Radford et al. 2018</a>)</span> 的 few-shot、2021 前后的 prompt tuning）证明许多任务不必动权重。方向摆向系统层。</p>
 <p><strong>弯路二：万物提示（2023–2024）</strong>。摆过头：记忆靠 prompt 塞、工具靠 prompt 描述、格式靠 prompt 祈祷。上下文越来越长、越来越贵、越来越脆。回调的标志是各家的 instruction tuning 与 distillation 回潮：行为一旦定型且高频，就该固化（8.2 的训练账 vs 推理账）。</p>
 <p><strong>RAG 的启示</strong>：知识放哪一层的最佳案例研究。外挂检索（系统层）赢了”时效性与可更新性”，权重（模型层）赢了”整合与推理”。现实的答案是混合，但是，混合的配方由框架决定，不是拍脑袋。</p>
 <p><strong>Context engineering 的兴起（2025）</strong>：把上下文当作一种稀缺资源来设计。什么进窗口、以什么格式、何时压缩（7.1 的”上下文价值曲线”是这个工种的理论起点）。窗口是新的显存：贵、有限、需要调度。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><em>缓一缓。</em>四段历史摆在一起看：万物微调撞上版本爆炸，万物提示撞上又长又贵的上下文，RAG 给出混合的第一份配方，context engineering 把窗口当作稀缺资源来经营。钟摆在两层之间荡了三个来回，“界线是移动的”不是修辞，是趋势线。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>三条件实验预告：同一个 QA 任务，三种配置。(a) 基座 zero-shot；(b) 基座 few-shot（上下文里放 3 个”问题→回答”示例）；(c) SFT（7.2 的流程）。</p>
 <p><strong>先写下你的预测</strong>（本书的玩具基座，你还记得 7.1 的诱导头失败与 7.2 的绑定 margin）：</p>
@@ -1160,9 +1117,9 @@ main table {
 <li>few-shot 会让基座照着示例的格式输出答案吗？命中率多少？</li>
 </ol></li>
 <li><ol start="3" type="a">
-<li>SFT 我们量过：格式 1.00、贪心 0.17–0.33。<strong>few-shot 能逼近这个数吗？</strong></li>
+<li>SFT 我们量过：格式 1.00、贪心 0.33。<strong>few-shot 能逼近这个数吗？</strong></li>
 </ol></li>
-<li>你的直觉里，真实 GPT-3 尺度的模型上，(b) 与 (c) 的差距会如何变化？。这一问决定框架第一问的答案方向。</li>
+<li>你的直觉里，真实 GPT-3 尺度的模型上，(b) 与 (c) 的差距会如何变化？这一问决定框架第一问的答案方向。</li>
 </ol>
 <p>写完再运行。提示：如果 (b) 在玩具上失败，先别急着下”系统层不行”的结论。想想它依赖底座的什么。</p>
 </div>
@@ -1178,12 +1135,12 @@ main table {
 <p>一句话版：<strong>潜质在权重、变化在系统、可靠性按代价分账</strong>。</p>
 <p><strong>两层的数学同构</strong>：few-shot 的上下文与 SFT 的微调，都是在条件化模型的行为。前者把示例放进输入，后者把示例放进梯度。信息同源（都是”示例”），通道不同。这解释了为什么大模型上两者常常殊途同归（ICL ≈ 隐式贝叶斯推断/隐式微调的争论两边都有证据），也解释了我们的玩具为何分家。输入通道要靠注意力绑定（7.1 失败），梯度通道靠密集监督（7.2 成功）：两条通道对底座的要求不同，这是框架第一问的实验基础。</p>
 <p><strong>界线是移动的</strong>：算力价格、模型能力、任务频率都在变。今天值得外挂的，明天可能该固化（反之亦然）。框架给出的不是答案，是可以重复演算的判断程序。这与 0.1 章对”账本”的承诺一致。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>三问定层：先体检潜质（在权重里吗），再看变化频率（频繁变走系统层、稳定高频固化进模型），最后按错误代价分账可靠性。再加一句”界线是移动的”，框架的全部就在这里。下面的三条件实验负责第一问。</p>
 </section>
 <section id="从零实现" class="level2" data-number="36.4">
 <h2 data-number="36.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">36.4</span> 从零实现</h2>
 <p>三条件对照（基座复训 + few-shot + SFT 复用 7.2 流程）：</p>
-<div id="4f6bad37" class="cell" data-execution_count="1">
+<div id="a28afe2a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> TINY_STORY, char_corpus, make_qa_corpus</span>
@@ -1241,31 +1198,51 @@ main table {
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>                       <span class="ss">f"answer: </span><span class="sc">{</span>qa_pairs[(qi <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> j) <span class="op">%</span> <span class="bu">len</span>(qa_pairs)][<span class="dv">1</span>]<span class="sc">}</span><span class="ss">. "</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(k))</span>
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        prompt <span class="op">=</span> demo <span class="op">+</span> <span class="ss">f"question: </span><span class="sc">{</span>q<span class="sc">}</span><span class="ss"> answer: "</span></span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        ids_p <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> prompt][<span class="op">-</span><span class="dv">95</span>:]  <span class="co"># 受窗口所限取尾部</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        gen <span class="op">=</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> model.generate(ids_p, n_new<span class="op">=</span><span class="bu">len</span>(a) <span class="op">+</span> <span class="dv">4</span>, temperature<span class="op">=</span><span class="fl">0.01</span>, seed<span class="op">=</span><span class="dv">0</span>)[<span class="bu">len</span>(ids_p):])</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        hits <span class="op">+=</span> <span class="bu">int</span>(gen.startswith(a))</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hits <span class="op">/</span> n</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"基座 zero-shot: </span><span class="sc">{</span>zero_shot(base)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"基座 few-shot (k=3): </span><span class="sc">{</span>few_shot(base)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"SFT zero-shot: </span><span class="sc">{</span>zero_shot(sft)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> qi <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"[截断后的 prompt 之一] ...</span><span class="sc">{</span>prompt[<span class="op">-</span><span class="dv">95</span>:]<span class="sc">!r}</span><span class="ss">（原长 </span><span class="sc">{</span><span class="bu">len</span>(prompt)<span class="sc">}</span><span class="ss"> 字符）"</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        gen <span class="op">=</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> model.generate(ids_p, n_new<span class="op">=</span><span class="bu">len</span>(a) <span class="op">+</span> <span class="dv">4</span>, temperature<span class="op">=</span><span class="fl">0.01</span>, seed<span class="op">=</span><span class="dv">0</span>)[<span class="bu">len</span>(ids_p):])</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        hits <span class="op">+=</span> <span class="bu">int</span>(gen.startswith(a))</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hits <span class="op">/</span> n</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"基座 zero-shot: </span><span class="sc">{</span>zero_shot(base)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"基座 few-shot (k=3): </span><span class="sc">{</span>few_shot(base)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"SFT zero-shot: </span><span class="sc">{</span>zero_shot(sft)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>基座 zero-shot: 0.00
+[截断后的 prompt 之一] ...'cat ? answer: fish. question: who lived in a small house at the edge of a quiet town ? answer: '（原长 259 字符）
 基座 few-shot (k=3): 0.00
 SFT zero-shot: 0.33</code></pre>
 </div>
 </div>
-<p>典型读数：<strong>0.00 / 0.00 / 0.33</strong>。few-shot 完全失效。示例进了上下文，基座却无法把它们与当前问题绑定（7.1 的诱导头之墙再次立在那儿：输入通道的条件化需要注意力回路，我们的玩具没有）。这个三连数是框架第一问的实验证词：</p>
+<p><strong>混杂对照</strong>：压缩示例规模，保证完整示例落在 95 字符窗内（排除”示例被截掉”这一干扰解释）：</p>
+<div id="de24d735" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> <span class="st">"question: who found a cat ? answer: pip. "</span>   <span class="co"># 41 字符的同格式短示例</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>short <span class="op">=</span> [(q, a) <span class="cf">for</span> q, a <span class="kw">in</span> qa_pairs</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         <span class="cf">if</span> <span class="bu">len</span>(demo) <span class="op">+</span> <span class="bu">len</span>(<span class="ss">f"question: </span><span class="sc">{</span>q<span class="sc">}</span><span class="ss"> answer: "</span>) <span class="op">&lt;=</span> <span class="dv">95</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>hit <span class="op">=</span> fmt <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> q, a <span class="kw">in</span> short:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> demo <span class="op">+</span> <span class="ss">f"question: </span><span class="sc">{</span>q<span class="sc">}</span><span class="ss"> answer: "</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ids_p <span class="op">=</span> [vocab[c] <span class="cf">for</span> c <span class="kw">in</span> prompt][<span class="op">-</span><span class="dv">95</span>:]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    gen <span class="op">=</span> <span class="st">""</span>.join(inv[i] <span class="cf">for</span> i <span class="kw">in</span> base.generate(ids_p, n_new<span class="op">=</span><span class="bu">len</span>(a) <span class="op">+</span> <span class="dv">4</span>, temperature<span class="op">=</span><span class="fl">0.01</span>, seed<span class="op">=</span><span class="dv">0</span>)[<span class="bu">len</span>(ids_p):])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    hit <span class="op">+=</span> <span class="bu">int</span>(gen.startswith(a))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    fmt <span class="op">+=</span> <span class="bu">int</span>(<span class="st">". question:"</span> <span class="kw">in</span> gen <span class="kw">or</span> gen.rstrip().endswith(<span class="st">"."</span>))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"短示例对照（</span><span class="sc">{</span><span class="bu">len</span>(short)<span class="sc">}</span><span class="ss"> 道可评题，完整示例在窗内）: 答案命中 </span><span class="sc">{</span>hit<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(short)<span class="sc">}</span><span class="ss">，格式遵循 </span><span class="sc">{</span>fmt<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(short)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>短示例对照（5 道可评题，完整示例在窗内）: 答案命中 0/5，格式遵循 0/5</code></pre>
+</div>
+</div>
+<p>典型读数：<strong>0.00 / 0.00 / 0.33</strong>。few-shot 完全失效——但先排除一个混杂因素：窗口只有 95 字符，三个示例加问题约 259 字符，截断后的 prompt 里连一个完整示例都放不下（上面打印的截断样本可见，示例被拦腰截去）。于是压缩示例规模做了个小对照：41 字符的同格式短示例完整落窗，在放得下的 5 道题上重测——答案命中 0/5，格式遵循 0/5，生成退化为”t t t t”式的碎语。<strong>混杂排除后结论不变：示例进了上下文，基座却无法把它们与当前问题绑定</strong>（7.1 的诱导头之墙再次立在那儿：输入通道的条件化需要注意力回路，我们的玩具没有）。这个三连数是框架第一问的实验证词：</p>
 <ul>
 <li><strong>系统层不是免费的</strong>。它依赖底座的输入通道条件化能力（ICL）。玩具上这条通道断了，所以 few-shot 为零、SFT 起效（梯度通道健全）；</li>
 <li>真实 GPT-3 尺度上结论反转：few-shot 大幅起效（诱导回路存在），于是 2020–2023 年系统层（提示工程）繁荣；</li>
 <li>框架的应用要带上底座的体检报告。同一个”问题”，在不同底座上答案不同。这也是读一切”prompt vs 微调”论文的第一检查项：他们的底座多大、哪条通道健全。</li>
 </ul>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p><em>缓一缓。</em>三连数 0.00 / 0.00 / 0.33：few-shot 与 SFT 拿到同一批示例，一个走输入通道（断），一个走梯度通道（通）。通道健全性是独立变量——读一切”prompt vs 微调”论文的第一检查项。</p>
 </section>
 <section id="消融实验" class="level2" data-number="36.5">
 <h2 data-number="36.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">36.5</span> 消融实验</h2>
 <p><strong>通道的对照</strong>：few-shot 失效但是， SFT 有效。两条通道（输入 vs 梯度）的要求差异，可以再用一个对照钉死：把 few-shot 的示例逐条放进 SFT 数据（等价于把输入通道的内容搬到梯度通道），同样的 12 个问答、同样的信息量。<code>SFT</code> 从 0.00 涨到 0.33（这正是 7.2 已做的实验）。信息相同、通道不同、结果不同。通道本身的健全性是独立变量，这是本框架区别于流行讨论的关键洞见。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p><em>缓一缓。</em>通道对照再钉一次：信息相同（同样 12 个问答）、通道不同（输入对梯度）、结果不同（0.00 对 0.33）。本框架区别于流行讨论的关键，就在这一格。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="36.6">
 <h2 data-number="36.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">36.6</span> 本章 Loss 账本</h2>
@@ -1308,7 +1285,7 @@ SFT zero-shot: 0.33</code></pre>
 </ul>
 </div>
 <div class="callout-paper" title="论文时光机">
-<p><strong>Liu, P. et al.&nbsp;(2021).</strong> <em>Pre-train, prompt, and predict: A systematic survey of prompting methods in NLP.</em> ACM Computing Surveys.（配对阅读：Lewis et al.&nbsp;(2020) 的 RAG 论文）</p>
+<p><strong>Liu, P. et al.&nbsp;(2023).</strong> <em>Pre-train, prompt, and predict: A systematic survey of prompting methods in NLP.</em> ACM Computing Surveys.（配对阅读：Lewis et al.&nbsp;(2020) 的 RAG 论文）</p>
 <ul>
 <li><strong>读什么</strong>：综述的图 1（预训练-微调与预训练-提示两范式的对照图。本章的”两条通道”的文献版）；RAG 的混合知识安置设计；</li>
 <li>跳过：提示技巧目录；</li>
@@ -1323,21 +1300,14 @@ SFT zero-shot: 0.33</code></pre>
 <li>框架依赖的世界在变：数据墙、算力格局、能力前沿。开放问题清单（→ 9.2）；</li>
 <li>最后：用它预测未来。全书的毕业考试（→ 9.3）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= Part 9 的入场券）。</p>
+<p><em>缓一缓。</em>全书工具至此集齐：三问框架、loss 账本、双镜头、研究循环。Part 9 的三步——复盘模式、清点开放问题、落子预测——就是把它们拼成一套完整的判断系统。</p>
 </section>
-<section id="参考文献" class="level2" data-number="36.8">
-<h2 data-number="36.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">36.8</span> 参考文献</h2>
-<ol type="1">
-<li>Lewis et al.&nbsp;(2020). <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202020%20Retrieval-Augmented%20Generation%20for%20Knowledge-Intensive%20NLP">↗ 搜索原文</a></li>
-<li>Radford et al.&nbsp;(2018). <em>Improving Language Understanding by Generative Pre-Training</em>. <em>OpenAI Technical Report</em>. <a href="https://scholar.google.com/scholar?q=al.%202018%20Improving%20Language%20Understanding%20by%20Generative%20Pre-Training">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="36.9">
-<h2 data-number="36.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">36.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="36.8">
+<h2 data-number="36.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">36.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把三问框架写成一张决策表（底座体检 × 变化频率 × 错误代价 → 建议层），并给自己的一个实际项目过一遍。记录框架给出的建议与你的直觉的分歧点。</li>
 <li>预测再运行：few-shot 的 k 从 3 加到 8（示例更多），玩具基座上会有任何变化吗？真实模型上呢？（区分”示例不足”与”通道不通”两种失败。）</li>
-<li>消融：把 few-shot 的示例换成乱序（答案与问题不匹配），生成会怎么变？。通道不通时，示例的正确性还重要吗？（这测的是输入通道的哪一段？）</li>
+<li>消融：把 few-shot 的示例换成乱序（答案与问题不匹配），生成会怎么变？通道不通时，示例的正确性还重要吗？（这测的是输入通道的哪一段？）</li>
 <li>论文映射：用四问账本拆 RAG。注意它的”买到”栏同时记着两层（系统的时效 + 权重的整合）：跨层设计在账本上怎么记账？</li>
 <li>进阶：设计一个”通道体检”小工具：对任一底座，自动测 (a) few-shot 格式遵循率（输入通道）与 (b) 50 步微调后的格式遵循率（梯度通道），输出体检报告。把它跑在本书的三个模型（story 基座、SFT、MiniGPT-64）上。</li>
 </ol>
@@ -1362,23 +1332,8 @@ SFT zero-shot: 0.33</code></pre>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-lewis2020" class="csl-entry" role="listitem">
 <span class="nocase">Lewis, Patrick, Ethan Perez, Aleksandra Piktus, et al.</span> 2020. <span>“Retrieval-Augmented Generation for Knowledge-Intensive <span>NLP</span> Tasks.”</span> <em>NeurIPS</em>.
@@ -1826,7 +1781,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part8-model-vs-system.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part8-model-vs-system.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

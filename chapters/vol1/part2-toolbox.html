@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,10 +1074,9 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">10.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">10.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">10.7</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">10.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">10.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">10.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part2-toolbox.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part2-toolbox.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1162,7 +1119,7 @@ window.Quarto = {
 <ul>
 <li><strong>算力</strong>：GPU 已经进入视野（2012 的 AlexNet 用两张 GTX 580），但是，多数实验室还在 CPU 上挣扎。工具必须便宜才可能流行；</li>
 <li>数据：ImageNet（2009）改变了游戏规则，“大数据集”第一次名副其实；</li>
-<li>认知：深度网络的价值开始被严肃对待，但是，“加深就退化”仍是拦路虎。2015 年之前，“最深的实用网络”纪录大约在十层上下；</li>
+<li>认知：深度网络的价值开始被严肃对待，但是，“加深就退化”仍是拦路虎。2012 年之前，“最深的实用网络”纪录大约在十层上下；2014 年 VGG 与 GoogLeNet 已把纪录推到 19–22 层，但再加即退化；</li>
 <li>关键事实：这五年的每一件工具都先以”工程技巧”的面目出现，理论解释滞后数年（BN 的原始论文提出的”内部协变量偏移”解释后来还被部分推翻）。先有效后有理是这个领域的常态节奏。</li>
 </ul>
 </div>
@@ -1176,11 +1133,11 @@ window.Quarto = {
 </section>
 <section id="历史中的尝试包括弯路" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">10.2</span> 历史中的尝试（包括弯路）</h2>
-<p><strong>ReLU（2010 前后被认真采用）</strong>。Nair &amp; Hinton (2010) 在受限玻尔兹曼机里用了整流单元，Glorot, Bordes &amp; Bengio (2011) 在监督网络里系统评估并惊呼其简单有效。此前 sigmoid/tanh 是”默认神圣”。人们以为模拟生物发放率需要平滑饱和函数。弯路在于：“像神经元”不等于”训练友好”，导数恒为 1 的死区函数反而完胜。新病也随之而来（神经元死亡、稀疏路径），He 初始化 (2015) 补了第一刀。</p>
-<p><strong>Dropout（Hinton et al.&nbsp;2012；Srivastava et al.&nbsp;2014）</strong>。训练时随机丢弃一半神经元，测试时全部启用并缩放。直觉：阻止神经元”合谋”，逼出冗余表征；等价于隐式集成天文数字个子网络。它是 AlexNet 的功臣之一，在 2012 <span class="citation" data-cites="srivastava2014">(<a href="#ref-srivastava2014" role="doc-biblioref">Srivastava et al. 2014</a>)</span>–2017 的视觉模型里几乎必开。但后来被 BatchNorm 部分取代、被大模型时代的显存压力边缘化，这段兴衰本身就是”工具也有寿命”的注脚。</p>
+<p><strong>ReLU（2010 前后被认真采用）</strong>。Nair &amp; Hinton (2010) 在受限玻尔兹曼机里用了整流单元，Glorot, Bordes &amp; Bengio (2011) 在监督网络里系统评估并确认其简单有效。此前 sigmoid/tanh 是”默认神圣”。人们以为模拟生物发放率需要平滑饱和函数。弯路在于：“像神经元”不等于”训练友好”，导数恒为 1 的死区函数反而完胜。新病也随之而来（神经元死亡、稀疏路径）；He 初始化 (2015) 治的是其中幅度那一半，神经元死亡要另寻办法。</p>
+<p><strong>Dropout（Hinton et al.&nbsp;2012；Srivastava et al.&nbsp;2014）</strong>。训练时随机丢弃一半神经元，测试时全部启用并缩放。直觉：阻止神经元”合谋”，逼出冗余表征；等价于隐式集成天文数字个子网络。它是 AlexNet 的功臣之一 <span class="citation" data-cites="srivastava2014">(<a href="#ref-srivastava2014" role="doc-biblioref">Srivastava et al. 2014</a>)</span>，在 2012–2017 的视觉模型里几乎必开。但后来被 BatchNorm 部分取代、被大模型时代的显存压力边缘化，这段兴衰本身就是”工具也有寿命”的注脚。</p>
 <p><strong>BatchNorm（Ioffe &amp; Szegedy, 2015 <span class="citation" data-cites="ioffe2015">(<a href="#ref-ioffe2015" role="doc-biblioref">Ioffe and Szegedy 2015</a>)</span>）</strong>。把每一层的输入在 mini-batch 内标准化（减均值除方差，再仿射还原），训练出奇地稳定、步长容忍度大增。原论文把它解释为消除”内部协变量偏移”。这个解释后来被证伪（2018 年的研究表明它的真实作用更多在让 loss 地形更平滑），但是，药效无损。有效的药和正确的药理解释可以脱钩，这是科学史上反复上演的剧目。</p>
 <p><strong>残差连接（He et al., 2015 <span class="citation" data-cites="he2015resnet">(<a href="#ref-he2015resnet" role="doc-biblioref">He et al. 2015</a>)</span>）</strong>。<span class="math inline">\(y = F(x) + x\)</span>。给梯度修一条不经过连乘的恒等高速路。它是下一部分的主角（3.2），本章只在工具箱清单里挂个号。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><em>缓一缓。</em>这一节按发明顺序过了四件工具：ReLU 用「导数恒为 1」换掉了 sigmoid 族的饱和，Dropout 用随机失活逼出冗余表征，BatchNorm 把每层输入的分布钉住，残差给梯度修恒等高速路。四件都不是 2010 年代才需要的数学，是等到了合适的硬件与数据才被认真采用。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>带着上一章的悬念做题：八层 relu 网络，训练中卡死在 loss≈1.0。你有三张牌。</p>
 <ul>
@@ -1239,12 +1196,12 @@ window.Quarto = {
 </tbody>
 </table>
 <p>注意一个贯穿的模式：<strong>每件工具都在”消除一个让 loss 降不下去的障碍”，而不是”直接让 loss 更低”</strong>。loss 账本视角下，它们买卖的是”可训练性”，不是”表达能力”。这也是为什么它们全部属于”训练技巧”而非”模型能力”：一个八层 relu+BN 网络的函数空间并不比八层 sigmoid 网络大，但是，前者能真正走到那个空间的好解附近。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>这张表的一句话读法：四件工具买卖的都是「可训练性」而不是「表达能力」——它们各自移除一个让 loss 降不下去的障碍（幅度衰减、过拟合、分布漂移、连乘结构），网络能表示的函数集合没有变大，变的是走到好解附近的可能性。</p>
 </section>
 <section id="从零实现" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">10.4</span> 从零实现</h2>
 <p>四件工具都已在 <code>MLPNumpy</code> 里就位（<code>activation="relu"</code>、<code>dropout=p</code>、<code>batchnorm=True</code>、<code>residual=True</code>），本章按发明顺序逐一开闸。先复现病灶。上一章的卡死病人：</p>
-<div id="5c62ec33" class="cell" data-execution_count="1">
+<div id="dab82af8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data <span class="im">import</span> make_spiral</span>
@@ -1257,7 +1214,7 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Xs, ys <span class="op">=</span> make_spiral(n_per_class<span class="op">=</span><span class="dv">200</span>, seed<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：BatchNorm 的奇效。</strong> 同一个八层 relu 网络，只拨动一个开关：</p>
-<div id="d614cb82" class="cell" data-execution_count="2">
+<div id="aeb0a098" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bn <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span>bn)</span>
@@ -1306,7 +1263,7 @@ C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylab
 </div>
 </div>
 </div>
-<div id="f7d42009" class="cell" data-execution_count="3">
+<div id="86316198" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bn <span class="kw">in</span> (<span class="va">False</span>, <span class="va">True</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span>bn)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1316,9 +1273,9 @@ C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\IPython\core\pylab
 BN=True: acc=0.953</code></pre>
 </div>
 </div>
-<p>300 个 epoch：无 BN 卡死在 0.50，加 BN 直上 <strong>0.97</strong>。上一章的悬案在这里告破。relu 深网死于训练动态中的分布漂移，BN 把每层输入的分布钉住，漂移病除。</p>
+<p>300 个 epoch：无 BN 卡死在 0.50，加 BN 直上 <strong>0.95</strong>。上一章的悬案在这里告破。relu 深网死于训练动态中的分布漂移，BN 把每层输入的分布钉住，漂移病除。</p>
 <p><strong>实验二：BN 的第二重礼物。步长容忍。</strong> BN 之所以流行，一半因为它让学习率从”黑暗艺术”变成”粗调旋钮”：</p>
-<div id="af3221ec" class="cell" data-execution_count="4">
+<div id="f6a29aad" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lr <span class="kw">in</span> (<span class="fl">0.005</span>, <span class="fl">0.05</span>, <span class="fl">0.5</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span>lr, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1332,44 +1289,48 @@ BN + lr=0.05: loss=0.1994, acc=0.95</code></pre>
   return float(np.mean((self.model.forward(X) - np.asarray(Y)) ** 2))
 C:\Users\yujid\AppData\Roaming\Python\Python314\site-packages\numpy\_core\_methods.py:193: RuntimeWarning: overflow encountered in multiply
   x = um.multiply(x, x, out=x)
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:126: RuntimeWarning: overflow encountered in square
+C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:127: RuntimeWarning: overflow encountered in square
   loss = float(np.mean((pred - Y) ** 2))
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:159: RuntimeWarning: overflow encountered in matmul
+C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:160: RuntimeWarning: overflow encountered in matmul
   self.grad_Ws[i] = dZ.T @ A
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:161: RuntimeWarning: overflow encountered in matmul
+C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:162: RuntimeWarning: overflow encountered in matmul
   dA = dZ @ self.Ws[i]
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:149: RuntimeWarning: invalid value encountered in multiply
+C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:150: RuntimeWarning: invalid value encountered in multiply
   dpre = dH * fprime(preact, H)  # 先过激活的局部导数
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:151: RuntimeWarning: invalid value encountered in multiply
+C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:152: RuntimeWarning: invalid value encountered in multiply
   self.grad_gamma[i] = (dpre * xhat).sum(axis=0)
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarning: invalid value encountered in subtract
+C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:155: RuntimeWarning: invalid value encountered in subtract
   dpre - dpre.mean(axis=0) - xhat * (dpre * xhat).mean(axis=0)
-C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarning: invalid value encountered in multiply
+C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:155: RuntimeWarning: invalid value encountered in multiply
   dpre - dpre.mean(axis=0) - xhat * (dpre * xhat).mean(axis=0)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BN + lr=0.5: loss=nan, acc=0.50</code></pre>
 </div>
 </div>
-<p>带 BN 的网络横跨两个数量级的学习率都能训练（无 BN 的网络做同样扫描会怎么做？留作练习 2。先猜再跑）。机制直觉：BN 把各层激活的尺度钉在标准区间，loss 地形对参数整体缩放的敏感度大幅下降。2018 年的后续研究把这个好处归结为<strong>地形平滑化</strong>，而不是原论文宣称的”协变量偏移”。</p>
+<p>带 BN 的网络在相差一个数量级的两个学习率（0.005 与 0.05）下都能训到 0.95，到 0.5 才溢出（无 BN 的网络做同样扫描会怎么做？留作练习 2。先猜再跑）。机制直觉：BN 把各层激活的尺度钉在标准区间，loss 地形对参数整体缩放的敏感度大幅下降。2018 年的后续研究把这个好处归结为<strong>地形平滑化</strong>，而不是原论文宣称的”协变量偏移”。</p>
 <p><strong>实验三：Dropout 的机制演示。</strong> 在我们的玩具尺度上 dropout 的收益并不稳定（它的主场是百万参数的视觉模型。那里过拟合是主要矛盾）。这里只做一个机制性演示：训练态的 dropout 是噪声，评估态是确定的：</p>
-<div id="643317c9" class="cell" data-execution_count="5">
+<div id="a4cbad47" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span><span class="st">"relu"</span>, seed<span class="op">=</span><span class="dv">0</span>, dropout<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>])</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>], training<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>], training<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"训练态两次前向相同吗:"</span>, np.array_equal(out1, out2))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># forward 默认 training=False（评估态）：dropout 关闭，输出确定</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>out3 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>])</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>out4 <span class="op">=</span> m.forward(Xs[:<span class="dv">8</span>])</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"评估态两次前向相同吗:"</span>, np.array_equal(out3, out4))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># forward 默认 training=False（评估态）：dropout 关闭，输出确定；backward 内部自动切训练态</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>训练态两次前向相同吗: True</code></pre>
+<pre><code>训练态两次前向相同吗: False
+评估态两次前向相同吗: True</code></pre>
 </div>
 </div>
-<p><code>forward</code> 默认是评估态（确定输出）；<code>backward</code> 内部自动切训练态（dropout 生效、BN 用批统计）。<strong>这个”训练态/评估态”的二分是 dropout 与 BN 共同引入的新概念</strong>。在它们之前，一个网络只有一种状态；从此每个框架都有了 <code>model.train()</code> / <code>model.eval()</code>。我们引擎里最朴素的对应就是 <code>forward(X)</code> vs <code>backward(X, Y)</code> 的隐式切换。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p>两次训练态前向给出不同输出（随机失活生效），两次评估态前向完全相同（<code>forward</code> 默认 <code>training=False</code>）；<code>backward</code> 内部自动切训练态（dropout 生效、BN 用批统计）。<strong>这个”训练态/评估态”的二分是 dropout 与 BN 共同引入的新概念</strong>。在它们之前，一个网络只有一种状态；从此每个框架都有了 <code>model.train()</code> / <code>model.eval()</code>。我们引擎里最朴素的对应就是 <code>forward(X)</code> vs <code>backward(X, Y)</code> 的隐式切换。</p>
+<p><em>缓一缓。</em>这一节开了三件工具的箱：BN 一个开关把 0.50 拉到 0.95，上一章的悬案告破；BN 让 0.005 与 0.05 两个学习率都能用，步长从黑暗艺术降级为粗调旋钮；dropout 的训练态是噪声、评估态是确定——「网络有了模式」这个概念从此跟定所有框架。</p>
 </section>
 <section id="消融实验" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">10.5</span> 消融实验</h2>
 <p><strong>四件工具的联合体检</strong>留给下一章的 capstone（完整配方拆解）。这里先做一件本章特有的消融：BN 到底是救了 relu 还是救了所有激活？</p>
-<div id="03ff1baf" class="cell" data-execution_count="6">
+<div id="334977db" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> act <span class="kw">in</span> (<span class="st">"relu"</span>, <span class="st">"tanh"</span>):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">2</span>, [<span class="dv">32</span>] <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> [<span class="dv">1</span>], activation<span class="op">=</span>act, seed<span class="op">=</span><span class="dv">0</span>, batchnorm<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> Trainer(m, lr<span class="op">=</span><span class="fl">0.05</span>, momentum<span class="op">=</span><span class="fl">0.9</span>, batch_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>).fit(Xs, ys, <span class="dv">300</span>)</span>
@@ -1380,8 +1341,8 @@ C:\Users\yujid\projects\DeepLearning\src\dlbook\nn\mlp_numpy.py:154: RuntimeWarn
 tanh+BN: loss=0.8966, acc=0.64</code></pre>
 </div>
 </div>
-<p>tanh+BN 也能爬到 0.8 左右。BN 的疗效不挑激活，但是， relu+BN 仍是最优组合。<strong>工具之间存在协同</strong>：这为下一章”配方”的提法（组合优于单件）埋下伏笔。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p>tanh+BN 爬到 0.64，与不加 BN 的 tanh（2.2 章的数据，0.65）几乎相同——BN 救不了激活函数自带的剖面斜坡。relu+BN 则是 0.95：<strong>工具之间存在协同</strong>，relu 治静态幅度、BN 治动态漂移，缺一件都到不了 0.9。这为下一章”配方”的提法（组合优于单件）埋下伏笔。</p>
+<p><em>缓一缓。</em>这一节的消融回答了一个问题：BN 救的是 relu 深网，不是所有激活。tanh 加 BN 停在 0.64，与不加 BN 的 tanh 几乎相同；relu 加 BN 才有 0.95。单件论文的宣称，要在组合里重新定价。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">10.6</span> 本章 Loss 账本</h2>
@@ -1399,7 +1360,7 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 <tbody>
 <tr class="odd">
 <td>在优化什么 loss？</td>
-<td>依然不变。工具箱买卖的从来”抵达旧目标的路况”</td>
+<td>依然不变。工具箱买卖的从来是”抵达旧目标的路况”</td>
 </tr>
 <tr class="even">
 <td>数据从哪来？</td>
@@ -1407,7 +1368,7 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
-<td><strong>可训练的深度</strong>：八层网络从 0.50 到 0.97；学习率从艺术变成粗调</td>
+<td><strong>可训练的深度</strong>：八层网络从 0.50 到 0.95；学习率从艺术变成粗调</td>
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
@@ -1440,21 +1401,10 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 <li>深度的天花板在哪里？BN 之后，几十层网络的下一个瓶颈是什么？（→ 3.2 残差：优化之病好了，<strong>退化之病</strong>才露头）；</li>
 <li>工具箱能搬到序列与语言任务吗？（→ Part 4，那里有自己的特殊困难）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>一句话复述：四件工具各治一种「loss 降不下去」的病，合起来让八层 relu 网络从 0.50 到 0.95。剩下的问题是剂量与搭配——那是下一章配方的活儿；以及更深的墙——那是 3.2 的活儿。</p>
 </section>
-<section id="参考文献" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">10.8</span> 参考文献</h2>
-<ol type="1">
-<li>Nair, Vinod and Hinton, Geoffrey E. (2010). <em>Rectified Linear Units Improve Restricted Boltzmann Machines</em>. <em>Proceedings of ICML, 807–814</em>. <a href="https://scholar.google.com/scholar?q=Nair%202010%20%5B@nair2010%5D%20Rectified%20Linear%20Units%20Improve%20Restricted%20Boltzmann">↗ 搜索原文</a></li>
-<li>Srivastava et al.&nbsp;(2014). <em>Dropout: A Simple Way to Prevent Neural Networks from Overfitting</em>. <em>Journal of Machine Learning Research, 15, 1929–1958</em>. <a href="https://scholar.google.com/scholar?q=al.%202014%20Dropout%3A%20A%20Simple%20Way%20to%20Prevent">↗ 搜索原文</a></li>
-<li>Ioffe, Sergey and Szegedy, Christian (2015). <em>Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</em>. <em>Proceedings of ICML, 448–456</em>. <a href="https://scholar.google.com/scholar?q=Ioffe%202015%20Batch%20Normalization%3A%20Accelerating%20Deep%20Network%20Training">↗ 搜索原文</a></li>
-<li>He et al.&nbsp;(2015). <em>Deep Residual Learning for Image Recognition</em>. <em>arXiv preprint arXiv:1512.03385</em>. <a href="https://scholar.google.com/scholar?q=al.%202015%20Deep%20Residual%20Learning%20for%20Image%20Recognition">↗ 搜索原文</a></li>
-<li>Santurkar et al.&nbsp;(2018). <em>How Does Batch Normalization Help Optimization?</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202018%20%5B@santurkar2018%5D%20How%20Does%20Batch%20Normalization%20Help%20Optimization%3F">↗ 搜索原文</a></li>
-<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="10.9">
-<h2 data-number="10.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">10.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">10.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>MLPNumpy</code> 加 <code>layernorm=True</code> 选项（跨特征而非跨样本标准化），在八层螺旋上与 BN 对照。并预言它在 Transformer 里为什么取代了 BN（提示：批统计在变长序列上怎么办？）。</li>
 <li>预测再运行：无 BN 的网络做学习率扫描 {0.005, 0.05, 0.5}，结果会怎样？与 BN 版的扫描对照，画出”步长容忍度”的对比。</li>
@@ -1474,7 +1424,7 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>练习 2</strong>：无 BN 版在 0.005 爬行、0.05 卡死（上一章病人）、0.5 大概率溢出。可用区间近乎为零；BN 版横跨两个数量级可用。“步长容忍度”可以量化为”能训练的 lr 区间宽度”。</p>
+<p><strong>练习 2</strong>：无 BN 版在 0.005 爬行（acc 0.65）、0.05 卡死（0.50，上一章的病人）、0.5 同样卡在 0.50——可用区间近乎为零。BN 版在 0.005 与 0.05 都能训到 0.95，直到 0.5 才溢出。“步长容忍度”可以量化为”能训练的 lr 区间宽度”。</p>
 <p><strong>练习 3</strong>：输出层加 BN 会破坏尺度信息（回归目标的量纲被强行标准化），除非 <span class="math inline">\(\gamma,\beta\)</span> 学回尺度。通常更慢更差。Transformer 的做法是只对隐藏块归一化、输出投影前不再归一化。</p>
 <p><strong>练习 5 提示</strong>：用 2.1 的 <code>loss_at(u, 0)</code> 沿单一方向扫描，比较两条曲线的二次项系数（曲率）。BN 版的曲率显著更小即”更平滑”。</p>
 </div>
@@ -1483,26 +1433,11 @@ tanh+BN: loss=0.8966, acc=0.64</code></pre>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
 </div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
 <div id="ref-ioffe2015" class="csl-entry" role="listitem">
 Ioffe, Sergey, and Christian Szegedy. 2015. <span>“Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift.”</span> <em>Proceedings of ICML</em>, 448–56.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1929,14 +1864,14 @@ Srivastava, Nitish, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="pagination-link" aria-label="梯度消失：被忽视十五年的诊断书">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span>
+      <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="pagination-link" aria-label="梯度消失：被忽视二十年的诊断书">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/vol1/part2-alexnet.html" class="pagination-link" aria-label="AlexNet [@krizhevsky2012] 时刻：历史为什么发生在 2012">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012 <i class="bi bi-arrow-right-short"></i>
-      
+      <a href="../../chapters/vol1/part2-alexnet.html" class="pagination-link" aria-label="AlexNet 时刻：历史为什么发生在 2012">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1947,7 +1882,7 @@ Srivastava, Nitish, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part2-toolbox.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part2-toolbox.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

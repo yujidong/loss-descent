@@ -68,9 +68,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -137,7 +137,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -147,49 +147,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -680,6 +637,7 @@ main table {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -773,7 +731,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -785,7 +743,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -902,7 +860,7 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -919,13 +877,13 @@ main table {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1048,7 +1006,7 @@ main table {
   <li><a href="#本章问题" id="toc-本章问题" class="nav-link active" data-scroll-target="#本章问题"><span class="header-section-number">37.1</span> 本章问题</a></li>
   <li><a href="#五条大模式" id="toc-五条大模式" class="nav-link" data-scroll-target="#五条大模式"><span class="header-section-number">37.2</span> 五条大模式</a>
   <ul class="collapse">
-  <li><a href="#模式一bitter-lesson-sutton2019规模化迟到但从不缺席" id="toc-模式一bitter-lesson-sutton2019规模化迟到但从不缺席" class="nav-link" data-scroll-target="#模式一bitter-lesson-sutton2019规模化迟到但从不缺席"><span class="header-section-number">37.2.1</span> 模式一：Bitter Lesson <span class="citation" data-cites="sutton2019">(Sutton 2019)</span>。规模化迟到但从不缺席</a></li>
+  <li><a href="#模式一bitter-lesson-sutton2019规模化迟到但从不缺席" id="toc-模式一bitter-lesson-sutton2019规模化迟到但从不缺席" class="nav-link" data-scroll-target="#模式一bitter-lesson-sutton2019规模化迟到但从不缺席"><span class="header-section-number">37.2.1</span> 模式一：Bitter Lesson <span class="citation" data-cites="sutton2019">(Sutton 2019)</span>：规模化迟到但从不缺席</a></li>
   <li><a href="#模式二瓶颈的迁移每解决一个下一个就显形" id="toc-模式二瓶颈的迁移每解决一个下一个就显形" class="nav-link" data-scroll-target="#模式二瓶颈的迁移每解决一个下一个就显形"><span class="header-section-number">37.2.2</span> 模式二：瓶颈的迁移。每解决一个，下一个就显形</a></li>
   <li><a href="#模式三诊断先于解药但被听见常有时差" id="toc-模式三诊断先于解药但被听见常有时差" class="nav-link" data-scroll-target="#模式三诊断先于解药但被听见常有时差"><span class="header-section-number">37.2.3</span> 模式三：诊断先于解药，但被听见常有时差</a></li>
   <li><a href="#模式四范式回收好想法换个马甲回来" id="toc-模式四范式回收好想法换个马甲回来" class="nav-link" data-scroll-target="#模式四范式回收好想法换个马甲回来"><span class="header-section-number">37.2.4</span> 模式四：范式回收。好想法换个马甲回来</a></li>
@@ -1057,10 +1015,9 @@ main table {
   <li><a href="#一张折叠全书的表" id="toc-一张折叠全书的表" class="nav-link" data-scroll-target="#一张折叠全书的表"><span class="header-section-number">37.3</span> 一张折叠全书的表</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">37.4</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">37.5</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">37.6</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">37.7</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">37.6</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part9-patterns.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part9-patterns.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1085,7 +1042,7 @@ main table {
 </header>
 
 
-<p>三十八章走完，收起显微镜，换上望远镜。本书一路追踪的那些”意外”“教训”“巧合”，在复盘的镜头下显出规律。它们<strong>同一组模式在不同时代的重演</strong>。本章把全书折叠成一张模式清单：五条大模式，每条都至少在三个时代现身，每条都带着账本与章节索引。这张清单就是 9.3 预测未来的原材料。模式比技术活得久，能外推的正是它们。</p>
+<p>三十八章走完，收起显微镜，换上望远镜。本书一路追踪的那些”意外”“教训”“巧合”，在复盘的镜头下显出规律。它们是同一组模式在不同时代的重演。本章把全书折叠成一张模式清单：五条大模式，每条都至少在三个时代现身，每条都带着账本与章节索引。这张清单就是 9.3 预测未来的原材料。模式比技术活得久，能外推的正是它们。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1113,7 +1070,7 @@ main table {
 <section id="五条大模式" class="level2" data-number="37.2">
 <h2 data-number="37.2" class="anchored" data-anchor-id="五条大模式"><span class="header-section-number">37.2</span> 五条大模式</h2>
 <section id="模式一bitter-lesson-sutton2019规模化迟到但从不缺席" class="level3" data-number="37.2.1">
-<h3 data-number="37.2.1" class="anchored" data-anchor-id="模式一bitter-lesson-sutton2019规模化迟到但从不缺席"><span class="header-section-number">37.2.1</span> 模式一：Bitter Lesson <span class="citation" data-cites="sutton2019">(<a href="#ref-sutton2019" role="doc-biblioref">Sutton 2019</a>)</span>。规模化迟到但从不缺席</h3>
+<h3 data-number="37.2.1" class="anchored" data-anchor-id="模式一bitter-lesson-sutton2019规模化迟到但从不缺席"><span class="header-section-number">37.2.1</span> 模式一：Bitter Lesson <span class="citation" data-cites="sutton2019">(<a href="#ref-sutton2019" role="doc-biblioref">Sutton 2019</a>)</span>：规模化迟到但从不缺席</h3>
 <p><strong>陈述</strong>：依赖人类精巧设计的方案先赢一阵，被”更大的算力 + 更通用的学习”最终碾过。</p>
 <table class="caption-top table">
 <colgroup>
@@ -1140,7 +1097,7 @@ main table {
 <td>AlexNet + ImageNet + GPU</td>
 </tr>
 <tr class="odd">
-<td>5.3–6.x（2017–2020）</td>
+<td>5.3–6.3（2017–2020）</td>
 <td>精雕的 RNN 变体</td>
 <td>Transformer 的可并行 + 规模化</td>
 </tr>
@@ -1222,14 +1179,14 @@ main table {
 <tr class="odd">
 <td>2.2</td>
 <td>Hochreiter 梯度消失（1991）</td>
-<td>~15 年</td>
+<td>到被主流采用约 15-20 年</td>
 <td>LSTM（1997 慢热）+ ReLU/初始化（2010+）</td>
 </tr>
 <tr class="even">
 <td>4.5</td>
 <td>固定向量瓶颈（2014）</td>
-<td>~1 年</td>
-<td>注意力（2015）。快的例子</td>
+<td>约 1 年</td>
+<td>注意力（2015）——快的例子</td>
 </tr>
 <tr class="odd">
 <td>6.3</td>
@@ -1288,11 +1245,11 @@ main table {
 <td>STaR 自举（2022）</td>
 <td>—</td>
 <td>RLVR/agent 闭环训练（2024–25）</td>
-<td>环境反馈（8.2。我们自己刚刚亲演）</td>
+<td>环境反馈（8.2，我们自己刚刚亲演）</td>
 </tr>
 </tbody>
 </table>
-<p><strong>机制</strong>：想法的三个死因。硬件跟不上、数学没跟上、配套零件缺失。每个都可能被时间修复。对读者的推论：读旧论文不是怀古，是套利（未变现的好想法清单）。</p>
+<p><strong>机制</strong>：想法的三个死因。硬件跟不上、数学没跟上、配套零件缺失。每个都可能被时间修复。对读者的推论：读旧论文不是怀古，是套利（未变现的好想法清单）。注意一条诚实脚注：表里第一行的谱系（LSTM 细胞状态 → ResNet）是后见之明的重构——两条恒等路径在数学上是近亲，但 ResNet 的作者并不是从 LSTM 出发的。历史里的谱系，一半由当事人写下，一半由写史的人接上。</p>
 </section>
 <section id="模式五能力是分布的性质不是设计的目标" class="level3" data-number="37.2.5">
 <h3 data-number="37.2.5" class="anchored" data-anchor-id="模式五能力是分布的性质不是设计的目标"><span class="header-section-number">37.2.5</span> 模式五：能力是分布的性质，不是设计的目标</h3>
@@ -1329,7 +1286,7 @@ main table {
 </tbody>
 </table>
 <p><strong>机制</strong>：条件分布足够丰富时，“任务”只是它的切片。这是 loss 视角最深的红利：优化一个诚实的代理（数据上的预测），买到的是整个分布的结构。它的阴影同样真实：计划外的坏能力也会长出来（偏见、欺骗面的 reward hacking）。7.3 的教训对称地适用。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：五条大模式。</p>
+<p><em>缓一缓。</em>五条模式各带一张案例表：Bitter Lesson、瓶颈迁移、诊断时差、范式回收、“能力是分布的性质”。它们的共同点是可外推——每条都至少在三个时代重演过，这正是它们能当 9.3 预测原材料的原因。</p>
 </section>
 </section>
 <section id="一张折叠全书的表" class="level2" data-number="37.3">
@@ -1370,7 +1327,7 @@ main table {
 </tr>
 </tbody>
 </table>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：一张折叠全书的表。</p>
+<p><em>缓一缓。</em>这张表把五条模式各自接到账本的一个栏位：判断一个方案的存续期看第四问，找下一个热点看算力账本，评估当前共识的可信度看诊断时差。9.3 的预测，就是在这张表上做演算。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="37.4">
 <h2 data-number="37.4" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">37.4</span> 本章 Loss 账本</h2>
@@ -1421,20 +1378,13 @@ main table {
 </section>
 <section id="遗留问题" class="level2" data-number="37.5">
 <h2 data-number="37.5" class="anchored" data-anchor-id="遗留问题"><span class="header-section-number">37.5</span> 遗留问题</h2>
-<p>模式是旧的惯性，未来还取决于<strong>未解的问题</strong>。下一章清点 loss 视角下的开放问题清单（数据墙、自我改进的边界、评测危机、样本效率）。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p>模式是旧的惯性，未来还取决于<strong>未解的问题</strong>。下一章清点 loss 视角下的开放问题清单（数据墙、自我改进的边界、评测危机、样本效率、幻觉与校准）。</p>
+<p><em>缓一缓。</em>模式是惯性的账，问题才是未来的账。下一章把五个开放问题清点成地图，与这里的五条模式拼成 9.3 预测的完整棋盘。</p>
 </section>
-<section id="参考文献" class="level2" data-number="37.6">
-<h2 data-number="37.6" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">37.6</span> 参考文献</h2>
+<section id="练习" class="level2" data-number="37.6">
+<h2 data-number="37.6" class="anchored" data-anchor-id="练习"><span class="header-section-number">37.6</span> 练习</h2>
 <ol type="1">
-<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
-<li>Kuhn, Thomas S. (1962). <em>The Structure of Scientific Revolutions</em>. <em>University of Chicago Press</em>. <a href="https://scholar.google.com/scholar?q=Kuhn%201962%20The%20Structure%20of%20Scientific%20Revolutions">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="37.7">
-<h2 data-number="37.7" class="anchored" data-anchor-id="练习"><span class="header-section-number">37.7</span> 练习</h2>
-<ol type="1">
-<li><strong>模式寻宝</strong>：在本书没有归类的章节里找一条”至少三次出现”的候选模式（例：留门/平滑。4.1 的平滑系数、2.3 的 BN 防漂移、5.4 的遮罩率甜点、7.3 的 KL 罚。“给极端留缓冲”算不算第六条？论证它）。</li>
+<li><strong>模式寻宝</strong>：在本书没有归类的章节里找一条”至少三次出现”的候选模式（例：留门/平滑。4.1 的平滑系数、2.3 的 BN 防漂移、5.4 的掩码率甜点、7.3 的 KL 罚。“给极端留缓冲”算不算第六条？论证它）。</li>
 <li>反例检验：给五条模式各找一个反例或边界条件（例：模式一在蛋白质折叠的物理先验面前赢了多久？）。</li>
 <li>齿轮联动：选一个历史转折点（如 2017），用五条模式各解释一遍。哪个解释力最强？</li>
 <li>论文映射：把 Sutton 一页纸用四问账本拆。它”买到”的是判断力，这类无实验的论文在学术体系里如何估值？</li>
@@ -1461,23 +1411,8 @@ main table {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-kuhn1962" class="csl-entry" role="listitem">
 Kuhn, Thomas S. 1962. <em>The Structure of Scientific Revolutions</em>. (Chicago).
@@ -1925,7 +1860,7 @@ Sutton, Richard. 2019. <span>“The Bitter Lesson.”</span> <em>Incomplete Idea
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part9-patterns.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part9-patterns.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,10 +1074,9 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">29.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本卷二总账的第一页" id="toc-本章-loss-账本卷二总账的第一页" class="nav-link" data-scroll-target="#本章-loss-账本卷二总账的第一页"><span class="header-section-number">29.6</span> 本章 Loss 账本（卷二总账的第一页）</a></li>
   <li><a href="#遗留问题-卷三的入场券" id="toc-遗留问题-卷三的入场券" class="nav-link" data-scroll-target="#遗留问题-卷三的入场券"><span class="header-section-number">29.7</span> 遗留问题（= 卷三的入场券）</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">29.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">29.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">29.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol2/part6-convergence.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol2/part6-convergence.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1177,10 +1134,10 @@ window.Quarto = {
 <section id="历史中的尝试包括弯路" class="level2" data-number="29.2">
 <h2 data-number="29.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">29.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>decoder-only 的三张牌</strong>：①信号密度。每个 token 都产生监督（5.4 的验货结论）；②scaling 友好。目标单一、损失稳定、幂律好测（6.1 的曲线全部画在这条目标上）；③工程极简。训练即推理的彩排、KV 缓存直接可用、流水线好切。 encoder-decoder（T5 一系）与 MLM 路线没有输在”双向无用”，输在规模化时代的适配性。</p>
-<p><strong>MoE 的谱系</strong>：思想源头是 1991 年的混合专家（Jacobs et al.。古老的联想，与 LSTM 同年出生）；2017 年后与 Transformer 结合成稀疏层（Shazeer 的 Sparsely-Gated MoE、Google 的 Switch <span class="citation" data-cites="fedus2022">(<a href="#ref-fedus2022" role="doc-biblioref">Fedus et al. 2022</a>)</span> Transformer 每层几千专家、2023 年 Mistral 的 Mixtral 8×7B 开源爆款）。“参数存知识、算力做计算”的解耦让千亿级参数以百亿级的单 token 成本运行。</p>
+<p><strong>MoE 的谱系</strong>：思想源头是 1991 年的混合专家（Jacobs et al.——与 Hochreiter 1991 年诊断梯度消失的论文同年出生，一个古老的联想）；2017 年后与 Transformer 结合成稀疏层（Shazeer 的 Sparsely-Gated MoE、Google 的 Switch Transformer <span class="citation" data-cites="fedus2022">(<a href="#ref-fedus2022" role="doc-biblioref">Fedus et al. 2022</a>)</span>，每层专家数两千级；2023 年 Mistral 的 Mixtral 8×7B 开源）。“参数存知识、算力做计算”的解耦让千亿级参数以百亿级的单 token 成本运行。</p>
 <p><strong>弯路：MoE 的训练之难</strong>。负载不均（几个专家被挤爆、其余闲置）、训练不稳、微调娇气。解药是一整套工程（辅助负载损失、容量因子、z-loss）。稀疏性的收益从来不是免费的。本章实验会亲手撞上这一点。</p>
 <p><strong>开源运动</strong>：LLaMA（2023）按 Chinchilla 配方证明”小而充分训练”可行 → 泄露与正式开源 → 社区微调生态爆发 → 各家跟进（Mistral、Qwen、DeepSeek 一族）。研究-工程-社区的三级火箭取代了”单实验室闭门造模型”的旧范式。9.1 会把这段放到 Bitter Lesson <span class="citation" data-cites="sutton2019">(<a href="#ref-sutton2019" role="doc-biblioref">Sutton 2019</a>)</span> 的延长线上复盘。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><em>缓一缓。</em>三股推力各有谱系：decoder-only 靠三张牌（信号密度、scaling 友好、工程极简）胜出，输的不是”双向无用”而是规模化适配性；MoE 从 1991 年的旧想法长成稀疏层，代价是一整套负载均衡的工程；开源运动则把”基座”从产品变成了商品。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>MoE 实验设计题。手里的零件：<code>MoEMLP</code>（2 位专家、top-1 稀疏路由、直通门梯度）。计划：把 d=32 的 MiniGPT 第二块换成 MoE，与 dense 对照。</p>
 <p>运行之前写下预测：</p>
@@ -1200,13 +1157,13 @@ window.Quarto = {
 <li>MoE：把”参数”与”每 token 计算”解耦。知识可以更便宜地存，取用时只付路过的那部分算力。代价是训练复杂度与负载均衡的新税；</li>
 <li>开源：把”基座”从产品降级为商品。当架构收敛、配方公开（Chinchilla）、数据管道可复制时，护城河只剩数据、算力与对齐（后两者正是卷三的主题）。</li>
 </ul>
-<p><strong>收敛的代价</strong>：被收敛掉的还有多样性。encoder 路线在检索/嵌入场景仍是活的传统（5.4 的回声），稀疏注意力、线性复杂度、状态空间模型（4.2 的 RNN 还魂一族）都在等待”长上下文的账单”到期后接管（8.x）。收敛是特定账本下的最优解，账本变了，格局重开。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：核心思想。</p>
+<p><strong>收敛的代价</strong>：被收敛掉的还有多样性。encoder 路线在检索/嵌入场景仍是活的传统（5.4 的回声），稀疏注意力、线性复杂度、状态空间模型（4.2 的 RNN 还魂一族）都在等待”长上下文的账单”到期后接管（9.2）。收敛是特定账本下的最优解，账本变了，格局重开。</p>
+<p><em>缓一缓。</em>用账本语言各记一笔：decoder-only 是”最可规模化的架构”而非最优架构；MoE 把参数账与算力账拆开——知识存得便宜，取用只付路过的那部分算力；开源把护城河压缩到数据、算力与对齐，后两者正是卷三的主题。</p>
 </section>
 <section id="从零实现" class="level2" data-number="29.4">
 <h2 data-number="29.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">29.4</span> 从零实现</h2>
 <p><strong>MoE 对照实验</strong>：dense d=32（第二块 MLP 隐层 4d=128）vs 同模型第二块换成 <code>MoEMLP</code>（2 位专家、各 2d=64 隐层）。总参数相近、每 token 活跃算力减半：</p>
-<div id="ff03e09b" class="cell" data-execution_count="1">
+<div id="03a33870" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> char_corpus, make_grammar_corpus</span>
@@ -1256,13 +1213,13 @@ MoE:   val loss = 1.938
 <li>训练税：稀疏路由的梯度不如 dense 稠密。同预算下略慢是常态。</li>
 </ol>
 <p><strong>玩具的零结果与产业的千亿结果并存</strong>，正是”账本第二问（数据）与第三问（规模）决定技术适用域”的又一课。把这句话和 2.3（dropout 在玩具上平庸、在大模型上辉煌）对照：同一门课，卷一讲过一遍了。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：从零实现。</p>
+<p><em>缓一缓。</em>玩具给出的诚实读数：MoE 1.94 对 dense 1.91，打平或略输，且专家使用率失衡（约 0.74/0.26）。零结果的原因说得清：两位专家在 2.7 万参数里分不到专业化空间，负载均衡辅助损失又没装。“收益需要尺度”——这句话与卷一 dropout 在玩具上平庸的教训同款。</p>
 </section>
 <section id="消融实验" class="level2" data-number="29.5">
 <h2 data-number="29.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">29.5</span> 消融实验</h2>
-<p><strong>专家数扫描</strong>：把专家从 2 位加到 4 位（每位隐层 d=32，保持总活跃算力近似）。失衡会缓解还是恶化？（预测：专家越多，无约束的均衡越难自发形成。负载均衡损失从”可选”变”必需”的临界点。）</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：消融实验。</p>
-<div id="600478a2" class="cell" data-execution_count="2">
+<p><strong>专家数扫描</strong>：把专家从 2 位加到 4 位（每位隐层 d=32，总参数量不变；注意 top-1 路由下，每 token 的活跃算力随之再降一截）。失衡会缓解还是恶化？（预测：专家越多，无约束的均衡越难自发形成。负载均衡损失从”可选”变”必需”的临界点。）</p>
+<p><em>缓一缓。</em>扫描前的预测：专家从 2 位加到 4 位（总参数不变、每位变窄），无约束的负载失衡会加剧，负载均衡损失从”可选”变”必需”。下面的代码验证这个预测。</p>
+<div id="f6cdaeba" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>moe4 <span class="op">=</span> MiniGPT(V, d_model<span class="op">=</span><span class="dv">32</span>, n_heads<span class="op">=</span><span class="dv">2</span>, n_blocks<span class="op">=</span><span class="dv">2</span>, block_size<span class="op">=</span><span class="dv">64</span>, seed<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>moe4.blocks[<span class="dv">1</span>].mlp <span class="op">=</span> MoEMLP(<span class="dv">32</span>, n_experts<span class="op">=</span><span class="dv">4</span>, seed<span class="op">=</span><span class="dv">77</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train(moe4)</span>
@@ -1304,12 +1261,12 @@ MoE:   val loss = 1.938
 </tr>
 </tbody>
 </table>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：本章 Loss 账本（卷二总账的第一页）。</p>
+<p><em>缓一缓。</em>卷二总账的第一页：从计数的 n-gram 到幂律与稀疏化，“预测下一词”这个 loss 从未变过，变的是把它降得更便宜的手段——更好的函数族、更多的数据、解耦的成本结构。它还没回答的是”loss 降下来之后呢”。</p>
 <div class="callout-echo" title="回声">
 <ul>
-<li>MoE 的”存算解耦” → 推理经济学的军备库（量化、蒸馏是它的兄弟）；8.x 的 agent 成本核算会再见到这本账；</li>
+<li>MoE 的”存算解耦” → 推理经济学的军备库（量化、蒸馏是它的兄弟）；8.2 的 agent 成本核算会再见到这本账；</li>
 <li>开源运动 → 权重作为公共品；微调生态（LoRA 一族，7.2）是它的直接产物；</li>
-<li>收敛的宿命 → 长上下文账单（8.x）与状态空间模型的还魂。<strong>每一次”终局”都埋着下一局</strong>；</li>
+<li>收敛的宿命 → 长上下文账单（9.2）与状态空间模型的还魂。<strong>每一次”终局”都埋着下一局</strong>；</li>
 <li>卷二主线收束：从 n-gram 的计数到万亿参数的幂律，“预测下一词”从未变过，变的只是把 loss 降得更低的手段。下一卷问：降好了 loss，然后呢？</li>
 </ul>
 </div>
@@ -1329,18 +1286,10 @@ MoE:   val loss = 1.938
 <li>“听话”本身如何变成一个可优化的目标？（→ 7.3 RLHF：把人类偏好写成 loss）；</li>
 <li>当模型的推理能力成为新前线，loss 的故事怎么续写？（→ 7.4 RLVR 与测试时计算）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题（= 卷三的入场券）。</p>
+<p><em>缓一缓。</em>三个问题就是卷三的目录：base model 为什么不听话（7.1/7.2 的分布与 SFT）；“听话”怎么变成可优化的目标（7.3 的 RLHF）；推理能力成为新前线后，loss 的故事怎么续写（7.4 的 RLVR 与测试时计算）。卷二到此合上，卷三从这些问题开卷。</p>
 </section>
-<section id="参考文献" class="level2" data-number="29.8">
-<h2 data-number="29.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">29.8</span> 参考文献</h2>
-<ol type="1">
-<li>Fedus, William and Zoph, Barret and Shazeer, Noam (2022). <em>Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity</em>. <em>Journal of Machine Learning Research, 23, 1–39</em>. <a href="https://scholar.google.com/scholar?q=Fedus%202022%20Switch%20Transformers%3A%20Scaling%20to%20Trillion%20Parameter">↗ 搜索原文</a></li>
-<li>Touvron et al.&nbsp;(2023). <em>LLaMA</em>. <em>arXiv preprint arXiv:2302.13971</em>. <a href="https://scholar.google.com/scholar?q=al.%202023%20LLaMA">↗ 搜索原文</a></li>
-<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="29.9">
-<h2 data-number="29.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">29.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="29.8">
+<h2 data-number="29.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">29.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>MoEMLP</code> 加负载均衡辅助损失（<span class="math inline">\(L_{aux} = E \sum_e f_e \cdot p_e\)</span>，<span class="math inline">\(f_e\)</span> 为使用率、<span class="math inline">\(p_e\)</span> 为平均门概率），权重 0.01，重训。使用率与 loss 各怎么变？</li>
 <li>预测再运行：把 MoE 的路由从 top-1 改成 top-2（两位专家输出平均）。loss、使用率、每 token 算力各怎么变？（稠密化是 MoE 稳定性的常见退路。）</li>
@@ -1361,7 +1310,7 @@ MoE:   val loss = 1.938
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>练习 1</strong>：使用率趋向均衡（如 0.55/0.45），loss 或微升或微降。均衡与质量是两本账，辅助损失买的是前者的保险；真实系统里没有它，MoE 会退化成”单专家 + 死权重”。</p>
-<p><strong>练习 2</strong>：top-2 更稳（梯度更密）但是，每 token 算力翻倍。稀疏性的收益被稀释；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。</p>
+<p><strong>练习 2</strong>：top-2 更稳（梯度更密），但每 token 算力翻倍。稀疏性的收益被稀释；实践中 top-1（Switch）与 top-2（Mixtral）各有阵地，是”稳定性 vs 稀疏度”的汇率问题。</p>
 <p><strong>练习 5 提示</strong>：典型样本里”完整词”过半但”重复片段”显著（循环复读是循环网络时代的老病，在弱 base 模型上仍可见）。7.1 会把这类观察系统化为”分布的怪癖”，并论证为什么需要后训练。</p>
 </div>
 </div>
@@ -1369,26 +1318,11 @@ MoE:   val loss = 1.938
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-fedus2022" class="csl-entry" role="listitem">
 Fedus, William, Barret Zoph, and Noam Shazeer. 2022. <span>“Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity.”</span> <em>Journal of Machine Learning Research</em> 23: 1–39.
 </div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
-</div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
@@ -1836,7 +1770,7 @@ Sutton, Richard. 2019. <span>“The Bitter Lesson.”</span> <em>Incomplete Idea
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol2/part6-convergence.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol2/part6-convergence.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

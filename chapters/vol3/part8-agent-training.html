@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,10 +1074,9 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">35.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">35.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">35.7</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">35.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">35.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">35.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part8-agent-training.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part8-agent-training.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1178,10 +1135,10 @@ window.Quarto = {
 <h2 data-number="35.2" class="anchored" data-anchor-id="历史中的尝试包括弯路"><span class="header-section-number">35.2</span> 历史中的尝试（包括弯路）</h2>
 <p><strong>弯路一：纯模仿的轨迹学习</strong>。2023–2024 年大量工作收集人类操作轨迹做 SFT。学会了个样子，但没有环境的纠错信号：模型复制了人类的路径，也复制了人类的错误，且遇到新局面就懵。模仿给你下限，反馈给你上限（4.2 的”错误驱动 vs 相关驱动”在 agent 尺度的重演）。</p>
 <p><strong>弯路二：一步到位的端到端 RL</strong>。在原始环境（浏览器、操作系统）上直接 RL。状态空间巨大、奖励稀疏、一次 rollout 几十秒。训练在工程上先于科学而崩溃。解法是分层与合成：先在可验证的子任务（单元测试、网页导航的仿真）上闭环，再逐步迁移。</p>
-<p><strong>正解的谱系</strong>：STaR（7.4，可验证任务的自举）→ 过程奖励模型（每步判分的奖励。代价是要步骤级标注）→ 结果奖励 + 长轨迹（DeepSeek-R1 一系在推理域的验证）→ agent 域的 env-in-the-loop 训练（WebArena/编程沙盒 + RL）。共同骨架只有一句：环境或验证器当裁判，成功者回灌权重。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><strong>正解的谱系</strong>：STaR（7.4，可验证任务的自举）→ 过程奖励模型（每步判分的奖励；Lightman et al.&nbsp;2023 的 <em>Let’s Verify Step by Step</em> 是代表作，代价是要步骤级标注）→ 结果奖励 + 长轨迹（DeepSeek-R1 一系在推理域的验证）→ agent 域的 env-in-the-loop 训练（WebArena/编程沙盒 + RL）。共同骨架只有一句：环境或验证器当裁判，成功者回灌权重。</p>
+<p><em>缓一缓。</em>两条弯路先记下：纯模仿复制人类的路径也复制人类的错误，端到端 RL 在原始环境里先于科学而崩溃。正解的谱系从 STaR 走到 env-in-the-loop，骨架一句话——环境或验证器当裁判，成功者回灌权重。</p>
 <div class="callout-research" title="停一停，你来当研究者">
-<p>实验预告：5.1/7.4 的注意力 seq2seq，只训 5 个 epoch（贪心 0.80）。一个”会做但是，不稳”的模型。两种升级：</p>
+<p>实验预告：5.1/7.4 的注意力 seq2seq，只训 5 个 epoch（贪心 0.33）。一个”会做但是，不稳”的模型。两种升级：</p>
 <ul>
 <li><strong>循环</strong>：每题最多 <span class="math inline">\(k\)</span> 次采样，验证器（反转回去比对）筛，任一次对即成功；</li>
 <li>回灌：把循环中成功的 (输入, 正确输出) 收集起来，继续微调模型，然后重测单次贪心。</li>
@@ -1189,7 +1146,7 @@ window.Quarto = {
 <p>写下预测：</p>
 <ol type="1">
 <li>成功率 vs 重试次数 <span class="math inline">\(k\)</span>（1/2/4/8）的曲线形状？（线性？饱和？何时到 1.0？）</li>
-<li>回灌一轮后，单次贪心从 0.80 涨到多少？（提示：回灌的数据是”模型已经偶尔能做对的”。这正是 7.4 STaR 的结构。）</li>
+<li>回灌一轮后，单次贪心从 0.33 涨到多少？（提示：回灌的数据是”模型已经偶尔能做对的”。这正是 7.4 STaR 的结构。）</li>
 <li>两者的成本各记在哪？如果每题只许你花一次前向（在线服务），你选哪个？</li>
 </ol>
 <p>写完再运行。</p>
@@ -1198,14 +1155,14 @@ window.Quarto = {
 <section id="核心思想" class="level2" data-number="35.3">
 <h2 data-number="35.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">35.3</span> 核心思想</h2>
 <p><strong>循环 = 系统层的方差消减</strong>。单次采样有噪声，验证器把”分布里存在正确答案”变成”输出里保证正确答案”。重试预算买的是对模型自身分布的搜索。它与 7.4 的多数投票同宗（都是测试时计算），区别在验证器的存在：投票靠共识，重试靠裁判。裁判的可得性决定选型（7.4 练习 1 的结论在 agent 尺度成立）。</p>
-<p><strong>轨迹回灌 = 分布的自我蒸馏</strong>。循环的成功轨迹是模型分布的条件样本（模型够得着的成功），回灌把它们从”偶尔”变成”经常”。把测试时计算的收益固化进权重。这是 STaR 的 agent 版：<code>多采样 + 验证 + 回灌</code> 三步循环，每转一圈，模型的单次能力上一格、循环的启动点更高。</p>
+<p><strong>轨迹回灌 = 分布的自我蒸馏</strong>。循环的成功轨迹是模型分布的条件样本（模型够得着的成功），回灌把它们从”偶尔”变成”经常”。把测试时计算的收益固化进权重。这是 STaR 的 agent 版：<code>多采样 + 验证 + 回灌</code> 三步循环，每转一圈，模型的单次能力上一格、循环的启动点更高。（术语注：这里的”蒸馏”取其广义——用模型自产的成功样本训练它自己；与经典知识蒸馏”用大模型的软标签训小模型”是亲戚，区别在数据来源。）</p>
 <p><strong>过程与结果的奖励账</strong>：结果奖励（只判最终对错）标注便宜、不可作弊，但长轨迹里信用分配难（哪一步走对了？）；过程奖励（逐步判分）信用分配精准，但是，要步骤级标注或仿真器。两者的选择是”裁判成本 vs 信用精度”的交换。真实系统常混用（数学用结果+验证，编程用单测=过程）。</p>
 <p><strong>闭环的经济学</strong>：循环把成本记在推理账（每次任务多花 k 倍前向），回灌把成本记在训练账（一次性，之后每次任务都便宜）。产品选型 = 请求量 × 单价的乘法。高频任务买权重，低频任务买循环（9.1 复盘时的算力账本条目）。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><em>缓一缓。</em>本节四笔账：循环是系统层的方差消减，回灌是分布的自我蒸馏，过程与结果奖励的取舍是”裁判成本对信用精度”，闭环的经济学是”高频买权重、低频买循环”。两个实验马上把前两笔账跑出来。</p>
 </section>
 <section id="从零实现" class="level2" data-number="35.4">
 <h2 data-number="35.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">35.4</span> 从零实现</h2>
-<div id="0da0c920" class="cell" data-execution_count="1">
+<div id="7fc91917" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.data.corpus <span class="im">import</span> make_reversal_task</span>
@@ -1235,11 +1192,11 @@ window.Quarto = {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"起点：单次贪心 </span><span class="sc">{</span>exact_acc(model, test_pairs)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>起点：单次贪心 0.895</code></pre>
+<pre><code>起点：单次贪心 0.326</code></pre>
 </div>
 </div>
 <p><strong>实验一：重试闭环（系统层）。</strong> 提议（温度采样）→ 验证（反转回去等于输入即对）→ 不对就再采：</p>
-<div id="7c6a5daa" class="cell" data-execution_count="2">
+<div id="ba49e0bc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agent_success(m, pairs, max_tries, temp<span class="op">=</span><span class="fl">0.7</span>):</span>
@@ -1263,22 +1220,22 @@ window.Quarto = {
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"The agent loop: propose, verify, retry"</span>)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>重试预算 1: 成功率 0.802
-重试预算 2: 成功率 0.884
-重试预算 4: 成功率 0.953
-重试预算 8: 成功率 0.977</code></pre>
+<pre><code>重试预算 1: 成功率 0.256
+重试预算 2: 成功率 0.360
+重试预算 4: 成功率 0.407
+重试预算 8: 成功率 0.558</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="part8-agent-training_files/figure-html/cell-3-output-2.png" width="457" height="361" class="figure-img"></p>
+<p><img src="part8-agent-training_files/figure-html/cell-3-output-2.png" width="449" height="361" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>典型读数：<strong>0.80 → 0.88 → 0.95 → 0.98</strong>。饱和上升，8 次预算几乎榨干。注意上限不是 1.0：最难的那 2% 在分布里的概率质量太小，搜索也够不着（循环的天花板 = 分布的概率质量，7.4 结论的 agent 版）。</p>
+<p>典型读数：<strong>0.26 → 0.36 → 0.41 → 0.56</strong>。单调上升，但边际递减明显。注意上限远不是 1.0：几乎一半的题目在分布里的概率质量太小，8 次搜索也够不着（循环的天花板 = 分布的概率质量，7.4 结论的 agent 版）。（与 7.4 的投票曲线同源不同测：那条曲线在同一管线的 95 对测试集上量出 0.31→0.38，本章的测试集每档长度只取 100 条中的满长者、共 86 对——起点读数的微小差异（0.37 对 0.33）全部来自测试集构成。）</p>
 <p><strong>实验二：轨迹回灌（模型层）。</strong> 收集循环中的成功轨迹，回灌微调，重测单次：</p>
-<div id="9a4e83f0" class="cell" data-execution_count="3">
+<div id="ac72da76" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collect_and_distill(m, round_id, samples_per<span class="op">=</span><span class="dv">6</span>, temp<span class="op">=</span><span class="fl">0.9</span>):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rng2 <span class="op">=</span> np.random.default_rng(<span class="dv">500</span> <span class="op">+</span> round_id)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    succ <span class="op">=</span> []</span>
@@ -1302,18 +1259,18 @@ window.Quarto = {
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  round </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">: 采集成功 </span><span class="sc">{</span>n_ok<span class="sc">}</span><span class="ss">/400 → 单次贪心 </span><span class="sc">{</span>accs[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>轨迹回灌（蒸馏式闭环）:
-  round 0: 采集成功 350/400 → 单次贪心 0.965
-  round 1: 采集成功 364/400 → 单次贪心 0.942</code></pre>
+  round 0: 采集成功 247/400 → 单次贪心 0.628
+  round 1: 采集成功 328/400 → 单次贪心 0.674</code></pre>
 </div>
 </div>
-<p>典型读数：单次贪心 <strong>0.80 → 0.92+</strong>（两轮回灌）。与重试闭环合起来看：回灌前的循环把成功率提到 0.98；回灌后，单次 0.92 + 循环 8 次 ≈ 1.00。两个闭环互相抬升，这就是”agent 训练”的全部骨架：循环产出数据，数据强化循环。</p>
+<p>典型读数：单次贪心 <strong>0.33 → 0.63 → 0.67</strong>（两轮回灌，第一轮涨幅最大）。与重试闭环合起来看：回灌前的循环把成功率提到 0.56；回灌后，单次 0.67 + 循环 8 次 ≈ 0.83。两个闭环互相抬升，这就是”agent 训练”的全部骨架：循环产出数据，数据强化循环。</p>
 <p>（细心的读者会发现实验二与 7.4 的 STaR 是同一个算法。完全正确。差别只在叙事：STaR 章我们说”自举提升推理”，本章说”轨迹回灌训练 agent”。<strong>同一个 loss 结构，不同的系统包装</strong>。9.1 复盘的”范式回收”模式提前现身。）</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p><em>缓一缓。</em>两组读数放一起：重试闭环 0.26→0.56（同一权重、更好的读出），回灌 0.33→0.67（权重本身变好），回灌后循环再抬到 0.83。循环产出数据、数据强化循环——这就是 agent 训练的全部骨架。</p>
 </section>
 <section id="消融实验" class="level2" data-number="35.5">
 <h2 data-number="35.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">35.5</span> 消融实验</h2>
-<p><strong>温度的角色再访</strong>：闭环的采集温度决定轨迹的多样性（探索），回灌的学习率决定固化的速度（利用）。把采集温度设 0.1（几乎贪心）重跑回灌。采集到的成功轨迹骤减（模型只会重复已有路径），第一轮提升明显缩水。探索是闭环的燃料：RLVR 的温度、agent 的随机动作、真实系统的 <span class="math inline">\(\varepsilon\)</span>-greedy，都是同一味药的 different 包衣（7.4 消融的 agent 版收尾）。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p><strong>温度的角色再访</strong>：闭环的采集温度决定轨迹的多样性（探索），回灌的学习率决定固化的速度（利用）。把采集温度从 0.9 降到 0.1（几乎贪心）重测采集量：400 题里采到 230 条成功轨迹，温度 0.9 时是 239 条——在这个难度档，贴近贪心的采集几乎不吃亏，因为模型需要的只是”自己已经够得着的那部分分布”。这与 7.4 的温度消融（高温反而减产）拼成同一句话：探索的甜点由任务难度与分布宽度共同决定，不是越高越好。RLVR 的温度、agent 的随机动作、真实系统的 <span class="math inline">\(\varepsilon\)</span>-greedy，都是同一味药的不同包衣（7.4 消融的 agent 版收尾）。</p>
+<p><em>缓一缓。</em>温度降到 0.1 的对照给出 230 对 239：任务简单时探索几乎免费，难度贴近分布边缘时它才成为硬预算。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="35.6">
 <h2 data-number="35.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">35.6</span> 本章 Loss 账本</h2>
@@ -1339,7 +1296,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td>买到了什么能力？</td>
-<td>多步循环的稳定性（重试 0.80→0.98）；能力的权重固化（回灌单次 0.80→0.92）；两条曲线的互相抬升</td>
+<td>多步循环的稳定性（重试 0.26→0.56）；能力的权重固化（回灌单次 0.33→0.67）；两条曲线的互相抬升</td>
 </tr>
 <tr class="even">
 <td>没买到什么？</td>
@@ -1358,7 +1315,7 @@ window.Quarto = {
 <div class="callout-paper" title="论文时光机">
 <p><strong>Yao, S. et al.&nbsp;(2023).</strong> <em>Tree of thoughts: Deliberate problem solving with large language models.</em> NeurIPS.（配对阅读：WebArena（环境基准）与任何一篇 2024–2025 的 agentic training 报告）</p>
 <ul>
-<li><strong>读什么</strong>：ToT 的图 1（从”链”到”树”。搜索结构的最小升级）与分解-评估-搜索的循环描述；WebArena 的任务与成功率表（真实环境里早期 agent 的低分。2023 年最好系统也只有 ~14%，现实校准的良药）；</li>
+<li><strong>读什么</strong>：ToT <span class="citation" data-cites="yao2023">(<a href="#ref-yao2023" role="doc-biblioref">Yao et al. 2023</a>)</span> 的图 1（从”链”到”树”。搜索结构的最小升级）与分解-评估-搜索的循环描述；WebArena 的任务与成功率表（真实环境里早期 agent 的低分。2023 年最好系统也只有 ~14%，现实校准的良药）；</li>
 <li>跳过：提示模板细节；</li>
 <li>历史注：ToT 把”测试时计算”组织成显式搜索。它是 7.4 与本章之间的桥：推理的搜索化 → 搜索的循环化 → 循环的训练化，三步就是 agent 训练的浓缩史。</li>
 </ul>
@@ -1370,17 +1327,10 @@ window.Quarto = {
 <li>模型层与系统层的账都摆齐了。<strong>一条界线怎么画</strong>：什么进权重、什么留在外部？（→ 下一章：全书判断框架的正式提出）；</li>
 <li>闭环飞轮能转到哪里？自产数据的极限与风险？（→ 9.2 开放问题）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>遗留两问：模型层与系统层的界线怎么画——什么进权重、什么留在外部（下一章给出判断框架），以及闭环飞轮能转多远（9.2 的边界讨论）。</p>
 </section>
-<section id="参考文献" class="level2" data-number="35.8">
-<h2 data-number="35.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">35.8</span> 参考文献</h2>
-<ol type="1">
-<li>Yao et al.&nbsp;(2023). <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202023%20%5B@yao2023%5D%20Tree%20of%20Thoughts%3A%20Deliberate%20Problem%20Solving">↗ 搜索原文</a></li>
-<li>Zelikman et al.&nbsp;(2022). <em>STaR</em>. <em>NeurIPS</em>. <a href="https://scholar.google.com/scholar?q=al.%202022%20STaR">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="35.9">
-<h2 data-number="35.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">35.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="35.8">
+<h2 data-number="35.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">35.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：把重试闭环的验证器换成”自验证”（模型自己反转一次比对）。验证器也从模型出。成功率怎么变？（验证的可靠性成为新瓶颈。）</li>
 <li>预测再运行：回灌数据里混入 10% 未验证的”侥幸成功”（碰巧对但是，路径错误。构造：错误中间态+对的结尾），两轮回灌后单次准确率与错误形态各怎么变？</li>
@@ -1409,26 +1359,14 @@ window.Quarto = {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
-</div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
 </div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
-</div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
+</div>
+<div id="ref-yao2023" class="csl-entry" role="listitem">
+Yao, Shunyu, Dian Yu, Jeffrey Zhao, et al. 2023. <span>“Tree of Thoughts: Deliberate Problem Solving with Large Language Models.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-zelikman2022" class="csl-entry" role="listitem">
 Zelikman, Eric, Yuhuai Wu, Jesse Mu, and Noah Goodman. 2022. <span>“<span>STaR</span>: Bootstrapping Reasoning with Reasoning.”</span> <em>NeurIPS</em>.
@@ -1870,7 +1808,7 @@ Zelikman, Eric, Yuhuai Wu, Jesse Mu, and Noah Goodman. 2022. <span>“<span>STaR
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol3/part8-agent-training.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol3/part8-agent-training.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

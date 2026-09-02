@@ -103,9 +103,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-64ffbcb40e96a00e982cbedc05e3c85c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-8fb6cfd6fef32e4027d2ba2a3c1c0fc3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-a89c8625cb3f9b3aaa9ee913e0f67ffc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dcca043fb54774be1f63ac1520dfc6e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +172,7 @@ div.csl-indent {
     box-shadow: 0 6px 18px rgba(0,0,0,.3); cursor: pointer; }
 
 <style>
-/* 阅读体验微调：只调字号/行高/间距，完全不覆盖 Quarto 布局网格 */
+/* 最小干预：只调字号/行高，不碰任何布局属性 */
 body {
   font-size: 1.0625rem !important;
   line-height: 1.85 !important;
@@ -182,49 +182,6 @@ main p {
 }
 main pre code {
   font-size: 0.875em !important;
-}
-main table {
-  width: 100%;
-  table-layout: auto;
-}
-
-/* 防止内容与右侧 TOC / 左侧浮动侧栏重叠 */
-@media (min-width: 992px) {
-  /* 右侧 TOC 确保在自己的列内 */
-  #quarto-content > .toc-active,
-  .toc-active {
-    position: sticky !important;
-    top: 2rem;
-    z-index: 10;
-    max-width: 16rem;
-    overflow-y: auto;
-    max-height: calc(100vh - 4rem);
-  }
-
-  /* 主内容确保不溢出到 TOC 列 */
-  main {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  /* 表格不超出容器 */
-  main .table-responsive,
-  main table {
-    max-width: 100% !important;
-    overflow-x: auto;
-  }
-
-  /* 代码块不超出容器 */
-  main pre {
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  /* callout 不溢出 */
-  main .callout {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
 }
 </style>
 <script>
@@ -744,6 +701,7 @@ window.Quarto = {
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">降 Loss 之路</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/yujidong/loss-descent" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
@@ -837,7 +795,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-vanishing-gradient.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视十五年的诊断书</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">梯度消失：被忽视二十年的诊断书</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -849,7 +807,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol1/part2-alexnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet <span class="citation" data-cites="krizhevsky2012">(</span></span></span></a><a href="#ref-krizhevsky2012" role="doc-biblioref">Krizhevsky et al. 2012</a>) 时刻：历史为什么发生在 2012
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">AlexNet 时刻：历史为什么发生在 2012</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -966,7 +924,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part5-gpt-vs-bert.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT <span class="citation" data-cites="devlin2019">(</span></span></span></a><a href="#ref-devlin2019" role="doc-biblioref">Devlin et al. 2019</a>)
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">分岔路口：GPT 与 BERT</span></span></a>
   </div>
 </li>
       </ul>
@@ -983,13 +941,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-scaling-laws.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 <span class="citation" data-cites="brown2020">(</span></span></span></a><a href="#ref-brown2020" role="doc-biblioref"><span class="nocase">Brown et al.</span> 2020</a>) 与 Scaling Laws <span class="citation" data-cites="kaplan2020">(<a href="#ref-kaplan2020" role="doc-biblioref">Kaplan et al. 2020</a>)</span>：loss 的可预测性
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">GPT-3 与 Scaling Laws：loss 的可预测性</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/vol2/part6-chinchilla.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla <span class="citation" data-cites="hoffmann2022">(</span></span></span></a><a href="#ref-hoffmann2022" role="doc-biblioref"><span class="nocase">Hoffmann et al.</span> 2022</a>)：等算力下的再平衡
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Chinchilla：等算力下的再平衡</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1116,10 +1074,9 @@ window.Quarto = {
   <li><a href="#消融实验" id="toc-消融实验" class="nav-link" data-scroll-target="#消融实验"><span class="header-section-number">7.5</span> 消融实验</a></li>
   <li><a href="#本章-loss-账本" id="toc-本章-loss-账本" class="nav-link" data-scroll-target="#本章-loss-账本"><span class="header-section-number">7.6</span> 本章 Loss 账本</a></li>
   <li><a href="#遗留问题" id="toc-遗留问题" class="nav-link" data-scroll-target="#遗留问题"><span class="header-section-number">7.7</span> 遗留问题</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">7.8</span> 参考文献</a></li>
-  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">7.9</span> 练习</a></li>
+  <li><a href="#练习" id="toc-练习" class="nav-link" data-scroll-target="#练习"><span class="header-section-number">7.8</span> 练习</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part1-mlp-winter.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part1-mlp-winter.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -1144,7 +1101,7 @@ window.Quarto = {
 </header>
 
 
-<p>1986 年之后，世界给过神经网络一个机会。反向传播登上 <em>Nature</em>，媒体宣称”会思考的机器”近在眼前，神经网络公司扎堆上市，DARPA 追加投资。然后，大约在 1995 年，这一切再次退潮。会议投稿暴跌，经费转向，一个叫”支持向量机”的对手接管了机器学习。本章解剖这第二次繁荣与幻灭：理论给了多层网络一张巨额支票（万能逼近），而实践只兑现了其中一小部分。我们要亲手弄清楚。<strong>支票上的哪部分是真的，哪部分是空头</strong>。</p>
+<p>1986 年之后，世界给过神经网络一个机会。反向传播登上 <em>Nature</em>，媒体宣称”会思考的机器”近在眼前，神经网络公司扎堆上市，DARPA 追加投资。然后，大约在 1995 年，这一切再次退潮。会议投稿暴跌，经费转向，一个叫”支持向量机”的对手接管了机器学习。本章解剖这第二次繁荣与幻灭<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>：理论给了多层网络一张巨额支票（万能逼近），而实践只兑现了其中一小部分。我们要亲手弄清楚：<strong>支票上的哪部分是真的，哪部分是空头</strong>。</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="算力需求">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1163,7 +1120,7 @@ window.Quarto = {
 <li><strong>算力</strong>：Sun 工作站进入实验室（约 10 MIPS），训练几千参数的网络以小时计；今天本节的实验在笔记本上以秒计；</li>
 <li>数据：UCI 机器学习库（1987 年上线）是当时最大的公开数据集合集。数百个”玩具级”数据集，规模以千计；</li>
 <li>认知：反向传播被广泛（过度）解读为”多层问题已解决”；万能逼近定理（1989）火上浇油。“理论上什么都能学”；</li>
-<li>产业：NeuralWare 等公司上市，财报里”神经网络”是最性感的词；日本通产省的”神经计算”计划与第五代计划一起，在 1990 年代初双双哑火。</li>
+<li>产业：Nestor、HNC 等神经网络公司上市，财报里”神经网络”是最性感的词；日本通产省的”神经计算”计划与第五代计划一起，在 1990 年代初双双哑火。</li>
 </ul>
 </div>
 <section id="本章问题" class="level2" data-number="7.1">
@@ -1180,7 +1137,7 @@ window.Quarto = {
 <p><strong>万能逼近定理（Cybenko 1989 <span class="citation" data-cites="cybenko1989">(<a href="#ref-cybenko1989" role="doc-biblioref">Cybenko 1989</a>)</span>；Hornik 1991 <span class="citation" data-cites="hornik1991">(<a href="#ref-hornik1991" role="doc-biblioref">Hornik et al. 1989</a>)</span>）</strong>：单个隐藏层、足够多 sigmoid 型神经元、任意连续函数。逼近误差可以任意小。媒体与产业把它读成了”神经网络可以学任何东西”。</p>
 <p><strong>过度的承诺</strong>。定理发表后，军方的乐观报告、公司的招股书、媒体的科普文互相引用放大。典型句式：“既然任意连续函数都能逼近，那么……”。然后直接跳到应用愿景。少数冷静者（包括定理的证明者们）强调：定理不保证梯度下降能找到那组权重，也不保证找到的函数在训练数据之外表现良好。这两句免责声明在狂欢中无人朗读。</p>
 <p><strong>现实的账单</strong>。到 1990 年代初，三个硬伤浮出水面：①小数据上严重过拟合；②稍深（多于两三层）的网络训练不稳定；③工程交付远不及预期。经费与人才流向新的救主。Vapnik 的支持向量机，带着优雅的统计学习理论与泛化界而来。反讽的是：SVM 阵营赢在”有理论保证”，而神经网络最终翻盘靠的是理论与保证都匮乏的算力加数据（2.4 的 Bitter Lesson 时刻）。</p>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：历史中的尝试（包括弯路）。</p>
+<p><em>缓一缓。</em>这一节摆出了 1986–1995 年的落差：万能逼近定理证明了「好解存在」，军方的报告与招股书把它读成「什么都能学」，而现实里的三个硬伤——小数据过拟合、稍深就不稳、交付不及预期——把热情浇灭，经费流向了带着泛化理论而来的支持向量机。</p>
 <div class="callout-research" title="停一停，你来当研究者">
 <p>万能逼近定理说：<strong>存在</strong>一组权重，使单隐层网络逼近任意连续函数到任意精度。</p>
 <p>请你设计两个实验，把这个”存在性”与另两件事区分开：</p>
@@ -1193,20 +1150,20 @@ window.Quarto = {
 </section>
 <section id="核心思想" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="核心思想"><span class="header-section-number">7.3</span> 核心思想</h2>
-<p><strong>万能逼近说的是表示力，不是学习力。</strong> 定理的直觉版本：sigmoid 神经元是”软台阶”，两个反向的台阶可以叠出一个”凸包”（局部隆起），足够多的凸包叠加可以拼出任何连续函数。就像足够小的瓷砖可以铺出任何曲线。它保证解在参数空间里存在，但对三件事保持沉默：</p>
+<p><strong>万能逼近说的是表示力，不是学习力。</strong> 定理的直觉版本：sigmoid 神经元是”软台阶”，两个反向的台阶可以叠出一个”鼓包”（局部隆起），足够多的鼓包叠加可以拼出任何连续函数。就像足够小的瓷砖可以铺出任何曲线。它保证解在参数空间里存在，但对三件事保持沉默：</p>
 <ul>
 <li>梯度下降能否走到那个解附近（<strong>优化难题</strong>）；</li>
 <li>即使走到了，解在未见数据上是否可用（泛化难题）；</li>
 <li>需要多少神经元才”够”（效率难题。同样的表示力，宽而浅与窄而深谁划算？这个问题的答案要等到残差网络时代）。</li>
 </ul>
 <p><strong>过拟合是”经验风险最小化”的暗面。</strong> 我们一直在做的是：把训练集上的 loss 降到底。但当数据带噪、模型容量充足时，“降到底”意味着把噪声也当规律背下来。训练误差越低，真实误差可能越高。“学习”与”记忆”的分界，就是泛化问题的核心。</p>
-<p><strong>深层的病已经在暗处生长。</strong> sigmoid 的导数至多 0.25，反向传播时梯度逐层连乘。16 层网络的第一层收到的梯度天然比第二层小约四个数量级。这个诊断 1991 年就有人写出（Hochreiter 的硕士论文 <span class="citation" data-cites="hochreiter1991">(<a href="#ref-hochreiter1991" role="doc-biblioref">Hochreiter 1991</a>)</span>），但是，又要等十年才被广泛听见。那是 2.2 章的故事，本章先用实验把它拍在明面上。</p>
-<p><em>缓一缓。</em>把刚才的推导或实验消化一下再继续。这一节的核心是：核心思想。</p>
+<p><strong>深层的病已经在暗处生长。</strong> sigmoid 的导数至多 0.25，反向传播时梯度逐层连乘。16 层网络的首层梯度比浅网络小约七个数量级（本章消融二将实测这个数字）。这个诊断 1991 年就有人写出（Hochreiter 的硕士论文 <span class="citation" data-cites="hochreiter1991">(<a href="#ref-hochreiter1991" role="doc-biblioref">Hochreiter 1991</a>)</span>），但是，要到 2010 年代深网复兴才被广泛听见——前后约二十年。那是 2.2 章的故事，本章先用实验把它拍在明面上。</p>
+<p><em>缓一缓。</em>这一节把定理能管的和不能管的分开：万能逼近只说解存在，对能不能找到（优化）、找到后管不管用（泛化）、要多少神经元（效率）三件事保持沉默；过拟合则是「把训练 loss 降到底」这件事自身的暗面。深层的梯度病也在暗处埋下了伏笔。</p>
 </section>
 <section id="从零实现" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="从零实现"><span class="header-section-number">7.4</span> 从零实现</h2>
 <p>工欲善其事：1.3 章的标量引擎负责讲原理，本章的实验规模需要向量引擎。1.3 的练习 5 让你把 <code>Value</code> 升级成 numpy 向量版。现在揭晓官方答案：<code>dlbook.nn.MLPNumpy</code>，反向传播不再建图，直接按那三条递推手写（<code>forward</code>/<code>backward</code>/<code>step</code> 三十余行，值得打开对照）。它还悄悄做了两件”来自未来”的事：权重按扇入缩放初始化、支持动量法（Polyak 1964，够古老）。<strong>为什么这两件事必不可少，分别是 2.1 与 2.3 的正式内容</strong>，此处先当黑魔法用。</p>
-<div id="b16ee30b" class="cell" data-execution_count="1">
+<div id="30ac985f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1220,7 +1177,7 @@ window.Quarto = {
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> f(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>实验一：宽度买表示力。</strong> 同一个网络结构、同一份数据、同样的训练步数，只改隐藏层宽度：</p>
-<div id="973ecb11" class="cell" data-execution_count="2">
+<div id="4cbdb281" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit(width, X, Y, steps<span class="op">=</span><span class="dv">8000</span>, lr<span class="op">=</span><span class="fl">0.05</span>, seed<span class="op">=</span><span class="dv">42</span>):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> MLPNumpy(<span class="dv">1</span>, [width, <span class="dv">1</span>], seed<span class="op">=</span>seed)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
@@ -1240,8 +1197,8 @@ width=10: 最终 loss = 0.006367
 width=30: 最终 loss = 0.006175</code></pre>
 </div>
 </div>
-<p>典型结果：宽度 3 卡在 <span class="math inline">\(\approx 0.020\)</span>（RMSE 约为函数幅度的七分之一。<strong>表示力不足</strong>，3 个 tanh 神经元拼不出足够的台阶）；宽度 10 降到 <span class="math inline">\(\approx 0.006\)</span>；宽度 30 与 10 几乎持平。眼睛验证一下：</p>
-<div id="9bec5fab" class="cell" data-execution_count="3">
+<p>典型结果：宽度 3 卡在 <span class="math inline">\(\approx 0.020\)</span>（RMSE 约为函数幅度的十分之一，<strong>表示力不足</strong>，3 个 tanh 神经元拼不出足够的台阶）；宽度 10 降到 <span class="math inline">\(\approx 0.006\)</span>；宽度 30 与 10 几乎持平。眼睛验证一下：</p>
+<div id="a705c7d0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="dv">4</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">300</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ax.plot(xs, f(xs), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"target"</span>)</span>
@@ -1260,9 +1217,9 @@ width=30: 最终 loss = 0.006175</code></pre>
 </div>
 </div>
 </div>
-<p>宽度 3 的曲线肉眼可见地”跟不上”目标的高频起伏。这就是定理里”足够多”三个字的分量。而 10 与 30 的贴合难分伯仲，提前预告了一个现代命题：<strong>超过够用之后，堆宽度收益递减</strong>（深度才是更划算的方向。3.2 的伏笔）。</p>
+<p>宽度 3 的曲线肉眼可见地”跟不上”目标的高频起伏。这就是定理里”足够多”三个字的分量。而 10 与 30 的贴合难分伯仲，提前预告了一个现代命题：<strong>超过够用之后，堆宽度收益递减</strong>（深度才是更划算的方向，3.2 的伏笔）。</p>
 <p><strong>实验二：训练误差是会说谎的。</strong> 现在只给模型 12 个带噪声的采样点（噪声 <span class="math inline">\(\pm 0.15\)</span>，噪声方差 <span class="math inline">\(\approx 0.0075\)</span>），用宽网络去拟合：</p>
-<div id="cc0e5af9" class="cell" data-execution_count="4">
+<div id="82c1c5c5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">7</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Xn <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">12</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Yn <span class="op">=</span> f(Xn) <span class="op">+</span> rng.uniform(<span class="op">-</span><span class="fl">0.15</span>, <span class="fl">0.15</span>, (<span class="dv">12</span>, <span class="dv">1</span>))</span>
@@ -1278,7 +1235,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 </div>
 </div>
 <p>训练误差被压到噪声方差附近。模型几乎<strong>背下了每一个噪声</strong>；而它对真实函数的误差是训练误差的数倍。画出来看它的”学习成果”：</p>
-<div id="bc99fdde" class="cell" data-execution_count="5">
+<div id="c441bf93" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="dv">4</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ax.plot(xs, f(xs), <span class="st">"k-"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"true function"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(Xn, Yn, c<span class="op">=</span><span class="st">"tab:red"</span>, s<span class="op">=</span><span class="dv">40</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"noisy data (12 pts)"</span>)</span>
@@ -1295,13 +1252,13 @@ width=30: 最终 loss = 0.006175</code></pre>
 </div>
 </div>
 </div>
-<p>拟合曲线在数据点之间剧烈扭动。它在两点之间插出的<strong>噪声的形状</strong>。1990 年代的研究者在真实任务上看到的就是这个：训练集表现漂亮，交付即翻车。“验证集”“早停”“正则化”这些今天的地板砖，当年正是为填这个坑发明的（2.1 与 2.3 的内容）。</p>
-<p><em>缓一缓。</em>回顾一下这一节讲了什么。这一节的核心是：从零实现。</p>
+<p>拟合曲线在数据点之间剧烈扭动。它在两点之间插出的是<strong>噪声的形状</strong>。1990 年代的研究者在真实任务上看到的就是这个：训练集表现漂亮，交付即翻车。“验证集”“早停”“正则化”这些今天的地板砖，当年正是为填这个坑发明的（2.1 与 2.3 的内容）。</p>
+<p><em>缓一缓。</em>这一节的两个实验各看了硬币的一面：宽度实验里，3 个隐藏单元跟不上目标的高频起伏，10 个与 30 个几乎打平——「足够多」三个字有分量，但超过够用后收益递减；过拟合实验里，宽网络把 12 个噪声点的训练误差压到噪声方差附近，真实误差却是它的数倍。训练误差会说谎，这一章把谎话拍在了图上。</p>
 </section>
 <section id="消融实验" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="消融实验"><span class="header-section-number">7.5</span> 消融实验</h2>
-<p><strong>消融一：把数据换成纯噪声，模型还学得动吗？</strong> 若上一节的网络只是在”拟合函数”，给它无结构的目标应当失灵；若它其实是个”万能记忆器”。</p>
-<div id="a4d2a49c" class="cell" data-execution_count="6">
+<p><strong>消融一：把数据换成纯噪声，模型还学得动吗？</strong> 若上一节的网络只是在”拟合函数”，给它无结构的目标应当失灵；若它其实是个”万能记忆器”，纯随机标签也应该能背下来。</p>
+<div id="603c2a6e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">3</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Xr <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">10</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Yr <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, (<span class="dv">10</span>, <span class="dv">1</span>))  <span class="co"># 纯随机标签，与 x 无任何关系</span></span>
@@ -1316,7 +1273,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 <pre><code>随机标签上的训练误差: 0.333 → 2.58e-06</code></pre>
 </div>
 </div>
-<div id="fea2d151" class="cell" data-execution_count="7">
+<div id="34b5d8ab" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_loss_curves({<span class="st">"train on random labels"</span>: history}, title<span class="op">=</span><span class="st">"Memorization"</span>, logy<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1328,7 +1285,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 </div>
 <p>训练误差一路压到 <span class="math inline">\(10^{-6}\)</span> 量级。<strong>宽网络连纯噪声都能记住</strong>。容量足以背下任何东西，“降到 0”不能证明学到规律。这个观察在 1990 年代是警钟，三十年后将以”双下降”与”grokking”的面目重新成为前沿（6.3 的伏笔）。</p>
 <p><strong>消融二：把网络做深，梯度还传得动吗？</strong> 换回 1.3 的标量引擎（要看清每一层的账），保持朴素的均匀初始化，只改激活函数与深度，测量第一层收到的梯度范数：</p>
-<div id="bad60be9" class="cell" data-execution_count="8">
+<div id="0b6654eb" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dlbook.autodiff <span class="im">import</span> MLP <span class="im">as</span> ScalarMLP</span>
@@ -1352,7 +1309,7 @@ width=30: 最终 loss = 0.006175</code></pre>
     relu: L=2: 3.61e-01  L=4: 3.85e-01  L=8: 6.71e-02  L=16: 3.64e-01</code></pre>
 </div>
 </div>
-<div id="9f4bf937" class="cell" data-execution_count="9">
+<div id="14820e3d" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>depths <span class="op">=</span> (<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plot_loss_curves(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    {a: [first_layer_grad_norm(L, a) <span class="cf">for</span> L <span class="kw">in</span> depths] <span class="cf">for</span> a <span class="kw">in</span> (<span class="st">"sigmoid"</span>, <span class="st">"tanh"</span>, <span class="st">"relu"</span>)},</span>
@@ -1370,12 +1327,12 @@ width=30: 最终 loss = 0.006175</code></pre>
 </div>
 <p>三行数字，三种命运：</p>
 <ul>
-<li><strong>sigmoid</strong>：<span class="math inline">\(2.5\times10^{-1} \to 8.4\times10^{-8}\)</span>。十六层深时第一层的梯度比浅层小七个数量级。导数 <span class="math inline">\(\le 0.25\)</span> 的连乘不是玩笑，这就是梯度消失的字面意思；</li>
+<li><strong>sigmoid</strong>：<span class="math inline">\(2.5\times10^{-1} \to 8.4\times10^{-8}\)</span>。十六层深时，首层梯度比 2 层的浅网络小约七个数量级。导数 <span class="math inline">\(\le 0.25\)</span> 的连乘不是玩笑，这就是梯度消失的字面意思；</li>
 <li>tanh：没有消失，但是，随深度大幅波动。朴素初始化下它同样不可靠（“稳定”要等 2.1 的初始化理论）；</li>
 <li>relu：四个深度下数量级稳定。导数恒为 1 的区域像高速公路。为什么 2010 年才有人认真用它（2.3），而它普及的路上还躺着”神经元死亡”等新坑，是后话。</li>
 </ul>
 <p><strong>两张空头支票的合影到此拍完</strong>：优化难题（深了学不动）与泛化难题（浅了记噪声），万能逼近定理对二者均不负责。1995 年前后，产业界用脚投票，第二次寒冬降临。</p>
-<p><em>缓一缓。</em>到这里停一停，把刚走过的路理一理。这一节的核心是：消融实验。</p>
+<p><em>缓一缓。</em>两张空头支票在这里合影：消融一显示宽网络连纯随机标签都能背到 <span class="math inline">\(10^{-6}\)</span> 量级，「降到 0」证明不了学到了规律；消融二显示 16 层 sigmoid 网络的首层梯度只剩 <span class="math inline">\(10^{-8}\)</span> 量级，而 relu 看起来量级稳定。优化与泛化两难，万能逼近定理对哪个都不负责，第二次寒冬随后降临。</p>
 </section>
 <section id="本章-loss-账本" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="本章-loss-账本"><span class="header-section-number">7.6</span> 本章 Loss 账本</h2>
@@ -1412,7 +1369,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 <p>这份账本第一次出现”<strong>loss 降到很低，能力却没到位</strong>”的条目。记住这个不舒服的感觉。它将贯穿全书：从 RLHF 的 reward hacking（7.3）到评测集污染（9.2），“指标与目标的偏离”是降 loss 事业的永恒阴影。</p>
 <div class="callout-echo" title="回声">
 <ul>
-<li>万能逼近（宽度版）→ “够宽的单层”与”够深的网络”的效率之争。深度优先是 2015 年后的答案，6.x 规模时代将再问一次；</li>
+<li>万能逼近（宽度版）→ “够宽的单层”与”够深的网络”的效率之争。深度优先是 2015 年后的答案，6.1 规模时代将再问一次；</li>
 <li>过拟合与验证集 → 正则化、dropout、早停（2.3），直至大模型时代的双下降与” grokking”（6.3）。容量过剩从病症变成了谜题再变成了特性；</li>
 <li>梯度消失 → ReLU、初始化理论、BatchNorm、残差（2.1–2.3 与 3.2）。一条贯穿卷一 Part 2 的主线就此埋下；</li>
 <li>“理论保证”阵营（SVM）的胜利与失败 → 提醒我们：工程证据的时滞可以让正确的理论先输一阵（2.4 复盘）。</li>
@@ -1423,7 +1380,7 @@ width=30: 最终 loss = 0.006175</code></pre>
 <ul>
 <li><strong>读什么</strong>：定理 1 的陈述与证明骨架（密度论证。凸组合在连续函数空间中稠密）；</li>
 <li>跳过什么：泛函分析的细节；</li>
-<li>历史注：更早的 Kolmogorov（1957，希尔伯特第 13 问题的解）给出了更强的精确表示定理，但是，用的是不可构造的病态函数。对比之下你会明白为什么”存在性 + 可构造性 + 可学习性”是三个世界。另外，Hochreiter 1991 <span class="citation" data-cites="hochreiter1991">(<a href="#ref-hochreiter1991" role="doc-biblioref">Hochreiter 1991</a>)</span> 的梯度消失诊断（德语硕士论文）发表在本章时代的正中间，却几乎无人引用。重要的诊断与被听见的诊断之间，隔着十五年的时差（2.2 的开场）。</li>
+<li>历史注：更早的 Kolmogorov（1957，希尔伯特第 13 问题的解）给出了更强的精确表示定理，但是，用的是不可构造的病态函数。对比之下你会明白为什么”存在性 + 可构造性 + 可学习性”是三个世界。另外，Hochreiter 1991 <span class="citation" data-cites="hochreiter1991">(<a href="#ref-hochreiter1991" role="doc-biblioref">Hochreiter 1991</a>)</span> 的梯度消失诊断（德语硕士论文）发表在本章时代的正中间，却几乎无人引用。重要的诊断与被听见的诊断之间，隔着约二十年的时差（2.2 的开场）。</li>
 </ul>
 </div>
 </section>
@@ -1435,20 +1392,10 @@ width=30: 最终 loss = 0.006175</code></pre>
 <li>初始化这件”黑魔法”的理论是什么？（2.1 的扇入缩放与 Xavier）；</li>
 <li>效率之谜：同样的表示力，深与宽怎么配？（3.2 残差，6.2 Chinchilla 的算力最优配比。同一问题在两个尺度上的两场演出）。</li>
 </ol>
-<p><em>缓一缓。</em>让我们把刚才的内容用一句话再说一遍。这一节的核心是：遗留问题。</p>
+<p><em>缓一缓。</em>一句话复述：这一章留下四个悬案——泛化何时反过来受益于容量、梯度消失有无系统解法、初始化的理论是什么、深与宽怎么配。它们分别指向 2.1 的经验风险与扇入缩放、2.2 的诊断，以及 3.2 与 6.2 在两个尺度上的两场演出。</p>
 </section>
-<section id="参考文献" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">7.8</span> 参考文献</h2>
-<ol type="1">
-<li>Cybenko, George (1989). <em>Approximation by Superpositions of a Sigmoidal Function</em>. <em>Mathematics of Control, Signals and Systems, 2, 303–314</em>. <a href="https://doi.org/10.1007/BF02551274">doi:10.1007/BF02551274</a></li>
-<li>Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert (1989). <em>Multilayer Feedforward Networks Are Universal Approximators</em>. <em>Neural Networks, 2, 359–366</em>. <a href="https://doi.org/10.1016/0893-6080(89)90020-8">doi:10.1016/0893-6080(89)90020-8</a></li>
-<li>Hochreiter, Sepp (1991). <em>Untersuchungen zu dynamischen neuronalen Netzen</em>. <em>Diploma Thesis (in German), Technische Universit"a</em>. <a href="https://scholar.google.com/scholar?q=Hochreiter%201991%20Untersuchungen%20zu%20dynamischen%20neuronalen%20Netzen">↗ 搜索原文</a></li>
-<li>Bengio, Yoshua and Simard, Patrice and Frasconi, Paolo (1994). <em>Learning Long-Term Dependencies with Gradient Descent is Difficult</em>. <em>IEEE Transactions on Neural Networks, 5, 157–166</em>. <a href="https://doi.org/10.1109/72.279181">doi:10.1109/72.279181</a></li>
-<li>Sutton, Richard (2019). <em>The Bitter Lesson</em>. <em>Incomplete Ideas (blog)</em>. <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">link</a>. <a href="https://scholar.google.com/scholar?q=Sutton%202019%20The%20Bitter%20Lesson">↗ 搜索原文</a></li>
-</ol>
-</section>
-<section id="练习" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="练习"><span class="header-section-number">7.9</span> 练习</h2>
+<section id="练习" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="练习"><span class="header-section-number">7.8</span> 练习</h2>
 <ol type="1">
 <li><strong>造轮子</strong>：给 <code>MLPNumpy.backward</code> 挑错。遮住源码，只凭 1.3 的三条递推重写，用 <code>tests/test_mlp_numpy.py</code> 的有限差分对拍验证。</li>
 <li>预测再运行：把实验一的目标函数换成奇对称的 <span class="math inline">\(\sin(2x)+0.5\sin(4x)\)</span>（无相移），先猜各宽度的 loss 会怎样变化，再运行。若与预期不符，用本章”表示力 vs 优化力”的框架解释你看到的差异（提示：对称性是鞍点的温床）。</li>
@@ -1477,14 +1424,8 @@ width=30: 最终 loss = 0.006175</code></pre>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-brown2020" class="csl-entry" role="listitem">
-<span class="nocase">Brown, Tom B., Benjamin Mann, Nick Ryder, et al.</span> 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>NeurIPS</em>.
-</div>
 <div id="ref-cybenko1989" class="csl-entry" role="listitem">
 Cybenko, George. 1989. <span>“Approximation by Superpositions of a Sigmoidal Function.”</span> <em>Mathematics of Control, Signals and Systems</em> 2: 303–14. <a href="https://doi.org/10.1007/BF02551274">https://doi.org/10.1007/BF02551274</a>.
-</div>
-<div id="ref-devlin2019" class="csl-entry" role="listitem">
-Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“<span>BERT</span>: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> <em>NAACL</em>.
 </div>
 <div id="ref-he2015resnet" class="csl-entry" role="listitem">
 He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Residual Learning for Image Recognition.”</span> <em>arXiv Preprint arXiv:1512.03385</em>.
@@ -1492,22 +1433,19 @@ He, Kaiming, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. 2015. <span>“Deep Resi
 <div id="ref-hochreiter1991" class="csl-entry" role="listitem">
 Hochreiter, Sepp. 1991. <span>“Untersuchungen Zu Dynamischen Neuronalen Netzen.”</span> <em>Diploma Thesis (in German), Technische Universit<span>ä</span>t M<span>ü</span>nchen</em>.
 </div>
-<div id="ref-hoffmann2022" class="csl-entry" role="listitem">
-<span class="nocase">Hoffmann, Jordan, Sebastian Borgeaud, Arthur Mensch, et al.</span> 2022. <span>“Training Compute-Optimal Large Language Models.”</span> <em>arXiv Preprint arXiv:2203.15556</em>.
-</div>
 <div id="ref-hornik1991" class="csl-entry" role="listitem">
 Hornik, Kurt, Maxwell Stinchcombe, and Halbert White. 1989. <span>“Multilayer Feedforward Networks Are Universal Approximators.”</span> <em>Neural Networks</em> 2 (5): 359–66. <a href="https://doi.org/10.1016/0893-6080(89)90020-8">https://doi.org/10.1016/0893-6080(89)90020-8</a>.
-</div>
-<div id="ref-kaplan2020" class="csl-entry" role="listitem">
-Kaplan, Jared, Sam McCandlish, Tom Henighan, et al. 2020. <span>“Scaling Laws for Neural Language Models.”</span> <em>arXiv Preprint arXiv:2001.08361</em>.
-</div>
-<div id="ref-krizhevsky2012" class="csl-entry" role="listitem">
-Krizhevsky, Alex, Ilya Sutskever, and Geoffrey E. Hinton. 2012. <span>“ImageNet Classification with Deep Convolutional Neural Networks.”</span> <em>NeurIPS</em>.
 </div>
 <div id="ref-rafailov2023" class="csl-entry" role="listitem">
 Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano Ermon, and Chelsea Finn. 2023. <span>“Direct Preference Optimization: Your Language Model Is Secretly a Reward Model.”</span> <em>NeurIPS</em>.
 </div>
 </div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>AI 史通行口径的「两次寒冬」指 1974–1980 与 1987–1993 两段经费低潮，且以符号主义 AI 的兴衰为参照系。本书把 1969 年《感知机》之后的低潮称作第一次寒冬——「两次寒冬」在本书中专指连接主义的视角。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1944,7 +1882,7 @@ Rafailov, Rafael, Archit Sharma, Eric Mitchell, Christopher D. Manning, Stefano 
     </div>   
     <div class="nav-footer-center">
 <p>《降 Loss 之路》 · 用实验重走深度学习研究史</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/yujidong/loss-descent/edit/main/chapters/vol1/part1-mlp-winter.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/yujidong/loss-descent/blob/main/chapters/vol1/part1-mlp-winter.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/yujidong/loss-descent/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
